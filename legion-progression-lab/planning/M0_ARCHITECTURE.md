@@ -1,6 +1,6 @@
 # M0 Architecture — `legion-progression-lab`
 
-**Milestone:** M0 · **Prepared:** 13 November 2026 · **Status:** PROPOSED, awaiting owner approval (decisions D-02, D-07, D-09 and D-10 in `M0_DECISION_MATRIX.md`). Nothing described here has been built.
+**Milestone:** M0 · **Version:** 1.1 (13 November 2026) · **Status:** APPROVED WITH CORRECTIONS. D-02, D-07, D-09 and D-10 were approved in `M0_RESOLUTION.md`. Review items A–G are applied in §6, §9, §10, §11, §14 and §15 (`M0_CHANGE_SUMMARY.md` lists every change). v1.0 is preserved in Git (import commit). Apart from S0, which is listed in the implementation plan, nothing described here has been built.
 
 > **In plain words.** The lab is a calculator that plays out a hypothetical player's progress. It runs on a computer, without a screen, so it can test thousands of plays quickly and give the same answer every time. It is kept completely separate from the old frozen simulator and from the Roblox game's code. The lab and the game never share code. They share only three kinds of plain data files:
 >
@@ -33,7 +33,7 @@
 
 ## 2. Placement and isolation
 
-**Recommendation (UNAPPROVED, D-09):** one canonical Legion repository containing the game, the lab and a shared `spec/` folder, with strict one-way rules. This assumes the owner picks the current workspace. The audit (B-03) lists the alternative, `Documents/GitHub/legion-incremental`, which already has a GitHub remote. The structure below works in either place.
+**Approved (D-09):** the canonical Legion repository is `Documents/GitHub/legion-incremental/`. It contains the game, the lab and a shared `spec/` folder, with strict one-way rules. Its GitHub remote `strixw0w/legion-incremental` is **public**, so nothing is pushed until the owner decides visibility (`M0_REPOSITORY_VERIFICATION.md`). The previous workspace `Desktop/Legion Incremental/` is kept unchanged until the owner approves its deletion.
 
 ```
 <Legion repo root>/
@@ -75,31 +75,29 @@
 
 ---
 
-## 3. Language, runtime and tooling
+## 3. Language, runtime and tooling (approved, D-10)
 
-**Recommendation (UNAPPROVED, D-10):**
-
-| Tool | Choice | Why |
+| Tool | Pinned version | Why |
 |---|---|---|
-| Language | **TypeScript, strict** (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly`, `verbatimModuleSyntax`) | Typed state and event contracts catch whole classes of mistakes. Your own frozen lab already proved this stack across five increments. |
-| Runtime | **Node.js, current LTS line**, pinned in `.node-version` and `package.json#engines` | Node runs `.ts` files directly by stripping types, so there is no build step. This machine has Node v25.9.0, an odd-numbered release with short support. The audit recommends installing an LTS line and checking the schedule at nodejs.org. |
-| Test runner | **vitest** (frozen lab used 4.1.12, MIT) | Fast, TypeScript-native, proven. |
-| Schema validation | **zod** (frozen lab used 4.6.7, MIT), with JSON Schema export into `spec/schema/` | One source of truth for content/manifest shapes, plus a neutral schema the Luau side can read as documentation. |
-| Property-based tests | **fast-check** (MIT), exact version pinned at install | Generates thousands of random command sequences to check invariants (balances never negative, conservation of materials). |
-| Hashing | `node:crypto` SHA-256 over canonical JSON | Reproducible fingerprints. Replaces the frozen lab's hand-written SHA-256. |
-| Fixture oracle | **Python 3 standard library** (3.12.9 is installed), run with `python -I` | Expected values come from a different language than the code under test (`fractions.Fraction` for exact arithmetic). It is used only to derive fixture numbers, never as a simulator. |
-| Luau parity (M2+) | **Lune** (plus1game pins `lune-org/lune@0.11.0` via Rokit) | Runs Luau headless on this machine, as plus1game already does for its kernel specs. |
+| Language | **TypeScript 7.0.2**, strict (`strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `erasableSyntaxOnly`, `verbatimModuleSyntax`) | Typed state and event contracts. The same version is proven in the owner's frozen lab. |
+| Runtime | **Node.js 24.22.3** (LTS "Krypton", released 10 Nov 2026), pinned in `.node-version`, `package.json#engines` and a runtime test | Runs `.ts` directly by type stripping. Installed as a self-contained copy in `%LOCALAPPDATA%\legion-tools\node-v24.22.3-win-x64\`, SHA-256 verified against nodejs.org `SHASUMS256.txt`. The system Node 25 used by other projects is untouched. |
+| Package manager | **npm 11.19.1** (bundled), `engine-strict=true` | Exact versions; the lockfile is committed with S0 after review |
+| Test runner | **vitest 4.1.12** | Proven in the frozen lab. vitest 5.x exists; it is not adopted without a reason. |
+| Schema validation | **zod 4.6.7**, with JSON Schema export (`z.toJSONSchema`) into `spec/schema/` | One source of truth for shapes, plus a neutral schema for the Luau side |
+| Property tests | **fast-check 4.10.2**, fixed seeds | Generated sequences check invariants |
+| Node type definitions | **@types/node 24.19.2** | Matches the runtime major version |
+| Hashing | `node:crypto` SHA-256 | Fingerprints and RNG seed derivation |
+| Independent oracles | **Python 3.12.9 standard library only** (`decimal`, `fractions`, `hashlib`, `json`), always run with `python -I` | Expected values from a different language than the code under test |
+| Luau conformance (M2+) | Lune (plus1game pins `lune-org/lune@0.11.0`) | Headless Luau for fixture conformance |
+| Roblox sync | **Rojo 7.7.1** via Rokit; matching Studio plugin installed | Shared with plus1game (D-10) |
 
-**Alternatives considered**
+**Alternatives considered** (unchanged from v1.0):
+- **Luau/Lune for the lab:** rejected, because shared code would defeat parity testing.
+- **Python as the simulator:** rejected, because unbounded integers would hide the game's double-precision limits. Python is used for oracles only.
+- **Rust, C# or Go:** rejected, since there is no precedent in this workspace.
+- **Spreadsheet:** rejected, because it cannot express event ordering, RNG or state.
 
-| Option | For | Against | Verdict |
-|---|---|---|---|
-| Luau via Lune for the lab | Same language as the game | Invites copying lab code into the game, so both share the same bugs and parity tests prove nothing. That contradicts "parity without shared runtime code". Thin data, statistics and testing tooling. | Use Lune for the game's tests, not the lab. |
-| Python | Great analysis libraries; exact `Fraction`/`int` | Python integers are unbounded while Luau numbers are doubles, so a Python sim would hide precision limits the game has. Slower event loops; weaker static typing. | Use only for fixture oracles. |
-| Rust / C# / Go | Speed, types | No precedent in your workspace; heavier tooling for a non-technical owner. | No. |
-| Spreadsheet | Transparent | Cannot express event ordering, RNG, queues or multi-character state. | Optional later for reviewing outputs. |
-
-TypeScript numbers and Luau numbers are both IEEE-754 doubles. Basic arithmetic (`+ − × ÷`, comparisons, `floor`, `ceil`) therefore gives bit-identical results when the operations happen in the same order. Functions like `pow`, `log` and `exp` can differ in the last bit between engines; §6 and §15 handle this.
+TypeScript and Luau numbers are both IEEE-754 doubles. Basic arithmetic (`+ − × ÷`, comparisons, `floor`) gives identical results when performed in the same order. `pow`, `log` and `exp` may differ in the last bit between engines, so authoritative paths never use them at runtime (§6, §15).
 
 ---
 
@@ -133,32 +131,100 @@ cli → experiments → policy → engine → model → core
 ## 5. Time model
 
 - **Simulation clock:** integer milliseconds since profile creation (`tMs`). It stays exact far beyond any horizon (2^53 ms is about 285,000 years). Event times are always integers. A duration derived from a rate is rounded **up** to the next millisecond when scheduling, so events are never early (proposed).
-- **Three time categories recorded for every run:**
-  - `activeMs`: the player is in a session (S1: scheduled session time; split into `activeManual` and `onlineAutoFarm` once abilities exist).
-  - `offlineMs`: elapsed time between sessions.
-  - `elapsedMs` = calendar time = active + offline.
+- **Time categories recorded separately for every run** (review item H):
+  - `activeManualMs`: in a session, player-driven.
+  - `connectedAutoFarmMs`: in a session, auto-farm on, no manual input. S1 has no abilities, so the two are equal in effect but are still reported separately.
+  - `offlineMs`: between sessions.
+  - `elapsedMs` = calendar time = `activeManualMs + connectedAutoFarmMs + offlineMs`.
 - **Offline accounting (S5):** `creditedOfflineMs` per window: window 1 is 0–24 h at normal efficiency, window 2 is 24–72 h at reduced efficiency, and nothing is credited beyond 72 h. Reports also show "effective hours" = Σ window time × efficiency.
 - **Session schedules** are part of the profile, not the policy, so the same policy can be run on different schedules.
 
 ---
 
-## 6. Numeric policy (proposed, pending D-02)
+## 6. Numeric policy (approved with corrections, D-02; review items A and B)
 
+### 6.1 Safe integers, intermediate overflow, exact division
+- **Safe integer:** `MAX_SAFE = 2^53 − 1 = 9,007,199,254,740,991`. A safe integer is a double for which `Number.isSafeInteger(x)` holds. `−0` is normalised to `+0` at every boundary.
+- **`addSafe`, `subSafe`, `mulSafe`:** inputs must be safe integers. The IEEE-754 operation is performed once and its result checked. For integer inputs this check is sound: if the exact result lies outside ±(2^53−1), the rounded double lies at or beyond ±2^53 (rounding is monotonic and 2^53 is representable), so the check fails; otherwise the double is exact.
+- **Intermediate overflow:** every intermediate value in a compound expression is checked, not only the final result. For example, `(a × b) ÷ c` fails with `NUMERIC_LIMIT` if `a × b` overflows, even when the mathematical final value would fit. Re-ordering to avoid an overflow is allowed only where a spec says so (as in §6.3).
+- **`divRem(a, b)`:** exact for safe integers a ≥ 0, b ≥ 1. It starts with `q = floor(a / b)` and corrects q until `0 ≤ a − q·b < b`, because floating division alone can be off by one near 2^53. `ceilDiv` is derived from it.
+- **Errors:**
+  - `INVALID_NUMBER`: NaN, ±Infinity, a non-integer where an integer is required, a negative where forbidden.
+  - `NUMERIC_LIMIT`: a result outside the safe range.
+
+  Nothing is ever silently clamped.
+
+### 6.2 Round half up (corrected)
+`roundHalfUp(x)`:
+- If |x| ≥ 2^52, every double is already an integer, so x is returned unchanged. The caller then checks that it is safe; 2^53 is not.
+- Otherwise `f = floor(x)` and `d = x − f`, which is exact in this range, and the result is `f + (d ≥ 0.5 ? 1 : 0)`.
+
+The naive `floor(x + 0.5)` is forbidden. It returns 1 for x = 0.49999999999999994, and 2^52 + 2 for x = 2^52 + 1, because x + 0.5 is rounded before the floor.
+
+### 6.3 Exact remainder accounting (replaces the v1.0 floating carry)
+Authoritative fractional progress is held as **integer remainders of exact rational accumulators**, never as floating-point carries.
+
+**Primitive.** `accrue(rem, num, steps, den) → { granted, rem′ }` computes exactly:
+- `granted = ⌊(rem + num·steps) / den⌋`
+- `rem′ = (rem + num·steps) mod den`
+
+for safe integers `0 ≤ rem < den`, `num ≥ 0`, `steps ≥ 0` and `1 ≤ den ≤ 2^26`.
+
+**Exactness without big integers.** Write `steps = qₛ·den + j` and `num = a·den + b`, with `0 ≤ j, b < den`. Then
+`granted = a·qₛ·den + a·j + b·qₛ + ⌊(b·j + rem) / den⌋` and `rem′ = (b·j + rem) mod den`.
+- Because `den ≤ 2^26`, `b·j + rem < 2^52 + 2^26` is exact.
+- Every other term is a part of `granted` and is computed with `mulSafe`/`addSafe`.
+- So the only failure mode is a genuinely unrepresentable result (`NUMERIC_LIMIT`). A denominator above 2^26 is `INVALID_DENOMINATOR`.
+
+**Guarantees.**
+- **G1, partition invariance.** For fixed integer parameters (num, den), calling `accrue` over steps s₁, s₂, … in order and carrying `rem` gives exactly the same total and final `rem` as one call with Σsᵢ. This is pure integer arithmetic, so settlement frequency can never change the result.
+- **G2, zero duration.** `steps = 0` changes nothing.
+- **G3, rate changes.**
+  - Authoritative rate parameters are **integers** (ms per action, basis points, milli-units per hour) that are fixed between rate-change events.
+  - Across a change, each segment uses its own parameters, and the remainder carries over when the stage's `den` is unchanged.
+  - Equivalence is guaranteed for every partition of a timeline that contains the same rate-change events. Those events are part of the deterministic simulation, not of the settlement schedule.
+- **G4, quantisation boundary.**
+  - Where a modelled real-valued quantity must become such an integer, the conversion happens once, at the rate-change event. It rounds against the player (durations up, yields and rates down) and is recorded in the receipt. These conversions are defined in the S2/S3/S5 stream specs.
+  - Not guaranteed: equality with an unquantised real-valued integral. The difference is bounded by the declared quantum, for example less than 0.001 unit per hour per stream for the per-hour chain below.
+- **G5, no epsilon.** No tolerance is ever added before a floor, so rounding can never create currency.
+
+**Standard chains** (each stage has its own `den ≤ 2^26`; every stage is partition-invariant, so the chain is):
+
+| Chain | Stage 1 | Stage 2 |
+|---|---|---|
+| Per-hour rate | ms → milli-units: `num = rateMilliPerHour`, `den = 3,600,000` | milli-units → units: `num = 1`, `den = 1000` |
+| Timed actions | ms → actions: `num = 1`, `den = actionIntervalMs` (≤ 2^26 ms ≈ 18.6 h) | — |
+| Efficiency (applied once) | work units → credited units: `num = efficiencyBp`, `den = 10,000` | — |
+
+**Persistence.**
+- Remainders are saved as integers in `[0, den)`, together with the version of their parameters.
+- Proposed keying for S2+ is `(ownerId, quantityId, stage)`, where `ownerId` is `account` for ledger resources and a character ID for EXP. Account-resource remainders survive assignment switching.
+- How partial action progress behaves on a switch is decided in S2/S3. The candidate rule is that it is discarded and never credited.
+
+**Limits.**
+- Per-call results above `2^53 − 1` fail with `NUMERIC_LIMIT`.
+- The S6 headroom report shows each stream's peak against the limit.
+
+### 6.4 Representation summary
 | Quantity | Representation | Rule |
 |---|---|---|
-| Gold, materials, item counts, kill counters | Integer stored in a double | Must satisfy `Number.isSafeInteger`, ≥ 0 and ≤ 2^53−1. Any operation that would break this raises `NUMERIC_LIMIT`: the experiment halts with a report, never a silent clamp. |
-| EXP (combat, profession, mastery) | `level` (integer ≥ 1) + `expIntoLevel` (integer) | Small numbers: only a single level threshold must fit the limit. Multi-level awards loop level by level (§9). |
-| Fractional earnings (from multipliers, rates, offline efficiency) | Per-(entity, resource) **carry** in [0, 1), stored as a double | `award = raw + carry`; `granted = floor(award)`; `carry = award − granted`. The carry is saved with state, so frequent rejoining gains or loses nothing. |
-| Damage per landed hit | Integer | `max(minDamage, roundHalfUp(raw × critFactor × mitigation))`, where `roundHalfUp(x) = floor(x + 0.5)`, the same in both engines. Enemy HP is an integer, so hits-to-kill is exact integer arithmetic (no epsilon needed). |
-| Percent-like bonuses | Integer **basis points** in content (`damageBonusBp: 2500` = +25%) | Converted with `bp / 10000` at the point of use. Field suffixes make units explicit. |
-| Probabilities | Double in [0, 1] (`…Prob`) | Compared through a 32-bit integer threshold (§11), so both engines decide identically. |
-| Multipliers | Double ≥ 0 (`…Mult`), neutral = 1 | Only registered categories may multiply (R05.17/R08.10). |
-| Durations | Integer milliseconds (`…Ms`) | — |
-| Rates | Double per hour (`…PerHour`) | Estimator and report use only. Credited amounts always pass through the carry. |
-| XP thresholds, cost curves | **Precomputed integer tables** in content | The lab's content builder evaluates the candidate curve once with documented rounding and writes integers. The game reads the same integers, so engines never recompute `pow()` and diverge. |
-| Display | Strings from a formatter (K, M, B, T…) | Presentation only. Never fed back into arithmetic. |
+| Gold, materials, item counts, kill counters | Safe integer | Ledger (§10) |
+| EXP (combat, profession, mastery) | `level` + `expIntoLevel` | §6.5 |
+| Fractional progress (rates, efficiency, multipliers) | Integer remainders of exact accumulators | §6.3 |
+| Damage per landed hit | Safe integer | `max(minDamage, roundHalfUp(raw × critFactor × mitigation))`, multiplied in that order |
+| Percent-like values | Integer basis points (`…Bp`) | Converted only at the point of use |
+| Probabilities | Basis points or a double in [0, 1] (`…Prob`) | Decided by a 32-bit integer threshold (§11) |
+| Durations | Integer ms (`…Ms`) | — |
+| Progression curves | Versioned integer tables | §6.5, §15 |
+| Display | Formatted strings | Presentation only |
 
-`NaN`, `Infinity` and negative zero are rejected at every state boundary (content load, command validation, ledger apply). W1 has no planned level cap (R08.03). The technical ceiling is the first level whose threshold would exceed 2^53−1, and content validation reports where that is. A mantissa/exponent number type is a **future extension point** (`NumericPolicy` interface), not built in M1.
+### 6.5 Single-level thresholds vs cumulative EXP
+- **Thresholds only:** state stores `level` and `expIntoLevel`. Only the single-level threshold T(L) of the current level is ever compared, so only thresholds must be safe integers.
+- **Cumulative table is report-only:** `C(L) = Σ_{i<L} T(i)` can leave the safe range many levels before any single threshold does. The table builder reports `lastSafeThresholdLevel` and `lastSafeCumulativeLevel` separately. Cumulative entries beyond the safe range are reported as absent, never clamped.
+- **Award rules:**
+  - `expIntoLevel + award` is checked with `addSafe`. Each level-up subtracts the current threshold, and leftover EXP is never discarded.
+  - An award that would run past the end of the content table is refused as a whole with `XP_TABLE_EXHAUSTED`, leaving state unchanged. The table must be extended by a content change; it is never silently capped.
+  - A per-award level-up guard (a content value) prevents runaway loops (`LEVEL_UP_GUARD`).
 
 ---
 
@@ -248,83 +314,133 @@ type Assignment =                      // (S2) exactly one per character, enforc
 
 ---
 
-## 9. Commands, events and ordering
+## 9. Commands, events and ordering (review item G; specified now, implemented in S1)
 
-**Commands** (intent from a policy or a player) are validated against state and return `Accepted` or `Rejected(reasonCode)`, with no state change on rejection. S1 commands: `Travel(zoneId)`, `Teleport(checkpointId)`, `Engage(auto | targetId)`, `SetAutoFarm(on, zoneId)`, `StartBoss(gateId)`, `Rest`, `EndSession`. Reason codes follow the frozen lab's pattern of one code per refusal: `ZONE_NOT_ACCESSIBLE`, `ZONE_NOT_VISITED`, `CHECKPOINT_UNKNOWN`, `GATE_ACTIVE_ONLY`, `DEAD`, `NOT_IN_SESSION`, and so on.
+### 9.1 Commands
+Commands (intent from a policy or a player) are validated against state and return `Accepted` or `Rejected(reasonCode)`, with no state change on rejection.
+- **S1 commands:** `Travel(zoneId)`, `Teleport(checkpointId)`, `Engage(auto | targetId)`, `SetAutoFarm(on, zoneId)`, `StartBoss(gateId)`, `Rest`, `EndSession`.
+- **Reason codes:** one code per refusal, for example `ZONE_NOT_ACCESSIBLE`, `ZONE_NOT_VISITED`, `CHECKPOINT_UNKNOWN`, `GATE_ACTIVE_ONLY`, `DEAD`, `NOT_IN_SESSION`.
 
-**Events** are immutable records with an ordering key:
-
+### 9.2 Ordering key
 ```
-orderKey = (tMs, phase, entityOrder, seq)
+orderKey = (tMs, pass, phase, entityOrder, seq)
+pass:   0 for the first pass at a timestamp; see rule 5
 phase:  0 BOUNDARY    session start/end, window boundaries, scheduled checkpoints
-        1 COMPLETE    attack resolves, job unit completes, respawn completes → outputs deposited
+        1 COMPLETE    attacks resolve, job units complete, respawns complete → outputs deposited
         2 CREDIT      kill credited: EXP, gold, loot rolls, counters (once per account per kill)
         3 PROGRESS    level-ups (one event per level), mastery, milestones, gate completion, unlocks
         4 RECOMPUTE   stats and rates recalculated
         5 START       next swing scheduled, next job unit starts, reservations taken
         6 POLICY      policy observes and issues commands (validated as commands)
-entityOrder: 'account' < 'hero' < 'recruit:<id>' < 'job:<id>' < 'enemy:<id>' (lexical within kind)
-seq: monotonically increasing integer assigned at scheduling time (final tie-break)
+entityOrder: stable string order of entity IDs — used ONLY for commutative effects (rule 1)
+seq: integer assigned when the event is scheduled (final tie-break)
 ```
 
-Consequences:
-- **Same-moment chaining:** production created at *t* is usable by work starting at *t*, but not by work that completed at *t*.
-- **Level-up timing:** a level-up caused by a kill at *t* raises the damage of the swing scheduled at *t*, never the swing that made the kill.
-- **Multi-level awards** emit one `LevelUp` event per level, in ascending order, at the same `tMs`.
-
-**Multi-level award contract** (S0 fixture):
-
-```
-expIntoLevel += award
-while expIntoLevel ≥ xpRequired(level):
-    expIntoLevel −= xpRequired(level); level += 1; emit LevelUp(level)
-    guard: at most maxLevelUpsPerAward levels (content value), else NUMERIC_LIMIT
-```
+### 9.3 Semantic rules
+1. **Simultaneous resolution, no entity-order advantage.**
+   - All attacks that resolve at the same (tMs, pass) in COMPLETE are resolved **simultaneously**. Every attack's damage is computed from the state at the start of the phase, and all damage is then applied together.
+   - If the hero and an enemy land lethal blows on each other at the same instant, both die. The enemy kill is credited because the hero's hit landed, and the hero dies and respawns with no loss.
+   - Entity order may only order commutative effects such as ledger credits and log lines. Any outcome that depends on order must come from a declared domain rule (simultaneity here; FIFO job priority from D-07), never from IDs.
+   - **Metamorphic test:** renaming or permuting entity IDs must not change any outcome.
+2. **Cancellation and stale events.**
+   - Every scheduled event carries its actor's `epoch` and its `encounterId`.
+   - Death, knockout, retreat, encounter end, session end and assignment change all increment the actor's epoch or close the encounter.
+   - A popped event whose epoch or encounter no longer matches is discarded with no effect (counted as `staleDiscarded`).
+   - Cancelled work never produces outputs or credits.
+3. **Session boundaries.**
+   - A session covers the half-open interval `[tStart, tEnd)`.
+   - `SessionEnded` is a BOUNDARY event at `tEnd`, processed in phase 0 before any COMPLETE event at `tEnd`. It closes every open encounter by incrementing epochs, so an attack scheduled exactly at `tEnd` is not resolved online.
+   - Online credit covers `[tStart, tEnd)`. The same event writes `lastSettledMs = tEnd`.
+4. **Online → offline transitions.**
+   - Offline settlement covers `[lastSettledMs, tReturn)`, using the assignment snapshot and remainders captured at the boundary event. The snapshot is immutable for that settlement.
+   - No instant is credited by both paths. Test: credited online time + credited offline time + uncredited time = elapsed time, with no overlap.
+5. **Same-moment scheduling into an earlier or equal phase.**
+   - A handler running at (t, pass p, phase φ) may schedule (t, p, φ′) only if φ′ > φ.
+   - If it needs φ′ ≤ φ at the same t (for example, a level-up in PROGRESS that enables an instant completion), the event goes to (t, p + 1, φ′): a new pass at the same timestamp.
+   - Passes per timestamp are bounded (engine limit, candidate 64), otherwise `EVENT_CASCADE_LIMIT`. Time never moves backwards.
+6. **Duplicate encounter credit.**
+   - Each enemy instance has a unique `enemyInstanceId` per encounter, and its kill credit transaction ID is `kill:<encounterId>:<enemyInstanceId>`.
+   - An instance can die once (state check), and the ledger treats a second credit with the same ID as a replay or a conflict (§10).
+   - Two of an account's encounter streams never share an instance: worker streams are numerical and separate from physical spawns (R-A4).
+7. **Multi-level awards** follow §6.5. They emit one `LevelUp` event per level, in ascending order, in PROGRESS at the same `tMs`.
 
 ---
 
-## 10. Resource ledger
+## 10. Resource ledger (corrected, review item C)
 
-- **Balances:** each resource has two buckets per account, `available` and `reserved` (reserved used from S3). `total = available + reserved`. All three are shown where relevant (Bible §6).
-- **Transactions are atomic:**
+**Shapes**
+- **Balances:** each resource has two buckets, `available` and `reserved` (reserved is used from S3), with `total = available + reserved`.
+- **Transaction:** `{ txId, purpose, cause?, lines: [{ resourceId, bucket, delta }] }`.
+  - `txId` is a non-empty string of at most 256 characters.
+  - Deltas are non-zero safe integers.
+  - `resourceId` uses the stable ID format.
+  - At least one line is required.
 
-```ts
-interface LedgerTx {
-  txId: string;                    // deterministic: hash(causeEventKey, purpose)
-  tMs: number; cause: EventRef; purpose: 'killReward' | 'purchase' | 'reserve' | 'consume'
-                                         | 'release' | 'deposit' | 'grant' | …;
-  lines: { resourceId: ResourceId; bucket: 'available' | 'reserved'; delta: number /* integer */ }[];
-}
-```
+**Apply algorithm** (pure and atomic; it returns a new ledger or an error and never partially applies):
+1. **Validate** the shape and every value (`INVALID_TX`, `INVALID_NUMBER`).
+2. **Hash:** `payloadHash = SHA-256(canonicalJson(tx))` (§14).
+3. **Check the transaction ID** against committed transactions:
+   - **identical payload:** return the stored result with `replayed: true`, ledger unchanged;
+   - **different payload:** `TX_CONFLICT`, ledger unchanged.
+4. **Aggregate** all lines by `(resourceId, bucket)` using `addSafe`; intermediate overflow gives `NUMERIC_LIMIT`. Validation uses the aggregated net per bucket, so `+5` and `−3` on one bucket behave exactly like `+2`, and line order can never cause a false negative balance.
+5. **Check each affected bucket:** `new = old + net`, which must be ≥ 0 (`NEGATIVE_BALANCE`) and ≤ 2^53−1 (`NUMERIC_LIMIT`).
+6. **Commit** all changes and record `txId → { payloadHash, result }`. A failed transaction records nothing, so a later attempt with the same ID is evaluated afresh.
 
-- **Apply rules:**
-  - Validate every line first: all deltas are safe integers, and no resulting bucket is below 0 or above 2^53−1.
-  - Then apply all lines, or none. A failed transaction leaves the state unchanged and returns the reason.
-  - `txId` must be unique: a repeated `txId` is a no-op that returns the original result (idempotency, the basis for "no repeated offline claim").
-- **Reservation lifecycle (S3):** `reserve` moves available → reserved; `consume` removes from reserved; `release` (cancel) moves reserved → available. A cancelled job can never trigger `deposit`.
-- **Conservation check:** for every material, Σ sources − Σ sinks = Δ total, verified at every report checkpoint.
-- **Detail levels:** a full transaction log for tests and short runs; aggregated source/sink totals by category, profile and checkpoint for long runs (Bible §10 "source/sink ledger").
-- **Items (S3)** are not ledger quantities. They are instances `{ itemId, defId, ownerCharacterId | null, equippedSlot | null, enhancement, protected }`. An instance has exactly one owner or none. Equip/transfer is one atomic operation that checks slot compatibility and class restriction.
+**Behaviour and later scope**
+- **Result:** `{ txId, nets: [{ resourceId, bucket, delta }] }` with nets sorted by (resourceId, bucket); a replay sets `replayed: true`.
+- **Conservation:** for every bucket, `final − initial = Σ nets of committed transactions`. This is checked in property tests and at every report checkpoint.
+- **Reservation lifecycle (S3):** `reserve` moves available → reserved; `consume` removes from reserved; `release` moves reserved → available. A cancelled job can never trigger a deposit.
+- **Items (S3):** equipment items are individual instances, not ledger quantities: `{ itemId, defId, ownerCharacterId | null, equippedSlot | null, enhancement, protected }`. Each has exactly one owner or none, and equip/transfer is one atomic operation.
+- **Committed-ID retention:** unbounded in the lab. A bounded retention window for the game is an M6 design item.
 
 ---
 
-## 11. Random numbers
+## 11. Random numbers (corrected, review item D)
 
-- **Generator:** xoshiro128** (32-bit state words). It uses only 32-bit add, xor, shift, rotate and multiplications by 5 and 9, all exactly reproducible in JavaScript (`Math.imul`, `>>> 0`) and in Luau (`bit32` plus multiplications by small constants within 2^53). Roblox's `Random` is **not** used for anything that must replay, because its internal algorithm is not specified for replay in another engine.
-- **Seeding and streams:**
-  - A root seed string comes from the manifest, e.g. `"S1-E01#rep-017"`.
-  - Each stream is `deriveStream(root, purpose, entityId, counter)`: FNV-1a 32-bit over the UTF-8 bytes, then a SplitMix32 finaliser to fill the four state words.
-  - Purposes (`combat.crit`, `combat.hit`, `drop`, `spawn`…) and entities get separate streams. Adding a new random draw to one system therefore never changes another system's outcomes.
-  - **Luau has no `Math.imul`.** FNV-1a and SplitMix32 multiply by large 32-bit constants, so the Luau side uses a split 16-bit multiply, because a full 32×32 product would exceed 2^53. The RNG fixture (exact output sequences for several seeds) proves both implementations agree.
-- **Primitives (S0):**
-  - `nextU32()` gives an integer in [0, 2^32).
-  - **Bernoulli(p)** is `nextU32() < T` with `T = floor(p × 2^32)`, computed once per probability. `p × 2^32` is exact in doubles, so both engines use the same integer threshold. Its resolution is 2^−32 (about 2.3 × 10^−10). Content validation rejects a non-zero probability below 2^−32.
-  - **Uniform integer** in [lo, hi] uses rejection sampling with integer arithmetic only (no modulo bias).
-- **Batched sampling (S5):** for `n` credited kills with probability `p`, the count of drops is sampled from the exact distribution. Rare drops use geometric gap sampling, which is exact and costs time proportional to the number of drops. A large-count approximation is allowed only for high-`n·p` common materials, with its error bound documented and tested against per-kill sampling. Because these use `log`, cross-engine agreement is checked statistically, not bit-for-bit.
-- **Two separate kinds of RNG test:**
-  1. **Replay:** a fixed seed gives an exact output sequence (fixture) and the run's event-log hash is identical on rerun.
-  2. **Distribution:** chi-square and binomial confidence-interval tests at fixed seeds with a pre-declared significance (candidate α = 0.001), so tests never flake.
-- **Not expected value:** a rare drop with p = 0.002 over 100 kills is a sampled count (usually 0), never "0.2 items".
+**Generator: xoshiro128** v1.1** (Blackman & Vigna) on four 32-bit state words:
+```
+result = rotl32(s1 * 5, 7) * 9            (all arithmetic mod 2^32)
+t  = s1 << 9
+s2 ^= s0;  s3 ^= s1;  s1 ^= s2;  s0 ^= s3;  s2 ^= t;  s3 = rotl32(s3, 11)
+```
+- Implementation is pure: `nextU32(state) → [u32, state′]`.
+- In JavaScript: `Math.imul` with `>>> 0`. In Luau: the multiplications by 5 and 9 stay below 2^35, which is exact in doubles; shifts, rotations and xors use `bit32`.
+- Roblox `Random` is not used for anything that must replay, because its algorithm is not specified for replay in another engine.
+
+**Stream identity encoding (v1).**
+- A stream is identified by `(root, purpose, entity, counter)`.
+- Its byte encoding concatenates, for each field in the order `"legion.rng.v1"` (domain tag), root, purpose, entity, counter, a 4-byte big-endian unsigned length followed by the field's UTF-8 bytes.
+- `counter` is a safe integer ≥ 0 written in canonical decimal (no sign, no leading zeros).
+- String fields must be non-empty and at most 1024 UTF-8 bytes (`INVALID_STREAM_ID`).
+- The length prefixes make the encoding injective: ("ab", "c") and ("a", "bc") give different bytes.
+
+**State initialisation.**
+- `digest = SHA-256(encoding)`, and state words s0..s3 are the big-endian u32 values of digest bytes 0–15.
+- If all four words are zero, use bytes 16–31. If those are also zero, fail with `RNG_ZERO_STATE`. The all-zero state is a fixed point of the generator and must never be used.
+- Each stream therefore has 128 bits of state derived from a 256-bit cryptographic hash. This replaces the v1.0 derivation, which collapsed every stream through one 32-bit FNV-1a hash and SplitMix32.
+
+**Bernoulli trials.**
+- **Threshold:** for a probability in basis points (integer 0–10,000), `T = ⌊bp · 2^32 / 10000⌋`, computed exactly with `divRem` (`bp · 2^32 ≤ 4.3 × 10^13` is safe). For a double probability p in [0, 1], `T = ⌊p · 2^32⌋`; scaling by a power of two is exact.
+- **Too small:** a non-zero probability below 2^−32 gives `PROBABILITY_TOO_SMALL`. Quantisation of p is therefore below 2.33 × 10^−10.
+- **Draws:** one trial consumes **exactly one draw** u and succeeds if and only if `u < T`. So p = 0 never succeeds and p = 1 always succeeds, but each still consumes one draw, which keeps streams aligned.
+
+**Uniform integer `uniformInt(lo, hi)` (inclusive).**
+- `lo` and `hi` must be safe integers with `lo ≤ hi`, otherwise `INVALID_RANGE`. `span = hi − lo + 1` must be at most 2^32, otherwise `RANGE_TOO_LARGE`.
+- `limit = span · ⌊2^32 / span⌋`, computed exactly. Each attempt draws u; if `u < limit` the result is `lo + (u mod span)`, otherwise it draws again. Each attempt consumes one draw.
+- **Boundaries:**
+  - `span = 1`: exactly one draw, returns `lo`.
+  - `span = 2^32`: never rejects.
+  - `span = 2^31 + 1`: worst case, rejection probability ≈ 0.5.
+- **Guard:** after 1000 consecutive rejections, `RNG_REJECTION_GUARD`. This has probability at most 2^−1000 with a correct generator; it exists so a broken generator fails instead of hanging.
+
+**Batched sampling (S5)** is unchanged from v1.0:
+- exact geometric gap sampling for rare drops;
+- a documented, tested approximation only for large-count common materials;
+- statistical (not bit-exact) agreement between engines wherever `log` is used.
+
+**Two separate test kinds:**
+1. **Replay:** exact sequences for fixed stream IDs, from the independent oracle.
+2. **Distribution:** chi-square and binomial interval tests at fixed seeds with a pre-declared α = 0.001.
 
 ---
 
@@ -357,29 +473,47 @@ interface LedgerTx {
 
 ---
 
-## 14. Experiments, manifests, reports, fingerprints
+## 14. Experiments, manifests, reports, fingerprints (corrected, review item F)
 
-- **Manifest** (JSON, zod-validated): `{ experimentId, increment, purpose, labCommit, contentRef {path, hash}, formulaVersions, profiles[], policies[], schedule, horizons[], seeds { root, replicates }, metrics[], acceptance[] (pre-registered), outputs[] }`.
-- **Runner:**
-  - It refuses to run if the manifest's content hash doesn't match the file, or if a baseline it depends on has moved (frozen-lab pattern).
-  - It writes to `results/<increment>/<experimentId>/`: `manifest.json`, `summary.json`, `quantiles.csv` (p10/p50/p90 per metric and checkpoint), `timeline.csv` (sampled runs), `events.sample.jsonl`, `report.md`, `fingerprints.json`.
-- **Fingerprints:** input fingerprint = SHA-256 of manifest + content + formula versions; result fingerprint = SHA-256 of canonical summary. Re-running a manifest must reproduce the result fingerprint exactly (`npm run exp:verify`).
-- **Report labelling:** every number carries a label. Simulated numbers are `model-output`, plus the policy tag `realistic` or `oracle`. Estimates are tagged `estimate`; simulated values `simulated`. Reports keep "targets" and "results" in separate columns and never restate a target as an achievement.
-- **Baselines:** promoted to `baselines/` only with owner approval, with a changelog entry (decision ID, rationale, evidence, version), as Bible §0 requires.
+**Manifests and runner (unchanged from v1.0).**
+- **Manifest:** JSON, zod-validated: `{ experimentId, increment, purpose, contentRef {path, sha256}, formulaVersions, profiles[], policies[], schedule, horizons[], seeds { root, replicates }, metrics[], acceptance[] (pre-registered), outputs[] }`.
+- **Refusals:** the runner refuses to start when hashes mismatch or a depended-on baseline has moved.
+
+**Output records**, split into two parts:
+- **`semantic`:** the canonical result, compared and fingerprinted. It contains only repository-relative paths with `/` separators. No absolute paths, usernames, hostnames, timestamps or durations.
+- **`environment`:** recorded but never fingerprinted. Node version, OS, architecture, lab Git commit (or "uncommitted"), start timestamp and wall-clock durations.
+
+**Canonical JSON (v1)**, following RFC 8785 conventions:
+- Object keys are sorted by UTF-16 code-unit order and must be ASCII.
+- Numbers must be finite and are serialised with ECMAScript `Number.prototype.toString` (shortest round-trip; `−0` becomes `0`).
+- Strings are escaped as by `JSON.stringify`.
+- `undefined`, functions, symbols and BigInt are rejected.
+
+**Fingerprints and reproduction.**
+- **Semantic fingerprint** = `SHA-256(canonicalJson(semantic))`.
+- **Reproduction claim:** identical inputs give an identical semantic fingerprint. This is tested by running twice on the same machine and runtime (`npm run curve:preview` twice in S0).
+- **Not claimed** until actually tested: byte identity across operating systems, CPU architectures or Node versions. Each environment record holds what is needed for that test later.
+
+**Reports.**
+- Every number in a report carries a label.
+- Simulated numbers are `model-output`, tagged `realistic` or `oracle`; estimates are tagged `estimate`.
+- Targets and results are kept in separate columns.
+
+**Baselines** are promoted only with owner approval, plus a changelog entry.
 
 ---
 
-## 15. Shared test fixtures
+## 15. Shared test fixtures and independent oracles (corrected, review item E)
 
-**Format** (`spec/fixtures/<family>.v<N>.json`, JSON-Schema-validated):
+**Format** (`spec/fixtures/<family>.v<N>.json`, validated by the zod schema exported to `spec/schema/fixture.schema.json`):
 
 ```json
 {
-  "fixtureSet": "xp.thresholds-and-awards",
+  "fixtureSet": "xp",
   "fixtureVersion": 1,
   "specRef": "spec/formulas/xp.md#v1",
   "status": "candidate",
-  "independence": "Expected values derived by hand and by spec/oracle/xp_oracle.py (Fraction arithmetic); not produced by lab code.",
+  "independence": "Hand derivations; tables cross-checked by spec/oracle/xp_oracle.py (decimal, two precisions).",
   "cases": [
     {
       "id": "xp.award.multi-level.001",
@@ -388,30 +522,45 @@ interface LedgerTx {
       "input":    { "table": [10, 30, 58], "level": 1, "expIntoLevel": 5, "award": 35 },
       "expected": { "level": 3, "expIntoLevel": 0, "levelUps": [2, 3] },
       "tolerance": "exact",
-      "derivation": "5+35=40; 40-10=30 → L2; 30-30=0 → L3; 0<58 stop"
-    },
-    {
-      "id": "xp.award.reject-nan.001",
-      "kind": "failure",
-      "input": { "table": [10], "level": 1, "expIntoLevel": 0, "award": "NaN" },
-      "expectedError": "INVALID_NUMBER"
+      "derivation": "5+35=40; 40-10=30 -> L2; 30-30=0 -> L3; 0<58 stop"
     }
   ]
 }
 ```
 
 **Rules**
-1. **Independence:** expected values are written by hand or computed by `spec/oracle/` scripts from the Markdown spec, *before* or *independently of* the lab code, and never by running the lab and copying its output. Every case carries a `derivation`.
-2. **Coverage:** every family includes normal cases, boundary cases (exact thresholds, zero, limits) and failure cases (invalid input → named error).
-3. **Tolerance:**
-   - `exact` for integers and for doubles produced only by basic arithmetic.
-   - `{ "rel": 1e-12 }` (candidate) for values involving `pow`, `log` or `exp`. Such values never decide an authoritative integer outcome directly; they are tabulated first (§6).
-4. **JSON encoding of special values:** `"NaN"`, `"Infinity"` and `"-Infinity"` are strings in failure cases only.
-5. **Versioning:** a fixture set is versioned with its spec. Changing an expected value requires a spec version bump and a changelog line.
-6. **Fixture families for M1:**
-   - S0: numeric (safe-int, rounding, carry), rng (sequence, Bernoulli threshold, uniform-int), xp, stats stacking, damage/crit/mitigation/accuracy, ledger transactions, content validation.
-   - S1: kill gate and access/visit, time-to-kill and hits-to-kill, death/respawn, reward credit.
-   - Later increments: assignment exclusivity, squad credit, queues, offline boundaries, level-up feedback, unlock restrictions, overflow/rounding (Bible §17 list).
+1. **Independence:**
+   - Expected values come from hand derivations or from `spec/oracle/` scripts written from the Markdown spec, never from running lab code. Every case carries a `derivation`.
+   - Limitation: the oracles and the lab are written by the same author (Claude), in different languages. The reviewer should spot-check derivations.
+2. **Exact rational vs high precision:**
+   - `fractions.Fraction` is used only for rational quantities: integer and basis-point arithmetic, mitigation K/(K+D), integer-power hit curves, accumulators.
+   - Irrational quantities, such as fractional exponents `L^p` and `g^(L−1)` with non-integer g, are evaluated with `decimal` at **two precisions (60 and 120 significant digits)**.
+3. **Rounding-stability check** for every tabulated value:
+   - the round-half-up integer must agree at both precisions;
+   - the high-precision value's distance to the nearest `.5` rounding boundary must exceed `10^−9 × max(1, |value|)`;
+   - the lab's double-precision result must equal the oracle integer.
+
+   An unstable entry rejects the curve for use as content; different coefficients are needed.
+4. **Integer tables are the contract:**
+   - The lab generates each table (for example `content/tables/xp.w1.candidate.v0.1.0.json`), and the oracle regenerates it independently.
+   - The artifact is accepted only if both agree exactly and every entry is stable.
+   - Both engines consume the same versioned integer table; no engine recomputes a curve at runtime.
+5. **Coverage:** every family includes normal cases, boundary cases (exact thresholds, zero, limits, values near 2^53) and failure cases (invalid input leading to a named error).
+6. **Tolerance:**
+   - `exact` for integers and for doubles produced by basic arithmetic in the specified order.
+   - `{ "rel": 1e-12 }` only for reported doubles that involve `pow`, `log` or `exp`. These never decide an authoritative integer outcome directly; they are tabulated first.
+7. **Special values:** `"NaN"`, `"Infinity"` and `"-Infinity"` appear only as strings in failure inputs.
+8. **Versioning:** a fixture set is versioned with its spec. Changing an expected value requires a spec version bump and a changelog line.
+9. **S0 families:**
+   - numeric (safe integers, divRem, roundHalfUp)
+   - remainder accumulator
+   - rng (stream encoding, sequences, Bernoulli thresholds, uniformInt)
+   - xp (table and awards)
+   - stats stacking
+   - combat primitives
+   - ledger
+   - canonical JSON
+   - content validation
 
 ---
 

@@ -1,6 +1,6 @@
 # M0 Experiment Plan — S0 to S7
 
-**Milestone:** M0 · **Prepared:** 13 November 2026 · **Status:** PROPOSED. No experiment in this plan has been run. Every number below is a `candidate`, a hypothesis or a proposed gate. None is a result.
+**Milestone:** M0 · **Version:** 1.1 (13 November 2026) · **Status:** APPROVED WITH CORRECTIONS (review item H applied; `M0_CHANGE_SUMMARY.md` lists every change). No experiment in this plan has been run. Every number below is a `candidate`, a hypothesis or a proposed gate. None is a result.
 
 > **In plain words.** This is the list of questions the simulator will answer, in the order it will answer them. It also fixes, before any testing, what result would count as a pass. Every result will be labelled "model output". It shows what our invented numbers do, not what real players will do. Real validation only comes from Roblox playtests later (M7).
 
@@ -10,12 +10,23 @@
 
 1. **Pre-registration.** Each experiment's hypotheses, metrics and pass ranges are written in its manifest *before* it runs. If a candidate fails, the report says so and the closest candidate is reported. Targets are never moved to fit results (frozen-lab Increment 6 rule, reused).
 2. **Model output only.** Every result is labelled `model-output`. Nothing is called validated until compared with live Roblox measurements (M7+).
-3. **Active time vs elapsed time.** Every metric that involves time is reported in active hours and in elapsed (calendar) time, side by side. R06.09 is an *active-hours* target; offline progress changes calendar time.
+3. **Three kinds of time, always separate.**
+   - Every metric that involves time is reported as active manual time, connected auto-farm time and elapsed (calendar) time, side by side.
+   - R06.09 is an *active-hours* target. Offline progress changes calendar time only.
 4. **Realistic vs oracle.** Realistic policies see only what the player could see on screen (architecture §4.1). The oracle uses hindsight or brute-force search and is an upper bound only. Targets for typical players are judged on realistic policies.
 5. **Estimate vs simulated.** The rate estimator (what a Command Centre would display) and the simulated results are reported separately, along with the estimate's error.
 6. **Distributions, not single runs.** Sampled metrics are reported as p10 / p50 / p90 across replicate seeds. Deterministic-expectation runs (no RNG; expected values) are used only as a cross-check.
 7. **One change at a time.** Sensitivity runs vary one parameter (or a declared pair) from a fixed base. The base manifest hash is recorded.
 8. **No silent scope.** An experiment never introduces a mechanic that isn't in the approved design. Missing mechanics are listed as limitations.
+9. **Engineering gates are separate from balance targets.**
+   - **Engineering gates** (correctness, determinism, invariants, reproducibility) must pass before an increment is accepted.
+   - **Balance targets** (pacing, TTK, timings) are candidate hypotheses. A missed target is reported as missed, together with the closest swept candidate. It never blocks acceptance by itself, and is never re-defined after the run.
+10. **S1 is a single-character diagnostic model**, not the final onboarding experience.
+    - It is not required to reproduce recruitment, equipment or full-game timings.
+    - Representative onboarding pacing is recalibrated progressively in S2 (recruits), S3 (gear and crafting) and S4 (permanent systems), each against the same pre-registered targets.
+11. **Consistent units for comparison gates.**
+    - Strategy spread is always the dimensionless ratio best ÷ worst (≥ 1) of the declared metric at the declared checkpoint. It is never mixed with percentage differences.
+    - Every gate states its unit explicitly.
 
 ---
 
@@ -23,9 +34,10 @@
 
 | Term | Definition |
 |---|---|
-| `activeMs` | Time inside a scheduled session. From S2 it splits into `activeManual` (player-driven, abilities usable) and `onlineAutoFarm` (connected, auto-farm on). |
+| `activeManualMs` | Time inside a session with player-driven play. Abilities, travel decisions and active-only gates are available. |
+| `connectedAutoFarmMs` | Time inside a session with auto-farm on and no manual input. It is reported separately even when the throughput is equal (S1 has no abilities). |
 | `offlineMs` | Time between sessions. |
-| `elapsedMs` | `activeMs + offlineMs` (calendar). |
+| `elapsedMs` | `activeManualMs + connectedAutoFarmMs + offlineMs` (calendar). |
 | `creditedOfflineMs` | Offline time inside windows: window 1 is 0–24 h, window 2 is 24–72 h, with no credit beyond 72 h (S5). |
 | `effectiveOfflineHours` | Σ over windows of hours × efficiency (S5). |
 | `deadTimeMs` | Active time with no progress-relevant event (stuck, waiting, dead, travelling) in a rolling window (candidate 5 min). |
@@ -100,7 +112,7 @@ Every policy decision is logged with its reason code. A policy command the engin
 
 **Health:**
 - dead time [%], bottleneck attribution (each active minute assigned to exactly one cause, frozen-lab method reused)
-- strategy spread [%] = (best − worst) / best across realistic profiles
+- strategy spread = best ÷ worst ratio (dimensionless, ≥ 1) of the declared metric across realistic profiles; every spread gate uses this unit
 - numeric headroom = max value / (2^53−1)
 - estimator error [%]
 
@@ -139,17 +151,43 @@ Each increment lists its scope, experiments, hypotheses (all `candidate`), metri
 
 ### S0 — Schema and deterministic numeric primitives
 
-- **Scope:** units and numeric policy; safe-integer arithmetic; rounding and carry; RNG (xoshiro128**, stream derivation, Bernoulli via threshold, uniform int); XP table and multi-level award; stat stacking; damage, crit, accuracy and mitigation primitives; ledger (available bucket, atomic transactions, idempotency); content schema and validation; canonical JSON hashing; fixture format.
-- **Experiments:** none about balance. One deterministic report, `S0-R01-curve-preview`, prints the candidate XP table and cumulative EXP for levels 1–60 and the first level that would exceed 2^53−1. It is an inspection aid, not a result.
+- **Scope** (architecture v1.1):
+  - units and limits;
+  - safe-integer arithmetic with intermediate-overflow checks;
+  - exact `divRem`;
+  - corrected round-half-up;
+  - exact remainder accumulators (`accrue` and the per-hour chain);
+  - RNG: xoshiro128** with SHA-256 length-prefixed stream derivation, Bernoulli thresholds, rejection-sampled uniform integers;
+  - XP integer table builder and multi-level awards;
+  - stat stacking with breakdown;
+  - damage, crit, accuracy and mitigation primitives;
+  - the atomic idempotent ledger (aggregation, `TX_CONFLICT`);
+  - content schema and validation;
+  - canonical JSON and semantic fingerprints;
+  - the fixture format and independent oracles.
+- **Experiments:** none about balance.
+  - One deterministic report, `S0-R01-curve-preview`, prints for levels 1–60 the oracle-verified candidate XP integer table and cumulative EXP.
+  - It also gives `lastSafeThresholdLevel` and `lastSafeCumulativeLevel` separately (approximate beyond the stored table, labelled so).
+  - Optionally it shows the same for the declared S1 sweep variants (a, p).
+  - It is an inspection aid, not a result.
 - **Hypotheses:** none (correctness only).
-- **Proposed gates:**
-  - All unit, property, fixture, purity, isolation and statistical tests pass. Counts are reported, but counts alone are not evidence: the reviewer inspects fixture derivations.
-  - Every `spec/fixtures` case has a derivation, and at least one failure case per family.
-  - The RNG sequence fixture matches the independent Python oracle exactly. Distribution tests pass at the pre-declared α.
-  - Every unit, rounding point and limit is written in `spec/formulas/*.md`.
-  - Reruns give identical fingerprints.
+- **Engineering gates (proposed; S0 has no balance targets):**
+  - All unit, property, fixture, purity, isolation, runtime and statistical tests pass. Counts are reported, but counts alone are not evidence: the reviewer inspects fixture derivations.
+  - Every `spec/fixtures` case has a derivation. Each family has at least one boundary and one failure case.
+  - The independent oracles reproduce every oracle-checkable expected value: RNG sequences exactly, XP tables exactly and rounding-stable, exact-rational cases exactly.
+  - Distribution tests pass at the pre-declared α = 0.001 with fixed seeds.
+  - Partition-invariance property tests pass: the same constant-rate interval split arbitrarily gives an identical total and remainder.
+  - Every unit, rounding point, limit and error code is written in `spec/formulas/*.md`.
+  - Running the curve preview twice gives the same semantic fingerprint. Environment metadata is recorded separately.
+  - The frozen `progression-lab/` is unchanged (fingerprint before and after S0).
 
 ### S1 — Single hero, three-zone combat loop, rewards and gates
+
+> **S1 is a diagnostic model** (principle 10).
+> - It isolates combat, rewards and gates for one classless hero.
+> - Its pacing numbers are not expected to match the final onboarding, which depends on recruits (S2), gear (S3) and permanent systems (S4).
+> - S1 pacing hypotheses are reported, and they inform the later recalibration.
+> - Only its engineering gates decide acceptance.
 
 - **Scope:** classless hero; zones 1–3; one primary enemy per zone; enemies retaliate; hero death and respawn; kill gates; access/visited/checkpoint flags; travel and teleport; per-kill rewards (EXP, gold, one material, one test-only rare drop); a stub active-only miniboss gate in zone 3; reference stepper; rate estimator; realistic and oracle policies.
 - **Explicitly not in S1:** recruits, classes, abilities, gear crafting, gold sinks, offline, Monuments. Gold and materials only accumulate and are reported. That limitation is stated in the report.
@@ -176,16 +214,25 @@ Each increment lists its scope, experiments, hypotheses (all `candidate`), metri
 | H-S1-04 | Harder enemy TTK 5–15 s (zone 3 at first visit) | R02.14 | p50 TTK ∈ [5, 15] s |
 | H-S1-05 | First new zone first-visited in 5–10 active min | R06.08, N-11 | p50 `zone2FirstVisitMin` ∈ [5, 10] |
 | H-S1-06 | Zone 2→3 takes longer than zone 1→2 | R06.08 | p50 ratio > 1 |
-| H-S1-07 | Level 5 in 3–5 min, level 10 in 10–20 min (single hero only; recruits and gear will change this) | Bible §10 | p50 in range; reported with that caveat |
+| H-S1-07 | Level 5 in 3–5 min, level 10 in 10–20 min (single hero only; recruits and gear will change this) | Bible §10 | Diagnostic only: p50 reported against the range; not an acceptance gate (principle 10) |
 | H-S1-08 | Overgeared earlier enemies become trivial | Bible §4 | At hero damage ≥ zone 1 HP: hits-to-kill = 1 and TTK = 0 s first swing |
 | H-S1-09 | The estimator is accurate for steady farming | R07.16 | Mean kills/h within ±5% (candidate tolerance) of simulated, or the deviation is explained by a named factor |
 | H-S1-10 | Prior zones can be better EXP/h for some builds; the newest zone is still worth entering | R08.05 | Reported, no pass/fail: where and by how much an earlier zone wins. The owner decides whether that is wanted. |
 
-- **Proposed gates:**
+- **Engineering gates (decide acceptance):**
   - S0 gates still pass.
-  - S1-E01 to E08 produce reports with p10/p50/p90 and labels.
-  - Every invariant test assigned to S1 passes: access/visit rejections, one credit per kill, no active-only gate by auto-farm, deterministic ordering.
-  - H-S1-01 to H-S1-06 either pass or the closest candidate is reported with what would need to change. No content is "approved" by passing.
+  - Every invariant test assigned to S1 passes:
+    - access, visit and checkpoint rejections;
+    - one credit per kill;
+    - no active-only gate started by auto-farm;
+    - deterministic ordering;
+    - simultaneous lethal attacks, cancellation and stale events, session boundaries (architecture §9.3);
+    - the entity-renaming metamorphic test.
+  - S1-E06 (drop correctness) and S1-E07 (determinism) pass.
+  - S1-E01 to E08 produce labelled reports with p10/p50/p90.
+- **Balance targets (reported, never moved after the run):**
+  - H-S1-01 to H-S1-10 are each reported as pass, miss or reported-only, with the closest swept candidate and what would need to change.
+  - A miss does not block acceptance. No content becomes "approved" by passing.
 
 ### S2 — Recruits, full personal EXP, squad vs independent jobs, class mastery
 
@@ -256,7 +303,9 @@ Each increment lists its scope, experiments, hypotheses (all `candidate`), metri
   - **S5-E08 connected-idle incentive** (N-02): online-idle vs offline progress per hour.
 - **Hypotheses (candidate):**
   - H-S5-01: batch equals the reference (exact in expectation mode).
-  - H-S5-02: frequent logins gain no hidden advantage beyond the intended window reset (difference ≤ 2%, candidate, from carry/rounding).
+  - H-S5-02:
+    - With identical rate-change events, any split of the offline timeline into settlements gives **exactly** identical credited totals (architecture §6.3 G1). This is an engineering gate.
+    - Frequent logins differ only through the intended window reset, which is reported as a design effect.
   - H-S5-03: for PR-CAS, the offline share of progress is 30–60% (candidate band; owner to confirm).
   - H-S5-04: active progress per hour > offline progress per hour for every realistic profile (R07.19).
 
@@ -279,7 +328,7 @@ Each increment lists its scope, experiments, hypotheses (all `candidate`), metri
 - **Hypotheses (candidate):**
   - H-S6-01: realistic PR-BAL clears W1 Normal within 4–8 active hours.
   - H-S6-02: no realistic profile is stuck > 60 active min without an available action (candidate).
-  - H-S6-03: strategy spread at D7 is between 10% and 2× (candidate: several viable strategies, not identical).
+  - H-S6-03: strategy spread (best ÷ worst ratio of D7 progress) is between 1.1 and 2.0. This is a candidate: several viable strategies, not identical.
   - H-S6-04: repeat boss rewards do not exceed the best farming reward/h by more than a candidate ratio.
   - H-S6-05: peak values stay below 1% of 2^53−1.
 

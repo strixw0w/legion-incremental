@@ -1,9 +1,54 @@
 # M0 Decision Matrix — Legion Incremental
 
-**Milestone:** M0 (audit, reconcile, plan) · **Prepared:** 13 November 2026 · **Status of this document:** PROPOSED, awaiting owner review
+**Milestone:** M0 (audit, reconcile, plan) · **Version:** 1.1 (13 November 2026) · **Status of this document:** CONDITIONALLY ACCEPTED after independent review. Owner resolutions are recorded in `M0_RESOLUTION.md` and summarised in §0. The §5 rows are unchanged from v1.0.
 **Inputs:** `docs/DECISION_REGISTER.md` (sha256 `94fab1ee…5802eb`, 183 decisions) and `docs/LEGION_GAME_DESIGN_BIBLE.md` (sha256 `f8651cb1…514a7b`, see audit for full hashes).
 
 > **In plain words.** Every one of the 183 choices you made is listed below exactly once, under the stage of work where it first has to be built or tested. For each one I say whether its meaning is already clear, whether I am proposing a reading of it that you should confirm, or whether it needs a decision from you. Section 2 is the short list of decisions I need from you before building starts. Nothing here changes any of your choices; every recommendation is marked **UNAPPROVED** until you say yes.
+
+---
+
+## 0. Status after owner resolution (v1.1 addendum)
+
+**How resolutions apply**
+- `M0_RESOLUTION.md` v1.0 holds the owner's answers to §2.
+- The approved Decision Register is **unchanged**. These are later explicit owner decisions in the Bible's authority order.
+- The §5 rows (the 183 primary rows) keep their v1.0 interpretation codes, so the reviewed coverage check still applies. Where a row links to an item below, the resolution here governs.
+
+| Item | Resolution | Effect on §5 rows |
+|---|---|---|
+| D-01 | APPROVED (three flags, active visit, kill gates may complete offline for access only) | Proposed readings for R06.05–R06.07, R06.19, R07.13 and R07.08 become owner-approved |
+| D-02 | APPROVED WITH CORRECTIONS (exact remainder accounting, not floating carry) | R08.18 and R08.03 → approved policy; R08.02 tables are integer artifacts |
+| D-03 | APPROVED (respawn without loss; repeated deaths stop auto-farm; recruit knockout) | R02.07 approved; recruit knockout recorded for S2 |
+| D-04 | APPROVED (one account credit; full EXP per eligible deployed member) | R02.12 (squad part) and R03.12 approved; O16 party part still open |
+| D-05 | APPROVED (per-class mastery; historical best; per-class talent builds) | R03.09, R03.10, R05.16 and R03.17 approved; respec cooldown and class-change cost remain candidates |
+| D-06 | APPROVED (six shared productive slots, non-productive reserve, free swaps) | R10.04, R10.07 (slot part) and R01.06 approved |
+| D-07 | APPROVED WITH ADDITIONAL REQUIREMENTS (event semantics specified in architecture §9.3; queues in S3) | R07.14 design approved, implementation in S3 |
+| D-08 | APPROVED AS DEFAULT CANDIDATE (60% for 24 h, half of normal for 48 h, 72 h cap, Monument of Eternity) | R07.03, R07.04 and R07.05 conflicts resolved; coefficients remain candidates |
+| D-09 | APPROVED and executed (canonical repo, backup, archive) | R10.02 and R10.20: see `M0_REPOSITORY_VERIFICATION.md` |
+| D-10 | APPROVED (pinned TypeScript, Node 24 LTS, vitest, zod, fast-check, Python oracles; Rojo 7.7.1) | R10.14 and R10.15 tooling fixed |
+
+| Conflict / missing item | Status after resolution |
+|---|---|
+| C-01 | Resolved by R-A1 (no enchanting at launch) |
+| C-02 | Resolved by D-08 (Monument of Eternity, candidate) |
+| C-03 / N-02 | Open: accepted risk, measured in analytics (M6/M10) |
+| C-04 / N-03 | Resolved by R-A7 |
+| C-05 | Resolved by D-04 |
+| C-06 / N-04 | Resolved by D-01 |
+| C-07 / N-05 | Resolved by R-A2 |
+| C-08 | Noted: Original v1 is archived (not reused); see the verification record |
+| C-09 to C-12, C-14 | Reconciled in the register (unchanged) |
+| C-13 | Resolved by R-A6 |
+| C-15 | Open: O06, by S3 |
+| N-01 | Resolved by D-08 |
+| N-07 | Resolved by R-A3 and R-A4 |
+| N-10 | Proposed rule, confirm in S5 |
+| N-11 | Adopted as a measurement rule (experiment plan v1.1) |
+| N-13 | Resolved by D-06 |
+| N-15 | Resolved by R-A5 |
+| N-06, N-08, N-09, N-12, N-14 | Open, deferred to their owning increments |
+
+**Not approved by this resolution:** any remaining candidate coefficient, content name or open O-item (R-A8).
 
 ---
 
