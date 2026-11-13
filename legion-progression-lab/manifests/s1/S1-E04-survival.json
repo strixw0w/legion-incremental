@@ -1,0 +1,123 @@
+{
+  "experimentId": "S1-E04-survival",
+  "increment": "S1",
+  "question": "How often does the hero die, and what does downtime cost?",
+  "design": "Enemy damage x {0.5, 1, 1.5, 2} x hero HP per level x {0.75, 1, 1.25}; PR-BAL; POL-STAY and POL-FRONTIER; 200 replicates; record deaths/h, death downtime and auto-farm stops.",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "d0.5-h0.75",
+      "params": {
+        "enemyDamageScale": 0.5,
+        "heroHpPerLevelScale": 0.75
+      }
+    },
+    {
+      "id": "d0.5-h1",
+      "params": {
+        "enemyDamageScale": 0.5,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d0.5-h1.25",
+      "params": {
+        "enemyDamageScale": 0.5,
+        "heroHpPerLevelScale": 1.25
+      }
+    },
+    {
+      "id": "d1-h0.75",
+      "params": {
+        "enemyDamageScale": 1,
+        "heroHpPerLevelScale": 0.75
+      }
+    },
+    {
+      "id": "d1-h1",
+      "params": {
+        "enemyDamageScale": 1,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d1-h1.25",
+      "params": {
+        "enemyDamageScale": 1,
+        "heroHpPerLevelScale": 1.25
+      }
+    },
+    {
+      "id": "d1.5-h0.75",
+      "params": {
+        "enemyDamageScale": 1.5,
+        "heroHpPerLevelScale": 0.75
+      }
+    },
+    {
+      "id": "d1.5-h1",
+      "params": {
+        "enemyDamageScale": 1.5,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d1.5-h1.25",
+      "params": {
+        "enemyDamageScale": 1.5,
+        "heroHpPerLevelScale": 1.25
+      }
+    },
+    {
+      "id": "d2-h0.75",
+      "params": {
+        "enemyDamageScale": 2,
+        "heroHpPerLevelScale": 0.75
+      }
+    },
+    {
+      "id": "d2-h1",
+      "params": {
+        "enemyDamageScale": 2,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d2-h1.25",
+      "params": {
+        "enemyDamageScale": 2,
+        "heroHpPerLevelScale": 1.25
+      }
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-STAY",
+    "POL-FRONTIER"
+  ],
+  "seeds": {
+    "root": "S1-E04",
+    "replicates": 200
+  },
+  "metrics": [
+    "deathsPerHour",
+    "deathDowntimeS",
+    "autoFarmStops",
+    "levelAt60",
+    "zone3FirstVisitMin",
+    "expTotal"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "S1 is a single-character diagnostic model (experiment plan principle 10): no recruits, classes, abilities, gear, sinks, offline progress or Monuments; gold and materials only accumulate.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0 and the S1 resolutions S1-R01..R17); every output is model-output, not live-validated.",
+    "Engagement overhead and walk times are the most uncertain inputs (to be measured in M2).",
+    "Reported only: no pass/fail target is registered for survival in S1."
+  ]
+}

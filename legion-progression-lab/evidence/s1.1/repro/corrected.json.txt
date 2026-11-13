@@ -1,0 +1,481 @@
+# node repro/s1.1/defects.mjs .   (corrected S1.1 working tree)
+{
+  "lab": "as given",
+  "implementation": "corrected (S1.1)",
+  "D1_duplicateKillCredit": [
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-a",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          637869810,
+          4046850466,
+          3148745422,
+          1381103177
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-a",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          637869810,
+          4046850466,
+          3148745422,
+          1381103177
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-b",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          2993150841,
+          1354937898,
+          4000919107,
+          3925396596
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-b",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          2993150841,
+          1354937898,
+          4000919107,
+          3925396596
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-c",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          205201725,
+          597014283,
+          3334040024,
+          3060235381
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-c",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          205201725,
+          597014283,
+          3334040024,
+          3060235381
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-d",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          3645814607,
+          3146299792,
+          2959804850,
+          2399265337
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-d",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          3645814607,
+          3146299792,
+          2959804850,
+          2399265337
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-e",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          482265651,
+          3117795646,
+          704042739,
+          1219979145
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-e",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          482265651,
+          3117795646,
+          704042739,
+          1219979145
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-f",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": {},
+        "lootRngState": [
+          1536779821,
+          2143364483,
+          163387346,
+          2200239326
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-f",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": {
+          "CREDIT_REPLAYED": 1
+        },
+        "lootRngState": [
+          1536779821,
+          2143364483,
+          163387346,
+          2200239326
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": [
+          {
+            "creditId": "kill:enc:1:zone.w1.01#1",
+            "code": "CREDIT_REPLAYED"
+          }
+        ]
+      }
+    }
+  ],
+  "D2_repeatedDeaths": [
+    {
+      "policy": "POL-FIXED-3",
+      "firstAutoFarmStopMs": 82000,
+      "firstReEnableAfterStopMs": null,
+      "deathsIn60Min": 3,
+      "autoFarmStopsIn60Min": 1,
+      "killsIn60Min": 0,
+      "finalZone": 3,
+      "policyReports": [
+        {
+          "t": 87000,
+          "code": "FIXED_ZONE_BLOCKED",
+          "zoneOrder": 3,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "policy": "CTL-FIXED-3-S1",
+      "firstAutoFarmStopMs": 82000,
+      "firstReEnableAfterStopMs": 87000,
+      "deathsIn60Min": 124,
+      "autoFarmStopsIn60Min": 122,
+      "killsIn60Min": 0,
+      "finalZone": 3,
+      "policyReports": []
+    }
+  ],
+  "D3_policyTriggers": [
+    {
+      "policy": "POL-STAY",
+      "gateCompletions": [
+        {
+          "t": 283700,
+          "gateId": "gate.w1.01_to_02",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "gate-completed",
+              "kill"
+            ]
+          ]
+        },
+        {
+          "t": 961000,
+          "gateId": "gate.w1.02_to_03",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "gate-completed",
+              "kill"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "policy": "CTL-STAY-S1",
+      "gateCompletions": [
+        {
+          "t": 283700,
+          "gateId": "gate.w1.01_to_02",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "gate-completed",
+              "kill"
+            ]
+          ]
+        },
+        {
+          "t": 958400,
+          "gateId": "gate.w1.02_to_03",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "gate-completed",
+              "kill"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "D4_estimator": {
+    "zeroHitChance": {
+      "killsPerHour": 0,
+      "ttkS": null,
+      "deathsPerHour": null,
+      "killsPerLife": 0,
+      "limitingFactor": "attack",
+      "reliability": "unreachable",
+      "reasons": [
+        "NO_HIT_CHANCE"
+      ]
+    },
+    "oneIn4BillionHitChance": {
+      "killsPerHour": 0,
+      "ttkS": null,
+      "deathsPerHour": null,
+      "killsPerLife": 0,
+      "limitingFactor": "attack",
+      "reliability": "unreachable",
+      "reasons": [
+        "SWING_BUDGET"
+      ]
+    },
+    "level1Zone3DiesBeforeKill": {
+      "killsPerHour": 2.5092773437499983e-12,
+      "ttkS": 22.49245669364442,
+      "deathsPerHour": 124.13793103448262,
+      "killsPerLife": 2.021362304687501e-14,
+      "limitingFactor": "survival",
+      "reliability": "unsafe",
+      "reasons": [
+        "UNDER_ONE_KILL_PER_LIFE",
+        "AUTO_FARM_STOP_EXPECTED"
+      ]
+    }
+  },
+  "D5_dropQuantities": {
+    "threePerKill": {
+      "drops": [
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 3
+        }
+      ],
+      "kills": 16,
+      "ledgerGel": 48,
+      "metricsDropsGel": 16,
+      "metricsMaterialsGel": 48
+    },
+    "repeatedResource": {
+      "drops": [
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 2
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 1
+        }
+      ],
+      "kills": 16,
+      "ledgerGel": 48,
+      "metricsDropsGel": 32,
+      "metricsMaterialsGel": 48
+    }
+  },
+  "D6_autoFarmOff": {
+    "autoFarmOffAtMs": 10400,
+    "killsIn60s": 1,
+    "killTimesMs": [
+      10400
+    ],
+    "engagementsStarted": [
+      {
+        "t": 0,
+        "origin": "auto"
+      },
+      {
+        "t": 10400,
+        "origin": "auto"
+      }
+    ]
+  },
+  "D7_regenAfterManualKill": {
+    "killAtMs": 10400,
+    "hpAfterFight": 59,
+    "regenTicksWhileIdle": 1,
+    "hpAtSessionEnd": 60,
+    "maxHp": 60
+  },
+  "D8_manualEngageAcrossSessions": {
+    "killsInSession1": 1,
+    "commandsInSession2": 0,
+    "killsInSession2": 0,
+    "engagementsInSession2": []
+  }
+}

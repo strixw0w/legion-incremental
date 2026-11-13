@@ -1,0 +1,323 @@
+# node repro/s1.1/defects.mjs <S1 review package>/legion-progression-lab   (ZIP SHA-256 b255d94ba35c6649d70d838f44f39bda5fde6c7f2b12332adbecb9b1ef6d7fd3, verified against its manifest)
+{
+  "lab": "as given",
+  "implementation": "original (S1)",
+  "D1_duplicateKillCredit": [
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-a",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          637869810,
+          4046850466,
+          3148745422,
+          1381103177
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-a",
+        "runAborted": true,
+        "error": "TX_CONFLICT: txId was already committed with a different payload"
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-b",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          2993150841,
+          1354937898,
+          4000919107,
+          3925396596
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-b",
+        "runAborted": true,
+        "error": "TX_CONFLICT: txId was already committed with a different payload"
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-c",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          205201725,
+          597014283,
+          3334040024,
+          3060235381
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-c",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 8,
+        "zone1Kills": 2,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": null,
+        "lootRngState": [
+          3867533570,
+          2435992392,
+          1473931430,
+          1616514042
+        ],
+        "creditLogEntries": 2,
+        "rejectionLogEntries": []
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-d",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          3645814607,
+          3146299792,
+          2959804850,
+          2399265337
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-d",
+        "runAborted": true,
+        "error": "TX_CONFLICT: txId was already committed with a different payload"
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-e",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          482265651,
+          3117795646,
+          704042739,
+          1219979145
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-e",
+        "runAborted": true,
+        "error": "TX_CONFLICT: txId was already committed with a different payload"
+      }
+    },
+    {
+      "withoutInjection": {
+        "seedRoot": "repro-d1-f",
+        "runAborted": false,
+        "injectedDuplicateOf": null,
+        "gold": 1,
+        "cumulativeExp": 4,
+        "zone1Kills": 1,
+        "duplicateCreditsCounter": 0,
+        "rejectedCredits": null,
+        "lootRngState": [
+          1536779821,
+          2143364483,
+          163387346,
+          2200239326
+        ],
+        "creditLogEntries": 1,
+        "rejectionLogEntries": []
+      },
+      "withInjectedDuplicate": {
+        "seedRoot": "repro-d1-f",
+        "runAborted": false,
+        "injectedDuplicateOf": {
+          "t": 10400,
+          "encounterId": "enc:1",
+          "instanceId": "zone.w1.01#1"
+        },
+        "gold": 1,
+        "cumulativeExp": 8,
+        "zone1Kills": 2,
+        "duplicateCreditsCounter": 1,
+        "rejectedCredits": null,
+        "lootRngState": [
+          2756904171,
+          1526111475,
+          3183161487,
+          2111625241
+        ],
+        "creditLogEntries": 2,
+        "rejectionLogEntries": []
+      }
+    }
+  ],
+  "D2_repeatedDeaths": [
+    {
+      "policy": "POL-FIXED-3",
+      "firstAutoFarmStopMs": 82000,
+      "firstReEnableAfterStopMs": 87000,
+      "deathsIn60Min": 124,
+      "autoFarmStopsIn60Min": 122,
+      "killsIn60Min": 0,
+      "finalZone": 3,
+      "policyReports": []
+    }
+  ],
+  "D3_policyTriggers": [
+    {
+      "policy": "POL-STAY",
+      "gateCompletions": [
+        {
+          "t": 283700,
+          "gateId": "gate.w1.01_to_02",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "kill"
+            ]
+          ]
+        },
+        {
+          "t": 958400,
+          "gateId": "gate.w1.02_to_03",
+          "triggersSeenByPolicyAtThatMoment": [
+            [
+              "kill"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "D4_estimator": {
+    "zeroHitChance": {
+      "killsPerHour": 2400,
+      "ttkS": 0,
+      "deathsPerHour": 0,
+      "killsPerLife": null,
+      "limitingFactor": "attack",
+      "reliability": null,
+      "reasons": null
+    },
+    "oneIn4BillionHitChance": {
+      "killsPerHour": 2399.9962929424696,
+      "ttkS": 0.000002114296464817067,
+      "deathsPerHour": 0.000042285441119179595,
+      "killsPerLife": 56757035.74140776,
+      "limitingFactor": "attack",
+      "reliability": null,
+      "reasons": null
+    },
+    "level1Zone3DiesBeforeKill": {
+      "killsPerHour": 65.15307093221234,
+      "ttkS": 22.49245669364442,
+      "deathsPerHour": 89.54529674742797,
+      "killsPerLife": 0.727599028634452,
+      "limitingFactor": "survival",
+      "reliability": null,
+      "reasons": null
+    }
+  },
+  "D5_dropQuantities": {
+    "threePerKill": {
+      "drops": [
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 3
+        }
+      ],
+      "kills": 16,
+      "ledgerGel": 48,
+      "metricsDropsGel": 16,
+      "metricsMaterialsGel": null
+    },
+    "repeatedResource": {
+      "drops": [
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 2
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": 10000,
+          "qty": 1
+        }
+      ],
+      "kills": 16,
+      "ledgerGel": 48,
+      "metricsDropsGel": 32,
+      "metricsMaterialsGel": null
+    }
+  },
+  "D6_autoFarmOff": {
+    "autoFarmOffAtMs": 10400,
+    "killsIn60s": 2,
+    "killTimesMs": [
+      10400,
+      14300
+    ],
+    "engagementsStarted": [
+      {
+        "t": 0,
+        "origin": null
+      },
+      {
+        "t": 10400,
+        "origin": null
+      }
+    ]
+  },
+  "D7_regenAfterManualKill": {
+    "killAtMs": 10400,
+    "hpAfterFight": 59,
+    "regenTicksWhileIdle": 0,
+    "hpAtSessionEnd": 59,
+    "maxHp": 60
+  },
+  "D8_manualEngageAcrossSessions": {
+    "killsInSession1": 1,
+    "commandsInSession2": 0,
+    "killsInSession2": 1,
+    "engagementsInSession2": [
+      70400
+    ]
+  }
+}

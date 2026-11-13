@@ -1,0 +1,1188 @@
+{
+  "fixtureSet": "gates",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/gates.md#v1.1",
+  "status": "candidate",
+  "independence": "Validation outcomes derived by hand from the ordered rules in spec/formulas/gates.md v1.1 section 4; re-derived by spec/oracle/s1_oracle.py. Synthetic three-zone pack (zone.f.z1..z3, cp.f.z1..z3, boss gate gate.f.boss in zone 3).",
+  "cases": [
+    {
+      "id": "s1.gates.travel-locked.001",
+      "kind": "failure",
+      "description": "travel to a locked zone",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ZONE_NOT_ACCESSIBLE"
+      },
+      "derivation": "zone 2 accessUnlocked = false"
+    },
+    {
+      "id": "s1.gates.travel-ok.001",
+      "kind": "normal",
+      "description": "travel to an unlocked adjacent zone",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "access true, adjacent, not current"
+    },
+    {
+      "id": "s1.gates.travel-far.001",
+      "kind": "failure",
+      "description": "travel two zones at once",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z3"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ZONE_NOT_ADJACENT"
+      },
+      "derivation": "|3 - 1| = 2"
+    },
+    {
+      "id": "s1.gates.travel-here.001",
+      "kind": "boundary",
+      "description": "travel to the current zone",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z1"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ALREADY_THERE"
+      },
+      "derivation": "zone 1 is current"
+    },
+    {
+      "id": "s1.gates.travel-unknown.001",
+      "kind": "failure",
+      "description": "travel to an unknown zone",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z9"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ZONE_UNKNOWN"
+      },
+      "derivation": "no such zone"
+    },
+    {
+      "id": "s1.gates.no-session.001",
+      "kind": "failure",
+      "description": "commands outside a session",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "NOT_IN_SESSION"
+      },
+      "derivation": "first rule"
+    },
+    {
+      "id": "s1.gates.dead.001",
+      "kind": "failure",
+      "description": "a dead hero cannot travel",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "dead",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "DEAD"
+      },
+      "derivation": "second rule"
+    },
+    {
+      "id": "s1.gates.busy.001",
+      "kind": "failure",
+      "description": "a travelling hero is busy",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "travelling",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Travel",
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "BUSY"
+      },
+      "derivation": "third rule"
+    },
+    {
+      "id": "s1.gates.teleport-undiscovered.001",
+      "kind": "failure",
+      "description": "teleport to an accessible but undiscovered checkpoint",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Teleport",
+          "checkpointId": "cp.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "CHECKPOINT_UNKNOWN"
+      },
+      "derivation": "access alone never discovers a checkpoint"
+    },
+    {
+      "id": "s1.gates.teleport-ok.001",
+      "kind": "normal",
+      "description": "teleport to a discovered checkpoint",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Teleport",
+          "checkpointId": "cp.f.z2"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "discovered, not current"
+    },
+    {
+      "id": "s1.gates.teleport-unknown.001",
+      "kind": "failure",
+      "description": "teleport to an unknown checkpoint",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Teleport",
+          "checkpointId": "cp.f.z9"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "CHECKPOINT_UNKNOWN"
+      },
+      "derivation": "no such checkpoint"
+    },
+    {
+      "id": "s1.gates.autofarm-elsewhere.001",
+      "kind": "failure",
+      "description": "auto-farm a zone the hero is not in",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "SetAutoFarm",
+          "on": true,
+          "zoneId": "zone.f.z2"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "NOT_IN_ZONE"
+      },
+      "derivation": "hero is in zone 1"
+    },
+    {
+      "id": "s1.gates.autofarm-off-closed.001",
+      "kind": "failure",
+      "description": "turning auto-farm off outside a session",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "SetAutoFarm",
+          "on": false
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "NOT_IN_SESSION"
+      },
+      "derivation": "off needs a session only"
+    },
+    {
+      "id": "s1.gates.autofarm-off-dead.001",
+      "kind": "boundary",
+      "description": "turning auto-farm off while dead is allowed",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "dead",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "SetAutoFarm",
+          "on": false
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "off checks only the session"
+    },
+    {
+      "id": "s1.gates.engage-busy.001",
+      "kind": "failure",
+      "description": "engage while engaged",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "engaged",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Engage"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ALREADY_ENGAGED"
+      },
+      "derivation": "hero must be idle"
+    },
+    {
+      "id": "s1.gates.boss-locked.001",
+      "kind": "failure",
+      "description": "boss gate not open yet",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "GATE_LOCKED"
+      },
+      "derivation": "bossOpened = false"
+    },
+    {
+      "id": "s1.gates.boss-autofarm.001",
+      "kind": "failure",
+      "description": "the boss is active-only: refused while auto-farm is on",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 3,
+          "autoFarm": true,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "GATE_ACTIVE_ONLY"
+      },
+      "derivation": "auto-farm on"
+    },
+    {
+      "id": "s1.gates.boss-ok.001",
+      "kind": "normal",
+      "description": "start the boss manually",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "open, not cleared, in zone 3, auto-farm off, idle"
+    },
+    {
+      "id": "s1.gates.boss-resting.001",
+      "kind": "boundary",
+      "description": "start the boss from rest",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "resting",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "resting counts as free"
+    },
+    {
+      "id": "s1.gates.boss-done.001",
+      "kind": "failure",
+      "description": "the boss is already cleared",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": true
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "GATE_ALREADY_COMPLETED"
+      },
+      "derivation": "completed"
+    },
+    {
+      "id": "s1.gates.boss-wrong-zone.001",
+      "kind": "failure",
+      "description": "start the boss from another zone",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 2,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "NOT_IN_ZONE"
+      },
+      "derivation": "boss is in zone 3"
+    },
+    {
+      "id": "s1.gates.boss-unknown.001",
+      "kind": "failure",
+      "description": "unknown gate",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.z1"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "GATE_UNKNOWN"
+      },
+      "derivation": "only the boss gate can be started"
+    },
+    {
+      "id": "s1.gates.boss-busy.001",
+      "kind": "failure",
+      "description": "start the boss while walking to an enemy",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "walking",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": true,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "StartBoss",
+          "gateId": "gate.f.boss"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "ALREADY_ENGAGED"
+      },
+      "derivation": "hero must be idle or resting"
+    },
+    {
+      "id": "s1.gates.rest-in-boss.001",
+      "kind": "failure",
+      "description": "rest during a boss fight",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "boss",
+          "heroZone": 3,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Rest"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "BUSY"
+      },
+      "derivation": "boss fights cannot be left by resting"
+    },
+    {
+      "id": "s1.gates.end-session.001",
+      "kind": "normal",
+      "description": "end the session",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "EndSession"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "session open"
+    },
+    {
+      "id": "s1.gates.report.001",
+      "kind": "normal",
+      "description": "a policy reports why it stopped (S1.1)",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Report",
+          "code": "NO_SAFE_ZONE"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "in session, known code"
+    },
+    {
+      "id": "s1.gates.report-dead.001",
+      "kind": "boundary",
+      "description": "a report is allowed while the hero is dead (it changes no game state)",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "dead",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Report",
+          "code": "FIXED_ZONE_BLOCKED"
+        }
+      },
+      "expected": {
+        "ok": true
+      },
+      "derivation": "only the session is checked"
+    },
+    {
+      "id": "s1.gates.report-closed.001",
+      "kind": "failure",
+      "description": "no report outside a session",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Report",
+          "code": "NO_SAFE_ZONE"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "NOT_IN_SESSION"
+      },
+      "derivation": "session closed"
+    },
+    {
+      "id": "s1.gates.report-unknown.001",
+      "kind": "failure",
+      "description": "an unknown report code is refused",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "heroStatus": "idle",
+          "heroZone": 1,
+          "autoFarm": false,
+          "zones": [
+            {
+              "access": true,
+              "visited": true,
+              "checkpoint": true
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            },
+            {
+              "access": false,
+              "visited": false,
+              "checkpoint": false
+            }
+          ],
+          "bossOpened": false,
+          "bossCompleted": false
+        },
+        "command": {
+          "type": "Report",
+          "code": "BORED"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "code": "REPORT_UNKNOWN"
+      },
+      "derivation": "code not in the list"
+    }
+  ]
+}

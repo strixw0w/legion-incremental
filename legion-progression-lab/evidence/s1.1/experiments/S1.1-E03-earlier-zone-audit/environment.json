@@ -1,0 +1,14 @@
+{
+  "experimentId": "S1.1-E03-earlier-zone-audit",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "labCommit": "ad11a508fd715b08705c5ee72f215f92183f0993",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T20:13:12.158Z",
+  "durationMs": 2870,
+  "jobs": 200
+}

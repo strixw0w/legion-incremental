@@ -1,0 +1,371 @@
+{
+  "experimentId": "S1-E01-calibration",
+  "increment": "S1",
+  "question": "Do the candidate inputs meet the early pacing targets for a single classless hero?",
+  "design": "Pass 1: XP curve a in {8, 10, 12} x p in {1.6, 1.8, 2.0} x zone 1 kill gate in {60, 100, 150} (27 variants). Pass 2: slime EXP in {3, 5} at a = 10, p = 1.6, gate 100 (the 4-EXP point is in pass 1). Profiles PR-NEW (45 min) and PR-BAL (60 min); policies POL-FRONTIER and POL-STAY; 200 replicates.",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "a8-p1.6-g60",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a8-p1.6-g100",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a8-p1.6-g150",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a8-p1.8-g60",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a8-p1.8-g100",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a8-p1.8-g150",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a8-p2.0-g60",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a8-p2.0-g100",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a8-p2.0-g150",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a10-p1.6-g60",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p1.6-g150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a10-p1.8-g60",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a10-p1.8-g100",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p1.8-g150",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a10-p2.0-g60",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a10-p2.0-g100",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p2.0-g150",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a12-p1.6-g60",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a12-p1.6-g100",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a12-p1.6-g150",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a12-p1.8-g60",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a12-p1.8-g100",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a12-p1.8-g150",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a12-p2.0-g60",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 60
+      }
+    },
+    {
+      "id": "a12-p2.0-g100",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a12-p2.0-g150",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-x3",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "slime.exp": 3
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-x5",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "slime.exp": 5
+      }
+    }
+  ],
+  "profiles": [
+    "PR-NEW",
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FRONTIER",
+    "POL-STAY"
+  ],
+  "seeds": {
+    "root": "S1-E01",
+    "replicates": 200
+  },
+  "metrics": [
+    "firstKillS",
+    "killsToL2",
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "ttkZ1FirstVisitS",
+    "ttkZ2FirstVisitS",
+    "ttkZ3FirstVisitS",
+    "deathsPerHour",
+    "levelAt45"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-01",
+      "statement": "First kill within 30 s for a newcomer",
+      "source": "R10.10",
+      "metric": "firstKillS",
+      "stat": "p90",
+      "op": "<=",
+      "unit": "s",
+      "role": "target",
+      "value": 30
+    },
+    {
+      "id": "H-S1-02",
+      "statement": "Level 2 after 1-3 kills",
+      "source": "Bible section 10",
+      "metric": "killsToL2",
+      "stat": "p50",
+      "op": "in",
+      "unit": "kills",
+      "role": "target",
+      "range": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "H-S1-03a",
+      "statement": "On-tier early TTK 2-5 s: zone 1 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ1FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-03b",
+      "statement": "On-tier early TTK 2-5 s: zone 2 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ2FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-04",
+      "statement": "Harder enemy TTK 5-15 s: zone 3 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ3FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        5,
+        15
+      ]
+    },
+    {
+      "id": "H-S1-05",
+      "statement": "First new zone first-visited in 5-10 active min",
+      "source": "R06.08, N-11",
+      "metric": "zone2FirstVisitMin",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "target",
+      "range": [
+        5,
+        10
+      ]
+    },
+    {
+      "id": "H-S1-06",
+      "statement": "Zone 2->3 takes longer than zone 1->2 (ratio of first-visit intervals)",
+      "source": "R06.08",
+      "metric": "gate23Over12Ratio",
+      "stat": "p50",
+      "op": ">",
+      "unit": "ratio",
+      "role": "target",
+      "value": 1
+    },
+    {
+      "id": "H-S1-07a",
+      "statement": "Level 5 in 3-5 min (single hero only; recruits and gear will change this)",
+      "source": "Bible section 10",
+      "metric": "minToL5",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "diagnostic",
+      "range": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-07b",
+      "statement": "Level 10 in 10-20 min (single hero only; recruits and gear will change this)",
+      "source": "Bible section 10",
+      "metric": "minToL10",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "diagnostic",
+      "range": [
+        10,
+        20
+      ]
+    }
+  ],
+  "notes": [
+    "S1 is a single-character diagnostic model (experiment plan principle 10): no recruits, classes, abilities, gear, sinks, offline progress or Monuments; gold and materials only accumulate.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0 and the S1 resolutions S1-R01..R17); every output is model-output, not live-validated.",
+    "Engagement overhead and walk times are the most uncertain inputs (to be measured in M2).",
+    "Pass 2 is fixed in advance at the base curve; it does not depend on pass 1 results."
+  ]
+}

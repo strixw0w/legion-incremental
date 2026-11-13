@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "contentId": "w1-slice",
+  "contentVersion": "0.1.0",
+  "status": "candidate",
+  "note": "S1 diagnostic slice: one classless hero, zones 1-3, prototype miniboss stub. Inputs from M1 plan v1.0 section 6 (hand arithmetic only). Nothing here is approved or live-validated.",
+  "formulaVersions": {
+    "numeric": 1,
+    "remainder": 2,
+    "rng": 1,
+    "xp": 2,
+    "stats": 2,
+    "combat": 2,
+    "ledger": 1,
+    "canonicalJson": 1,
+    "combatLoop": 1,
+    "gates": 1
+  },
+  "xp": {
+    "curve": {
+      "family": "powerGeometric",
+      "a": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          8,
+          12
+        ],
+        "hypothesis": "Level 2 after 1-3 early kills (S1 H-S1-02)"
+      },
+      "p": {
+        "value": 1.6,
+        "label": "candidate",
+        "range": [
+          1.6,
+          2
+        ],
+        "hypothesis": "Early steepness; hand arithmetic suggests L5 arrives early at 1.6, so S1-E01 sweeps p"
+      },
+      "g": {
+        "value": 1,
+        "label": "candidate",
+        "range": [
+          1,
+          1.04
+        ],
+        "hypothesis": "Later growth factor; fixed at 1 until S6"
+      }
+    },
+    "maxLevelUpsPerAward": {
+      "value": 1000,
+      "label": "candidate",
+      "note": "Runaway-loop guard"
+    },
+    "table": {
+      "path": "content/tables/xp.w1.candidate.v0.1.0.json",
+      "sha256": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "statCategories": [
+    {
+      "id": "cat.damage.additive",
+      "kind": "additivePool",
+      "active": true,
+      "note": "Main additive damage pool (R05.17, R08.10)"
+    },
+    {
+      "id": "cat.damage.monument",
+      "kind": "multiplier",
+      "active": false,
+      "note": "Monument multiplier category; inactive until S4"
+    },
+    {
+      "id": "cat.research",
+      "kind": "multiplier",
+      "active": false,
+      "note": "World 2 hook (R05.09); neutral in W1"
+    },
+    {
+      "id": "cat.mastery_tree",
+      "kind": "multiplier",
+      "active": false,
+      "note": "World 2 hook (R05.12); neutral in W1"
+    }
+  ],
+  "hero": {
+    "baseAttackMilli": {
+      "value": 6000,
+      "label": "candidate",
+      "range": [
+        5000,
+        10000
+      ],
+      "hypothesis": "R08.04 starting damage 5-10"
+    },
+    "attackPerLevelMilli": {
+      "value": 1000,
+      "label": "candidate",
+      "range": [
+        500,
+        2000
+      ],
+      "hypothesis": "levels make kills visibly faster; zone 1 hits-to-kill 3 -> 2 by L3"
+    },
+    "attackIntervalMs": {
+      "value": 1200,
+      "label": "candidate",
+      "range": [
+        800,
+        1500
+      ],
+      "hypothesis": "readable auto-attack cadence"
+    },
+    "critChanceBp": {
+      "value": 500,
+      "label": "candidate",
+      "range": [
+        0,
+        1000
+      ]
+    },
+    "critMultBp": {
+      "value": 15000,
+      "label": "candidate",
+      "range": [
+        12500,
+        20000
+      ]
+    },
+    "baseMaxHp": {
+      "value": 60,
+      "label": "candidate",
+      "range": [
+        40,
+        100
+      ]
+    },
+    "maxHpPerLevel": {
+      "value": 8,
+      "label": "candidate",
+      "range": [
+        4,
+        12
+      ],
+      "hypothesis": "survival matters in zone 3, not zone 1"
+    },
+    "baseDefence": {
+      "value": 0,
+      "label": "candidate",
+      "range": [
+        0,
+        0
+      ]
+    },
+    "defencePerLevel": {
+      "value": 1,
+      "label": "candidate",
+      "range": [
+        0,
+        2
+      ]
+    },
+    "accuracy": {
+      "value": 10,
+      "label": "candidate",
+      "hypothesis": "zones 1-3 have requirement 0, so hits are certain in S1"
+    },
+    "outOfCombatDelayMs": {
+      "value": 3000,
+      "label": "candidate",
+      "range": [
+        1000,
+        6000
+      ]
+    },
+    "regenPerSecBpOfMaxHp": {
+      "value": 1000,
+      "label": "candidate",
+      "range": [
+        300,
+        2000
+      ]
+    },
+    "respawnDelayMs": {
+      "value": 5000,
+      "label": "candidate",
+      "range": [
+        3000,
+        15000
+      ],
+      "hypothesis": "R02.07: no loss, small downtime"
+    }
+  },
+  "combat": {
+    "mitigationK": {
+      "value": 100,
+      "label": "candidate",
+      "range": [
+        50,
+        200
+      ]
+    },
+    "minDamagePerHit": {
+      "value": 1,
+      "label": "candidate"
+    },
+    "hitCurve": {
+      "hAtReqBp": {
+        "value": 9000,
+        "label": "candidate",
+        "range": [
+          8000,
+          9500
+        ]
+      },
+      "floorBp": {
+        "value": 1000,
+        "label": "candidate",
+        "range": [
+          500,
+          2000
+        ]
+      },
+      "k": {
+        "value": 2,
+        "label": "candidate",
+        "range": [
+          1,
+          4
+        ]
+      }
+    }
+  },
+  "resources": [
+    {
+      "id": "res.gold",
+      "kind": "currency",
+      "testOnly": false
+    },
+    {
+      "id": "res.mat.slime_gel",
+      "kind": "material",
+      "testOnly": false
+    },
+    {
+      "id": "res.mat.wolf_fang",
+      "kind": "material",
+      "testOnly": false
+    },
+    {
+      "id": "res.mat.goblin_scrap",
+      "kind": "material",
+      "testOnly": false
+    },
+    {
+      "id": "res.rare.test_token",
+      "kind": "rare",
+      "testOnly": true,
+      "note": "test-only rare drop for S1-E06 drop correctness; not a game item"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "enemy.w1.green_slime",
+      "name": "Green Slime",
+      "hp": {
+        "value": 15,
+        "label": "candidate",
+        "range": [
+          10,
+          30
+        ]
+      },
+      "attackMilli": {
+        "value": 1000,
+        "label": "candidate"
+      },
+      "attackIntervalMs": {
+        "value": 2000,
+        "label": "candidate"
+      },
+      "firstAttackDelayMs": {
+        "value": 2000,
+        "label": "candidate",
+        "note": "S1-R04: one attack interval"
+      },
+      "defence": {
+        "value": 0,
+        "label": "candidate"
+      },
+      "exp": {
+        "value": 4,
+        "label": "candidate",
+        "range": [
+          3,
+          5
+        ]
+      },
+      "gold": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "drops": [
+        {
+          "resourceId": "res.mat.slime_gel",
+          "chanceBp": {
+            "value": 3000,
+            "label": "candidate"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.rare.test_token",
+          "chanceBp": {
+            "value": 20,
+            "label": "candidate",
+            "note": "test-only probability 0.002"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enemy.w1.wolf",
+      "name": "Wolf",
+      "hp": {
+        "value": 45,
+        "label": "candidate",
+        "range": [
+          30,
+          70
+        ]
+      },
+      "attackMilli": {
+        "value": 3000,
+        "label": "candidate"
+      },
+      "attackIntervalMs": {
+        "value": 1800,
+        "label": "candidate"
+      },
+      "firstAttackDelayMs": {
+        "value": 1800,
+        "label": "candidate",
+        "note": "S1-R04: one attack interval"
+      },
+      "defence": {
+        "value": 2,
+        "label": "candidate"
+      },
+      "exp": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          8,
+          14
+        ]
+      },
+      "gold": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "drops": [
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "chanceBp": {
+            "value": 2500,
+            "label": "candidate"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.rare.test_token",
+          "chanceBp": {
+            "value": 20,
+            "label": "candidate",
+            "note": "test-only probability 0.002"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enemy.w1.goblin",
+      "name": "Goblin",
+      "hp": {
+        "value": 120,
+        "label": "candidate",
+        "range": [
+          80,
+          180
+        ]
+      },
+      "attackMilli": {
+        "value": 6000,
+        "label": "candidate"
+      },
+      "attackIntervalMs": {
+        "value": 1600,
+        "label": "candidate"
+      },
+      "firstAttackDelayMs": {
+        "value": 1600,
+        "label": "candidate",
+        "note": "S1-R04: one attack interval"
+      },
+      "defence": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "exp": {
+        "value": 22,
+        "label": "candidate",
+        "range": [
+          16,
+          30
+        ]
+      },
+      "gold": {
+        "value": 6,
+        "label": "candidate"
+      },
+      "drops": [
+        {
+          "resourceId": "res.mat.goblin_scrap",
+          "chanceBp": {
+            "value": 2000,
+            "label": "candidate"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.rare.test_token",
+          "chanceBp": {
+            "value": 20,
+            "label": "candidate",
+            "note": "test-only probability 0.002"
+          },
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enemy.w1.goblin_chief",
+      "name": "Goblin Chief (prototype miniboss stub)",
+      "hp": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "attackMilli": {
+        "value": 12000,
+        "label": "candidate"
+      },
+      "attackIntervalMs": {
+        "value": 2000,
+        "label": "candidate"
+      },
+      "firstAttackDelayMs": {
+        "value": 2000,
+        "label": "candidate",
+        "note": "S1-R04: one attack interval"
+      },
+      "defence": {
+        "value": 5,
+        "label": "candidate",
+        "note": "S1 stub value"
+      },
+      "exp": {
+        "value": 150,
+        "label": "candidate",
+        "note": "S1-R15 stub reward; not balanced"
+      },
+      "gold": {
+        "value": 30,
+        "label": "candidate",
+        "note": "S1-R15 stub reward; not balanced"
+      },
+      "drops": []
+    }
+  ],
+  "zones": [
+    {
+      "id": "zone.w1.01",
+      "order": 1,
+      "name": "Slime Meadow",
+      "enemyId": "enemy.w1.green_slime",
+      "checkpointId": "cp.w1.01",
+      "accuracyRequirement": {
+        "value": 0,
+        "label": "candidate"
+      },
+      "spawnSlots": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          5,
+          20
+        ]
+      },
+      "respawnMs": {
+        "value": 6000,
+        "label": "candidate"
+      },
+      "killGate": {
+        "gateId": "gate.w1.01_to_02",
+        "toZoneId": "zone.w1.02",
+        "kills": {
+          "value": 100,
+          "label": "candidate",
+          "range": [
+            60,
+            150
+          ]
+        }
+      }
+    },
+    {
+      "id": "zone.w1.02",
+      "order": 2,
+      "name": "Wolfwood Forest",
+      "enemyId": "enemy.w1.wolf",
+      "checkpointId": "cp.w1.02",
+      "accuracyRequirement": {
+        "value": 0,
+        "label": "candidate"
+      },
+      "spawnSlots": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          5,
+          20
+        ]
+      },
+      "respawnMs": {
+        "value": 7000,
+        "label": "candidate"
+      },
+      "killGate": {
+        "gateId": "gate.w1.02_to_03",
+        "toZoneId": "zone.w1.03",
+        "kills": {
+          "value": 120,
+          "label": "candidate",
+          "range": [
+            80,
+            180
+          ]
+        }
+      }
+    },
+    {
+      "id": "zone.w1.03",
+      "order": 3,
+      "name": "Goblin Encampment",
+      "enemyId": "enemy.w1.goblin",
+      "checkpointId": "cp.w1.03",
+      "accuracyRequirement": {
+        "value": 0,
+        "label": "candidate"
+      },
+      "spawnSlots": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          5,
+          20
+        ]
+      },
+      "respawnMs": {
+        "value": 8000,
+        "label": "candidate"
+      }
+    }
+  ],
+  "boss": {
+    "gateId": "gate.w1.03_miniboss",
+    "zoneId": "zone.w1.03",
+    "enemyId": "enemy.w1.goblin_chief",
+    "unlockKills": {
+      "value": 150,
+      "label": "candidate",
+      "range": [
+        100,
+        250
+      ]
+    },
+    "timerMs": {
+      "value": 120000,
+      "label": "candidate",
+      "range": [
+        60000,
+        180000
+      ]
+    },
+    "activeOnly": true,
+    "prototype": true,
+    "note": "R10.03 prototype miniboss placeholder (R-A6): not a fourth major boss; temporary content"
+  },
+  "travel": {
+    "adjacentWalkMs": {
+      "value": 20000,
+      "label": "candidate",
+      "range": [
+        5000,
+        60000
+      ]
+    },
+    "teleportMs": {
+      "value": 3000,
+      "label": "candidate",
+      "range": [
+        1000,
+        10000
+      ]
+    },
+    "zoneEntryWalkMs": {
+      "value": 8000,
+      "label": "candidate",
+      "range": [
+        3000,
+        20000
+      ],
+      "hypothesis": "S1-R02; H-S1-01 first kill <= 30 s"
+    },
+    "engageOverheadMs": {
+      "value": 1500,
+      "label": "candidate",
+      "range": [
+        500,
+        4000
+      ],
+      "hypothesis": "walk-to-next-target; the most uncertain input, measure in M2"
+    }
+  },
+  "autoFarm": {
+    "stopAfterDeaths": {
+      "value": 3,
+      "label": "candidate",
+      "range": [
+        2,
+        5
+      ],
+      "hypothesis": "D-03 / S1-R09"
+    },
+    "deathWindowMs": {
+      "value": 300000,
+      "label": "candidate",
+      "range": [
+        60000,
+        600000
+      ],
+      "hypothesis": "D-03 / S1-R09"
+    }
+  }
+}

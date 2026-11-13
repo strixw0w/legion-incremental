@@ -1,0 +1,3647 @@
+{
+ "A1": {
+  "pass": true,
+  "rows": [
+   {
+    "s1": "a10-p1.6-g100|PR-NEW|POL-STAY",
+    "s1_1": "a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "a10-p1.6-g100|PR-NEW|POL-FRONTIER",
+    "s1_1": "a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "a10-p1.6-g100|PR-BAL|POL-STAY",
+    "s1_1": "a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "a10-p1.6-g100|PR-BAL|POL-FRONTIER",
+    "s1_1": "a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "base|PR-BAL|POL-STAY",
+    "s1_1": "base|PR-BAL|CTL-STAY-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "base|PR-BAL|POL-FRONTIER",
+    "s1_1": "base|PR-BAL|CTL-FRONTIER-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "base|PR-BAL|POL-BEST-SHOWN",
+    "s1_1": "base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1",
+    "metricsCompared": 35,
+    "different": []
+   },
+   {
+    "s1": "base|PR-OPT|POL-STAY",
+    "s1_1": "base|PR-OPT|CTL-STAY-S1",
+    "metricsCompared": 34,
+    "different": []
+   }
+  ]
+ },
+ "A2": [
+  {
+   "block": "S1.1-E01 STAY PR-NEW",
+   "rows": [
+    {
+     "step": "L0 S1-E01",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-STAY",
+     "values": {
+      "expTotal": 4809.36,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 25,
+      "activeManualMin": 2.75,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1",
+     "values": {
+      "expTotal": 4809.36,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 25,
+      "activeManualMin": 2.75,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1.1",
+     "values": {
+      "expTotal": 4809.36,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 25,
+      "activeManualMin": 2.75,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+     "values": {
+      "expTotal": 5054.11,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.35,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 6.633333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1",
+     "values": {
+      "expTotal": 5054.11,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.35,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 6.633333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E01 FRONTIER PR-NEW",
+   "rows": [
+    {
+     "step": "L0 S1-E01",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER",
+     "values": {
+      "expTotal": 5823.45,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 4,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1",
+     "values": {
+      "expTotal": 5823.45,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 4,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1.1",
+     "values": {
+      "expTotal": 5823.45,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 4,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+     "values": {
+      "expTotal": 5823.45,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 4,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1",
+     "values": {
+      "expTotal": 5823.45,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 4,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E01 BEST-SHOWN PR-NEW",
+   "rows": [
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-BEST-SHOWN-S1|est-s1",
+     "values": {
+      "expTotal": 6220.46,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 5.333333333333333,
+      "autoFarmStops": 2,
+      "activeManualMin": 0.8333333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.096666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-NEW|CTL-BEST-SHOWN-S1|est-s1.1",
+     "values": {
+      "expTotal": 6220.46,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 5.333333333333333,
+      "autoFarmStops": 2,
+      "activeManualMin": 0.8333333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.096666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+     "values": {
+      "expTotal": 6214.62,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1",
+     "values": {
+      "expTotal": 6214.62,
+      "levelAt60": null,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       0,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E01 STAY PR-BAL",
+   "rows": [
+    {
+     "step": "L0 S1-E01",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-STAY",
+     "values": {
+      "expTotal": 7044.78,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1",
+     "values": {
+      "expTotal": 7044.78,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1.1",
+     "values": {
+      "expTotal": 7044.78,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.301666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.031666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+     "values": {
+      "expTotal": 7389.41,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.35,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 8.583333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1",
+     "values": {
+      "expTotal": 7389.41,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 16.35,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 8.583333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E01 FRONTIER PR-BAL",
+   "rows": [
+    {
+     "step": "L0 S1-E01",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER",
+     "values": {
+      "expTotal": 8203.63,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1",
+     "values": {
+      "expTotal": 8203.63,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1.1",
+     "values": {
+      "expTotal": 8203.63,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+     "values": {
+      "expTotal": 8203.63,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1",
+     "values": {
+      "expTotal": 8203.63,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.081666666666667,
+      "zone3FirstVisitMin": 38.138333333333335,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.16
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E01 BEST-SHOWN PR-BAL",
+   "rows": [
+    {
+     "step": "L1",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-BEST-SHOWN-S1|est-s1",
+     "values": {
+      "expTotal": 9320.85,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 4,
+      "autoFarmStops": 2,
+      "activeManualMin": 1.1666666666666667,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.096666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "a10-p1.6-g100|PR-BAL|CTL-BEST-SHOWN-S1|est-s1.1",
+     "values": {
+      "expTotal": 9320.85,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 4,
+      "autoFarmStops": 2,
+      "activeManualMin": 1.1666666666666667,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.096666666666666
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+     "values": {
+      "expTotal": 9313.75,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.8333333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1",
+     "values": {
+      "expTotal": 9313.75,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.8333333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E07 STAY PR-BAL",
+   "rows": [
+    {
+     "step": "L0 S1-E08",
+     "cell": "base|PR-BAL|POL-STAY",
+     "values": {
+      "expTotal": 7042.8,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 16.281666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.011666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "base|PR-BAL|CTL-STAY-S1|est-s1",
+     "values": {
+      "expTotal": 7042.8,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 16.281666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.011666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "base|PR-BAL|CTL-STAY-S1|est-s1.1",
+     "values": {
+      "expTotal": 7042.8,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 16.281666666666666,
+      "deathsPerHour": 36,
+      "autoFarmStops": 34,
+      "activeManualMin": 3.5,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.011666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "base|PR-BAL|POL-STAY|est-s1.1",
+     "values": {
+      "expTotal": 7393.15,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 16.33,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 8.6,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "base|PR-BAL|POL-STAY|est-s1",
+     "values": {
+      "expTotal": 7393.15,
+      "levelAt60": 18,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 16.33,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 8.6,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E07 FRONTIER PR-BAL",
+   "rows": [
+    {
+     "step": "L0 S1-E08",
+     "cell": "base|PR-BAL|POL-FRONTIER",
+     "values": {
+      "expTotal": 8208.69,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 38.11833333333333,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "base|PR-BAL|CTL-FRONTIER-S1|est-s1",
+     "values": {
+      "expTotal": 8208.69,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 38.11833333333333,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "base|PR-BAL|CTL-FRONTIER-S1|est-s1.1",
+     "values": {
+      "expTotal": 8208.69,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 38.11833333333333,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "base|PR-BAL|POL-FRONTIER|est-s1.1",
+     "values": {
+      "expTotal": 8208.69,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 38.11833333333333,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "base|PR-BAL|POL-FRONTIER|est-s1",
+     "values": {
+      "expTotal": 8208.69,
+      "levelAt60": 19,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": 38.11833333333333,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 5.833333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.14
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       200,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "S1.1-E07 BEST-SHOWN PR-BAL",
+   "rows": [
+    {
+     "step": "L0 S1-E08",
+     "cell": "base|PR-BAL|POL-BEST-SHOWN",
+     "values": {
+      "expTotal": 9326.15,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 4,
+      "autoFarmStops": 2,
+      "activeManualMin": 1.1666666666666667,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.056666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L1",
+     "cell": "base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1",
+     "values": {
+      "expTotal": 9326.15,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 4,
+      "autoFarmStops": 2,
+      "activeManualMin": 1.1666666666666667,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.056666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L2",
+     "cell": "base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1.1",
+     "values": {
+      "expTotal": 9326.15,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 4,
+      "autoFarmStops": 2,
+      "activeManualMin": 1.1666666666666667,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.056666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "L3",
+     "cell": "base|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+     "values": {
+      "expTotal": 9315.75,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.8333333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "cross",
+     "cell": "base|PR-BAL|POL-BEST-SHOWN|est-s1",
+     "values": {
+      "expTotal": 9315.75,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 6.166666666666667,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 0,
+      "autoFarmStops": 0,
+      "activeManualMin": 1.8333333333333333,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.068333333333333
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "block": "ORC-BRUTE PR-BAL (restricted lookahead, trigger fix = bug fix)",
+   "rows": [
+    {
+     "step": "L0 S1-E08",
+     "cell": "base|PR-BAL|ORC-BRUTE",
+     "values": {
+      "expTotal": 8882.35,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 5.3566666666666665,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 13,
+      "autoFarmStops": 3,
+      "activeManualMin": 0.5833333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.036666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    },
+    {
+     "step": "S1.1",
+     "cell": "base|PR-BAL|ORC-BRUTE|est-s1.1",
+     "values": {
+      "expTotal": 8886.75,
+      "levelAt60": 20,
+      "zone2FirstVisitMin": 5.0616666666666665,
+      "zone3FirstVisitMin": null,
+      "deathsPerHour": 13,
+      "autoFarmStops": 3,
+      "activeManualMin": 0.5833333333333334,
+      "minToL5": 2.4483333333333333,
+      "minToL10": 14.011666666666667
+     },
+     "reached": {
+      "expTotal": [
+       200,
+       200
+      ],
+      "levelAt60": [
+       200,
+       200
+      ],
+      "zone2FirstVisitMin": [
+       200,
+       200
+      ],
+      "zone3FirstVisitMin": [
+       0,
+       200
+      ],
+      "deathsPerHour": [
+       200,
+       200
+      ],
+      "autoFarmStops": [
+       200,
+       200
+      ],
+      "activeManualMin": [
+       200,
+       200
+      ],
+      "minToL5": [
+       200,
+       200
+      ],
+      "minToL10": [
+       200,
+       200
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "A3": {
+  "pass": true,
+  "allInside": true,
+  "ledgerMismatches": 0,
+  "quantityIdentity": true
+ },
+ "A4": [
+  {
+   "variant": "d0.5-h1",
+   "policy": "CTL-STAY-S1",
+   "values": {
+    "deathsPerHour": 21,
+    "autoFarmStops": 12,
+    "policyStopReports": 0,
+    "activeManualMin": 1.6666666666666667,
+    "zone3FirstVisitMin": 15.395,
+    "levelAt60": 19,
+    "expTotal": 7768.69
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d0.5-h1",
+   "policy": "POL-STAY",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 5.333333333333333,
+    "zone3FirstVisitMin": 15.516666666666667,
+    "levelAt60": 19,
+    "expTotal": 7983.74
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d0.5-h1",
+   "policy": "CTL-FRONTIER-S1",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 3.3333333333333335,
+    "zone3FirstVisitMin": 36.305,
+    "levelAt60": 19,
+    "expTotal": 8662.55
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d0.5-h1",
+   "policy": "POL-FRONTIER",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 3.3333333333333335,
+    "zone3FirstVisitMin": 36.305,
+    "levelAt60": 19,
+    "expTotal": 8662.55
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d0.5-h1",
+   "policy": "CTL-BEST-SHOWN-S1",
+   "values": {
+    "deathsPerHour": 1,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 1,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9470.35
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d0.5-h1",
+   "policy": "POL-BEST-SHOWN",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 1.3333333333333333,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9444.9
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "CTL-STAY-S1",
+   "values": {
+    "deathsPerHour": 36,
+    "autoFarmStops": 34,
+    "policyStopReports": 0,
+    "activeManualMin": 3.5,
+    "zone3FirstVisitMin": 16.281666666666666,
+    "levelAt60": 18,
+    "expTotal": 7046.65
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "POL-STAY",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 8.6,
+    "zone3FirstVisitMin": 16.35,
+    "levelAt60": 18,
+    "expTotal": 7390.62
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "CTL-FRONTIER-S1",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 5.833333333333333,
+    "zone3FirstVisitMin": 38.11833333333333,
+    "levelAt60": 19,
+    "expTotal": 8207.04
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "POL-FRONTIER",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 5.833333333333333,
+    "zone3FirstVisitMin": 38.11833333333333,
+    "levelAt60": 19,
+    "expTotal": 8207.04
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "CTL-BEST-SHOWN-S1",
+   "values": {
+    "deathsPerHour": 4,
+    "autoFarmStops": 2,
+    "policyStopReports": 0,
+    "activeManualMin": 1.1666666666666667,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9322.6
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1-h1",
+   "policy": "POL-BEST-SHOWN",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 1.8333333333333333,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9314.45
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "CTL-STAY-S1",
+   "values": {
+    "deathsPerHour": 53,
+    "autoFarmStops": 51,
+    "policyStopReports": 0,
+    "activeManualMin": 4.916666666666667,
+    "zone3FirstVisitMin": 16.79,
+    "levelAt60": 17,
+    "expTotal": 6155.21
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "POL-STAY",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 11.825,
+    "zone3FirstVisitMin": 16.683333333333334,
+    "levelAt60": 18,
+    "expTotal": 6789.25
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "CTL-FRONTIER-S1",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 4.5,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 19,
+    "expTotal": 8646.7
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "POL-FRONTIER",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 4.5,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 19,
+    "expTotal": 8646.7
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "CTL-BEST-SHOWN-S1",
+   "values": {
+    "deathsPerHour": 5,
+    "autoFarmStops": 3,
+    "policyStopReports": 0,
+    "activeManualMin": 1.25,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9247.8
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d1.5-h1",
+   "policy": "POL-BEST-SHOWN",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 2.1666666666666665,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9239.95
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "CTL-STAY-S1",
+   "values": {
+    "deathsPerHour": 70,
+    "autoFarmStops": 68,
+    "policyStopReports": 0,
+    "activeManualMin": 6.333333333333333,
+    "zone3FirstVisitMin": 17.395,
+    "levelAt60": 16,
+    "expTotal": 5332.74
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "POL-STAY",
+   "values": {
+    "deathsPerHour": 5,
+    "autoFarmStops": 1,
+    "policyStopReports": 0,
+    "activeManualMin": 14.566666666666666,
+    "zone3FirstVisitMin": 17.476666666666667,
+    "levelAt60": 17,
+    "expTotal": 6081.61
+   },
+   "zone3Reached": [
+    200,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "CTL-FRONTIER-S1",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 5.016666666666667,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 19,
+    "expTotal": 8366.25
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "POL-FRONTIER",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 5.016666666666667,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 19,
+    "expTotal": 8366.25
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "CTL-BEST-SHOWN-S1",
+   "values": {
+    "deathsPerHour": 8,
+    "autoFarmStops": 6,
+    "policyStopReports": 0,
+    "activeManualMin": 1.5,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9112.75
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  },
+  {
+   "variant": "d2-h1",
+   "policy": "POL-BEST-SHOWN",
+   "values": {
+    "deathsPerHour": 0,
+    "autoFarmStops": 0,
+    "policyStopReports": 0,
+    "activeManualMin": 2.6666666666666665,
+    "zone3FirstVisitMin": null,
+    "levelAt60": 20,
+    "expTotal": 9114.3
+   },
+   "zone3Reached": [
+    0,
+    200
+   ]
+  }
+ ],
+ "A5": [
+  {
+   "cell": "base|L1-Z1|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 898.3,
+   "killsPerHourErrorPct": -0.06767597719745228,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.8663310391072101,
+   "v11": {
+    "killsPerHour": 897.6920666968352,
+    "killsPerLife": 65.48199445983352,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 0.9999999999999999
+   },
+   "s1": 906.0822517243
+  },
+  {
+   "cell": "base|L1-Z2|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 265.315,
+   "killsPerHourErrorPct": 0.11942971437623501,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 7.37228764277436,
+   "v11": {
+    "killsPerHour": 265.6318649466973,
+    "killsPerLife": 4.307870633482075,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999998
+   },
+   "s1": 284.8747849594268
+  },
+  {
+   "cell": "base|L1-Z3|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 0,
+   "killsPerHourErrorPct": null,
+   "withinFivePct": null,
+   "s1ControlErrorPct": null,
+   "v11": {
+    "killsPerHour": 2.5092773437499983e-12,
+    "killsPerLife": 2.021362304687501e-14,
+    "reliability": "unsafe",
+    "reasons": [
+     "UNDER_ONE_KILL_PER_LIFE",
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 2.021362304687501e-14
+   },
+   "s1": 65.15307093221234
+  },
+  {
+   "cell": "base|L5-Z1|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 1360.555,
+   "killsPerHourErrorPct": 0.22647843243115318,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.22647843243115318,
+   "v11": {
+    "killsPerHour": 1363.6363636363637,
+    "killsPerLife": null,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 1
+   },
+   "s1": 1363.6363636363637
+  },
+  {
+   "cell": "base|L5-Z2|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 509.645,
+   "killsPerHourErrorPct": -0.0034647185022772375,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 1.251075151752232,
+   "v11": {
+    "killsPerHour": 509.62734223538905,
+    "killsPerLife": 15.000348831675801,
+    "reliability": "approximate",
+    "reasons": [
+     "SURVIVAL_LIMITED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999998
+   },
+   "s1": 516.0210419571476
+  },
+  {
+   "cell": "base|L5-Z3|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 91.475,
+   "killsPerHourErrorPct": -0.06073849939434329,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 63.28337047718501,
+   "v11": {
+    "killsPerHour": 91.41943945767902,
+    "killsPerLife": 1.0302384803266142,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999993
+   },
+   "s1": 149.36346314400498
+  },
+  {
+   "cell": "base|L10-Z1|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 2395,
+   "killsPerHourErrorPct": 0.20876826722338201,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.20876826722338201,
+   "v11": {
+    "killsPerHour": 2400,
+    "killsPerLife": null,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 1
+   },
+   "s1": 2400
+  },
+  {
+   "cell": "base|L10-Z2|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 849,
+   "killsPerHourErrorPct": -0.09196960162641053,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 1.2330103974737872,
+   "v11": {
+    "killsPerHour": 848.2191780821918,
+    "killsPerLife": 42.99999999999985,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 0.9999999999999999
+   },
+   "s1": 859.4682582745525
+  },
+  {
+   "cell": "base|L10-Z3|CTL-FIXED-S1",
+   "fixed": "CTL-FIXED-S1",
+   "simulatedMeanKillsPerHour": 204.58,
+   "killsPerHourErrorPct": 0.37264088290628755,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 14.083710695380724,
+   "v11": {
+    "killsPerHour": 205.3423487182497,
+    "killsPerLife": 3.0100012837601713,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999996
+   },
+   "s1": 233.3924553406099
+  },
+  {
+   "cell": "base|L1-Z1|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 901.195,
+   "killsPerHourErrorPct": -0.38869870595873357,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.5423079049817155,
+   "v11": {
+    "killsPerHour": 897.6920666968352,
+    "killsPerLife": 65.48199445983352,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 0.9999999999999999
+   },
+   "s1": 906.0822517243
+  },
+  {
+   "cell": "base|L1-Z2|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 298.71,
+   "killsPerHourErrorPct": -11.073661763349964,
+   "withinFivePct": false,
+   "s1ControlErrorPct": -4.631654461040203,
+   "v11": {
+    "killsPerHour": 265.6318649466973,
+    "killsPerLife": 4.307870633482075,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999998
+   },
+   "s1": 284.8747849594268
+  },
+  {
+   "cell": "base|L1-Z3|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 0,
+   "killsPerHourErrorPct": null,
+   "withinFivePct": null,
+   "s1ControlErrorPct": null,
+   "v11": {
+    "killsPerHour": 2.5092773437499983e-12,
+    "killsPerLife": 2.021362304687501e-14,
+    "reliability": "unsafe",
+    "reasons": [
+     "UNDER_ONE_KILL_PER_LIFE",
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 2.021362304687501e-14
+   },
+   "s1": 65.15307093221234
+  },
+  {
+   "cell": "base|L5-Z1|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 1360.555,
+   "killsPerHourErrorPct": 0.22647843243115318,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.22647843243115318,
+   "v11": {
+    "killsPerHour": 1363.6363636363637,
+    "killsPerLife": null,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 1
+   },
+   "s1": 1363.6363636363637
+  },
+  {
+   "cell": "base|L5-Z2|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 515.055,
+   "killsPerHourErrorPct": -1.0538015871335875,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.18756093177382904,
+   "v11": {
+    "killsPerHour": 509.62734223538905,
+    "killsPerLife": 15.000348831675801,
+    "reliability": "approximate",
+    "reasons": [
+     "SURVIVAL_LIMITED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999998
+   },
+   "s1": 516.0210419571476
+  },
+  {
+   "cell": "base|L5-Z3|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 3.18,
+   "killsPerHourErrorPct": 2774.825140178585,
+   "withinFivePct": false,
+   "s1ControlErrorPct": 4596.964249811477,
+   "v11": {
+    "killsPerHour": 91.41943945767902,
+    "killsPerLife": 1.0302384803266142,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999993
+   },
+   "s1": 149.36346314400498
+  },
+  {
+   "cell": "base|L10-Z1|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 2395,
+   "killsPerHourErrorPct": 0.20876826722338201,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.20876826722338201,
+   "v11": {
+    "killsPerHour": 2400,
+    "killsPerLife": null,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 1
+   },
+   "s1": 2400
+  },
+  {
+   "cell": "base|L10-Z2|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 852,
+   "killsPerHourErrorPct": -0.44375844105730344,
+   "withinFivePct": true,
+   "s1ControlErrorPct": 0.8765561355108513,
+   "v11": {
+    "killsPerHour": 848.2191780821918,
+    "killsPerLife": 42.99999999999985,
+    "reliability": "reliable",
+    "reasons": [],
+    "winChanceFromFullHp": 0.9999999999999999
+   },
+   "s1": 859.4682582745525
+  },
+  {
+   "cell": "base|L10-Z3|POL-FIXED",
+   "fixed": "POL-FIXED",
+   "simulatedMeanKillsPerHour": 245.53,
+   "killsPerHourErrorPct": -16.36771526157712,
+   "withinFivePct": false,
+   "s1ControlErrorPct": -4.943405962363093,
+   "v11": {
+    "killsPerHour": 205.3423487182497,
+    "killsPerLife": 3.0100012837601713,
+    "reliability": "unsafe",
+    "reasons": [
+     "AUTO_FARM_STOP_EXPECTED"
+    ],
+    "winChanceFromFullHp": 0.9999999999999996
+   },
+   "s1": 233.3924553406099
+  }
+ ],
+ "A6": {
+  "pass": true,
+  "ksRejections": 0,
+  "ksTests": 24
+ },
+ "A7": [
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-01",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 10.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-02",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 3,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03a",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 2.4,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 4.8,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 4.8,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 3.6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 4.8,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 4.8,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-03b",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 3.6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 9.6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": null,
+   "outcome": "not-reached"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 9.6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 6,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-04",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": null,
+   "outcome": "not-reached"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 5.081666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 5.081666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 6.166666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 5.081666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 5.081666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-05",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 6.166666666666667,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 2.2244364586736363,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 6.520826500491965,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": null,
+   "outcome": "not-reached"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 2.2244364586736363,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 6.520826500491965,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-06",
+   "role": "target",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": null,
+   "outcome": "not-reached"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07a",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 2.4483333333333333,
+   "outcome": "miss"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+   "observed": 14.16,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+   "observed": 14.16,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1",
+   "observed": 14.068333333333333,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+   "observed": 14.16,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+   "observed": 14.16,
+   "outcome": "pass"
+  },
+  {
+   "id": "H-S1-07b",
+   "role": "diagnostic",
+   "cell": "a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1",
+   "observed": 14.068333333333333,
+   "outcome": "pass"
+  }
+ ],
+ "A8": [
+  {
+   "experiment": "S1-E01 calibration sweep",
+   "verdict": "remains interpretable as S1 decision logic with the S1 estimator",
+   "cause": "corrected-policy behaviour measured on the base cells in S1.1-E01"
+  },
+  {
+   "experiment": "S1-E02 estimator",
+   "verdict": "stepper side remains (CTL-FIXED-S1 reproduces S1 logic); the estimate side is superseded by S1.1-E02 (estimator v1.1)",
+   "cause": "measurement correction"
+  },
+  {
+   "experiment": "S1-E03 earlier-zone audit",
+   "verdict": "forks and visits remain (A1 identical); the estimate columns are superseded by S1.1-E03",
+   "cause": "measurement correction"
+  },
+  {
+   "experiment": "S1-E04 survival",
+   "verdict": "remains as the reckless S1-logic control; the corrected realistic response is S1.1-E04",
+   "cause": "policy correction"
+  },
+  {
+   "experiment": "S1-E05 gate pacing sweep",
+   "verdict": "remains interpretable as S1 decision logic",
+   "cause": "the ratio depends on zone 3 arrival, which the corrected policies change (S1.1-E01 L3 shows the size of the change at the base)"
+  },
+  {
+   "experiment": "S1-E06 / S1-E06b drops",
+   "verdict": "remain valid: all S1 quantities are 1, so events and quantities coincide; S1.1-E05 adds quantities above 1",
+   "cause": "measurement correction (no S1 value changes)"
+  },
+  {
+   "experiment": "S1-E07 determinism",
+   "verdict": "remains for the S1 engine; S1.1-E06 covers the corrected engine",
+   "cause": ""
+  },
+  {
+   "experiment": "S1-E08 policy bound",
+   "verdict": "realistic rows remain as S1 logic (A1 identical); the ORC-BRUTE row is superseded (trigger bug), and 'upper bound' is withdrawn; S1.1-E07 replaces it",
+   "cause": "bug fix (ORC-BRUTE triggers)"
+  }
+ ]
+}

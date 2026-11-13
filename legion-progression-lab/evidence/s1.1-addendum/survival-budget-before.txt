@@ -1,0 +1,14 @@
+$ node repro/s1.1/estimator-survival-budget.mjs .   (before the correction; S1.1 as reviewed, ZIP f13ce31b...)
+{
+  "winChanceFromFullHp": 0,
+  "killsPerHour": 0.017638464395328454,
+  "killsPerLife": 0.00500250125063086,
+  "ttkS": 1998.999999997783,
+  "deathsPerHour": 3.5259290326222477,
+  "reliability": "unsafe",
+  "reasons": [
+    "SURVIVAL_BUDGET",
+    "UNDER_ONE_KILL_PER_LIFE"
+  ],
+  "limitingFactor": "survival"
+}

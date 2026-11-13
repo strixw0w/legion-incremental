@@ -1,0 +1,3 @@
+$ node src/cli/exp.ts manifests/s1/S1-E08-policy-bound.json
+REFUSED: manifests/s1/S1-E08-policy-bound.json is an S1 manifest: historical evidence, produced by the S1 implementation (S1 review package b255d94b...). Its policy names meant the S1 logic; reproduce it from that package.
+[exit code: 2]

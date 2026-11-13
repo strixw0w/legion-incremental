@@ -1,0 +1,14 @@
+{
+  "experimentId": "S1.1-E01-base-attribution",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "labCommit": "ad11a508fd715b08705c5ee72f215f92183f0993",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T20:11:53.110Z",
+  "durationMs": 46457,
+  "jobs": 4800
+}

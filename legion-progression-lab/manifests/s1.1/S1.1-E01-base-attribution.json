@@ -1,0 +1,190 @@
+{
+  "experimentId": "S1.1-E01-base-attribution",
+  "increment": "S1.1",
+  "question": "With the corrected engine, how do the base calibration cells change, and which change comes from bug fixes, the estimator correction or the policy correction?",
+  "design": "Base candidate (a10-p1.6-g100, the S1-E01 winner and base) x PR-NEW, PR-BAL x 3 S1 controls + 3 corrected policies x estimator s1 / s1.1, 200 replicates with the S1-E01 seed root. Controls with the S1 estimator must reproduce S1-E01 exactly (engineering gate A1).",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "profiles": [
+    "PR-NEW",
+    "PR-BAL"
+  ],
+  "policies": [
+    "CTL-STAY-S1",
+    "CTL-FRONTIER-S1",
+    "CTL-BEST-SHOWN-S1",
+    "POL-STAY",
+    "POL-FRONTIER",
+    "POL-BEST-SHOWN"
+  ],
+  "estimators": [
+    "s1",
+    "s1.1"
+  ],
+  "seeds": {
+    "root": "S1-E01",
+    "replicates": 200
+  },
+  "metrics": [
+    "firstKillS",
+    "killsToL2",
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "ttkZ1FirstVisitS",
+    "ttkZ2FirstVisitS",
+    "ttkZ3FirstVisitS",
+    "deathsPerHour",
+    "levelAt45",
+    "deathsPerHour",
+    "autoFarmStops",
+    "expTotal",
+    "levelAt60",
+    "policyStopReports",
+    "activeManualMin",
+    "materialsPerHour",
+    "materialDropEventsPerHour"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-01",
+      "statement": "First kill within 30 s for a newcomer",
+      "source": "R10.10",
+      "metric": "firstKillS",
+      "stat": "p90",
+      "op": "<=",
+      "unit": "s",
+      "role": "target",
+      "value": 30
+    },
+    {
+      "id": "H-S1-02",
+      "statement": "Level 2 after 1-3 kills",
+      "source": "Bible section 10",
+      "metric": "killsToL2",
+      "stat": "p50",
+      "op": "in",
+      "unit": "kills",
+      "role": "target",
+      "range": [
+        1,
+        3
+      ]
+    },
+    {
+      "id": "H-S1-03a",
+      "statement": "On-tier early TTK 2-5 s: zone 1 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ1FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-03b",
+      "statement": "On-tier early TTK 2-5 s: zone 2 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ2FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-04",
+      "statement": "Harder enemy TTK 5-15 s: zone 3 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ3FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "unit": "s",
+      "role": "target",
+      "range": [
+        5,
+        15
+      ]
+    },
+    {
+      "id": "H-S1-05",
+      "statement": "First new zone first-visited in 5-10 active min",
+      "source": "R06.08, N-11",
+      "metric": "zone2FirstVisitMin",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "target",
+      "range": [
+        5,
+        10
+      ]
+    },
+    {
+      "id": "H-S1-06",
+      "statement": "Zone 2->3 takes longer than zone 1->2 (ratio of first-visit intervals)",
+      "source": "R06.08",
+      "metric": "gate23Over12Ratio",
+      "stat": "p50",
+      "op": ">",
+      "unit": "ratio",
+      "role": "target",
+      "value": 1
+    },
+    {
+      "id": "H-S1-07a",
+      "statement": "Level 5 in 3-5 min (single hero only; recruits and gear will change this)",
+      "source": "Bible section 10",
+      "metric": "minToL5",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "diagnostic",
+      "range": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "H-S1-07b",
+      "statement": "Level 10 in 10-20 min (single hero only; recruits and gear will change this)",
+      "source": "Bible section 10",
+      "metric": "minToL10",
+      "stat": "p50",
+      "op": "in",
+      "unit": "active min",
+      "role": "diagnostic",
+      "range": [
+        10,
+        20
+      ]
+    }
+  ],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "Targets are the S1-E01 targets, unchanged. They are evaluated in every cell; the corrected-policy cells (POL-*, est-s1.1) are the S1.1 result, the others are attribution steps."
+  ]
+}

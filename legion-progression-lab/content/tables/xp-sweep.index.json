@@ -1,0 +1,59 @@
+{
+  "note": "S1-E01 XP curve sweep tables (candidate); verified by spec/oracle/xp_oracle.py",
+  "tables": [
+    {
+      "a": 8,
+      "p": 1.6,
+      "path": "content/tables/xp.w1.sweep.a8-p1.6.v0.1.0.json",
+      "sha256": "b0bff5cc583b97edbbbe2b9d91313e765fbaece4da20b37d09fd8d27f9e3b782"
+    },
+    {
+      "a": 8,
+      "p": 1.8,
+      "path": "content/tables/xp.w1.sweep.a8-p1.8.v0.1.0.json",
+      "sha256": "ed718f0202335fd6fee45fc098d02cd6668d831f4679414ef97d4289e1e287bb"
+    },
+    {
+      "a": 8,
+      "p": 2,
+      "path": "content/tables/xp.w1.sweep.a8-p2.0.v0.1.0.json",
+      "sha256": "a368adbbd8d0ddb0bf2b8fc72b573705305e0434ca05a599013ed1101805f8f2"
+    },
+    {
+      "a": 10,
+      "p": 1.6,
+      "path": "content/tables/xp.w1.sweep.a10-p1.6.v0.1.0.json",
+      "sha256": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc"
+    },
+    {
+      "a": 10,
+      "p": 1.8,
+      "path": "content/tables/xp.w1.sweep.a10-p1.8.v0.1.0.json",
+      "sha256": "0834e4f0f06fcfe784068ba2c0f8564cbf056c985e9088954ef4861562959473"
+    },
+    {
+      "a": 10,
+      "p": 2,
+      "path": "content/tables/xp.w1.sweep.a10-p2.0.v0.1.0.json",
+      "sha256": "73eca8da6adf1c422128fe8f746d4831d9a37aa5ed4908e0b09c6ebbe4741837"
+    },
+    {
+      "a": 12,
+      "p": 1.6,
+      "path": "content/tables/xp.w1.sweep.a12-p1.6.v0.1.0.json",
+      "sha256": "02da41cc460c4606b1998d5a444fb7a93972b413a9e2164f8fcf0eaaaada8a61"
+    },
+    {
+      "a": 12,
+      "p": 1.8,
+      "path": "content/tables/xp.w1.sweep.a12-p1.8.v0.1.0.json",
+      "sha256": "741d50e477344eb07d01dbf99bd5b5fae3a61ac371af4527d3d4af2ae8a23722"
+    },
+    {
+      "a": 12,
+      "p": 2,
+      "path": "content/tables/xp.w1.sweep.a12-p2.0.v0.1.0.json",
+      "sha256": "c8db4db69fb57413d6c8f20a2b8f506053bc55514b5acdb397257cc1b0165512"
+    }
+  ]
+}

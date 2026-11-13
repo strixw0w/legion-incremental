@@ -7,11 +7,11 @@ import { fingerprint } from '../hash/canonicalJson.ts';
 import { assertXpTable } from '../formulas/xp.ts';
 import { ContentPackS0Schema, XpTableArtifactSchema, type ContentPackS0, type XpTableArtifact } from './schema.ts';
 
-function zodMessage(error: { issues: readonly { path: readonly PropertyKey[]; message: string }[] }): string {
+export function zodMessage(error: { issues: readonly { path: readonly PropertyKey[]; message: string }[] }): string {
   return error.issues.map((i) => `${i.path.map(String).join('.') || '(root)'}: ${i.message}`).join('; ');
 }
 
-function checkRanges(node: unknown, path: string, problems: string[]): void {
+export function checkRanges(node: unknown, path: string, problems: string[]): void {
   if (node === null || typeof node !== 'object') return;
   if (Array.isArray(node)) {
     node.forEach((child, i) => checkRanges(child, `${path}[${i}]`, problems));

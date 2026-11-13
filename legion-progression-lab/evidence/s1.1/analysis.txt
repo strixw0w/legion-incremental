@@ -1,0 +1,205 @@
+== A1 S1 reproduction (engineering gate): identical metric summaries
+  S1-E01-calibration a10-p1.6-g100|PR-NEW|POL-STAY  vs  S1.1-E01-base-attribution a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1: 35 metrics compared, 0 different
+  S1-E01-calibration a10-p1.6-g100|PR-NEW|POL-FRONTIER  vs  S1.1-E01-base-attribution a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1: 35 metrics compared, 0 different
+  S1-E01-calibration a10-p1.6-g100|PR-BAL|POL-STAY  vs  S1.1-E01-base-attribution a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1: 35 metrics compared, 0 different
+  S1-E01-calibration a10-p1.6-g100|PR-BAL|POL-FRONTIER  vs  S1.1-E01-base-attribution a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1: 35 metrics compared, 0 different
+  S1-E08-policy-bound base|PR-BAL|POL-STAY  vs  S1.1-E07-policy-comparison base|PR-BAL|CTL-STAY-S1|est-s1: 35 metrics compared, 0 different
+  S1-E08-policy-bound base|PR-BAL|POL-FRONTIER  vs  S1.1-E07-policy-comparison base|PR-BAL|CTL-FRONTIER-S1|est-s1: 35 metrics compared, 0 different
+  S1-E08-policy-bound base|PR-BAL|POL-BEST-SHOWN  vs  S1.1-E07-policy-comparison base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1: 35 metrics compared, 0 different
+  S1-E03-earlier-zone-audit base|PR-OPT|POL-STAY  vs  S1.1-E03-earlier-zone-audit base|PR-OPT|CTL-STAY-S1: 34 metrics compared, 0 different
+  A1 PASS
+
+== A2 attribution: L0 S1 published -> L1 controls, S1 estimator (bug fixes) -> L2 controls, v1.1 estimator (measurement correction) -> L3 corrected policies (policy correction); cross = corrected policies with the S1 estimator
+  columns: expTotal mean | levelAt60 p50 | zone2FirstVisitMin p50 | zone3FirstVisitMin p50 | deathsPerHour p50 | autoFarmStops p50 | activeManualMin p50 | minToL5 p50 | minToL10 p50
+  -- S1.1-E01 STAY PR-NEW
+     L0 S1-E01 4,809.36 | not reached | 5.08 | 16.30 | 36 | 25 | 2.75 | 2.45 | 14.03   [a10-p1.6-g100|PR-NEW|POL-STAY]
+     L1        4,809.36 | not reached | 5.08 | 16.30 | 36 | 25 | 2.75 | 2.45 | 14.03   [a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1]
+     L2        4,809.36 | not reached | 5.08 | 16.30 | 36 | 25 | 2.75 | 2.45 | 14.03   [a10-p1.6-g100|PR-NEW|CTL-STAY-S1|est-s1.1]
+     L3        5,054.11 | not reached | 5.08 | 16.35 | 0 | 0 | 6.63 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1]
+     cross     5,054.11 | not reached | 5.08 | 16.35 | 0 | 0 | 6.63 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|POL-STAY|est-s1]
+  -- S1.1-E01 FRONTIER PR-NEW
+     L0 S1-E01 5,823.45 | not reached | 5.08 | 38.14 | 0 | 0 | 4 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|POL-FRONTIER]
+     L1        5,823.45 | not reached | 5.08 | 38.14 | 0 | 0 | 4 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1]
+     L2        5,823.45 | not reached | 5.08 | 38.14 | 0 | 0 | 4 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|CTL-FRONTIER-S1|est-s1.1]
+     L3        5,823.45 | not reached | 5.08 | 38.14 | 0 | 0 | 4 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1]
+     cross     5,823.45 | not reached | 5.08 | 38.14 | 0 | 0 | 4 | 2.45 | 14.16   [a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1]
+  -- S1.1-E01 BEST-SHOWN PR-NEW
+     L1        6,220.46 | not reached | 6.17 | not reached | 5.33 | 2 | 0.83 | 2.45 | 14.10   [a10-p1.6-g100|PR-NEW|CTL-BEST-SHOWN-S1|est-s1]
+     L2        6,220.46 | not reached | 6.17 | not reached | 5.33 | 2 | 0.83 | 2.45 | 14.10   [a10-p1.6-g100|PR-NEW|CTL-BEST-SHOWN-S1|est-s1.1]
+     L3        6,214.62 | not reached | 6.17 | not reached | 0 | 0 | 1.50 | 2.45 | 14.07   [a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1]
+     cross     6,214.62 | not reached | 6.17 | not reached | 0 | 0 | 1.50 | 2.45 | 14.07   [a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1]
+  -- S1.1-E01 STAY PR-BAL
+     L0 S1-E01 7,044.78 | 18 | 5.08 | 16.30 | 36 | 34 | 3.50 | 2.45 | 14.03   [a10-p1.6-g100|PR-BAL|POL-STAY]
+     L1        7,044.78 | 18 | 5.08 | 16.30 | 36 | 34 | 3.50 | 2.45 | 14.03   [a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1]
+     L2        7,044.78 | 18 | 5.08 | 16.30 | 36 | 34 | 3.50 | 2.45 | 14.03   [a10-p1.6-g100|PR-BAL|CTL-STAY-S1|est-s1.1]
+     L3        7,389.41 | 18 | 5.08 | 16.35 | 0 | 0 | 8.58 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1]
+     cross     7,389.41 | 18 | 5.08 | 16.35 | 0 | 0 | 8.58 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|POL-STAY|est-s1]
+  -- S1.1-E01 FRONTIER PR-BAL
+     L0 S1-E01 8,203.63 | 19 | 5.08 | 38.14 | 0 | 0 | 5.83 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|POL-FRONTIER]
+     L1        8,203.63 | 19 | 5.08 | 38.14 | 0 | 0 | 5.83 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1]
+     L2        8,203.63 | 19 | 5.08 | 38.14 | 0 | 0 | 5.83 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|CTL-FRONTIER-S1|est-s1.1]
+     L3        8,203.63 | 19 | 5.08 | 38.14 | 0 | 0 | 5.83 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1]
+     cross     8,203.63 | 19 | 5.08 | 38.14 | 0 | 0 | 5.83 | 2.45 | 14.16   [a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1]
+  -- S1.1-E01 BEST-SHOWN PR-BAL
+     L1        9,320.85 | 20 | 6.17 | not reached | 4 | 2 | 1.17 | 2.45 | 14.10   [a10-p1.6-g100|PR-BAL|CTL-BEST-SHOWN-S1|est-s1]
+     L2        9,320.85 | 20 | 6.17 | not reached | 4 | 2 | 1.17 | 2.45 | 14.10   [a10-p1.6-g100|PR-BAL|CTL-BEST-SHOWN-S1|est-s1.1]
+     L3        9,313.75 | 20 | 6.17 | not reached | 0 | 0 | 1.83 | 2.45 | 14.07   [a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1]
+     cross     9,313.75 | 20 | 6.17 | not reached | 0 | 0 | 1.83 | 2.45 | 14.07   [a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1]
+  -- S1.1-E07 STAY PR-BAL
+     L0 S1-E08 7,042.80 | 18 | 5.06 | 16.28 | 36 | 34 | 3.50 | 2.45 | 14.01   [base|PR-BAL|POL-STAY]
+     L1        7,042.80 | 18 | 5.06 | 16.28 | 36 | 34 | 3.50 | 2.45 | 14.01   [base|PR-BAL|CTL-STAY-S1|est-s1]
+     L2        7,042.80 | 18 | 5.06 | 16.28 | 36 | 34 | 3.50 | 2.45 | 14.01   [base|PR-BAL|CTL-STAY-S1|est-s1.1]
+     L3        7,393.15 | 18 | 5.06 | 16.33 | 0 | 0 | 8.60 | 2.45 | 14.14   [base|PR-BAL|POL-STAY|est-s1.1]
+     cross     7,393.15 | 18 | 5.06 | 16.33 | 0 | 0 | 8.60 | 2.45 | 14.14   [base|PR-BAL|POL-STAY|est-s1]
+  -- S1.1-E07 FRONTIER PR-BAL
+     L0 S1-E08 8,208.69 | 19 | 5.06 | 38.12 | 0 | 0 | 5.83 | 2.45 | 14.14   [base|PR-BAL|POL-FRONTIER]
+     L1        8,208.69 | 19 | 5.06 | 38.12 | 0 | 0 | 5.83 | 2.45 | 14.14   [base|PR-BAL|CTL-FRONTIER-S1|est-s1]
+     L2        8,208.69 | 19 | 5.06 | 38.12 | 0 | 0 | 5.83 | 2.45 | 14.14   [base|PR-BAL|CTL-FRONTIER-S1|est-s1.1]
+     L3        8,208.69 | 19 | 5.06 | 38.12 | 0 | 0 | 5.83 | 2.45 | 14.14   [base|PR-BAL|POL-FRONTIER|est-s1.1]
+     cross     8,208.69 | 19 | 5.06 | 38.12 | 0 | 0 | 5.83 | 2.45 | 14.14   [base|PR-BAL|POL-FRONTIER|est-s1]
+  -- S1.1-E07 BEST-SHOWN PR-BAL
+     L0 S1-E08 9,326.15 | 20 | 6.17 | not reached | 4 | 2 | 1.17 | 2.45 | 14.06   [base|PR-BAL|POL-BEST-SHOWN]
+     L1        9,326.15 | 20 | 6.17 | not reached | 4 | 2 | 1.17 | 2.45 | 14.06   [base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1]
+     L2        9,326.15 | 20 | 6.17 | not reached | 4 | 2 | 1.17 | 2.45 | 14.06   [base|PR-BAL|CTL-BEST-SHOWN-S1|est-s1.1]
+     L3        9,315.75 | 20 | 6.17 | not reached | 0 | 0 | 1.83 | 2.45 | 14.07   [base|PR-BAL|POL-BEST-SHOWN|est-s1.1]
+     cross     9,315.75 | 20 | 6.17 | not reached | 0 | 0 | 1.83 | 2.45 | 14.07   [base|PR-BAL|POL-BEST-SHOWN|est-s1]
+  -- ORC-BRUTE PR-BAL (restricted lookahead, trigger fix = bug fix)
+     L0 S1-E08 8,882.35 | 20 | 5.36 | not reached | 13 | 3 | 0.58 | 2.45 | 14.04   [base|PR-BAL|ORC-BRUTE]
+     S1.1      8,886.75 | 20 | 5.06 | not reached | 13 | 3 | 0.58 | 2.45 | 14.01   [base|PR-BAL|ORC-BRUTE|est-s1.1]
+
+== A3 drops (engineering gate)
+  base|Z1|L100 entry 0 res.mat.slime_gel 3000 bp: kills 239,500, successes 72,071, expected 71,850, 99.9% interval [71,113, 72,589] inside; quantity awarded for the resource 72,071
+  base|Z1|L100 entry 1 res.rare.test_token 20 bp: kills 239,500, successes 478, expected 479, 99.9% interval [409, 553] inside; quantity awarded for the resource 478
+  base|Z2|L100 entry 0 res.mat.wolf_fang 2500 bp: kills 239,500, successes 60,403, expected 59,875, 99.9% interval [59,179, 60,573] inside; quantity awarded for the resource 60,403
+  base|Z2|L100 entry 1 res.rare.test_token 20 bp: kills 239,500, successes 455, expected 479, 99.9% interval [409, 553] inside; quantity awarded for the resource 455
+  base|Z3|L100 entry 0 res.mat.goblin_scrap 2000 bp: kills 136,055, successes 27,198, expected 27,211, 99.9% interval [26,726, 27,697] inside; quantity awarded for the resource 27,198
+  base|Z3|L100 entry 1 res.rare.test_token 20 bp: kills 136,055, successes 262, expected 272.1, 99.9% interval [220, 328] inside; quantity awarded for the resource 262
+  qty-test|Z1|L100 entry 0 res.mat.slime_gel 3000 bp: kills 239,500, successes 71,623, expected 71,850, 99.9% interval [71,113, 72,589] inside; quantity awarded for the resource 454,681
+  qty-test|Z1|L100 entry 1 res.mat.slime_gel 5000 bp: kills 239,500, successes 119,906, expected 119,750, 99.9% interval [118,945, 120,555] inside; quantity awarded for the resource 454,681
+  qty-test|Z1|L100 entry 2 res.rare.test_token 20 bp: kills 239,500, successes 495, expected 479, 99.9% interval [409, 553] inside; quantity awarded for the resource 495
+  qty-test|Z2|L100 entry 0 res.mat.wolf_fang 2500 bp: kills 239,500, successes 59,568, expected 59,875, 99.9% interval [59,179, 60,573] inside; quantity awarded for the resource 59,568
+  qty-test|Z2|L100 entry 1 res.rare.test_token 20 bp: kills 239,500, successes 475, expected 479, 99.9% interval [409, 553] inside; quantity awarded for the resource 475
+  qty-test|Z3|L100 entry 0 res.mat.goblin_scrap 2000 bp: kills 136,041, successes 26,948, expected 27,208.2, 99.9% interval [26,724, 27,695] inside; quantity awarded for the resource 26,948
+  qty-test|Z3|L100 entry 1 res.rare.test_token 20 bp: kills 136,041, successes 281, expected 272.1, 99.9% interval [220, 328] inside; quantity awarded for the resource 281
+  qty-test gel quantity = 3 x entry-0 successes + 2 x entry-1 successes: yes (454,681 = 3 x 71,623 + 2 x 119,906)
+  A3 PASS: all inside yes, ledger mismatches 0
+
+== A4 survival: S1 logic (CTL) against corrected policies (POL), estimator v1.1, PR-BAL, 200 replicates
+  columns: deathsPerHour p50 | autoFarmStops p50 | policyStopReports mean | activeManualMin p50 | zone3FirstVisitMin p50 | levelAt60 p50 | expTotal mean
+  d0.5-h1   CTL-STAY-S1        21 | 12 | 0 | 1.67 | 15.39 | 19 | 7,768.69   (zone 3 reached in 200/200)
+  d0.5-h1   POL-STAY           0 | 0 | 0 | 5.33 | 15.52 | 19 | 7,983.74   (zone 3 reached in 200/200)
+  d0.5-h1   CTL-FRONTIER-S1    0 | 0 | 0 | 3.33 | 36.30 | 19 | 8,662.55   (zone 3 reached in 200/200)
+  d0.5-h1   POL-FRONTIER       0 | 0 | 0 | 3.33 | 36.30 | 19 | 8,662.55   (zone 3 reached in 200/200)
+  d0.5-h1   CTL-BEST-SHOWN-S1  1 | 0 | 0 | 1 | not reached | 20 | 9,470.35   (zone 3 reached in 0/200)
+  d0.5-h1   POL-BEST-SHOWN     0 | 0 | 0 | 1.33 | not reached | 20 | 9,444.90   (zone 3 reached in 0/200)
+  d1-h1     CTL-STAY-S1        36 | 34 | 0 | 3.50 | 16.28 | 18 | 7,046.65   (zone 3 reached in 200/200)
+  d1-h1     POL-STAY           0 | 0 | 0 | 8.60 | 16.35 | 18 | 7,390.62   (zone 3 reached in 200/200)
+  d1-h1     CTL-FRONTIER-S1    0 | 0 | 0 | 5.83 | 38.12 | 19 | 8,207.04   (zone 3 reached in 200/200)
+  d1-h1     POL-FRONTIER       0 | 0 | 0 | 5.83 | 38.12 | 19 | 8,207.04   (zone 3 reached in 200/200)
+  d1-h1     CTL-BEST-SHOWN-S1  4 | 2 | 0 | 1.17 | not reached | 20 | 9,322.60   (zone 3 reached in 0/200)
+  d1-h1     POL-BEST-SHOWN     0 | 0 | 0 | 1.83 | not reached | 20 | 9,314.45   (zone 3 reached in 0/200)
+  d1.5-h1   CTL-STAY-S1        53 | 51 | 0 | 4.92 | 16.79 | 17 | 6,155.21   (zone 3 reached in 200/200)
+  d1.5-h1   POL-STAY           0 | 0 | 0 | 11.82 | 16.68 | 18 | 6,789.25   (zone 3 reached in 200/200)
+  d1.5-h1   CTL-FRONTIER-S1    0 | 0 | 0 | 4.50 | not reached | 19 | 8,646.70   (zone 3 reached in 0/200)
+  d1.5-h1   POL-FRONTIER       0 | 0 | 0 | 4.50 | not reached | 19 | 8,646.70   (zone 3 reached in 0/200)
+  d1.5-h1   CTL-BEST-SHOWN-S1  5 | 3 | 0 | 1.25 | not reached | 20 | 9,247.80   (zone 3 reached in 0/200)
+  d1.5-h1   POL-BEST-SHOWN     0 | 0 | 0 | 2.17 | not reached | 20 | 9,239.95   (zone 3 reached in 0/200)
+  d2-h1     CTL-STAY-S1        70 | 68 | 0 | 6.33 | 17.39 | 16 | 5,332.74   (zone 3 reached in 200/200)
+  d2-h1     POL-STAY           5 | 1 | 0 | 14.57 | 17.48 | 17 | 6,081.61   (zone 3 reached in 200/200)
+  d2-h1     CTL-FRONTIER-S1    0 | 0 | 0 | 5.02 | not reached | 19 | 8,366.25   (zone 3 reached in 0/200)
+  d2-h1     POL-FRONTIER       0 | 0 | 0 | 5.02 | not reached | 19 | 8,366.25   (zone 3 reached in 0/200)
+  d2-h1     CTL-BEST-SHOWN-S1  8 | 6 | 0 | 1.50 | not reached | 20 | 9,112.75   (zone 3 reached in 0/200)
+  d2-h1     POL-BEST-SHOWN     0 | 0 | 0 | 2.67 | not reached | 20 | 9,114.30   (zone 3 reached in 0/200)
+
+== A5 estimator v1.1 against the stepper (S1 control estimator alongside)
+  base|L1-Z1|CTL-FIXED-S1      sim     898.3/h | v1.1     897.7 (   -0.07%) reliable  | S1 est 906.1 (0.87%)
+  base|L1-Z2|CTL-FIXED-S1      sim     265.3/h | v1.1     265.6 (    0.12%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 284.9 (7.37%)
+  base|L1-Z3|CTL-FIXED-S1      sim         0/h | v1.1       0.0 (      n/a) unsafe UNDER_ONE_KILL_PER_LIFE,AUTO_FARM_STOP_EXPECTED | S1 est 65.2 (n/a)
+  base|L5-Z1|CTL-FIXED-S1      sim   1,360.6/h | v1.1   1,363.6 (    0.23%) reliable  | S1 est 1,363.6 (0.23%)
+  base|L5-Z2|CTL-FIXED-S1      sim     509.6/h | v1.1     509.6 (   -0.00%) approximate SURVIVAL_LIMITED | S1 est 516.0 (1.25%)
+  base|L5-Z3|CTL-FIXED-S1      sim      91.5/h | v1.1      91.4 (   -0.06%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 149.4 (63.28%)
+  base|L10-Z1|CTL-FIXED-S1     sim     2,395/h | v1.1     2,400 (    0.21%) reliable  | S1 est 2,400 (0.21%)
+  base|L10-Z2|CTL-FIXED-S1     sim       849/h | v1.1     848.2 (   -0.09%) reliable  | S1 est 859.5 (1.23%)
+  base|L10-Z3|CTL-FIXED-S1     sim     204.6/h | v1.1     205.3 (    0.37%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 233.4 (14.08%)
+  base|L1-Z1|POL-FIXED         sim     901.2/h | v1.1     897.7 (   -0.39%) reliable  | S1 est 906.1 (0.54%)
+  base|L1-Z2|POL-FIXED         sim     298.7/h | v1.1     265.6 (  -11.07%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 284.9 (-4.63%)
+  base|L1-Z3|POL-FIXED         sim         0/h | v1.1       0.0 (      n/a) unsafe UNDER_ONE_KILL_PER_LIFE,AUTO_FARM_STOP_EXPECTED | S1 est 65.2 (n/a)
+  base|L5-Z1|POL-FIXED         sim   1,360.6/h | v1.1   1,363.6 (    0.23%) reliable  | S1 est 1,363.6 (0.23%)
+  base|L5-Z2|POL-FIXED         sim     515.1/h | v1.1     509.6 (   -1.05%) approximate SURVIVAL_LIMITED | S1 est 516.0 (0.19%)
+  base|L5-Z3|POL-FIXED         sim       3.2/h | v1.1      91.4 (2,774.83%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 149.4 (4,596.96%)
+  base|L10-Z1|POL-FIXED        sim     2,395/h | v1.1     2,400 (    0.21%) reliable  | S1 est 2,400 (0.21%)
+  base|L10-Z2|POL-FIXED        sim       852/h | v1.1     848.2 (   -0.44%) reliable  | S1 est 859.5 (0.88%)
+  base|L10-Z3|POL-FIXED        sim     245.5/h | v1.1     205.3 (  -16.37%) unsafe AUTO_FARM_STOP_EXPECTED | S1 est 233.4 (-4.94%)
+  H-S1-09: pass 8, miss 0, not reached 1 of 9
+  H-S1-08a: pass 1, miss 0, not reached 0 of 1
+  H-S1-08b: pass 1, miss 0, not reached 0 of 1
+
+== A6 determinism (engineering gate)
+  runs 1,200; re-run digests identical yes; fingerprints identical yes; second-root runs that differ 1,200; KS rejections 0 of 24
+  A6 PASS
+
+== A7 targets (unchanged S1 targets) in S1.1-E01; the S1.1 result is the POL-*|est-s1.1 cells
+  H-S1-01   (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 10.40 -> pass
+  H-S1-01   (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 10.40 -> pass
+  H-S1-01   (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 10.40 -> pass
+  H-S1-01   (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 10.40 -> pass
+  H-S1-01   (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 10.40 -> pass
+  H-S1-01   (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 10.40 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 3 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 3 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 3 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 3 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 3 -> pass
+  H-S1-02   (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 3 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 2.40 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 2.40 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 2.40 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 2.40 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 2.40 -> pass
+  H-S1-03a  (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 2.40 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 4.80 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 4.80 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 3.60 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 4.80 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 4.80 -> pass
+  H-S1-03b  (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 3.60 -> pass
+  H-S1-04   (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 9.60 -> pass
+  H-S1-04   (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 6 -> pass
+  H-S1-04   (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed not reached -> not-reached
+  H-S1-04   (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 9.60 -> pass
+  H-S1-04   (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 6 -> pass
+  H-S1-04   (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed not reached -> not-reached
+  H-S1-05   (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 5.08 -> pass
+  H-S1-05   (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 5.08 -> pass
+  H-S1-05   (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 6.17 -> pass
+  H-S1-05   (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 5.08 -> pass
+  H-S1-05   (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 5.08 -> pass
+  H-S1-05   (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 6.17 -> pass
+  H-S1-06   (target) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 2.22 -> pass
+  H-S1-06   (target) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 6.52 -> pass
+  H-S1-06   (target) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed not reached -> not-reached
+  H-S1-06   (target) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 2.22 -> pass
+  H-S1-06   (target) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 6.52 -> pass
+  H-S1-06   (target) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed not reached -> not-reached
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 2.45 -> miss
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 2.45 -> miss
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 2.45 -> miss
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 2.45 -> miss
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 2.45 -> miss
+  H-S1-07a  (diagnostic) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 2.45 -> miss
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1     observed 14.16 -> pass
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1 observed 14.16 -> pass
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-NEW|POL-BEST-SHOWN|est-s1.1 observed 14.07 -> pass
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1     observed 14.16 -> pass
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1 observed 14.16 -> pass
+  H-S1-07b  (diagnostic) a10-p1.6-g100|PR-BAL|POL-BEST-SHOWN|est-s1.1 observed 14.07 -> pass
+
+== A8 which S1 experiments remain interpretable
+  S1-E01 calibration sweep: remains interpretable as S1 decision logic with the S1 estimator [corrected-policy behaviour measured on the base cells in S1.1-E01]
+  S1-E02 estimator: stepper side remains (CTL-FIXED-S1 reproduces S1 logic); the estimate side is superseded by S1.1-E02 (estimator v1.1) [measurement correction]
+  S1-E03 earlier-zone audit: forks and visits remain (A1 identical); the estimate columns are superseded by S1.1-E03 [measurement correction]
+  S1-E04 survival: remains as the reckless S1-logic control; the corrected realistic response is S1.1-E04 [policy correction]
+  S1-E05 gate pacing sweep: remains interpretable as S1 decision logic [the ratio depends on zone 3 arrival, which the corrected policies change (S1.1-E01 L3 shows the size of the change at the base)]
+  S1-E06 / S1-E06b drops: remain valid: all S1 quantities are 1, so events and quantities coincide; S1.1-E05 adds quantities above 1 [measurement correction (no S1 value changes)]
+  S1-E07 determinism: remains for the S1 engine; S1.1-E06 covers the corrected engine
+  S1-E08 policy bound: realistic rows remain as S1 logic (A1 identical); the ORC-BRUTE row is superseded (trigger bug), and 'upper bound' is withdrawn; S1.1-E07 replaces it [bug fix (ORC-BRUTE triggers)]

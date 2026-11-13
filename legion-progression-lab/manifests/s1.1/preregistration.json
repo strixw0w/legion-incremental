@@ -1,0 +1,57 @@
+{
+  "registeredAt": "2026-11-13T20:11:46Z",
+  "note": "S1.1 pre-registration: these manifests and PREREGISTRATION.md were written and hashed before any S1.1 experiment ran. The runner refuses any manifest whose SHA-256 differs. Targets are the S1 targets, unchanged, and are never changed after results are seen.",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s1.1/S1.1-E01-base-attribution.json",
+      "experimentId": "S1.1-E01-base-attribution",
+      "sha256": "3131d8cf00a242fc18bcca6df6e25663f95b11457b31049fbd8771ed263ed01d",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E02-estimator.json",
+      "experimentId": "S1.1-E02-estimator",
+      "sha256": "92d3f613d74292a2c999b362f60e861ac63f44beda04e8ae5edac926499d1a36",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E03-earlier-zone-audit.json",
+      "experimentId": "S1.1-E03-earlier-zone-audit",
+      "sha256": "fbad0dcee058864bb65a485f4a65c1deed80460c92c38453273865a10e0acf9a",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E04-survival-policies.json",
+      "experimentId": "S1.1-E04-survival-policies",
+      "sha256": "6a40822eadc459bf9b76254a090b8dbeb9496e38f26bda0bbe61b14026038a0d",
+      "variants": 4
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E05-drops-quantities.json",
+      "experimentId": "S1.1-E05-drops-quantities",
+      "sha256": "4dce1d15b8928742865b0f12dcfb9d9b4b3ae90c434c375674d76dfb8234acdf",
+      "variants": 2
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E06-determinism.json",
+      "experimentId": "S1.1-E06-determinism",
+      "sha256": "f36833e76191cba80f7ef6c3ba81ab05097753933029b3b50ed7d736ebc3d436",
+      "variants": 2
+    },
+    {
+      "path": "manifests/s1.1/S1.1-E07-policy-comparison.json",
+      "experimentId": "S1.1-E07-policy-comparison",
+      "sha256": "199d07e8adf1a7b441d82cb289794b1c330344043bb85312a1692e1bd40a2830",
+      "variants": 1
+    }
+  ],
+  "amendments": [],
+  "document": {
+    "path": "manifests/s1.1/PREREGISTRATION.md",
+    "sha256": "5610468d85438bc474e0a2f440c834f9532b29728474510a283d41d86c81e2e4"
+  }
+}

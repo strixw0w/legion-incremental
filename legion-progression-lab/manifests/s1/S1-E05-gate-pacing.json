@@ -1,0 +1,698 @@
+{
+  "experimentId": "S1-E05-gate-pacing",
+  "increment": "S1",
+  "question": "Are later gates progressively longer (zone 2 -> 3 longer than zone 1 -> 2)?",
+  "design": "Zone 2 kill gate in {80, 120, 180} crossed with the full S1-E01 pass-1 grid (27 variants), so the S1-E01 winner (selected by the pre-registered rule) is included without an adaptive step; PR-OPT (90 min); POL-STAY and POL-FRONTIER; 200 replicates.",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "a8-p1.6-g60-z80",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.6-g60-z120",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.6-g60-z180",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p1.6-g100-z80",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.6-g100-z120",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.6-g100-z180",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p1.6-g150-z80",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.6-g150-z120",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.6-g150-z180",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p1.8-g60-z80",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.8-g60-z120",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.8-g60-z180",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p1.8-g100-z80",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.8-g100-z120",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.8-g100-z180",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p1.8-g150-z80",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p1.8-g150-z120",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p1.8-g150-z180",
+      "params": {
+        "xpCurve": "a8-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p2.0-g60-z80",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p2.0-g60-z120",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p2.0-g60-z180",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p2.0-g100-z80",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p2.0-g100-z120",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p2.0-g100-z180",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a8-p2.0-g150-z80",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a8-p2.0-g150-z120",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a8-p2.0-g150-z180",
+      "params": {
+        "xpCurve": "a8-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.6-g60-z80",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.6-g60-z120",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.6-g60-z180",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-z80",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-z120",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-z180",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.6-g150-z80",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.6-g150-z120",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.6-g150-z180",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.8-g60-z80",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.8-g60-z120",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.8-g60-z180",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.8-g100-z80",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.8-g100-z120",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.8-g100-z180",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p1.8-g150-z80",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p1.8-g150-z120",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p1.8-g150-z180",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p2.0-g60-z80",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p2.0-g60-z120",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p2.0-g60-z180",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p2.0-g100-z80",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p2.0-g100-z120",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p2.0-g100-z180",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a10-p2.0-g150-z80",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a10-p2.0-g150-z120",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a10-p2.0-g150-z180",
+      "params": {
+        "xpCurve": "a10-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.6-g60-z80",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.6-g60-z120",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.6-g60-z180",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.6-g100-z80",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.6-g100-z120",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.6-g100-z180",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.6-g150-z80",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.6-g150-z120",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.6-g150-z180",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.8-g60-z80",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.8-g60-z120",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.8-g60-z180",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.8-g100-z80",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.8-g100-z120",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.8-g100-z180",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p1.8-g150-z80",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p1.8-g150-z120",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p1.8-g150-z180",
+      "params": {
+        "xpCurve": "a12-p1.8",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p2.0-g60-z80",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p2.0-g60-z120",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p2.0-g60-z180",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 60,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p2.0-g100-z80",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p2.0-g100-z120",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p2.0-g100-z180",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 100,
+        "zone2.killGate": 180
+      }
+    },
+    {
+      "id": "a12-p2.0-g150-z80",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 80
+      }
+    },
+    {
+      "id": "a12-p2.0-g150-z120",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 120
+      }
+    },
+    {
+      "id": "a12-p2.0-g150-z180",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150,
+        "zone2.killGate": 180
+      }
+    }
+  ],
+  "profiles": [
+    "PR-OPT"
+  ],
+  "policies": [
+    "POL-STAY",
+    "POL-FRONTIER"
+  ],
+  "seeds": {
+    "root": "S1-E05",
+    "replicates": 200
+  },
+  "metrics": [
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "gate23Over12Ratio",
+    "minToL10",
+    "levelAt90"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-06",
+      "statement": "Zone 2->3 takes longer than zone 1->2 (ratio of first-visit intervals)",
+      "source": "R06.08",
+      "metric": "gate23Over12Ratio",
+      "stat": "p50",
+      "op": ">",
+      "unit": "ratio",
+      "role": "target",
+      "value": 1
+    }
+  ],
+  "notes": [
+    "S1 is a single-character diagnostic model (experiment plan principle 10): no recruits, classes, abilities, gear, sinks, offline progress or Monuments; gold and materials only accumulate.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0 and the S1 resolutions S1-R01..R17); every output is model-output, not live-validated.",
+    "Engagement overhead and walk times are the most uncertain inputs (to be measured in M2).",
+    "The S1-E01 winner row is identified with the rule in PREREGISTRATION.md; every row is reported."
+  ]
+}

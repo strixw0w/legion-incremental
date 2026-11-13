@@ -1,0 +1,6 @@
+$ node src/cli/curve-preview.ts
+
+S0-R01 semantic fingerprint 24dd90646ff38d8a455e9e704148e58db39219716438616fb4ee64f2f9bab9b9
+wrote legion-progression-lab/results/s0/S0-R01-curve-preview/{semantic.json, environment.json, report.md, fingerprint.txt}
+
+[exit code: 0]

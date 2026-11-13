@@ -1,0 +1,21 @@
+$ node src/cli/fixtures-check.ts
+
+| Family | File | Cases | Normal | Boundary | Failure | Passed |
+|---|---|---|---|---|---|---|
+| canonical-json | spec/fixtures/canonical-json.v1.json | 7 | 2 | 2 | 3 | 7 |
+| combat-loop | spec/fixtures/combat-loop.v1.json | 14 | 5 | 7 | 2 | 14 |
+| combat | spec/fixtures/combat.v2.json | 59 | 13 | 28 | 18 | 59 |
+| content | spec/fixtures/content.v1.json | 10 | 1 | 1 | 8 | 10 |
+| credits | spec/fixtures/credits.v1.json | 6 | 1 | 1 | 4 | 6 |
+| estimator | spec/fixtures/estimator.v1.json | 8 | 2 | 4 | 2 | 8 |
+| gates | spec/fixtures/gates.v1.json | 29 | 5 | 4 | 20 | 29 |
+| ledger | spec/fixtures/ledger.v1.json | 15 | 2 | 4 | 9 | 15 |
+| numeric | spec/fixtures/numeric.v1.json | 40 | 6 | 20 | 14 | 40 |
+| remainder | spec/fixtures/remainder.v2.json | 33 | 9 | 12 | 12 | 33 |
+| rewards | spec/fixtures/rewards.v1.json | 7 | 2 | 4 | 1 | 7 |
+| rng | spec/fixtures/rng.v1.json | 46 | 11 | 15 | 20 | 46 |
+| stats | spec/fixtures/stats.v2.json | 20 | 3 | 6 | 11 | 20 |
+| xp | spec/fixtures/xp.v2.json | 30 | 6 | 10 | 14 | 30 |
+total cases: 324; problems: 0
+
+[exit code: 0]

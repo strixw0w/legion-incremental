@@ -1,0 +1,284 @@
+{
+  "schema": "legion.s1.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S1-E06-drop-correctness",
+  "kind": "drops",
+  "manifestSha256": "d2992ce562322cfeeb52c204b8065ef161c290f31159347e0cd4f57ab313331d",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variantContent": {
+    "base": {
+      "contentHash": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "seeds": {
+    "root": "S1-E06",
+    "replicates": 50
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "base|Z1|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-1",
+      "level": 100,
+      "zone": 1,
+      "tag": "diagnostic",
+      "runs": 50,
+      "runLogsDigest": "a92283c2b6ffe88cf7a14d9c0481489ce80bafdf0a5c872d5a0b96aba5732ca6",
+      "metrics": {
+        "drops:res.mat.slime_gel": {
+          "n": 50,
+          "reached": 50,
+          "p10": 329,
+          "p50": 354,
+          "p90": 375,
+          "mean": 354.02,
+          "min": 325,
+          "max": 385
+        },
+        "drops:res.rare.test_token": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 2,
+          "p90": 5,
+          "mean": 2.28,
+          "min": 0,
+          "max": 5
+        },
+        "kills": {
+          "n": 50,
+          "reached": 50,
+          "p10": 1195,
+          "p50": 1195,
+          "p90": 1195,
+          "mean": 1195,
+          "min": 1195,
+          "max": 1195
+        },
+        "ledgerMismatch": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "base|Z2|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-2",
+      "level": 100,
+      "zone": 2,
+      "tag": "diagnostic",
+      "runs": 50,
+      "runLogsDigest": "8a1b5cadc879a45838f39f9ef00974f6235bcebd340a17cc76f00a58366da8f7",
+      "metrics": {
+        "drops:res.mat.wolf_fang": {
+          "n": 50,
+          "reached": 50,
+          "p10": 278,
+          "p50": 294,
+          "p90": 313,
+          "mean": 296.06,
+          "min": 274,
+          "max": 331
+        },
+        "drops:res.rare.test_token": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 2,
+          "p90": 5,
+          "mean": 2.28,
+          "min": 0,
+          "max": 5
+        },
+        "kills": {
+          "n": 50,
+          "reached": 50,
+          "p10": 1195,
+          "p50": 1195,
+          "p90": 1195,
+          "mean": 1195,
+          "min": 1195,
+          "max": 1195
+        },
+        "ledgerMismatch": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "base|Z3|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-3",
+      "level": 100,
+      "zone": 3,
+      "tag": "diagnostic",
+      "runs": 50,
+      "runLogsDigest": "fea32ba647c768f42280da117c487d76994c9da4ab695567d6845910f32f49f9",
+      "metrics": {
+        "drops:res.mat.goblin_scrap": {
+          "n": 50,
+          "reached": 50,
+          "p10": 120,
+          "p50": 130,
+          "p90": 145,
+          "mean": 132.08,
+          "min": 116,
+          "max": 156
+        },
+        "drops:res.rare.test_token": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 1,
+          "p90": 3,
+          "mean": 1.32,
+          "min": 0,
+          "max": 5
+        },
+        "kills": {
+          "n": 50,
+          "reached": 50,
+          "p10": 674,
+          "p50": 678,
+          "p90": 682,
+          "mean": 678.6,
+          "min": 673,
+          "max": 687
+        },
+        "ledgerMismatch": {
+          "n": 50,
+          "reached": 50,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "hypotheses": [],
+  "sections": {
+    "dropCorrectness": [
+      {
+        "cell": "base|Z1|L100",
+        "zone": 1,
+        "resourceId": "res.mat.slime_gel",
+        "chanceBp": 3000,
+        "kills": 59750,
+        "count": 17701,
+        "expected": 17925,
+        "interval": [
+          17557,
+          18294
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      },
+      {
+        "cell": "base|Z1|L100",
+        "zone": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 59750,
+        "count": 114,
+        "expected": 119.5,
+        "interval": [
+          85,
+          157
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      },
+      {
+        "cell": "base|Z2|L100",
+        "zone": 2,
+        "resourceId": "res.mat.wolf_fang",
+        "chanceBp": 2500,
+        "kills": 59750,
+        "count": 14803,
+        "expected": 14937.5,
+        "interval": [
+          14590,
+          15287
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      },
+      {
+        "cell": "base|Z2|L100",
+        "zone": 2,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 59750,
+        "count": 114,
+        "expected": 119.5,
+        "interval": [
+          85,
+          157
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      },
+      {
+        "cell": "base|Z3|L100",
+        "zone": 3,
+        "resourceId": "res.mat.goblin_scrap",
+        "chanceBp": 2000,
+        "kills": 33930,
+        "count": 6604,
+        "expected": 6786,
+        "interval": [
+          6545,
+          7029
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      },
+      {
+        "cell": "base|Z3|L100",
+        "zone": 3,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 33930,
+        "count": 66,
+        "expected": 67.86,
+        "interval": [
+          42,
+          97
+        ],
+        "inside": true,
+        "ledgerMismatches": 0
+      }
+    ]
+  }
+}

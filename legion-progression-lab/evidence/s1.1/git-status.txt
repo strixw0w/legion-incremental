@@ -1,0 +1,276 @@
+$ git log --oneline
+ad11a50 S0 checkpoint: S0 + S0.1 hardening + final ledger identity correction
+0209d93 M0 resolution and review corrections (v1.1); repository verification; Rojo 7.7.1
+3aced25 M0 import: design pack v1.0, M0 planning documents (as reviewed), Rojo starter
+
+$ git tag -n1
+s0-checkpoint   S0 checkpoint (S0 + S0.1 + final ledger correction), accepted by the owner after independent review. Local only; not pushed.
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/CHANGELOG.md
+ M legion-progression-lab/PROVENANCE.md
+ M legion-progression-lab/README.md
+ M legion-progression-lab/package.json
+ M legion-progression-lab/planning/M0_REPOSITORY_VERIFICATION.md
+ M legion-progression-lab/src/core/content/validate.ts
+ M legion-progression-lab/src/core/errors.ts
+ M legion-progression-lab/src/core/formulas/combat.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M legion-progression-lab/test/purity.test.ts
+ M spec/README.md
+ M spec/fixtures/combat.v2.json
+ M spec/formulas/combat.md
+ M spec/oracle/check_all.py
+ M spec/oracle/exact_oracle.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/content/tables/xp-sweep.index.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a10-p1.6.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a10-p1.8.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a10-p2.0.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a12-p1.6.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a12-p1.8.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a12-p2.0.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a8-p1.6.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a8-p1.8.v0.1.0.json
+?? legion-progression-lab/content/tables/xp.w1.sweep.a8-p2.0.v0.1.0.json
+?? legion-progression-lab/content/w1-slice.candidate.v0.1.0.json
+?? legion-progression-lab/evidence/s0-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s0-checkpoint/checkpoint.diffstat.txt
+?? legion-progression-lab/evidence/s0-checkpoint/checkpoint.patch
+?? legion-progression-lab/evidence/s1.1/S1_1_EVIDENCE.md
+?? legion-progression-lab/evidence/s1.1/analysis-gates.json
+?? legion-progression-lab/evidence/s1.1/analysis.txt
+?? legion-progression-lab/evidence/s1.1/curve-preview-reproduction.txt
+?? legion-progression-lab/evidence/s1.1/curve-preview-run1.txt
+?? legion-progression-lab/evidence/s1.1/curve-preview-run2.txt
+?? legion-progression-lab/evidence/s1.1/exp-verify.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/events.sample.jsonl
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E01-base-attribution/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E02-estimator/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E02-estimator/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E02-estimator/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E02-estimator/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E02-estimator/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E03-earlier-zone-audit/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E03-earlier-zone-audit/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E03-earlier-zone-audit/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E03-earlier-zone-audit/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E03-earlier-zone-audit/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/events.sample.jsonl
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E04-survival-policies/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E05-drops-quantities/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E05-drops-quantities/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E05-drops-quantities/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E05-drops-quantities/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E05-drops-quantities/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/events.sample.jsonl
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E06-determinism/semantic.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/environment.json
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/events.sample.jsonl
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/fingerprint.txt
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/quantiles.csv
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/report.md
+?? legion-progression-lab/evidence/s1.1/experiments/S1.1-E07-policy-comparison/semantic.json
+?? legion-progression-lab/evidence/s1.1/fixtures-check.txt
+?? legion-progression-lab/evidence/s1.1/frozen-check.txt
+?? legion-progression-lab/evidence/s1.1/git-status.txt
+?? legion-progression-lab/evidence/s1.1/mutation-check.txt
+?? legion-progression-lab/evidence/s1.1/oracle-check.txt
+?? legion-progression-lab/evidence/s1.1/repro/corrected.json.txt
+?? legion-progression-lab/evidence/s1.1/repro/original.json.txt
+?? legion-progression-lab/evidence/s1.1/s1-and-s1_1-vs-checkpoint.patch
+?? legion-progression-lab/evidence/s1.1/s1-manifest-refused.txt
+?? legion-progression-lab/evidence/s1.1/s1_1-vs-s1-package.patch
+?? legion-progression-lab/evidence/s1.1/schemas-check.txt
+?? legion-progression-lab/evidence/s1.1/test-output.txt
+?? legion-progression-lab/evidence/s1.1/test-results.json
+?? legion-progression-lab/evidence/s1.1/test-stats-output.txt
+?? legion-progression-lab/evidence/s1.1/tool-versions.txt
+?? legion-progression-lab/evidence/s1.1/typecheck.txt
+?? legion-progression-lab/evidence/s1/S1_EVIDENCE.md
+?? legion-progression-lab/evidence/s1/analysis-e01.txt
+?? legion-progression-lab/evidence/s1/analysis-e05.txt
+?? legion-progression-lab/evidence/s1/curve-preview-reproduction.txt
+?? legion-progression-lab/evidence/s1/curve-preview-run1.txt
+?? legion-progression-lab/evidence/s1/curve-preview-run2.txt
+?? legion-progression-lab/evidence/s1/exp-verify.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/events.sample.jsonl
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E01-calibration/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E02-estimator/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E02-estimator/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E02-estimator/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E02-estimator/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E02-estimator/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E03-earlier-zone-audit/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E03-earlier-zone-audit/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E03-earlier-zone-audit/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E03-earlier-zone-audit/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E03-earlier-zone-audit/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/events.sample.jsonl
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E04-survival/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/events.sample.jsonl
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E05-gate-pacing/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness-b/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness-b/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness-b/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness-b/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness-b/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E06-drop-correctness/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/events.sample.jsonl
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E07-determinism/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/environment.json
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/events.sample.jsonl
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/fingerprint.txt
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/quantiles.csv
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/report.md
+?? legion-progression-lab/evidence/s1/experiments/S1-E08-policy-bound/semantic.json
+?? legion-progression-lab/evidence/s1/experiments/ledger-benchmark/benchmark.json
+?? legion-progression-lab/evidence/s1/fixtures-check.txt
+?? legion-progression-lab/evidence/s1/frozen-check.txt
+?? legion-progression-lab/evidence/s1/git-status-summary.txt
+?? legion-progression-lab/evidence/s1/git-status.txt
+?? legion-progression-lab/evidence/s1/mutation-check-run1.txt
+?? legion-progression-lab/evidence/s1/mutation-check.txt
+?? legion-progression-lab/evidence/s1/oracle-check.txt
+?? legion-progression-lab/evidence/s1/s1.patch
+?? legion-progression-lab/evidence/s1/schemas-check.txt
+?? legion-progression-lab/evidence/s1/test-output.txt
+?? legion-progression-lab/evidence/s1/test-results.json
+?? legion-progression-lab/evidence/s1/test-stats-output.txt
+?? legion-progression-lab/evidence/s1/tool-versions.txt
+?? legion-progression-lab/evidence/s1/traces/01-simultaneous-lethal.jsonl
+?? legion-progression-lab/evidence/s1/traces/02-retaliation-at-death.jsonl
+?? legion-progression-lab/evidence/s1/traces/03-death-cancels-swing.jsonl
+?? legion-progression-lab/evidence/s1/traces/04-session-boundary.jsonl
+?? legion-progression-lab/evidence/s1/traces/05-multi-level-up.jsonl
+?? legion-progression-lab/evidence/s1/traces/06-target-invalidation.jsonl
+?? legion-progression-lab/evidence/s1/traces/07-boss-timer-half-open.jsonl
+?? legion-progression-lab/evidence/s1/traces/08-base-POL-FRONTIER-opening.jsonl
+?? legion-progression-lab/evidence/s1/typecheck.txt
+?? legion-progression-lab/manifests/s1.1/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s1.1/S1.1-E01-base-attribution.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E02-estimator.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E03-earlier-zone-audit.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E04-survival-policies.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E05-drops-quantities.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E06-determinism.json
+?? legion-progression-lab/manifests/s1.1/S1.1-E07-policy-comparison.json
+?? legion-progression-lab/manifests/s1.1/preregistration.json
+?? legion-progression-lab/manifests/s1/AMENDMENT-01.md
+?? legion-progression-lab/manifests/s1/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s1/S1-E01-calibration.json
+?? legion-progression-lab/manifests/s1/S1-E02-estimator.json
+?? legion-progression-lab/manifests/s1/S1-E03-earlier-zone-audit.json
+?? legion-progression-lab/manifests/s1/S1-E04-survival.json
+?? legion-progression-lab/manifests/s1/S1-E05-gate-pacing.json
+?? legion-progression-lab/manifests/s1/S1-E06-drop-correctness-b.json
+?? legion-progression-lab/manifests/s1/S1-E06-drop-correctness.json
+?? legion-progression-lab/manifests/s1/S1-E07-determinism.json
+?? legion-progression-lab/manifests/s1/S1-E08-policy-bound.json
+?? legion-progression-lab/manifests/s1/preregistration.json
+?? legion-progression-lab/planning/LEDGER_INFRASTRUCTURE_PROPOSAL.md
+?? legion-progression-lab/planning/S1_1_RESOLUTIONS.md
+?? legion-progression-lab/planning/S1_OWNER_RESOLUTIONS.md
+?? legion-progression-lab/planning/S1_RESOLUTIONS.md
+?? legion-progression-lab/repro/s1.1/analyse.py
+?? legion-progression-lab/repro/s1.1/defects.mjs
+?? legion-progression-lab/src/cli/bench-ledger.ts
+?? legion-progression-lab/src/cli/bench/hamtLedger.ts
+?? legion-progression-lab/src/cli/build-xp-sweep.ts
+?? legion-progression-lab/src/cli/exp-worker.ts
+?? legion-progression-lab/src/cli/exp.ts
+?? legion-progression-lab/src/cli/s1-analyse.ts
+?? legion-progression-lab/src/cli/s1-content.ts
+?? legion-progression-lab/src/cli/s1-traces.ts
+?? legion-progression-lab/src/engine/commands.ts
+?? legion-progression-lab/src/engine/credit.ts
+?? legion-progression-lab/src/engine/estimator-s1.ts
+?? legion-progression-lab/src/engine/estimator.ts
+?? legion-progression-lab/src/engine/observation.ts
+?? legion-progression-lab/src/engine/queue.ts
+?? legion-progression-lab/src/engine/rewards.ts
+?? legion-progression-lab/src/engine/simulation.ts
+?? legion-progression-lab/src/experiments/jobs.ts
+?? legion-progression-lab/src/experiments/manifest.ts
+?? legion-progression-lab/src/experiments/metrics.ts
+?? legion-progression-lab/src/experiments/patch.ts
+?? legion-progression-lab/src/experiments/report.ts
+?? legion-progression-lab/src/experiments/stats.ts
+?? legion-progression-lab/src/experiments/summary.ts
+?? legion-progression-lab/src/model/content.ts
+?? legion-progression-lab/src/model/types.ts
+?? legion-progression-lab/src/policy/oracle.ts
+?? legion-progression-lab/src/policy/realistic.ts
+?? legion-progression-lab/src/spec/s1Fixtures.ts
+?? legion-progression-lab/test/helpers/s1.ts
+?? legion-progression-lab/test/s1.determinism.test.ts
+?? legion-progression-lab/test/s1.events.test.ts
+?? legion-progression-lab/test/s1.experiments.test.ts
+?? legion-progression-lab/test/s1.gates.test.ts
+?? legion-progression-lab/test/s1_1.behaviour.test.ts
+?? legion-progression-lab/test/s1_1.credit.test.ts
+?? legion-progression-lab/test/stats/s1.drops.distribution.test.ts
+?? spec/fixtures/combat-loop.v1.json
+?? spec/fixtures/credits.v1.json
+?? spec/fixtures/estimator.v1.json
+?? spec/fixtures/gates.v1.json
+?? spec/fixtures/rewards.v1.json
+?? spec/formulas/estimator.md
+?? spec/formulas/gates.md
+?? spec/formulas/s1-combat-loop.md
+?? spec/oracle/s1_oracle.py
+
+$ git diff --stat ad11a508fd715b08705c5ee72f215f92183f0993
+ legion-progression-lab/CHANGELOG.md                | 147 ++++++++++++++
+ legion-progression-lab/PROVENANCE.md               |  10 +-
+ legion-progression-lab/README.md                   |  29 ++-
+ legion-progression-lab/package.json                |   6 +-
+ .../planning/M0_REPOSITORY_VERIFICATION.md         |  12 +-
+ .../src/core/content/validate.ts                   |   4 +-
+ legion-progression-lab/src/core/errors.ts          |   3 +
+ legion-progression-lab/src/core/formulas/combat.ts |  15 ++
+ legion-progression-lab/src/spec/fixtureRunner.ts   |  22 ++-
+ legion-progression-lab/src/spec/fixtureSchema.ts   |   4 +-
+ .../test/fixtures.conformance.test.ts              |   4 +-
+ legion-progression-lab/test/purity.test.ts         |   5 +-
+ spec/README.md                                     |   8 +-
+ spec/fixtures/combat.v2.json                       | 213 ++++++++++++++++++++-
+ spec/formulas/combat.md                            |  47 ++++-
+ spec/oracle/check_all.py                           |   6 +
+ spec/oracle/exact_oracle.py                        |   7 +
+ spec/schema/fixture.schema.json                    |  13 +-
+ 18 files changed, 522 insertions(+), 33 deletions(-)

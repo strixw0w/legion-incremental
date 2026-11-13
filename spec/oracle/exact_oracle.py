@@ -259,6 +259,13 @@ def combat(inp):
             raise OracleError("INVALID_NUMBER")
         v = Fraction(raw, 1000) * (Fraction(mult, BP) if inp["crit"] else 1) * Fraction(num, den)
         return {"result": max(mn, checked(math.floor(v + Fraction(1, 2))))}
+    if op == "attackRawMilli":
+        # combat.md v2 "Attack quantisation": binary64 stat value (stats.md v2 order), then exact roundHalfUp of that double.
+        value = stats({"base": inp["baseMilli"], "sources": inp["sources"], "categories": inp["categories"]})["value"]
+        raw = math.floor(Fraction(value) + Fraction(1, 2))
+        if raw < 1:
+            raise OracleError("INVALID_NUMBER")
+        return {"value": value, "rawMilli": raw}
     if op == "hitsToKill":
         hp, dmg = safe_int(inp["hp"]), safe_int(inp["damage"])
         if hp < 1 or dmg < 1:

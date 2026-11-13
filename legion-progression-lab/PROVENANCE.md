@@ -13,7 +13,8 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
 | Pre-registered targets; report the closest candidate, never move targets | `experiments/increment6_design_decisions.md` (uncommitted, now archived) | `planning/M0_EXPERIMENT_PLAN.md` | Engineering gates separated from balance targets |
 | Integer hits-to-kill breakpoints | `src/sim/combat.ts` | `src/core/formulas/combat.ts` | Integer damage per hit removes the need for a rounding tolerance |
 | One reason code per refusal | `README.md`, `src/sim/types.ts` | `src/core/errors.ts` | Stable error codes |
-| "Unlocking is not reaching" (measure first visit) | `experiments/increment6_findings.md` | Experiment plan N-11 | — |
+| "Unlocking is not reaching" (measure first visit) | `experiments/increment6_findings.md` | Experiment plan N-11; S1 metrics `zone*UnlockMin` vs `zone*FirstVisitMin` | — |
+| Zone audit with forks (matched state, per-zone alternatives) | Frozen lab "fork" idea, as named in experiment plan §4 | `src/experiments/jobs.ts` (audit), S1-E03 | Re-implemented on the S1 engine; estimate vs fork agreement tag |
 
 ## Third-party material deliberately excluded
 - **IdleOn data and code:** no IdleOn data, numbers, names or assets, and no IdleOn Toolbox (GPL-3.0) code.
@@ -24,6 +25,13 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
 - **SHA-256:** via `node:crypto` (lab) and Python `hashlib` (oracle).
 - **RFC 8785 conventions** for canonical JSON (restricted subset; see `spec/formulas/canonical-json.md`).
 - **Binary long multiplication with a running remainder** (S0.1 `mulDivRem`): the textbook shift-and-add method, written from its definition in `spec/formulas/numeric.md`. No library code was used.
+- **S1:**
+  - **Hash array mapped trie** (benchmark-only prototype `src/cli/bench/hamtLedger.ts`): the published data-structure idea (Bagwell, 2001), written from its description with an FNV-1a string hash and popcount. It is not used by the engine.
+  - **Two-sample Kolmogorov–Smirnov statistic** with the standard asymptotic critical value c(0.001) = 1.949, and an **exact binomial acceptance interval** computed in log space. Both were written from their textbook definitions.
+  - **Binary heap** event queue: textbook.
+- **S1.1:**
+  - **Absorbing Markov chain and renewal–reward rate** (estimator v1.1 survival chain): textbook expected-value recursions over "hits left", written from `spec/formulas/estimator.md` v1.1.
+  - **Persistent (immutable, shared-tail) linked list** for the committed kill-credit history: textbook.
 
 ## Dependencies (exact versions; full tree in `package-lock.json`)
 - **Runtime:** `zod` 4.6.7 (MIT).

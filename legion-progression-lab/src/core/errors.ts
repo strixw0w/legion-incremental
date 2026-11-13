@@ -23,6 +23,9 @@ export const ERROR_CODES = [
   'TX_CONFLICT',
   'INVALID_JSON_VALUE',
   'INVALID_CONTENT',
+  // S1 engine errors (s1-combat-loop.md section 14)
+  'EVENT_CASCADE_LIMIT',
+  'SIM_EVENT_LIMIT',
 ] as const;
 
 export type ErrorCode = (typeof ERROR_CODES)[number];

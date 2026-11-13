@@ -1,0 +1,13 @@
+cell,tag,metric,n,reached,p10,p50,p90,mean,min,max
+base|Z1|L100,diagnostic,drops:res.mat.slime_gel,100,100,691,717,743,717.09,648,786
+base|Z1|L100,diagnostic,drops:res.rare.test_token,100,100,2,4,8,4.65,0,11
+base|Z1|L100,diagnostic,kills,100,100,2395,2395,2395,2395,2395,2395
+base|Z1|L100,diagnostic,ledgerMismatch,100,100,0,0,0,0,0,0
+base|Z2|L100,diagnostic,drops:res.mat.wolf_fang,100,100,571,600,629,600.48,539,648
+base|Z2|L100,diagnostic,drops:res.rare.test_token,100,100,2,4,7,4.34,0,9
+base|Z2|L100,diagnostic,kills,100,100,2395,2395,2395,2395,2395,2395
+base|Z2|L100,diagnostic,ledgerMismatch,100,100,0,0,0,0,0,0
+base|Z3|L100,diagnostic,drops:res.mat.goblin_scrap,100,100,254,271,288,271.17,233,320
+base|Z3|L100,diagnostic,drops:res.rare.test_token,100,100,1,3,5,2.94,0,7
+base|Z3|L100,diagnostic,kills,100,100,1355,1361,1366,1360.73,1351,1369
+base|Z3|L100,diagnostic,ledgerMismatch,100,100,0,0,0,0,0,0

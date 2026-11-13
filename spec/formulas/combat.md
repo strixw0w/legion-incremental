@@ -59,13 +59,46 @@ A mathematically exact half always rounds up. There is no binary64 rounding anyw
 - *Examples:* `rawMilli = 2^53 − 1` with a 2000× crit and mitigation 1/2 gives exactly 2^53 − 1. Any intermediate that would exceed the result is avoided by applying mitigation first.
 - *Representation limit:* raw damage is at most (2^53 − 1)/1000 ≈ 9.0 × 10^12 per hit, before crit.
 
-### Where the inputs come from (recommendation for S1, candidate)
-- **Raw damage.** Derived stats are binary64 reals (`stats.md` v2). S1 converts the attack value once per hit computation: `rawMilli = roundHalfUp(attack × 1000)`. That is one correctly rounded binary64 multiplication followed by the exact `roundHalfUp` of `numeric.md`.
-  - Precision: thousandths keep sub-integer bonuses meaningful at low levels (7 × 1.1 = 7.7 is 7700, not 8).
-  - Limit: attack ≤ (2^53 − 1)/1000.
-  - The conversion rule is a candidate to be fixed, with fixtures, in S1.
-- **Mitigation.** Use `mitigationRatio(defence, K)` with integer defence. S1 decides how a derived defence value becomes an integer (candidate: `roundHalfUp`).
-- **Crit.** The crit multiplier comes from content in basis points (`critMultBpBase`).
+### Attack quantisation: derived attack → `rawMilli` (added in S1; combat stays v2)
+This section replaces the S0.1 recommendation (`rawMilli = roundHalfUp(attack × 1000)`). The rule below avoids that extra binary64 multiplication.
+
+**1. Attack is a stat measured in thousandths.**
+- The attack stat's `base` and every flat attack source are integer thousandths of a damage point. Content fields end in `Milli`; for example, a base attack of 6 is `baseAttackMilli: 6000`.
+- The derived attack value is `v = evaluateStat(baseMilli, sources, categories).value` (`stats.md` v2), so v is already in thousandths.
+- The only binary64 operations are the category factors of `stats.md` v2, in ascending category-ID order. With no active non-neutral category, v is the exact integer `flatTotal`.
+
+**2. Quantisation:** `rawMilli = roundHalfUp(v)` (`numeric.md`).
+- `roundHalfUp` is exact for every finite binary64 v, and no multiplication by 1000 is performed. The quantisation therefore adds no rounding of its own; it rounds the binary64 value v half up.
+
+**3. Limits:**
+- v ≤ 2^53 − 1, otherwise `NUMERIC_LIMIT`, enforced by `stats.md` v2. Hence rawMilli ≤ 2^53 − 1.
+- `rawMilli ≥ 1` is required for a damaging hit. A derived attack below 0.5 thousandths, which rounds to 0, gives `INVALID_NUMBER` ("attack too low to land a damaging hit").
+- Content validation keeps every S1 attack ≥ 1 thousandth.
+
+**4. Exactness boundary — two separate things:**
+- **(a) Quantisation of the binary64 value.** `rawMilli` is a defined function of the binary64 value v, not of an idealised real. When v is large, the binary64 value can sit exactly on a half while the exact rational lies just below it.
+  - Example: `combat.attack.binary64-half.001`. Base 999,990,001,923 with +13 bp is exactly …925.4999, but the binary64 value is …925.5, so `rawMilli` is …926.
+  - This is deterministic, reproducible and specified. No epsilon is added.
+- **(b) Exact damage given the quantised inputs.** Once `rawMilli`, `critMultBp` and the mitigation ratio are integers, `damagePerHit` is exact (above).
+
+**5. Enemy attack.** It comes straight from content as an integer `attackMilli`. There is no stat evaluation and no quantisation.
+
+**6. Defence** is an integer in S1: `baseDefence + defencePerLevel × (level − 1)`. It feeds `mitigationRatio(defence, K)`.
+
+**7. Crit.** Chance and multiplier are integer basis points from content.
+
+**Luau:** evaluate the same binary64 category factors in the same order, then the same exact `roundHalfUp`. No transcendental functions are involved.
+
+**Fixtures:** operation `attackRawMilli` in `spec/fixtures/combat.v2.json` (fixture version 3), with these cases:
+- integer values;
+- an exact half produced by basis points;
+- a value just below a half;
+- the binary64-half case above;
+- a half at 0.5 thousandths;
+- zero and below-half refusals;
+- the range limit.
+
+The oracle replays the binary64 factors with Python floats and rounds the resulting double exactly with `Fraction`.
 
 ### Luau parity implications
 - **Exactness.** Every operation is on integers below 2^53: `+`, `−`, comparisons, `x % 2`, halving, and `divRem` with its correction loops. A Luau kernel that follows the steps reproduces the integer result exactly, satisfying architecture §17.5: "damage ... integer-exact in both engines".

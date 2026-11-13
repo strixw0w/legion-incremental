@@ -1,0 +1,21 @@
+S1 negative controls (mutation check): each row plants one deliberate bug in a critical S1 rule, runs the default suite, then restores the file (SHA-256 verified).
+Unmutated suite: 626 total, 0 failed.
+
+| # | File | Planted bug (rule it breaks) | Tests failed | Restored, hash identical |
+|---|---|---|---|---|
+| 1 | `src/engine/simulation.ts` | sequential instead of simultaneous blows: a dying enemy no longer retaliates (9.3 rule 1) | 5 | yes |
+| 2 | `src/engine/simulation.ts` | events of closed encounters are no longer discarded (9.3 rule 2) | 28 | yes |
+| 3 | `src/engine/simulation.ts` | events from an old hero epoch are no longer discarded (9.3 rule 2) | 12 | yes |
+| 4 | `src/engine/simulation.ts` | session end processed with the attacks (COMPLETE) instead of before them (9.3 rule 3) | 1 | yes |
+| 5 | `src/engine/simulation.ts` | each kill counted twice towards the zone gate (credit once, 9.3 rule 6) | 1 | yes |
+| 6 | `src/engine/simulation.ts` | swing cooldown ignored: first swing always on arrival (S1-R03) | 2 | yes |
+| 7 | `src/engine/simulation.ts` | kill gate also grants the visit and checkpoint (D-01 separate flags) | 1 | yes |
+| 8 | `src/engine/simulation.ts` | stats recomputed after the next engagement starts (phase order 9.2) | 1 | yes |
+| 9 | `src/engine/simulation.ts` | level-up fully heals instead of adding the max-HP gain (S1-R10) | 1 | yes |
+| 10 | `src/engine/commands.ts` | active-only check removed: StartBoss allowed while auto-farming (D-01, R10.03) | 2 | yes |
+| 11 | `src/engine/commands.ts` | travel adjacency check removed (S1-R13) | 2 | yes |
+| 12 | `src/engine/rewards.ts` | a 0% drop entry skips its draw (one draw per entry, rng.md) | 2 | yes |
+| 13 | `src/model/content.ts` | zones ordered by ID instead of by order (no entity-ID advantage) | 3 | yes |
+| 14 | `src/engine/estimator.ts` | estimator ignores the walk overlapping the swing cooldown | 1 | yes |
+
+A count above 0 means the suite detected the planted bug.

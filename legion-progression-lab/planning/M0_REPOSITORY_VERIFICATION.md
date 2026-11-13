@@ -1,5 +1,7 @@
 # M0 Repository and Backup Verification (D-09, D-10)
 
+> **S1.1 redaction note:** absolute paths under the local Windows user profile are shown as `%USERPROFILE%\...` in this shared copy (owner S1 review section 11). The unredacted original is preserved privately outside the repository.
+
 **Version:** 1.0 · **Date:** 13 November 2026 · **Performed by:** Claude, under `M0_RESOLUTION.md` D-09/D-10 · **Method:** SHA-256 (`sha256sum`, Python `hashlib`); Git read commands with `GIT_OPTIONAL_LOCKS=0` against the frozen repository.
 
 > **In plain words.**
@@ -14,8 +16,8 @@
 
 | Item | Value |
 |---|---|
-| Source | `C:\Users\Edvinas\Desktop\Roblox Incremental\` (complete: `docs/`, `progression-lab/` including `.git/`, `node_modules/` and the 12 uncommitted Original v1 changes, `reports/`, `research_notes/`) |
-| Backup file | `C:\Users\Edvinas\Documents\Legion-Backups\2026-11-13\RobloxIncremental_full_2026-11-13.zip` |
+| Source | `%USERPROFILE%\Desktop\Roblox Incremental\` (complete: `docs/`, `progression-lab/` including `.git/`, `node_modules/` and the 12 uncommitted Original v1 changes, `reports/`, `research_notes/`) |
+| Backup file | `%USERPROFILE%\Documents\Legion-Backups\2026-11-13\RobloxIncremental_full_2026-11-13.zip` |
 | Backup SHA-256 | `2cb07d31fd77e85f97d1dabba918a88177b72c4d8fff875c3a299da8d31a3bc9` (62,190,194 bytes) |
 | Contents | 3,012 files + 414 directory entries |
 | Verification | ZIP CRC test passed. Every one of the 3,012 members was read back and its SHA-256 and size compared with a fresh hash of the source file: **0 missing, 0 extra, 0 mismatched**. |
@@ -27,7 +29,7 @@
 
 | Item | Value |
 |---|---|
-| Archive repository | `C:\Users\Edvinas\Documents\Legion-Backups\2026-11-13\progression-lab-archive\` |
+| Archive repository | `%USERPROFILE%\Documents\Legion-Backups\2026-11-13\progression-lab-archive\` |
 | How created | `git clone --no-hardlinks` of the frozen repository (read-only on the source), then `git remote remove origin` so it cannot push back into the original |
 | `master` | `74499ef2a7ec154bdcbc10b1152f2aec89c3c913`, identical to the frozen commit; this copy is checked out on `master` |
 | Archive branch | `archive/increment6-original-v1` → `8d80a440d9818c961713b767f696764b3f18db66` ("Archive Increment 6 "Original v1" (uncommitted post-freeze work)") |
@@ -48,8 +50,8 @@
 
 | Item | Value |
 |---|---|
-| Path | `C:\Users\Edvinas\Documents\GitHub\legion-incremental\` (branch `main`) |
-| Copied from | `C:\Users\Edvinas\Desktop\Legion Incremental\` (left unchanged; not deleted; awaiting owner approval) |
+| Path | `%USERPROFILE%\Documents\GitHub\legion-incremental\` (branch `main`) |
+| Copied from | `%USERPROFILE%\Desktop\Legion Incremental\` (left unchanged; not deleted; awaiting owner approval) |
 | Files copied | 16 (design pack 4, M0 documents 5, Rojo starter 7). `.git` was not copied. The copy refused to overwrite any existing file. |
 | Copy verification | SHA-256 of each copy equals its source: **16 / 16** |
 | Committed-bytes verification | SHA-256 of each blob in the import commit equals its source: **16 / 16** |

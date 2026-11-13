@@ -1,0 +1,65 @@
+{
+  "experimentId": "S1-E03-earlier-zone-audit",
+  "increment": "S1",
+  "question": "Is an earlier zone ever better, and is the newest zone worth entering?",
+  "design": "PR-OPT session with POL-STAY; at the first visit of zones 2 and 3 (matched state), every accessible zone gets its displayed estimate and a 15-minute fork farming that zone (ORC-FORK, oracle/diagnostic; travel time included). 200 replicates.",
+  "kind": "audit",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-OPT"
+  ],
+  "policies": [
+    "POL-STAY"
+  ],
+  "seeds": {
+    "root": "S1-E03",
+    "replicates": 200
+  },
+  "audit": {
+    "zones": [
+      2,
+      3
+    ],
+    "forkMin": 15,
+    "basePolicy": "POL-STAY"
+  },
+  "metrics": [
+    "visit2.atMin",
+    "visit2.level",
+    "visit2.z1.forkExpPerHour",
+    "visit2.z2.forkExpPerHour",
+    "visit3.atMin",
+    "visit3.level",
+    "visit3.z1.forkExpPerHour",
+    "visit3.z2.forkExpPerHour",
+    "visit3.z3.forkExpPerHour"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-10",
+      "statement": "Prior zones can be better EXP/h for some builds; the newest zone is still worth entering (reported, no pass/fail; the owner decides)",
+      "source": "R08.05",
+      "metric": "visit3.z3.forkExpPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "unit": "EXP/h",
+      "role": "reported",
+      "value": 0
+    }
+  ],
+  "notes": [
+    "S1 is a single-character diagnostic model (experiment plan principle 10): no recruits, classes, abilities, gear, sinks, offline progress or Monuments; gold and materials only accumulate.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0 and the S1 resolutions S1-R01..R17); every output is model-output, not live-validated.",
+    "Engagement overhead and walk times are the most uncertain inputs (to be measured in M2).",
+    "A fork result is CONFIRMED IN MODEL only when the estimate and the fork pick the same best zone in at least 90% of replicates; otherwise HYPOTHESIS (experiment plan 9.1)."
+  ]
+}

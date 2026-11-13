@@ -1,0 +1,42 @@
+C1: DETECTED (3 failing) restored=True | owner 2: a pending claim with different fields is accepted
+C2: DETECTED (13 failing) restored=True | owner 2: committing leaves the claim pending, so a duplicate is credited again
+C3: DETECTED (11 failing) restored=True | owner 2: an exact replay is classified as a conflict
+C4: DETECTED (6 failing) restored=True | owner 2: a rejected duplicate still advances the loot stream
+C5: DETECTED (1 failing) restored=True | owner 2: not atomic: the credit is committed before the ledger transaction can fail
+T1: DETECTED (6 failing) restored=True | owner 4: only the first trigger of a step reaches the policy (the S1 behaviour)
+T2: DETECTED (2 failing) restored=True | owner 4: the death trigger is never requested
+T3: DETECTED (1 failing) restored=True | owner 4: no policy-cascade limit
+R1: DETECTED (4 failing) restored=True | owner 3: a zone that stopped auto-farm is never blocked (blind re-enable)
+R2: DETECTED (1 failing) restored=True | owner 3: corrected policies never rest
+R3: DETECTED (1 failing) restored=True | owner 3: the fixed-zone policy re-enables auto-farm instead of stopping and reporting
+R4: DETECTED (1 failing) restored=True | owner 3: death window lower bound inclusive
+A1: DETECTED (2 failing) restored=True | owner 7: auto-farm off cancels nothing (the S1 behaviour)
+A2: DETECTED (1 failing) restored=True | owner 7 audit: no regeneration after a kill with auto-farm off
+A3: DETECTED (1 failing) restored=True | owner 7 audit: a pending manual engage survives the session end
+E1: DETECTED (1 failing) restored=True | owner 5: zero hit chance is not detected
+E2: DETECTED (3 failing) restored=True | owner 5: mass unresolved at the budget is treated as resolved
+E3: DETECTED (2 failing) restored=True | owner 5: a lethal hit at the kill moment loses the kill
+E4: DETECTED (2 failing) restored=True | owner 5: a hero who always dies first is shown as merely unsafe
+D1: DETECTED (4 failing) restored=True | owner 6: metrics count drop events as quantities (the S1 behaviour)
+
+S1.1 mutation check: 20 planted bugs, 20 detected, 0 not detected; all files restored: True
+- C1 [src/engine/credit.ts] owner 2: a pending claim with different fields is accepted: detected by 3 failing test(s); e.g. × a conflicting duplicate (other zone, or the boss flag) is rejected explicitly, before or after the genuine one 8ms
+- C2 [src/engine/credit.ts] owner 2: committing leaves the claim pending, so a duplicate is credited again: detected by 13 failing test(s); e.g. × an injected exact duplicate after an ordinary kill is rejected: no EXP, kill, gold, drop or random draw twice 11ms
+- C3 [src/engine/credit.ts] owner 2: an exact replay is classified as a conflict: detected by 11 failing test(s); e.g. × an injected exact duplicate after an ordinary kill is rejected: no EXP, kill, gold, drop or random draw twice 14ms
+- C4 [src/engine/simulation.ts] owner 2: a rejected duplicate still advances the loot stream: detected by 6 failing test(s); e.g. × an injected exact duplicate after an ordinary kill is rejected: no EXP, kill, gold, drop or random draw twice 15ms
+- C5 [src/engine/simulation.ts] owner 2: not atomic: the credit is committed before the ledger transaction can fail: detected by 1 failing test(s); e.g. × is atomic: if any part of the credit fails, nothing of it is applied 6ms
+- T1 [src/engine/simulation.ts] owner 4: only the first trigger of a step reaches the policy (the S1 behaviour): detected by 6 failing test(s); e.g. × the gate-completion decision carries "gate-completed" together with "kill" (the reviewer saw only "kill") 82ms
+- T2 [src/engine/simulation.ts] owner 4: the death trigger is never requested: detected by 2 failing test(s); e.g. × a death and a kill at the same moment (both blows land) reach the policy together 6ms
+- T3 [src/engine/simulation.ts] owner 4: no policy-cascade limit: detected by 1 failing test(s); e.g. × a policy that keeps causing new triggers at one moment is stopped as a cascade, not looped forever 8ms
+- R1 [src/policy/realistic.ts] owner 3: a zone that stopped auto-farm is never blocked (blind re-enable): detected by 4 failing test(s); e.g. × the reviewer scenario: the S1 control resumes and dies 124 times; the corrected fixed policy stops after 3 deaths and reports why 43ms
+- R2 [src/policy/realistic.ts] owner 3: corrected policies never rest: detected by 1 failing test(s); e.g. × corrected policies rest below 30% HP between fights; the S1 control never does 80ms
+- R3 [src/policy/realistic.ts] owner 3: the fixed-zone policy re-enables auto-farm instead of stopping and reporting: detected by 1 failing test(s); e.g. × the reviewer scenario: the S1 control resumes and dies 124 times; the corrected fixed policy stops after 3 deaths and reports why 48ms
+- R4 [src/engine/simulation.ts] owner 3: death window lower bound inclusive: detected by 1 failing test(s); e.g. × the death window is (t - window, t]: a death exactly window ms earlier no longer counts 5ms
+- A1 [src/engine/simulation.ts] owner 7: auto-farm off cancels nothing (the S1 behaviour): detected by 2 failing test(s); e.g. × turning auto-farm off cancels the automatic walk to the next target: no extra kill, the target is released, its events go stale 5ms
+- A2 [src/engine/simulation.ts] owner 7 audit: no regeneration after a kill with auto-farm off: detected by 1 failing test(s); e.g. × an idle hero regenerates after a manual kill (S1 did not start regeneration there) 6ms
+- A3 [src/engine/simulation.ts] owner 7 audit: a pending manual engage survives the session end: detected by 1 failing test(s); e.g. × a manual Engage still waiting for an enemy ends with the session: no fight in the next session without a command 7ms
+- E1 [src/engine/estimator.ts] owner 5: zero hit chance is not detected: detected by 1 failing test(s); e.g. × zero hit chance: 0 kills/h, no finite TTK, unreachable (the S1 estimator showed 2,400 kills/h and 0 s) 20ms
+- E2 [src/engine/estimator.ts] owner 5: mass unresolved at the budget is treated as resolved: detected by 3 failing test(s); e.g. × s1.estimator.swing-budget.001 (failure) 23ms
+- E3 [src/engine/estimator.ts] owner 5: a lethal hit at the kill moment loses the kill: detected by 2 failing test(s); e.g. × s1.estimator.simultaneous.001 (boundary) 4ms
+- E4 [src/engine/estimator.ts] owner 5: a hero who always dies first is shown as merely unsafe: detected by 2 failing test(s); e.g. × s1.estimator.dies-first.001 (failure) 4ms
+- D1 [src/experiments/metrics.ts] owner 6: metrics count drop events as quantities (the S1 behaviour): detected by 4 failing test(s); e.g. × three materials per kill: quantities match the ledger; events count successful entries 6ms

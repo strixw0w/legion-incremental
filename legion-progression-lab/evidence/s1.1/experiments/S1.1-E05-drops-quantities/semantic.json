@@ -1,0 +1,712 @@
+{
+  "schema": "legion.s1_1.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S1.1-E05-drops-quantities",
+  "kind": "drops",
+  "manifestSha256": "4dce1d15b8928742865b0f12dcfb9d9b4b3ae90c434c375674d76dfb8234acdf",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variantContent": {
+    "base": {
+      "contentHash": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    },
+    "qty-test": {
+      "contentHash": "bcd261a2ca8b747b9581498531004f4dc5d0c0331eec85e8cf642c8f2051389a",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "seeds": {
+    "root": "S1.1-E05",
+    "replicates": 100,
+    "perCell": true
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "base|Z1|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-1-S1",
+      "level": 100,
+      "zone": 1,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "0b0135298e14db31f4e09df19c62d4a81625e4d18c2f8071ab0ade0bb14ff862",
+      "metrics": {
+        "drops:0:res.mat.slime_gel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 685,
+          "p50": 718,
+          "p90": 754,
+          "mean": 720.71,
+          "min": 667,
+          "max": 784
+        },
+        "drops:1:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 8,
+          "mean": 4.78,
+          "min": 0,
+          "max": 10
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.slime_gel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 685,
+          "p50": 718,
+          "p90": 754,
+          "mean": 720.71,
+          "min": 667,
+          "max": 784
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 8,
+          "mean": 4.78,
+          "min": 0,
+          "max": 10
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "base|Z2|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-2-S1",
+      "level": 100,
+      "zone": 2,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "6ceba665ca9da1a5830faf1ad1e81077193b7de16a020e8044607e914d26e441",
+      "metrics": {
+        "drops:0:res.mat.wolf_fang": {
+          "n": 100,
+          "reached": 100,
+          "p10": 576,
+          "p50": 603,
+          "p90": 630,
+          "mean": 604.03,
+          "min": 553,
+          "max": 661
+        },
+        "drops:1:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 4,
+          "p90": 7,
+          "mean": 4.55,
+          "min": 1,
+          "max": 11
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.wolf_fang": {
+          "n": 100,
+          "reached": 100,
+          "p10": 576,
+          "p50": 603,
+          "p90": 630,
+          "mean": 604.03,
+          "min": 553,
+          "max": 661
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 4,
+          "p90": 7,
+          "mean": 4.55,
+          "min": 1,
+          "max": 11
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "base|Z3|L100",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-3-S1",
+      "level": 100,
+      "zone": 3,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "054d36419b23c273bfdb99af60ef36a9eb841ffecaf853ebe00a9475dba0934e",
+      "metrics": {
+        "drops:0:res.mat.goblin_scrap": {
+          "n": 100,
+          "reached": 100,
+          "p10": 252,
+          "p50": 272,
+          "p90": 287,
+          "mean": 271.98,
+          "min": 229,
+          "max": 308
+        },
+        "drops:1:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 2,
+          "p90": 5,
+          "mean": 2.62,
+          "min": 0,
+          "max": 7
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1356,
+          "p50": 1360,
+          "p90": 1366,
+          "mean": 1360.55,
+          "min": 1351,
+          "max": 1370
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.goblin_scrap": {
+          "n": 100,
+          "reached": 100,
+          "p10": 252,
+          "p50": 272,
+          "p90": 287,
+          "mean": 271.98,
+          "min": 229,
+          "max": 308
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 2,
+          "p90": 5,
+          "mean": 2.62,
+          "min": 0,
+          "max": 7
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "qty-test|Z1|L100",
+      "variant": "qty-test",
+      "profile": null,
+      "policy": "CTL-FIXED-1-S1",
+      "level": 100,
+      "zone": 1,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "3d6ac28169853afef393a18ab1f2fe85c27e397cdc11b38fe2d99ad3d7bdbd1c",
+      "metrics": {
+        "drops:0:res.mat.slime_gel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 687,
+          "p50": 715,
+          "p90": 745,
+          "mean": 716.23,
+          "min": 664,
+          "max": 759
+        },
+        "drops:1:res.mat.slime_gel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1170,
+          "p50": 1198,
+          "p90": 1227,
+          "mean": 1199.06,
+          "min": 1140,
+          "max": 1269
+        },
+        "drops:2:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 7,
+          "mean": 4.95,
+          "min": 1,
+          "max": 12
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.slime_gel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4456,
+          "p50": 4541,
+          "p90": 4646,
+          "mean": 4546.81,
+          "min": 4342,
+          "max": 4752
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 7,
+          "mean": 4.95,
+          "min": 1,
+          "max": 12
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "qty-test|Z2|L100",
+      "variant": "qty-test",
+      "profile": null,
+      "policy": "CTL-FIXED-2-S1",
+      "level": 100,
+      "zone": 2,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "2396e94290a8cc467d19321087252f28907600c161aaa6aad3da98c6e251b90d",
+      "metrics": {
+        "drops:0:res.mat.wolf_fang": {
+          "n": 100,
+          "reached": 100,
+          "p10": 568,
+          "p50": 593,
+          "p90": 627,
+          "mean": 595.68,
+          "min": 532,
+          "max": 678
+        },
+        "drops:1:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 7,
+          "mean": 4.75,
+          "min": 0,
+          "max": 12
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.wolf_fang": {
+          "n": 100,
+          "reached": 100,
+          "p10": 568,
+          "p50": 593,
+          "p90": 627,
+          "mean": 595.68,
+          "min": 532,
+          "max": 678
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 5,
+          "p90": 7,
+          "mean": 4.75,
+          "min": 0,
+          "max": 12
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "qty-test|Z3|L100",
+      "variant": "qty-test",
+      "profile": null,
+      "policy": "CTL-FIXED-3-S1",
+      "level": 100,
+      "zone": 3,
+      "tag": "diagnostic",
+      "runs": 100,
+      "runLogsDigest": "4ef2827ff6fd7f8c5243ae530a67d0f6c5763f0d4003fcbfea5e7eb28a124c08",
+      "metrics": {
+        "drops:0:res.mat.goblin_scrap": {
+          "n": 100,
+          "reached": 100,
+          "p10": 248,
+          "p50": 268,
+          "p90": 291,
+          "mean": 269.48,
+          "min": 231,
+          "max": 322
+        },
+        "drops:1:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 3,
+          "p90": 5,
+          "mean": 2.81,
+          "min": 0,
+          "max": 9
+        },
+        "kills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1355,
+          "p50": 1360,
+          "p90": 1365,
+          "mean": 1360.41,
+          "min": 1353,
+          "max": 1368
+        },
+        "ledgerMismatch": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "qty:res.mat.goblin_scrap": {
+          "n": 100,
+          "reached": 100,
+          "p10": 248,
+          "p50": 268,
+          "p90": 291,
+          "mean": 269.48,
+          "min": 231,
+          "max": 322
+        },
+        "qty:res.rare.test_token": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 3,
+          "p90": 5,
+          "mean": 2.81,
+          "min": 0,
+          "max": 9
+        }
+      }
+    }
+  ],
+  "hypotheses": [],
+  "sections": {
+    "dropCorrectness": [
+      {
+        "cell": "base|Z1|L100",
+        "zone": 1,
+        "entry": 0,
+        "resourceId": "res.mat.slime_gel",
+        "chanceBp": 3000,
+        "kills": 239500,
+        "count": 72071,
+        "expected": 71850,
+        "interval": [
+          71113,
+          72589
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 72071
+      },
+      {
+        "cell": "base|Z1|L100",
+        "zone": 1,
+        "entry": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 239500,
+        "count": 478,
+        "expected": 479,
+        "interval": [
+          409,
+          553
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 478
+      },
+      {
+        "cell": "base|Z2|L100",
+        "zone": 2,
+        "entry": 0,
+        "resourceId": "res.mat.wolf_fang",
+        "chanceBp": 2500,
+        "kills": 239500,
+        "count": 60403,
+        "expected": 59875,
+        "interval": [
+          59179,
+          60573
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 60403
+      },
+      {
+        "cell": "base|Z2|L100",
+        "zone": 2,
+        "entry": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 239500,
+        "count": 455,
+        "expected": 479,
+        "interval": [
+          409,
+          553
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 455
+      },
+      {
+        "cell": "base|Z3|L100",
+        "zone": 3,
+        "entry": 0,
+        "resourceId": "res.mat.goblin_scrap",
+        "chanceBp": 2000,
+        "kills": 136055,
+        "count": 27198,
+        "expected": 27211,
+        "interval": [
+          26726,
+          27697
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 27198
+      },
+      {
+        "cell": "base|Z3|L100",
+        "zone": 3,
+        "entry": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 136055,
+        "count": 262,
+        "expected": 272.11,
+        "interval": [
+          220,
+          328
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 262
+      },
+      {
+        "cell": "qty-test|Z1|L100",
+        "zone": 1,
+        "entry": 0,
+        "resourceId": "res.mat.slime_gel",
+        "chanceBp": 3000,
+        "kills": 239500,
+        "count": 71623,
+        "expected": 71850,
+        "interval": [
+          71113,
+          72589
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 454681
+      },
+      {
+        "cell": "qty-test|Z1|L100",
+        "zone": 1,
+        "entry": 1,
+        "resourceId": "res.mat.slime_gel",
+        "chanceBp": 5000,
+        "kills": 239500,
+        "count": 119906,
+        "expected": 119750,
+        "interval": [
+          118945,
+          120555
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 454681
+      },
+      {
+        "cell": "qty-test|Z1|L100",
+        "zone": 1,
+        "entry": 2,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 239500,
+        "count": 495,
+        "expected": 479,
+        "interval": [
+          409,
+          553
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 495
+      },
+      {
+        "cell": "qty-test|Z2|L100",
+        "zone": 2,
+        "entry": 0,
+        "resourceId": "res.mat.wolf_fang",
+        "chanceBp": 2500,
+        "kills": 239500,
+        "count": 59568,
+        "expected": 59875,
+        "interval": [
+          59179,
+          60573
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 59568
+      },
+      {
+        "cell": "qty-test|Z2|L100",
+        "zone": 2,
+        "entry": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 239500,
+        "count": 475,
+        "expected": 479,
+        "interval": [
+          409,
+          553
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 475
+      },
+      {
+        "cell": "qty-test|Z3|L100",
+        "zone": 3,
+        "entry": 0,
+        "resourceId": "res.mat.goblin_scrap",
+        "chanceBp": 2000,
+        "kills": 136041,
+        "count": 26948,
+        "expected": 27208.2,
+        "interval": [
+          26724,
+          27695
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 26948
+      },
+      {
+        "cell": "qty-test|Z3|L100",
+        "zone": 3,
+        "entry": 1,
+        "resourceId": "res.rare.test_token",
+        "chanceBp": 20,
+        "kills": 136041,
+        "count": 281,
+        "expected": 272.082,
+        "interval": [
+          220,
+          328
+        ],
+        "inside": true,
+        "ledgerMismatches": 0,
+        "awardedQuantityForResource": 281
+      }
+    ]
+  }
+}

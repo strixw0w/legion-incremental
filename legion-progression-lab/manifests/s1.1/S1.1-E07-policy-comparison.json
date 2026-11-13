@@ -1,0 +1,55 @@
+{
+  "experimentId": "S1.1-E07-policy-comparison",
+  "increment": "S1.1",
+  "question": "With corrected triggers, how do the corrected realistic policies, the S1 controls and the trigger-fixed ORC-BRUTE compare? (ORC-BRUTE is a restricted lookahead, not an upper bound.)",
+  "design": "As S1-E08: base, PR-BAL, 200 replicates, S1-E08 seed root; corrected POL-*, S1 controls CTL-*-S1 (each with estimator v1.1 and the S1 control estimator) and ORC-BRUTE (trigger handling fixed; one cell, it reads no estimate). Controls with the S1 estimator must reproduce S1-E08's realistic rows exactly (engineering gate A1).",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FRONTIER",
+    "POL-STAY",
+    "POL-BEST-SHOWN",
+    "CTL-FRONTIER-S1",
+    "CTL-STAY-S1",
+    "CTL-BEST-SHOWN-S1",
+    "ORC-BRUTE"
+  ],
+  "estimators": [
+    "s1.1",
+    "s1"
+  ],
+  "seeds": {
+    "root": "S1-E08",
+    "replicates": 200
+  },
+  "metrics": [
+    "expTotal",
+    "levelAt60",
+    "zone3FirstVisitMin",
+    "deathsPerHour",
+    "killsPerHour",
+    "autoFarmStops",
+    "policyStopReports",
+    "activeManualMin"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "Ratios oracle / realistic are reported as a comparison with a restricted search, never as a gap to the optimum."
+  ]
+}

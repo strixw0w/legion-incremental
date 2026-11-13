@@ -1,0 +1,3 @@
+S0-R01 semantic.json identical across both runs: yes
+S0-R01 semantic.json identical to S0 evidence: yes
+S0-R01 semantic fingerprint: 24dd90646ff38d8a455e9e704148e58db39219716438616fb4ee64f2f9bab9b9

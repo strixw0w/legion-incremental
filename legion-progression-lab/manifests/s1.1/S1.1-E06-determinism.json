@@ -1,0 +1,63 @@
+{
+  "experimentId": "S1.1-E06-determinism",
+  "increment": "S1.1",
+  "question": "Is the corrected engine still deterministic (identical re-runs, different second seeds, no distribution change across seed roots)?",
+  "design": "As S1-E07 with the corrected policies: variants a10-p1.6-g100 and a12-p2.0-g150, PR-BAL, POL-FRONTIER, POL-STAY, POL-BEST-SHOWN, 200 replicates; re-run with the same root and run with a second root; two-sample KS at alpha 0.001.",
+  "kind": "determinism",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a12-p2.0-g150",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150
+      }
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FRONTIER",
+    "POL-STAY",
+    "POL-BEST-SHOWN"
+  ],
+  "seeds": {
+    "root": "S1-E07",
+    "replicates": 200
+  },
+  "determinism": {
+    "secondSeedRoot": "S1-E07-B",
+    "ksMetrics": [
+      "firstKillS",
+      "minToL5",
+      "zone2FirstVisitMin",
+      "expTotal"
+    ],
+    "alpha": 0.001
+  },
+  "metrics": [
+    "firstKillS",
+    "minToL5",
+    "zone2FirstVisitMin",
+    "expTotal"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "Engineering gate A6: identical re-run digests and fingerprints; every second-seed run differs."
+  ]
+}

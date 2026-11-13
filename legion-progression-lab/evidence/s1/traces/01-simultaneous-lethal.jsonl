@@ -1,0 +1,14 @@
+{"description":"Third hero swing and the first slime attack land at 10,400 ms; both die; the kill is credited; the hero respawns at 15,400 with no loss.","eventLogDigest":"f39661d40e572a584a644f077ba6568e377829f61a923698d6a2cbfd8f15689e","labels":"model-output from candidate inputs (S1 diagnostic model)","sessions":[{"endMs":16000,"startMs":0}],"trace":"01-simultaneous-lethal","untilMs":16000}
+{"detail":{"endMs":16000,"index":0},"kind":"SessionStarted","pass":0,"phase":0,"t":0}
+{"detail":{"command":"SetAutoFarm","target":"zone.w1.01"},"kind":"CommandAccepted","pass":0,"phase":6,"t":0}
+{"detail":{"instanceId":"zone.w1.01#1","slot":0,"walkMs":8000,"zoneOrder":1},"kind":"EngageStarted","pass":1,"phase":5,"t":0}
+{"detail":{"encounterId":"enc:1","firstSwingMs":8000,"instanceId":"zone.w1.01#1","kind":"ordinary","zoneOrder":1},"kind":"EncounterStarted","pass":0,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":12,"hit":true,"overkill":0},"kind":"Swing","pass":1,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":6,"hit":true,"overkill":0},"kind":"Swing","pass":0,"phase":1,"t":9200}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":0,"hit":true,"overkill":0},"kind":"Swing","pass":0,"phase":1,"t":10400}
+{"detail":{"damage":60,"encounterId":"enc:1","heroHp":0},"kind":"EnemyHit","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"encounterId":"enc:1","instanceId":"zone.w1.01#1","ttkMs":2400,"zoneOrder":1},"kind":"EnemyKilled","pass":0,"phase":1,"t":10400}
+{"detail":{"recentDeaths":1,"zoneOrder":1},"kind":"HeroDied","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"drops":"res.mat.slime_gel","exp":4,"gold":1,"levelFrom":1,"levelTo":1,"txId":"kill:enc:1:zone.w1.01#1","zoneOrder":1},"kind":"KillCredited","pass":0,"phase":2,"t":10400}
+{"detail":{"zoneOrder":1},"kind":"HeroRespawned","pass":0,"phase":1,"t":15400}
+{"detail":{"instanceId":"zone.w1.01#2","slot":1,"walkMs":8000,"zoneOrder":1},"kind":"EngageStarted","pass":0,"phase":5,"t":15400}

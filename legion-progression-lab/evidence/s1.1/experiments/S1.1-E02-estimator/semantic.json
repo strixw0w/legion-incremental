@@ -1,0 +1,3163 @@
+{
+  "schema": "legion.s1_1.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S1.1-E02-estimator",
+  "kind": "estimator",
+  "manifestSha256": "92d3f613d74292a2c999b362f60e861ac63f44beda04e8ae5edac926499d1a36",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variantContent": {
+    "base": {
+      "contentHash": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "seeds": {
+    "root": "S1-E02",
+    "replicates": 200
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "base|L1-Z1|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-1-S1",
+      "level": 1,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "ff5e6e6e09de59976876c9faddef858bd9506fe292334769a2b4c0efc4f9dda9",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 169,
+          "p50": 169,
+          "p90": 169,
+          "mean": 169.00400000000002,
+          "min": 169,
+          "max": 169.8
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 13,
+          "p50": 13,
+          "p90": 13,
+          "mean": 13.005,
+          "min": 13,
+          "max": 14
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3576,
+          "p50": 3592,
+          "p90": 3608,
+          "mean": 3593.2,
+          "min": 3560,
+          "max": 3624
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 894,
+          "p50": 898,
+          "p90": 902,
+          "mean": 898.3,
+          "min": 890,
+          "max": 906
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 894,
+          "p50": 898,
+          "p90": 902,
+          "mean": 898.3,
+          "min": 890,
+          "max": 906
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.3999999999999915,
+          "min": 2.4,
+          "max": 2.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.06767597719745228,
+          "p50": -0.06767597719745228,
+          "p90": -0.06767597719745228,
+          "mean": -0.06767597719745228,
+          "min": -0.06767597719745228,
+          "max": -0.06767597719745228
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 2.9024999999999994,
+          "p50": 2.9024999999999994,
+          "p90": 2.9024999999999994,
+          "mean": 2.9024999999999994,
+          "min": 2.9024999999999994,
+          "max": 2.9024999999999994
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "base|L1-Z2|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-2-S1",
+      "level": 1,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "f3e8a1aae9c38f44719fe2be9bdead4c17b2c3dd7fff86542f345afa474ec98d",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4.916666666666667,
+          "p50": 4.916666666666667,
+          "p90": 4.916666666666667,
+          "mean": 4.917824999999986,
+          "min": 4.916666666666667,
+          "max": 5
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 59,
+          "p50": 59,
+          "p90": 59,
+          "mean": 59.02,
+          "min": 59,
+          "max": 60
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 793,
+          "p50": 793,
+          "p90": 793,
+          "mean": 793.0825,
+          "min": 793,
+          "max": 799.9
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 61,
+          "p50": 61,
+          "p90": 61,
+          "mean": 61.02,
+          "min": 61,
+          "max": 62
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2610,
+          "p50": 2650,
+          "p90": 2700,
+          "mean": 2653.15,
+          "min": 2540,
+          "max": 2770
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 783,
+          "p50": 795,
+          "p90": 810,
+          "mean": 795.945,
+          "min": 762,
+          "max": 831
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 261,
+          "p50": 265,
+          "p90": 270,
+          "mean": 265.315,
+          "min": 254,
+          "max": 277
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8.4,
+          "p50": 8.4,
+          "p90": 8.4,
+          "mean": 8.400000000000027,
+          "min": 8.4,
+          "max": 8.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.11942971437623501,
+          "p50": 0.11942971437623501,
+          "p90": 0.11942971437623501,
+          "mean": 0.11942971437623501,
+          "min": 0.11942971437623501,
+          "max": 0.11942971437623501
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 7.696107139843748,
+          "p50": 7.696107139843748,
+          "p90": 7.696107139843748,
+          "mean": 7.696107139843748,
+          "min": 7.696107139843748,
+          "max": 7.696107139843748
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "base|L1-Z3|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-3-S1",
+      "level": 1,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "f0bf5c1dbbf92f56a64979eb2f38ef0e0767b8332c2f239f02f25ad31128e141",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 10.166666666666666,
+          "p50": 10.166666666666666,
+          "p90": 10.166666666666666,
+          "mean": 10.166666666666696,
+          "min": 10.166666666666666,
+          "max": 10.166666666666666
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 122,
+          "p50": 122,
+          "p90": 122,
+          "mean": 122,
+          "min": 122,
+          "max": 122
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1608,
+          "p50": 1608,
+          "p90": 1608,
+          "mean": 1608,
+          "min": 1608,
+          "max": 1608
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 124,
+          "p50": 124,
+          "p90": 124,
+          "mean": 124,
+          "min": 124,
+          "max": 124
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 19.74371391137035,
+          "p50": 19.74371391137035,
+          "p90": 19.74371391137035,
+          "mean": 19.74371391137035,
+          "min": 19.74371391137035,
+          "max": 19.74371391137035
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "base|L5-Z1|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-1-S1",
+      "level": 5,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "78be085b835c94fb6aa937be578225051627ef94db28061f7e6f1902cae29359",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5424,
+          "p50": 5440,
+          "p90": 5460,
+          "mean": 5442.22,
+          "min": 5412,
+          "max": 5496
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1356,
+          "p50": 1360,
+          "p90": 1365,
+          "mean": 1360.555,
+          "min": 1353,
+          "max": 1374
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1356,
+          "p50": 1360,
+          "p90": 1365,
+          "mean": 1360.555,
+          "min": 1353,
+          "max": 1374
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1.2,
+          "p50": 1.2,
+          "p90": 1.2,
+          "mean": 1.1999999999999957,
+          "min": 1.2,
+          "max": 1.2
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.22647843243115318,
+          "p50": 0.22647843243115318,
+          "p90": 0.22647843243115318,
+          "mean": 0.22647843243115318,
+          "min": 0.22647843243115318,
+          "max": 0.22647843243115318
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 1.95,
+          "p50": 1.95,
+          "p90": 1.95,
+          "mean": 1.95,
+          "min": 1.95,
+          "max": 1.95
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "base|L5-Z2|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-2-S1",
+      "level": 5,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "b12b0cf0e48fe6f3a1423abf30e73a173a3f7367a0fbfdecc00492ba46e0be11",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.5833333333333335,
+          "p50": 2.62,
+          "p90": 2.6666666666666665,
+          "mean": 2.624733333333332,
+          "min": 2.5833333333333335,
+          "max": 2.6666666666666665
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 31,
+          "p50": 32,
+          "p90": 32,
+          "mean": 31.6,
+          "min": 31,
+          "max": 32
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 429,
+          "p50": 431.2,
+          "p90": 442,
+          "mean": 433.5989999999998,
+          "min": 429,
+          "max": 442
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 33,
+          "p50": 34,
+          "p90": 34,
+          "mean": 33.6,
+          "min": 33,
+          "max": 34
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5080,
+          "p50": 5100,
+          "p90": 5100,
+          "mean": 5096.45,
+          "min": 5060,
+          "max": 5130
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1524,
+          "p50": 1530,
+          "p90": 1530,
+          "mean": 1528.935,
+          "min": 1518,
+          "max": 1539
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 508,
+          "p50": 510,
+          "p90": 510,
+          "mean": 509.645,
+          "min": 506,
+          "max": 513
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4.8,
+          "p50": 4.8,
+          "p90": 4.8,
+          "mean": 4.799999999999983,
+          "min": 4.8,
+          "max": 4.8
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.0034647185022772375,
+          "p50": -0.0034647185022772375,
+          "p90": -0.0034647185022772375,
+          "mean": -0.0034647185022772375,
+          "min": -0.0034647185022772375,
+          "max": -0.0034647185022772375
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 4.8143812499999985,
+          "p50": 4.8143812499999985,
+          "p90": 4.8143812499999985,
+          "mean": 4.8143812499999985,
+          "min": 4.8143812499999985,
+          "max": 4.8143812499999985
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "base|L5-Z3|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-3-S1",
+      "level": 5,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "99e03f42892d76c27f6ab6ca16ba16293a9af8cbdd05dd8f25c8fde765c185c1",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 7.166666666666667,
+          "p50": 7.166666666666667,
+          "p90": 7.166666666666667,
+          "mean": 7.167250000000009,
+          "min": 7.166666666666667,
+          "max": 7.175
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 86,
+          "p50": 86,
+          "p90": 86,
+          "mean": 86.07,
+          "min": 86,
+          "max": 87
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1144,
+          "p50": 1144,
+          "p90": 1144,
+          "mean": 1144.035,
+          "min": 1144,
+          "max": 1144.5
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 88,
+          "p50": 88,
+          "p90": 88,
+          "mean": 88.07,
+          "min": 88,
+          "max": 89
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1980,
+          "p50": 2002,
+          "p90": 2068,
+          "mean": 2012.45,
+          "min": 1958,
+          "max": 2134
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 540,
+          "p50": 546,
+          "p90": 564,
+          "mean": 548.85,
+          "min": 534,
+          "max": 582
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 90,
+          "p50": 91,
+          "p90": 94,
+          "mean": 91.475,
+          "min": 89,
+          "max": 97
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 13.2,
+          "p50": 13.2,
+          "p90": 13.2,
+          "mean": 13.199999999999983,
+          "min": 13.2,
+          "max": 13.2
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.06073849939434329,
+          "p50": -0.06073849939434329,
+          "p90": -0.06073849939434329,
+          "mean": -0.06073849939434329,
+          "min": -0.06073849939434329,
+          "max": -0.06073849939434329
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 11.98470101252731,
+          "p50": 11.98470101252731,
+          "p90": 11.98470101252731,
+          "mean": 11.98470101252731,
+          "min": 11.98470101252731,
+          "max": 11.98470101252731
+        }
+      }
+    },
+    {
+      "index": 6,
+      "id": "base|L10-Z1|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-1-S1",
+      "level": 10,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "cd6d35afc1b516f4bf8784e88e8c238438e7e6da256aa26a8393eec7d3788208",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9580,
+          "p50": 9580,
+          "p90": 9580,
+          "mean": 9580,
+          "min": 9580,
+          "max": 9580
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.20876826722338201,
+          "p50": 0.20876826722338201,
+          "p90": 0.20876826722338201,
+          "mean": 0.20876826722338201,
+          "min": 0.20876826722338201,
+          "max": 0.20876826722338201
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "index": 7,
+      "id": "base|L10-Z2|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-2-S1",
+      "level": 10,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "2a7a69c2d07e5baca0b3de287e91c0af78e2e749738e53bd5c411ecf0693a58e",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 247,
+          "p50": 247,
+          "p90": 247,
+          "mean": 247,
+          "min": 247,
+          "max": 247
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 19,
+          "p50": 19,
+          "p90": 19,
+          "mean": 19,
+          "min": 19,
+          "max": 19
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8490,
+          "p50": 8490,
+          "p90": 8490,
+          "mean": 8490,
+          "min": 8490,
+          "max": 8490
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2547,
+          "p50": 2547,
+          "p90": 2547,
+          "mean": 2547,
+          "min": 2547,
+          "max": 2547
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 849,
+          "p50": 849,
+          "p90": 849,
+          "mean": 849,
+          "min": 849,
+          "max": 849
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.3999999999999915,
+          "min": 2.4,
+          "max": 2.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.09196960162641053,
+          "p50": -0.09196960162641053,
+          "p90": -0.09196960162641053,
+          "mean": -0.09196960162641053,
+          "min": -0.09196960162641053,
+          "max": -0.09196960162641053
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 2.9999999999999996,
+          "p50": 2.9999999999999996,
+          "p90": 2.9999999999999996,
+          "mean": 2.9999999999999996,
+          "min": 2.9999999999999996,
+          "max": 2.9999999999999996
+        }
+      }
+    },
+    {
+      "index": 8,
+      "id": "base|L10-Z3|CTL-FIXED-S1",
+      "variant": "base",
+      "profile": null,
+      "policy": "CTL-FIXED-3-S1",
+      "level": 10,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "CTL-FIXED-S1",
+      "runs": 200,
+      "runLogsDigest": "41429de221869e8b5e3030760f1c24e3c0e4b3dc5ce26faaa95593163adebb4f",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5.5,
+          "p50": 5.5,
+          "p90": 5.5,
+          "mean": 5.5,
+          "min": 5.5,
+          "max": 5.5
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 66,
+          "p50": 66,
+          "p90": 66,
+          "mean": 66,
+          "min": 66,
+          "max": 66
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 884,
+          "p50": 884,
+          "p90": 884,
+          "mean": 883.98,
+          "min": 882.1,
+          "max": 884
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 68,
+          "p50": 68,
+          "p90": 68,
+          "mean": 68,
+          "min": 68,
+          "max": 68
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4488,
+          "p50": 4488,
+          "p90": 4532,
+          "mean": 4500.76,
+          "min": 4488,
+          "max": 4576
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1224,
+          "p50": 1224,
+          "p90": 1236,
+          "mean": 1227.48,
+          "min": 1224,
+          "max": 1248
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 204,
+          "p50": 204,
+          "p90": 206,
+          "mean": 204.58,
+          "min": 204,
+          "max": 208
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9.6,
+          "p50": 9.6,
+          "p90": 9.6,
+          "mean": 9.599999999999966,
+          "min": 9.6,
+          "max": 9.6
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.37264088290628755,
+          "p50": 0.37264088290628755,
+          "p90": 0.37264088290628755,
+          "mean": 0.37264088290628755,
+          "min": 0.37264088290628755,
+          "max": 0.37264088290628755
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 8.942561755976557,
+          "p50": 8.942561755976557,
+          "p90": 8.942561755976557,
+          "mean": 8.942561755976557,
+          "min": 8.942561755976557,
+          "max": 8.942561755976557
+        }
+      }
+    },
+    {
+      "index": 9,
+      "id": "base|L1-Z1|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-1",
+      "level": 1,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "b447c9265d678610b1d4640ad9b08eb06e34c2fc60c67cd856405bc0b322b4a6",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3.1666666666666665,
+          "mean": 3.0449416666666655,
+          "min": 3,
+          "max": 3.1666666666666665
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3584,
+          "p50": 3608,
+          "p90": 3624,
+          "mean": 3604.78,
+          "min": 3572,
+          "max": 3644
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 896,
+          "p50": 902,
+          "p90": 906,
+          "mean": 901.195,
+          "min": 893,
+          "max": 911
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 896,
+          "p50": 902,
+          "p90": 906,
+          "mean": 901.195,
+          "min": 893,
+          "max": 911
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.3999999999999915,
+          "min": 2.4,
+          "max": 2.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.38869870595873357,
+          "p50": -0.38869870595873357,
+          "p90": -0.38869870595873357,
+          "mean": -0.38869870595873357,
+          "min": -0.38869870595873357,
+          "max": -0.38869870595873357
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 2.9024999999999994,
+          "p50": 2.9024999999999994,
+          "p90": 2.9024999999999994,
+          "mean": 2.9024999999999994,
+          "min": 2.9024999999999994,
+          "max": 2.9024999999999994
+        }
+      }
+    },
+    {
+      "index": 10,
+      "id": "base|L1-Z2|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-2",
+      "level": 1,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "6ed4748db05a74d0c8eafafd25e7ca1530ad75fa2d3f65a68c919f7e304da111",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 12.333333333333334,
+          "p50": 12.333333333333334,
+          "p90": 12.431666666666667,
+          "mean": 12.35448333333333,
+          "min": 12.333333333333334,
+          "max": 12.5
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2970,
+          "p50": 2990,
+          "p90": 3000,
+          "mean": 2987.1,
+          "min": 2960,
+          "max": 3010
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 891,
+          "p50": 897,
+          "p90": 900,
+          "mean": 896.13,
+          "min": 888,
+          "max": 903
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 297,
+          "p50": 299,
+          "p90": 300,
+          "mean": 298.71,
+          "min": 296,
+          "max": 301
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8.4,
+          "p50": 8.4,
+          "p90": 8.4,
+          "mean": 8.400000000000027,
+          "min": 8.4,
+          "max": 8.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -11.073661763349964,
+          "p50": -11.073661763349964,
+          "p90": -11.073661763349964,
+          "mean": -11.073661763349964,
+          "min": -11.073661763349964,
+          "max": -11.073661763349964
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 7.696107139843748,
+          "p50": 7.696107139843748,
+          "p90": 7.696107139843748,
+          "mean": 7.696107139843748,
+          "min": 7.696107139843748,
+          "max": 7.696107139843748
+        }
+      }
+    },
+    {
+      "index": 11,
+      "id": "base|L1-Z3|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-3",
+      "level": 1,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "a4ab7027a313ebed38256425005aab5a4035820c3f4a5d56f0a9eaeb817dfdf1",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 58.63333333333333,
+          "p50": 58.63333333333333,
+          "p90": 58.63333333333333,
+          "mean": 58.63333333333325,
+          "min": 58.63333333333333,
+          "max": 58.63333333333333
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3544,
+          "p50": 3544,
+          "p90": 3544,
+          "mean": 3544,
+          "min": 3544,
+          "max": 3544
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 19.74371391137035,
+          "p50": 19.74371391137035,
+          "p90": 19.74371391137035,
+          "mean": 19.74371391137035,
+          "min": 19.74371391137035,
+          "max": 19.74371391137035
+        }
+      }
+    },
+    {
+      "index": 12,
+      "id": "base|L5-Z1|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-1",
+      "level": 5,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "78be085b835c94fb6aa937be578225051627ef94db28061f7e6f1902cae29359",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5424,
+          "p50": 5440,
+          "p90": 5460,
+          "mean": 5442.22,
+          "min": 5412,
+          "max": 5496
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1356,
+          "p50": 1360,
+          "p90": 1365,
+          "mean": 1360.555,
+          "min": 1353,
+          "max": 1374
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1356,
+          "p50": 1360,
+          "p90": 1365,
+          "mean": 1360.555,
+          "min": 1353,
+          "max": 1374
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1.2,
+          "p50": 1.2,
+          "p90": 1.2,
+          "mean": 1.1999999999999957,
+          "min": 1.2,
+          "max": 1.2
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.22647843243115318,
+          "p50": 0.22647843243115318,
+          "p90": 0.22647843243115318,
+          "mean": 0.22647843243115318,
+          "min": 0.22647843243115318,
+          "max": 0.22647843243115318
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 1.95,
+          "p50": 1.95,
+          "p90": 1.95,
+          "mean": 1.95,
+          "min": 1.95,
+          "max": 1.95
+        }
+      }
+    },
+    {
+      "index": 13,
+      "id": "base|L5-Z2|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-2",
+      "level": 5,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "b5a02b59539a2e46be43ac5ae3b55060af0b2a95ba2b857618747c7b64e4b68f",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 7.666666666666667,
+          "p50": 7.666666666666667,
+          "p90": 7.746666666666667,
+          "mean": 7.6857083333333485,
+          "min": 7.666666666666667,
+          "max": 7.833333333333333
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5130,
+          "p50": 5150,
+          "p90": 5170,
+          "mean": 5150.55,
+          "min": 5090,
+          "max": 5190
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1539,
+          "p50": 1545,
+          "p90": 1551,
+          "mean": 1545.165,
+          "min": 1527,
+          "max": 1557
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 513,
+          "p50": 515,
+          "p90": 517,
+          "mean": 515.055,
+          "min": 509,
+          "max": 519
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4.8,
+          "p50": 4.8,
+          "p90": 4.8,
+          "mean": 4.799999999999983,
+          "min": 4.8,
+          "max": 4.8
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -1.0538015871335875,
+          "p50": -1.0538015871335875,
+          "p90": -1.0538015871335875,
+          "mean": -1.0538015871335875,
+          "min": -1.0538015871335875,
+          "max": -1.0538015871335875
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 4.8143812499999985,
+          "p50": 4.8143812499999985,
+          "p90": 4.8143812499999985,
+          "mean": 4.8143812499999985,
+          "min": 4.8143812499999985,
+          "max": 4.8143812499999985
+        }
+      }
+    },
+    {
+      "index": 14,
+      "id": "base|L5-Z3|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-3",
+      "level": 5,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "aafa524d432370f0b138ffdb94efdf3ff9dde5ac0ced7bc62cbe8477a2cc57d9",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 58.05833333333333,
+          "p50": 58.05833333333333,
+          "p90": 58.05833333333333,
+          "mean": 58.01603333333312,
+          "min": 57.11833333333333,
+          "max": 58.05833333333333
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3509.5,
+          "p50": 3509.5,
+          "p90": 3509.5,
+          "mean": 3505.8819999999996,
+          "min": 3429.1,
+          "max": 3509.5
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 66,
+          "p50": 66,
+          "p90": 66,
+          "mean": 69.96,
+          "min": 66,
+          "max": 154
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 18,
+          "p50": 18,
+          "p90": 18,
+          "mean": 19.08,
+          "min": 18,
+          "max": 42
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3.18,
+          "min": 3,
+          "max": 7
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 13.2,
+          "p50": 13.2,
+          "p90": 13.2,
+          "mean": 13.199999999999983,
+          "min": 13.2,
+          "max": 13.2
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 2774.825140178585,
+          "p50": 2774.825140178585,
+          "p90": 2774.825140178585,
+          "mean": 2774.825140178585,
+          "min": 2774.825140178585,
+          "max": 2774.825140178585
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 11.98470101252731,
+          "p50": 11.98470101252731,
+          "p90": 11.98470101252731,
+          "mean": 11.98470101252731,
+          "min": 11.98470101252731,
+          "max": 11.98470101252731
+        }
+      }
+    },
+    {
+      "index": 15,
+      "id": "base|L10-Z1|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-1",
+      "level": 10,
+      "zone": 1,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "cd6d35afc1b516f4bf8784e88e8c238438e7e6da256aa26a8393eec7d3788208",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9580,
+          "p50": 9580,
+          "p90": 9580,
+          "mean": 9580,
+          "min": 9580,
+          "max": 9580
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2395,
+          "p50": 2395,
+          "p90": 2395,
+          "mean": 2395,
+          "min": 2395,
+          "max": 2395
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": 0.20876826722338201,
+          "p50": 0.20876826722338201,
+          "p90": 0.20876826722338201,
+          "mean": 0.20876826722338201,
+          "min": 0.20876826722338201,
+          "max": 0.20876826722338201
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "index": 16,
+      "id": "base|L10-Z2|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-2",
+      "level": 10,
+      "zone": 2,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "7557bdd7037f5c2527d9a697a26210d85784df0d22a9ebb1c400f3f744f75c19",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4.5,
+          "p50": 4.5,
+          "p90": 4.5,
+          "mean": 4.5,
+          "min": 4.5,
+          "max": 4.5
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8520,
+          "p50": 8520,
+          "p90": 8520,
+          "mean": 8520,
+          "min": 8520,
+          "max": 8520
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2556,
+          "p50": 2556,
+          "p90": 2556,
+          "mean": 2556,
+          "min": 2556,
+          "max": 2556
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 852,
+          "p50": 852,
+          "p90": 852,
+          "mean": 852,
+          "min": 852,
+          "max": 852
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.3999999999999915,
+          "min": 2.4,
+          "max": 2.4
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -0.44375844105730344,
+          "p50": -0.44375844105730344,
+          "p90": -0.44375844105730344,
+          "mean": -0.44375844105730344,
+          "min": -0.44375844105730344,
+          "max": -0.44375844105730344
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 2.9999999999999996,
+          "p50": 2.9999999999999996,
+          "p90": 2.9999999999999996,
+          "mean": 2.9999999999999996,
+          "min": 2.9999999999999996,
+          "max": 2.9999999999999996
+        }
+      }
+    },
+    {
+      "index": 17,
+      "id": "base|L10-Z3|POL-FIXED",
+      "variant": "base",
+      "profile": null,
+      "policy": "POL-FIXED-3",
+      "level": 10,
+      "zone": 3,
+      "tag": "diagnostic",
+      "fixed": "POL-FIXED",
+      "runs": 200,
+      "runLogsDigest": "72f1c7a8a6bf13b06ddfd73679623b432218bf9e29d56966fa7fa3c25d3df15e",
+      "metrics": {
+        "activeManualMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 14.65,
+          "p50": 14.7,
+          "p90": 14.733333333333333,
+          "mean": 14.692275000000006,
+          "min": 14.616666666666667,
+          "max": 14.783333333333333
+        },
+        "autoFarmStops": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathDowntimeS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "expPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5390,
+          "p50": 5412,
+          "p90": 5412,
+          "mean": 5401.66,
+          "min": 5368,
+          "max": 5434
+        },
+        "goldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1470,
+          "p50": 1476,
+          "p90": 1476,
+          "mean": 1473.18,
+          "min": 1464,
+          "max": 1482
+        },
+        "killsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 245,
+          "p50": 246,
+          "p90": 246,
+          "mean": 245.53,
+          "min": 244,
+          "max": 247
+        },
+        "medianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9.6,
+          "p50": 9.6,
+          "p90": 9.6,
+          "mean": 9.599999999999966,
+          "min": 9.6,
+          "max": 9.6
+        },
+        "policyStopReports": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHourEstimateErrorPct": {
+          "n": 1,
+          "reached": 1,
+          "p10": -16.36771526157712,
+          "p50": -16.36771526157712,
+          "p90": -16.36771526157712,
+          "mean": -16.36771526157712,
+          "min": -16.36771526157712,
+          "max": -16.36771526157712
+        },
+        "estimateExpectedSwings": {
+          "n": 1,
+          "reached": 1,
+          "p10": 8.942561755976557,
+          "p50": 8.942561755976557,
+          "p90": 8.942561755976557,
+          "mean": 8.942561755976557,
+          "min": 8.942561755976557,
+          "max": 8.942561755976557
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-09",
+      "statement": "The estimator is accurate for steady farming: mean kills/h within +-5% of simulated, or the deviation is explained by a named factor",
+      "source": "R07.16",
+      "metric": "killsPerHourEstimateErrorPct",
+      "stat": "mean",
+      "op": "in",
+      "range": [
+        -5,
+        5
+      ],
+      "unit": "%",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "base|L1-Z1|CTL-FIXED-S1",
+          "base|L1-Z2|CTL-FIXED-S1",
+          "base|L1-Z3|CTL-FIXED-S1",
+          "base|L5-Z1|CTL-FIXED-S1",
+          "base|L5-Z2|CTL-FIXED-S1",
+          "base|L5-Z3|CTL-FIXED-S1",
+          "base|L10-Z1|CTL-FIXED-S1",
+          "base|L10-Z2|CTL-FIXED-S1",
+          "base|L10-Z3|CTL-FIXED-S1"
+        ]
+      },
+      "results": [
+        {
+          "cell": "base|L1-Z1|CTL-FIXED-S1",
+          "observed": -0.06767597719745228,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L1-Z2|CTL-FIXED-S1",
+          "observed": 0.11942971437623501,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L1-Z3|CTL-FIXED-S1",
+          "observed": null,
+          "outcome": "not-reached"
+        },
+        {
+          "cell": "base|L5-Z1|CTL-FIXED-S1",
+          "observed": 0.22647843243115318,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L5-Z2|CTL-FIXED-S1",
+          "observed": -0.0034647185022772375,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L5-Z3|CTL-FIXED-S1",
+          "observed": -0.06073849939434329,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L10-Z1|CTL-FIXED-S1",
+          "observed": 0.20876826722338201,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L10-Z2|CTL-FIXED-S1",
+          "observed": -0.09196960162641053,
+          "outcome": "pass"
+        },
+        {
+          "cell": "base|L10-Z3|CTL-FIXED-S1",
+          "observed": 0.37264088290628755,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S1-08a",
+      "statement": "Overgeared earlier enemies become trivial: at hero damage >= zone 1 HP, TTK = 0 s (first swing)",
+      "source": "Bible section 4",
+      "metric": "medianTtkS",
+      "stat": "p50",
+      "op": "==",
+      "value": 0,
+      "unit": "s",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "base|L10-Z1|CTL-FIXED-S1"
+        ]
+      },
+      "results": [
+        {
+          "cell": "base|L10-Z1|CTL-FIXED-S1",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S1-08b",
+      "statement": "Overgeared earlier enemies become trivial: hits-to-kill = 1",
+      "source": "Bible section 4",
+      "metric": "estimateExpectedSwings",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "swings",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "base|L10-Z1|CTL-FIXED-S1"
+        ]
+      },
+      "results": [
+        {
+          "cell": "base|L10-Z1|CTL-FIXED-S1",
+          "observed": 1,
+          "outcome": "pass"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "estimatorComparison": [
+      {
+        "cell": "base|L1-Z1|CTL-FIXED-S1",
+        "level": 1,
+        "zone": 1,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 897.6920666968352,
+          "expPerHour": 3590.768266787341,
+          "goldPerHour": 897.6920666968352,
+          "deathsPerHour": 13.708990908141583,
+          "ttkS": 2.2829999999999995,
+          "expectedSwings": 2.9024999999999994,
+          "killsPerLife": 65.48199445983352,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 0.9999999999999999
+        },
+        "simulatedMeanKillsPerHour": 898.3,
+        "simulatedMeanExpPerHour": 3593.2,
+        "simulatedMedianTtkS": 2.4,
+        "killsPerHourErrorPct": -0.06767597719745228,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 906.0822517243,
+          "expPerHour": 3624.3290068972,
+          "goldPerHour": 906.0822517243,
+          "deathsPerHour": 13.628987203019678,
+          "ttkS": 2.2829999999999995,
+          "expectedSwings": 2.9024999999999994,
+          "killsPerLife": 66.4819944598338,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.8663310391072101
+      },
+      {
+        "cell": "base|L1-Z2|CTL-FIXED-S1",
+        "level": 1,
+        "zone": 2,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 265.6318649466973,
+          "expPerHour": 2656.318649466973,
+          "goldPerHour": 796.8955948400919,
+          "deathsPerHour": 61.661987452020036,
+          "ttkS": 8.035328567812497,
+          "expectedSwings": 7.696107139843748,
+          "killsPerLife": 4.307870633482075,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999998
+        },
+        "simulatedMeanKillsPerHour": 265.315,
+        "simulatedMeanExpPerHour": 2653.15,
+        "simulatedMedianTtkS": 8.4,
+        "killsPerHourErrorPct": 0.11942971437623501,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 284.8747849594268,
+          "expPerHour": 2848.747849594268,
+          "goldPerHour": 854.6243548782804,
+          "deathsPerHour": 56.9431912277781,
+          "ttkS": 8.035328567812497,
+          "expectedSwings": 7.696107139843748,
+          "killsPerLife": 5.002789250428571,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 7.37228764277436
+      },
+      {
+        "cell": "base|L1-Z3|CTL-FIXED-S1",
+        "level": 1,
+        "zone": 3,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 2.5092773437499983e-12,
+          "expPerHour": 5.5204101562499964e-11,
+          "goldPerHour": 1.505566406249999e-11,
+          "deathsPerHour": 124.13793103448262,
+          "ttkS": 22.49245669364442,
+          "expectedSwings": 19.74371391137035,
+          "killsPerLife": 2.021362304687501e-14,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 2.021362304687501e-14
+        },
+        "simulatedMeanKillsPerHour": 0,
+        "simulatedMeanExpPerHour": 0,
+        "simulatedMedianTtkS": null,
+        "killsPerHourErrorPct": null,
+        "withinFivePct": null,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 65.15307093221234,
+          "expPerHour": 1433.3675605086717,
+          "goldPerHour": 390.91842559327404,
+          "deathsPerHour": 89.54529674742797,
+          "ttkS": 22.49245669364442,
+          "expectedSwings": 19.74371391137035,
+          "killsPerLife": 0.727599028634452,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": null
+      },
+      {
+        "cell": "base|L5-Z1|CTL-FIXED-S1",
+        "level": 5,
+        "zone": 1,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 1363.6363636363637,
+          "expPerHour": 5454.545454545455,
+          "goldPerHour": 1363.6363636363637,
+          "deathsPerHour": 0,
+          "ttkS": 1.14,
+          "expectedSwings": 1.95,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 1
+        },
+        "simulatedMeanKillsPerHour": 1360.555,
+        "simulatedMeanExpPerHour": 5442.22,
+        "simulatedMedianTtkS": 1.2,
+        "killsPerHourErrorPct": 0.22647843243115318,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 1363.6363636363637,
+          "expPerHour": 5454.545454545455,
+          "goldPerHour": 1363.6363636363637,
+          "deathsPerHour": 0,
+          "ttkS": 1.14,
+          "expectedSwings": 1.95,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.22647843243115318
+      },
+      {
+        "cell": "base|L5-Z2|CTL-FIXED-S1",
+        "level": 5,
+        "zone": 2,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 509.62734223538905,
+          "expPerHour": 5096.27342235389,
+          "goldPerHour": 1528.8820267061672,
+          "deathsPerHour": 33.9743660600228,
+          "ttkS": 4.577257499999999,
+          "expectedSwings": 4.8143812499999985,
+          "killsPerLife": 15.000348831675801,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999998
+        },
+        "simulatedMeanKillsPerHour": 509.645,
+        "simulatedMeanExpPerHour": 5096.45,
+        "simulatedMedianTtkS": 4.8,
+        "killsPerHourErrorPct": -0.0034647185022772375,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 516.0210419571476,
+          "expPerHour": 5160.210419571476,
+          "goldPerHour": 1548.063125871443,
+          "deathsPerHour": 33.65144286795817,
+          "ttkS": 4.577257499999999,
+          "expectedSwings": 4.8143812499999985,
+          "killsPerLife": 15.334291726566246,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 1.251075151752232
+      },
+      {
+        "cell": "base|L5-Z3|CTL-FIXED-S1",
+        "level": 5,
+        "zone": 3,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 91.41943945767902,
+          "expPerHour": 2011.2276680689383,
+          "goldPerHour": 548.5166367460741,
+          "deathsPerHour": 88.73619186568969,
+          "ttkS": 13.181641215032776,
+          "expectedSwings": 11.98470101252731,
+          "killsPerLife": 1.0302384803266142,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999993
+        },
+        "simulatedMeanKillsPerHour": 91.475,
+        "simulatedMeanExpPerHour": 2012.45,
+        "simulatedMedianTtkS": 13.2,
+        "killsPerHourErrorPct": -0.06073849939434329,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 149.36346314400498,
+          "expPerHour": 3285.9961891681096,
+          "goldPerHour": 896.1807788640299,
+          "deathsPerHour": 77.7797344859152,
+          "ttkS": 13.181641215032776,
+          "expectedSwings": 11.98470101252731,
+          "killsPerLife": 1.9203390720117794,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 63.28337047718501
+      },
+      {
+        "cell": "base|L10-Z1|CTL-FIXED-S1",
+        "level": 10,
+        "zone": 1,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 2400,
+          "expPerHour": 9600,
+          "goldPerHour": 2400,
+          "deathsPerHour": 0,
+          "ttkS": 0,
+          "expectedSwings": 1,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 1
+        },
+        "simulatedMeanKillsPerHour": 2395,
+        "simulatedMeanExpPerHour": 9580,
+        "simulatedMedianTtkS": 0,
+        "killsPerHourErrorPct": 0.20876826722338201,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 2400,
+          "expPerHour": 9600,
+          "goldPerHour": 2400,
+          "deathsPerHour": 0,
+          "ttkS": 0,
+          "expectedSwings": 1,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.20876826722338201
+      },
+      {
+        "cell": "base|L10-Z2|CTL-FIXED-S1",
+        "level": 10,
+        "zone": 2,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 848.2191780821918,
+          "expPerHour": 8482.191780821919,
+          "goldPerHour": 2544.6575342465753,
+          "deathsPerHour": 19.726027397260342,
+          "ttkS": 2.3999999999999995,
+          "expectedSwings": 2.9999999999999996,
+          "killsPerLife": 42.99999999999985,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 0.9999999999999999
+        },
+        "simulatedMeanKillsPerHour": 849,
+        "simulatedMeanExpPerHour": 8490,
+        "simulatedMedianTtkS": 2.4,
+        "killsPerHourErrorPct": -0.09196960162641053,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 859.4682582745525,
+          "expPerHour": 8594.682582745525,
+          "goldPerHour": 2578.404774823657,
+          "deathsPerHour": 19.533369506239826,
+          "ttkS": 2.3999999999999995,
+          "expectedSwings": 2.9999999999999996,
+          "killsPerLife": 44.00000000000001,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 1.2330103974737872
+      },
+      {
+        "cell": "base|L10-Z3|CTL-FIXED-S1",
+        "level": 10,
+        "zone": 3,
+        "fixed": "CTL-FIXED-S1",
+        "estimate": {
+          "killsPerHour": 205.3423487182497,
+          "expPerHour": 4517.531671801493,
+          "goldPerHour": 1232.0540923094982,
+          "deathsPerHour": 68.22002031232715,
+          "ttkS": 9.531074107171872,
+          "expectedSwings": 8.942561755976557,
+          "killsPerLife": 3.0100012837601713,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999996
+        },
+        "simulatedMeanKillsPerHour": 204.58,
+        "simulatedMeanExpPerHour": 4500.76,
+        "simulatedMedianTtkS": 9.6,
+        "killsPerHourErrorPct": 0.37264088290628755,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 233.3924553406099,
+          "expPerHour": 5134.634017493418,
+          "goldPerHour": 1400.3547320436594,
+          "deathsPerHour": 63.04313996548071,
+          "ttkS": 9.531074107171872,
+          "expectedSwings": 8.942561755976557,
+          "killsPerLife": 3.702107088390648,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 14.083710695380724
+      },
+      {
+        "cell": "base|L1-Z1|POL-FIXED",
+        "level": 1,
+        "zone": 1,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 897.6920666968352,
+          "expPerHour": 3590.768266787341,
+          "goldPerHour": 897.6920666968352,
+          "deathsPerHour": 13.708990908141583,
+          "ttkS": 2.2829999999999995,
+          "expectedSwings": 2.9024999999999994,
+          "killsPerLife": 65.48199445983352,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 0.9999999999999999
+        },
+        "simulatedMeanKillsPerHour": 901.195,
+        "simulatedMeanExpPerHour": 3604.78,
+        "simulatedMedianTtkS": 2.4,
+        "killsPerHourErrorPct": -0.38869870595873357,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 906.0822517243,
+          "expPerHour": 3624.3290068972,
+          "goldPerHour": 906.0822517243,
+          "deathsPerHour": 13.628987203019678,
+          "ttkS": 2.2829999999999995,
+          "expectedSwings": 2.9024999999999994,
+          "killsPerLife": 66.4819944598338,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.5423079049817155
+      },
+      {
+        "cell": "base|L1-Z2|POL-FIXED",
+        "level": 1,
+        "zone": 2,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 265.6318649466973,
+          "expPerHour": 2656.318649466973,
+          "goldPerHour": 796.8955948400919,
+          "deathsPerHour": 61.661987452020036,
+          "ttkS": 8.035328567812497,
+          "expectedSwings": 7.696107139843748,
+          "killsPerLife": 4.307870633482075,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999998
+        },
+        "simulatedMeanKillsPerHour": 298.71,
+        "simulatedMeanExpPerHour": 2987.1,
+        "simulatedMedianTtkS": 8.4,
+        "killsPerHourErrorPct": -11.073661763349964,
+        "withinFivePct": false,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 284.8747849594268,
+          "expPerHour": 2848.747849594268,
+          "goldPerHour": 854.6243548782804,
+          "deathsPerHour": 56.9431912277781,
+          "ttkS": 8.035328567812497,
+          "expectedSwings": 7.696107139843748,
+          "killsPerLife": 5.002789250428571,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": -4.631654461040203
+      },
+      {
+        "cell": "base|L1-Z3|POL-FIXED",
+        "level": 1,
+        "zone": 3,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 2.5092773437499983e-12,
+          "expPerHour": 5.5204101562499964e-11,
+          "goldPerHour": 1.505566406249999e-11,
+          "deathsPerHour": 124.13793103448262,
+          "ttkS": 22.49245669364442,
+          "expectedSwings": 19.74371391137035,
+          "killsPerLife": 2.021362304687501e-14,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 2.021362304687501e-14
+        },
+        "simulatedMeanKillsPerHour": 0,
+        "simulatedMeanExpPerHour": 0,
+        "simulatedMedianTtkS": null,
+        "killsPerHourErrorPct": null,
+        "withinFivePct": null,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 65.15307093221234,
+          "expPerHour": 1433.3675605086717,
+          "goldPerHour": 390.91842559327404,
+          "deathsPerHour": 89.54529674742797,
+          "ttkS": 22.49245669364442,
+          "expectedSwings": 19.74371391137035,
+          "killsPerLife": 0.727599028634452,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": null
+      },
+      {
+        "cell": "base|L5-Z1|POL-FIXED",
+        "level": 5,
+        "zone": 1,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 1363.6363636363637,
+          "expPerHour": 5454.545454545455,
+          "goldPerHour": 1363.6363636363637,
+          "deathsPerHour": 0,
+          "ttkS": 1.14,
+          "expectedSwings": 1.95,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 1
+        },
+        "simulatedMeanKillsPerHour": 1360.555,
+        "simulatedMeanExpPerHour": 5442.22,
+        "simulatedMedianTtkS": 1.2,
+        "killsPerHourErrorPct": 0.22647843243115318,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 1363.6363636363637,
+          "expPerHour": 5454.545454545455,
+          "goldPerHour": 1363.6363636363637,
+          "deathsPerHour": 0,
+          "ttkS": 1.14,
+          "expectedSwings": 1.95,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.22647843243115318
+      },
+      {
+        "cell": "base|L5-Z2|POL-FIXED",
+        "level": 5,
+        "zone": 2,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 509.62734223538905,
+          "expPerHour": 5096.27342235389,
+          "goldPerHour": 1528.8820267061672,
+          "deathsPerHour": 33.9743660600228,
+          "ttkS": 4.577257499999999,
+          "expectedSwings": 4.8143812499999985,
+          "killsPerLife": 15.000348831675801,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999998
+        },
+        "simulatedMeanKillsPerHour": 515.055,
+        "simulatedMeanExpPerHour": 5150.55,
+        "simulatedMedianTtkS": 4.8,
+        "killsPerHourErrorPct": -1.0538015871335875,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 516.0210419571476,
+          "expPerHour": 5160.210419571476,
+          "goldPerHour": 1548.063125871443,
+          "deathsPerHour": 33.65144286795817,
+          "ttkS": 4.577257499999999,
+          "expectedSwings": 4.8143812499999985,
+          "killsPerLife": 15.334291726566246,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.18756093177382904
+      },
+      {
+        "cell": "base|L5-Z3|POL-FIXED",
+        "level": 5,
+        "zone": 3,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 91.41943945767902,
+          "expPerHour": 2011.2276680689383,
+          "goldPerHour": 548.5166367460741,
+          "deathsPerHour": 88.73619186568969,
+          "ttkS": 13.181641215032776,
+          "expectedSwings": 11.98470101252731,
+          "killsPerLife": 1.0302384803266142,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999993
+        },
+        "simulatedMeanKillsPerHour": 3.18,
+        "simulatedMeanExpPerHour": 69.96,
+        "simulatedMedianTtkS": 13.2,
+        "killsPerHourErrorPct": 2774.825140178585,
+        "withinFivePct": false,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 149.36346314400498,
+          "expPerHour": 3285.9961891681096,
+          "goldPerHour": 896.1807788640299,
+          "deathsPerHour": 77.7797344859152,
+          "ttkS": 13.181641215032776,
+          "expectedSwings": 11.98470101252731,
+          "killsPerLife": 1.9203390720117794,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 4596.964249811477
+      },
+      {
+        "cell": "base|L10-Z1|POL-FIXED",
+        "level": 10,
+        "zone": 1,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 2400,
+          "expPerHour": 9600,
+          "goldPerHour": 2400,
+          "deathsPerHour": 0,
+          "ttkS": 0,
+          "expectedSwings": 1,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 1
+        },
+        "simulatedMeanKillsPerHour": 2395,
+        "simulatedMeanExpPerHour": 9580,
+        "simulatedMedianTtkS": 0,
+        "killsPerHourErrorPct": 0.20876826722338201,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 2400,
+          "expPerHour": 9600,
+          "goldPerHour": 2400,
+          "deathsPerHour": 0,
+          "ttkS": 0,
+          "expectedSwings": 1,
+          "killsPerLife": null,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.20876826722338201
+      },
+      {
+        "cell": "base|L10-Z2|POL-FIXED",
+        "level": 10,
+        "zone": 2,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 848.2191780821918,
+          "expPerHour": 8482.191780821919,
+          "goldPerHour": 2544.6575342465753,
+          "deathsPerHour": 19.726027397260342,
+          "ttkS": 2.3999999999999995,
+          "expectedSwings": 2.9999999999999996,
+          "killsPerLife": 42.99999999999985,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [],
+          "winChanceFromFullHp": 0.9999999999999999
+        },
+        "simulatedMeanKillsPerHour": 852,
+        "simulatedMeanExpPerHour": 8520,
+        "simulatedMedianTtkS": 2.4,
+        "killsPerHourErrorPct": -0.44375844105730344,
+        "withinFivePct": true,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 859.4682582745525,
+          "expPerHour": 8594.682582745525,
+          "goldPerHour": 2578.404774823657,
+          "deathsPerHour": 19.533369506239826,
+          "ttkS": 2.3999999999999995,
+          "expectedSwings": 2.9999999999999996,
+          "killsPerLife": 44.00000000000001,
+          "limitingFactor": "attack",
+          "reliability": "reliable",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": 0.8765561355108513
+      },
+      {
+        "cell": "base|L10-Z3|POL-FIXED",
+        "level": 10,
+        "zone": 3,
+        "fixed": "POL-FIXED",
+        "estimate": {
+          "killsPerHour": 205.3423487182497,
+          "expPerHour": 4517.531671801493,
+          "goldPerHour": 1232.0540923094982,
+          "deathsPerHour": 68.22002031232715,
+          "ttkS": 9.531074107171872,
+          "expectedSwings": 8.942561755976557,
+          "killsPerLife": 3.0100012837601713,
+          "limitingFactor": "survival",
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "winChanceFromFullHp": 0.9999999999999996
+        },
+        "simulatedMeanKillsPerHour": 245.53,
+        "simulatedMeanExpPerHour": 5401.66,
+        "simulatedMedianTtkS": 9.6,
+        "killsPerHourErrorPct": -16.36771526157712,
+        "withinFivePct": false,
+        "bothZero": false,
+        "estimateS1Control": {
+          "killsPerHour": 233.3924553406099,
+          "expPerHour": 5134.634017493418,
+          "goldPerHour": 1400.3547320436594,
+          "deathsPerHour": 63.04313996548071,
+          "ttkS": 9.531074107171872,
+          "expectedSwings": 8.942561755976557,
+          "killsPerLife": 3.702107088390648,
+          "limitingFactor": "survival",
+          "reliability": "approximate",
+          "reasons": [
+            "S1_ESTIMATOR"
+          ],
+          "winChanceFromFullHp": null
+        },
+        "s1ControlErrorPct": -4.943405962363093
+      }
+    ]
+  }
+}

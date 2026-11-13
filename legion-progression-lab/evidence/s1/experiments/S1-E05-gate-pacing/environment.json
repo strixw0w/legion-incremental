@@ -1,0 +1,14 @@
+{
+  "experimentId": "S1-E05-gate-pacing",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "labCommit": "ad11a508fd715b08705c5ee72f215f92183f0993",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T18:24:00.967Z",
+  "durationMs": 343295,
+  "jobs": 32400
+}

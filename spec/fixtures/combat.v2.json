@@ -1,9 +1,9 @@
 {
   "fixtureSet": "combat",
-  "fixtureVersion": 2,
+  "fixtureVersion": 3,
   "specRef": "spec/formulas/combat.md#v2",
   "status": "candidate",
-  "independence": "Expected values derived by hand from spec/formulas/combat.md v2; re-checked with exact Fractions by spec/oracle/exact_oracle.py. Damage cases use exact integer inputs (rawMilli, critMultBp, mitigation ratio). Coefficients are candidates.",
+  "independence": "Expected values derived by hand from spec/formulas/combat.md v2; re-checked with exact Fractions by spec/oracle/exact_oracle.py. Damage cases use exact integer inputs (rawMilli, critMultBp, mitigation ratio). Coefficients are candidates. Fixture version 3 (S1) adds attackRawMilli cases derived by hand and re-checked by exact_oracle.py (binary64 stat factors replayed with Python floats, then an exact half-up rounding of that double).",
   "cases": [
     {
       "id": "combat.hit.no-requirement.001",
@@ -798,6 +798,215 @@
       },
       "expectedError": "INVALID_NUMBER",
       "derivation": "K >= 1"
+    },
+    {
+      "id": "combat.attack.integer.001",
+      "kind": "normal",
+      "description": "a plain integer attack in thousandths",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 6000,
+        "sources": [],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 6000,
+        "rawMilli": 6000
+      },
+      "derivation": "no active non-neutral category: value = 6000 exactly; roundHalfUp(6000) = 6000"
+    },
+    {
+      "id": "combat.attack.half.001",
+      "kind": "boundary",
+      "description": "an exact half produced by a basis-point bonus",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 1000,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 5
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 1000.5,
+        "rawMilli": 1001
+      },
+      "derivation": "1000 * 10005 / 10000 = 1000.5 exactly in binary64; rounds up to 1001"
+    },
+    {
+      "id": "combat.attack.below-half.001",
+      "kind": "boundary",
+      "description": "just below a half",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 999,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 5
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 999.4995,
+        "rawMilli": 999
+      },
+      "derivation": "999 * 10005 / 10000 = 999.4995 (binary64 nearest); fraction < 0.5 -> 999"
+    },
+    {
+      "id": "combat.attack.binary64-half.001",
+      "kind": "boundary",
+      "description": "the binary64 value is exactly a half although the exact rational is below it",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 999990001923,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 13
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 1001289988925.5,
+        "rawMilli": 1001289988926
+      },
+      "derivation": "exact 999,990,001,923 * 1.0013 = 1,001,289,988,925.4999; the binary64 evaluation (x*10013)/10000 gives 1,001,289,988,925.5 exactly; rawMilli rounds the binary64 value: 1,001,289,988,926"
+    },
+    {
+      "id": "combat.attack.half-milli.001",
+      "kind": "boundary",
+      "description": "0.5 thousandths rounds up to 1",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 1,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": -5000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 0.5,
+        "rawMilli": 1
+      },
+      "derivation": "1 * 5000 / 10000 = 0.5 -> 1"
+    },
+    {
+      "id": "combat.attack.too-low.001",
+      "kind": "failure",
+      "description": "below 0.5 thousandths cannot land a damaging hit",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 1,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": -5001
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "1 * 4999 / 10000 = 0.4999 -> 0 < 1"
+    },
+    {
+      "id": "combat.attack.zero.001",
+      "kind": "failure",
+      "description": "zero attack",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 0,
+        "sources": [],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "value 0 -> rawMilli 0 < 1"
+    },
+    {
+      "id": "combat.attack.range.001",
+      "kind": "failure",
+      "description": "derived attack above 2^53 - 1",
+      "input": {
+        "op": "attackRawMilli",
+        "baseMilli": 9007199254740991,
+        "sources": [
+          {
+            "sourceId": "src.test",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 1
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "(2^53 - 1) * 1.0001 > 2^53 - 1 (stats.md v2 range)"
     },
     {
       "id": "combat.htk.001",

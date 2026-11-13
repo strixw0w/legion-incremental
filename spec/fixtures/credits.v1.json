@@ -1,0 +1,526 @@
+{
+  "fixtureSet": "credits",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s1-combat-loop.md#v1.1",
+  "status": "candidate",
+  "independence": "Kill-credit identity (s1-combat-loop.md v1.1 section 10) re-derived by spec/oracle/s1_oracle.py from the spec text: a pending list and a committed map, the claim classified before any loot draw, rewards rolled with the independent RNG of rng_oracle.py. The lab side uses engine/credit.ts and engine/rewards.ts. Outcome lists are also derived by hand.",
+  "cases": [
+    {
+      "id": "s1.credits.exact-duplicate.001",
+      "kind": "failure",
+      "description": "a second identical KillCredited is a replay: no second reward and no extra draw",
+      "input": {
+        "seedRoot": "fx-credit-a",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "CREDIT_REPLAYED",
+          "credited"
+        ],
+        "exp": 8,
+        "kills": {
+          "1": 2
+        },
+        "totals": {
+          "res.gold": 2
+        },
+        "lootDraws": 4,
+        "committed": 2,
+        "pending": 0
+      },
+      "derivation": "outcomes credited, CREDIT_REPLAYED, credited; 2 kills, 4 loot draws"
+    },
+    {
+      "id": "s1.credits.conflict-before-genuine.001",
+      "kind": "failure",
+      "description": "a conflicting claim (other zone, boss flag) is refused even before the genuine credit, which still succeeds once",
+      "input": {
+        "seedRoot": "fx-credit-b",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          },
+          "2": {
+            "exp": 10,
+            "gold": 3,
+            "drops": [
+              {
+                "resourceId": "res.mat.wolf_pelt",
+                "chanceBp": 2500,
+                "qty": 2
+              }
+            ]
+          }
+        },
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 2,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": true
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 2,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "CREDIT_CONFLICT",
+          "CREDIT_CONFLICT",
+          "credited",
+          "CREDIT_REPLAYED",
+          "CREDIT_CONFLICT"
+        ],
+        "exp": 4,
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1
+        },
+        "lootDraws": 2,
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "CONFLICT, CONFLICT, credited, REPLAYED, CONFLICT; exactly one zone-1 kill"
+    },
+    {
+      "id": "s1.credits.unknown.001",
+      "kind": "failure",
+      "description": "a credit for an encounter that never ended in a kill is unknown and consumes nothing",
+      "input": {
+        "seedRoot": "fx-credit-c",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "events": [
+          {
+            "op": "credit",
+            "encounterId": "enc:9",
+            "instanceId": "z1#9",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "CREDIT_UNKNOWN",
+          "credited"
+        ],
+        "exp": 4,
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1
+        },
+        "lootDraws": 2,
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "UNKNOWN then credited; the credited kill uses the stream's first two draws"
+    },
+    {
+      "id": "s1.credits.exp-only.001",
+      "kind": "boundary",
+      "description": "an EXP-only enemy (no gold, no drops, no ledger lines) is protected all the same",
+      "input": {
+        "seedRoot": "fx-credit-d",
+        "enemies": {
+          "1": {
+            "exp": 5,
+            "gold": 0,
+            "drops": []
+          }
+        },
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "CREDIT_REPLAYED",
+          "CREDIT_REPLAYED"
+        ],
+        "exp": 5,
+        "kills": {
+          "1": 1
+        },
+        "totals": {},
+        "lootDraws": 0,
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "by hand: one credit of 5 EXP; no gold or drops, so no draws and no totals"
+    },
+    {
+      "id": "s1.credits.boss.001",
+      "kind": "failure",
+      "description": "a duplicated boss credit grants the boss reward once and never counts as a zone kill",
+      "input": {
+        "seedRoot": "fx-credit-e",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          },
+          "boss": {
+            "exp": 500,
+            "gold": 100,
+            "drops": [
+              {
+                "resourceId": "res.mat.chief_badge",
+                "chanceBp": 10000,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "chief#1",
+            "zoneOrder": 3,
+            "boss": true
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "chief#1",
+            "zoneOrder": 3,
+            "boss": true
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "chief#1",
+            "zoneOrder": 3,
+            "boss": true
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "chief#1",
+            "zoneOrder": 3,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "CREDIT_REPLAYED",
+          "CREDIT_CONFLICT"
+        ],
+        "exp": 500,
+        "kills": {},
+        "totals": {
+          "res.gold": 100,
+          "res.mat.chief_badge": 1
+        },
+        "lootDraws": 1,
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "by hand: the badge drop is certain; the third claim drops the boss flag, so it conflicts"
+    },
+    {
+      "id": "s1.credits.interleaved.001",
+      "kind": "normal",
+      "description": "two pending kills credited out of order, with duplicates in between; rejections never shift later draws",
+      "input": {
+        "seedRoot": "fx-credit-f",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          },
+          "2": {
+            "exp": 10,
+            "gold": 3,
+            "drops": [
+              {
+                "resourceId": "res.mat.wolf_pelt",
+                "chanceBp": 2500,
+                "qty": 2
+              }
+            ]
+          }
+        },
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:2",
+            "instanceId": "z2#1",
+            "zoneOrder": 2,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:2",
+            "instanceId": "z2#1",
+            "zoneOrder": 2,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:2",
+            "instanceId": "z2#1",
+            "zoneOrder": 2,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:7",
+            "instanceId": "z1#7",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:3",
+            "instanceId": "z2#2",
+            "zoneOrder": 2,
+            "boss": false
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:3",
+            "instanceId": "z2#2",
+            "zoneOrder": 2,
+            "boss": false
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "CREDIT_REPLAYED",
+          "credited",
+          "CREDIT_UNKNOWN",
+          "CREDIT_REPLAYED",
+          "credited"
+        ],
+        "exp": 24,
+        "kills": {
+          "1": 1,
+          "2": 2
+        },
+        "totals": {
+          "res.gold": 7
+        },
+        "lootDraws": 4,
+        "committed": 3,
+        "pending": 0
+      },
+      "derivation": "credited, REPLAYED, credited, UNKNOWN, REPLAYED, credited; draws: 1 + 2 + 1 = 4"
+    }
+  ]
+}

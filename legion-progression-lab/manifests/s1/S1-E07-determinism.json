@@ -1,0 +1,58 @@
+{
+  "experimentId": "S1-E07-determinism",
+  "increment": "S1",
+  "question": "Does the same manifest give the same result fingerprint, and do different seeds give different samples from the same distribution?",
+  "design": "S1-E01 subset (base a10-p1.6-g100 and a12-p2.0-g150; PR-BAL; POL-FRONTIER and POL-STAY; 200 replicates) run twice with root S1-E07 and once with root S1-E07-B; compare event-log digests and semantic fingerprints, and two-sample KS at alpha = 0.001.",
+  "kind": "determinism",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a12-p2.0-g150",
+      "params": {
+        "xpCurve": "a12-p2.0",
+        "zone1.killGate": 150
+      }
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FRONTIER",
+    "POL-STAY"
+  ],
+  "seeds": {
+    "root": "S1-E07",
+    "replicates": 200
+  },
+  "determinism": {
+    "secondSeedRoot": "S1-E07-B",
+    "ksMetrics": [
+      "firstKillS",
+      "minToL5",
+      "zone2FirstVisitMin",
+      "expTotal"
+    ],
+    "alpha": 0.001
+  },
+  "metrics": [
+    "firstKillS",
+    "minToL5",
+    "zone2FirstVisitMin",
+    "expTotal"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "Engineering gate: identical re-run digests and fingerprints; second-root runs differ. KS rejections are reported (expected rate alpha per test)."
+  ]
+}

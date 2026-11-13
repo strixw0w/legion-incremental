@@ -1,0 +1,623 @@
+{
+  "schema": "legion.s1.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S1-E03-earlier-zone-audit",
+  "kind": "audit",
+  "manifestSha256": "4bd7068129aecb392ec5ce24f543b805f98291831e3eac4d337808bc86d26202",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variantContent": {
+    "base": {
+      "contentHash": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "seeds": {
+    "root": "S1-E03",
+    "replicates": 200
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "base|PR-OPT|POL-STAY",
+      "variant": "base",
+      "profile": "PR-OPT",
+      "policy": "POL-STAY",
+      "level": null,
+      "zone": null,
+      "tag": "realistic",
+      "runs": 200,
+      "runLogsDigest": "0a38ccd281c8f731304adbc9e2fea7f5161f69ac8c7c6bae78ab2e9687d9eafa",
+      "metrics": {
+        "visit2.atMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5.0216666666666665,
+          "p50": 5.081666666666667,
+          "p90": 5.121666666666667,
+          "mean": 5.071366666666666,
+          "min": 4.961666666666667,
+          "max": 5.141666666666667
+        },
+        "visit2.level": {
+          "n": 200,
+          "reached": 200,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "visit2.z1.estDeathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit2.z1.estExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5454.545454545455,
+          "p50": 5454.545454545455,
+          "p90": 5454.545454545455,
+          "mean": 5454.545454545436,
+          "min": 5454.545454545455,
+          "max": 5454.545454545455
+        },
+        "visit2.z1.estGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1363.6363636363637,
+          "p50": 1363.6363636363637,
+          "p90": 1363.6363636363637,
+          "mean": 1363.636363636359,
+          "min": 1363.6363636363637,
+          "max": 1363.6363636363637
+        },
+        "visit2.z1.estTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1.14,
+          "p50": 1.14,
+          "p90": 1.14,
+          "mean": 1.1399999999999944,
+          "min": 1.14,
+          "max": 1.14
+        },
+        "visit2.z1.forkDeaths": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit2.z1.forkExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 6384,
+          "p50": 6448,
+          "p90": 6512,
+          "mean": 6449.68,
+          "min": 6336,
+          "max": 6576
+        },
+        "visit2.z1.forkGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1596,
+          "p50": 1612,
+          "p90": 1628,
+          "mean": 1612.42,
+          "min": 1584,
+          "max": 1644
+        },
+        "visit2.z1.forkKills": {
+          "n": 200,
+          "reached": 200,
+          "p10": 399,
+          "p50": 403,
+          "p90": 407,
+          "mean": 403.105,
+          "min": 396,
+          "max": 411
+        },
+        "visit2.z1.forkMaterialsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 432,
+          "p50": 480,
+          "p90": 528,
+          "mean": 480.48,
+          "min": 396,
+          "max": 588
+        },
+        "visit2.z1.forkMedianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1.2,
+          "p50": 1.2,
+          "p90": 1.2,
+          "mean": 1.1999999999999957,
+          "min": 1.2,
+          "max": 1.2
+        },
+        "visit2.z2.estDeathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 31.28188345627604,
+          "p50": 31.28188345627604,
+          "p90": 31.28188345627604,
+          "mean": 31.281883456275935,
+          "min": 31.28188345627604,
+          "max": 31.28188345627604
+        },
+        "visit2.z2.estExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5213.973116032426,
+          "p50": 5213.973116032426,
+          "p90": 5213.973116032426,
+          "mean": 5213.973116032429,
+          "min": 5213.973116032426,
+          "max": 5213.973116032426
+        },
+        "visit2.z2.estGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1564.191934809728,
+          "p50": 1564.191934809728,
+          "p90": 1564.191934809728,
+          "mean": 1564.1919348097288,
+          "min": 1564.191934809728,
+          "max": 1564.191934809728
+        },
+        "visit2.z2.estTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4.577257499999999,
+          "p50": 4.577257499999999,
+          "p90": 4.577257499999999,
+          "mean": 4.577257499999981,
+          "min": 4.577257499999999,
+          "max": 4.577257499999999
+        },
+        "visit2.z2.forkDeaths": {
+          "n": 200,
+          "reached": 200,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "visit2.z2.forkExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 7080,
+          "p50": 7160,
+          "p90": 7240,
+          "mean": 7160,
+          "min": 7040,
+          "max": 7280
+        },
+        "visit2.z2.forkGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2124,
+          "p50": 2148,
+          "p90": 2172,
+          "mean": 2148,
+          "min": 2112,
+          "max": 2184
+        },
+        "visit2.z2.forkKills": {
+          "n": 200,
+          "reached": 200,
+          "p10": 177,
+          "p50": 179,
+          "p90": 181,
+          "mean": 179,
+          "min": 176,
+          "max": 182
+        },
+        "visit2.z2.forkMaterialsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 152,
+          "p50": 180,
+          "p90": 204,
+          "mean": 177.5,
+          "min": 100,
+          "max": 236
+        },
+        "visit2.z2.forkMedianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.4959999999999916,
+          "min": 2.4,
+          "max": 3.6
+        },
+        "visit3.atMin": {
+          "n": 200,
+          "reached": 200,
+          "p10": 16.176666666666666,
+          "p50": 16.291666666666668,
+          "p90": 16.391666666666666,
+          "mean": 16.28988333333334,
+          "min": 15.765,
+          "max": 16.506666666666668
+        },
+        "visit3.level": {
+          "n": 200,
+          "reached": 200,
+          "p10": 10,
+          "p50": 10,
+          "p90": 10,
+          "mean": 10,
+          "min": 10,
+          "max": 10
+        },
+        "visit3.z1.estDeathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit3.z1.estExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9600,
+          "p50": 9600,
+          "p90": 9600,
+          "mean": 9600,
+          "min": 9600,
+          "max": 9600
+        },
+        "visit3.z1.estGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2400,
+          "p50": 2400,
+          "p90": 2400,
+          "mean": 2400,
+          "min": 2400,
+          "max": 2400
+        },
+        "visit3.z1.estTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit3.z1.forkDeaths": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit3.z1.forkExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9088,
+          "p50": 9088,
+          "p90": 9088,
+          "mean": 9088,
+          "min": 9088,
+          "max": 9088
+        },
+        "visit3.z1.forkGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2272,
+          "p50": 2272,
+          "p90": 2272,
+          "mean": 2272,
+          "min": 2272,
+          "max": 2272
+        },
+        "visit3.z1.forkKills": {
+          "n": 200,
+          "reached": 200,
+          "p10": 568,
+          "p50": 568,
+          "p90": 568,
+          "mean": 568,
+          "min": 568,
+          "max": 568
+        },
+        "visit3.z1.forkMaterialsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 624,
+          "p50": 676,
+          "p90": 732,
+          "mean": 678.4,
+          "min": 580,
+          "max": 820
+        },
+        "visit3.z1.forkMedianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "visit3.z2.estDeathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 19.533369506239826,
+          "p50": 19.533369506239826,
+          "p90": 19.533369506239826,
+          "mean": 19.533369506239882,
+          "min": 19.533369506239826,
+          "max": 19.533369506239826
+        },
+        "visit3.z2.estExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8594.682582745525,
+          "p50": 8594.682582745525,
+          "p90": 8594.682582745525,
+          "mean": 8594.682582745547,
+          "min": 8594.682582745525,
+          "max": 8594.682582745525
+        },
+        "visit3.z2.estGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2578.404774823657,
+          "p50": 2578.404774823657,
+          "p90": 2578.404774823657,
+          "mean": 2578.4047748236476,
+          "min": 2578.404774823657,
+          "max": 2578.404774823657
+        },
+        "visit3.z2.estTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.3999999999999995,
+          "p50": 2.3999999999999995,
+          "p90": 2.3999999999999995,
+          "mean": 2.3999999999999915,
+          "min": 2.3999999999999995,
+          "max": 2.3999999999999995
+        },
+        "visit3.z2.forkDeaths": {
+          "n": 200,
+          "reached": 200,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "visit3.z2.forkExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8360,
+          "p50": 8400,
+          "p90": 8400,
+          "mean": 8387.8,
+          "min": 8320,
+          "max": 8480
+        },
+        "visit3.z2.forkGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2508,
+          "p50": 2520,
+          "p90": 2520,
+          "mean": 2516.34,
+          "min": 2496,
+          "max": 2544
+        },
+        "visit3.z2.forkKills": {
+          "n": 200,
+          "reached": 200,
+          "p10": 209,
+          "p50": 210,
+          "p90": 210,
+          "mean": 209.695,
+          "min": 208,
+          "max": 212
+        },
+        "visit3.z2.forkMaterialsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 172,
+          "p50": 204,
+          "p90": 240,
+          "mean": 205.5,
+          "min": 160,
+          "max": 256
+        },
+        "visit3.z2.forkMedianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 2.4,
+          "p50": 2.4,
+          "p90": 2.4,
+          "mean": 2.3999999999999915,
+          "min": 2.4,
+          "max": 2.4
+        },
+        "visit3.z3.estDeathsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 63.04313996548071,
+          "p50": 63.04313996548071,
+          "p90": 63.04313996548071,
+          "mean": 63.0431399654808,
+          "min": 63.04313996548071,
+          "max": 63.04313996548071
+        },
+        "visit3.z3.estExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5134.634017493418,
+          "p50": 5134.634017493418,
+          "p90": 5134.634017493418,
+          "mean": 5134.634017493436,
+          "min": 5134.634017493418,
+          "max": 5134.634017493418
+        },
+        "visit3.z3.estGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1400.3547320436594,
+          "p50": 1400.3547320436594,
+          "p90": 1400.3547320436594,
+          "mean": 1400.3547320436605,
+          "min": 1400.3547320436594,
+          "max": 1400.3547320436594
+        },
+        "visit3.z3.estTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 9.531074107171872,
+          "p50": 9.531074107171872,
+          "p90": 9.531074107171872,
+          "mean": 9.531074107171886,
+          "min": 9.531074107171872,
+          "max": 9.531074107171872
+        },
+        "visit3.z3.forkDeaths": {
+          "n": 200,
+          "reached": 200,
+          "p10": 13,
+          "p50": 13,
+          "p90": 13,
+          "mean": 12.995,
+          "min": 12,
+          "max": 13
+        },
+        "visit3.z3.forkExpPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 5896,
+          "p50": 5984,
+          "p90": 6072,
+          "mean": 5980.04,
+          "min": 5808,
+          "max": 6248
+        },
+        "visit3.z3.forkGoldPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 1608,
+          "p50": 1632,
+          "p90": 1656,
+          "mean": 1630.92,
+          "min": 1584,
+          "max": 1704
+        },
+        "visit3.z3.forkKills": {
+          "n": 200,
+          "reached": 200,
+          "p10": 67,
+          "p50": 68,
+          "p90": 69,
+          "mean": 67.955,
+          "min": 66,
+          "max": 71
+        },
+        "visit3.z3.forkMaterialsPerHour": {
+          "n": 200,
+          "reached": 200,
+          "p10": 36,
+          "p50": 52,
+          "p90": 68,
+          "mean": 53.5,
+          "min": 24,
+          "max": 92
+        },
+        "visit3.z3.forkMedianTtkS": {
+          "n": 200,
+          "reached": 200,
+          "p10": 8.4,
+          "p50": 8.4,
+          "p90": 8.4,
+          "mean": 8.400000000000027,
+          "min": 8.4,
+          "max": 8.4
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-10",
+      "statement": "Prior zones can be better EXP/h for some builds; the newest zone is still worth entering (reported, no pass/fail; the owner decides)",
+      "source": "R08.05",
+      "metric": "visit3.z3.forkExpPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "value": 0,
+      "unit": "EXP/h",
+      "role": "reported",
+      "results": [
+        {
+          "cell": "base|PR-OPT|POL-STAY",
+          "observed": 5984,
+          "outcome": "reported"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "earlierZoneAudit": [
+      {
+        "cell": "base|PR-OPT|POL-STAY",
+        "visitZone": 2,
+        "replicatesReachingVisit": 200,
+        "earlierZoneBeatsNewestByForkShare": 0,
+        "earlierZoneBeatsNewestByEstimateShare": 1,
+        "estimateAndForkAgreeShare": 0,
+        "tag": "HYPOTHESIS"
+      },
+      {
+        "cell": "base|PR-OPT|POL-STAY",
+        "visitZone": 3,
+        "replicatesReachingVisit": 200,
+        "earlierZoneBeatsNewestByForkShare": 1,
+        "earlierZoneBeatsNewestByEstimateShare": 1,
+        "estimateAndForkAgreeShare": 1,
+        "tag": "CONFIRMED IN MODEL"
+      }
+    ]
+  }
+}

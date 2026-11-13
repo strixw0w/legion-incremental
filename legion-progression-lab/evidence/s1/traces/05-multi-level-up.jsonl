@@ -1,0 +1,26 @@
+{"description":"One kill worth 100 EXP: three LevelUp events at 10,400 in PROGRESS, then StatsRecomputed, then the next engagement.","eventLogDigest":"ee1c995771e2d72215fac6800ecd48dc255307d96a3bc7d7d06e887788001eef","labels":"model-output from candidate inputs (S1 diagnostic model)","sessions":[{"endMs":14000,"startMs":0}],"trace":"05-multi-level-up","untilMs":14000}
+{"detail":{"endMs":14000,"index":0},"kind":"SessionStarted","pass":0,"phase":0,"t":0}
+{"detail":{"command":"SetAutoFarm","target":"zone.w1.01"},"kind":"CommandAccepted","pass":0,"phase":6,"t":0}
+{"detail":{"instanceId":"zone.w1.01#1","slot":0,"walkMs":8000,"zoneOrder":1},"kind":"EngageStarted","pass":1,"phase":5,"t":0}
+{"detail":{"encounterId":"enc:1","firstSwingMs":8000,"instanceId":"zone.w1.01#1","kind":"ordinary","zoneOrder":1},"kind":"EncounterStarted","pass":0,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":9,"hit":true,"overkill":0},"kind":"Swing","pass":1,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":3,"hit":true,"overkill":0},"kind":"Swing","pass":0,"phase":1,"t":9200}
+{"detail":{"damage":1,"encounterId":"enc:1","heroHp":59},"kind":"EnemyHit","pass":0,"phase":1,"t":10000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":0,"hit":true,"overkill":3},"kind":"Swing","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"encounterId":"enc:1","instanceId":"zone.w1.01#1","ttkMs":2400,"zoneOrder":1},"kind":"EnemyKilled","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"drops":"res.mat.slime_gel","exp":100,"gold":1,"levelFrom":1,"levelTo":4,"txId":"kill:enc:1:zone.w1.01#1","zoneOrder":1},"kind":"KillCredited","pass":0,"phase":2,"t":10400}
+{"detail":{"level":2},"kind":"LevelUp","pass":0,"phase":3,"t":10400}
+{"detail":{"level":3},"kind":"LevelUp","pass":0,"phase":3,"t":10400}
+{"detail":{"level":4},"kind":"LevelUp","pass":0,"phase":3,"t":10400}
+{"detail":{"attackRawMilli":9000,"defence":3,"level":4,"maxHp":84},"kind":"StatsRecomputed","pass":0,"phase":4,"t":10400}
+{"detail":{"instanceId":"zone.w1.01#2","slot":1,"walkMs":1500,"zoneOrder":1},"kind":"EngageStarted","pass":0,"phase":5,"t":10400}
+{"detail":{"encounterId":"enc:2","firstSwingMs":11900,"instanceId":"zone.w1.01#2","kind":"ordinary","zoneOrder":1},"kind":"EncounterStarted","pass":0,"phase":1,"t":11900}
+{"detail":{"crit":false,"damage":9,"encounterId":"enc:2","enemyHp":6,"hit":true,"overkill":0},"kind":"Swing","pass":1,"phase":1,"t":11900}
+{"detail":{"event":"EnemyAttack"},"kind":"StaleDiscarded","pass":0,"phase":1,"t":12000}
+{"detail":{"crit":false,"damage":9,"encounterId":"enc:2","enemyHp":0,"hit":true,"overkill":3},"kind":"Swing","pass":0,"phase":1,"t":13100}
+{"detail":{"boss":false,"encounterId":"enc:2","instanceId":"zone.w1.01#2","ttkMs":1200,"zoneOrder":1},"kind":"EnemyKilled","pass":0,"phase":1,"t":13100}
+{"detail":{"boss":false,"drops":"","exp":100,"gold":1,"levelFrom":4,"levelTo":5,"txId":"kill:enc:2:zone.w1.01#2","zoneOrder":1},"kind":"KillCredited","pass":0,"phase":2,"t":13100}
+{"detail":{"level":5},"kind":"LevelUp","pass":0,"phase":3,"t":13100}
+{"detail":{"attackRawMilli":10000,"defence":4,"level":5,"maxHp":92},"kind":"StatsRecomputed","pass":0,"phase":4,"t":13100}
+{"detail":{"instanceId":"zone.w1.01#3","slot":2,"walkMs":1500,"zoneOrder":1},"kind":"EngageStarted","pass":0,"phase":5,"t":13100}
+{"detail":{"event":"EnemyAttack"},"kind":"StaleDiscarded","pass":0,"phase":1,"t":13900}

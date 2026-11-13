@@ -1,0 +1,19 @@
+{"description":"After the first kill the next walk has started; the policy travels away; the reserved slime is freed and the arrival is discarded.","eventLogDigest":"4218ccf91c57a434b536fc6c5a50360ded752670ef71053a4791ea4a404069d5","labels":"model-output from candidate inputs (S1 diagnostic model)","sessions":[{"endMs":31000,"startMs":0}],"trace":"06-target-invalidation","untilMs":31000}
+{"detail":{"endMs":31000,"index":0},"kind":"SessionStarted","pass":0,"phase":0,"t":0}
+{"detail":{"command":"SetAutoFarm","target":"zone.w1.01"},"kind":"CommandAccepted","pass":0,"phase":6,"t":0}
+{"detail":{"instanceId":"zone.w1.01#1","slot":0,"walkMs":8000,"zoneOrder":1},"kind":"EngageStarted","pass":1,"phase":5,"t":0}
+{"detail":{"encounterId":"enc:1","firstSwingMs":8000,"instanceId":"zone.w1.01#1","kind":"ordinary","zoneOrder":1},"kind":"EncounterStarted","pass":0,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":9,"hit":true,"overkill":0},"kind":"Swing","pass":1,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":3,"hit":true,"overkill":0},"kind":"Swing","pass":0,"phase":1,"t":9200}
+{"detail":{"damage":1,"encounterId":"enc:1","heroHp":59},"kind":"EnemyHit","pass":0,"phase":1,"t":10000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":0,"hit":true,"overkill":3},"kind":"Swing","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"encounterId":"enc:1","instanceId":"zone.w1.01#1","ttkMs":2400,"zoneOrder":1},"kind":"EnemyKilled","pass":0,"phase":1,"t":10400}
+{"detail":{"boss":false,"drops":"res.mat.slime_gel","exp":4,"gold":1,"levelFrom":1,"levelTo":1,"txId":"kill:enc:1:zone.w1.01#1","zoneOrder":1},"kind":"KillCredited","pass":0,"phase":2,"t":10400}
+{"detail":{"instanceId":"zone.w1.01#2","slot":1,"walkMs":1500,"zoneOrder":1},"kind":"EngageStarted","pass":0,"phase":5,"t":10400}
+{"detail":{"command":"Travel","target":"zone.w1.02"},"kind":"CommandAccepted","pass":0,"phase":6,"t":10400}
+{"detail":{"event":"EngageArrived"},"kind":"StaleDiscarded","pass":0,"phase":1,"t":11900}
+{"detail":{"event":"EnemyAttack"},"kind":"StaleDiscarded","pass":0,"phase":1,"t":12000}
+{"detail":{"mode":"Travel","zoneOrder":2},"kind":"Arrived","pass":0,"phase":1,"t":30400}
+{"detail":{"zoneId":"zone.w1.02","zoneOrder":2},"kind":"ZoneVisited","pass":0,"phase":1,"t":30400}
+{"detail":{"zoneOrder":2},"kind":"CheckpointDiscovered","pass":0,"phase":1,"t":30400}
+{"detail":{"hp":60},"kind":"Regen","pass":1,"phase":1,"t":30400}

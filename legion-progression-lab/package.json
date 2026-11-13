@@ -16,7 +16,11 @@
     "schemas:export": "node src/cli/export-schemas.ts",
     "schemas:check": "node src/cli/export-schemas.ts --check",
     "xp:build": "node src/cli/build-xp-table.ts",
-    "curve:preview": "node src/cli/curve-preview.ts"
+    "curve:preview": "node src/cli/curve-preview.ts",
+    "xp:sweep": "node src/cli/build-xp-sweep.ts",
+    "exp": "node src/cli/exp.ts",
+    "exp:verify": "node src/cli/exp.ts --verify",
+    "bench:ledger": "node --expose-gc src/cli/bench-ledger.ts"
   },
   "dependencies": {
     "zod": "4.6.7"

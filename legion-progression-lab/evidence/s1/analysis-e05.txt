@@ -1,0 +1,8 @@
+H-S1-06 overall: pass 143, miss 1, not reached 18 of 162
+E01 winner: a10-p1.6-g100
+  a10-p1.6-g100-z80|PR-OPT|POL-STAY: ratio p50 1.5652892561983471 -> pass
+  a10-p1.6-g100-z80|PR-OPT|POL-FRONTIER: ratio p50 6.514981890023049 -> pass
+  a10-p1.6-g100-z120|PR-OPT|POL-STAY: ratio p50 2.2121705174096973 -> pass
+  a10-p1.6-g100-z120|PR-OPT|POL-FRONTIER: ratio p50 6.514981890023049 -> pass
+  a10-p1.6-g100-z180|PR-OPT|POL-STAY: ratio p50 3.0287487749101603 -> pass
+  a10-p1.6-g100-z180|PR-OPT|POL-FRONTIER: ratio p50 6.514981890023049 -> pass

@@ -1,0 +1,44 @@
+{
+  "experimentId": "S1-E08-policy-bound",
+  "increment": "S1",
+  "question": "How far are realistic policies from the oracle in 60 minutes?",
+  "design": "PR-BAL; POL-FRONTIER, POL-STAY and POL-BEST-SHOWN against ORC-BRUTE (forks every zone choice at session start, each gate completion and every 5 minutes, with exact future random draws); 200 replicates; ratio of mean total EXP. Informational only.",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FRONTIER",
+    "POL-STAY",
+    "POL-BEST-SHOWN",
+    "ORC-BRUTE"
+  ],
+  "seeds": {
+    "root": "S1-E08",
+    "replicates": 200
+  },
+  "metrics": [
+    "expTotal",
+    "levelAt60",
+    "zone3FirstVisitMin",
+    "deathsPerHour",
+    "killsPerHour"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "S1 is a single-character diagnostic model (experiment plan principle 10): no recruits, classes, abilities, gear, sinks, offline progress or Monuments; gold and materials only accumulate.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0 and the S1 resolutions S1-R01..R17); every output is model-output, not live-validated.",
+    "Engagement overhead and walk times are the most uncertain inputs (to be measured in M2).",
+    "ORC-BRUTE is an upper bound with hindsight; it is never a target for typical players."
+  ]
+}

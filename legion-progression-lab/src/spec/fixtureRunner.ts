@@ -6,7 +6,7 @@ import { isLabError } from '../core/errors.ts';
 import { canonicalJson, sha256Hex } from '../core/hash/canonicalJson.ts';
 import { applyExpAward, buildXpTable, cumulativeReport, type XpCurve } from '../core/formulas/xp.ts';
 import { evaluateStat, type StatCategory, type StatSource } from '../core/formulas/stats.ts';
-import { critChanceEffective, damagePerHit, hitChance, hitsToKill, mitigationFactor, mitigationRatio, type HitCurve, type Ratio } from '../core/formulas/combat.ts';
+import { attackRawMilli, critChanceEffective, damagePerHit, hitChance, hitsToKill, mitigationFactor, mitigationRatio, type HitCurve, type Ratio } from '../core/formulas/combat.ts';
 import { applyTx, emptyLedger, type Ledger, type Tx } from '../core/ledger/ledger.ts';
 import { accrue, accruePerHour, type PerHourState } from '../core/numeric/remainder.ts';
 import { roundHalfUp, roundHalfUpToSafeInt } from '../core/numeric/rounding.ts';
@@ -16,6 +16,7 @@ import { bernoulli, thresholdFromBp, thresholdFromProb, uniformInt } from '../co
 import { nextU32, type RngState } from '../core/rng/xoshiro128ss.ts';
 import { validateContentPack } from '../core/content/validate.ts';
 import type { FixtureCase, FixtureFile } from './fixtureSchema.ts';
+import { runCombatLoopCase, runCreditsCase, runEstimatorCase, runGatesCase, runRewardsCase } from './s1Fixtures.ts';
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 type Input = Record<string, unknown>;
@@ -243,6 +244,10 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
         };
       case 'hitsToKill':
         return { result: hitsToKill(num(input, 'hp'), num(input, 'damage')) };
+      case 'attackRawMilli': {
+        const r = attackRawMilli(num(input, 'baseMilli'), input['sources'] as StatSource[], input['categories'] as StatCategory[]);
+        return { value: r.value, rawMilli: r.rawMilli };
+      }
       default:
         throw new Error(`unknown combat op ${String(input['op'])}`);
     }
@@ -273,6 +278,21 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   content(input) {
     const v = validateContentPack(input['pack'], input['table']);
     return { ok: true, tableHash: v.tableHash };
+  },
+  'combat-loop'(input) {
+    return runCombatLoopCase(input) as unknown as Json;
+  },
+  gates(input) {
+    return runGatesCase(input) as unknown as Json;
+  },
+  rewards(input) {
+    return runRewardsCase(input) as unknown as Json;
+  },
+  credits(input) {
+    return runCreditsCase(input) as unknown as Json;
+  },
+  estimator(input) {
+    return runEstimatorCase(input) as unknown as Json;
   },
 };
 

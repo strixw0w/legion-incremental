@@ -1,0 +1,161 @@
+{
+  "experimentId": "S1.1-E02-estimator",
+  "increment": "S1.1",
+  "question": "Is estimator v1.1 accurate where farming is survivable, honest where it is not, and better than the S1 estimator in dangerous zones? How does respecting the repeated-death stop change fixed-zone farming?",
+  "design": "The 9 S1-E02 cells (levels 1/5/10 x zones 1-3, frozen level) with the S1 continuous-farming reference (CTL-FIXED-S1, as in S1-E02) and with the corrected POL-FIXED; 60-minute sessions, 200 replicates, S1-E02 seed root. Estimator v1.1 and the S1 control estimator are both reported against the simulated mean.",
+  "kind": "estimator",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "CTL-FIXED-S1",
+    "POL-FIXED"
+  ],
+  "seeds": {
+    "root": "S1-E02",
+    "replicates": 200
+  },
+  "estimator": {
+    "cells": [
+      {
+        "id": "L1-Z1",
+        "level": 1,
+        "zone": 1
+      },
+      {
+        "id": "L1-Z2",
+        "level": 1,
+        "zone": 2
+      },
+      {
+        "id": "L1-Z3",
+        "level": 1,
+        "zone": 3
+      },
+      {
+        "id": "L5-Z1",
+        "level": 5,
+        "zone": 1
+      },
+      {
+        "id": "L5-Z2",
+        "level": 5,
+        "zone": 2
+      },
+      {
+        "id": "L5-Z3",
+        "level": 5,
+        "zone": 3
+      },
+      {
+        "id": "L10-Z1",
+        "level": 10,
+        "zone": 1
+      },
+      {
+        "id": "L10-Z2",
+        "level": 10,
+        "zone": 2
+      },
+      {
+        "id": "L10-Z3",
+        "level": 10,
+        "zone": 3
+      }
+    ],
+    "sessionMin": 60,
+    "fixed": [
+      "CTL-FIXED-S1",
+      "POL-FIXED"
+    ]
+  },
+  "metrics": [
+    "killsPerHour",
+    "expPerHour",
+    "medianTtkS",
+    "deathsPerHour",
+    "autoFarmStops",
+    "deathDowntimeS",
+    "policyStopReports",
+    "activeManualMin"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-09",
+      "statement": "The estimator is accurate for steady farming: mean kills/h within +-5% of simulated, or the deviation is explained by a named factor",
+      "source": "R07.16",
+      "metric": "killsPerHourEstimateErrorPct",
+      "stat": "mean",
+      "op": "in",
+      "unit": "%",
+      "role": "target",
+      "range": [
+        -5,
+        5
+      ],
+      "scope": {
+        "cells": [
+          "base|L1-Z1|CTL-FIXED-S1",
+          "base|L1-Z2|CTL-FIXED-S1",
+          "base|L1-Z3|CTL-FIXED-S1",
+          "base|L5-Z1|CTL-FIXED-S1",
+          "base|L5-Z2|CTL-FIXED-S1",
+          "base|L5-Z3|CTL-FIXED-S1",
+          "base|L10-Z1|CTL-FIXED-S1",
+          "base|L10-Z2|CTL-FIXED-S1",
+          "base|L10-Z3|CTL-FIXED-S1"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-08a",
+      "statement": "Overgeared earlier enemies become trivial: at hero damage >= zone 1 HP, TTK = 0 s (first swing)",
+      "source": "Bible section 4",
+      "metric": "medianTtkS",
+      "stat": "p50",
+      "op": "==",
+      "unit": "s",
+      "role": "target",
+      "value": 0,
+      "scope": {
+        "cells": [
+          "base|L10-Z1|CTL-FIXED-S1"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-08b",
+      "statement": "Overgeared earlier enemies become trivial: hits-to-kill = 1",
+      "source": "Bible section 4",
+      "metric": "estimateExpectedSwings",
+      "stat": "mean",
+      "op": "==",
+      "unit": "swings",
+      "role": "target",
+      "value": 1,
+      "scope": {
+        "cells": [
+          "base|L10-Z1|CTL-FIXED-S1"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "H-S1-09 is evaluated, unchanged, on the continuous-farming reference cells (the estimator assumes continuous farming, estimator.md v1.1).",
+    "Pre-registered reading (PREREGISTRATION.md A5): every cell whose v1.1 reliability is 'unreachable' or 'unsafe' is listed with its simulated rate; the S1 estimator's error is reported alongside."
+  ]
+}

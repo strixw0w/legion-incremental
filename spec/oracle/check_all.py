@@ -23,7 +23,13 @@ steps = [
     ("xp fixtures", ["xp_oracle.py", "--check-fixtures", fixture("xp")]),
     ("xp table artifact", ["xp_oracle.py", "--check-artifact", os.path.join(LAB, "content", "tables", "xp.w1.candidate.v0.1.0.json")]),
     ("exact families", ["exact_oracle.py", "--check"] + [fixture(n) for n in ("numeric", "remainder", "stats", "combat", "ledger", "canonical-json", "content")]),
+    ("S1 / S1.1 families", ["s1_oracle.py", "--check"] + [fixture(n) for n in ("combat-loop", "gates", "rewards", "credits", "estimator")]),
 ]
+_sweep_index = os.path.join(LAB, "content", "tables", "xp-sweep.index.json")
+if os.path.exists(_sweep_index):
+    import json
+    for _t in json.load(open(_sweep_index, encoding="utf-8"))["tables"]:
+        steps.append((f"xp sweep table a={_t['a']} p={_t['p']}", ["xp_oracle.py", "--check-artifact", os.path.join(LAB, *_t["path"].split("/"))]))
 preview = os.path.join(LAB, "results", "s0", "S0-R01-curve-preview", "semantic.json")
 
 failed = 0

@@ -1,0 +1,11 @@
+{"description":"The hero dies at 10,000; the swing due at 10,400 is discarded as stale; the slime is freed at full HP.","eventLogDigest":"0304438788e2cea99af22ac768b4cec7325b2a85a56f0e1e0e4e25772c953396","labels":"model-output from candidate inputs (S1 diagnostic model)","sessions":[{"endMs":12000,"startMs":0}],"trace":"03-death-cancels-swing","untilMs":12000}
+{"detail":{"endMs":12000,"index":0},"kind":"SessionStarted","pass":0,"phase":0,"t":0}
+{"detail":{"command":"Engage","target":null},"kind":"CommandAccepted","pass":0,"phase":6,"t":0}
+{"detail":{"instanceId":"zone.w1.01#1","slot":0,"walkMs":8000,"zoneOrder":1},"kind":"EngageStarted","pass":1,"phase":5,"t":0}
+{"detail":{"encounterId":"enc:1","firstSwingMs":8000,"instanceId":"zone.w1.01#1","kind":"ordinary","zoneOrder":1},"kind":"EncounterStarted","pass":0,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":24,"hit":true,"overkill":0},"kind":"Swing","pass":1,"phase":1,"t":8000}
+{"detail":{"crit":false,"damage":6,"encounterId":"enc:1","enemyHp":18,"hit":true,"overkill":0},"kind":"Swing","pass":0,"phase":1,"t":9200}
+{"detail":{"damage":60,"encounterId":"enc:1","heroHp":0},"kind":"EnemyHit","pass":0,"phase":1,"t":10000}
+{"detail":{"encounterId":"enc:1","reason":"HERO_DIED"},"kind":"EncounterClosed","pass":0,"phase":1,"t":10000}
+{"detail":{"recentDeaths":1,"zoneOrder":1},"kind":"HeroDied","pass":0,"phase":1,"t":10000}
+{"detail":{"event":"HeroSwing"},"kind":"StaleDiscarded","pass":0,"phase":1,"t":10400}

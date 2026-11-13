@@ -1,0 +1,12 @@
+- **Branch:** `main`. HEAD is the S0 checkpoint `ad11a508fd715b08705c5ee72f215f92183f0993` (tag `s0-checkpoint`). **S1 is uncommitted**, as instructed, and not pushed (the remote is public).
+- **Changes since the checkpoint** (`git-status.txt`):
+  - **17 tracked files modified:** changelog, README, provenance, package scripts, attack quantisation in `combat.ts` and `combat.md`, two new error codes, the fixture format and runner, the purity and conformance tests, the spec index, `combat.v2.json` (fixture version 3), the oracles and the exported fixture schema.
+  - **145 untracked files:**
+    - 62 S1 additions: model, engine, policies, experiments, CLI tools, S1 content and sweep tables, manifests, S1 specs, fixtures and oracle, tests, and `planning/S1_RESOLUTIONS.md`;
+    - 80 files of S1 evidence (`evidence/s1/`);
+    - the 3-file S0 checkpoint record (`evidence/s0-checkpoint/`). It records the checkpoint's own commit ID, so it could not be part of that commit.
+- **Full diff:** `s1.patch` (79 file diffs: the 17 modified files against the checkpoint, plus the 62 new files outside `evidence/`).
+- **Untouched outside the repository** (`frozen-check.txt`):
+  - the frozen simulator: 3,012 files, combined fingerprint `1275f219…ce64d`, HEAD `74499ef`, 12 Original v1 files;
+  - the Original v1 archive: `master` `74499ef`, `archive/increment6-original-v1` `8d80a44`, no remotes;
+  - the old Legion workspace: 16 files.

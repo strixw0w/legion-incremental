@@ -1,0 +1,25 @@
+H-S1-01 (target): pass 116, miss 0, not reached 0 of 116 cells
+H-S1-02 (target): pass 112, miss 4, not reached 0 of 116 cells
+H-S1-03a (target): pass 116, miss 0, not reached 0 of 116 cells
+H-S1-03b (target): pass 116, miss 0, not reached 0 of 116 cells
+H-S1-04 (target): pass 80, miss 0, not reached 36 of 116 cells
+H-S1-05 (target): pass 80, miss 36, not reached 0 of 116 cells
+H-S1-06 (target): pass 82, miss 0, not reached 34 of 116 cells
+H-S1-07a (diagnostic): pass 52, miss 64, not reached 0 of 116 cells
+H-S1-07b (diagnostic): pass 56, miss 60, not reached 0 of 116 cells
+
+Base candidate a10-p1.6-g100:
+  PR-NEW POL-FRONTIER: firstKillS 10.4/10.4/10.4 | killsToL2 3/3/3 | minToL5 2.4283333333333332/2.4483333333333333/2.4683333333333333 | minToL10 14.06/14.16/14.26 | z2visit 5.0216666666666665/5.081666666666667/5.121666666666667 | z3visit 37.97833333333333/38.138333333333335/38.278333333333336 | ttkZ1 2.4/2.4/2.4 | ttkZ2 4.8/4.8/4.8 | ttkZ3 6/6/6 | deaths/h 0/0/0
+  PR-NEW POL-STAY: firstKillS 10.4/10.4/10.4 | killsToL2 3/3/3 | minToL5 2.4283333333333332/2.4483333333333333/2.4683333333333333 | minToL10 13.916666666666666/14.031666666666666/14.141666666666667 | z2visit 5.0216666666666665/5.081666666666667/5.121666666666667 | z3visit 16.186666666666667/16.301666666666666/16.411666666666665 | ttkZ1 2.4/2.4/2.4 | ttkZ2 4.8/4.8/4.8 | ttkZ3 9.6/9.6/9.6 | deaths/h 36/36/36
+  PR-BAL POL-FRONTIER: firstKillS 10.4/10.4/10.4 | killsToL2 3/3/3 | minToL5 2.4283333333333332/2.4483333333333333/2.4683333333333333 | minToL10 14.06/14.16/14.26 | z2visit 5.0216666666666665/5.081666666666667/5.121666666666667 | z3visit 37.97833333333333/38.138333333333335/38.278333333333336 | ttkZ1 2.4/2.4/2.4 | ttkZ2 4.8/4.8/4.8 | ttkZ3 6/6/6 | deaths/h 0/0/0
+  PR-BAL POL-STAY: firstKillS 10.4/10.4/10.4 | killsToL2 3/3/3 | minToL5 2.4283333333333332/2.4483333333333333/2.4683333333333333 | minToL10 13.916666666666666/14.031666666666666/14.141666666666667 | z2visit 5.0216666666666665/5.081666666666667/5.121666666666667 | z3visit 16.186666666666667/16.301666666666666/16.411666666666665 | ttkZ1 2.4/2.4/2.4 | ttkZ2 4.8/4.8/4.8 | ttkZ3 9.6/9.6/9.6 | deaths/h 36/36/36
+
+Winner rule (PREREGISTRATION.md section 4), top 8 of 27:
+  a10-p1.6-g100: score 6/6, distance 0
+  a10-p1.6-g150: score 6/6, distance 0
+  a12-p1.6-g100: score 6/6, distance 0
+  a12-p1.6-g150: score 6/6, distance 0
+  a8-p1.6-g100: score 6/6, distance 0
+  a8-p1.6-g150: score 6/6, distance 0
+  a8-p1.8-g100: score 6/6, distance 0
+  a8-p1.8-g150: score 6/6, distance 0

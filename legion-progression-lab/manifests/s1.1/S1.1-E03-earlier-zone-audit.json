@@ -1,0 +1,66 @@
+{
+  "experimentId": "S1.1-E03-earlier-zone-audit",
+  "increment": "S1.1",
+  "question": "Repeated with estimator v1.1: at the first visit of zones 2 and 3, does an earlier zone give more EXP/h, by fork and by the corrected estimate?",
+  "design": "As S1-E03: PR-OPT, base policy CTL-STAY-S1 (reaches the same first-visit states as S1-E03's POL-STAY with the same seeds), 15-minute CTL-FIXED-S1 forks per accessible zone, 200 replicates, S1-E03 seed root. Estimates from estimator v1.1.",
+  "kind": "audit",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-OPT"
+  ],
+  "policies": [
+    "CTL-STAY-S1"
+  ],
+  "seeds": {
+    "root": "S1-E03",
+    "replicates": 200
+  },
+  "audit": {
+    "zones": [
+      2,
+      3
+    ],
+    "forkMin": 15,
+    "basePolicy": "CTL-STAY-S1"
+  },
+  "metrics": [
+    "visit2.atMin",
+    "visit2.level",
+    "visit2.z1.forkExpPerHour",
+    "visit2.z2.forkExpPerHour",
+    "visit3.atMin",
+    "visit3.level",
+    "visit3.z1.forkExpPerHour",
+    "visit3.z2.forkExpPerHour",
+    "visit3.z3.forkExpPerHour"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S1-10",
+      "statement": "Prior zones can be better EXP/h for some builds; the newest zone is still worth entering (reported, no pass/fail; the owner decides)",
+      "source": "R08.05",
+      "metric": "visit3.z3.forkExpPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "unit": "EXP/h",
+      "role": "reported",
+      "value": 0
+    }
+  ],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "Fork EXP/h and first-visit states are expected to equal S1-E03 (same engine behaviour for the S1 logic); only the estimate columns can change."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "experimentId": "S1-E06-drop-correctness",
+  "increment": "S1",
+  "question": "Are sampled drop counts consistent with the per-kill odds, with only whole-number grants?",
+  "design": "Hero frozen at level 100 farming each zone (diagnostic set-up) for 30 min, 50 replicates per zone (over 100,000 kills per zone); pooled counts per resource against the exact two-sided binomial 99.9% interval; ledger balances must equal the counted drops.",
+  "kind": "drops",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "base",
+      "params": {}
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "POL-FIXED"
+  ],
+  "seeds": {
+    "root": "S1-E06",
+    "replicates": 50
+  },
+  "drops": {
+    "cells": [
+      {
+        "zone": 1,
+        "level": 100
+      },
+      {
+        "zone": 2,
+        "level": 100
+      },
+      {
+        "zone": 3,
+        "level": 100
+      }
+    ],
+    "sessionMin": 30,
+    "alpha": 0.001
+  },
+  "metrics": [
+    "kills",
+    "ledgerMismatch"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "Engineering gate: every pooled count inside its interval and zero ledger mismatches.",
+    "The rare item is test-only (res.rare.test_token, 0.2%)."
+  ]
+}

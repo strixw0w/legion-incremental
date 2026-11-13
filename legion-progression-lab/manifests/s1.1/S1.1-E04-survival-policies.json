@@ -1,0 +1,76 @@
+{
+  "experimentId": "S1.1-E04-survival-policies",
+  "increment": "S1.1",
+  "question": "How do the corrected realistic policies (respect the stop, rest, retreat, report) change survival and farming compared with the S1 logic, across enemy damage levels?",
+  "design": "Enemy damage x0.5, x1, x1.5, x2 (hero HP per level x1; the S1-E04 variants of those names) x PR-BAL x 3 S1 controls + 3 corrected policies, estimator v1.1, 200 replicates, S1-E04 seed root.",
+  "kind": "campaign",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "variants": [
+    {
+      "id": "d0.5-h1",
+      "params": {
+        "enemyDamageScale": 0.5,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d1-h1",
+      "params": {
+        "enemyDamageScale": 1,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d1.5-h1",
+      "params": {
+        "enemyDamageScale": 1.5,
+        "heroHpPerLevelScale": 1
+      }
+    },
+    {
+      "id": "d2-h1",
+      "params": {
+        "enemyDamageScale": 2,
+        "heroHpPerLevelScale": 1
+      }
+    }
+  ],
+  "profiles": [
+    "PR-BAL"
+  ],
+  "policies": [
+    "CTL-STAY-S1",
+    "CTL-FRONTIER-S1",
+    "CTL-BEST-SHOWN-S1",
+    "POL-STAY",
+    "POL-FRONTIER",
+    "POL-BEST-SHOWN"
+  ],
+  "seeds": {
+    "root": "S1-E04",
+    "replicates": 200
+  },
+  "metrics": [
+    "deathsPerHour",
+    "deathDowntimeS",
+    "autoFarmStops",
+    "levelAt60",
+    "zone3FirstVisitMin",
+    "expTotal",
+    "killsPerHour",
+    "policyStopReports",
+    "activeManualMin",
+    "zone2FirstVisitMin"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "S1.1 correction pass (owner review 'Independent S1 Review and S1.1 Authorisation'). Single-character diagnostic model; no recruits, classes, abilities, gear, sinks, offline progress or Monuments.",
+    "All inputs are candidates (content w1-slice.candidate.v0.1.0, unchanged; owner resolutions S1-R01..R17; S1.1 rules S1.1-R01..R15); every output is model-output, not live-validated.",
+    "Policies: POL-* are the corrected S1.1 realistic policies; CTL-*-S1 are the S1 decision logic kept as diagnostic controls; ORC-BRUTE is a restricted fixed-zone lookahead used as a comparison control, never an upper bound.",
+    "Seeds: the same seed roots as the corresponding S1 experiments, so S1, controls and corrected policies face the same random draws.",
+    "No target is registered: deaths, stops, idle time, levels and EXP are reported for every cell (PREREGISTRATION.md A4)."
+  ]
+}

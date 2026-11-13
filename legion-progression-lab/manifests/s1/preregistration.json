@@ -1,0 +1,75 @@
+{
+  "registeredAt": "2026-11-13T18:16:28Z",
+  "note": "S1 pre-registration: these manifests (hypotheses, metrics, pass ranges, designs) were written and hashed before any S1 experiment ran. The runner refuses any manifest whose SHA-256 differs. Targets are never changed after results are seen.",
+  "contentRef": {
+    "path": "content/w1-slice.candidate.v0.1.0.json",
+    "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s1/S1-E01-calibration.json",
+      "experimentId": "S1-E01-calibration",
+      "sha256": "607ab4c4b33c133d917ca5aa13f7e56510c552794fb6d2f5674171141e60d739",
+      "variants": 29
+    },
+    {
+      "path": "manifests/s1/S1-E02-estimator.json",
+      "experimentId": "S1-E02-estimator",
+      "sha256": "43b88b4363d02c3f7adbc243b0159281dd81dec10bf39a7dfb1c737e0fb06e22",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1/S1-E03-earlier-zone-audit.json",
+      "experimentId": "S1-E03-earlier-zone-audit",
+      "sha256": "4bd7068129aecb392ec5ce24f543b805f98291831e3eac4d337808bc86d26202",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1/S1-E04-survival.json",
+      "experimentId": "S1-E04-survival",
+      "sha256": "6641a45f1ad79be965113799269f6d5f9f1cd070449e33fed8f0abff23cc6577",
+      "variants": 12
+    },
+    {
+      "path": "manifests/s1/S1-E05-gate-pacing.json",
+      "experimentId": "S1-E05-gate-pacing",
+      "sha256": "070e8fd2231be90f56d4d2996734e8e8ddd3ce5ae1db2bdc5b1319cabe29591a",
+      "variants": 81
+    },
+    {
+      "path": "manifests/s1/S1-E06-drop-correctness.json",
+      "experimentId": "S1-E06-drop-correctness",
+      "sha256": "d2992ce562322cfeeb52c204b8065ef161c290f31159347e0cd4f57ab313331d",
+      "variants": 1
+    },
+    {
+      "path": "manifests/s1/S1-E07-determinism.json",
+      "experimentId": "S1-E07-determinism",
+      "sha256": "028bb7c3f50b748076578537e7a8a40cbfd7ac72a0e7e9556c7ef995431370bc",
+      "variants": 2
+    },
+    {
+      "path": "manifests/s1/S1-E08-policy-bound.json",
+      "experimentId": "S1-E08-policy-bound",
+      "sha256": "0161ae21700c7bee9bf1eddc22c71bb2283bde8c7cf9a8fa3fd250ca06dfafbc",
+      "variants": 1
+    }
+  ],
+  "document": {
+    "path": "manifests/s1/PREREGISTRATION.md",
+    "sha256": "2ececaa560edda586f09ecf9d09f745a3af67bec991b53ce37042414b0e60689"
+  },
+  "amendments": [
+    {
+      "path": "manifests/s1/S1-E06-drop-correctness-b.json",
+      "experimentId": "S1-E06-drop-correctness-b",
+      "sha256": "d3e94a0d52b6e9ad6960900175303ae7222865ddba5cad635a90f487cdd57b2f",
+      "registeredAt": "2026-11-13T18:17:40Z",
+      "document": {
+        "path": "manifests/s1/AMENDMENT-01.md",
+        "sha256": "4ad217afec4d856f3431ce9d670dfef02fecf1e8e65b76b02808a3c81b47ae94"
+      },
+      "reason": "S1-E06 under-sampled (fewer than 100,000 kills per zone) and shared seeds across zones; larger independent sample, same gate."
+    }
+  ]
+}

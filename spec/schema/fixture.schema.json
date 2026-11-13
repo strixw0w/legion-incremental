@@ -13,7 +13,12 @@
         "combat",
         "ledger",
         "canonical-json",
-        "content"
+        "content",
+        "combat-loop",
+        "gates",
+        "rewards",
+        "credits",
+        "estimator"
       ]
     },
     "fixtureVersion": {
@@ -23,7 +28,7 @@
     },
     "specRef": {
       "type": "string",
-      "pattern": "^spec\\/formulas\\/[a-z-]+\\.md#v\\d+$"
+      "pattern": "^spec\\/formulas\\/[a-z0-9-]+\\.md#v\\d+(\\.\\d+)?$"
     },
     "status": {
       "type": "string",
@@ -94,7 +99,9 @@
               "NEGATIVE_BALANCE",
               "TX_CONFLICT",
               "INVALID_JSON_VALUE",
-              "INVALID_CONTENT"
+              "INVALID_CONTENT",
+              "EVENT_CASCADE_LIMIT",
+              "SIM_EVENT_LIMIT"
             ]
           },
           "tolerance": {

@@ -1,0 +1,14 @@
+{
+  "experimentId": "S1.1-E04-survival-policies",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "labCommit": "ad11a508fd715b08705c5ee72f215f92183f0993",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T20:13:15.494Z",
+  "durationMs": 54451,
+  "jobs": 4800
+}

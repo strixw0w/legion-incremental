@@ -1,0 +1,415 @@
+{
+  "fixtureSet": "estimator",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/estimator.md#v1.2",
+  "status": "candidate",
+  "independence": "Displayed-rate estimates re-derived by spec/oracle/s1_oracle.py from spec/formulas/estimator.md v1.1 (swing-count dynamic programme, exact survival chain, reliability table), with damage from its own exact Fraction formula. Synthetic one-zone packs; compared with a relative tolerance of 1e-9. Two cases are also derived by hand. Fixture v2 (S1.1 acceptance addendum) adds the reviewer's impossible-victory case beyond the survival budget, and a winnable case beyond the budget.",
+  "cases": [
+    {
+      "id": "s1.estimator.harmless.001",
+      "kind": "boundary",
+      "description": "the enemy never lands a blow before it dies: unlimited kills per life, reliable",
+      "input": {
+        "hero": {
+          "attackMilli": 15000,
+          "maxHp": 60
+        },
+        "enemy": {
+          "hp": 15,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": 0.0,
+        "expectedSwings": 1.0,
+        "killsPerHour": 2400.0,
+        "killsPerLife": null,
+        "winChanceFromFullHp": 1.0,
+        "deathsPerHour": 0,
+        "limitingFactor": "attack",
+        "reliability": "reliable",
+        "reasons": []
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "one swing kills (15 HP), before the first enemy attack at 2,000 ms"
+    },
+    {
+      "id": "s1.estimator.hand-chain.001",
+      "kind": "normal",
+      "description": "3 swings per kill, 1 enemy hit per fight, 3 hits to die: exactly 2 kills per life",
+      "input": {
+        "hero": {
+          "attackMilli": 6000,
+          "maxHp": 3
+        },
+        "enemy": {
+          "hp": 15,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": 2.4,
+        "expectedSwings": 3,
+        "killsPerHour": 315.7894736842105,
+        "killsPerLife": 2,
+        "winChanceFromFullHp": 1,
+        "deathsPerHour": 157.89473684210526,
+        "limitingFactor": "survival",
+        "reliability": "unsafe",
+        "reasons": [
+          "AUTO_FARM_STOP_EXPECTED"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "by hand: K = 2; life = 5,000 + 6,500 + (3 x 1,500 + 2 x 2,400 + 2,000) = 22,800 ms; kills/h = 7,200,000 / 22,800"
+    },
+    {
+      "id": "s1.estimator.simultaneous.001",
+      "kind": "boundary",
+      "description": "a lethal hit at the kill moment still credits the kill",
+      "input": {
+        "hero": {
+          "attackMilli": 6000,
+          "maxHp": 1
+        },
+        "enemy": {
+          "hp": 15,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2400,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": 2.4,
+        "expectedSwings": 3.0,
+        "killsPerHour": 233.76623376623377,
+        "killsPerLife": 1.0,
+        "winChanceFromFullHp": 1.0,
+        "deathsPerHour": 233.76623376623377,
+        "limitingFactor": "survival",
+        "reliability": "unsafe",
+        "reasons": [
+          "AUTO_FARM_STOP_EXPECTED"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "the first enemy hit lands at 2,400 ms, the same moment as the third swing"
+    },
+    {
+      "id": "s1.estimator.dies-first.001",
+      "kind": "failure",
+      "description": "a hero who always dies before dealing lethal damage: 0 kills per life, unreachable",
+      "input": {
+        "hero": {
+          "attackMilli": 6000,
+          "maxHp": 60
+        },
+        "enemy": {
+          "hp": 120,
+          "attackMilli": 6000,
+          "attackIntervalMs": 1600,
+          "firstAttackDelayMs": 1600,
+          "defence": 5
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": 22.8,
+        "expectedSwings": 20.0,
+        "killsPerHour": 0,
+        "killsPerLife": 0.0,
+        "winChanceFromFullHp": 0.0,
+        "deathsPerHour": 124.13793103448276,
+        "limitingFactor": "survival",
+        "reliability": "unreachable",
+        "reasons": [
+          "DIES_BEFORE_KILL"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "6 damage x 14 swings < 120 HP before the 10th goblin hit at 16,000 ms; no crits"
+    },
+    {
+      "id": "s1.estimator.crits-survival.001",
+      "kind": "normal",
+      "description": "level-5-like hero against goblins with 5% crits: survival-limited rates from the chain",
+      "input": {
+        "hero": {
+          "attackMilli": 10000,
+          "maxHp": 92,
+          "defence": 4,
+          "critChanceBp": 500
+        },
+        "enemy": {
+          "hp": 120,
+          "attackMilli": 6000,
+          "attackIntervalMs": 1600,
+          "firstAttackDelayMs": 1600,
+          "defence": 5
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": 13.181641215032776,
+        "expectedSwings": 11.98470101252731,
+        "killsPerHour": 91.41943945767902,
+        "killsPerLife": 1.0302384803266142,
+        "winChanceFromFullHp": 0.9999999999999993,
+        "deathsPerHour": 88.73619186568969,
+        "limitingFactor": "survival",
+        "reliability": "unsafe",
+        "reasons": [
+          "AUTO_FARM_STOP_EXPECTED"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "oracle"
+    },
+    {
+      "id": "s1.estimator.spawn-bound.001",
+      "kind": "boundary",
+      "description": "one slow-respawning slot: the spawn bound limits the rate",
+      "input": {
+        "hero": {
+          "attackMilli": 6000,
+          "maxHp": 60,
+          "critChanceBp": 500
+        },
+        "enemy": {
+          "hp": 15,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "world": {
+          "spawnSlots": 1,
+          "respawnMs": 60000
+        }
+      },
+      "expected": {
+        "ttkS": 2.2829999999999995,
+        "expectedSwings": 2.9024999999999994,
+        "killsPerHour": 56.441371525328066,
+        "killsPerLife": 65.48199445983352,
+        "winChanceFromFullHp": 0.9999999999999999,
+        "deathsPerHour": 0.8619372697932873,
+        "limitingFactor": "spawn",
+        "reliability": "approximate",
+        "reasons": [
+          "SPAWN_WAITS_NOT_MODELLED"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "oracle"
+    },
+    {
+      "id": "s1.estimator.regen-gap.001",
+      "kind": "boundary",
+      "description": "the out-of-combat delay is not longer than the overhead: flagged REGEN_NOT_MODELLED",
+      "input": {
+        "hero": {
+          "attackMilli": 6000,
+          "maxHp": 60
+        },
+        "enemy": {
+          "hp": 15,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "world": {
+          "outOfCombatDelayMs": 1000
+        }
+      },
+      "expected": {
+        "ttkS": 2.4,
+        "expectedSwings": 3.0,
+        "killsPerHour": 866.5850673194615,
+        "killsPerLife": 59.0,
+        "winChanceFromFullHp": 1.0,
+        "deathsPerHour": 14.687882496940025,
+        "limitingFactor": "attack",
+        "reliability": "approximate",
+        "reasons": [
+          "REGEN_NOT_MODELLED"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "oracle"
+    },
+    {
+      "id": "s1.estimator.swing-budget.001",
+      "kind": "failure",
+      "description": "a fight longer than the swing budget is unreachable, never efficient",
+      "input": {
+        "hero": {
+          "attackMilli": 1000,
+          "maxHp": 60
+        },
+        "enemy": {
+          "hp": 1000000000,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000
+      },
+      "expected": {
+        "ttkS": null,
+        "expectedSwings": null,
+        "killsPerHour": 0,
+        "killsPerLife": 0,
+        "winChanceFromFullHp": null,
+        "deathsPerHour": null,
+        "limitingFactor": "attack",
+        "reliability": "unreachable",
+        "reasons": [
+          "SWING_BUDGET"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "1 damage per swing, 10^9 HP: more than 100,000 swings"
+    },
+    {
+      "id": "s1.estimator.impossible-over-budget.001",
+      "kind": "failure",
+      "description": "the S1.1 review case: victory impossible, survival chain over its budget: exactly 0 kills, unreachable (v1.1 showed 0.0176 kills/h)",
+      "input": {
+        "hero": {
+          "attackMilli": 1000,
+          "maxHp": 10000,
+          "attackIntervalMs": 1000,
+          "critChanceBp": 0,
+          "defence": 0
+        },
+        "enemy": {
+          "hp": 1000,
+          "attackMilli": 1000,
+          "attackIntervalMs": 1,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "heroHitThreshold": 2147483648
+      },
+      "expected": {
+        "ttkS": 1998.999999997783,
+        "expectedSwings": 1999.999999997784,
+        "killsPerHour": 0,
+        "killsPerLife": 0,
+        "winChanceFromFullHp": 0,
+        "deathsPerHour": 156.52173913043478,
+        "limitingFactor": "survival",
+        "reliability": "unreachable",
+        "reasons": [
+          "DIES_BEFORE_KILL"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "1,000 hits at 50% need >= 1,000 swings (>= 999 s); 10,000 hero HP at 1 damage per ms lasts 10 s: no outcome wins; R x outcomes > 5,000,000. Hand: deaths/h = 3,600,000 / (5,000 + 6,500 + 1,500 + 1 + 9,999) = 156.52..."
+    },
+    {
+      "id": "s1.estimator.possible-over-budget.001",
+      "kind": "boundary",
+      "description": "a winnable fight whose exact survival chain is over its budget: the flagged approximation (SURVIVAL_BUDGET), not an impossibility",
+      "input": {
+        "hero": {
+          "attackMilli": 1000,
+          "maxHp": 10000,
+          "attackIntervalMs": 1000,
+          "critChanceBp": 0,
+          "defence": 0
+        },
+        "enemy": {
+          "hp": 1000,
+          "attackMilli": 1000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "heroHitThreshold": 2147483648
+      },
+      "expected": {
+        "ttkS": 1998.999999997783,
+        "expectedSwings": 1999.999999997784,
+        "killsPerHour": 1.6344328511216233,
+        "killsPerLife": 5.002501250630857,
+        "winChanceFromFullHp": 0.9999999999990548,
+        "deathsPerHour": 0.32672312693885036,
+        "limitingFactor": "attack",
+        "reliability": "approximate",
+        "reasons": [
+          "SURVIVAL_BUDGET"
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-09,
+        "abs": 1e-12
+      },
+      "derivation": "about 2,000 enemy hits per fight against 10,000 hits to die: the first fight from full HP is always won (about 5 per life); R x outcomes > 5,000,000, so the renewal approximation is used and flagged"
+    }
+  ]
+}

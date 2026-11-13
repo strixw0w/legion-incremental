@@ -18,6 +18,8 @@
  */
 import { fail } from '../errors.ts';
 import { assertProbabilityBp, BP_SCALE } from '../numeric/basisPoints.ts';
+import { roundHalfUp } from '../numeric/rounding.ts';
+import { evaluateStat, type StatCategory, type StatSource } from './stats.ts';
 import { addSafe, assertNonNegativeSafeInt, assertSafeInt, assertSafeIntInRange, ceilDiv, divRem, mulDivRem } from '../numeric/safeInt.ts';
 
 export interface HitCurve {
@@ -126,6 +128,19 @@ export function damagePerHit(input: DamageInput): number {
   let result = addSafe(whole.q, carry);
   if (n >= HALF_DAMAGE_DEN) result = addSafe(result, 1);
   return Math.max(minDamage, result);
+}
+
+/**
+ * Attack quantisation (combat.md v2, "Attack quantisation", added in S1).
+ * The attack stat is evaluated in thousandths (base and flat sources are integer thousandths); the only binary64
+ * steps are the stats.md v2 category factors. rawMilli = roundHalfUp(value), exact for the binary64 value, with no
+ * multiplication by 1000. A value that rounds to 0 cannot land a damaging hit (INVALID_NUMBER).
+ */
+export function attackRawMilli(baseMilli: number, sources: readonly StatSource[], categories: readonly StatCategory[]): { value: number; rawMilli: number } {
+  const value = evaluateStat(baseMilli, sources, categories).value; // finite, in [0, 2^53 - 1] (stats.md v2)
+  const rawMilli = roundHalfUp(value);
+  if (rawMilli < 1) fail('INVALID_NUMBER', 'attack too low to land a damaging hit (rounds to 0 thousandths)', { value });
+  return { value, rawMilli };
 }
 
 export function hitsToKill(hp: number, damage: number): number {

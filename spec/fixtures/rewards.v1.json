@@ -1,0 +1,781 @@
+{
+  "fixtureSet": "rewards",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/s1-combat-loop.md#v1.1",
+  "status": "candidate",
+  "independence": "Drop rolls computed by spec/oracle/s1_oracle.py with the independent xoshiro128** and SHA-256 seeding of rng_oracle.py (one draw per drop entry, success iff u < floor(bp * 2^32 / 10000)); fixture v2 (S1.1) adds drop EVENTS and awarded TOTALS per resource, also computed by the oracle; the always/never/no-loot cases are derived by hand.",
+  "cases": [
+    {
+      "id": "s1.rewards.slime.001",
+      "kind": "normal",
+      "description": "ten slime kills: gold, 30% gel, 0.2% test token",
+      "input": {
+        "seedRoot": "fixture-loot-a",
+        "enemy": {
+          "gold": 1,
+          "drops": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "chanceBp": 3000,
+              "qty": 1
+            },
+            {
+              "resourceId": "res.rare.test_token",
+              "chanceBp": 20,
+              "qty": 1
+            }
+          ]
+        },
+        "kills": 10
+      },
+      "expected": {
+        "kills": [
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ]
+        ],
+        "events": {
+          "res.mat.slime_gel": 2
+        },
+        "totals": {
+          "res.gold": 10,
+          "res.mat.slime_gel": 2
+        }
+      },
+      "derivation": "s1_oracle.py (rng_oracle stream loot/account/0)"
+    },
+    {
+      "id": "s1.rewards.always-never.001",
+      "kind": "boundary",
+      "description": "0% and 100% entries still consume one draw each",
+      "input": {
+        "seedRoot": "fixture-loot-b",
+        "enemy": {
+          "gold": 2,
+          "drops": [
+            {
+              "resourceId": "res.mat.a",
+              "chanceBp": 0,
+              "qty": 1
+            },
+            {
+              "resourceId": "res.mat.b",
+              "chanceBp": 10000,
+              "qty": 3
+            }
+          ]
+        },
+        "kills": 3
+      },
+      "expected": {
+        "kills": [
+          [
+            [
+              "res.gold",
+              2
+            ],
+            [
+              "res.mat.b",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              2
+            ],
+            [
+              "res.mat.b",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              2
+            ],
+            [
+              "res.mat.b",
+              3
+            ]
+          ]
+        ],
+        "events": {
+          "res.mat.b": 3
+        },
+        "totals": {
+          "res.gold": 6,
+          "res.mat.b": 9
+        }
+      },
+      "derivation": "u < 0 never; u < 2^32 always"
+    },
+    {
+      "id": "s1.rewards.draw-alignment.001",
+      "kind": "boundary",
+      "description": "a 0% entry before a 30% entry still uses its draw, so the 30% roll uses each kill's second draw",
+      "input": {
+        "seedRoot": "fixture-loot-e",
+        "enemy": {
+          "gold": 1,
+          "drops": [
+            {
+              "resourceId": "res.mat.never",
+              "chanceBp": 0,
+              "qty": 1
+            },
+            {
+              "resourceId": "res.mat.gel",
+              "chanceBp": 3000,
+              "qty": 1
+            }
+          ]
+        },
+        "kills": 12
+      },
+      "expected": {
+        "kills": [
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.gel",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ]
+          ]
+        ],
+        "events": {
+          "res.mat.gel": 5
+        },
+        "totals": {
+          "res.gold": 12,
+          "res.mat.gel": 5
+        }
+      },
+      "derivation": "s1_oracle.py: one draw per entry; draw 1 of each kill is consumed by the 0% entry (added after the first S1 mutation run showed this rule untested)"
+    },
+    {
+      "id": "s1.rewards.nothing.001",
+      "kind": "boundary",
+      "description": "no gold and no drops: no ledger lines",
+      "input": {
+        "seedRoot": "fixture-loot-c",
+        "enemy": {
+          "gold": 0,
+          "drops": []
+        },
+        "kills": 2
+      },
+      "expected": {
+        "kills": [
+          [],
+          []
+        ],
+        "events": {},
+        "totals": {}
+      },
+      "derivation": "nothing to grant"
+    },
+    {
+      "id": "s1.rewards.bad-chance.001",
+      "kind": "failure",
+      "description": "a drop chance above 100% is refused",
+      "input": {
+        "seedRoot": "fixture-loot-d",
+        "enemy": {
+          "gold": 1,
+          "drops": [
+            {
+              "resourceId": "res.mat.a",
+              "chanceBp": 10001,
+              "qty": 1
+            }
+          ]
+        },
+        "kills": 1
+      },
+      "expectedError": "INVALID_PROBABILITY",
+      "derivation": "chance must be in [0, 10000] bp (rng.md)"
+    },
+    {
+      "id": "s1.rewards.qty-three.001",
+      "kind": "normal",
+      "description": "a guaranteed drop of 3 per kill: 1 event and 3 units per kill (S1.1, owner review section 6)",
+      "input": {
+        "seedRoot": "fixture-loot-q3",
+        "enemy": {
+          "gold": 1,
+          "drops": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "chanceBp": 10000,
+              "qty": 3
+            }
+          ]
+        },
+        "kills": 14
+      },
+      "expected": {
+        "kills": [
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ],
+          [
+            [
+              "res.gold",
+              1
+            ],
+            [
+              "res.mat.slime_gel",
+              3
+            ]
+          ]
+        ],
+        "events": {
+          "res.mat.slime_gel": 14
+        },
+        "totals": {
+          "res.gold": 14,
+          "res.mat.slime_gel": 42
+        }
+      },
+      "derivation": "14 kills x 1 event, 14 x 3 = 42 gel; gold 14 (the reviewer's reproduction)"
+    },
+    {
+      "id": "s1.rewards.same-resource-twice.001",
+      "kind": "boundary",
+      "description": "two entries award the same resource: two events, quantities added, one draw each",
+      "input": {
+        "seedRoot": "fixture-loot-rr",
+        "enemy": {
+          "gold": 0,
+          "drops": [
+            {
+              "resourceId": "res.mat.gel",
+              "chanceBp": 5000,
+              "qty": 2
+            },
+            {
+              "resourceId": "res.mat.gel",
+              "chanceBp": 3000,
+              "qty": 1
+            },
+            {
+              "resourceId": "res.mat.other",
+              "chanceBp": 10000,
+              "qty": 4
+            }
+          ]
+        },
+        "kills": 25
+      },
+      "expected": {
+        "kills": [
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              2
+            ],
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.gel",
+              1
+            ],
+            [
+              "res.mat.other",
+              4
+            ]
+          ],
+          [
+            [
+              "res.mat.other",
+              4
+            ]
+          ]
+        ],
+        "events": {
+          "res.mat.gel": 17,
+          "res.mat.other": 25
+        },
+        "totals": {
+          "res.mat.gel": 28,
+          "res.mat.other": 100
+        }
+      },
+      "derivation": "per kill: entry 1 (2 gel at 50%), entry 2 (1 gel at 30%), entry 3 (4 other always); events count entries, totals add quantities"
+    }
+  ]
+}
