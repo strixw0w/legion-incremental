@@ -1,0 +1,2 @@
+# Keep every file byte for byte, so recorded SHA-256 hashes, fixtures and fingerprints match on every checkout.
+* -text
