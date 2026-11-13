@@ -1,0 +1,897 @@
+{
+  "fixtureSet": "combat",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/combat.md#v2",
+  "status": "candidate",
+  "independence": "Expected values derived by hand from spec/formulas/combat.md v2; re-checked with exact Fractions by spec/oracle/exact_oracle.py. Damage cases use exact integer inputs (rawMilli, critMultBp, mitigation ratio). Coefficients are candidates.",
+  "cases": [
+    {
+      "id": "combat.hit.no-requirement.001",
+      "kind": "boundary",
+      "description": "Requirement 0 always hits",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 10,
+        "requirement": 0,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 1
+      },
+      "derivation": "R = 0 -> 1"
+    },
+    {
+      "id": "combat.hit.at-requirement.001",
+      "kind": "normal",
+      "description": "Accuracy equal to requirement",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 50,
+        "requirement": 50,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 0.9
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "1 - 0.1 * 1^2 = 0.9"
+    },
+    {
+      "id": "combat.hit.above.001",
+      "kind": "normal",
+      "description": "Accuracy twice the requirement",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 100,
+        "requirement": 50,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 0.975
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "ratio 0.5, squared 0.25; 1 - 0.1*0.25 = 0.975"
+    },
+    {
+      "id": "combat.hit.below.001",
+      "kind": "normal",
+      "description": "Accuracy half the requirement",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 25,
+        "requirement": 50,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 0.6
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "ratio 2, squared 4; 1 - 0.1*4 = 0.6"
+    },
+    {
+      "id": "combat.hit.floor.001",
+      "kind": "boundary",
+      "description": "Far below requirement clamps to the floor",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 10,
+        "requirement": 50,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 0.1
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "ratio 5, squared 25; 1 - 2.5 = -1.5 -> floor 0.1"
+    },
+    {
+      "id": "combat.hit.zero-accuracy.001",
+      "kind": "boundary",
+      "description": "Zero accuracy against a requirement",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 0,
+        "requirement": 50,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 2
+        }
+      },
+      "expected": {
+        "result": 0.1
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "A = 0 -> floor"
+    },
+    {
+      "id": "combat.hit.bad-curve.001",
+      "kind": "failure",
+      "description": "Floor above the at-requirement chance",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 10,
+        "requirement": 5,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 9500,
+          "k": 2
+        }
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "floorBp must be <= hAtReqBp"
+    },
+    {
+      "id": "combat.hit.bad-k.001",
+      "kind": "failure",
+      "description": "Exponent k must be 1..8",
+      "input": {
+        "op": "hitChance",
+        "accuracy": 10,
+        "requirement": 5,
+        "curve": {
+          "hAtReqBp": 9000,
+          "floorBp": 1000,
+          "k": 0
+        }
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "k = 0 is out of range"
+    },
+    {
+      "id": "combat.mit.none.001",
+      "kind": "boundary",
+      "description": "No defence",
+      "input": {
+        "op": "mitigation",
+        "defence": 0,
+        "K": 100
+      },
+      "expected": {
+        "result": 1
+      },
+      "derivation": "100/(100+0) = 1"
+    },
+    {
+      "id": "combat.mit.half.001",
+      "kind": "normal",
+      "description": "Defence equal to K halves damage",
+      "input": {
+        "op": "mitigation",
+        "defence": 100,
+        "K": 100
+      },
+      "expected": {
+        "result": 0.5
+      },
+      "derivation": "100/200 = 0.5 (exact)"
+    },
+    {
+      "id": "combat.mit.small.001",
+      "kind": "normal",
+      "description": "Small defence",
+      "input": {
+        "op": "mitigation",
+        "defence": 5,
+        "K": 100
+      },
+      "expected": {
+        "result": 0.9523809523809523
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "100/105 = 0.952380952..."
+    },
+    {
+      "id": "combat.mit.bad-k.001",
+      "kind": "failure",
+      "description": "K must be at least 1",
+      "input": {
+        "op": "mitigation",
+        "defence": 5,
+        "K": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "K >= 1"
+    },
+    {
+      "id": "combat.mit.negative.001",
+      "kind": "failure",
+      "description": "Negative defence",
+      "input": {
+        "op": "mitigation",
+        "defence": -1,
+        "K": 100
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "defence >= 0"
+    },
+    {
+      "id": "combat.crit.normal.001",
+      "kind": "normal",
+      "description": "Crit chance below the cap",
+      "input": {
+        "op": "critEffective",
+        "bp": 500
+      },
+      "expected": {
+        "effectiveBp": 500,
+        "overcapBp": 0
+      },
+      "derivation": "500 <= 10000"
+    },
+    {
+      "id": "combat.crit.cap.001",
+      "kind": "boundary",
+      "description": "Crit chance exactly 100% (R-A2)",
+      "input": {
+        "op": "critEffective",
+        "bp": 10000
+      },
+      "expected": {
+        "effectiveBp": 10000,
+        "overcapBp": 0
+      },
+      "derivation": "may reach exactly 100%"
+    },
+    {
+      "id": "combat.crit.overcap.001",
+      "kind": "boundary",
+      "description": "Excess crit chance has no effect and is reported",
+      "input": {
+        "op": "critEffective",
+        "bp": 12500
+      },
+      "expected": {
+        "effectiveBp": 10000,
+        "overcapBp": 2500
+      },
+      "derivation": "min(12500, 10000) = 10000; overcap 2500"
+    },
+    {
+      "id": "combat.dmg.plain.001",
+      "kind": "normal",
+      "description": "Plain hit",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 6
+      },
+      "derivation": "6 * 1 = 6"
+    },
+    {
+      "id": "combat.dmg.crit-half.001",
+      "kind": "boundary",
+      "description": "Crit producing exactly .5 rounds up",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 7000,
+        "crit": true,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 11
+      },
+      "derivation": "7 * 15000/10000 = 10.5 exactly -> 11"
+    },
+    {
+      "id": "combat.dmg.mitigated.001",
+      "kind": "normal",
+      "description": "Mitigated hit rounds to nearest",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 100,
+          "den": 105
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 6
+      },
+      "derivation": "6 * 100/105 = 5.714... -> 6"
+    },
+    {
+      "id": "combat.dmg.floor.001",
+      "kind": "boundary",
+      "description": "Tiny landed hit is raised to the damage floor",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 1200,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 3,
+          "den": 10
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 1
+      },
+      "derivation": "1.2 * 3/10 = 0.36 -> 0 -> floor 1"
+    },
+    {
+      "id": "combat.dmg.half.001",
+      "kind": "boundary",
+      "description": "Raw 2.5 rounds up",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 2500,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "2.5 exactly -> 3"
+    },
+    {
+      "id": "combat.dmg.zero-raw.001",
+      "kind": "failure",
+      "description": "Zero raw damage is not a damaging hit",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 0,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "rawMilli must be >= 1; the floor applies only to landed damaging hits"
+    },
+    {
+      "id": "combat.dmg.bad-mult.001",
+      "kind": "failure",
+      "description": "Crit multiplier below 1x",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": true,
+        "critMultBp": 9999,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "critMultBp >= 10000"
+    },
+    {
+      "id": "combat.dmg.bad-mitigation.001",
+      "kind": "failure",
+      "description": "Mitigation above 1",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 3,
+          "den": 2
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "mitigation must satisfy 1 <= num <= den (3/2 = 1.5 is refused)"
+    },
+    {
+      "id": "combat.dmg.reviewer.001",
+      "kind": "boundary",
+      "description": "S0 review reproduction: 100 * 1.005 = 100.5 rounds up",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 100000,
+        "crit": true,
+        "critMultBp": 10050,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 101
+      },
+      "derivation": "100 * 10050/10000 = 100.5 exactly -> 101 (S0 gave 100: binary64 10050/10000 = 1.00499999999999989...)"
+    },
+    {
+      "id": "combat.dmg.third.001",
+      "kind": "boundary",
+      "description": "exact half through a 1/3 mitigation",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 100000,
+        "crit": true,
+        "critMultBp": 10050,
+        "mitigation": {
+          "num": 1,
+          "den": 3
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 34
+      },
+      "derivation": "100 * 1.005 / 3 = 33.5 exactly -> 34 (S0 binary64 gave 33)"
+    },
+    {
+      "id": "combat.dmg.five-sixths.001",
+      "kind": "boundary",
+      "description": "exact half through a 5/6 mitigation",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 120000,
+        "crit": true,
+        "critMultBp": 10150,
+        "mitigation": {
+          "num": 5,
+          "den": 6
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 102
+      },
+      "derivation": "120 * 1.015 * 5/6 = 101.5 exactly -> 102 (S0 binary64 gave 101)"
+    },
+    {
+      "id": "combat.dmg.half-mitigation.001",
+      "kind": "boundary",
+      "description": "exact half through a 3/6 mitigation",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 200000,
+        "crit": true,
+        "critMultBp": 10050,
+        "mitigation": {
+          "num": 3,
+          "den": 6
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 101
+      },
+      "derivation": "200 * 1.005 * 1/2 = 100.5 exactly -> 101 (S0 binary64 gave 100)"
+    },
+    {
+      "id": "combat.dmg.k100-d25.001",
+      "kind": "boundary",
+      "description": "candidate K = 100 at defence 25",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 375000,
+        "crit": true,
+        "critMultBp": 10150,
+        "mitigation": {
+          "num": 100,
+          "den": 125
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 305
+      },
+      "derivation": "375 * 1.015 * 100/125 = 304.5 exactly -> 305 (S0 binary64 gave 304)"
+    },
+    {
+      "id": "combat.dmg.milli-half.001",
+      "kind": "boundary",
+      "description": "a half in the raw input itself",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 100500,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 101
+      },
+      "derivation": "100.500 -> 101"
+    },
+    {
+      "id": "combat.dmg.milli-below-half.001",
+      "kind": "boundary",
+      "description": "just below a half in the raw input",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 100499,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 100
+      },
+      "derivation": "100.499 -> 100"
+    },
+    {
+      "id": "combat.dmg.below-half.large-den.001",
+      "kind": "boundary",
+      "description": "one part in 10^12 below a half",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 2499999842499,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 999999937
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 2
+      },
+      "derivation": "2.5 * 1000 * 999,999,937 = 2,499,999,842,500; one less gives V = 2.5 - 1/999,999,937,000 -> 2"
+    },
+    {
+      "id": "combat.dmg.half.large-den.001",
+      "kind": "boundary",
+      "description": "exactly a half with a large denominator",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 2499999842500,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 999999937
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "V = 2,499,999,842,500 / (1000 * 999,999,937) = 2.5 exactly -> 3"
+    },
+    {
+      "id": "combat.dmg.min-damage.001",
+      "kind": "normal",
+      "description": "heavy mitigation falls back to the floor",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 1000,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 100
+        },
+        "minDamage": 3
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "1 * 1/100 = 0.01 -> 0 -> floor 3"
+    },
+    {
+      "id": "combat.dmg.max.001",
+      "kind": "boundary",
+      "description": "largest result: mitigation first keeps every step in range",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 9007199254740991,
+        "crit": true,
+        "critMultBp": 20000000,
+        "mitigation": {
+          "num": 1,
+          "den": 2
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 9007199254740991
+      },
+      "derivation": "(2^53 - 1)/1000 * 2000 * 1/2 = 2^53 - 1 exactly"
+    },
+    {
+      "id": "combat.dmg.huge-den.001",
+      "kind": "boundary",
+      "description": "maximum crit multiplier and mitigation denominator",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 9007199254740991,
+        "crit": true,
+        "critMultBp": 9007199254740991,
+        "mitigation": {
+          "num": 1,
+          "den": 9007199254740991
+        },
+        "minDamage": 1
+      },
+      "expected": {
+        "result": 900719925
+      },
+      "derivation": "M/1000 * M/10000 * 1/M = M/10^7 = 900,719,925.4740991 -> 900,719,925"
+    },
+    {
+      "id": "combat.dmg.overflow.002",
+      "kind": "failure",
+      "description": "result above 2^53 - 1",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 9007199254740991,
+        "crit": true,
+        "critMultBp": 20000000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "(2^53 - 1)/1000 * 2000 = 2*(2^53 - 1) > 2^53 - 1"
+    },
+    {
+      "id": "combat.dmg.not-safe.001",
+      "kind": "failure",
+      "description": "rawMilli is not a safe integer",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 9007199254740992,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "2^53 is not a safe integer"
+    },
+    {
+      "id": "combat.dmg.bad-ratio.001",
+      "kind": "failure",
+      "description": "mitigation numerator 0",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": false,
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 0,
+          "den": 5
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "mitigation must satisfy 1 <= num"
+    },
+    {
+      "id": "combat.dmg.bad-crit-flag.001",
+      "kind": "failure",
+      "description": "crit is not a boolean",
+      "input": {
+        "op": "damagePerHit",
+        "rawMilli": 6000,
+        "crit": "yes",
+        "critMultBp": 15000,
+        "mitigation": {
+          "num": 1,
+          "den": 1
+        },
+        "minDamage": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "crit must be true or false"
+    },
+    {
+      "id": "combat.mitratio.001",
+      "kind": "normal",
+      "description": "exact mitigation ratio",
+      "input": {
+        "op": "mitigationRatio",
+        "defence": 5,
+        "K": 100
+      },
+      "expected": {
+        "num": 100,
+        "den": 105
+      },
+      "derivation": "K/(K+D) = 100/105"
+    },
+    {
+      "id": "combat.mitratio.none.001",
+      "kind": "boundary",
+      "description": "no defence",
+      "input": {
+        "op": "mitigationRatio",
+        "defence": 0,
+        "K": 100
+      },
+      "expected": {
+        "num": 100,
+        "den": 100
+      },
+      "derivation": "100/100"
+    },
+    {
+      "id": "combat.mitratio.overflow.001",
+      "kind": "failure",
+      "description": "K + D above 2^53 - 1",
+      "input": {
+        "op": "mitigationRatio",
+        "defence": 9007199254740991,
+        "K": 1
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "1 + (2^53 - 1) = 2^53"
+    },
+    {
+      "id": "combat.mitratio.bad-k.001",
+      "kind": "failure",
+      "description": "K = 0",
+      "input": {
+        "op": "mitigationRatio",
+        "defence": 5,
+        "K": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "K >= 1"
+    },
+    {
+      "id": "combat.htk.001",
+      "kind": "normal",
+      "description": "15 HP, 6 damage",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 6
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "ceil(15/6) = 3"
+    },
+    {
+      "id": "combat.htk.002",
+      "kind": "normal",
+      "description": "15 HP, 7 damage",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 7
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "ceil(15/7) = 3"
+    },
+    {
+      "id": "combat.htk.breakpoint.001",
+      "kind": "boundary",
+      "description": "Breakpoint: 8 damage needs one hit fewer",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 8
+      },
+      "expected": {
+        "result": 2
+      },
+      "derivation": "ceil(15/8) = 2"
+    },
+    {
+      "id": "combat.htk.exact.001",
+      "kind": "boundary",
+      "description": "Damage equal to HP",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 15
+      },
+      "expected": {
+        "result": 1
+      },
+      "derivation": "ceil(15/15) = 1"
+    },
+    {
+      "id": "combat.htk.overkill.001",
+      "kind": "boundary",
+      "description": "Damage far above HP",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 100
+      },
+      "expected": {
+        "result": 1
+      },
+      "derivation": "ceil(15/100) = 1"
+    },
+    {
+      "id": "combat.htk.bad-hp.001",
+      "kind": "failure",
+      "description": "Zero HP",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 0,
+        "damage": 5
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "hp >= 1"
+    },
+    {
+      "id": "combat.htk.bad-dmg.001",
+      "kind": "failure",
+      "description": "Zero damage",
+      "input": {
+        "op": "hitsToKill",
+        "hp": 15,
+        "damage": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "damage >= 1"
+    }
+  ]
+}

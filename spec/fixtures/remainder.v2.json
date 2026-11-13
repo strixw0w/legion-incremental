@@ -1,0 +1,707 @@
+{
+  "fixtureSet": "remainder",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/remainder.md#v2",
+  "status": "candidate",
+  "independence": "Expected values derived by hand from spec/formulas/remainder.md v2 (per-hour chain as one exact division of milliRem*3,600,000 + msRem + rate*dMs by 3,600,000,000); re-checked with unbounded Python integers by spec/oracle/exact_oracle.py.",
+  "cases": [
+    {
+      "id": "remainder.accrue.001",
+      "kind": "normal",
+      "description": "Simple accrual with remainder",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 3,
+        "steps": 10,
+        "den": 7
+      },
+      "expected": {
+        "granted": 4,
+        "rem": 2
+      },
+      "derivation": "0 + 3*10 = 30; 30 = 4*7 + 2"
+    },
+    {
+      "id": "remainder.accrue.zero-steps.001",
+      "kind": "boundary",
+      "description": "Zero duration changes nothing (G2)",
+      "input": {
+        "op": "accrue",
+        "rem": 5,
+        "num": 3,
+        "steps": 0,
+        "den": 7
+      },
+      "expected": {
+        "granted": 0,
+        "rem": 5
+      },
+      "derivation": "5 + 0 = 5 < 7"
+    },
+    {
+      "id": "remainder.split.001",
+      "kind": "normal",
+      "description": "Same interval split five ways gives the same result (G1)",
+      "input": {
+        "op": "accrueSplit",
+        "rem": 0,
+        "num": 3,
+        "den": 7,
+        "parts": [
+          3,
+          0,
+          4,
+          2,
+          1
+        ]
+      },
+      "expected": {
+        "granted": 4,
+        "rem": 2
+      },
+      "derivation": "9 -> 1 r2; +0 -> r2; 2+12=14 -> 2 r0; 0+6=6 -> 0 r6; 6+3=9 -> 1 r2; total 4 r2 = single call (0+30 = 4*7+2)"
+    },
+    {
+      "id": "remainder.efficiency.001",
+      "kind": "normal",
+      "description": "60% efficiency on 7 kills",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 6000,
+        "steps": 7,
+        "den": 10000
+      },
+      "expected": {
+        "granted": 4,
+        "rem": 2000
+      },
+      "derivation": "6000*7 = 42000 = 4*10000 + 2000"
+    },
+    {
+      "id": "remainder.efficiency.split.001",
+      "kind": "normal",
+      "description": "60% efficiency on 3 then 4 kills equals 7 at once",
+      "input": {
+        "op": "accrueSplit",
+        "rem": 0,
+        "num": 6000,
+        "den": 10000,
+        "parts": [
+          3,
+          4
+        ]
+      },
+      "expected": {
+        "granted": 4,
+        "rem": 2000
+      },
+      "derivation": "18000 -> 1 r8000; 8000+24000=32000 -> 3 r2000; total 4 r2000"
+    },
+    {
+      "id": "remainder.accrue.huge-product.001",
+      "kind": "boundary",
+      "description": "num*steps is about 2^79 but is never formed; result exact",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 67108863,
+        "steps": 9007199254740991,
+        "den": 67108864
+      },
+      "expected": {
+        "granted": 9007199120523263,
+        "rem": 1
+      },
+      "derivation": "(2^26-1)(2^53-1) = 2^79 - 2^53 - 2^26 + 1; divided by 2^26: 2^53 - 2^27 - 1 remainder 1"
+    },
+    {
+      "id": "remainder.accrue.max-den.001",
+      "kind": "boundary",
+      "description": "Largest allowed denominator 2^26",
+      "input": {
+        "op": "accrue",
+        "rem": 67108863,
+        "num": 1,
+        "steps": 1,
+        "den": 67108864
+      },
+      "expected": {
+        "granted": 1,
+        "rem": 0
+      },
+      "derivation": "(2^26 - 1) + 1 = 2^26 -> 1 r0"
+    },
+    {
+      "id": "remainder.accrue.overflow.001",
+      "kind": "failure",
+      "description": "Granted amount beyond 2^53 - 1",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 134217728,
+        "steps": 9007199254740991,
+        "den": 67108864
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "granted = 2*(2^53 - 1) > 2^53 - 1"
+    },
+    {
+      "id": "remainder.accrue.den-too-large.001",
+      "kind": "failure",
+      "description": "Denominator above 2^26",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 1,
+        "steps": 1,
+        "den": 67108865
+      },
+      "expectedError": "INVALID_DENOMINATOR",
+      "derivation": "den must be <= 2^26 = 67108864"
+    },
+    {
+      "id": "remainder.accrue.den-zero.001",
+      "kind": "failure",
+      "description": "Zero denominator",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": 1,
+        "steps": 1,
+        "den": 0
+      },
+      "expectedError": "INVALID_DENOMINATOR",
+      "derivation": "den must be >= 1"
+    },
+    {
+      "id": "remainder.accrue.bad-rem.001",
+      "kind": "failure",
+      "description": "Remainder not below the denominator",
+      "input": {
+        "op": "accrue",
+        "rem": 7,
+        "num": 1,
+        "steps": 1,
+        "den": 7
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "rem must be in [0, den)"
+    },
+    {
+      "id": "remainder.accrue.negative.001",
+      "kind": "failure",
+      "description": "Negative numerator",
+      "input": {
+        "op": "accrue",
+        "rem": 0,
+        "num": -1,
+        "steps": 1,
+        "den": 7
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "num must be >= 0"
+    },
+    {
+      "id": "remainder.perhour.001",
+      "kind": "normal",
+      "description": "1.5 units per hour for one hour",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1500,
+        "parts": [
+          3600000
+        ]
+      },
+      "expected": {
+        "granted": 1,
+        "state": {
+          "msRem": 0,
+          "milliRem": 500
+        }
+      },
+      "derivation": "stage 1: 1500*3600000/3600000 = 1500 milli r0; stage 2: 1500 milli = 1 unit r500"
+    },
+    {
+      "id": "remainder.perhour.split.001",
+      "kind": "normal",
+      "description": "Same hour split as 1 ms + the rest",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1500,
+        "parts": [
+          1,
+          3599999
+        ]
+      },
+      "expected": {
+        "granted": 1,
+        "state": {
+          "msRem": 0,
+          "milliRem": 500
+        }
+      },
+      "derivation": "1500*1 = 1500 -> 0 r1500; 1500 + 1500*3599999 = 5400000000 -> 1500 milli r0; 1500 milli -> 1 r500"
+    },
+    {
+      "id": "remainder.perhour.split.002",
+      "kind": "normal",
+      "description": "Same hour split in halves",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1500,
+        "parts": [
+          1800000,
+          1800000
+        ]
+      },
+      "expected": {
+        "granted": 1,
+        "state": {
+          "msRem": 0,
+          "milliRem": 500
+        }
+      },
+      "derivation": "each half: 750 milli r0; 750 -> 0 r750; then 750+750 = 1500 -> 1 r500"
+    },
+    {
+      "id": "remainder.perhour.tiny.001",
+      "kind": "boundary",
+      "description": "Very small rate keeps both remainders",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          7200001
+        ]
+      },
+      "expected": {
+        "granted": 0,
+        "state": {
+          "msRem": 1,
+          "milliRem": 2
+        }
+      },
+      "derivation": "1*7200001 = 2*3600000 + 1 -> 2 milli r1; 2 milli -> 0 units r2"
+    },
+    {
+      "id": "remainder.perhour.persisted.001",
+      "kind": "boundary",
+      "description": "Persisted remainders from an earlier settlement complete a unit",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 1,
+          "milliRem": 999
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          3599999
+        ]
+      },
+      "expected": {
+        "granted": 1,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "1 + 3599999 = 3600000 -> 1 milli r0; 999 + 1 = 1000 -> 1 unit r0"
+    },
+    {
+      "id": "remainder.perhour.large.001",
+      "kind": "boundary",
+      "description": "Large rate: 3.6 million units per hour for one hour",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 3600000000,
+        "parts": [
+          3600000
+        ]
+      },
+      "expected": {
+        "granted": 3600000,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "num = 1000*den exactly -> 3600000000 milli r0 -> 3600000 units r0"
+    },
+    {
+      "id": "remainder.perhour.reviewer.001",
+      "kind": "boundary",
+      "description": "S0 review reproduction: 2 h at rate 2^53 - 1 in one call",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          7200000
+        ]
+      },
+      "expected": {
+        "granted": 18014398509481,
+        "state": {
+          "msRem": 0,
+          "milliRem": 982
+        }
+      },
+      "derivation": "X = M*7,200,000; X/3.6e9 = M/500 -> 18,014,398,509,481 units, rest 3,535,200,000 = 982*3,600,000 + 0 -> milliRem 982, msRem 0 (S0 raised NUMERIC_LIMIT on the milli-unit intermediate)"
+    },
+    {
+      "id": "remainder.perhour.reviewer-split.001",
+      "kind": "boundary",
+      "description": "the same 2 h as two 1 h calls",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          3600000,
+          3600000
+        ]
+      },
+      "expected": {
+        "granted": 18014398509481,
+        "state": {
+          "msRem": 0,
+          "milliRem": 982
+        }
+      },
+      "derivation": "each hour: M milli = 9,007,199,254,740 units + 991 milli; two hours: 2*991 = 1982 milli = 1 unit + 982; total 18,014,398,509,481, milliRem 982"
+    },
+    {
+      "id": "remainder.perhour.max-granted.001",
+      "kind": "boundary",
+      "description": "largest representable grant in one call",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          3600000000
+        ]
+      },
+      "expected": {
+        "granted": 9007199254740991,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "M * 3,600,000,000 / 3,600,000,000 = M exactly, rest 0"
+    },
+    {
+      "id": "remainder.perhour.max-granted.split.001",
+      "kind": "boundary",
+      "description": "the same grant split 1 ms + the rest",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          1,
+          3599999999
+        ]
+      },
+      "expected": {
+        "granted": 9007199254740991,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "1 ms: M/3.6e9 = 2,501,999 r 2,854,740,991 (milli 792, ms 3,540,991); the rest completes M exactly, rest 0"
+    },
+    {
+      "id": "remainder.perhour.slow-max-duration.001",
+      "kind": "boundary",
+      "description": "rate 1 milli/h for 2^53 - 1 ms",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          9007199254740991
+        ]
+      },
+      "expected": {
+        "granted": 2501999,
+        "state": {
+          "msRem": 3540991,
+          "milliRem": 792
+        }
+      },
+      "derivation": "M/3.6e9 = 2,501,999 r 2,854,740,991; 2,854,740,991 = 792*3,600,000 + 3,540,991"
+    },
+    {
+      "id": "remainder.perhour.overflow.001",
+      "kind": "failure",
+      "description": "one millisecond past the largest grant",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          3600000001
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "M*(3.6e9 + 1)/3.6e9 = M + floor(M/3.6e9) = M + 2,501,999 > 2^53 - 1"
+    },
+    {
+      "id": "remainder.perhour.overflow.split.001",
+      "kind": "failure",
+      "description": "the same total as two parts: the sum is unrepresentable too",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          3600000000,
+          1
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "parts grant M and 2,501,999; their total M + 2,501,999 cannot be represented, exactly as for the single call"
+    },
+    {
+      "id": "remainder.perhour.max-inputs.001",
+      "kind": "failure",
+      "description": "maximum rate and maximum duration",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 9007199254740991,
+        "parts": [
+          9007199254740991
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "M^2/3.6e9 is about 2.25e22 > 2^53 - 1"
+    },
+    {
+      "id": "remainder.timeline.rate-change.001",
+      "kind": "normal",
+      "description": "rate change mid-hour: 30 min at 1.5/h then 30 min at 2.5/h",
+      "input": {
+        "op": "perHourTimeline",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "segments": [
+          {
+            "rateMilliPerHour": 1500,
+            "parts": [
+              1800000
+            ]
+          },
+          {
+            "rateMilliPerHour": 2500,
+            "parts": [
+              1800000
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "granted": 2,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "1500*1.8e6 + 2500*1.8e6 = 7.2e9 = 2*3.6e9: 0.75 + 1.25 = 2 units, rest 0"
+    },
+    {
+      "id": "remainder.timeline.rate-change.split.001",
+      "kind": "normal",
+      "description": "the same timeline with each segment split differently",
+      "input": {
+        "op": "perHourTimeline",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "segments": [
+          {
+            "rateMilliPerHour": 1500,
+            "parts": [
+              1,
+              899999,
+              900000
+            ]
+          },
+          {
+            "rateMilliPerHour": 2500,
+            "parts": [
+              1799999,
+              1
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "granted": 2,
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        }
+      },
+      "derivation": "same X = 7.2e9 as remainder.timeline.rate-change.001 (partition invariance across a rate change)"
+    },
+    {
+      "id": "remainder.timeline.carry.001",
+      "kind": "boundary",
+      "description": "remainder carries across a large rate change",
+      "input": {
+        "op": "perHourTimeline",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "segments": [
+          {
+            "rateMilliPerHour": 1,
+            "parts": [
+              1800000
+            ]
+          },
+          {
+            "rateMilliPerHour": 3600000000,
+            "parts": [
+              1
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "granted": 1,
+        "state": {
+          "msRem": 1800000,
+          "milliRem": 0
+        }
+      },
+      "derivation": "1*1.8e6 + 3.6e9*1 = 3,601,800,000 = 1*3.6e9 + 1,800,000 -> 1 unit, milliRem 0, msRem 1,800,000"
+    },
+    {
+      "id": "remainder.perhour.bad-state.001",
+      "kind": "failure",
+      "description": "msRem out of range",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 3600000,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          1
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "msRem must be < 3,600,000"
+    },
+    {
+      "id": "remainder.perhour.bad-state.002",
+      "kind": "failure",
+      "description": "milliRem out of range",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 1000
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          1
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "milliRem must be < 1000"
+    },
+    {
+      "id": "remainder.perhour.bad-state.003",
+      "kind": "failure",
+      "description": "non-integer msRem",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 1.5,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": 1,
+        "parts": [
+          1
+        ]
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "msRem must be a safe integer"
+    },
+    {
+      "id": "remainder.perhour.bad-rate.001",
+      "kind": "failure",
+      "description": "negative rate",
+      "input": {
+        "op": "perHour",
+        "state": {
+          "msRem": 0,
+          "milliRem": 0
+        },
+        "rateMilliPerHour": -1,
+        "parts": [
+          1
+        ]
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "rate must be >= 0"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "contentId": "s0-core",
+  "contentVersion": "0.1.0",
+  "status": "candidate",
+  "formulaVersions": {
+    "numeric": 1,
+    "remainder": 1,
+    "rng": 1,
+    "xp": 1,
+    "stats": 1,
+    "combat": 1,
+    "ledger": 1,
+    "canonicalJson": 1
+  },
+  "xp": {
+    "curve": {
+      "family": "powerGeometric",
+      "a": {
+        "value": 10,
+        "label": "candidate",
+        "range": [
+          8,
+          12
+        ],
+        "hypothesis": "Level 2 after 1-3 early kills (S1 H-S1-02)"
+      },
+      "p": {
+        "value": 1.6,
+        "label": "candidate",
+        "range": [
+          1.6,
+          2
+        ],
+        "hypothesis": "Early steepness; hand arithmetic suggests L5 arrives early at 1.6, so S1-E01 sweeps p"
+      },
+      "g": {
+        "value": 1,
+        "label": "candidate",
+        "range": [
+          1,
+          1.04
+        ],
+        "hypothesis": "Later growth factor; fixed at 1 until S6"
+      }
+    },
+    "tableLength": {
+      "value": 200,
+      "label": "candidate",
+      "note": "Technical table length (levels 1 to 201), not a design cap (R08.03)"
+    },
+    "maxLevelUpsPerAward": {
+      "value": 1000,
+      "label": "candidate",
+      "note": "Runaway-loop guard"
+    },
+    "table": {
+      "path": "content/tables/xp.w1.candidate.v0.1.0.json",
+      "sha256": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+    }
+  },
+  "statCategories": [
+    {
+      "id": "cat.damage.additive",
+      "kind": "additivePool",
+      "active": true,
+      "note": "Main additive damage pool (R05.17, R08.10)"
+    },
+    {
+      "id": "cat.damage.monument",
+      "kind": "multiplier",
+      "active": false,
+      "note": "Monument multiplier category; inactive until S4"
+    },
+    {
+      "id": "cat.research",
+      "kind": "multiplier",
+      "active": false,
+      "note": "World 2 hook (R05.09); neutral in W1"
+    },
+    {
+      "id": "cat.mastery_tree",
+      "kind": "multiplier",
+      "active": false,
+      "note": "World 2 hook (R05.12); neutral in W1"
+    }
+  ],
+  "combat": {
+    "mitigationK": {
+      "value": 100,
+      "label": "candidate",
+      "range": [
+        50,
+        200
+      ]
+    },
+    "minDamagePerHit": {
+      "value": 1,
+      "label": "candidate"
+    },
+    "hitCurve": {
+      "hAtReqBp": {
+        "value": 9000,
+        "label": "candidate",
+        "range": [
+          8000,
+          9500
+        ]
+      },
+      "floorBp": {
+        "value": 1000,
+        "label": "candidate",
+        "range": [
+          500,
+          2000
+        ]
+      },
+      "k": {
+        "value": 2,
+        "label": "candidate",
+        "range": [
+          1,
+          4
+        ]
+      }
+    },
+    "critChanceBpBase": {
+      "value": 500,
+      "label": "candidate",
+      "range": [
+        0,
+        1000
+      ]
+    },
+    "critMultBpBase": {
+      "value": 15000,
+      "label": "candidate",
+      "range": [
+        12500,
+        20000
+      ]
+    }
+  }
+}

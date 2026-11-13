@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "fixtureSet": {
+      "type": "string",
+      "enum": [
+        "numeric",
+        "remainder",
+        "rng",
+        "xp",
+        "stats",
+        "combat",
+        "ledger",
+        "canonical-json",
+        "content"
+      ]
+    },
+    "fixtureVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "specRef": {
+      "type": "string",
+      "pattern": "^spec\\/formulas\\/[a-z-]+\\.md#v\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "approved"
+      ]
+    },
+    "independence": {
+      "type": "string",
+      "minLength": 20
+    },
+    "cases": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9.-]*$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "normal",
+              "boundary",
+              "failure"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 3
+          },
+          "input": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "expected": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {}
+          },
+          "expectedError": {
+            "type": "string",
+            "enum": [
+              "INVALID_NUMBER",
+              "NUMERIC_LIMIT",
+              "INVALID_DENOMINATOR",
+              "INVALID_STATE",
+              "INVALID_RANGE",
+              "RANGE_TOO_LARGE",
+              "INVALID_PROBABILITY",
+              "PROBABILITY_TOO_SMALL",
+              "INVALID_STREAM_ID",
+              "RNG_ZERO_STATE",
+              "RNG_REJECTION_GUARD",
+              "INVALID_TABLE",
+              "XP_TABLE_EXHAUSTED",
+              "LEVEL_UP_GUARD",
+              "UNKNOWN_CATEGORY",
+              "INVALID_TX",
+              "NEGATIVE_BALANCE",
+              "TX_CONFLICT",
+              "INVALID_JSON_VALUE",
+              "INVALID_CONTENT"
+            ]
+          },
+          "tolerance": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "exact"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "rel": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "abs": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "derivation": {
+            "type": "string",
+            "minLength": 5
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "description",
+          "input",
+          "derivation"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "fixtureSet",
+    "fixtureVersion",
+    "specRef",
+    "status",
+    "independence",
+    "cases"
+  ],
+  "additionalProperties": false
+}

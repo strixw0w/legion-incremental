@@ -1,0 +1,76 @@
+Reproductions run against: S0 baseline (byte-identical to the reviewed S0 ZIP)
+
+R1a per-hour, one call over 2 h at rate 2^53-1
+  call:   accruePerHour({msRem:0,milliRem:0}, M, 7200000)
+  result: throws NUMERIC_LIMIT
+
+R1b per-hour, same 2 h as two 1 h calls
+  call:   a = accruePerHour(start, M, 3600000); b = accruePerHour(a.state, M, 3600000)
+  result: returns { totalGranted: 18014398509481, state: { msRem: 0, milliRem: 982 } }
+
+R2a neutral active category
+  call:   evaluateStat(M, [], [{id:'cat.a', kind:'additivePool', active:true}]).value
+  result: returns 9007199254740990
+
+R2b 30 large multiplier categories
+  call:   evaluateStat(M, 30 sources of bp M-10000, 30 active multiplier categories).value
+  result: returns Infinity
+
+R2c the same, then one category with factor 0 (sorted last)
+  call:   ... plus {id:'cat.z', active:true} with a -10000 bp source
+  result: returns NaN
+
+R3a v1 call shape (raw, mitigation as a double)
+  call:   damagePerHit({raw:100, crit:true, critMultBp:10050, mitigation:1, minDamage:1})
+  result: returns 100
+
+R3b v2 call shape: not available in this tree (combat v1)
+
+R4a award of 2 one EXP short of a 2^53-1 threshold
+  call:   applyExpAward({level:1, expIntoLevel:M-1}, 2, [M, M], 10)
+  result: throws NUMERIC_LIMIT
+
+R4b the same award split into 1 + 1
+  call:   a = applyExpAward({1, M-1}, 1, [M,M], 10); applyExpAward(a, 1, [M,M], 10)
+  result: returns { level: 2, expIntoLevel: 1, levelUps: [ 2 ] }
+
+R5a sparse RNG state
+  call:   assertRngState(new Array(4))
+  result: returns [ undefined, undefined, undefined, undefined ]
+
+R5b sparse EXP table
+  call:   applyExpAward({level:1, expIntoLevel:0}, 5, new Array(2), 5)
+  result: returns { level: 1, expIntoLevel: 5, levelUps: [] }
+
+R5c all-zero state straight into the generator
+  call:   nextU32([0,0,0,0])
+  result: returns [ 0, [ 0, 0, 0, 0 ] ]
+
+R5d all-zero state into a Bernoulli trial
+  call:   bernoulli([0,0,0,0], 2^31)
+  result: returns [ true, [ 0, 0, 0, 0 ] ]
+
+R5e all-zero state into uniformInt
+  call:   uniformInt([0,0,0,0], 1, 6)
+  result: returns { value: 1, state: [ 0, 0, 0, 0 ], draws: 1 }
+
+R5f sparse transaction lines
+  call:   applyTx(emptyLedger(), {txId:'t', purpose:'grant', lines:new Array(1)})
+  result: throws INVALID_JSON_VALUE
+
+R5g sparse stat sources
+  call:   evaluateStat(1, new Array(1), [{id:'cat.a',...}])
+  result: throws TypeError: Cannot read properties of undefined (reading 'sourceId')
+
+R6a mutate a returned receipt, then replay
+  call:   r = applyTx(empty, grant 5); r.result.nets[0].delta = 999; applyTx(r.ledger, grant 5)
+  result: returns { mutation: 'accepted', replayNets: [ { resourceId: 'res.gold', bucket: 'available', delta: 999 } ], replayed: true, balance: 5 }
+
+R6b clear the committed history through the returned ledger, then replay
+  call:   l = applyTx(empty, grant 5).ledger; l.committed.clear(); applyTx(l, grant 5)
+  result: returns { mutation: 'accepted', replayed: false, balance: 10 }
+
+R6c overwrite a balance through the returned ledger
+  call:   l.balances.set('res.gold', {available: 1000000, reserved: 0})
+  result: returns { mutation: 'accepted', balance: 1000000 }
+

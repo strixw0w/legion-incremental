@@ -1,0 +1,10 @@
+Mutation check: each row plants one deliberate bug, runs the default test suite, then restores the file (hash verified).
+
+| # | File | Planted bug | Tests failed (of 329) | Restored, hash identical |
+|---|---|---|---|---|
+| 1 | `src/core/numeric/rounding.ts` | naive `floor(x + 0.5)` rounding | 6 | yes |
+| 2 | `src/core/ledger/ledger.ts` | a reused txId always replays (conflict check removed) | 2 | yes |
+| 3 | `src/core/rng/xoshiro128ss.ts` | rotation constant 11 changed to 13 | 8 | yes |
+| 4 | `src/core/numeric/remainder.ts` | the a*j term dropped from the exact decomposition | 3 | yes |
+
+A count above 0 means the suite detected the planted bug.

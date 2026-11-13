@@ -1,0 +1,16 @@
+$ node src/cli/fixtures-check.ts
+
+| Family | File | Cases | Normal | Boundary | Failure | Passed |
+|---|---|---|---|---|---|---|
+| canonical-json | spec/fixtures/canonical-json.v1.json | 7 | 2 | 2 | 3 | 7 |
+| combat | spec/fixtures/combat.v2.json | 51 | 12 | 24 | 15 | 51 |
+| content | spec/fixtures/content.v1.json | 10 | 1 | 1 | 8 | 10 |
+| ledger | spec/fixtures/ledger.v1.json | 15 | 2 | 4 | 9 | 15 |
+| numeric | spec/fixtures/numeric.v1.json | 40 | 6 | 20 | 14 | 40 |
+| remainder | spec/fixtures/remainder.v2.json | 33 | 9 | 12 | 12 | 33 |
+| rng | spec/fixtures/rng.v1.json | 46 | 11 | 15 | 20 | 46 |
+| stats | spec/fixtures/stats.v2.json | 20 | 3 | 6 | 11 | 20 |
+| xp | spec/fixtures/xp.v2.json | 30 | 6 | 10 | 14 | 30 |
+total cases: 252; problems: 0
+
+[exit code: 0]

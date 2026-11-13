@@ -1,0 +1,226 @@
+{
+  "fixtureSet": "ledger",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/ledger.md#v1",
+  "status": "candidate",
+  "independence": "Expected step results and balances derived by hand from spec/formulas/ledger.md; re-checked by an independent Python ledger in spec/oracle/exact_oracle.py.",
+  "cases": [
+    {
+      "id": "ledger.grant-spend.001",
+      "kind": "normal",
+      "description": "Grant then spend",
+      "input": { "txs": [
+        { "txId": "tx.001", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 100 }] },
+        { "txId": "tx.002", "purpose": "purchase", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": -30 }] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 100 }] },
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": -30 }] }
+        ],
+        "balances": { "res.gold": { "available": 70, "reserved": 0 } }
+      },
+      "derivation": "0 + 100 - 30 = 70"
+    },
+    {
+      "id": "ledger.aggregate.001",
+      "kind": "boundary",
+      "description": "Lines are aggregated before validation: -3 then +5 on an empty bucket nets +2",
+      "input": { "txs": [
+        { "txId": "tx.agg", "purpose": "deposit", "lines": [
+          { "resourceId": "res.gold", "bucket": "available", "delta": -3 },
+          { "resourceId": "res.gold", "bucket": "available", "delta": 5 },
+          { "resourceId": "res.mat.slime_gel", "bucket": "available", "delta": 1 },
+          { "resourceId": "res.mat.slime_gel", "bucket": "available", "delta": 1 }
+        ] }
+      ] },
+      "expected": {
+        "steps": [{ "ok": true, "replayed": false, "nets": [
+          { "resourceId": "res.gold", "bucket": "available", "delta": 2 },
+          { "resourceId": "res.mat.slime_gel", "bucket": "available", "delta": 2 }
+        ] }],
+        "balances": { "res.gold": { "available": 2, "reserved": 0 }, "res.mat.slime_gel": { "available": 2, "reserved": 0 } }
+      },
+      "derivation": "gold net -3+5 = +2 (applying line by line would have gone negative); duplicate slime lines net +2; nets sorted by resourceId"
+    },
+    {
+      "id": "ledger.atomic.001",
+      "kind": "failure",
+      "description": "A failing line rolls back the whole transaction",
+      "input": { "txs": [
+        { "txId": "tx.a", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 5 }] },
+        { "txId": "tx.b", "purpose": "craft", "lines": [
+          { "resourceId": "res.gold", "bucket": "available", "delta": -10 },
+          { "resourceId": "res.mat.slime_gel", "bucket": "available", "delta": 1 }
+        ] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 5 }] },
+          { "ok": false, "error": "NEGATIVE_BALANCE" }
+        ],
+        "balances": { "res.gold": { "available": 5, "reserved": 0 } }
+      },
+      "derivation": "5 - 10 < 0 -> NEGATIVE_BALANCE; slime gel is not added (atomic)"
+    },
+    {
+      "id": "ledger.replay.001",
+      "kind": "boundary",
+      "description": "Same txId with identical payload returns the stored result once more",
+      "input": { "txs": [
+        { "txId": "tx.c", "purpose": "grant", "cause": "kill:enc.1:enemy.1", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+        { "txId": "tx.c", "purpose": "grant", "cause": "kill:enc.1:enemy.1", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+          { "ok": true, "replayed": true, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] }
+        ],
+        "balances": { "res.gold": { "available": 10, "reserved": 0 } }
+      },
+      "derivation": "second apply is a replay: balance stays 10, not 20"
+    },
+    {
+      "id": "ledger.conflict.001",
+      "kind": "failure",
+      "description": "Same txId with a different payload is a conflict",
+      "input": { "txs": [
+        { "txId": "tx.d", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+        { "txId": "tx.d", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 11 }] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+          { "ok": false, "error": "TX_CONFLICT" }
+        ],
+        "balances": { "res.gold": { "available": 10, "reserved": 0 } }
+      },
+      "derivation": "payload hash differs -> TX_CONFLICT; balance unchanged"
+    },
+    {
+      "id": "ledger.failed-not-recorded.001",
+      "kind": "boundary",
+      "description": "A failed transaction is not recorded, so the same ID can succeed later",
+      "input": { "txs": [
+        { "txId": "tx.e", "purpose": "purchase", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": -5 }] },
+        { "txId": "tx.f", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+        { "txId": "tx.e", "purpose": "purchase", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": -5 }] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": false, "error": "NEGATIVE_BALANCE" },
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 10 }] },
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": -5 }] }
+        ],
+        "balances": { "res.gold": { "available": 5, "reserved": 0 } }
+      },
+      "derivation": "first tx.e fails and records nothing; after the grant, tx.e succeeds: 10 - 5 = 5"
+    },
+    {
+      "id": "ledger.overflow.001",
+      "kind": "failure",
+      "description": "Balance cannot exceed 2^53 - 1",
+      "input": { "txs": [
+        { "txId": "tx.g", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 9007199254740991 }] },
+        { "txId": "tx.h", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 1 }] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.gold", "bucket": "available", "delta": 9007199254740991 }] },
+          { "ok": false, "error": "NUMERIC_LIMIT" }
+        ],
+        "balances": { "res.gold": { "available": 9007199254740991, "reserved": 0 } }
+      },
+      "derivation": "(2^53 - 1) + 1 is not safe"
+    },
+    {
+      "id": "ledger.aggregate-overflow.001",
+      "kind": "failure",
+      "description": "Overflow while aggregating lines is caught",
+      "input": { "txs": [
+        { "txId": "tx.i", "purpose": "grant", "lines": [
+          { "resourceId": "res.gold", "bucket": "available", "delta": 9007199254740991 },
+          { "resourceId": "res.gold", "bucket": "available", "delta": 9007199254740991 }
+        ] }
+      ] },
+      "expected": { "steps": [{ "ok": false, "error": "NUMERIC_LIMIT" }], "balances": {} },
+      "derivation": "aggregated net 2*(2^53 - 1) is not safe"
+    },
+    {
+      "id": "ledger.reserve.001",
+      "kind": "normal",
+      "description": "Moving material from available to reserved",
+      "input": { "txs": [
+        { "txId": "tx.j", "purpose": "grant", "lines": [{ "resourceId": "res.mat.copper_ore", "bucket": "available", "delta": 10 }] },
+        { "txId": "tx.k", "purpose": "reserve", "lines": [
+          { "resourceId": "res.mat.copper_ore", "bucket": "available", "delta": -4 },
+          { "resourceId": "res.mat.copper_ore", "bucket": "reserved", "delta": 4 }
+        ] }
+      ] },
+      "expected": {
+        "steps": [
+          { "ok": true, "replayed": false, "nets": [{ "resourceId": "res.mat.copper_ore", "bucket": "available", "delta": 10 }] },
+          { "ok": true, "replayed": false, "nets": [
+            { "resourceId": "res.mat.copper_ore", "bucket": "available", "delta": -4 },
+            { "resourceId": "res.mat.copper_ore", "bucket": "reserved", "delta": 4 }
+          ] }
+        ],
+        "balances": { "res.mat.copper_ore": { "available": 6, "reserved": 4 } }
+      },
+      "derivation": "10 - 4 = 6 available; 4 reserved; total 10 conserved"
+    },
+    {
+      "id": "ledger.net-zero.001",
+      "kind": "boundary",
+      "description": "Lines that cancel out leave no trace",
+      "input": { "txs": [
+        { "txId": "tx.l", "purpose": "adjust", "lines": [
+          { "resourceId": "res.gold", "bucket": "available", "delta": 5 },
+          { "resourceId": "res.gold", "bucket": "available", "delta": -5 }
+        ] }
+      ] },
+      "expected": { "steps": [{ "ok": true, "replayed": false, "nets": [] }], "balances": {} },
+      "derivation": "net 0: nothing changes, no balance entry is created"
+    },
+    {
+      "id": "ledger.invalid.zero-delta.001",
+      "kind": "failure",
+      "description": "Zero delta line",
+      "input": { "txs": [{ "txId": "tx.m", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 0 }] }] },
+      "expected": { "steps": [{ "ok": false, "error": "INVALID_TX" }], "balances": {} },
+      "derivation": "deltas must be non-zero"
+    },
+    {
+      "id": "ledger.invalid.resource-id.001",
+      "kind": "failure",
+      "description": "Resource ID without the res. prefix",
+      "input": { "txs": [{ "txId": "tx.n", "purpose": "grant", "lines": [{ "resourceId": "gold", "bucket": "available", "delta": 1 }] }] },
+      "expected": { "steps": [{ "ok": false, "error": "INVALID_TX" }], "balances": {} },
+      "derivation": "resourceId must match ^res(\\.[a-z0-9_]+)+$"
+    },
+    {
+      "id": "ledger.invalid.fraction.001",
+      "kind": "failure",
+      "description": "Fractional delta",
+      "input": { "txs": [{ "txId": "tx.o", "purpose": "grant", "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 1.5 }] }] },
+      "expected": { "steps": [{ "ok": false, "error": "INVALID_NUMBER" }], "balances": {} },
+      "derivation": "deltas must be safe integers"
+    },
+    {
+      "id": "ledger.invalid.field.001",
+      "kind": "failure",
+      "description": "Unknown transaction field",
+      "input": { "txs": [{ "txId": "tx.p", "purpose": "grant", "amount": 3, "lines": [{ "resourceId": "res.gold", "bucket": "available", "delta": 1 }] }] },
+      "expected": { "steps": [{ "ok": false, "error": "INVALID_TX" }], "balances": {} },
+      "derivation": "only txId, purpose, cause and lines are allowed"
+    },
+    {
+      "id": "ledger.invalid.empty.001",
+      "kind": "failure",
+      "description": "Transaction without lines",
+      "input": { "txs": [{ "txId": "tx.q", "purpose": "grant", "lines": [] }] },
+      "expected": { "steps": [{ "ok": false, "error": "INVALID_TX" }], "balances": {} },
+      "derivation": "at least one line is required"
+    }
+  ]
+}

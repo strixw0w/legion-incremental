@@ -1,0 +1,6 @@
+ {s0.1-reviewed => final}/legion-progression-lab/CHANGELOG.md                     |  24 +++++++++++++++--
+ /dev/null => final/legion-progression-lab/planning/S0_FINAL_REVIEW_RESOLUTION.md | 158 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ {s0.1-reviewed => final}/legion-progression-lab/src/core/ledger/ledger.ts        |  25 +++++++++++-------
+ {s0.1-reviewed => final}/legion-progression-lab/test/ledger.test.ts              |  64 +++++++++++++++++++++++++++++++++++++++++++++
+ {s0.1-reviewed => final}/spec/formulas/ledger.md                                 |  12 ++++++---
+ 5 files changed, 268 insertions(+), 15 deletions(-)

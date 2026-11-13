@@ -1,0 +1,353 @@
+diff --git a/s0.1-reviewed/legion-progression-lab/CHANGELOG.md b/final/legion-progression-lab/CHANGELOG.md
+index 9763472..a2d7521 100644
+--- a/s0.1-reviewed/legion-progression-lab/CHANGELOG.md
++++ b/final/legion-progression-lab/CHANGELOG.md
+@@ -2,7 +2,27 @@
+ 
+ Every change to formula specs, fixtures, content or baselines is recorded here, with its decision ID, rationale, evidence and version.
+ 
+-## S0.1 — 2026-11-13 (uncommitted; awaiting independent review and owner acceptance)
++## S0.1 final ledger correction — 2026-11-13 (accepted subject to verification; committed as the S0 checkpoint)
++
++From the independent S0.1 review (`planning/S0_FINAL_REVIEW_RESOLUTION.md`).
++
++**Defect.** A frozen object combining the balances of one genuine ledger with the committed history of another passed `applyTx`'s structural check. Replaying a committed transaction then credited it again: balance 10 instead of 5. Frozen shallow copies, and maps forged through the read-only map's constructor, were also accepted.
++
++**Fix.** `src/core/ledger/ledger.ts` now registers every ledger made by `emptyLedger`/`applyTx` in a module-private `WeakSet`. `applyTx` accepts only registered ledgers (`INVALID_STATE` otherwise). Branching from any earlier genuine snapshot is unchanged.
++
++**Spec and fixtures.**
++- `ledger.md` (still v1, no result changes) documents the identity rule and the need for a separate, validated reconstruction boundary for any future deserialisation.
++- No fixture changes: object identity cannot be expressed in JSON.
++
++**Tests.** 4 regression tests:
++- mixed ledgers;
++- shallow copies and forged maps;
++- branching from historical snapshots;
++- replay and conflicts after branching.
++
++**Evidence:** `evidence/s0.1-final/`.
++
++## S0.1 — 2026-11-13 (accepted by owner after independent review, subject to the final correction above)
+ 
+ Hardening corrections from the independent S0 review (items 1–8). Evidence: `evidence/s0.1/S0_1_EVIDENCE.md`. All coefficients remain `candidate`. The XP curve, the XP table artifact and the content pack are unchanged.
+ 
+@@ -104,7 +124,7 @@ Hardening corrections from the independent S0 review (items 1–8). Evidence: `e
+ - The `accrue` primitive.
+ - The frozen `progression-lab/` baseline and the Original v1 archive.
+ 
+-## S0 — 2026-11-13 (uncommitted; awaiting independent review and owner acceptance)
++## S0 — 2026-11-13 (accepted by owner after independent review of S0 and S0.1)
+ 
+ ### Added
+ - **Formula specs v1** (`spec/formulas/`):
+diff --git a/final/legion-progression-lab/planning/S0_FINAL_REVIEW_RESOLUTION.md b/final/legion-progression-lab/planning/S0_FINAL_REVIEW_RESOLUTION.md
+new file mode 100644
+index 0000000..aeb4772
+--- /dev/null
++++ b/final/legion-progression-lab/planning/S0_FINAL_REVIEW_RESOLUTION.md
+@@ -0,0 +1,158 @@
++# S0 / S0.1 — final review resolution and S1 authorisation
++
++**Version 1.0, 2026-11-13.** This records the owner's message "S0.1 Independent Review Resolution and S1 Authorisation". It changes no earlier decision record (`M0_RESOLUTION.md` and the Decision Register remain as they are).
++
++## 1. Independent review of S0.1 (as reported by the owner)
++The independent reviewer (ChatGPT) examined `legion-S0.1-review-2026-11-13.zip` (SHA-256 `70ee3b90e9f06e5dead968c6164b260ff7d6326c3b9a3c7e7c8413633a3c49fb`) and reported the following.
++
++**Package integrity:**
++- the ZIP hash matched;
++- all 157 manifest files matched their SHA-256 and size;
++- there were no unexpected files.
++
++**Corrections confirmed:**
++- all six original S0 defect reproductions are corrected;
++- the additional history-clearing and balance-mutation reproductions are corrected.
++
++**Independent checks:**
++- all five Python oracle groups pass;
++- all 200 XP thresholds match, with no unstable rounding;
++- the independently generated EXP report and its nine sweep variants pass the oracle;
++- the Game Design Bible, Decision Register, kickoff prompt, candidate content pack and XP table are byte-identical to the S0 package.
++
++**40,000 additional comparisons against the TypeScript implementation, with zero incorrect results:**
++- 15,000 multiply-divide;
++- 12,000 combat damage;
++- 10,000 per-hour accrual;
++- 3,000 EXP award.
++
++There were also 5,000 additional successful interval-partition comparisons.
++
++**Curve fingerprint:** semantic fingerprint `24dd90646ff38d8a455e9e704148e58db39219716438616fb4ee64f2f9bab9b9`, reproduced on Linux with Node 22.16.0.
++
++**Not independently re-run:** the Vitest suite, because the review environment lacked the pinned runtime and dependencies. The 459 regular and 7 statistical passes are supported by the supplied logs. They must not be described as independently re-run.
++
++## 2. Final ledger correction (required before acceptance)
++**Defect, reproduced by the reviewer:** `Object.freeze({ ...credited, committed: original.committed })` was accepted by `applyTx`. Replaying the grant credited it again (balance 10, expected `INVALID_STATE`).
++
++**Requirements:**
++- register legitimate ledgers in a module-private `WeakSet` (or an equivalent opaque representation);
++- accept only those;
++- reject externally assembled frozen objects;
++- keep branching from earlier snapshots;
++- do not expose the registry;
++- document that deserialisation needs a separate, validated reconstruction boundary.
++
++**Required tests:**
++- mixed ledgers;
++- frozen shallow copies;
++- historical snapshots as branch starting points;
++- duplicate and conflicting replay after branching.
++
++**Constraints:** no unrelated refactors and no performance redesign.
++
++**Done:**
++- `src/core/ledger/ledger.ts` (module-private `ISSUED_LEDGERS`);
++- `spec/formulas/ledger.md`;
++- `test/ledger.test.ts` (4 tests);
++- `CHANGELOG.md`;
++- evidence in `evidence/s0.1-final/`.
++
++## 3. Acceptance and checkpoint
++**Accepted:** S0 and S0.1 are accepted, subject to that correction passing the full verification suite.
++
++**Checkpoint, after verification:**
++- commit S0, S0.1 and the correction as one coherent, locally verified checkpoint;
++- record the full commit SHA, the exact test results and the final diff;
++- create a local tag;
++- confirm the frozen simulator and the Original v1 archive are unchanged.
++
++**Not allowed:**
++- pushing while the GitHub repository is public;
++- deleting either old workspace.
++
++**Where the record is kept:** a commit cannot contain its own SHA. The checkpoint SHA, the tag and the post-commit checks are therefore recorded in `evidence/s0-checkpoint/CHECKPOINT.md`, written immediately after the commit. That file is part of the S1 review package.
++
++## 4. S1 authorisation (summary of the owner's terms)
++After the checkpoint, S1 may begin. It follows the versioned S1 implementation and experiment plans, with these refinements.
++
++**Nature of S1:** a single-character diagnostic simulation. It is not the final World 1 balance.
++
++**In scope:**
++- account and hero state;
++- a deterministic clock;
++- commands, events and reason codes;
++- the event queue and phases;
++- one classless hero;
++- three candidate combat zones;
++- spawn availability and respawn;
++- automatic attacks, attack intervals, accuracy and crits;
++- exact combat v2 damage;
++- enemy retaliation;
++- health, death, regeneration and checkpoint recovery;
++- gold, EXP, material and test-only rare-drop rewards;
++- ordinary kill gates;
++- separate access, visited and checkpoint flags;
++- travel and free eligible teleportation;
++- an active-only prototype miniboss gate stub;
++- a reference stepper and an independent rate estimator;
++- realistic and separately labelled oracle policies;
++- experiment manifests, results, fingerprints and reproducibility tooling.
++
++**Out of scope:**
++- recruits or squads;
++- classes, talents or abilities;
++- equipment crafting or gear progression;
++- unapproved sinks;
++- professions;
++- monuments, Bestiary or Feats;
++- offline progression;
++- full bosses;
++- zones 4–10;
++- monetisation;
++- Roblox or Luau;
++- a dashboard.
++
++**Damage quantisation:** the combat v2 contract is accepted. Before combat is implemented, document how derived attack becomes `rawMilli`. The document must cover:
++- the thousandths representation;
++- a defined rounding rule;
++- explicit limits;
++- no epsilon;
++- independent boundary fixtures;
++- the distinction between exact damage on quantised inputs and binary64 derived stats.
++
++Authoritative damage uses exact mitigation fractions, and the rule must be reproducible in Luau.
++
++**Event correctness:** the approved event semantics are implemented and tested before any balance experiment, with adversarial scenarios covering:
++- simultaneous lethal attacks;
++- retaliation at the moment of death;
++- hero death and cancelled attacks;
++- stale events;
++- respawn and target invalidation;
++- identical timestamps;
++- exactly-once kill rewards;
++- session boundaries;
++- level-ups mid-work;
++- no entity-ID advantage.
++
++Genuinely ambiguous specs get a recorded resolution and its consequences; no gameplay rule is invented silently.
++
++**Ledger benchmark:**
++- staged workloads with a predeclared wall-clock and memory budget;
++- workloads over budget are reported as timed out or unsuitable, never as a projected value presented as measured;
++- reported figures: throughput, median and p99 latency, latency growth, memory, serialised size, replay cost, and the effect on S1 runtime;
++- the current ledger is kept as the correctness reference;
++- persistent maps are investigated, with no replacement without approval.
++
++**Experiments:**
++- every experiment is pre-registered before it runs, and targets are never changed after results are seen;
++- topics: early pacing; first kill; levels 2, 5, 10 and 25 where reachable; zone 2 and 3 access and first visit; time-to-kill distributions; deaths and downtime; hourly rates; zone trade-offs; estimator accuracy; sensitivity; realistic versus oracle policies; reproducibility;
++- final onboarding targets that depend on absent features are not forced;
++- engineering gates are kept separate from balance targets;
++- failures are reported honestly.
++
++**Evidence and stopping point:**
++- the S1 package is listed in section 9 of the owner's message and includes a verified checksum manifest;
++- everything is labelled `candidate`, and nothing is live-validated;
++- S1 is not committed before review and acceptance;
++- work stops after S1, because S2 needs separate authorisation.
+diff --git a/s0.1-reviewed/legion-progression-lab/src/core/ledger/ledger.ts b/final/legion-progression-lab/src/core/ledger/ledger.ts
+index 0096413..cc6174e 100644
+--- a/s0.1-reviewed/legion-progression-lab/src/core/ledger/ledger.ts
++++ b/final/legion-progression-lab/src/core/ledger/ledger.ts
+@@ -11,8 +11,11 @@
+  * 6. Commit all changes and record txId -> { payloadHash, result }. Failures record nothing.
+  *
+  * Immutability boundary (S0.1, spec/formulas/ledger.md "Immutable state boundary"):
+- * - A Ledger is an immutable value. The only ways to obtain one are emptyLedger() and applyTx(); applyTx
+- *   refuses anything else (INVALID_STATE).
++ * - A Ledger is an immutable value. The only ways to obtain one are emptyLedger() and applyTx(). Each ledger
++ *   they create is registered in a module-private WeakSet; applyTx refuses any object not registered there
++ *   (INVALID_STATE), including frozen copies of real ledgers and objects that mix the maps of two real ledgers
++ *   (S0.1 final correction). Earlier ledgers stay registered, so branching from any snapshot still works.
++ * - Loading a ledger from saved data will need its own validated reconstruction constructor (S3/M6); none exists.
+  * - Every object reachable from a Ledger or a TxResult is frozen: the ledger record, both maps (read-only
+  *   FrozenMap: no set, delete or clear), every balance record, every committed record, every result and its
+  *   nets array and lines. Mutation attempts throw TypeError (modules are strict) and change nothing.
+@@ -111,8 +114,13 @@ class FrozenMap<K, V> implements ReadonlyMap<K, V> {
+   }
+ }
+ 
++/** Every ledger created by makeLedger, and nothing else. Module-private; never exported or exposed. */
++const ISSUED_LEDGERS = new WeakSet<Ledger>();
++
+ function makeLedger(balances: Map<string, BucketBalances>, committed: Map<string, CommittedRecord>): Ledger {
+-  return Object.freeze({ balances: new FrozenMap(balances), committed: new FrozenMap(committed) });
++  const ledger: Ledger = Object.freeze({ balances: new FrozenMap(balances), committed: new FrozenMap(committed) });
++  ISSUED_LEDGERS.add(ledger);
++  return ledger;
+ }
+ 
+ function freezeResult(txId: string, nets: readonly TxLine[], replayed: boolean): TxResult {
+@@ -120,13 +128,10 @@ function freezeResult(txId: string, nets: readonly TxLine[], replayed: boolean):
+ }
+ 
+ function assertLedger(ledger: unknown): Ledger {
+-  const ok =
+-    ledger !== null &&
+-    typeof ledger === 'object' &&
+-    Object.isFrozen(ledger) &&
+-    (ledger as Ledger).balances instanceof FrozenMap &&
+-    (ledger as Ledger).committed instanceof FrozenMap;
+-  if (!ok) fail('INVALID_STATE', 'ledger must come from emptyLedger() or applyTx()');
++  // Identity, not structure: a frozen object with genuine maps is still refused unless this module made it.
++  if (ledger === null || typeof ledger !== 'object' || !ISSUED_LEDGERS.has(ledger as Ledger)) {
++    fail('INVALID_STATE', 'ledger must come from emptyLedger() or applyTx()');
++  }
+   return ledger as Ledger;
+ }
+ 
+diff --git a/s0.1-reviewed/legion-progression-lab/test/ledger.test.ts b/final/legion-progression-lab/test/ledger.test.ts
+index f2b4d52..59b9f56 100644
+--- a/s0.1-reviewed/legion-progression-lab/test/ledger.test.ts
++++ b/final/legion-progression-lab/test/ledger.test.ts
+@@ -186,3 +186,67 @@ describe('ledger immutability boundary (S0.1)', () => {
+     expect([...ledger.committed.keys()]).toEqual(['tx.gold.1']);
+   });
+ });
++
++describe('ledger identity: only registered ledgers are accepted (S0.1 final correction)', () => {
++  const gold5 = grant('tx.gold.5', 5);
++
++  it('S0.1 review reproduction: mixing the balances of one genuine ledger with the history of another is refused', () => {
++    const original = emptyLedger();
++    const credited = applyTx(original, gold5).ledger;
++    const mixed = Object.freeze({ ...credited, committed: original.committed }) as Ledger;
++    expect(code(() => applyTx(mixed, gold5))).toBe('INVALID_STATE');
++    const reversed = Object.freeze({ ...original, committed: credited.committed }) as Ledger;
++    expect(code(() => applyTx(reversed, grant('tx.other', 1)))).toBe('INVALID_STATE');
++    // The genuine ledgers are unaffected.
++    expect(applyTx(credited, gold5).result.replayed).toBe(true);
++    expect(balance(applyTx(credited, gold5).ledger, 'res.gold')).toBe(5);
++  });
++
++  it('frozen shallow copies of genuine ledgers are refused, as are maps forged through the map constructor', () => {
++    const genuine = applyTx(emptyLedger(), gold5).ledger;
++    expect(code(() => applyTx(Object.freeze({ ...genuine }) as Ledger, grant('tx.x', 1)))).toBe('INVALID_STATE');
++    expect(code(() => applyTx({ ...genuine } as Ledger, grant('tx.x', 1)))).toBe('INVALID_STATE');
++    expect(code(() => applyTx(Object.create(genuine) as Ledger, grant('tx.x', 1)))).toBe('INVALID_STATE');
++    const MapCtor = genuine.balances.constructor as new (m: Map<string, unknown>) => unknown;
++    const forged = Object.freeze({
++      balances: new MapCtor(new Map([['res.gold', Object.freeze({ available: 1_000_000, reserved: 0 })]])),
++      committed: new MapCtor(new Map()),
++    }) as unknown as Ledger;
++    expect(code(() => applyTx(forged, grant('tx.x', 1)))).toBe('INVALID_STATE');
++  });
++
++  it('every earlier genuine ledger is an independent branch starting point', () => {
++    const l0 = emptyLedger();
++    const l1 = applyTx(l0, grant('tx.1', 5)).ledger;
++    const l2 = applyTx(l1, grant('tx.2', 7)).ledger;
++    // Branch A continues l2; branch B restarts from l1; branch C restarts from the empty ledger.
++    const a = applyTx(l2, grant('tx.3', 1)).ledger;
++    const b = applyTx(l1, grant('tx.3', 100)).ledger;
++    const c = applyTx(l0, grant('tx.1', 9)).ledger;
++    expect([balance(l0, 'res.gold'), balance(l1, 'res.gold'), balance(l2, 'res.gold')]).toEqual([0, 5, 12]);
++    expect([balance(a, 'res.gold'), balance(b, 'res.gold'), balance(c, 'res.gold')]).toEqual([13, 105, 9]);
++    expect([...b.committed.keys()].sort()).toEqual(['tx.1', 'tx.3']);
++    expect(l2.committed.has('tx.3')).toBe(false);
++  });
++
++  it('replay and conflict detection follow each branch’s own history', () => {
++    const l1 = applyTx(emptyLedger(), grant('tx.1', 5)).ledger;
++    const l2 = applyTx(l1, grant('tx.2', 7)).ledger;
++    const branch = applyTx(l1, grant('tx.b', 3)).ledger;
++    // tx.1 is in both histories: an identical payload replays, a different one conflicts, in both branches.
++    for (const ledger of [l2, branch]) {
++      const replay = applyTx(ledger, grant('tx.1', 5));
++      expect(replay.result.replayed).toBe(true);
++      expect(replay.ledger).toBe(ledger);
++      expect(code(() => applyTx(ledger, grant('tx.1', 6)))).toBe('TX_CONFLICT');
++    }
++    // tx.2 was committed only on the l2 branch: it is new on the other branch, with any payload.
++    expect(applyTx(branch, grant('tx.2', 7)).result.replayed).toBe(false);
++    expect(balance(applyTx(branch, grant('tx.2', 70)).ledger, 'res.gold')).toBe(78);
++    expect(applyTx(l2, grant('tx.2', 7)).result.replayed).toBe(true);
++    expect(code(() => applyTx(l2, grant('tx.2', 70)))).toBe('TX_CONFLICT');
++    // tx.b was committed only on the branch.
++    expect(applyTx(branch, grant('tx.b', 3)).result.replayed).toBe(true);
++    expect(applyTx(l2, grant('tx.b', 3)).result.replayed).toBe(false);
++  });
++});
+diff --git a/s0.1-reviewed/spec/formulas/ledger.md b/final/spec/formulas/ledger.md
+index aeb304d..65e097a 100644
+--- a/s0.1-reviewed/spec/formulas/ledger.md
++++ b/final/spec/formulas/ledger.md
+@@ -35,10 +35,16 @@
+ - Replaying any committed transaction changes nothing.
+ 
+ ### Immutable state boundary (S0.1 hardening; no result changes, spec stays v1)
+-- **A Ledger is an immutable value.**
++- **A Ledger is an immutable value with an identity.**
+   - The only ways to obtain one are `emptyLedger()` and `applyTx()`.
+-  - `applyTx` refuses anything else with `INVALID_STATE`, for example a hand-built object with plain maps.
+-  - Loading a ledger from a save will need its own validating constructor (S3/M6).
++  - Each ledger they create is registered in a module-private set, which is never exported. `applyTx` checks identity, not structure. It refuses any object that is not registered with `INVALID_STATE`, including:
++    - a hand-built object with plain maps;
++    - a frozen shallow copy of a genuine ledger;
++    - an object combining the balances of one genuine ledger with the history of another *(S0.1 final correction after independent review)*;
++    - maps built through the read-only map's constructor.
++  - Every ledger ever created stays registered for as long as it is referenced. Any earlier snapshot is therefore a valid, independent starting point for a branch. Replays and conflicts follow that branch's own history.
++  - **Deserialisation:** no constructor exists that turns saved data into a ledger. Loading a ledger from a save will need its own separate, validated reconstruction boundary (S3/M6). That boundary must check balances, history and their consistency before registering the result.
++  - **Scope:** this protects state integrity inside the lab and game code. It is not a defence against deliberately malicious code running in the same process.
+ - **Everything reachable is frozen.** This covers:
+   - the ledger record;
+   - both maps, which are read-only maps: `get`, `has`, `size` and iteration, but no `set`, `delete` or `clear`;

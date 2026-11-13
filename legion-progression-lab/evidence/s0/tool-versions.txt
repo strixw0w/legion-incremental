@@ -1,0 +1,12 @@
+Captured: 2026-11-13T14:05:02Z
+node v24.22.3
+npm 11.19.1
+typescript Version 7.0.2
+vitest vitest/4.1.12 win32-x64 node-v24.22.3
+zod 4.6.7
+fast-check 4.10.2
+@types/node 24.19.2
+Python 3.12.9
+git version 2.53.0.windows.1
+rojo (repo pin) Rojo 7.7.1
+OS: MINGW64_NT-10.0-26300 3.6.6-1cdd4371.x86_64 x86_64

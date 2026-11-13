@@ -1,0 +1,26 @@
+S0.1 mutation check: each row plants one deliberate bug, runs the default test suite, then restores the file (SHA-256 verified).
+Unmutated suite: 459 total, 0 failed.
+
+| # | File | Planted bug | Tests failed | Restored, hash identical |
+|---|---|---|---|---|
+| 1 | `src/core/numeric/rounding.ts` | S0 #1: naive `floor(x + 0.5)` rounding | 6 | yes |
+| 2 | `src/core/ledger/ledger.ts` | S0 #2: a reused txId always replays (conflict check removed) | 3 | yes |
+| 3 | `src/core/rng/xoshiro128ss.ts` | S0 #3: rotation constant 11 changed to 13 | 10 | yes |
+| 4 | `src/core/numeric/remainder.ts` | S0 #4: the a*j term dropped from accrue | 2 | yes |
+| 5 | `src/core/numeric/safeInt.ts` | mulDivRem: doubling carry uses > instead of >= | 2 | yes |
+| 6 | `src/core/numeric/safeInt.ts` | mulDivRem: direct path trusts a rounded product (<= 4*(2^53-1)) | 8 | yes |
+| 7 | `src/core/numeric/remainder.ts` | per-hour: wrap test uses > instead of >= | 6 | yes |
+| 8 | `src/core/numeric/remainder.ts` | per-hour: msRem and milliRem swapped when splitting the rest | 23 | yes |
+| 9 | `src/core/formulas/stats.ts` | stats: neutral factors no longer skipped | 5 | yes |
+| 10 | `src/core/formulas/stats.ts` | stats: range check removed | 6 | yes |
+| 11 | `src/core/formulas/combat.ts` | damage: exact half rounds down (> instead of >=) | 14 | yes |
+| 12 | `src/core/formulas/combat.ts` | damage: mitigation remainder term H dropped | 3 | yes |
+| 13 | `src/core/formulas/xp.ts` | EXP: a level-up needs strictly more than the remaining requirement | 14 | yes |
+| 14 | `src/core/rng/xoshiro128ss.ts` | RNG: all-zero check removed from assertRngState | 5 | yes |
+| 15 | `src/core/rng/xoshiro128ss.ts` | RNG: nextU32 skips validation | 22 | yes |
+| 16 | `src/core/arrays.ts` | dense arrays: hole check removed | 1 | yes |
+| 17 | `src/core/ledger/ledger.ts` | ledger: committed nets no longer frozen | 2 | yes |
+| 18 | `src/core/ledger/ledger.ts` | ledger: replay returns the stored result object unfrozen | 1 | yes |
+| 19 | `src/core/ledger/ledger.ts` | ledger: maps exposed as plain mutable Maps | 29 | yes |
+
+A count above 0 means the suite detected the planted bug. 'MUTATION NOT APPLIED' would mean the pattern did not match (none expected).

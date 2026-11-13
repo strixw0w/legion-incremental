@@ -1,0 +1,15 @@
+{
+  "note": "Environment metadata. Recorded, never fingerprinted.",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "arch": "x64",
+  "generatedAt": "2026-11-13T14:05:17.191Z",
+  "git": {
+    "commit": "0209d931a15f2195adda4f2f489a3eef50124b5b",
+    "dirty": true
+  },
+  "inputs": {
+    "pack": "legion-progression-lab/content/s0-core.candidate.v0.1.0.json",
+    "table": "legion-progression-lab/content/tables/xp.w1.candidate.v0.1.0.json"
+  }
+}

@@ -1,0 +1,11 @@
+# Installed packages and generated output
+node_modules/
+coverage/
+results/
+*.local
+
+# Credentials (never commit)
+.env
+.env.*
+*.pem
+*.key

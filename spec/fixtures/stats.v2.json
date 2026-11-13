@@ -1,0 +1,1355 @@
+{
+  "fixtureSet": "stats",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/stats.md#v2",
+  "status": "candidate",
+  "independence": "Expected values derived by hand from spec/formulas/stats.md v2; re-checked by spec/oracle/exact_oracle.py, which replays the specified binary64 order with Python floats and checks it against the exact rational value.",
+  "cases": [
+    {
+      "id": "stats.stack.001",
+      "kind": "normal",
+      "description": "Flat sum, two additive sources in one pool, one active multiplier, one inactive category",
+      "input": {
+        "base": 6,
+        "sources": [
+          {
+            "sourceId": "src.weapon",
+            "kind": "flat",
+            "value": 2
+          },
+          {
+            "sourceId": "src.talent",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 2500
+          },
+          {
+            "sourceId": "src.feat",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 2500
+          },
+          {
+            "sourceId": "src.monument",
+            "kind": "bp",
+            "categoryId": "cat.damage.monument",
+            "value": 5000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          },
+          {
+            "id": "cat.damage.monument",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.research",
+            "kind": "multiplier",
+            "active": false
+          }
+        ]
+      },
+      "expected": {
+        "value": 18,
+        "flatTotal": 8,
+        "factors": [
+          {
+            "categoryId": "cat.damage.additive",
+            "active": true,
+            "sumBp": 5000,
+            "factorNumerator": 15000
+          },
+          {
+            "categoryId": "cat.damage.monument",
+            "active": true,
+            "sumBp": 5000,
+            "factorNumerator": 15000
+          },
+          {
+            "categoryId": "cat.research",
+            "active": false,
+            "sumBp": 0,
+            "factorNumerator": 10000
+          }
+        ]
+      },
+      "derivation": "flat 6+2 = 8; additive pool 2500+2500 = 5000 bp -> x1.5 = 12; monument 5000 bp -> x1.5 = 18; research inactive -> x1"
+    },
+    {
+      "id": "stats.inactive.001",
+      "kind": "boundary",
+      "description": "A source in an inactive category is listed but not applied",
+      "input": {
+        "base": 10,
+        "sources": [
+          {
+            "sourceId": "src.lab",
+            "kind": "bp",
+            "categoryId": "cat.research",
+            "value": 10000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.research",
+            "kind": "multiplier",
+            "active": false
+          }
+        ]
+      },
+      "expected": {
+        "value": 10,
+        "flatTotal": 10,
+        "factors": [
+          {
+            "categoryId": "cat.research",
+            "active": false,
+            "sumBp": 10000,
+            "factorNumerator": 20000
+          }
+        ]
+      },
+      "derivation": "inactive -> factor 1; 10 stays 10"
+    },
+    {
+      "id": "stats.zero.001",
+      "kind": "boundary",
+      "description": "No sources and zero base",
+      "input": {
+        "base": 0,
+        "sources": [],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 0,
+        "flatTotal": 0,
+        "factors": [
+          {
+            "categoryId": "cat.damage.additive",
+            "active": true,
+            "sumBp": 0,
+            "factorNumerator": 10000
+          }
+        ]
+      },
+      "derivation": "0 * 1 = 0"
+    },
+    {
+      "id": "stats.negative-bp.001",
+      "kind": "normal",
+      "description": "A negative additive source halves the value",
+      "input": {
+        "base": 10,
+        "sources": [
+          {
+            "sourceId": "src.curse",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": -5000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 5,
+        "flatTotal": 10,
+        "factors": [
+          {
+            "categoryId": "cat.damage.additive",
+            "active": true,
+            "sumBp": -5000,
+            "factorNumerator": 5000
+          }
+        ]
+      },
+      "derivation": "10 * 5000/10000 = 5"
+    },
+    {
+      "id": "stats.inexact.001",
+      "kind": "normal",
+      "description": "Non-dyadic factor: 7 * 1.1 (compared with a relative tolerance)",
+      "input": {
+        "base": 7,
+        "sources": [
+          {
+            "sourceId": "src.talent",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 1000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 7.7,
+        "flatTotal": 7,
+        "factors": [
+          {
+            "categoryId": "cat.damage.additive",
+            "active": true,
+            "sumBp": 1000,
+            "factorNumerator": 11000
+          }
+        ]
+      },
+      "tolerance": {
+        "rel": 1e-12
+      },
+      "derivation": "7 * 11000/10000 = 77/10 = 7.7 (not exactly representable in binary)"
+    },
+    {
+      "id": "stats.unknown-category.001",
+      "kind": "failure",
+      "description": "Source refers to an unregistered category",
+      "input": {
+        "base": 1,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "bp",
+            "categoryId": "cat.unknown",
+            "value": 100
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "UNKNOWN_CATEGORY",
+      "derivation": "cat.unknown is not in the registry"
+    },
+    {
+      "id": "stats.duplicate-source.001",
+      "kind": "failure",
+      "description": "Duplicate source IDs",
+      "input": {
+        "base": 1,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "flat",
+            "value": 1
+          },
+          {
+            "sourceId": "src.x",
+            "kind": "flat",
+            "value": 2
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "source IDs must be unique"
+    },
+    {
+      "id": "stats.negative-factor.001",
+      "kind": "failure",
+      "description": "Category sum below -100%",
+      "input": {
+        "base": 10,
+        "sources": [
+          {
+            "sourceId": "src.curse",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": -10001
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "10000 - 10001 = -1 < 0"
+    },
+    {
+      "id": "stats.negative-flat.001",
+      "kind": "failure",
+      "description": "Negative flat source",
+      "input": {
+        "base": 10,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "flat",
+            "value": -1
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "flat sources must be >= 0 in S0"
+    },
+    {
+      "id": "stats.neutral.max.001",
+      "kind": "boundary",
+      "description": "S0 review reproduction: an active factor of exactly 1 preserves 2^53 - 1",
+      "input": {
+        "base": 9007199254740991,
+        "sources": [],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "additivePool",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 9007199254740991,
+        "flatTotal": 9007199254740991,
+        "factors": [
+          {
+            "categoryId": "cat.a",
+            "active": true,
+            "sumBp": 0,
+            "factorNumerator": 10000
+          }
+        ]
+      },
+      "derivation": "sumBp 0 -> factor exactly 1 -> skipped; value stays 2^53 - 1 (S0 returned 2^53 - 2 from (M*10000)/10000 in binary64)"
+    },
+    {
+      "id": "stats.neutral.w2-hooks.001",
+      "kind": "boundary",
+      "description": "W2 hooks stay neutral even with huge sources; a cancelled pool is neutral",
+      "input": {
+        "base": 9007199254740991,
+        "sources": [
+          {
+            "sourceId": "src.plus",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": 2500
+          },
+          {
+            "sourceId": "src.minus",
+            "kind": "bp",
+            "categoryId": "cat.damage.additive",
+            "value": -2500
+          },
+          {
+            "sourceId": "src.lab",
+            "kind": "bp",
+            "categoryId": "cat.research",
+            "value": 5000
+          },
+          {
+            "sourceId": "src.tree",
+            "kind": "bp",
+            "categoryId": "cat.mastery_tree",
+            "value": 9007199254730991
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.damage.additive",
+            "kind": "additivePool",
+            "active": true
+          },
+          {
+            "id": "cat.damage.monument",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.research",
+            "kind": "multiplier",
+            "active": false
+          },
+          {
+            "id": "cat.mastery_tree",
+            "kind": "multiplier",
+            "active": false
+          }
+        ]
+      },
+      "expected": {
+        "value": 9007199254740991,
+        "flatTotal": 9007199254740991,
+        "factors": [
+          {
+            "categoryId": "cat.damage.additive",
+            "active": true,
+            "sumBp": 0,
+            "factorNumerator": 10000
+          },
+          {
+            "categoryId": "cat.damage.monument",
+            "active": true,
+            "sumBp": 0,
+            "factorNumerator": 10000
+          },
+          {
+            "categoryId": "cat.mastery_tree",
+            "active": false,
+            "sumBp": 9007199254730991,
+            "factorNumerator": 9007199254740991
+          },
+          {
+            "categoryId": "cat.research",
+            "active": false,
+            "sumBp": 5000,
+            "factorNumerator": 15000
+          }
+        ]
+      },
+      "derivation": "additive pool 2500 - 2500 = 0 -> neutral; monument has no sources -> neutral; research and mastery_tree are inactive -> not applied; value stays 2^53 - 1"
+    },
+    {
+      "id": "stats.order.001",
+      "kind": "boundary",
+      "description": "categories apply in ascending id order, whatever order they are listed in",
+      "input": {
+        "base": 1,
+        "sources": [
+          {
+            "sourceId": "src.b",
+            "kind": "bp",
+            "categoryId": "cat.b",
+            "value": 300
+          },
+          {
+            "sourceId": "src.a",
+            "kind": "bp",
+            "categoryId": "cat.a",
+            "value": 1000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.b",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 1.1330000000000002,
+        "flatTotal": 1,
+        "factors": [
+          {
+            "categoryId": "cat.a",
+            "active": true,
+            "sumBp": 1000,
+            "factorNumerator": 11000
+          },
+          {
+            "categoryId": "cat.b",
+            "active": true,
+            "sumBp": 300,
+            "factorNumerator": 10300
+          }
+        ]
+      },
+      "derivation": "id order: (1*11000)/10000 = 1.1 (binary64 1.100000000000000088...), then (1.1*10300)/10000 = 1.1330000000000002 in binary64; listed order (cat.b first) would give 1.133"
+    },
+    {
+      "id": "stats.range.largest.001",
+      "kind": "boundary",
+      "description": "a partial value just inside the range",
+      "input": {
+        "base": 4503599627370495,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "bp",
+            "categoryId": "cat.a",
+            "value": 10000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expected": {
+        "value": 9007199254740990,
+        "flatTotal": 4503599627370495,
+        "factors": [
+          {
+            "categoryId": "cat.a",
+            "active": true,
+            "sumBp": 10000,
+            "factorNumerator": 20000
+          }
+        ]
+      },
+      "derivation": "(2^52 - 1) * 2 = 2^53 - 2 <= 2^53 - 1; binary64 ((2^52 - 1)*20000)/10000 rounds to exactly 2^53 - 2"
+    },
+    {
+      "id": "stats.overflow.final.001",
+      "kind": "failure",
+      "description": "final value above 2^53 - 1",
+      "input": {
+        "base": 9007199254740991,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "bp",
+            "categoryId": "cat.a",
+            "value": 1
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "(2^53 - 1) * 1.0001 > 2^53 - 1"
+    },
+    {
+      "id": "stats.overflow.intermediate.001",
+      "kind": "failure",
+      "description": "a partial value out of range is refused even if a later factor would shrink it",
+      "input": {
+        "base": 4503599627370496,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "bp",
+            "categoryId": "cat.a",
+            "value": 10000
+          },
+          {
+            "sourceId": "src.y",
+            "kind": "bp",
+            "categoryId": "cat.b",
+            "value": -5000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.b",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "id order applies cat.a first: 2^52 * 2 = 2^53 > 2^53 - 1, refused before cat.b (x0.5) is applied"
+    },
+    {
+      "id": "stats.overflow.many.001",
+      "kind": "failure",
+      "description": "S0 review reproduction: 30 large multiplier categories (S0 returned Infinity)",
+      "input": {
+        "base": 9007199254740991,
+        "sources": [
+          {
+            "sourceId": "src.0",
+            "kind": "bp",
+            "categoryId": "cat.m00",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.1",
+            "kind": "bp",
+            "categoryId": "cat.m01",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.2",
+            "kind": "bp",
+            "categoryId": "cat.m02",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.3",
+            "kind": "bp",
+            "categoryId": "cat.m03",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.4",
+            "kind": "bp",
+            "categoryId": "cat.m04",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.5",
+            "kind": "bp",
+            "categoryId": "cat.m05",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.6",
+            "kind": "bp",
+            "categoryId": "cat.m06",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.7",
+            "kind": "bp",
+            "categoryId": "cat.m07",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.8",
+            "kind": "bp",
+            "categoryId": "cat.m08",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.9",
+            "kind": "bp",
+            "categoryId": "cat.m09",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.10",
+            "kind": "bp",
+            "categoryId": "cat.m10",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.11",
+            "kind": "bp",
+            "categoryId": "cat.m11",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.12",
+            "kind": "bp",
+            "categoryId": "cat.m12",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.13",
+            "kind": "bp",
+            "categoryId": "cat.m13",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.14",
+            "kind": "bp",
+            "categoryId": "cat.m14",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.15",
+            "kind": "bp",
+            "categoryId": "cat.m15",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.16",
+            "kind": "bp",
+            "categoryId": "cat.m16",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.17",
+            "kind": "bp",
+            "categoryId": "cat.m17",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.18",
+            "kind": "bp",
+            "categoryId": "cat.m18",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.19",
+            "kind": "bp",
+            "categoryId": "cat.m19",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.20",
+            "kind": "bp",
+            "categoryId": "cat.m20",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.21",
+            "kind": "bp",
+            "categoryId": "cat.m21",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.22",
+            "kind": "bp",
+            "categoryId": "cat.m22",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.23",
+            "kind": "bp",
+            "categoryId": "cat.m23",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.24",
+            "kind": "bp",
+            "categoryId": "cat.m24",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.25",
+            "kind": "bp",
+            "categoryId": "cat.m25",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.26",
+            "kind": "bp",
+            "categoryId": "cat.m26",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.27",
+            "kind": "bp",
+            "categoryId": "cat.m27",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.28",
+            "kind": "bp",
+            "categoryId": "cat.m28",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.29",
+            "kind": "bp",
+            "categoryId": "cat.m29",
+            "value": 9007199254730991
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.m00",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m01",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m02",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m03",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m04",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m05",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m06",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m07",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m08",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m09",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m10",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m11",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m12",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m13",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m14",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m15",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m16",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m17",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m18",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m19",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m20",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m21",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m22",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m23",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m24",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m25",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m26",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m27",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m28",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m29",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "the first category already gives (2^53 - 1) * (2^53 - 1) / 10000 > 2^53 - 1"
+    },
+    {
+      "id": "stats.overflow.nan.001",
+      "kind": "failure",
+      "description": "the same, then a factor of 0 (S0 returned NaN)",
+      "input": {
+        "base": 9007199254740991,
+        "sources": [
+          {
+            "sourceId": "src.0",
+            "kind": "bp",
+            "categoryId": "cat.m00",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.1",
+            "kind": "bp",
+            "categoryId": "cat.m01",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.2",
+            "kind": "bp",
+            "categoryId": "cat.m02",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.3",
+            "kind": "bp",
+            "categoryId": "cat.m03",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.4",
+            "kind": "bp",
+            "categoryId": "cat.m04",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.5",
+            "kind": "bp",
+            "categoryId": "cat.m05",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.6",
+            "kind": "bp",
+            "categoryId": "cat.m06",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.7",
+            "kind": "bp",
+            "categoryId": "cat.m07",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.8",
+            "kind": "bp",
+            "categoryId": "cat.m08",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.9",
+            "kind": "bp",
+            "categoryId": "cat.m09",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.10",
+            "kind": "bp",
+            "categoryId": "cat.m10",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.11",
+            "kind": "bp",
+            "categoryId": "cat.m11",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.12",
+            "kind": "bp",
+            "categoryId": "cat.m12",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.13",
+            "kind": "bp",
+            "categoryId": "cat.m13",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.14",
+            "kind": "bp",
+            "categoryId": "cat.m14",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.15",
+            "kind": "bp",
+            "categoryId": "cat.m15",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.16",
+            "kind": "bp",
+            "categoryId": "cat.m16",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.17",
+            "kind": "bp",
+            "categoryId": "cat.m17",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.18",
+            "kind": "bp",
+            "categoryId": "cat.m18",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.19",
+            "kind": "bp",
+            "categoryId": "cat.m19",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.20",
+            "kind": "bp",
+            "categoryId": "cat.m20",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.21",
+            "kind": "bp",
+            "categoryId": "cat.m21",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.22",
+            "kind": "bp",
+            "categoryId": "cat.m22",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.23",
+            "kind": "bp",
+            "categoryId": "cat.m23",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.24",
+            "kind": "bp",
+            "categoryId": "cat.m24",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.25",
+            "kind": "bp",
+            "categoryId": "cat.m25",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.26",
+            "kind": "bp",
+            "categoryId": "cat.m26",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.27",
+            "kind": "bp",
+            "categoryId": "cat.m27",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.28",
+            "kind": "bp",
+            "categoryId": "cat.m28",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.29",
+            "kind": "bp",
+            "categoryId": "cat.m29",
+            "value": 9007199254730991
+          },
+          {
+            "sourceId": "src.z",
+            "kind": "bp",
+            "categoryId": "cat.z",
+            "value": -10000
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.m00",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m01",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m02",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m03",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m04",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m05",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m06",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m07",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m08",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m09",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m10",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m11",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m12",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m13",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m14",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m15",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m16",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m17",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m18",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m19",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m20",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m21",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m22",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m23",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m24",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m25",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m26",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m27",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m28",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.m29",
+            "kind": "multiplier",
+            "active": true
+          },
+          {
+            "id": "cat.z",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "refused at the first category (cat.m00), before cat.z"
+    },
+    {
+      "id": "stats.bad-active.001",
+      "kind": "failure",
+      "description": "active flag is not a boolean",
+      "input": {
+        "base": 1,
+        "sources": [],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": "yes"
+          }
+        ]
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "active must be true or false"
+    },
+    {
+      "id": "stats.null-source.001",
+      "kind": "failure",
+      "description": "a null source entry",
+      "input": {
+        "base": 1,
+        "sources": [
+          null
+        ],
+        "categories": [
+          {
+            "id": "cat.a",
+            "kind": "multiplier",
+            "active": true
+          }
+        ]
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "every source must be an object"
+    },
+    {
+      "id": "stats.inactive-negative.001",
+      "kind": "failure",
+      "description": "a negative factor is refused even on an inactive category",
+      "input": {
+        "base": 10,
+        "sources": [
+          {
+            "sourceId": "src.x",
+            "kind": "bp",
+            "categoryId": "cat.research",
+            "value": -10001
+          }
+        ],
+        "categories": [
+          {
+            "id": "cat.research",
+            "kind": "multiplier",
+            "active": false
+          }
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "10000 - 10001 = -1 < 0, checked for every registered category"
+    }
+  ]
+}

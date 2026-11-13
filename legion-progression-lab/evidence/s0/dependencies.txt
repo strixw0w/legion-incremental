@@ -1,0 +1,20 @@
+package-lock.json sha256: d6bdf80aad4665bca92fdf8f2cb6f2f80cebb5fe3796f7a0196142ad541665d6
+package.json sha256:      ac2b7b9d259034e1590c2039dc97bc7fcb03cb695a497c106c359f6e25a3416b
+
+Direct dependencies (exact):
+  zod 4.6.7
+  @types/node 24.19.2
+  fast-check 4.10.2
+  typescript 7.0.2
+  vitest 4.1.12
+
+Licences across the lockfile tree:
+{
+  MIT: 63,
+  'Apache-2.0': 23,
+  'MPL-2.0': 12,
+  ISC: 2,
+  'BSD-3-Clause': 1,
+  '0BSD': 1
+}
+MPL-2.0 packages: lightningcss, lightningcss-android-arm64, lightningcss-darwin-arm64, lightningcss-darwin-x64, lightningcss-freebsd-x64, lightningcss-linux-arm-gnueabihf, lightningcss-linux-arm64-gnu, lightningcss-linux-arm64-musl, lightningcss-linux-x64-gnu, lightningcss-linux-x64-musl, lightningcss-win32-arm64-msvc, lightningcss-win32-x64-msvc

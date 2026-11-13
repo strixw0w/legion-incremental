@@ -1,0 +1,703 @@
+{
+  "reportId": "S0-R01-curve-preview",
+  "reportVersion": 1,
+  "labels": {
+    "inputs": "candidate",
+    "outputs": "inspection (not a balance result)"
+  },
+  "content": {
+    "contentId": "s0-core",
+    "contentVersion": "0.1.0",
+    "contentHash": "39ab7e5978c4a62bb2921ecb9ad0b5432a48a2c6c97768e2c58b07902a3b356a",
+    "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+  },
+  "curve": {
+    "family": "powerGeometric",
+    "a": 10,
+    "p": 1.6,
+    "g": 1
+  },
+  "rows": [
+    {
+      "level": 1,
+      "threshold": 10,
+      "cumulativeToReach": 0
+    },
+    {
+      "level": 2,
+      "threshold": 30,
+      "cumulativeToReach": 10
+    },
+    {
+      "level": 3,
+      "threshold": 58,
+      "cumulativeToReach": 40
+    },
+    {
+      "level": 4,
+      "threshold": 92,
+      "cumulativeToReach": 98
+    },
+    {
+      "level": 5,
+      "threshold": 131,
+      "cumulativeToReach": 190
+    },
+    {
+      "level": 6,
+      "threshold": 176,
+      "cumulativeToReach": 321
+    },
+    {
+      "level": 7,
+      "threshold": 225,
+      "cumulativeToReach": 497
+    },
+    {
+      "level": 8,
+      "threshold": 279,
+      "cumulativeToReach": 722
+    },
+    {
+      "level": 9,
+      "threshold": 336,
+      "cumulativeToReach": 1001
+    },
+    {
+      "level": 10,
+      "threshold": 398,
+      "cumulativeToReach": 1337
+    },
+    {
+      "level": 11,
+      "threshold": 464,
+      "cumulativeToReach": 1735
+    },
+    {
+      "level": 12,
+      "threshold": 533,
+      "cumulativeToReach": 2199
+    },
+    {
+      "level": 13,
+      "threshold": 606,
+      "cumulativeToReach": 2732
+    },
+    {
+      "level": 14,
+      "threshold": 682,
+      "cumulativeToReach": 3338
+    },
+    {
+      "level": 15,
+      "threshold": 762,
+      "cumulativeToReach": 4020
+    },
+    {
+      "level": 16,
+      "threshold": 844,
+      "cumulativeToReach": 4782
+    },
+    {
+      "level": 17,
+      "threshold": 931,
+      "cumulativeToReach": 5626
+    },
+    {
+      "level": 18,
+      "threshold": 1020,
+      "cumulativeToReach": 6557
+    },
+    {
+      "level": 19,
+      "threshold": 1112,
+      "cumulativeToReach": 7577
+    },
+    {
+      "level": 20,
+      "threshold": 1207,
+      "cumulativeToReach": 8689
+    },
+    {
+      "level": 21,
+      "threshold": 1305,
+      "cumulativeToReach": 9896
+    },
+    {
+      "level": 22,
+      "threshold": 1406,
+      "cumulativeToReach": 11201
+    },
+    {
+      "level": 23,
+      "threshold": 1509,
+      "cumulativeToReach": 12607
+    },
+    {
+      "level": 24,
+      "threshold": 1616,
+      "cumulativeToReach": 14116
+    },
+    {
+      "level": 25,
+      "threshold": 1725,
+      "cumulativeToReach": 15732
+    },
+    {
+      "level": 26,
+      "threshold": 1836,
+      "cumulativeToReach": 17457
+    },
+    {
+      "level": 27,
+      "threshold": 1951,
+      "cumulativeToReach": 19293
+    },
+    {
+      "level": 28,
+      "threshold": 2068,
+      "cumulativeToReach": 21244
+    },
+    {
+      "level": 29,
+      "threshold": 2187,
+      "cumulativeToReach": 23312
+    },
+    {
+      "level": 30,
+      "threshold": 2309,
+      "cumulativeToReach": 25499
+    },
+    {
+      "level": 31,
+      "threshold": 2433,
+      "cumulativeToReach": 27808
+    },
+    {
+      "level": 32,
+      "threshold": 2560,
+      "cumulativeToReach": 30241
+    },
+    {
+      "level": 33,
+      "threshold": 2689,
+      "cumulativeToReach": 32801
+    },
+    {
+      "level": 34,
+      "threshold": 2821,
+      "cumulativeToReach": 35490
+    },
+    {
+      "level": 35,
+      "threshold": 2955,
+      "cumulativeToReach": 38311
+    },
+    {
+      "level": 36,
+      "threshold": 3091,
+      "cumulativeToReach": 41266
+    },
+    {
+      "level": 37,
+      "threshold": 3229,
+      "cumulativeToReach": 44357
+    },
+    {
+      "level": 38,
+      "threshold": 3370,
+      "cumulativeToReach": 47586
+    },
+    {
+      "level": 39,
+      "threshold": 3513,
+      "cumulativeToReach": 50956
+    },
+    {
+      "level": 40,
+      "threshold": 3658,
+      "cumulativeToReach": 54469
+    },
+    {
+      "level": 41,
+      "threshold": 3806,
+      "cumulativeToReach": 58127
+    },
+    {
+      "level": 42,
+      "threshold": 3955,
+      "cumulativeToReach": 61933
+    },
+    {
+      "level": 43,
+      "threshold": 4107,
+      "cumulativeToReach": 65888
+    },
+    {
+      "level": 44,
+      "threshold": 4261,
+      "cumulativeToReach": 69995
+    },
+    {
+      "level": 45,
+      "threshold": 4417,
+      "cumulativeToReach": 74256
+    },
+    {
+      "level": 46,
+      "threshold": 4575,
+      "cumulativeToReach": 78673
+    },
+    {
+      "level": 47,
+      "threshold": 4735,
+      "cumulativeToReach": 83248
+    },
+    {
+      "level": 48,
+      "threshold": 4898,
+      "cumulativeToReach": 87983
+    },
+    {
+      "level": 49,
+      "threshold": 5062,
+      "cumulativeToReach": 92881
+    },
+    {
+      "level": 50,
+      "threshold": 5228,
+      "cumulativeToReach": 97943
+    },
+    {
+      "level": 51,
+      "threshold": 5397,
+      "cumulativeToReach": 103171
+    },
+    {
+      "level": 52,
+      "threshold": 5567,
+      "cumulativeToReach": 108568
+    },
+    {
+      "level": 53,
+      "threshold": 5739,
+      "cumulativeToReach": 114135
+    },
+    {
+      "level": 54,
+      "threshold": 5913,
+      "cumulativeToReach": 119874
+    },
+    {
+      "level": 55,
+      "threshold": 6089,
+      "cumulativeToReach": 125787
+    },
+    {
+      "level": 56,
+      "threshold": 6268,
+      "cumulativeToReach": 131876
+    },
+    {
+      "level": 57,
+      "threshold": 6448,
+      "cumulativeToReach": 138144
+    },
+    {
+      "level": 58,
+      "threshold": 6630,
+      "cumulativeToReach": 144592
+    },
+    {
+      "level": 59,
+      "threshold": 6813,
+      "cumulativeToReach": 151222
+    },
+    {
+      "level": 60,
+      "threshold": 6999,
+      "cumulativeToReach": 158035
+    }
+  ],
+  "limits": {
+    "tableLength": 200,
+    "maxReachableLevelWithTable": 201,
+    "lastSafeCumulativeLevelInTable": 201,
+    "cumulativeCompleteWithinTable": true,
+    "approxFirstUnsafeThresholdLevel": 2221358257,
+    "approxFirstUnsafeThresholdMethod": "double curve, exponential + binary search (approximate, report-only)",
+    "approxFirstUnsafeCumulativeLevel": 815401,
+    "approxFirstUnsafeCumulativeMethod": "g = 1: integral approximation a*(L-1)^(p+1)/(p+1) (approximate, report-only)"
+  },
+  "sweepPreview": [
+    {
+      "a": 8,
+      "p": 1.6,
+      "g": 1,
+      "thresholds": [
+        8,
+        24,
+        46,
+        74,
+        105,
+        141,
+        180,
+        223,
+        269,
+        318,
+        371,
+        426,
+        485,
+        546,
+        609,
+        676,
+        744,
+        816,
+        889,
+        965,
+        1044,
+        1125,
+        1207,
+        1292,
+        1380,
+        1469,
+        1561,
+        1654,
+        1750,
+        1847
+      ],
+      "cumulativeToL2": 8,
+      "cumulativeToL5": 152,
+      "cumulativeToL10": 1070,
+      "cumulativeToL25": 12583
+    },
+    {
+      "a": 8,
+      "p": 1.8,
+      "g": 1,
+      "thresholds": [
+        8,
+        28,
+        58,
+        97,
+        145,
+        201,
+        266,
+        338,
+        418,
+        505,
+        599,
+        701,
+        809,
+        925,
+        1047,
+        1176,
+        1312,
+        1454,
+        1603,
+        1758,
+        1919,
+        2087,
+        2260,
+        2440,
+        2627,
+        2819,
+        3017,
+        3221,
+        3431,
+        3647
+      ],
+      "cumulativeToL2": 8,
+      "cumulativeToL5": 191,
+      "cumulativeToL10": 1559,
+      "cumulativeToL25": 22154
+    },
+    {
+      "a": 8,
+      "p": 2,
+      "g": 1,
+      "thresholds": [
+        8,
+        32,
+        72,
+        128,
+        200,
+        288,
+        392,
+        512,
+        648,
+        800,
+        968,
+        1152,
+        1352,
+        1568,
+        1800,
+        2048,
+        2312,
+        2592,
+        2888,
+        3200,
+        3528,
+        3872,
+        4232,
+        4608,
+        5000,
+        5408,
+        5832,
+        6272,
+        6728,
+        7200
+      ],
+      "cumulativeToL2": 8,
+      "cumulativeToL5": 240,
+      "cumulativeToL10": 2280,
+      "cumulativeToL25": 39200
+    },
+    {
+      "a": 10,
+      "p": 1.6,
+      "g": 1,
+      "thresholds": [
+        10,
+        30,
+        58,
+        92,
+        131,
+        176,
+        225,
+        279,
+        336,
+        398,
+        464,
+        533,
+        606,
+        682,
+        762,
+        844,
+        931,
+        1020,
+        1112,
+        1207,
+        1305,
+        1406,
+        1509,
+        1616,
+        1725,
+        1836,
+        1951,
+        2068,
+        2187,
+        2309
+      ],
+      "cumulativeToL2": 10,
+      "cumulativeToL5": 190,
+      "cumulativeToL10": 1337,
+      "cumulativeToL25": 15732
+    },
+    {
+      "a": 10,
+      "p": 1.8,
+      "g": 1,
+      "thresholds": [
+        10,
+        35,
+        72,
+        121,
+        181,
+        252,
+        332,
+        422,
+        522,
+        631,
+        749,
+        876,
+        1012,
+        1156,
+        1309,
+        1470,
+        1640,
+        1818,
+        2003,
+        2197,
+        2399,
+        2608,
+        2826,
+        3051,
+        3283,
+        3523,
+        3771,
+        4026,
+        4289,
+        4558
+      ],
+      "cumulativeToL2": 10,
+      "cumulativeToL5": 238,
+      "cumulativeToL10": 1947,
+      "cumulativeToL25": 27692
+    },
+    {
+      "a": 10,
+      "p": 2,
+      "g": 1,
+      "thresholds": [
+        10,
+        40,
+        90,
+        160,
+        250,
+        360,
+        490,
+        640,
+        810,
+        1000,
+        1210,
+        1440,
+        1690,
+        1960,
+        2250,
+        2560,
+        2890,
+        3240,
+        3610,
+        4000,
+        4410,
+        4840,
+        5290,
+        5760,
+        6250,
+        6760,
+        7290,
+        7840,
+        8410,
+        9000
+      ],
+      "cumulativeToL2": 10,
+      "cumulativeToL5": 300,
+      "cumulativeToL10": 2850,
+      "cumulativeToL25": 49000
+    },
+    {
+      "a": 12,
+      "p": 1.6,
+      "g": 1,
+      "thresholds": [
+        12,
+        36,
+        70,
+        110,
+        158,
+        211,
+        270,
+        334,
+        404,
+        478,
+        556,
+        640,
+        727,
+        818,
+        914,
+        1013,
+        1117,
+        1224,
+        1334,
+        1448,
+        1566,
+        1687,
+        1811,
+        1939,
+        2070,
+        2204,
+        2341,
+        2481,
+        2624,
+        2771
+      ],
+      "cumulativeToL2": 12,
+      "cumulativeToL5": 228,
+      "cumulativeToL10": 1605,
+      "cumulativeToL25": 18877
+    },
+    {
+      "a": 12,
+      "p": 1.8,
+      "g": 1,
+      "thresholds": [
+        12,
+        42,
+        87,
+        146,
+        217,
+        302,
+        398,
+        507,
+        626,
+        757,
+        899,
+        1051,
+        1214,
+        1387,
+        1571,
+        1764,
+        1968,
+        2181,
+        2404,
+        2637,
+        2879,
+        3130,
+        3391,
+        3661,
+        3940,
+        4228,
+        4525,
+        4831,
+        5146,
+        5470
+      ],
+      "cumulativeToL2": 12,
+      "cumulativeToL5": 287,
+      "cumulativeToL10": 2337,
+      "cumulativeToL25": 33231
+    },
+    {
+      "a": 12,
+      "p": 2,
+      "g": 1,
+      "thresholds": [
+        12,
+        48,
+        108,
+        192,
+        300,
+        432,
+        588,
+        768,
+        972,
+        1200,
+        1452,
+        1728,
+        2028,
+        2352,
+        2700,
+        3072,
+        3468,
+        3888,
+        4332,
+        4800,
+        5292,
+        5808,
+        6348,
+        6912,
+        7500,
+        8112,
+        8748,
+        9408,
+        10092,
+        10800
+      ],
+      "cumulativeToL2": 12,
+      "cumulativeToL5": 360,
+      "cumulativeToL10": 3420,
+      "cumulativeToL25": 58800
+    }
+  ]
+}

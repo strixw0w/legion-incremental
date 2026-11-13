@@ -1,0 +1,18 @@
+Run against: S0.1 as reviewed (extracted from legion-S0.1-review-2026-11-13.zip)
+
+F1 reviewer reproduction: balances of one ledger, history of another
+  call:   mixed = Object.freeze({ ...credited, committed: original.committed }); applyTx(mixed, grant 5)
+  result: returns { replayed: false, balance: 10 }
+
+F2 frozen shallow copy of a genuine ledger
+  call:   applyTx(Object.freeze({ ...credited }), grant 5)
+  result: returns { replayed: true, balance: 5 }
+
+F3 maps forged through the read-only map constructor
+  call:   new (ledger.balances.constructor)(new Map([...1,000,000 gold]))
+  result: returns { balance: 1000005 }
+
+F4 legitimate branching from an earlier snapshot
+  call:   l1 = grant 5; l2 = l1 + grant 7; applyTx(l1, other grant 3)
+  result: returns { l1: 5, l2: 12, branch: 8 }
+

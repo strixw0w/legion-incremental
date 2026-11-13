@@ -1,0 +1,1190 @@
+{
+  "fixtureSet": "content",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/units.md#v1",
+  "status": "candidate",
+  "independence": "Structural rules derived by hand from spec/formulas/units.md (content validation); the valid cases' table hash computed by spec/oracle/exact_oracle.py.",
+  "cases": [
+    {
+      "id": "content.valid.001",
+      "kind": "normal",
+      "description": "Minimal valid S0 pack with its XP table artifact",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expected": {
+        "ok": true,
+        "tableHash": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+      },
+      "derivation": "all rules satisfied; tableHash = SHA-256(canonical JSON of the artifact) computed by exact_oracle.py"
+    },
+    {
+      "id": "content.range-edge.001",
+      "kind": "boundary",
+      "description": "Value exactly on its declared range edge is accepted",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  10,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expected": {
+        "ok": true,
+        "tableHash": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+      },
+      "derivation": "10 is inside [10, 12] (inclusive)"
+    },
+    {
+      "id": "content.bad-hash.001",
+      "kind": "failure",
+      "description": "Recorded table hash does not match the artifact",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): xp.table.sha256 must equal SHA-256(canonical artifact)"
+    },
+    {
+      "id": "content.out-of-range.001",
+      "kind": "failure",
+      "description": "Value outside its declared range",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 13,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): 13 is outside [8, 12]"
+    },
+    {
+      "id": "content.duplicate-category.001",
+      "kind": "failure",
+      "description": "Duplicate stat category IDs",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            },
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): category IDs must be unique"
+    },
+    {
+      "id": "content.hit-floor.001",
+      "kind": "failure",
+      "description": "Hit-chance floor above the at-requirement chance",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 9500,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): floorBp must be <= hAtReqBp"
+    },
+    {
+      "id": "content.table-length.001",
+      "kind": "failure",
+      "description": "Table length differs from the pack",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 4,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): tableLength 4 but artifact has 3 thresholds"
+    },
+    {
+      "id": "content.unknown-field.001",
+      "kind": "failure",
+      "description": "Unknown top-level field",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          },
+          "extra": 1
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): schemas are strict"
+    },
+    {
+      "id": "content.unlabelled.001",
+      "kind": "failure",
+      "description": "Number without a label",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "cat.damage.additive",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): every numeric value needs a label"
+    },
+    {
+      "id": "content.bad-id.001",
+      "kind": "failure",
+      "description": "Category ID not in stable dotted form",
+      "input": {
+        "pack": {
+          "schemaVersion": 1,
+          "contentId": "fixture-pack",
+          "contentVersion": "0.1.0",
+          "status": "candidate",
+          "formulaVersions": {
+            "numeric": 1,
+            "remainder": 1,
+            "rng": 1,
+            "xp": 1,
+            "stats": 1,
+            "combat": 1,
+            "ledger": 1,
+            "canonicalJson": 1
+          },
+          "xp": {
+            "curve": {
+              "family": "powerGeometric",
+              "a": {
+                "value": 10,
+                "label": "candidate",
+                "range": [
+                  8,
+                  12
+                ]
+              },
+              "p": {
+                "value": 1.6,
+                "label": "candidate"
+              },
+              "g": {
+                "value": 1,
+                "label": "candidate"
+              }
+            },
+            "tableLength": {
+              "value": 3,
+              "label": "candidate"
+            },
+            "maxLevelUpsPerAward": {
+              "value": 1000,
+              "label": "candidate"
+            },
+            "table": {
+              "path": "content/tables/fixture.json",
+              "sha256": "a21822a84c2cc942495f710e289910ff25a48d1ff24ff574955a20a07456c538"
+            }
+          },
+          "statCategories": [
+            {
+              "id": "Damage",
+              "kind": "additivePool",
+              "active": true
+            }
+          ],
+          "combat": {
+            "mitigationK": {
+              "value": 100,
+              "label": "candidate"
+            },
+            "minDamagePerHit": {
+              "value": 1,
+              "label": "candidate"
+            },
+            "hitCurve": {
+              "hAtReqBp": {
+                "value": 9000,
+                "label": "candidate"
+              },
+              "floorBp": {
+                "value": 1000,
+                "label": "candidate"
+              },
+              "k": {
+                "value": 2,
+                "label": "candidate"
+              }
+            },
+            "critChanceBpBase": {
+              "value": 500,
+              "label": "candidate"
+            },
+            "critMultBpBase": {
+              "value": 15000,
+              "label": "candidate"
+            }
+          }
+        },
+        "table": {
+          "artifact": "xp-table",
+          "artifactVersion": 1,
+          "formulaVersion": 1,
+          "contentId": "fixture-pack",
+          "label": "candidate",
+          "curve": {
+            "family": "powerGeometric",
+            "a": 10,
+            "p": 1.6,
+            "g": 1
+          },
+          "rounding": "roundHalfUp",
+          "indexing": "thresholds[i] = EXP from level i+1 to level i+2",
+          "thresholds": [
+            10,
+            30,
+            58
+          ]
+        }
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "hand (structural rule): IDs are lowercase dotted"
+    }
+  ]
+}

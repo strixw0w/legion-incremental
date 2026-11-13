@@ -1,0 +1,32 @@
+# Provenance
+
+## Code copied from elsewhere
+**None.** No source file, function or test was copied from the frozen baseline simulator or from any third-party project. Every file in this lab was written new for Legion in S0 and S0.1 (13 November 2026).
+
+## Ideas reused from the owner's frozen baseline simulator
+Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec154bdcbc10b1152f2aec89c3c913` (frozen, unmodified; see `planning/M0_REPOSITORY_VERIFICATION.md`). Licence: the owner's own private code. Only the ideas below were reused, each re-implemented from scratch.
+
+| Idea | Where it was in the frozen lab | Where it is here | Change |
+|---|---|---|---|
+| Label every number by origin; a result is never more trustworthy than its weakest input | `src/data/provenance.ts` | `src/core/content/labels.ts` | New label set: `approved/target/candidate/derived` |
+| Canonical (key-sorted) JSON with SHA-256 fingerprints | `src/experiments/hash.ts` | `src/core/hash/canonicalJson.ts` | Uses `node:crypto` instead of a hand-written SHA-256. Stricter (ASCII keys, rejects non-finite numbers, sparse arrays, undefined). Semantic and environment records separated. |
+| Pre-registered targets; report the closest candidate, never move targets | `experiments/increment6_design_decisions.md` (uncommitted, now archived) | `planning/M0_EXPERIMENT_PLAN.md` | Engineering gates separated from balance targets |
+| Integer hits-to-kill breakpoints | `src/sim/combat.ts` | `src/core/formulas/combat.ts` | Integer damage per hit removes the need for a rounding tolerance |
+| One reason code per refusal | `README.md`, `src/sim/types.ts` | `src/core/errors.ts` | Stable error codes |
+| "Unlocking is not reaching" (measure first visit) | `experiments/increment6_findings.md` | Experiment plan N-11 | — |
+
+## Third-party material deliberately excluded
+- **IdleOn data and code:** no IdleOn data, numbers, names or assets, and no IdleOn Toolbox (GPL-3.0) code.
+- **Community data:** no community calculator formulas, and no DigitalTQ or Toolbox snapshots.
+
+## Published algorithms used (implemented from their specifications)
+- **xoshiro128** 1.1** (David Blackman and Sebastiano Vigna, public domain). Checked line by line against the reference `prng.di.unimi.it/xoshiro128starstar.c` on 13 Nov 2026.
+- **SHA-256:** via `node:crypto` (lab) and Python `hashlib` (oracle).
+- **RFC 8785 conventions** for canonical JSON (restricted subset; see `spec/formulas/canonical-json.md`).
+- **Binary long multiplication with a running remainder** (S0.1 `mulDivRem`): the textbook shift-and-add method, written from its definition in `spec/formulas/numeric.md`. No library code was used.
+
+## Dependencies (exact versions; full tree in `package-lock.json`)
+- **Runtime:** `zod` 4.6.7 (MIT).
+- **Development:** `typescript` 7.0.2 (Apache-2.0), `vitest` 4.1.12 (MIT), `fast-check` 4.10.2 (MIT), `@types/node` 24.19.2 (MIT).
+- **Installed tree:** 102 packages; licence counts are in `evidence/s0/`. The MPL-2.0 packages are vitest's bundled CSS tooling, which the lab never uses.
+- **Oracles:** the Python standard library only.

@@ -1,0 +1,671 @@
+{
+  "fixtureSet": "xp",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/xp.md#v2",
+  "status": "candidate",
+  "independence": "Award, award-sequence and cumulative cases derived by hand from spec/formulas/xp.md v2; buildTable thresholds computed by spec/oracle/xp_oracle.py (decimal at 60 and 120 digits, rounding-stability check), with the first entries also derived by hand. Not produced by lab code.",
+  "cases": [
+    {
+      "id": "xp.table.candidate.001",
+      "kind": "normal",
+      "description": "Candidate curve a=10, p=1.6, g=1, first 12 thresholds",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 10,
+          "p": 1.6,
+          "g": 1
+        },
+        "length": 12
+      },
+      "expected": {
+        "thresholds": [
+          10,
+          30,
+          58,
+          92,
+          131,
+          176,
+          225,
+          279,
+          336,
+          398,
+          464,
+          533
+        ]
+      },
+      "derivation": "xp_oracle.py; by hand: 10*1^1.6 = 10; 10*2^1.6 = 30.31 -> 30; 10*3^1.6 = 58.0 -> 58"
+    },
+    {
+      "id": "xp.table.geometric.001",
+      "kind": "normal",
+      "description": "Curve with g > 1: a=5, p=1, g=1.1",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 5,
+          "p": 1,
+          "g": 1.1
+        },
+        "length": 6
+      },
+      "expected": {
+        "thresholds": [
+          5,
+          11,
+          18,
+          27,
+          37,
+          48
+        ]
+      },
+      "derivation": "xp_oracle.py; by hand: 5; 5*2*1.1 = 11; 5*3*1.21 = 18.15 -> 18; 5*4*1.331 = 26.62 -> 27; 5*5*1.4641 = 36.6025 -> 37; 5*6*1.61051 = 48.3153 -> 48"
+    },
+    {
+      "id": "xp.table.constant.001",
+      "kind": "boundary",
+      "description": "p = 0 and g = 1 gives a constant table",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 7,
+          "p": 0,
+          "g": 1
+        },
+        "length": 3
+      },
+      "expected": {
+        "thresholds": [
+          7,
+          7,
+          7
+        ]
+      },
+      "derivation": "7 * L^0 * 1 = 7 for every level"
+    },
+    {
+      "id": "xp.table.bad-a.001",
+      "kind": "failure",
+      "description": "a must be positive",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 0,
+          "p": 1.6,
+          "g": 1
+        },
+        "length": 3
+      },
+      "expectedError": "INVALID_TABLE",
+      "derivation": "spec: a > 0"
+    },
+    {
+      "id": "xp.table.bad-g.001",
+      "kind": "failure",
+      "description": "g below 1 is refused",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 10,
+          "p": 1.6,
+          "g": 0.9
+        },
+        "length": 3
+      },
+      "expectedError": "INVALID_TABLE",
+      "derivation": "spec: g >= 1"
+    },
+    {
+      "id": "xp.table.bad-length.001",
+      "kind": "failure",
+      "description": "Empty table is refused",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 10,
+          "p": 1.6,
+          "g": 1
+        },
+        "length": 0
+      },
+      "expectedError": "INVALID_TABLE",
+      "derivation": "spec: length >= 1"
+    },
+    {
+      "id": "xp.table.overflow.001",
+      "kind": "failure",
+      "description": "A single threshold above 2^53 - 1",
+      "input": {
+        "op": "buildTable",
+        "curve": {
+          "family": "powerGeometric",
+          "a": 10000000000000000,
+          "p": 0,
+          "g": 1
+        },
+        "length": 1
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "T(1) = 1e16 > 2^53 - 1"
+    },
+    {
+      "id": "xp.award.multi-level.001",
+      "kind": "normal",
+      "description": "One award crosses two thresholds exactly",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 5,
+        "award": 35,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 3,
+        "expIntoLevel": 0,
+        "levelUps": [
+          2,
+          3
+        ]
+      },
+      "derivation": "5+35 = 40; 40-10 = 30 -> L2; 30-30 = 0 -> L3; 0 < 58 stop"
+    },
+    {
+      "id": "xp.award.none.001",
+      "kind": "normal",
+      "description": "Award below the threshold",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 9,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 1,
+        "expIntoLevel": 9,
+        "levelUps": []
+      },
+      "derivation": "9 < 10"
+    },
+    {
+      "id": "xp.award.exact.001",
+      "kind": "boundary",
+      "description": "Award equal to the threshold levels up with zero left",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 10,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 2,
+        "expIntoLevel": 0,
+        "levelUps": [
+          2
+        ]
+      },
+      "derivation": "10 - 10 = 0 -> L2; 0 < 30"
+    },
+    {
+      "id": "xp.award.table-end.001",
+      "kind": "boundary",
+      "description": "Award that lands exactly on the highest reachable level",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 98,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 4,
+        "expIntoLevel": 0,
+        "levelUps": [
+          2,
+          3,
+          4
+        ]
+      },
+      "derivation": "10 + 30 + 58 = 98; level 4 = table length + 1, leftover 0"
+    },
+    {
+      "id": "xp.award.zero-at-end.001",
+      "kind": "boundary",
+      "description": "Zero award at the highest reachable level is allowed",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 4,
+        "expIntoLevel": 0,
+        "award": 0,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 4,
+        "expIntoLevel": 0,
+        "levelUps": []
+      },
+      "derivation": "nothing to apply"
+    },
+    {
+      "id": "xp.award.exhausted.001",
+      "kind": "failure",
+      "description": "Award one past the end of the table is refused, not discarded",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 99,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "XP_TABLE_EXHAUSTED",
+      "derivation": "98 consumed to reach level 4, 1 EXP left with no threshold: refused"
+    },
+    {
+      "id": "xp.award.exhausted.002",
+      "kind": "failure",
+      "description": "Any positive award at the highest reachable level is refused",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 4,
+        "expIntoLevel": 0,
+        "award": 1,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "XP_TABLE_EXHAUSTED",
+      "derivation": "no threshold beyond level 4"
+    },
+    {
+      "id": "xp.award.guard.001",
+      "kind": "failure",
+      "description": "Level-up guard stops runaway loops",
+      "input": {
+        "op": "award",
+        "table": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 5,
+        "maxLevelUps": 2
+      },
+      "expectedError": "LEVEL_UP_GUARD",
+      "derivation": "the third level-up exceeds the guard of 2"
+    },
+    {
+      "id": "xp.award.bad-state.001",
+      "kind": "failure",
+      "description": "expIntoLevel already at the threshold is an invalid state",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 10,
+        "award": 0,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "invariant expIntoLevel < T(level)"
+    },
+    {
+      "id": "xp.award.large.001",
+      "kind": "boundary",
+      "description": "Award of exactly 2^53 - 1 against a threshold of 2^53 - 1",
+      "input": {
+        "op": "award",
+        "table": [
+          9007199254740991
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 9007199254740991,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 2,
+        "expIntoLevel": 0,
+        "levelUps": [
+          2
+        ]
+      },
+      "derivation": "exactly one threshold"
+    },
+    {
+      "id": "xp.award.nan.001",
+      "kind": "failure",
+      "description": "NaN award is refused",
+      "input": {
+        "op": "award",
+        "table": [
+          10
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": {
+          "$special": "NaN"
+        },
+        "maxLevelUps": 1000
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "non-finite input"
+    },
+    {
+      "id": "xp.award.reviewer.001",
+      "kind": "boundary",
+      "description": "S0 review reproduction: award 2 one EXP short of a 2^53 - 1 threshold",
+      "input": {
+        "op": "award",
+        "table": [
+          9007199254740991,
+          9007199254740991
+        ],
+        "level": 1,
+        "expIntoLevel": 9007199254740990,
+        "award": 2,
+        "maxLevelUps": 10
+      },
+      "expected": {
+        "level": 2,
+        "expIntoLevel": 1,
+        "levelUps": [
+          2
+        ]
+      },
+      "derivation": "need M - (M - 1) = 1, 1 left; level 2 needs M > 1 -> level 2 with 1 EXP (S0 raised NUMERIC_LIMIT on (M - 1) + 2)"
+    },
+    {
+      "id": "xp.award.reviewer-split.001",
+      "kind": "boundary",
+      "description": "the same award as 1 + 1",
+      "input": {
+        "op": "awardSequence",
+        "table": [
+          9007199254740991,
+          9007199254740991
+        ],
+        "level": 1,
+        "expIntoLevel": 9007199254740990,
+        "awards": [
+          1,
+          1
+        ],
+        "maxLevelUps": 10
+      },
+      "expected": {
+        "level": 2,
+        "expIntoLevel": 1,
+        "levelUps": [
+          2
+        ]
+      },
+      "derivation": "1: reaches level 2 with 0; 1: level 2 with 1 -> same as xp.award.reviewer.001"
+    },
+    {
+      "id": "xp.award.near-max.exhausted.001",
+      "kind": "failure",
+      "description": "replaces xp.award.overflow.001: one EXP past the end of a 2^53 - 1 table",
+      "input": {
+        "op": "award",
+        "table": [
+          9007199254740991
+        ],
+        "level": 1,
+        "expIntoLevel": 9007199254740990,
+        "award": 2,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "XP_TABLE_EXHAUSTED",
+      "derivation": "need 1, 1 left at level 2 = table length + 1 -> XP_TABLE_EXHAUSTED (S0 raised NUMERIC_LIMIT before checking)"
+    },
+    {
+      "id": "xp.award.max-award.multi.001",
+      "kind": "boundary",
+      "description": "an award of 2^53 - 1 across levels with large thresholds",
+      "input": {
+        "op": "award",
+        "table": [
+          3,
+          9007199254740986,
+          9007199254740991
+        ],
+        "level": 1,
+        "expIntoLevel": 1,
+        "award": 9007199254740991,
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 3,
+        "expIntoLevel": 3,
+        "levelUps": [
+          2,
+          3
+        ]
+      },
+      "derivation": "need 3 - 1 = 2, M - 2 left -> L2; need M - 5, 3 left -> L3; 3 < M -> level 3 with 3. Check: 1 + M = 3 + (M - 5) + 3 (S0 raised NUMERIC_LIMIT on 1 + M)"
+    },
+    {
+      "id": "xp.award.sequence.001",
+      "kind": "normal",
+      "description": "awards in sequence equal one combined award",
+      "input": {
+        "op": "awardSequence",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 5,
+        "awards": [
+          3,
+          32,
+          0,
+          1
+        ],
+        "maxLevelUps": 1000
+      },
+      "expected": {
+        "level": 3,
+        "expIntoLevel": 1,
+        "levelUps": [
+          2,
+          3
+        ]
+      },
+      "derivation": "5 + 3 = 8 (L1); + 32 = 40 -> L2 with 30 -> L3 with 0; + 0; + 1 -> L3 with 1 (= award of 36: 41 - 10 - 30 = 1)"
+    },
+    {
+      "id": "xp.award.at-end-with-exp.001",
+      "kind": "failure",
+      "description": "EXP held at the last level can never be accepted",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 4,
+        "expIntoLevel": 5,
+        "award": 0,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "XP_TABLE_EXHAUSTED",
+      "derivation": "level 4 = table length + 1 with 5 EXP: no threshold to hold it -> XP_TABLE_EXHAUSTED (unchanged from v1)"
+    },
+    {
+      "id": "xp.award.guard.exact.001",
+      "kind": "boundary",
+      "description": "exactly maxLevelUps level-ups are allowed",
+      "input": {
+        "op": "award",
+        "table": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 2,
+        "maxLevelUps": 2
+      },
+      "expected": {
+        "level": 3,
+        "expIntoLevel": 0,
+        "levelUps": [
+          2,
+          3
+        ]
+      },
+      "derivation": "two level-ups = guard of 2 -> allowed"
+    },
+    {
+      "id": "xp.award.bad-guard.001",
+      "kind": "failure",
+      "description": "maxLevelUps 0",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          30,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 1,
+        "maxLevelUps": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "maxLevelUps must be >= 1"
+    },
+    {
+      "id": "xp.award.null-threshold.001",
+      "kind": "failure",
+      "description": "a missing threshold in the table",
+      "input": {
+        "op": "award",
+        "table": [
+          10,
+          null,
+          58
+        ],
+        "level": 1,
+        "expIntoLevel": 0,
+        "award": 1,
+        "maxLevelUps": 1000
+      },
+      "expectedError": "INVALID_TABLE",
+      "derivation": "every threshold must be a safe integer >= 1"
+    },
+    {
+      "id": "xp.cumulative.001",
+      "kind": "normal",
+      "description": "Cumulative EXP to reach each level",
+      "input": {
+        "op": "cumulative",
+        "table": [
+          10,
+          30,
+          58
+        ]
+      },
+      "expected": {
+        "cumulative": [
+          0,
+          10,
+          40,
+          98
+        ],
+        "lastSafeCumulativeLevel": 4,
+        "cumulativeCompleteWithinTable": true
+      },
+      "derivation": "C(1)=0, C(2)=10, C(3)=40, C(4)=98"
+    },
+    {
+      "id": "xp.cumulative.unsafe.001",
+      "kind": "boundary",
+      "description": "Every threshold is safe but the cumulative total is not",
+      "input": {
+        "op": "cumulative",
+        "table": [
+          4503599627370496,
+          4503599627370496
+        ]
+      },
+      "expected": {
+        "cumulative": [
+          0,
+          4503599627370496
+        ],
+        "lastSafeCumulativeLevel": 2,
+        "cumulativeCompleteWithinTable": false
+      },
+      "derivation": "2^52 is safe; 2^52 + 2^52 = 2^53 is not, so the cumulative table stops at level 2 (not clamped)"
+    },
+    {
+      "id": "xp.cumulative.bad-table.001",
+      "kind": "failure",
+      "description": "Decreasing thresholds are refused",
+      "input": {
+        "op": "cumulative",
+        "table": [
+          5,
+          3
+        ]
+      },
+      "expectedError": "INVALID_TABLE",
+      "derivation": "thresholds must be non-decreasing"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+S0.1 final-correction mutation check: each row plants one deliberate bug, runs the default test suite, then restores the file (SHA-256 verified).
+Unmutated suite: 463 total, 0 failed.
+
+| # | File | Planted bug | Tests failed | Restored, hash identical |
+|---|---|---|---|---|
+| 1 | `src/core/ledger/ledger.ts` | identity check replaced by the S0.1 structural check (frozen + read-only maps) | 2 | yes |
+| 2 | `src/core/ledger/ledger.ts` | identity check removed entirely | 3 | yes |
+| 3 | `src/core/ledger/ledger.ts` | new ledgers not registered | 33 | yes |
+| 4 | `src/core/ledger/ledger.ts` | S0 #2 re-run: a reused txId always replays | 4 | yes |
+
+A count above 0 means the suite detected the planted bug.

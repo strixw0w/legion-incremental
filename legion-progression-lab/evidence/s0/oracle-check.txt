@@ -1,0 +1,21 @@
+$ python -I spec/oracle/check_all.py
+
+rng_oracle: 37 cases checked, 0 mismatches (<REPO>\spec\fixtures\rng.v1.json)
+xp_oracle fixtures: 22 cases checked, 0 mismatches (<REPO>\spec\fixtures\xp.v1.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<REPO>\legion-progression-lab\content\tables\xp.w1.candidate.v0.1.0.json)
+exact_oracle numeric: 29 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\numeric.v1.json)
+exact_oracle remainder: 18 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\remainder.v1.json)
+exact_oracle stats: 9 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\stats.v1.json)
+exact_oracle combat: 32 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\combat.v1.json)
+exact_oracle ledger: 15 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\ledger.v1.json)
+exact_oracle canonical-json: 7 cases checked, 0 hand-only, 0 mismatches (<REPO>\spec\fixtures\canonical-json.v1.json)
+exact_oracle content: 2 cases checked, 8 hand-only, 0 mismatches (<REPO>\spec\fixtures\content.v1.json)
+xp_oracle preview: main rows + 9 sweep variants checked, 0 problems (<REPO>\legion-progression-lab\results\s0\S0-R01-curve-preview\semantic.json)
+== rng fixtures
+== xp fixtures
+== xp table artifact
+== exact families
+== S0-R01 preview
+oracle summary: 5 groups, 0 failing
+
+[exit code: 0]

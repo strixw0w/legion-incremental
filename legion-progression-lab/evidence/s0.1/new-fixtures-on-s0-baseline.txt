@@ -1,0 +1,77 @@
+$ node src/cli/fixtures-check.ts   (S0 lab code, byte-identical to the S0 review ZIP, run on the S0.1 fixture files)
+
+FAIL combat.dmg.plain.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.crit-half.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.mitigated.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.floor.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.half.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.reviewer.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.third.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.five-sixths.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.half-mitigation.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.k100-d25.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.milli-half.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.milli-below-half.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.below-half.large-den.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.half.large-den.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.min-damage.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.max.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.huge-den.001: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.dmg.overflow.002: raised INVALID_NUMBER: INVALID_NUMBER: raw damage must be a finite number > 0
+FAIL combat.mitratio.001: harness error: unknown combat op mitigationRatio
+FAIL combat.mitratio.none.001: harness error: unknown combat op mitigationRatio
+FAIL combat.mitratio.overflow.001: harness error: unknown combat op mitigationRatio
+FAIL combat.mitratio.bad-k.001: harness error: unknown combat op mitigationRatio
+FAIL numeric.muldivrem.small.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.zero.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.safe-product.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.wide.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.wide.002: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.per-hour.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.exact-carry.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.overflow.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.bad-d.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.negative.001: harness error: unknown numeric op mulDivRem
+FAIL numeric.muldivrem.fraction.001: harness error: unknown numeric op mulDivRem
+FAIL remainder.perhour.reviewer.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: mul result is outside the safe integer range
+FAIL remainder.perhour.max-granted.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: mul result is outside the safe integer range
+FAIL remainder.perhour.max-granted.split.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: mul result is outside the safe integer range
+FAIL remainder.timeline.rate-change.001: harness error: unknown remainder op perHourTimeline
+FAIL remainder.timeline.rate-change.split.001: harness error: unknown remainder op perHourTimeline
+FAIL remainder.timeline.carry.001: harness error: unknown remainder op perHourTimeline
+FAIL rng.next.001: harness error: unknown rng op nextFromState
+FAIL rng.next.max-words.001: harness error: unknown rng op nextFromState
+FAIL rng.next.zero.001: harness error: unknown rng op nextFromState
+FAIL rng.next.short.001: harness error: unknown rng op nextFromState
+FAIL rng.next.null.001: harness error: unknown rng op nextFromState
+FAIL rng.next.too-big.001: harness error: unknown rng op nextFromState
+FAIL rng.next.fraction.001: harness error: unknown rng op nextFromState
+FAIL rng.next.negative.001: harness error: unknown rng op nextFromState
+FAIL rng.next.not-array.001: harness error: unknown rng op nextFromState
+FAIL stats.neutral.max.001: $.value: expected 9007199254740991, got 9007199254740990
+FAIL stats.neutral.w2-hooks.001: $.value: expected 9007199254740991, got 9007199254740990
+FAIL stats.overflow.final.001: expected NUMERIC_LIMIT, but no error was raised
+FAIL stats.overflow.intermediate.001: expected NUMERIC_LIMIT, but no error was raised
+FAIL stats.overflow.many.001: expected NUMERIC_LIMIT, but no error was raised
+FAIL stats.overflow.nan.001: expected NUMERIC_LIMIT, but no error was raised
+FAIL stats.bad-active.001: expected INVALID_CONTENT, but no error was raised
+FAIL stats.null-source.001: harness error: Cannot read properties of null (reading 'sourceId')
+FAIL xp.award.reviewer.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: add result is outside the safe integer range
+FAIL xp.award.reviewer-split.001: harness error: unknown xp op awardSequence
+FAIL xp.award.near-max.exhausted.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: add result is outside the safe integer range
+FAIL xp.award.max-award.multi.001: raised NUMERIC_LIMIT: NUMERIC_LIMIT: add result is outside the safe integer range
+FAIL xp.award.sequence.001: harness error: unknown xp op awardSequence
+| Family | File | Cases | Normal | Boundary | Failure | Passed |
+|---|---|---|---|---|---|---|
+| canonical-json | spec/fixtures/canonical-json.v1.json | 7 | 2 | 2 | 3 | 7 |
+| combat | spec/fixtures/combat.v2.json | 51 | 12 | 24 | 15 | 29 |
+| content | spec/fixtures/content.v1.json | 10 | 1 | 1 | 8 | 10 |
+| ledger | spec/fixtures/ledger.v1.json | 15 | 2 | 4 | 9 | 15 |
+| numeric | spec/fixtures/numeric.v1.json | 40 | 6 | 20 | 14 | 29 |
+| remainder | spec/fixtures/remainder.v2.json | 33 | 9 | 12 | 12 | 27 |
+| rng | spec/fixtures/rng.v1.json | 46 | 11 | 15 | 20 | 37 |
+| stats | spec/fixtures/stats.v2.json | 20 | 3 | 6 | 11 | 12 |
+| xp | spec/fixtures/xp.v2.json | 30 | 6 | 10 | 14 | 25 |
+total cases: 252; problems: 61
+
+[exit code: 0]

@@ -1,0 +1,9 @@
+Curve preview reproduction (S0.1)
+run 1 semantic.json sha256: 4f3ad8d72b88598e33537513e662bf4d9756176dde7d3fc38926fff65c90f49d
+run 2 semantic.json sha256: 4f3ad8d72b88598e33537513e662bf4d9756176dde7d3fc38926fff65c90f49d
+S0 evidence semantic.json sha256: 4f3ad8d72b88598e33537513e662bf4d9756176dde7d3fc38926fff65c90f49d
+semantic.json byte-identical across the two S0.1 runs: yes
+semantic.json byte-identical to the S0 evidence copy: yes
+S0.1 semantic fingerprint (fingerprint.txt): 24dd90646ff38d8a455e9e704148e58db39219716438616fb4ee64f2f9bab9b9
+S0   semantic fingerprint (fingerprint.txt): 24dd90646ff38d8a455e9e704148e58db39219716438616fb4ee64f2f9bab9b9
+semantic fingerprint identical to S0: yes

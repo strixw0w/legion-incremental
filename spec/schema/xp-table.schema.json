@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "artifact": {
+      "type": "string",
+      "const": "xp-table"
+    },
+    "artifactVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "formulaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "contentId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "label": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "target",
+        "candidate",
+        "derived"
+      ]
+    },
+    "curve": {
+      "type": "object",
+      "properties": {
+        "family": {
+          "type": "string",
+          "const": "powerGeometric"
+        },
+        "a": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "p": {
+          "type": "number",
+          "minimum": 0
+        },
+        "g": {
+          "type": "number",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "family",
+        "a",
+        "p",
+        "g"
+      ],
+      "additionalProperties": false
+    },
+    "rounding": {
+      "type": "string",
+      "const": "roundHalfUp"
+    },
+    "indexing": {
+      "type": "string",
+      "const": "thresholds[i] = EXP from level i+1 to level i+2"
+    },
+    "thresholds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": -9007199254740991,
+        "maximum": 9007199254740991
+      }
+    }
+  },
+  "required": [
+    "artifact",
+    "artifactVersion",
+    "formulaVersion",
+    "contentId",
+    "label",
+    "curve",
+    "rounding",
+    "indexing",
+    "thresholds"
+  ],
+  "additionalProperties": false
+}

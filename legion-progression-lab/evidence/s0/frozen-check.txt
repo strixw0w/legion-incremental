@@ -1,0 +1,10 @@
+Frozen simulator check after S0 (2026-11-13T14:07:10Z)
+Scope: every file under the original Roblox Incremental workspace, including progression-lab/.git (path, size, modification time, SHA-256).
+files at M0 start: 3012; files now: 3012
+path/size/mtime list vs M0 start: IDENTICAL
+content SHA-256 list vs M0 start: IDENTICAL
+combined checksum-list fingerprint: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d (M0: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d)
+HEAD: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913 (frozen: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913)
+branches: master 
+working-tree status lines: 12 (M0: 12)
+Git read commands used GIT_OPTIONAL_LOCKS=0 / --no-optional-locks (no index refresh).

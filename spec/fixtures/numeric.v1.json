@@ -1,0 +1,560 @@
+{
+  "fixtureSet": "numeric",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/numeric.md#v1",
+  "status": "candidate",
+  "independence": "Expected values derived by hand from spec/formulas/numeric.md; every case is re-checked with unbounded Python integers and exact Fractions by spec/oracle/exact_oracle.py. S0.1 adds mulDivRem cases, derived by hand and re-checked with unbounded Python integers.",
+  "cases": [
+    {
+      "id": "numeric.add.001",
+      "kind": "normal",
+      "description": "Small addition",
+      "input": {
+        "op": "add",
+        "a": 2,
+        "b": 3
+      },
+      "expected": {
+        "result": 5
+      },
+      "derivation": "2 + 3 = 5"
+    },
+    {
+      "id": "numeric.add.limit.001",
+      "kind": "boundary",
+      "description": "Addition reaching exactly 2^53 - 1",
+      "input": {
+        "op": "add",
+        "a": 9007199254740990,
+        "b": 1
+      },
+      "expected": {
+        "result": 9007199254740991
+      },
+      "derivation": "(2^53 - 2) + 1 = 2^53 - 1, the largest safe integer"
+    },
+    {
+      "id": "numeric.add.overflow.001",
+      "kind": "failure",
+      "description": "Addition one past the limit",
+      "input": {
+        "op": "add",
+        "a": 9007199254740991,
+        "b": 1
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "(2^53 - 1) + 1 = 2^53 is not a safe integer"
+    },
+    {
+      "id": "numeric.add.nonint.001",
+      "kind": "failure",
+      "description": "Non-integer operand",
+      "input": {
+        "op": "add",
+        "a": 1.5,
+        "b": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "1.5 is not an integer"
+    },
+    {
+      "id": "numeric.add.negzero.001",
+      "kind": "boundary",
+      "description": "Negative zero is normalised",
+      "input": {
+        "op": "add",
+        "a": {
+          "$special": "-0"
+        },
+        "b": 0
+      },
+      "expected": {
+        "result": 0
+      },
+      "derivation": "-0 + 0 = +0; -0 is normalised at the boundary"
+    },
+    {
+      "id": "numeric.sub.limit.001",
+      "kind": "boundary",
+      "description": "Subtraction reaching -(2^53 - 1)",
+      "input": {
+        "op": "sub",
+        "a": -9007199254740990,
+        "b": 1
+      },
+      "expected": {
+        "result": -9007199254740991
+      },
+      "derivation": "-(2^53 - 2) - 1 = -(2^53 - 1)"
+    },
+    {
+      "id": "numeric.sub.overflow.001",
+      "kind": "failure",
+      "description": "Subtraction one past the negative limit",
+      "input": {
+        "op": "sub",
+        "a": -9007199254740991,
+        "b": 1
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "-(2^53 - 1) - 1 = -2^53 is not safe"
+    },
+    {
+      "id": "numeric.mul.limit.001",
+      "kind": "boundary",
+      "description": "Largest square below 2^53",
+      "input": {
+        "op": "mul",
+        "a": 94906265,
+        "b": 94906265
+      },
+      "expected": {
+        "result": 9007199136250225
+      },
+      "derivation": "94906265^2 = 9007199136250225 <= 2^53 - 1"
+    },
+    {
+      "id": "numeric.mul.overflow.001",
+      "kind": "failure",
+      "description": "Smallest square above 2^53",
+      "input": {
+        "op": "mul",
+        "a": 94906266,
+        "b": 94906266
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "94906266^2 = 9007199326062756 > 2^53 - 1"
+    },
+    {
+      "id": "numeric.muldiv.001",
+      "kind": "normal",
+      "description": "Checked product then exact division",
+      "input": {
+        "op": "mulThenDiv",
+        "a": 1000,
+        "b": 3600000,
+        "c": 7
+      },
+      "expected": {
+        "result": 514285714
+      },
+      "derivation": "1000 * 3600000 = 3600000000; floor(3600000000 / 7) = 514285714 (remainder 2)"
+    },
+    {
+      "id": "numeric.muldiv.intermediate-overflow.001",
+      "kind": "failure",
+      "description": "Intermediate product overflows although the final quotient would fit",
+      "input": {
+        "op": "mulThenDiv",
+        "a": 4503599627370496,
+        "b": 4,
+        "c": 8
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "2^52 * 4 = 2^54 overflows before dividing by 8 (the mathematical result 2^51 would fit); intermediates are checked"
+    },
+    {
+      "id": "numeric.divrem.limit.001",
+      "kind": "boundary",
+      "description": "Exact division of the largest safe integer",
+      "input": {
+        "op": "divRem",
+        "a": 9007199254740991,
+        "b": 3
+      },
+      "expected": {
+        "q": 3002399751580330,
+        "r": 1
+      },
+      "derivation": "3 * 3002399751580330 = 9007199254740990; remainder 1"
+    },
+    {
+      "id": "numeric.divrem.limit.002",
+      "kind": "boundary",
+      "description": "Dividend equals divisor at the limit",
+      "input": {
+        "op": "divRem",
+        "a": 9007199254740991,
+        "b": 9007199254740991
+      },
+      "expected": {
+        "q": 1,
+        "r": 0
+      },
+      "derivation": "x / x = 1 remainder 0"
+    },
+    {
+      "id": "numeric.divrem.limit.003",
+      "kind": "boundary",
+      "description": "Dividend one below divisor at the limit",
+      "input": {
+        "op": "divRem",
+        "a": 9007199254740990,
+        "b": 9007199254740991
+      },
+      "expected": {
+        "q": 0,
+        "r": 9007199254740990
+      },
+      "derivation": "a < b gives q = 0, r = a (floating a/b rounds to 1.0, which the correction must undo)"
+    },
+    {
+      "id": "numeric.divrem.zero.001",
+      "kind": "failure",
+      "description": "Division by zero",
+      "input": {
+        "op": "divRem",
+        "a": 5,
+        "b": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "divisor must be >= 1"
+    },
+    {
+      "id": "numeric.divrem.negative.001",
+      "kind": "failure",
+      "description": "Negative dividend",
+      "input": {
+        "op": "divRem",
+        "a": -1,
+        "b": 3
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "dividend must be >= 0"
+    },
+    {
+      "id": "numeric.ceildiv.001",
+      "kind": "normal",
+      "description": "Ceiling division with remainder",
+      "input": {
+        "op": "ceilDiv",
+        "a": 15,
+        "b": 6
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "15 / 6 = 2.5 -> 3"
+    },
+    {
+      "id": "numeric.ceildiv.002",
+      "kind": "boundary",
+      "description": "Ceiling division without remainder",
+      "input": {
+        "op": "ceilDiv",
+        "a": 15,
+        "b": 5
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "15 / 5 = 3 exactly"
+    },
+    {
+      "id": "numeric.ceildiv.003",
+      "kind": "boundary",
+      "description": "Zero dividend",
+      "input": {
+        "op": "ceilDiv",
+        "a": 0,
+        "b": 5
+      },
+      "expected": {
+        "result": 0
+      },
+      "derivation": "0 / 5 = 0"
+    },
+    {
+      "id": "numeric.rhu.001",
+      "kind": "normal",
+      "description": "Exact half rounds up",
+      "input": {
+        "op": "roundHalfUp",
+        "x": 2.5
+      },
+      "expected": {
+        "result": 3
+      },
+      "derivation": "2.5 -> 3 (half up)"
+    },
+    {
+      "id": "numeric.rhu.002",
+      "kind": "normal",
+      "description": "Just below half rounds down",
+      "input": {
+        "op": "roundHalfUp",
+        "x": 2.4999
+      },
+      "expected": {
+        "result": 2
+      },
+      "derivation": "2.4999 -> 2"
+    },
+    {
+      "id": "numeric.rhu.003",
+      "kind": "boundary",
+      "description": "Negative half rounds toward +infinity",
+      "input": {
+        "op": "roundHalfUp",
+        "x": -2.5
+      },
+      "expected": {
+        "result": -2
+      },
+      "derivation": "floor(-2.5) = -3, d = 0.5 -> -2"
+    },
+    {
+      "id": "numeric.rhu.naive-bug.001",
+      "kind": "boundary",
+      "description": "Largest double below 0.5 (naive floor(x+0.5) returns 1)",
+      "input": {
+        "op": "roundHalfUp",
+        "x": 0.49999999999999994
+      },
+      "expected": {
+        "result": 0
+      },
+      "derivation": "x < 0.5 so the result is 0; x + 0.5 would round to 1.0 before the floor"
+    },
+    {
+      "id": "numeric.rhu.naive-bug.002",
+      "kind": "boundary",
+      "description": "2^52 + 1 (naive floor(x+0.5) returns 2^52 + 2)",
+      "input": {
+        "op": "roundHalfUp",
+        "x": 4503599627370497
+      },
+      "expected": {
+        "result": 4503599627370497
+      },
+      "derivation": "|x| >= 2^52 is already an integer and is returned unchanged"
+    },
+    {
+      "id": "numeric.rhu.half-below-2p52.001",
+      "kind": "boundary",
+      "description": "2^52 - 0.5 rounds up to 2^52",
+      "input": {
+        "op": "roundHalfUp",
+        "x": 4503599627370495.5
+      },
+      "expected": {
+        "result": 4503599627370496
+      },
+      "derivation": "fraction exactly 0.5 -> up; 2^52 - 0.5 is exactly representable"
+    },
+    {
+      "id": "numeric.rhu.max-safe.001",
+      "kind": "boundary",
+      "description": "Largest safe integer is unchanged",
+      "input": {
+        "op": "roundHalfUpToSafeInt",
+        "x": 9007199254740991
+      },
+      "expected": {
+        "result": 9007199254740991
+      },
+      "derivation": "already an integer, still safe"
+    },
+    {
+      "id": "numeric.rhu.overflow.001",
+      "kind": "failure",
+      "description": "2^53 is refused as a safe integer result",
+      "input": {
+        "op": "roundHalfUpToSafeInt",
+        "x": 9007199254740992
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "2^53 > 2^53 - 1"
+    },
+    {
+      "id": "numeric.rhu.nan.001",
+      "kind": "failure",
+      "description": "NaN is refused",
+      "input": {
+        "op": "roundHalfUp",
+        "x": {
+          "$special": "NaN"
+        }
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "non-finite input"
+    },
+    {
+      "id": "numeric.rhu.inf.001",
+      "kind": "failure",
+      "description": "Infinity is refused",
+      "input": {
+        "op": "roundHalfUp",
+        "x": {
+          "$special": "Infinity"
+        }
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "non-finite input"
+    },
+    {
+      "id": "numeric.muldivrem.small.001",
+      "kind": "normal",
+      "description": "mulDivRem on a small product",
+      "input": {
+        "op": "mulDivRem",
+        "a": 7,
+        "m": 6,
+        "d": 4
+      },
+      "expected": {
+        "q": 10,
+        "r": 2
+      },
+      "derivation": "7*6 = 42 = 10*4 + 2"
+    },
+    {
+      "id": "numeric.muldivrem.zero.001",
+      "kind": "boundary",
+      "description": "a zero factor gives zero",
+      "input": {
+        "op": "mulDivRem",
+        "a": 0,
+        "m": 9007199254740991,
+        "d": 7
+      },
+      "expected": {
+        "q": 0,
+        "r": 0
+      },
+      "derivation": "0 * m = 0 = 0*7 + 0"
+    },
+    {
+      "id": "numeric.muldivrem.safe-product.001",
+      "kind": "boundary",
+      "description": "product exactly 2^53 - 1 (direct division)",
+      "input": {
+        "op": "mulDivRem",
+        "a": 9007199254740991,
+        "m": 1,
+        "d": 1
+      },
+      "expected": {
+        "q": 9007199254740991,
+        "r": 0
+      },
+      "derivation": "(2^53 - 1) * 1 / 1"
+    },
+    {
+      "id": "numeric.muldivrem.wide.001",
+      "kind": "boundary",
+      "description": "product near 2^106 whose quotient fits",
+      "input": {
+        "op": "mulDivRem",
+        "a": 9007199254740991,
+        "m": 9007199254740991,
+        "d": 9007199254740991
+      },
+      "expected": {
+        "q": 9007199254740991,
+        "r": 0
+      },
+      "derivation": "(2^53 - 1)^2 / (2^53 - 1) = 2^53 - 1, remainder 0; the product is never formed"
+    },
+    {
+      "id": "numeric.muldivrem.wide.002",
+      "kind": "boundary",
+      "description": "power-of-two product over 2^53 - 1",
+      "input": {
+        "op": "mulDivRem",
+        "a": 4503599627370496,
+        "m": 4503599627370496,
+        "d": 9007199254740991
+      },
+      "expected": {
+        "q": 2251799813685248,
+        "r": 2251799813685248
+      },
+      "derivation": "2^104 = 2^51 * (2^53 - 1) + 2^51"
+    },
+    {
+      "id": "numeric.muldivrem.per-hour.001",
+      "kind": "boundary",
+      "description": "rate 2^53 - 1 milli/h for 2 h over 3.6e9",
+      "input": {
+        "op": "mulDivRem",
+        "a": 9007199254740991,
+        "m": 7200000,
+        "d": 3600000000
+      },
+      "expected": {
+        "q": 18014398509481,
+        "r": 3535200000
+      },
+      "derivation": "M*7,200,000/3,600,000,000 = M/500 = 18,014,398,509,481.982; remainder 7,200,000*(M - 500*18,014,398,509,481) = 7,200,000*491 = 3,535,200,000"
+    },
+    {
+      "id": "numeric.muldivrem.exact-carry.001",
+      "kind": "boundary",
+      "description": "a doubling step lands exactly on the divisor (2r = d)",
+      "input": {
+        "op": "mulDivRem",
+        "a": 4503599627370495,
+        "m": 4,
+        "d": 9007199254740990
+      },
+      "expected": {
+        "q": 2,
+        "r": 0
+      },
+      "derivation": "(2^52 - 1) * 4 = 2^54 - 4 = 2 * (2^53 - 2) exactly, so q = 2, r = 0; the product exceeds 2^53 - 1, and half-way through the bit loop r = d/2 must carry"
+    },
+    {
+      "id": "numeric.muldivrem.overflow.001",
+      "kind": "failure",
+      "description": "quotient 2^53 is refused",
+      "input": {
+        "op": "mulDivRem",
+        "a": 9007199254740991,
+        "m": 9007199254740991,
+        "d": 9007199254740990
+      },
+      "expectedError": "NUMERIC_LIMIT",
+      "derivation": "M^2 = (M - 1)(M + 1) + 1, so q = M + 1 = 2^53 > 2^53 - 1"
+    },
+    {
+      "id": "numeric.muldivrem.bad-d.001",
+      "kind": "failure",
+      "description": "divisor 0",
+      "input": {
+        "op": "mulDivRem",
+        "a": 1,
+        "m": 1,
+        "d": 0
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "d must be >= 1"
+    },
+    {
+      "id": "numeric.muldivrem.negative.001",
+      "kind": "failure",
+      "description": "negative factor",
+      "input": {
+        "op": "mulDivRem",
+        "a": -1,
+        "m": 1,
+        "d": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "a must be >= 0"
+    },
+    {
+      "id": "numeric.muldivrem.fraction.001",
+      "kind": "failure",
+      "description": "non-integer factor",
+      "input": {
+        "op": "mulDivRem",
+        "a": 1,
+        "m": 1.5,
+        "d": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "m must be an integer"
+    }
+  ]
+}

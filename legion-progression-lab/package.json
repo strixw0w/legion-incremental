@@ -1,0 +1,30 @@
+{
+  "name": "legion-progression-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless, deterministic progression lab for Legion Incremental. S0: numeric primitives, RNG, EXP tables, stats, combat primitives, ledger, content schema, fixtures.",
+  "engines": {
+    "node": "24.22.3"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "test:stats": "vitest run --config vitest.stats.config.ts",
+    "fixtures:check": "node src/cli/fixtures-check.ts",
+    "oracle:check": "python -I ../spec/oracle/check_all.py",
+    "schemas:export": "node src/cli/export-schemas.ts",
+    "schemas:check": "node src/cli/export-schemas.ts --check",
+    "xp:build": "node src/cli/build-xp-table.ts",
+    "curve:preview": "node src/cli/curve-preview.ts"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "fast-check": "4.10.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.12"
+  }
+}

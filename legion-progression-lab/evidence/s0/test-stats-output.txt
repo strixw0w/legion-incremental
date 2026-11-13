@@ -1,0 +1,20 @@
+$ npx vitest run --config vitest.stats.config.ts --reporter=verbose
+
+
+ RUN  v4.1.12 <REPO>/legion-progression-lab
+
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > high and low bytes of nextU32 are uniform (chi-square, 256 buckets) 39ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 5000 bp has the correct success rate (binomial interval) 46ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 100 bp has the correct success rate (binomial interval) 41ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 20 bp has the correct success rate (binomial interval) 41ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > uniformInt(1, 6) is unbiased (chi-square, df = 5) 69ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > uniformInt with span 2^31 + 1 rejects about half of all draws, and stays unbiased across halves 33ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > streams with adjacent counters are not correlated (chi-square on paired top bits, df = 3) 1299ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  14:05:13
+   Duration  1.79s (transform 38ms, setup 0ms, import 89ms, tests 1.57s, environment 0ms)
+
+
+[exit code: 0]

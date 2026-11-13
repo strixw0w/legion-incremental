@@ -1,0 +1,14 @@
+Captured: 2026-11-13T17:10:50Z
+node v24.22.3
+npm 11.19.1
+typescript Version 7.0.2
+vitest vitest/4.1.12 win32-x64 node-v24.22.3
+zod 4.6.7
+fast-check 4.10.2
+@types/node 24.19.2
+Python 3.12.9
+git version 2.53.0.windows.1
+rojo (repo pin) Rojo 7.7.1
+OS: MINGW64_NT-10.0-26300 3.6.6-1cdd4371.x86_64 x86_64
+package-lock.json sha256: d6bdf80aad4665bca92fdf8f2cb6f2f80cebb5fe3796f7a0196142ad541665d6 (unchanged from S0: d6bdf80aad4665bca92fdf8f2cb6f2f80cebb5fe3796f7a0196142ad541665d6)
+package.json sha256:      ac2b7b9d259034e1590c2039dc97bc7fcb03cb695a497c106c359f6e25a3416b

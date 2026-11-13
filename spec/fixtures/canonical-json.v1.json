@@ -1,0 +1,127 @@
+{
+  "fixtureSet": "canonical-json",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/canonical-json.md#v1",
+  "status": "candidate",
+  "independence": "Canonical texts derived by hand from spec/formulas/canonical-json.md (ECMAScript number formatting rules); SHA-256 values computed by spec/oracle/exact_oracle.py (independent Python canonicaliser + hashlib).",
+  "cases": [
+    {
+      "id": "cjson.keys.001",
+      "kind": "normal",
+      "description": "Keys sorted, no whitespace",
+      "input": {
+        "value": {
+          "b": 1,
+          "a": [
+            true,
+            null,
+            "x"
+          ]
+        }
+      },
+      "expected": {
+        "text": "{\"a\":[true,null,\"x\"],\"b\":1}",
+        "sha256": "54a65415ad370228851a1da4b31b6fd42dc58b19a50d35cae759325f7388ce64"
+      },
+      "derivation": "text {\"a\":[true,null,\"x\"],\"b\":1}; hash by exact_oracle.py"
+    },
+    {
+      "id": "cjson.nested.001",
+      "kind": "boundary",
+      "description": "Empty containers",
+      "input": {
+        "value": {
+          "z": {},
+          "y": []
+        }
+      },
+      "expected": {
+        "text": "{\"y\":[],\"z\":{}}",
+        "sha256": "7de7e2fb9e6bdef5b46f1184b8f60abb44651d80d3120e3e5133c573cc927d5d"
+      },
+      "derivation": "text {\"y\":[],\"z\":{}}"
+    },
+    {
+      "id": "cjson.numbers.001",
+      "kind": "boundary",
+      "description": "ECMAScript number formatting edge cases",
+      "input": {
+        "value": [
+          1.5,
+          0.1,
+          1e+21,
+          1e-07,
+          123456789012345680000,
+          100,
+          1e+16,
+          5e-07,
+          1e-06,
+          9007199254740991,
+          {
+            "$special": "-0"
+          }
+        ]
+      },
+      "expected": {
+        "text": "[1.5,0.1,1e+21,1e-7,123456789012345680000,100,10000000000000000,5e-7,0.000001,9007199254740991,0]",
+        "sha256": "26eba3af1df6bc46decfa2ed166458594e02a02b7643279d874ef64a364e92e6"
+      },
+      "derivation": "text [1.5,0.1,1e+21,1e-7,123456789012345680000,100,10000000000000000,5e-7,0.000001,9007199254740991,0] (exponent form only when the decimal exponent >= 21 or <= -7; -0 -> 0)"
+    },
+    {
+      "id": "cjson.strings.001",
+      "kind": "normal",
+      "description": "String escaping as JSON.stringify",
+      "input": {
+        "value": {
+          "s": "line\nbreak \"quote\" \u0001 tab\t é ✓"
+        }
+      },
+      "expected": {
+        "text": "{\"s\":\"line\\nbreak \\\"quote\\\" \\u0001 tab\\t é ✓\"}",
+        "sha256": "793ca3f87cd6f1ea7366aaf48d1abfe9a852968587f963556807631bc33f327f"
+      },
+      "derivation": "control characters escaped (\\n, \\t, \\u0001); quote escaped; non-ASCII kept as UTF-8"
+    },
+    {
+      "id": "cjson.nan.001",
+      "kind": "failure",
+      "description": "NaN is refused",
+      "input": {
+        "value": [
+          {
+            "$special": "NaN"
+          }
+        ]
+      },
+      "expectedError": "INVALID_JSON_VALUE",
+      "derivation": "numbers must be finite"
+    },
+    {
+      "id": "cjson.infinity.001",
+      "kind": "failure",
+      "description": "Infinity is refused",
+      "input": {
+        "value": {
+          "x": {
+            "$special": "Infinity"
+          }
+        }
+      },
+      "expectedError": "INVALID_JSON_VALUE",
+      "derivation": "numbers must be finite"
+    },
+    {
+      "id": "cjson.key-ascii.001",
+      "kind": "failure",
+      "description": "Non-ASCII object key is refused",
+      "input": {
+        "value": {
+          "é": 1
+        }
+      },
+      "expectedError": "INVALID_JSON_VALUE",
+      "derivation": "keys must be printable ASCII so every engine sorts them identically"
+    }
+  ]
+}

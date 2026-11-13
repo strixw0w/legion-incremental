@@ -1,0 +1,1020 @@
+{
+  "fixtureSet": "rng",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/rng.md#v1",
+  "status": "candidate",
+  "independence": "Encodings, states and sequences computed by spec/oracle/rng_oracle.py (independent Python xoshiro128** + hashlib SHA-256, written from spec/formulas/rng.md); thresholds and error cases also derived by hand. S0.1 adds state-validation cases (derived by hand) and two explicit-state steps (one derived by hand, one filled by rng_oracle.py).",
+  "cases": [
+    {
+      "id": "rng.encode.001",
+      "kind": "normal",
+      "description": "Length-prefixed stream identity",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        }
+      },
+      "expected": {
+        "hex": "0000000d6c6567696f6e2e726e672e763100000009666978747572652d610000000b636f6d6261742e63726974000000046865726f0000000130"
+      },
+      "derivation": "u32be(13)'legion.rng.v1' u32be(9)'fixture-a' u32be(11)'combat.crit' u32be(4)'hero' u32be(1)'0'"
+    },
+    {
+      "id": "rng.encode.injective.001",
+      "kind": "boundary",
+      "description": "('ab','c') encodes differently from ('a','bc'), part 1",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "ab",
+          "entity": "c",
+          "counter": 0
+        }
+      },
+      "expected": {
+        "hex": "0000000d6c6567696f6e2e726e672e7631000000017200000002616200000001630000000130"
+      },
+      "derivation": "length prefixes 2 and 1"
+    },
+    {
+      "id": "rng.encode.injective.002",
+      "kind": "boundary",
+      "description": "('ab','c') encodes differently from ('a','bc'), part 2",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "a",
+          "entity": "bc",
+          "counter": 0
+        }
+      },
+      "expected": {
+        "hex": "0000000d6c6567696f6e2e726e672e7631000000017200000001610000000262630000000130"
+      },
+      "derivation": "length prefixes 1 and 2; differs from rng.encode.injective.001"
+    },
+    {
+      "id": "rng.encode.utf8.001",
+      "kind": "boundary",
+      "description": "Non-ASCII root encoded as UTF-8",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r\u00e4ksm\u00f6rg\u00e5s",
+          "purpose": "drop",
+          "entity": "enemy.w1.green_slime",
+          "counter": 7
+        }
+      },
+      "expected": {
+        "hex": "0000000d6c6567696f6e2e726e672e76310000000d72c3a46b736dc3b67267c3a5730000000464726f7000000014656e656d792e77312e677265656e5f736c696d650000000137"
+      },
+      "derivation": "root is 13 UTF-8 bytes for 10 characters"
+    },
+    {
+      "id": "rng.encode.empty.001",
+      "kind": "failure",
+      "description": "Empty purpose",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "",
+          "entity": "hero",
+          "counter": 0
+        }
+      },
+      "expectedError": "INVALID_STREAM_ID",
+      "derivation": "fields must be non-empty"
+    },
+    {
+      "id": "rng.encode.counter.001",
+      "kind": "failure",
+      "description": "Negative counter",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "p",
+          "entity": "e",
+          "counter": -1
+        }
+      },
+      "expectedError": "INVALID_STREAM_ID",
+      "derivation": "counter must be a safe integer >= 0"
+    },
+    {
+      "id": "rng.encode.counter.002",
+      "kind": "failure",
+      "description": "Fractional counter",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "p",
+          "entity": "e",
+          "counter": 1.5
+        }
+      },
+      "expectedError": "INVALID_STREAM_ID",
+      "derivation": "counter must be an integer"
+    },
+    {
+      "id": "rng.encode.surrogate.001",
+      "kind": "failure",
+      "description": "Lone surrogate in entity",
+      "input": {
+        "op": "encode",
+        "id": {
+          "root": "r",
+          "purpose": "p",
+          "entity": "\ud800",
+          "counter": 0
+        }
+      },
+      "expectedError": "INVALID_STREAM_ID",
+      "derivation": "strings must be well-formed so the UTF-8 encoding is unambiguous"
+    },
+    {
+      "id": "rng.state.001",
+      "kind": "normal",
+      "description": "Derived 128-bit state",
+      "input": {
+        "op": "state",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        }
+      },
+      "expected": {
+        "state": [
+          3523069888,
+          3943974854,
+          978180318,
+          35962876
+        ]
+      },
+      "derivation": "big-endian words 0..3 of SHA-256(encoding)"
+    },
+    {
+      "id": "rng.digest.first-half.001",
+      "kind": "boundary",
+      "description": "Non-zero first digest half is used",
+      "input": {
+        "op": "stateFromDigest",
+        "digestHex": "0000000100000002000000030000000400000000000000000000000000000000"
+      },
+      "expected": {
+        "state": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "derivation": "bytes 0..15 = words 1,2,3,4"
+    },
+    {
+      "id": "rng.digest.second-half.001",
+      "kind": "boundary",
+      "description": "All-zero first half falls back to the second half",
+      "input": {
+        "op": "stateFromDigest",
+        "digestHex": "00000000000000000000000000000000000000050000000600000007ffffffff"
+      },
+      "expected": {
+        "state": [
+          5,
+          6,
+          7,
+          4294967295
+        ]
+      },
+      "derivation": "first half all zero -> bytes 16..31"
+    },
+    {
+      "id": "rng.digest.all-zero.001",
+      "kind": "failure",
+      "description": "All-zero digest is refused",
+      "input": {
+        "op": "stateFromDigest",
+        "digestHex": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expectedError": "RNG_ZERO_STATE",
+      "derivation": "the all-zero state is a fixed point of xoshiro"
+    },
+    {
+      "id": "rng.seq.a0.001",
+      "kind": "normal",
+      "description": "First 16 outputs, stream fixture-a/combat.crit/hero/0",
+      "input": {
+        "op": "sequence",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        },
+        "count": 16
+      },
+      "expected": {
+        "values": [
+          1213131171,
+          1909390345,
+          611797524,
+          608943939,
+          1275136243,
+          3896162756,
+          3313865822,
+          3737656547,
+          3984438495,
+          2587368339,
+          3010464195,
+          784914807,
+          844714013,
+          1096298146,
+          3310509862,
+          1403809867
+        ]
+      },
+      "derivation": "rng_oracle.py"
+    },
+    {
+      "id": "rng.seq.a1.001",
+      "kind": "normal",
+      "description": "Counter 1 gives an independent stream",
+      "input": {
+        "op": "sequence",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 1
+        },
+        "count": 16
+      },
+      "expected": {
+        "values": [
+          4033281388,
+          1351895834,
+          3769019149,
+          2249745993,
+          3435629440,
+          1935962065,
+          887683627,
+          3461433893,
+          2436454404,
+          1406444194,
+          3691985275,
+          2193295081,
+          1915987341,
+          2072036719,
+          1417173316,
+          638309786
+        ]
+      },
+      "derivation": "rng_oracle.py"
+    },
+    {
+      "id": "rng.seq.b0.001",
+      "kind": "normal",
+      "description": "Different root, purpose and entity",
+      "input": {
+        "op": "sequence",
+        "id": {
+          "root": "fixture-b",
+          "purpose": "drop",
+          "entity": "enemy.w1.green_slime",
+          "counter": 0
+        },
+        "count": 64
+      },
+      "expected": {
+        "values": [
+          1553507085,
+          75390125,
+          2527233038,
+          1816178952,
+          3981568715,
+          4077592273,
+          4034462724,
+          3434961396,
+          4215356305,
+          3144265097,
+          3493410608,
+          2336096156,
+          1386627471,
+          2153248781,
+          140816617,
+          2591498881,
+          1041067673,
+          3017819519,
+          3381694932,
+          3227470546,
+          2187287209,
+          1051508140,
+          970824740,
+          3578971745,
+          1714078264,
+          514807459,
+          1172111918,
+          4017977861,
+          3010217961,
+          1168110672,
+          1133403539,
+          1038700996,
+          1970066845,
+          4227478468,
+          3063668067,
+          4149934380,
+          1587994057,
+          1566322882,
+          104424178,
+          3647163850,
+          2751397427,
+          2892246665,
+          3007506046,
+          3991461333,
+          3907327880,
+          2530556990,
+          3720033550,
+          2327800026,
+          1674618544,
+          2723642974,
+          3071574823,
+          757902821,
+          3763775651,
+          3765027324,
+          1831921133,
+          695707092,
+          2605783881,
+          4232055571,
+          2546482508,
+          4037212447,
+          1795963239,
+          1499265529,
+          3638228285,
+          2588532172
+        ]
+      },
+      "derivation": "rng_oracle.py"
+    },
+    {
+      "id": "rng.threshold-bp.half.001",
+      "kind": "normal",
+      "description": "5000 bp threshold",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 5000
+      },
+      "expected": {
+        "threshold": 2147483648
+      },
+      "derivation": "5000 * 2^32 / 10000 = 2^31"
+    },
+    {
+      "id": "rng.threshold-bp.one.001",
+      "kind": "boundary",
+      "description": "1 bp threshold",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 1
+      },
+      "expected": {
+        "threshold": 429496
+      },
+      "derivation": "floor(2^32 / 10000) = floor(429496.7296) = 429496"
+    },
+    {
+      "id": "rng.threshold-bp.zero.001",
+      "kind": "boundary",
+      "description": "0 bp never succeeds",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 0
+      },
+      "expected": {
+        "threshold": 0
+      },
+      "derivation": "0 * 2^32 / 10000 = 0"
+    },
+    {
+      "id": "rng.threshold-bp.full.001",
+      "kind": "boundary",
+      "description": "10000 bp always succeeds",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 10000
+      },
+      "expected": {
+        "threshold": 4294967296
+      },
+      "derivation": "2^32 > every u32"
+    },
+    {
+      "id": "rng.threshold-bp.over.001",
+      "kind": "failure",
+      "description": "Above 10000 bp",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 10001
+      },
+      "expectedError": "INVALID_PROBABILITY",
+      "derivation": "bp must be in [0, 10000]"
+    },
+    {
+      "id": "rng.threshold-bp.fraction.001",
+      "kind": "failure",
+      "description": "Fractional bp",
+      "input": {
+        "op": "thresholdBp",
+        "bp": 1.5
+      },
+      "expectedError": "INVALID_PROBABILITY",
+      "derivation": "bp must be an integer"
+    },
+    {
+      "id": "rng.threshold-p.half.001",
+      "kind": "normal",
+      "description": "p = 0.5",
+      "input": {
+        "op": "thresholdProb",
+        "p": 0.5
+      },
+      "expected": {
+        "threshold": 2147483648
+      },
+      "derivation": "0.5 * 2^32 = 2^31"
+    },
+    {
+      "id": "rng.threshold-p.min.001",
+      "kind": "boundary",
+      "description": "Smallest non-zero probability 2^-32",
+      "input": {
+        "op": "thresholdProb",
+        "p": 2.3283064365386963e-10
+      },
+      "expected": {
+        "threshold": 1
+      },
+      "derivation": "2^-32 * 2^32 = 1"
+    },
+    {
+      "id": "rng.threshold-p.too-small.001",
+      "kind": "failure",
+      "description": "Probability below 2^-32",
+      "input": {
+        "op": "thresholdProb",
+        "p": 1e-12
+      },
+      "expectedError": "PROBABILITY_TOO_SMALL",
+      "derivation": "1e-12 < 2^-32 ~ 2.33e-10"
+    },
+    {
+      "id": "rng.threshold-p.range.001",
+      "kind": "failure",
+      "description": "Probability above 1",
+      "input": {
+        "op": "thresholdProb",
+        "p": 1.5
+      },
+      "expectedError": "INVALID_PROBABILITY",
+      "derivation": "p must be in [0, 1]"
+    },
+    {
+      "id": "rng.threshold-p.nan.001",
+      "kind": "failure",
+      "description": "NaN probability",
+      "input": {
+        "op": "thresholdProb",
+        "p": {
+          "$special": "NaN"
+        }
+      },
+      "expectedError": "INVALID_PROBABILITY",
+      "derivation": "p must be finite"
+    },
+    {
+      "id": "rng.bernoulli.half.001",
+      "kind": "normal",
+      "description": "16 trials at p = 0.5",
+      "input": {
+        "op": "bernoulli",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        },
+        "threshold": 2147483648,
+        "count": 16
+      },
+      "expected": {
+        "outcomes": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ]
+      },
+      "derivation": "u < 2^31 for each output of rng.seq.a0.001"
+    },
+    {
+      "id": "rng.bernoulli.never.001",
+      "kind": "boundary",
+      "description": "Threshold 0 never succeeds (and still draws)",
+      "input": {
+        "op": "bernoulli",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        },
+        "threshold": 0,
+        "count": 4
+      },
+      "expected": {
+        "outcomes": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "derivation": "no u32 is < 0"
+    },
+    {
+      "id": "rng.bernoulli.always.001",
+      "kind": "boundary",
+      "description": "Threshold 2^32 always succeeds (and still draws)",
+      "input": {
+        "op": "bernoulli",
+        "id": {
+          "root": "fixture-a",
+          "purpose": "combat.crit",
+          "entity": "hero",
+          "counter": 0
+        },
+        "threshold": 4294967296,
+        "count": 4
+      },
+      "expected": {
+        "outcomes": [
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "derivation": "every u32 is < 2^32"
+    },
+    {
+      "id": "rng.uniform.d6.001",
+      "kind": "normal",
+      "description": "20 rolls of uniformInt(1, 6)",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 1,
+        "hi": 6,
+        "count": 20
+      },
+      "expected": {
+        "values": [
+          3,
+          1,
+          5,
+          4,
+          3,
+          3,
+          5,
+          4,
+          5,
+          1,
+          1,
+          3,
+          3,
+          6,
+          6,
+          2,
+          1,
+          4,
+          2,
+          6
+        ],
+        "draws": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "derivation": "rng_oracle.py: limit = 6 * floor(2^32/6) = 4294967292"
+    },
+    {
+      "id": "rng.uniform.span1.001",
+      "kind": "boundary",
+      "description": "span 1: one draw each, always lo",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 0,
+        "hi": 0,
+        "count": 3
+      },
+      "expected": {
+        "values": [
+          0,
+          0,
+          0
+        ],
+        "draws": [
+          1,
+          1,
+          1
+        ]
+      },
+      "derivation": "limit = 2^32, every draw accepted, u mod 1 = 0"
+    },
+    {
+      "id": "rng.uniform.full.001",
+      "kind": "boundary",
+      "description": "span 2^32 never rejects",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 0,
+        "hi": 4294967295,
+        "count": 5
+      },
+      "expected": {
+        "values": [
+          748814246,
+          1115022282,
+          994247578,
+          3848511141,
+          106729646
+        ],
+        "draws": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "derivation": "limit = 2^32; value = u; draws all 1"
+    },
+    {
+      "id": "rng.uniform.worst.001",
+      "kind": "boundary",
+      "description": "span 2^31 + 1 (rejection probability about 0.5)",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 0,
+        "hi": 2147483648,
+        "count": 10
+      },
+      "expected": {
+        "values": [
+          748814246,
+          1115022282,
+          994247578,
+          106729646,
+          8599606,
+          1946488294,
+          808833384,
+          257161640,
+          457361435,
+          608644302
+        ],
+        "draws": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          1,
+          3,
+          1,
+          3
+        ]
+      },
+      "derivation": "limit = (2^31 + 1) * 1 = 2147483649; draws > 1 when u >= limit"
+    },
+    {
+      "id": "rng.uniform.negative.001",
+      "kind": "normal",
+      "description": "Range with a negative lower bound",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 1
+        },
+        "lo": -5,
+        "hi": 5,
+        "count": 10
+      },
+      "expected": {
+        "values": [
+          4,
+          -2,
+          4,
+          5,
+          3,
+          -4,
+          -1,
+          4,
+          -3,
+          4
+        ],
+        "draws": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "derivation": "span 11"
+    },
+    {
+      "id": "rng.uniform.inverted.001",
+      "kind": "failure",
+      "description": "lo greater than hi",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 5,
+        "hi": 4,
+        "count": 1
+      },
+      "expectedError": "INVALID_RANGE",
+      "derivation": "lo must be <= hi"
+    },
+    {
+      "id": "rng.uniform.too-large.001",
+      "kind": "failure",
+      "description": "span 2^32 + 1",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 0,
+        "hi": 4294967296,
+        "count": 1
+      },
+      "expectedError": "RANGE_TOO_LARGE",
+      "derivation": "span must be <= 2^32"
+    },
+    {
+      "id": "rng.uniform.nonint.001",
+      "kind": "failure",
+      "description": "Fractional bound",
+      "input": {
+        "op": "uniformInt",
+        "id": {
+          "root": "fixture-c",
+          "purpose": "loot.qty",
+          "entity": "enemy.w1.wolf",
+          "counter": 0
+        },
+        "lo": 0.5,
+        "hi": 4,
+        "count": 1
+      },
+      "expectedError": "INVALID_NUMBER",
+      "derivation": "bounds must be safe integers"
+    },
+    {
+      "id": "rng.next.001",
+      "kind": "normal",
+      "description": "one step from an explicit state",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": {
+        "value": 11520,
+        "state": [
+          7,
+          0,
+          1026,
+          12288
+        ]
+      },
+      "derivation": "result = rotl(2*5, 7)*9 = 1280*9 = 11520; t = 2<<9 = 1024; s2 = 3^1 = 2; s3 = 4^2 = 6; s1 = 2^2 = 0; s0 = 1^6 = 7; s2 = 2^1024 = 1026; s3 = rotl(6, 11) = 12288"
+    },
+    {
+      "id": "rng.next.max-words.001",
+      "kind": "boundary",
+      "description": "one step from the all-ones state",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          4294967295,
+          4294967295,
+          4294967295,
+          4294967295
+        ]
+      },
+      "expected": {
+        "value": 4294962679,
+        "state": [
+          4294967295,
+          4294967295,
+          4294966784,
+          0
+        ]
+      },
+      "derivation": "rng_oracle.py"
+    },
+    {
+      "id": "rng.next.zero.001",
+      "kind": "failure",
+      "description": "the all-zero state is refused at the generator",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expectedError": "RNG_ZERO_STATE",
+      "derivation": "all-zero is a fixed point; refused at every entry point"
+    },
+    {
+      "id": "rng.next.short.001",
+      "kind": "failure",
+      "description": "three words",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "the state must have exactly four words"
+    },
+    {
+      "id": "rng.next.null.001",
+      "kind": "failure",
+      "description": "a null word",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          1,
+          null,
+          3,
+          4
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "every word must be an unsigned 32-bit integer"
+    },
+    {
+      "id": "rng.next.too-big.001",
+      "kind": "failure",
+      "description": "a word of 2^32",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          4294967296,
+          0,
+          0,
+          1
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "2^32 is not an unsigned 32-bit integer"
+    },
+    {
+      "id": "rng.next.fraction.001",
+      "kind": "failure",
+      "description": "a fractional word",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          1.5,
+          2,
+          3,
+          4
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "words must be integers"
+    },
+    {
+      "id": "rng.next.negative.001",
+      "kind": "failure",
+      "description": "a negative word",
+      "input": {
+        "op": "nextFromState",
+        "state": [
+          -1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "words must be >= 0"
+    },
+    {
+      "id": "rng.next.not-array.001",
+      "kind": "failure",
+      "description": "a string instead of an array",
+      "input": {
+        "op": "nextFromState",
+        "state": "1,2,3,4"
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "the state must be an array"
+    }
+  ]
+}
