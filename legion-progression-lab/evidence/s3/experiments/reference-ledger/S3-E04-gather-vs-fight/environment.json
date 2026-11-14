@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3-E04-gather-vs-fight",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "reference",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T10:44:44.321Z",
+  "durationMs": 80290,
+  "jobs": 1200,
+  "mainRssMb": 3497,
+  "mainHeapUsedMb": 29
+}

@@ -1,0 +1,1116 @@
+{
+  "fixtureSet": "production-queue",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s3-industry.md#v1",
+  "status": "candidate",
+  "independence": "The O10 production queue (spec/formulas/s3-industry.md v1 section 4), re-derived by spec/oracle/s3_oracle.py as an independent discrete-event model written from the formula text; the lab side builds synthetic packs in memory and runs the real engine. Several cases are also derived by hand.",
+  "cases": [
+    {
+      "id": "s3.queue.fifo.compete.001",
+      "kind": "normal",
+      "description": "one smith, two jobs competing for 6 logs: the earlier job reserves first; the later pauses",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 6,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 2
+          },
+          {
+            "atMs": 1000,
+            "type": "enqueue",
+            "quantity": 2
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: job:1 units at 0 and 4000; job:2 one unit at 8000 then paused",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            8000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            8000,
+            "JobCompleted",
+            "job:1"
+          ],
+          [
+            8000,
+            "UnitStarted",
+            "job:2",
+            "rec:1",
+            "job:2/u1"
+          ],
+          [
+            12000,
+            "UnitCompleted",
+            "job:2",
+            "rec:1",
+            "job:2/u1"
+          ],
+          [
+            12000,
+            "JobPaused",
+            "job:2",
+            "res.mat.log"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 3,
+        "jobs": [
+          "job:1:complete:2/2",
+          "job:2:paused-shortage:1/2"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.same-moment.cancel.001",
+      "kind": "boundary",
+      "description": "a unit completing at t is kept before a cancellation at t; the unit started at t is released",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 6,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 1000,
+            "type": "enqueue",
+            "quantity": 3
+          },
+          {
+            "atMs": 5000,
+            "type": "cancel",
+            "jobId": "job:1"
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: u1 completes at 5000; u2 starts and is released at 5000",
+      "expected": {
+        "events": [
+          [
+            1000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            5000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            5000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            5000,
+            "UnitReleased",
+            "job:1",
+            "rec:1",
+            "job:1/u2",
+            "CANCELLED"
+          ],
+          [
+            5000,
+            "JobCancelled",
+            "job:1"
+          ]
+        ],
+        "logs": 4,
+        "logsReserved": 0,
+        "planks": 1,
+        "jobs": [
+          "job:1:cancelled:1/3"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.reserve-all.001",
+      "kind": "normal",
+      "description": "reserve-all arm: two smiths, 10 logs, two jobs of 3; the second is cancelled while paused",
+      "input": {
+        "arm": "reserve-all",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          },
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 10,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 3
+          },
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 3
+          },
+          {
+            "atMs": 6000,
+            "type": "cancel",
+            "jobId": "job:2"
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "oracle",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            0,
+            "JobPaused",
+            "job:2",
+            "res.mat.log"
+          ],
+          [
+            4000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            6000,
+            "JobCancelled",
+            "job:2"
+          ],
+          [
+            8000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            8000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            12000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            12000,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 4,
+        "logsReserved": 0,
+        "planks": 3,
+        "jobs": [
+          "job:1:complete:3/3",
+          "job:2:cancelled:0/3"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.round-robin.001",
+      "kind": "normal",
+      "description": "round-robin arm: one smith alternates between two jobs",
+      "input": {
+        "arm": "round-robin",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 8,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 2
+          },
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 2
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: job:1, job:2, job:1, job:2",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitStarted",
+            "job:2",
+            "rec:1",
+            "job:2/u1"
+          ],
+          [
+            8000,
+            "UnitCompleted",
+            "job:2",
+            "rec:1",
+            "job:2/u1"
+          ],
+          [
+            8000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            12000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            12000,
+            "JobCompleted",
+            "job:1"
+          ],
+          [
+            12000,
+            "UnitStarted",
+            "job:2",
+            "rec:1",
+            "job:2/u2"
+          ],
+          [
+            16000,
+            "UnitCompleted",
+            "job:2",
+            "rec:1",
+            "job:2/u2"
+          ],
+          [
+            16000,
+            "JobCompleted",
+            "job:2"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 4,
+        "jobs": [
+          "job:1:complete:2/2",
+          "job:2:complete:2/2"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.supply.001",
+      "kind": "normal",
+      "description": "a gatherer supplies 1 log per 3 s; the job pauses and resumes at each covering deposit",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": {
+          "actionMs": 3000,
+          "yieldMilli": 1000
+        },
+        "startLogs": 0,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 3
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "oracle",
+      "expected": {
+        "events": [
+          [
+            0,
+            "JobPaused",
+            "job:1",
+            "res.mat.log"
+          ],
+          [
+            6000,
+            "JobResumed",
+            "job:1"
+          ],
+          [
+            6000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            10000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            10000,
+            "JobPaused",
+            "job:1",
+            "res.mat.log"
+          ],
+          [
+            12000,
+            "JobResumed",
+            "job:1"
+          ],
+          [
+            12000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            16000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            16000,
+            "JobPaused",
+            "job:1",
+            "res.mat.log"
+          ],
+          [
+            18000,
+            "JobResumed",
+            "job:1"
+          ],
+          [
+            18000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            22000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            22000,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 13,
+        "logsReserved": 0,
+        "planks": 3,
+        "jobs": [
+          "job:1:complete:3/3"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.session.001",
+      "kind": "boundary",
+      "description": "a session end releases the unit; work resumes at the next session start",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 2,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 3000
+          },
+          {
+            "startMs": 10000,
+            "endMs": 20000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 1000,
+            "type": "enqueue",
+            "quantity": 1
+          }
+        ],
+        "untilMs": 21000
+      },
+      "derivation": "hand: u1 1000 released at 3000; u2 10000-14000",
+      "expected": {
+        "events": [
+          [
+            1000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            3000,
+            "UnitReleased",
+            "job:1",
+            "rec:1",
+            "job:1/u1",
+            "SESSION_ENDED"
+          ],
+          [
+            10000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            14000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            14000,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 1,
+        "jobs": [
+          "job:1:complete:1/1"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.reassign.001",
+      "kind": "normal",
+      "description": "reassigning the smith mid-unit releases the reservation; reassigning back restarts",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 2,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 1000,
+            "type": "enqueue",
+            "quantity": 1
+          },
+          {
+            "atMs": 3000,
+            "type": "assign",
+            "member": "rec:1",
+            "to": "idle"
+          },
+          {
+            "atMs": 5000,
+            "type": "assign",
+            "member": "rec:1",
+            "to": "smithing"
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: u1 released at 3000; u2 5000-9000",
+      "expected": {
+        "events": [
+          [
+            1000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            3000,
+            "UnitReleased",
+            "job:1",
+            "rec:1",
+            "job:1/u1",
+            "REASSIGNED"
+          ],
+          [
+            5000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            9000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            9000,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 1,
+        "jobs": [
+          "job:1:complete:1/1"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.hammer.001",
+      "kind": "boundary",
+      "description": "a Wood hammer (+2000 bp): units of ceil(40000000 / 12000) = 3334 ms",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": true
+          }
+        ],
+        "hammerEffBp": 2000,
+        "gatherer": null,
+        "startLogs": 4,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 2
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: 0-3334, 3334-6668",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            3334,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            3334,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            6668,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            6668,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 2,
+        "jobs": [
+          "job:1:complete:2/2"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.rejected.001",
+      "kind": "boundary",
+      "description": "an empty quantity and an unknown or finished job are refused without effect",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 2,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 0
+          },
+          {
+            "atMs": 0,
+            "type": "cancel",
+            "jobId": "job:9"
+          },
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 1
+          },
+          {
+            "atMs": 5000,
+            "type": "cancel",
+            "jobId": "job:1"
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: BAD_QUANTITY, JOB_UNKNOWN, then job:1 completes at 4000 and the cancel is JOB_FINISHED",
+      "expected": {
+        "events": [
+          [
+            0,
+            "CommandRejected",
+            "Enqueue",
+            "BAD_QUANTITY"
+          ],
+          [
+            0,
+            "CommandRejected",
+            "CancelJob",
+            "JOB_UNKNOWN"
+          ],
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "JobCompleted",
+            "job:1"
+          ],
+          [
+            5000,
+            "CommandRejected",
+            "CancelJob",
+            "JOB_FINISHED"
+          ]
+        ],
+        "logs": 0,
+        "logsReserved": 0,
+        "planks": 1,
+        "jobs": [
+          "job:1:complete:1/1"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.two-smiths.001",
+      "kind": "normal",
+      "description": "two smiths take two jobs at once; one job is never worked by two smiths",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          },
+          {
+            "hammer": true
+          }
+        ],
+        "hammerEffBp": 4500,
+        "gatherer": null,
+        "startLogs": 12,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 3
+          },
+          {
+            "atMs": 500,
+            "type": "enqueue",
+            "quantity": 2
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "oracle",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            500,
+            "UnitStarted",
+            "job:2",
+            "rec:2",
+            "job:2/u1"
+          ],
+          [
+            3259,
+            "UnitCompleted",
+            "job:2",
+            "rec:2",
+            "job:2/u1"
+          ],
+          [
+            3259,
+            "UnitStarted",
+            "job:2",
+            "rec:2",
+            "job:2/u2"
+          ],
+          [
+            4000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            4000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            6018,
+            "UnitCompleted",
+            "job:2",
+            "rec:2",
+            "job:2/u2"
+          ],
+          [
+            6018,
+            "JobCompleted",
+            "job:2"
+          ],
+          [
+            8000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u2"
+          ],
+          [
+            8000,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            12000,
+            "UnitCompleted",
+            "job:1",
+            "rec:1",
+            "job:1/u3"
+          ],
+          [
+            12000,
+            "JobCompleted",
+            "job:1"
+          ]
+        ],
+        "logs": 2,
+        "logsReserved": 0,
+        "planks": 5,
+        "jobs": [
+          "job:1:complete:3/3",
+          "job:2:complete:2/2"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.reserve-all.cancel-held.001",
+      "kind": "boundary",
+      "description": "reserve-all arm: the smith leaves mid-unit (the job keeps its reservation), then the waiting job is cancelled: everything is released",
+      "input": {
+        "arm": "reserve-all",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 6,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 60000
+          }
+        ],
+        "commands": [
+          {
+            "atMs": 0,
+            "type": "enqueue",
+            "quantity": 3
+          },
+          {
+            "atMs": 1000,
+            "type": "assign",
+            "member": "rec:1",
+            "to": "idle"
+          },
+          {
+            "atMs": 2000,
+            "type": "cancel",
+            "jobId": "job:1"
+          }
+        ],
+        "untilMs": 61000
+      },
+      "derivation": "hand: 6 logs reserved at 0; unit released at 1000 with the reservation kept; the cancel at 2000 returns all 6",
+      "expected": {
+        "events": [
+          [
+            0,
+            "UnitStarted",
+            "job:1",
+            "rec:1",
+            "job:1/u1"
+          ],
+          [
+            1000,
+            "UnitReleased",
+            "job:1",
+            "rec:1",
+            "job:1/u1",
+            "REASSIGNED"
+          ],
+          [
+            2000,
+            "JobCancelled",
+            "job:1"
+          ]
+        ],
+        "logs": 6,
+        "logsReserved": 0,
+        "planks": 0,
+        "jobs": [
+          "job:1:cancelled:0/3"
+        ]
+      }
+    },
+    {
+      "id": "s3.queue.bad-sessions.001",
+      "kind": "failure",
+      "description": "overlapping sessions are refused",
+      "input": {
+        "arm": "fifo",
+        "unitMs": 4000,
+        "smiths": [
+          {
+            "hammer": false
+          }
+        ],
+        "hammerEffBp": 0,
+        "gatherer": null,
+        "startLogs": 6,
+        "sessions": [
+          {
+            "startMs": 0,
+            "endMs": 5000
+          },
+          {
+            "startMs": 4000,
+            "endMs": 9000
+          }
+        ],
+        "commands": [],
+        "untilMs": 61000
+      },
+      "derivation": "engine: INVALID_STATE",
+      "expectedError": "INVALID_STATE"
+    }
+  ]
+}

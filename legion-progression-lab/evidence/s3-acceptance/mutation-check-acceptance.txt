@@ -1,0 +1,12 @@
+A1: DETECTED (3 failing) restored=True | a dead hero may craft during the respawn delay (the reviewer's finding)
+A2: DETECTED (1 failing) restored=True | the monitor no longer treats a dead hero as ineligible (I20)
+A3: DETECTED (1 failing) restored=True | travel blocks crafting (the clarified contract allows it)
+A4: DETECTED (1 failing) restored=True | regeneration (resting) blocks crafting (the clarified contract allows it)
+A5: DETECTED (2 failing) restored=True | a pending engagement (walking to a target) blocks crafting (the clarified contract allows it)
+
+S3 acceptance mutation check: 5 planted bugs, 5 detected, 0 not detected; all files restored: True
+- A1 [src/engine/industry.ts] a dead hero may craft during the respawn delay (the reviewer's finding): detected by 3 failing test(s); e.g. × the reviewer reproduction: Craft on the first observation with the hero dead is refused; no item, no EXP; crafting works after respawn 393
+- A2 [src/experiments/industryMetrics.ts] the monitor no longer treats a dead hero as ineligible (I20): detected by 1 failing test(s); e.g. × the engine refuses a dead hero even if validation were bypassed, and the monitor reports it (I20) 405ms
+- A3 [src/engine/industry.ts] travel blocks crafting (the clarified contract allows it): detected by 1 failing test(s); e.g. × travel, pending engagement (walking to a target) and regeneration (resting) do not block crafting; it never interrupts them 11ms
+- A4 [src/engine/industry.ts] regeneration (resting) blocks crafting (the clarified contract allows it): detected by 1 failing test(s); e.g. × travel, pending engagement (walking to a target) and regeneration (resting) do not block crafting; it never interrupts them 12ms
+- A5 [src/engine/industry.ts] a pending engagement (walking to a target) blocks crafting (the clarified contract allows it): detected by 2 failing test(s); e.g. × the reviewer reproduction: Craft on the first observation with the hero dead is refused; no item, no EXP; crafting works after respawn 385

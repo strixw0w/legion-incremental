@@ -1,5 +1,24 @@
 # Rate estimator (displayed farming rates)
 
+## v1.3
+
+S3 entry correction (2026-11-14; owner "Final L1/S2.1 Acceptance and S3 Authorisation" §4). Only the classification of an exhausted computation changes; every formula, budget and rate is unchanged.
+
+- **The issue (v1.2):** when the swing distribution exhausted its swing or work budget, the estimate was labelled `unreachable` (SWING_BUDGET / WORK_BUDGET), although nothing had been proven.
+- **v1.3 classification:**
+
+  | Situation | Reliability | Forecast |
+  |---|---|---|
+  | Zero hit chance (NO_HIT_CHANCE) | `unreachable` (proven) | `available`: 0 |
+  | Every fight from full HP is lost (DIES_BEFORE_KILL, v1.2) | `unreachable` (proven) | `available`: 0 |
+  | Swing or work budget exhausted (SWING_BUDGET / WORK_BUDGET) | **`unresolved`** | **`unavailable`** |
+  | A worker fight only the class ability can win (s2-legion.md v1.1 §6) | `unresolved` | `unavailable` |
+  | Otherwise | `unsafe` / `approximate` / `reliable` as in v1.2 | `available` |
+
+- **The `forecast` field** is new on every displayed estimate. With `unavailable` the rate fields are 0 placeholders, never predicted production; metric encodings record the predicted rate as "not reached" (null), never 0.
+- **No positive forecast** is ever invented for an unresolved estimate. Realistic policies do not choose an unresolved zone or assignment, exactly as they did not choose the former budget-`unreachable` ones.
+- **Fixtures:** `estimator.v1.json` fixture version 3 (only `s1.estimator.swing-budget.001` changes, to `unresolved`).
+
 ## v1.2
 
 S1.1 acceptance addendum (2026-11-13), after the independent S1.1 review §2.

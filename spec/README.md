@@ -29,7 +29,9 @@ This folder holds **data and prose only**. It is shared by the TypeScript progre
 | [canonical-json.md](formulas/canonical-json.md): canonical JSON and fingerprints | v1 | `canonical-json.v1.json` (1) |
 | [s1-combat-loop.md](formulas/s1-combat-loop.md): S1 event queue, combat loop, sessions, kill credit | **v1.1** (S1.1: identity-checked credit, combined triggers, auto-farm off, regeneration, structured drops) | `combat-loop.v1.json` (1), `rewards.v1.json` (2), `credits.v1.json` (1) |
 | [gates.md](formulas/gates.md): zone flags, kill gates, travel, commands, miniboss stub | **v1.1** (S1.1: `Report`, auto-farm off) | `gates.v1.json` (2) |
-| [estimator.md](formulas/estimator.md): displayed farming-rate estimator | **v1.2** (S1.1 addendum: impossible victory decided before the survival budget; v1.1 was the first written version) | `estimator.v1.json` (2) |
+| [estimator.md](formulas/estimator.md): displayed farming-rate estimator | **v1.3** (S3 entry: an exhausted budget is "unresolved" with no forecast, never "unreachable"; v1.2 S1.1 addendum; v1.1 the first written version) | `estimator.v1.json` (3) |
+| [s2-legion.md](formulas/s2-legion.md): S2 legion stats, squad fights, credit, worker feasibility | v1.1 (S2.1) | `squad-fight.v1.json`, `legion-credit.v1.json`, `worker-feasibility.v1.json` |
+| [s3-industry.md](formulas/s3-industry.md): S3 professions, gathering, equipment, production queue, effective damage | **v1.2** (S3.1: crafting eligibility, recipe validation, fractional attribution; S3 acceptance addendum: a dead hero cannot craft) | `industry-rules.v1.json` (2), `equipment-ops.v1.json` (1), `production-queue.v1.json` (1), `recipe-validation.v1.json` (1) |
 
 **File naming:**
 - A fixture file is named after the spec version it tests (`<family>.v<spec version>.json`). Its `fixtureVersion` counts changes to that family's cases across versions.

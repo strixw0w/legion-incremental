@@ -1,0 +1,46 @@
+W1: DETECTED (5 failing) restored=True | a gathering deposit is credited twice
+W2: DETECTED (5 failing) restored=True | an interrupted gathering action still completes and yields
+W3: DETECTED (4 failing) restored=True | the unit time ignores the smith's efficiency captured at start
+W4: DETECTED (18 failing) restored=True | a completed unit does not consume its reserved inputs
+W5: DETECTED (6 failing) restored=True | an interrupted unit keeps its reservation (locked materials)
+W6: DETECTED (1 failing) restored=True | a Copper craft does not consume the chosen lower-tier item
+W7: DETECTED (2 failing) restored=True | a protected item may be consumed by a craft
+W8: DETECTED (1 failing) restored=True | an equipped item may be salvaged
+W9: DETECTED (1 failing) restored=True | equipment may change during an encounter
+W10: DETECTED (1 failing) restored=True | weapon class compatibility is ignored
+W11: DETECTED (3 failing) restored=True | the queue order breaks enqueue-time ties by the later job
+W12: DETECTED (3 failing) restored=True | auto-equip replaces on equal scores and breaks ties by the highest item
+W13: DETECTED (6 failing) restored=True | reassigning a smith or gatherer keeps its work running
+W14: DETECTED (3 failing) restored=True | a session end leaves units and actions running
+W15: DETECTED (1 failing) restored=True | a settlement is not removed from the pending registry (replay accepted)
+W16: DETECTED (1 failing) restored=True | the monitor no longer checks reservations against jobs (I15)
+W17: DETECTED (1 failing) restored=True | content validation accepts recoverable materials above the inputs (net-positive salvage)
+W18: DETECTED (1 failing) restored=True | the tool requirement of a node is ignored
+W19: DETECTED (1 failing) restored=True | undiscovered nodes may be gathered
+W20: DETECTED (3 failing) restored=True | effective damage gives the leftover HP to the smallest remainders
+W21: DETECTED (2 failing) restored=True | a cancelled reserve-all job keeps its remaining reservations
+W22: DETECTED (3 failing) restored=True | a paused job does not resume when a deposit arrives
+
+S3 mutation check: 22 planted bugs, 22 detected, 0 not detected; all files restored: True
+- W1 [src/engine/legion.ts] a gathering deposit is credited twice: detected by 5 failing test(s); e.g. × s3.queue.supply.001 (normal) 5ms
+- W2 [src/engine/legion.ts] an interrupted gathering action still completes and yields: detected by 5 failing test(s); e.g. × s3.queue.supply.001 (normal) 6ms
+- W3 [src/engine/legion.ts] the unit time ignores the smith's efficiency captured at start: detected by 4 failing test(s); e.g. × s3.queue.hammer.001 (boundary) 4ms
+- W4 [src/engine/legion.ts] a completed unit does not consume its reserved inputs: detected by 18 failing test(s); e.g. × s3.queue.fifo.compete.001 (normal) 17ms
+- W5 [src/engine/legion.ts] an interrupted unit keeps its reservation (locked materials): detected by 6 failing test(s); e.g. × s3.queue.same-moment.cancel.001 (boundary) 5ms
+- W6 [src/engine/legion.ts] a Copper craft does not consume the chosen lower-tier item: detected by 1 failing test(s); e.g. × a Copper recipe consumes one chosen lower-tier item of the same slot; equipped, protected or wrong items are refused 5ms
+- W7 [src/engine/industry.ts] a protected item may be consumed by a craft: detected by 2 failing test(s); e.g. × s3.equip.consume.protected.001 (boundary) 3ms
+- W8 [src/engine/industry.ts] an equipped item may be salvaged: detected by 1 failing test(s); e.g. × salvage returns half the declared recoverable materials (rounded down); equipped or protected items are refused 5ms
+- W9 [src/engine/industry.ts] equipment may change during an encounter: detected by 1 failing test(s); e.g. × equipment changes are refused while the character is in an encounter 9ms
+- W10 [src/engine/industry.ts] weapon class compatibility is ignored: detected by 1 failing test(s); e.g. × class compatibility: a bow is refused for a Warrior; the club fits the classless hero; a class change unequips an unfit weapon 5ms
+- W11 [src/engine/legion.ts] the queue order breaks enqueue-time ties by the later job: detected by 3 failing test(s); e.g. × s3.queue.reserve-all.001 (normal) 8ms
+- W12 [src/engine/industry.ts] auto-equip replaces on equal scores and breaks ties by the highest item: detected by 3 failing test(s); e.g. × s3.equip.auto.001 (normal) 3ms
+- W13 [src/engine/legion.ts] reassigning a smith or gatherer keeps its work running: detected by 6 failing test(s); e.g. × s3.queue.reassign.001 (normal) 4ms
+- W14 [src/engine/legion.ts] a session end leaves units and actions running: detected by 3 failing test(s); e.g. × s3.queue.supply.001 (normal) 6ms
+- W15 [src/engine/legion.ts] a settlement is not removed from the pending registry (replay accepted): detected by 1 failing test(s); e.g. × a duplicated settlement is rejected and counted; a stale completion is discarded; nothing is credited twice 4ms
+- W16 [src/experiments/industryMetrics.ts] the monitor no longer checks reservations against jobs (I15): detected by 1 failing test(s); e.g. × a reservation that no job holds is reported (I15), and an item equipped outside the loadout is reported (I10) 4ms
+- W17 [src/model/industryContent.ts] content validation accepts recoverable materials above the inputs (net-positive salvage): detected by 1 failing test(s); e.g. × a recipe whose recoverable materials exceed its inputs, or an item without a recipe, is refused as content 7ms
+- W18 [src/engine/industry.ts] the tool requirement of a node is ignored: detected by 1 failing test(s); e.g. × discovery, level and tool requirements refuse gathering; a pickaxe opens the copper vein 6ms
+- W19 [src/engine/industry.ts] undiscovered nodes may be gathered: detected by 1 failing test(s); e.g. × discovery, level and tool requirements refuse gathering; a pickaxe opens the copper vein 5ms
+- W20 [src/experiments/industryMetrics.ts] effective damage gives the leftover HP to the smallest remainders: detected by 3 failing test(s); e.g. × s3.rules.shares.lethal.001 (normal) 5ms
+- W21 [src/engine/legion.ts] a cancelled reserve-all job keeps its remaining reservations: detected by 2 failing test(s); e.g. × s3.queue.reserve-all.cancel-held.001 (boundary) 4ms
+- W22 [src/engine/legion.ts] a paused job does not resume when a deposit arrives: detected by 3 failing test(s); e.g. × s3.queue.supply.001 (normal) 6ms

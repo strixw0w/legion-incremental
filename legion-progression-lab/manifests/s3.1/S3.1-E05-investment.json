@@ -1,0 +1,255 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E05-investment",
+  "question": "With identical starts and seeds, how do pure combat, POL3-BAL, POL3-PROF and POL3-DEMAND compare at 15, 30, 60 and 90 active minutes on combat EXP, gold, conquest, professions, equipment, materials, equipment value and production?",
+  "design": "Fresh account and the S3 matched mid-game start (labelled diagnostic), 90 min with snapshots at 15, 30 and 60 min. 100 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "fresh|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ]
+    },
+    {
+      "id": "midgame|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "fresh|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ]
+    },
+    {
+      "id": "midgame|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "fresh|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ]
+    },
+    {
+      "id": "midgame|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "fresh|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ]
+    },
+    {
+      "id": "midgame|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true,
+      "minutes": 90,
+      "snapshots": [
+        15,
+        30,
+        60
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e05",
+    "replicates": 100
+  },
+  "metrics": [
+    "heroExpAt15",
+    "legionExpAt15",
+    "legionExpAt30",
+    "legionExpAt60",
+    "legionExpTotal",
+    "expTotal",
+    "goldHeld",
+    "goldEarned",
+    "conquestScore",
+    "equipmentValue",
+    "itemsEquipped",
+    "materialsHeld",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Large unspent inventories are not counted as progress; combat EXP is not the only measure (owner S3.1 section 10)."
+  ]
+}

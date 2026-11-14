@@ -188,6 +188,13 @@ export class MetricsRecorder {
       case 'LegionGrant':
         this.otherChanges[String(d['resourceId'])] = (this.otherChanges[String(d['resourceId'])] ?? 0) + (d['amount'] as number);
         break;
+      case 'LedgerTx':
+        // S3 industry transactions (gathering, production, crafting, enhancement, salvage): their available-bucket nets.
+        for (const part of String(d['nets']).split(',')) {
+          const m = /^(.+)\/(available|reserved):(-?\d+)$/.exec(part);
+          if (m && m[2] === 'available') this.otherChanges[m[1] as string] = (this.otherChanges[m[1] as string] ?? 0) + Number(m[3]);
+        }
+        break;
       case 'Swing':
         this.damage += d['damage'] as number;
         this.overkill += d['overkill'] as number;

@@ -1,0 +1,72 @@
+{
+  "planRegisteredAt": "2026-11-14T09:59:41Z",
+  "note": "S3 plan and manifests registered before any S3 experiment ran. The runner refuses unregistered or changed manifests; amendments are appended, never edited in place.",
+  "document": {
+    "path": "manifests/s3/PREREGISTRATION.md",
+    "sha256": "4f1b1211c207baad3efdb1d5cb724fdff113dbee66657cf4af65b00c4a2578bb"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s3/S3-E02-queue-contention.json",
+      "sha256": "31e778acb868d913ea33f62fa13f7a01b1657257c8278cfdde5d735f2ced1e72",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E03-shortage-timelines.json",
+      "sha256": "abb64d4e524d1bcb027cc503bb5ca9d5f48a23b2e6da31c9f4e6afa931165c83",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E04-gather-vs-fight.json",
+      "sha256": "31919be3f701b030ded83c016fdad5ac1396abe791d2a150667abd4016a673c4",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E05-tier-step.json",
+      "sha256": "c905e9ce25a4e697553f520b098007c1df527fbb074592a6f39bae649b4dff34",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E07-old-material-demand.json",
+      "sha256": "80a50bed57dca232e4f17ba41d589bac6d22eacb03d6f4091f1acd295182c0c0",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E08-first-useful-craft.json",
+      "sha256": "192aa35298bfbe3d7ae6cf22611c83ec8a8573aeef4dd925b1d48de17993985f",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E09-hero-damage.json",
+      "sha256": "819aba175db31c6f36a74d59b3d6ca66b0580b5278b87d4aa7c41c98e215dd7c",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E10-pacing-levers.json",
+      "sha256": "b73988eefcdd40a975c8035921ea5de931ac6dfb774fa3aedb20fdd3c3d19c36",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E11-knockout-matrix.json",
+      "sha256": "8ad11362c53baadd2cee46a540a437077093852c5047097bfa9a7b1e683c122e",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    },
+    {
+      "path": "manifests/s3/S3-E12-investment.json",
+      "sha256": "05b64feddad7c7a1dbf9592cafa91ae6c7e5c91287ba755ecd1e69578246bcdb",
+      "registeredAt": "2026-11-14T09:59:41Z"
+    }
+  ],
+  "amendments": [
+    {
+      "path": "manifests/s3/S3-E11-knockout-matrix-widened.json",
+      "sha256": "0cbba1acf039fa62dde7024c4c04cc0cc8c72b1f67496890b784161df94bd89b",
+      "registeredAt": "2026-11-14T10:13:03Z",
+      "document": {
+        "path": "manifests/s3/AMENDMENT-01.md",
+        "sha256": "163d3af87f2ecbf7faa04627b0b96a12db286a75f54940fe3face316a72635b1"
+      },
+      "reason": "S3-E11 not informative under the registered direction-F rule (24 of 72 cells with recruits generated knockouts)"
+    }
+  ]
+}

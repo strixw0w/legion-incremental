@@ -1,0 +1,2978 @@
+{
+  "fixtureSet": "industry-rules",
+  "fixtureVersion": 2,
+  "specRef": "spec/formulas/s3-industry.md#v1.1",
+  "status": "candidate",
+  "independence": "S3 rule formulas (spec/formulas/s3-industry.md v1 sections 1-3 and 5; v1.1 section 5a for the fractional shares, added in fixture version 2), re-derived by spec/oracle/s3_oracle.py from the formula text with Python integers; the lab side calls the real helpers (engine/industry.ts, model/industryContent.ts, experiments/industryMetrics.ts) on a minimal content view. Most cases are also derived by hand.",
+  "cases": [
+    {
+      "id": "s3.rules.efficiency.warrior-mining.001",
+      "kind": "normal",
+      "description": "Warrior mining level 4 with a Copper pickaxe +2: 3 x 400 + 3600 + 2500 affinity",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "efficiency",
+        "characterId": "rec:1",
+        "cls": "warrior",
+        "profession": "mining",
+        "profExp": {
+          "rec:1": {
+            "mining": 98
+          }
+        },
+        "items": [
+          {
+            "defId": "item.copper.pickaxe",
+            "enhancement": 2,
+            "equip": {
+              "characterId": "rec:1",
+              "slot": "pickaxe"
+            }
+          }
+        ]
+      },
+      "derivation": "hand: level 4 at 98 EXP (10+30+58); 3000 x 1.2 = 3600; total 7300",
+      "expected": {
+        "efficiencyBp": 7300
+      }
+    },
+    {
+      "id": "s3.rules.efficiency.mage-wood.001",
+      "kind": "normal",
+      "description": "Mage woodcutting level 1 without a tool: the affinity only",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "efficiency",
+        "characterId": "rec:1",
+        "cls": "mage",
+        "profession": "woodcutting"
+      },
+      "derivation": "hand: 0 + 0 + 2500",
+      "expected": {
+        "efficiencyBp": 2500
+      }
+    },
+    {
+      "id": "s3.rules.efficiency.level-boundary.001",
+      "kind": "boundary",
+      "description": "classless smith exactly at the level-2 threshold with a Wood hammer",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "efficiency",
+        "characterId": "rec:2",
+        "cls": "none",
+        "profession": "smithing",
+        "profExp": {
+          "rec:2": {
+            "smithing": 10
+          }
+        },
+        "items": [
+          {
+            "defId": "item.wood.hammer",
+            "equip": {
+              "characterId": "rec:2",
+              "slot": "hammer"
+            }
+          }
+        ]
+      },
+      "derivation": "hand: level 2 at exactly 10 EXP: 400 + 2000",
+      "expected": {
+        "efficiencyBp": 2400
+      }
+    },
+    {
+      "id": "s3.rules.efficiency.archer-not-mining.001",
+      "kind": "boundary",
+      "description": "an Archer's affinity (Smithing) does not apply to Mining",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "efficiency",
+        "characterId": "rec:1",
+        "cls": "archer",
+        "profession": "mining"
+      },
+      "derivation": "hand: 0",
+      "expected": {
+        "efficiencyBp": 0
+      }
+    },
+    {
+      "id": "s3.rules.gather.alternating.001",
+      "kind": "boundary",
+      "description": "1.5 units per action deposit 1, 2, 1, 2 with an exact remainder",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "gather-deposits",
+        "baseYieldMilli": 1500,
+        "efficiencies": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "derivation": "hand: 1.5 -> 1 r .5; 2.0 -> 2 r 0",
+      "expected": {
+        "deposits": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "remainder": 0
+      }
+    },
+    {
+      "id": "s3.rules.gather.level2.001",
+      "kind": "normal",
+      "description": "1.04 units per action (+400 bp) over five actions",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "gather-deposits",
+        "baseYieldMilli": 1000,
+        "efficiencies": [
+          400,
+          400,
+          400,
+          400,
+          400
+        ]
+      },
+      "derivation": "hand: remainder grows by 400000 per action",
+      "expected": {
+        "deposits": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "remainder": 2000000
+      }
+    },
+    {
+      "id": "s3.rules.gather.captured.001",
+      "kind": "normal",
+      "description": "captured efficiencies change between actions (0, 2500, 2500, 2500, 400)",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "gather-deposits",
+        "baseYieldMilli": 1000,
+        "efficiencies": [
+          0,
+          2500,
+          2500,
+          2500,
+          400
+        ]
+      },
+      "derivation": "hand: 1; 1.25; 1.5; 1.75 -> 1 each, remainder .75; then 1.79 -> 1",
+      "expected": {
+        "deposits": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "remainder": 7900000
+      }
+    },
+    {
+      "id": "s3.rules.unit-time.hammer.001",
+      "kind": "normal",
+      "description": "4000 ms plank with +2000 bp: ceil(40000000 / 12000)",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "unit-time",
+        "unitMs": 4000,
+        "efficiencyBp": 2000
+      },
+      "derivation": "hand: 3333.33 -> 3334",
+      "expected": {
+        "unitMs": 3334
+      }
+    },
+    {
+      "id": "s3.rules.unit-time.none.001",
+      "kind": "boundary",
+      "description": "no efficiency: the recipe time exactly",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "unit-time",
+        "unitMs": 4000,
+        "efficiencyBp": 0
+      },
+      "derivation": "hand: 4000",
+      "expected": {
+        "unitMs": 4000
+      }
+    },
+    {
+      "id": "s3.rules.unit-time.bar.001",
+      "kind": "normal",
+      "description": "6000 ms bar with +4500 bp",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "unit-time",
+        "unitMs": 6000,
+        "efficiencyBp": 4500
+      },
+      "derivation": "hand: 60000000 / 14500 = 4137.9 -> 4138",
+      "expected": {
+        "unitMs": 4138
+      }
+    },
+    {
+      "id": "s3.rules.stats.chest5.001",
+      "kind": "normal",
+      "description": "Wood chest at +5",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "item-stats",
+        "defId": "item.wood.chest",
+        "enhancement": 5
+      },
+      "derivation": "hand: 2 x 1.5 = 3; 10 x 1.5 = 15",
+      "expected": {
+        "attackMilli": 0,
+        "defence": 3,
+        "hp": 15,
+        "critBp": 0,
+        "efficiencyBp": 0
+      }
+    },
+    {
+      "id": "s3.rules.stats.helmet5.001",
+      "kind": "boundary",
+      "description": "Wood helmet at +5 rounds down",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "item-stats",
+        "defId": "item.wood.helmet",
+        "enhancement": 5
+      },
+      "derivation": "hand: 1 x 1.5 = 1; 5 x 1.5 = 7",
+      "expected": {
+        "attackMilli": 0,
+        "defence": 1,
+        "hp": 7,
+        "critBp": 0,
+        "efficiencyBp": 0
+      }
+    },
+    {
+      "id": "s3.rules.enhance.cost0.001",
+      "kind": "boundary",
+      "description": "first enhancement of a Wood item",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "enhancement-cost",
+        "defId": "item.wood.chest",
+        "level": 0
+      },
+      "derivation": "hand: 20 x 1 gold, 1 plank",
+      "expected": {
+        "gold": 20,
+        "materialId": "res.mat.plank",
+        "materialQty": 1
+      }
+    },
+    {
+      "id": "s3.rules.enhance.cost4.001",
+      "kind": "normal",
+      "description": "+4 to +5 of a Copper item",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "enhancement-cost",
+        "defId": "item.copper.chest",
+        "level": 4
+      },
+      "derivation": "hand: 20 x 25 = 500 gold, 5 bars",
+      "expected": {
+        "gold": 500,
+        "materialId": "res.mat.copper_bar",
+        "materialQty": 5
+      }
+    },
+    {
+      "id": "s3.rules.enhance.no-material.001",
+      "kind": "failure",
+      "description": "an Iron item has no enhancement material in S3",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "enhancement-cost",
+        "defId": "item.iron.helmet",
+        "level": 0
+      },
+      "derivation": "spec section 3: invalid content",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.rules.enhance.unknown.001",
+      "kind": "failure",
+      "description": "an unknown item definition",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "item-stats",
+        "defId": "item.wood.nothing",
+        "enhancement": 0
+      },
+      "derivation": "spec: invalid content",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.rules.salvage.001",
+      "kind": "boundary",
+      "description": "half of 3 planks and of 4 bars; a 1-plank line returns nothing and is omitted",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "salvage",
+        "recoverable": [
+          {
+            "resourceId": "res.mat.plank",
+            "qty": 3
+          },
+          {
+            "resourceId": "res.mat.copper_bar",
+            "qty": 4
+          },
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 1
+          }
+        ]
+      },
+      "derivation": "hand: 1, 2, 0 (omitted)",
+      "expected": {
+        "returns": [
+          {
+            "resourceId": "res.mat.plank",
+            "qty": 1
+          },
+          {
+            "resourceId": "res.mat.copper_bar",
+            "qty": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "s3.rules.shares.lethal.001",
+      "kind": "normal",
+      "description": "lethal batch 6 + 5 damage removing 8 HP",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares",
+        "damages": [
+          6,
+          5
+        ],
+        "hpRemoved": 8
+      },
+      "derivation": "hand: floors 4, 3 (remainders 4, 7); the leftover unit goes to the second blow -> 4, 4",
+      "expected": {
+        "shares": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "id": "s3.rules.shares.tie.001",
+      "kind": "boundary",
+      "description": "equal remainders: the earlier blow gets the leftover",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares",
+        "damages": [
+          3,
+          3
+        ],
+        "hpRemoved": 3
+      },
+      "derivation": "hand: floors 1, 1; remainders 3, 3 -> 2, 1",
+      "expected": {
+        "shares": [
+          2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "s3.rules.shares.full.001",
+      "kind": "boundary",
+      "description": "total damage not above the HP removed: every blow in full",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares",
+        "damages": [
+          5,
+          2
+        ],
+        "hpRemoved": 10
+      },
+      "derivation": "hand: 5, 2",
+      "expected": {
+        "shares": [
+          5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "s3.rules.shares.three.001",
+      "kind": "normal",
+      "description": "three blows 9, 0, 4 removing 7 HP",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares",
+        "damages": [
+          9,
+          0,
+          4
+        ],
+        "hpRemoved": 7
+      },
+      "derivation": "oracle",
+      "expected": {
+        "shares": [
+          5,
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "id": "s3.1.rules.frac.reviewer.001",
+      "kind": "boundary",
+      "description": "the reviewer case: two equal blows of 2 removing 1 HP share it equally",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares-fractional",
+        "damages": [
+          2,
+          2
+        ],
+        "hpRemoved": 1
+      },
+      "derivation": "hand: 2 x 1 / 4 = 0.5 each",
+      "expected": {
+        "shares": [
+          0.5,
+          0.5
+        ]
+      }
+    },
+    {
+      "id": "s3.1.rules.frac.ties.001",
+      "kind": "normal",
+      "description": "5, 2, 2 removing 3 HP: the two equal blows get equal shares",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares-fractional",
+        "damages": [
+          5,
+          2,
+          2
+        ],
+        "hpRemoved": 3
+      },
+      "derivation": "hand: 15/9, 6/9, 6/9",
+      "expected": {
+        "shares": [
+          1.6666666666666667,
+          0.6666666666666666,
+          0.6666666666666666
+        ]
+      }
+    },
+    {
+      "id": "s3.1.rules.frac.ties.reversed.001",
+      "kind": "normal",
+      "description": "the same blows in reverse order: the same shares, reversed",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares-fractional",
+        "damages": [
+          2,
+          2,
+          5
+        ],
+        "hpRemoved": 3
+      },
+      "derivation": "hand: 6/9, 6/9, 15/9",
+      "expected": {
+        "shares": [
+          0.6666666666666666,
+          0.6666666666666666,
+          1.6666666666666667
+        ]
+      }
+    },
+    {
+      "id": "s3.1.rules.frac.full.001",
+      "kind": "boundary",
+      "description": "total damage not above the HP removed: every blow in full",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares-fractional",
+        "damages": [
+          5,
+          2
+        ],
+        "hpRemoved": 10
+      },
+      "derivation": "hand: 5, 2",
+      "expected": {
+        "shares": [
+          5,
+          2
+        ]
+      }
+    },
+    {
+      "id": "s3.1.rules.frac.zero.001",
+      "kind": "normal",
+      "description": "a missed blow (0) gets nothing; 7 and 1 share 5 HP",
+      "input": {
+        "defs": [
+          {
+            "id": "item.wood.club",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "none",
+              "warrior",
+              "archer",
+              "mage"
+            ],
+            "attackMilli": 2000
+          },
+          {
+            "id": "item.wood.sword",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "warrior"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.bow",
+            "slot": "weapon",
+            "tier": "tier.wood",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 3000
+          },
+          {
+            "id": "item.wood.helmet",
+            "slot": "helmet",
+            "tier": "tier.wood",
+            "defence": 1,
+            "hp": 5
+          },
+          {
+            "id": "item.wood.chest",
+            "slot": "chestplate",
+            "tier": "tier.wood",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.wood.hammer",
+            "slot": "hammer",
+            "tier": "tier.wood",
+            "efficiencyBp": 2000
+          },
+          {
+            "id": "item.wood.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.wood",
+            "efficiencyBp": 0
+          },
+          {
+            "id": "item.copper.helmet",
+            "slot": "helmet",
+            "tier": "tier.copper",
+            "defence": 2,
+            "hp": 10
+          },
+          {
+            "id": "item.copper.chest",
+            "slot": "chestplate",
+            "tier": "tier.copper",
+            "defence": 4,
+            "hp": 20
+          },
+          {
+            "id": "item.copper.bow",
+            "slot": "weapon",
+            "tier": "tier.copper",
+            "classes": [
+              "archer"
+            ],
+            "attackMilli": 6000
+          },
+          {
+            "id": "item.copper.pickaxe",
+            "slot": "pickaxe",
+            "tier": "tier.copper",
+            "efficiencyBp": 3000
+          },
+          {
+            "id": "item.iron.helmet",
+            "slot": "helmet",
+            "tier": "tier.iron",
+            "defence": 4,
+            "hp": 20
+          }
+        ],
+        "op": "effective-shares-fractional",
+        "damages": [
+          7,
+          0,
+          1
+        ],
+        "hpRemoved": 5
+      },
+      "derivation": "hand: 35/8 = 4.375, 0, 5/8 = 0.625",
+      "expected": {
+        "shares": [
+          4.375,
+          0.0,
+          0.625
+        ]
+      }
+    }
+  ]
+}

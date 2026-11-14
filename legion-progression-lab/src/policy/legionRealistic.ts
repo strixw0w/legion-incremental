@@ -82,7 +82,7 @@ function squadEstimate(obs: LegionObservation, order: number): SquadEstimate | n
 
 const reachableS2 = (obs: LegionObservation, z: ZoneObservation): boolean => {
   const e = squadEstimate(obs, z.order);
-  return z.accessUnlocked && e !== null && e.reliability !== 'unreachable';
+  return z.accessUnlocked && e !== null && e.reliability !== 'unreachable' && e.reliability !== 'unresolved';
 };
 
 function stepToward(obs: LegionObservation, targetOrder: number): LegionCommand[] {
@@ -116,7 +116,7 @@ function recover(obs: LegionObservation): LegionCommand[] | null {
 
 function frontierOk(e: SquadEstimate | null): boolean {
   if (e === null || e.ttkS === null || e.ttkS > FRONTIER_TTK_S) return false;
-  if (e.reliability === 'unsafe' || e.reliability === 'unreachable') return false;
+  if (e.reliability === 'unsafe' || e.reliability === 'unreachable' || e.reliability === 'unresolved') return false;
   return !e.heroIsThreatTarget || e.fightsPerKnockout === null || e.fightsPerKnockout >= FRONTIER_MIN_FIGHTS_PER_KO;
 }
 

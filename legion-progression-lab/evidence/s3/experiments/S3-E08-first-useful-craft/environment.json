@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3-E08-first-useful-craft",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T10:00:16.407Z",
+  "durationMs": 59704,
+  "jobs": 1300,
+  "mainRssMb": 3565,
+  "mainHeapUsedMb": 32
+}

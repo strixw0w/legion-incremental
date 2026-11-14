@@ -1,0 +1,465 @@
+$ git log --oneline -5
+732f3da S2 checkpoint: L1 persistent ledger + S2 legion + S2.1 acceptance pass
+a7d8476 S1 checkpoint: S1 single-character simulation + S1.1 corrections + acceptance addendum
+ad11a50 S0 checkpoint: S0 + S0.1 hardening + final ledger identity correction
+0209d93 M0 resolution and review corrections (v1.1); repository verification; Rojo 7.7.1
+3aced25 M0 import: design pack v1.0, M0 planning documents (as reviewed), Rojo starter
+
+$ git tag -n1
+s0-checkpoint   S0 checkpoint (S0 + S0.1 + final ledger correction), accepted by the owner after independent review. Local only; not pushed.
+s1-checkpoint   S1 checkpoint (S1 + S1.1 + acceptance addendum), accepted by the owner after independent review. Local only; not pushed.
+s2-checkpoint   S2 checkpoint: L1 + S2 + S2.1, accepted 2026-11-14 (package 34a92723...bfc7)
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/CHANGELOG.md
+ M legion-progression-lab/PROVENANCE.md
+ M legion-progression-lab/README.md
+ M legion-progression-lab/src/engine/estimator-s1.ts
+ M legion-progression-lab/src/engine/estimator.ts
+ M legion-progression-lab/src/engine/legion.ts
+ M legion-progression-lab/src/engine/legionCommands.ts
+ M legion-progression-lab/src/engine/legionObservation.ts
+ M legion-progression-lab/src/engine/observation.ts
+ M legion-progression-lab/src/engine/squadEstimator.ts
+ M legion-progression-lab/src/engine/workerFeasibility.ts
+ M legion-progression-lab/src/experiments/legionJobs.ts
+ M legion-progression-lab/src/experiments/legionMetrics.ts
+ M legion-progression-lab/src/experiments/metrics.ts
+ M legion-progression-lab/src/model/legionContent.ts
+ M legion-progression-lab/src/model/legionTypes.ts
+ M legion-progression-lab/src/model/types.ts
+ M legion-progression-lab/src/policy/legionRealistic.ts
+ M legion-progression-lab/src/policy/realistic.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M legion-progression-lab/test/s1_1.behaviour.test.ts
+ M spec/README.md
+ M spec/fixtures/estimator.v1.json
+ M spec/formulas/estimator.md
+ M spec/oracle/check_all.py
+ M spec/oracle/s1_oracle.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/content/w1-slice-s3.candidate.v0.3.0.json
+?? legion-progression-lab/evidence/s2-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s2-checkpoint/clean-export-check.txt
+?? legion-progression-lab/evidence/s2-checkpoint/frozen-check.txt
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-control.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.copperOffenceScale1.25.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.copperOffenceScale1.5s3.copperDefence.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.equipCostScale1.5.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.nodeYieldScale0.5.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.oldMaterialRecipeson.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.unitTimeScale0.75.json
+?? legion-progression-lab/evidence/s3.1/S3.1-E07-recycle-s3.weaponPercenton.json
+?? legion-progression-lab/evidence/s3.1/S3_1_EVIDENCE.md
+?? legion-progression-lab/evidence/s3.1/amendment-01-runs.txt
+?? legion-progression-lab/evidence/s3.1/analysis.json
+?? legion-progression-lab/evidence/s3.1/analysis.txt
+?? legion-progression-lab/evidence/s3.1/attribution-check.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/determinism.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E02-policy-capacity/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E03-equipment-strength/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E04-candidate-content/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E05-investment/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E06-hero-power-full-squad/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E08-long-horizon-payback/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E09-demand-stop-payback/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/S3.1-E10-demand-stop-content/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E02-queue-contention/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E03-shortage-timelines/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E04-gather-vs-fight/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E05-tier-step/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E07-old-material-demand/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E08-first-useful-craft/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E09-hero-damage/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E10-pacing-levers/semantic.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/environment.json
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/report.md
+?? legion-progression-lab/evidence/s3.1/experiments/audit/S3-E12-investment/semantic.json
+?? legion-progression-lab/evidence/s3.1/fixture-generation-check.txt
+?? legion-progression-lab/evidence/s3.1/fixtures-check.txt
+?? legion-progression-lab/evidence/s3.1/frozen-check.txt
+?? legion-progression-lab/evidence/s3.1/gates-run.txt
+?? legion-progression-lab/evidence/s3.1/git-status.txt
+?? legion-progression-lab/evidence/s3.1/historical-regression.txt
+?? legion-progression-lab/evidence/s3.1/mutation-check-s3-rerun.txt
+?? legion-progression-lab/evidence/s3.1/mutation-check-s3.1.txt
+?? legion-progression-lab/evidence/s3.1/oracle-check.txt
+?? legion-progression-lab/evidence/s3.1/preservation-check.txt
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/environment.json
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/quantiles.csv
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/report.md
+?? legion-progression-lab/evidence/s3.1/reference-ledger/S3.1-E05-investment/semantic.json
+?? legion-progression-lab/evidence/s3.1/registration-check.txt
+?? legion-progression-lab/evidence/s3.1/repro/corrected-S3.1.json.txt
+?? legion-progression-lab/evidence/s3.1/repro/corrected.err
+?? legion-progression-lab/evidence/s3.1/repro/original-S3-package.json.txt
+?? legion-progression-lab/evidence/s3.1/repro/original.err
+?? legion-progression-lab/evidence/s3.1/runs.txt
+?? legion-progression-lab/evidence/s3.1/s3.1-vs-s2-checkpoint.patch
+?? legion-progression-lab/evidence/s3.1/s3.1-vs-s3-package.txt
+?? legion-progression-lab/evidence/s3.1/schemas-check.txt
+?? legion-progression-lab/evidence/s3.1/test-output.txt
+?? legion-progression-lab/evidence/s3.1/test-stats-output.txt
+?? legion-progression-lab/evidence/s3.1/tool-versions.txt
+?? legion-progression-lab/evidence/s3.1/typecheck.txt
+?? legion-progression-lab/evidence/s3/S3-E01-conservation.json
+?? legion-progression-lab/evidence/s3/S3-E06-recycle.json
+?? legion-progression-lab/evidence/s3/S3-E06-recycle.txt
+?? legion-progression-lab/evidence/s3/S3_EVIDENCE.md
+?? legion-progression-lab/evidence/s3/analysis.json
+?? legion-progression-lab/evidence/s3/analysis.txt
+?? legion-progression-lab/evidence/s3/estimator-v1.3-regression.txt
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/environment.json
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/fingerprint.txt
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/quantiles.csv
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/report.md
+?? legion-progression-lab/evidence/s3/estimator-v1.3-rerun/S2.1-E02-worker-estimator/semantic.json
+?? legion-progression-lab/evidence/s3/experiments-run.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E02-queue-contention/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E03-shortage-timelines/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E04-gather-vs-fight/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E05-tier-step/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E07-old-material-demand/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/determinism.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E08-first-useful-craft/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E09-hero-damage/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E10-pacing-levers/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix-widened/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E11-knockout-matrix/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/environment.json
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/report.md
+?? legion-progression-lab/evidence/s3/experiments/S3-E12-investment/semantic.json
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/environment.json
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/fingerprint.txt
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/quantiles.csv
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/report.md
+?? legion-progression-lab/evidence/s3/experiments/reference-ledger/S3-E04-gather-vs-fight/semantic.json
+?? legion-progression-lab/evidence/s3/fixtures-check.txt
+?? legion-progression-lab/evidence/s3/followup-run.txt
+?? legion-progression-lab/evidence/s3/frozen-check.txt
+?? legion-progression-lab/evidence/s3/git-status.txt
+?? legion-progression-lab/evidence/s3/historical-regression-final.txt
+?? legion-progression-lab/evidence/s3/l2-measurements.txt
+?? legion-progression-lab/evidence/s3/mutation-check-s3.txt
+?? legion-progression-lab/evidence/s3/oracle-check.txt
+?? legion-progression-lab/evidence/s3/preservation-check.txt
+?? legion-progression-lab/evidence/s3/registration-check.txt
+?? legion-progression-lab/evidence/s3/s3-vs-s2-checkpoint.patch
+?? legion-progression-lab/evidence/s3/schemas-check.txt
+?? legion-progression-lab/evidence/s3/test-output.txt
+?? legion-progression-lab/evidence/s3/test-stats-output.txt
+?? legion-progression-lab/evidence/s3/tool-versions.txt
+?? legion-progression-lab/evidence/s3/typecheck.txt
+?? legion-progression-lab/manifests/s3.1/AMENDMENT-01.md
+?? legion-progression-lab/manifests/s3.1/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s3.1/S3.1-E02-policy-capacity.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E03-equipment-strength.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E04-candidate-content.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E05-investment.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E06-hero-power-full-squad.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E08-long-horizon-payback.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E09-demand-stop-payback.json
+?? legion-progression-lab/manifests/s3.1/S3.1-E10-demand-stop-content.json
+?? legion-progression-lab/manifests/s3.1/preregistration.json
+?? legion-progression-lab/manifests/s3/AMENDMENT-01.md
+?? legion-progression-lab/manifests/s3/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s3/S3-E02-queue-contention.json
+?? legion-progression-lab/manifests/s3/S3-E03-shortage-timelines.json
+?? legion-progression-lab/manifests/s3/S3-E04-gather-vs-fight.json
+?? legion-progression-lab/manifests/s3/S3-E05-tier-step.json
+?? legion-progression-lab/manifests/s3/S3-E07-old-material-demand.json
+?? legion-progression-lab/manifests/s3/S3-E08-first-useful-craft.json
+?? legion-progression-lab/manifests/s3/S3-E09-hero-damage.json
+?? legion-progression-lab/manifests/s3/S3-E10-pacing-levers.json
+?? legion-progression-lab/manifests/s3/S3-E11-knockout-matrix-widened.json
+?? legion-progression-lab/manifests/s3/S3-E11-knockout-matrix.json
+?? legion-progression-lab/manifests/s3/S3-E12-investment.json
+?? legion-progression-lab/manifests/s3/preregistration.json
+?? legion-progression-lab/planning/L2_DESIGN_UPDATE.md
+?? legion-progression-lab/planning/S3_1_POLICY.md
+?? legion-progression-lab/planning/S3_1_RESOLUTIONS.md
+?? legion-progression-lab/planning/S3_OWNER_DECISIONS.md
+?? legion-progression-lab/planning/S3_OWNER_RESOLUTIONS.md
+?? legion-progression-lab/planning/S3_RESOLUTIONS.md
+?? legion-progression-lab/planning/S3_SPECIFICATION.md
+?? legion-progression-lab/repro/s3.1/attribution_check.py
+?? legion-progression-lab/repro/s3.1/defects.mjs
+?? legion-progression-lab/repro/s3.1/make_fixtures.py
+?? legion-progression-lab/repro/s3.1/mutation_check.py
+?? legion-progression-lab/repro/s3/make_content.py
+?? legion-progression-lab/repro/s3/make_fixtures.py
+?? legion-progression-lab/repro/s3/mutation_check.py
+?? legion-progression-lab/src/cli/exp3-worker.ts
+?? legion-progression-lab/src/cli/exp3.ts
+?? legion-progression-lab/src/cli/s3-amend.ts
+?? legion-progression-lab/src/cli/s3-analyse.ts
+?? legion-progression-lab/src/cli/s3-conservation.ts
+?? legion-progression-lab/src/cli/s3-content.ts
+?? legion-progression-lab/src/cli/s3-fill-base.ts
+?? legion-progression-lab/src/cli/s3-l2-measure.ts
+?? legion-progression-lab/src/cli/s3-make-manifests.ts
+?? legion-progression-lab/src/cli/s3-recycle.ts
+?? legion-progression-lab/src/cli/s31-amend.ts
+?? legion-progression-lab/src/cli/s31-analyse.ts
+?? legion-progression-lab/src/cli/s31-make-manifests.ts
+?? legion-progression-lab/src/engine/industry.ts
+?? legion-progression-lab/src/engine/industryObservation.ts
+?? legion-progression-lab/src/experiments/industryMetrics.ts
+?? legion-progression-lab/src/experiments/s31Metrics.ts
+?? legion-progression-lab/src/experiments/s3Conservation.ts
+?? legion-progression-lab/src/experiments/s3Jobs.ts
+?? legion-progression-lab/src/experiments/s3Manifest.ts
+?? legion-progression-lab/src/experiments/s3Patch.ts
+?? legion-progression-lab/src/model/industryContent.ts
+?? legion-progression-lab/src/model/industryTypes.ts
+?? legion-progression-lab/src/policy/industryDemand.ts
+?? legion-progression-lab/src/policy/industryRealistic.ts
+?? legion-progression-lab/src/policy/industrySearch.ts
+?? legion-progression-lab/src/spec/s3Fixtures.ts
+?? legion-progression-lab/test/helpers/s3.ts
+?? legion-progression-lab/test/s3.conservation.test.ts
+?? legion-progression-lab/test/s3.industry.test.ts
+?? legion-progression-lab/test/s3_1.corrections.test.ts
+?? legion-progression-lab/test/s3_1.policy.test.ts
+?? spec/fixtures/equipment-ops.v1.json
+?? spec/fixtures/industry-rules.v1.json
+?? spec/fixtures/production-queue.v1.json
+?? spec/fixtures/recipe-validation.v1.json
+?? spec/formulas/s3-industry.md
+?? spec/oracle/s3_oracle.py
+
+$ git diff --stat s2-checkpoint
+ legion-progression-lab/CHANGELOG.md                |  28 +
+ legion-progression-lab/PROVENANCE.md               |  10 +
+ legion-progression-lab/README.md                   |  17 +-
+ legion-progression-lab/src/engine/estimator-s1.ts  |   1 +
+ legion-progression-lab/src/engine/estimator.ts     |   5 +-
+ legion-progression-lab/src/engine/legion.ts        | 612 ++++++++++++++++++++-
+ .../src/engine/legionCommands.ts                   |  13 +-
+ .../src/engine/legionObservation.ts                |   6 +-
+ legion-progression-lab/src/engine/observation.ts   |   1 +
+ .../src/engine/squadEstimator.ts                   |   3 +-
+ .../src/engine/workerFeasibility.ts                |   8 +-
+ .../src/experiments/legionJobs.ts                  |   4 +-
+ .../src/experiments/legionMetrics.ts               |   6 +-
+ legion-progression-lab/src/experiments/metrics.ts  |   7 +
+ legion-progression-lab/src/model/legionContent.ts  |  41 +-
+ legion-progression-lab/src/model/legionTypes.ts    |  20 +-
+ legion-progression-lab/src/model/types.ts          |  10 +-
+ .../src/policy/legionRealistic.ts                  |   4 +-
+ legion-progression-lab/src/policy/realistic.ts     |   3 +-
+ legion-progression-lab/src/spec/fixtureRunner.ts   |  13 +
+ legion-progression-lab/src/spec/fixtureSchema.ts   |   2 +-
+ .../test/fixtures.conformance.test.ts              |   2 +-
+ legion-progression-lab/test/s1_1.behaviour.test.ts |  13 +-
+ spec/README.md                                     |   4 +-
+ spec/fixtures/estimator.v1.json                    |  10 +-
+ spec/formulas/estimator.md                         |  19 +
+ spec/oracle/check_all.py                           |   1 +
+ spec/oracle/s1_oracle.py                           |   3 +-
+ spec/schema/fixture.schema.json                    |   6 +-
+ 29 files changed, 810 insertions(+), 62 deletions(-)

@@ -198,7 +198,9 @@ export function estimateZone(content: CompiledContent, level: number, zoneOrder:
       goldPerHour: 0,
       deathsPerHour: null,
       limitingFactor: 'attack',
-      reliability: 'unreachable',
+      // v1.3 (S3 entry): only zero hit chance is proven impossible; an exhausted budget is no conclusion.
+      reliability: sd.stop === 'no-hit' ? 'unreachable' : 'unresolved',
+      forecast: sd.stop === 'no-hit' ? 'available' : 'unavailable',
       reasons: [reason],
       materialsPerHour: Object.fromEntries(enemy.drops.map((d) => [d.resourceId, 0])),
     };
@@ -309,6 +311,7 @@ export function estimateZone(content: CompiledContent, level: number, zoneOrder:
     deathsPerHour,
     limitingFactor,
     reliability,
+    forecast: 'available',
     reasons,
     materialsPerHour,
   };

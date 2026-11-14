@@ -1,0 +1,1518 @@
+{
+  "schemaVersion": 1,
+  "contentId": "w1-slice-s3",
+  "contentVersion": "0.3.0",
+  "status": "candidate",
+  "note": "S3 extension: professions, gathering nodes, Wood and Copper equipment, recipes, enhancement, salvage. Every value is a candidate (planning/S3_RESOLUTIONS.md). Tiers 3-6 are identifiers only.",
+  "basePack": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "resources": [
+    {
+      "id": "res.mat.log",
+      "kind": "material",
+      "testOnly": false,
+      "note": "Woodcutting (Bible section 6)"
+    },
+    {
+      "id": "res.mat.copper_ore",
+      "kind": "material",
+      "testOnly": false,
+      "note": "Mining"
+    },
+    {
+      "id": "res.mat.plank",
+      "kind": "material",
+      "testOnly": false,
+      "note": "timed component (Smithing)"
+    },
+    {
+      "id": "res.mat.copper_bar",
+      "kind": "material",
+      "testOnly": false,
+      "note": "timed bar (Smithing)"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "tier.wood",
+      "order": 1,
+      "hasContent": true
+    },
+    {
+      "id": "tier.copper",
+      "order": 2,
+      "hasContent": true
+    },
+    {
+      "id": "tier.iron",
+      "order": 3,
+      "hasContent": false
+    },
+    {
+      "id": "tier.steel",
+      "order": 4,
+      "hasContent": false
+    },
+    {
+      "id": "tier.gold",
+      "order": 5,
+      "hasContent": false
+    },
+    {
+      "id": "tier.mithril",
+      "order": 6,
+      "hasContent": false
+    }
+  ],
+  "professions": {
+    "efficiencyPerLevelBp": {
+      "value": 400,
+      "label": "candidate"
+    },
+    "affinityBp": {
+      "value": 2500,
+      "label": "candidate"
+    },
+    "affinities": {
+      "warrior": "mining",
+      "archer": "smithing",
+      "mage": "woodcutting"
+    }
+  },
+  "nodes": [
+    {
+      "id": "node.w1.01.oak",
+      "name": "Meadow Oak",
+      "zoneOrder": 1,
+      "profession": "woodcutting",
+      "resourceId": "res.mat.log",
+      "actionMs": {
+        "value": 3000,
+        "label": "candidate"
+      },
+      "baseYieldMilli": {
+        "value": 1000,
+        "label": "candidate"
+      },
+      "levelReq": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "tool": null,
+      "expPerAction": {
+        "value": 3,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "node.w1.02.oak",
+      "name": "Wolfwood Oak",
+      "zoneOrder": 2,
+      "profession": "woodcutting",
+      "resourceId": "res.mat.log",
+      "actionMs": {
+        "value": 3000,
+        "label": "candidate"
+      },
+      "baseYieldMilli": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "levelReq": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "tool": null,
+      "expPerAction": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "node.w1.02.copper",
+      "name": "Wolfwood Copper Vein",
+      "zoneOrder": 2,
+      "profession": "mining",
+      "resourceId": "res.mat.copper_ore",
+      "actionMs": {
+        "value": 3500,
+        "label": "candidate"
+      },
+      "baseYieldMilli": {
+        "value": 1000,
+        "label": "candidate"
+      },
+      "levelReq": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "tool": {
+        "slot": "pickaxe",
+        "minTierOrder": 1
+      },
+      "expPerAction": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "node.w1.03.copper",
+      "name": "Encampment Copper Vein",
+      "zoneOrder": 3,
+      "profession": "mining",
+      "resourceId": "res.mat.copper_ore",
+      "actionMs": {
+        "value": 3500,
+        "label": "candidate"
+      },
+      "baseYieldMilli": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "levelReq": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "tool": {
+        "slot": "pickaxe",
+        "minTierOrder": 1
+      },
+      "expPerAction": {
+        "value": 6,
+        "label": "candidate"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "item.wood.club",
+      "name": "Wooden Club",
+      "slot": "weapon",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "none",
+        "warrior",
+        "archer",
+        "mage"
+      ],
+      "attackMilli": {
+        "value": 2000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.sword",
+      "name": "Wooden Sword",
+      "slot": "weapon",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "warrior"
+      ],
+      "attackMilli": {
+        "value": 3000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.bow",
+      "name": "Wooden Bow",
+      "slot": "weapon",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "archer"
+      ],
+      "attackMilli": {
+        "value": 3000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.staff",
+      "name": "Wooden Staff",
+      "slot": "weapon",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "mage"
+      ],
+      "attackMilli": {
+        "value": 3000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.helmet",
+      "name": "Wooden Helmet",
+      "slot": "helmet",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.chest",
+      "name": "Wooden Chestplate",
+      "slot": "chestplate",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 2,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 10,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.legs",
+      "name": "Wooden Leggings",
+      "slot": "leggings",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 8,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.boots",
+      "name": "Wooden Boots",
+      "slot": "boots",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.charm",
+      "name": "Gel Charm",
+      "slot": "accessory",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "critBp": {
+        "value": 0,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.pickaxe",
+      "name": "Wooden Pickaxe",
+      "slot": "pickaxe",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 0,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.axe",
+      "name": "Wooden Axe",
+      "slot": "axe",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 2000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.wood.hammer",
+      "name": "Wooden Hammer",
+      "slot": "hammer",
+      "tier": "tier.wood",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 2000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.sword",
+      "name": "Copper Sword",
+      "slot": "weapon",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "warrior"
+      ],
+      "attackMilli": {
+        "value": 6000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.bow",
+      "name": "Copper Bow",
+      "slot": "weapon",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "archer"
+      ],
+      "attackMilli": {
+        "value": 6000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.staff",
+      "name": "Copper Staff",
+      "slot": "weapon",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "classes": [
+        "mage"
+      ],
+      "attackMilli": {
+        "value": 6000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.helmet",
+      "name": "Copper Helmet",
+      "slot": "helmet",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 2,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 10,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.chest",
+      "name": "Copper Chestplate",
+      "slot": "chestplate",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 4,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 20,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.legs",
+      "name": "Copper Leggings",
+      "slot": "leggings",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 15,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.boots",
+      "name": "Copper Boots",
+      "slot": "boots",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "defence": {
+        "value": 2,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 10,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.ring",
+      "name": "Copper Ring",
+      "slot": "accessory",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "hp": {
+        "value": 12,
+        "label": "candidate"
+      },
+      "critBp": {
+        "value": 300,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.pickaxe",
+      "name": "Copper Pickaxe",
+      "slot": "pickaxe",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 3000,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.axe",
+      "name": "Copper Axe",
+      "slot": "axe",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 4500,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "item.copper.hammer",
+      "name": "Copper Hammer",
+      "slot": "hammer",
+      "tier": "tier.copper",
+      "maxEnhancement": {
+        "value": 5,
+        "label": "candidate"
+      },
+      "efficiencyBp": {
+        "value": 4500,
+        "label": "candidate"
+      }
+    }
+  ],
+  "recipes": [
+    {
+      "id": "recipe.plank",
+      "kind": "timed",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "unitMs": {
+        "value": 4000,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.log",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 3,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.copper_bar",
+      "kind": "timed",
+      "smithingLevel": {
+        "value": 2,
+        "label": "candidate"
+      },
+      "unitMs": {
+        "value": 6000,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_ore",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.club",
+      "kind": "item",
+      "itemId": "item.wood.club",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.sword",
+      "kind": "item",
+      "itemId": "item.wood.sword",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.bow",
+      "kind": "item",
+      "itemId": "item.wood.bow",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.staff",
+      "kind": "item",
+      "itemId": "item.wood.staff",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.helmet",
+      "kind": "item",
+      "itemId": "item.wood.helmet",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.chest",
+      "kind": "item",
+      "itemId": "item.wood.chest",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 4,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 4,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 6,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.legs",
+      "kind": "item",
+      "itemId": "item.wood.legs",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.boots",
+      "kind": "item",
+      "itemId": "item.wood.boots",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.charm",
+      "kind": "item",
+      "itemId": "item.wood.charm",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.slime_gel",
+          "qty": {
+            "value": 4,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.pickaxe",
+      "kind": "item",
+      "itemId": "item.wood.pickaxe",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 5,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.axe",
+      "kind": "item",
+      "itemId": "item.wood.axe",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.wood.hammer",
+      "kind": "item",
+      "itemId": "item.wood.hammer",
+      "smithingLevel": {
+        "value": 1,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.plank",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 4,
+        "label": "candidate"
+      }
+    },
+    {
+      "id": "recipe.copper.sword",
+      "kind": "item",
+      "itemId": "item.copper.sword",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 10,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.bow",
+      "kind": "item",
+      "itemId": "item.copper.bow",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 10,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.staff",
+      "kind": "item",
+      "itemId": "item.copper.staff",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 10,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.helmet",
+      "kind": "item",
+      "itemId": "item.copper.helmet",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.chest",
+      "kind": "item",
+      "itemId": "item.copper.chest",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 4,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 4,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 12,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.legs",
+      "kind": "item",
+      "itemId": "item.copper.legs",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 10,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.boots",
+      "kind": "item",
+      "itemId": "item.copper.boots",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.wolf_fang",
+          "qty": {
+            "value": 1,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.ring",
+      "kind": "item",
+      "itemId": "item.copper.ring",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.goblin_scrap",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.pickaxe",
+      "kind": "item",
+      "itemId": "item.copper.pickaxe",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.log",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 3,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 10,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.axe",
+      "kind": "item",
+      "itemId": "item.copper.axe",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.log",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    },
+    {
+      "id": "recipe.copper.hammer",
+      "kind": "item",
+      "itemId": "item.copper.hammer",
+      "smithingLevel": {
+        "value": 3,
+        "label": "candidate"
+      },
+      "inputs": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        },
+        {
+          "resourceId": "res.mat.log",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "recoverable": [
+        {
+          "resourceId": "res.mat.copper_bar",
+          "qty": {
+            "value": 2,
+            "label": "candidate"
+          }
+        }
+      ],
+      "exp": {
+        "value": 8,
+        "label": "candidate"
+      },
+      "consumesLowerTierSameSlot": true
+    }
+  ],
+  "enhancement": {
+    "stepBp": {
+      "value": 1000,
+      "label": "candidate"
+    },
+    "goldBase": {
+      "value": 20,
+      "label": "candidate"
+    },
+    "materialByTier": {
+      "tier.wood": "res.mat.plank",
+      "tier.copper": "res.mat.copper_bar"
+    }
+  },
+  "salvage": {
+    "returnBp": {
+      "value": 5000,
+      "label": "candidate"
+    }
+  },
+  "inheritance": {
+    "mode": "none",
+    "note": "O09 default; the variant half keeps floor(level / 2)"
+  },
+  "heroAdvantage": {
+    "baseAttackBp": {
+      "value": 0,
+      "label": "candidate"
+    },
+    "abilityMultBp": {
+      "value": 0,
+      "label": "candidate"
+    },
+    "abilityCooldownBp": {
+      "value": 0,
+      "label": "candidate"
+    },
+    "exclusiveWeaponBp": {
+      "value": 0,
+      "label": "candidate"
+    },
+    "note": "S3 directions A-D variant hooks; all 0 in the control"
+  }
+}

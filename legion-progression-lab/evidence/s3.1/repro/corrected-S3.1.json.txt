@@ -1,0 +1,89 @@
+{
+  "lab": "legion-incremental/legion-progression-lab",
+  "reserveCraft": {
+    "accepted": false,
+    "rejected": [
+      "Craft:CRAFTER_IN_RESERVE"
+    ],
+    "itemsCreated": [],
+    "smithingExp": 0,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "gathererMidActionCraft": {
+    "accepted": false,
+    "rejected": [
+      "Craft:CRAFTER_WORKING"
+    ],
+    "itemsCreated": [],
+    "smithingExp": 0,
+    "monitorViolations": 0,
+    "monitorFirst": [],
+    "gatherInterrupted": 0
+  },
+  "smithMidUnitCraft": {
+    "accepted": false,
+    "rejected": [
+      "Craft:CRAFTER_WORKING"
+    ],
+    "itemsCreated": [],
+    "smithingExp": 0,
+    "monitorViolations": 0,
+    "monitorFirst": [],
+    "unitsReleased": 0
+  },
+  "workerCraft": {
+    "accepted": false,
+    "rejected": [
+      "Craft:CRAFTER_WORKING"
+    ],
+    "itemsCreated": [],
+    "smithingExp": 0,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "knockedOutCraft": {
+    "triedAtMs": 14300,
+    "accepted": false,
+    "rejected": [
+      "Craft:CRAFTER_KNOCKED_OUT"
+    ],
+    "itemsCreated": [],
+    "smithingExp": 0,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "duplicateRecoverable": {
+    "contentAccepted": false,
+    "error": "INVALID_CONTENT"
+  },
+  "duplicateTimedInputs": {
+    "contentAccepted": false,
+    "error": "INVALID_CONTENT"
+  },
+  "duplicateItemInputs": {
+    "contentAccepted": false,
+    "error": "INVALID_CONTENT"
+  },
+  "effectiveShares": {
+    "legacyEqualRemainders": [
+      1,
+      0
+    ],
+    "legacyPermuted": [
+      2,
+      1,
+      0
+    ],
+    "legacyPermutedReversed": [
+      1,
+      1,
+      1
+    ],
+    "fractional": [
+      0.5,
+      0.5
+    ],
+    "fractionalPermutedEqual": true
+  }
+}

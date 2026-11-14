@@ -1,0 +1,50 @@
+{
+  "experimentId": "S3-E06-recycle",
+  "labels": {
+    "values": "engineering check",
+    "approved": false
+  },
+  "rules": {
+    "salvageReturnBp": 5000,
+    "inheritance": "none",
+    "enhancement": {
+      "stepBp": 1000,
+      "goldBase": 20,
+      "materialByTier": {
+        "tier.wood": "res.mat.plank",
+        "tier.copper": "res.mat.copper_bar"
+      }
+    }
+  },
+  "stocks": [
+    {
+      "stock": "rich-no-items",
+      "depth": 4,
+      "statesExplored": 5741,
+      "rawChecks": "applied",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    },
+    {
+      "stock": "with-items",
+      "depth": 4,
+      "statesExplored": 9030,
+      "rawChecks": "not applicable (starting items)",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    },
+    {
+      "stock": "minimal",
+      "depth": 4,
+      "statesExplored": 439,
+      "rawChecks": "not applicable (starting items)",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    }
+  ],
+  "failures": 0,
+  "durationMs": 805
+}

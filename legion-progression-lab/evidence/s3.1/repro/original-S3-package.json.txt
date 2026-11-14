@@ -1,0 +1,89 @@
+{
+  "lab": "legion-incremental-S3-review/legion-progression-lab",
+  "reserveCraft": {
+    "accepted": true,
+    "rejected": [],
+    "itemsCreated": [
+      "item.wood.club"
+    ],
+    "smithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "gathererMidActionCraft": {
+    "accepted": true,
+    "rejected": [],
+    "itemsCreated": [
+      "item.wood.club"
+    ],
+    "smithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": [],
+    "gatherInterrupted": 0
+  },
+  "smithMidUnitCraft": {
+    "accepted": true,
+    "rejected": [],
+    "itemsCreated": [
+      "item.wood.club"
+    ],
+    "smithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": [],
+    "unitsReleased": 0
+  },
+  "workerCraft": {
+    "accepted": true,
+    "rejected": [],
+    "itemsCreated": [
+      "item.wood.club"
+    ],
+    "smithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "knockedOutCraft": {
+    "triedAtMs": 14300,
+    "accepted": true,
+    "rejected": [],
+    "itemsCreated": [
+      "item.wood.club"
+    ],
+    "smithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "duplicateRecoverable": {
+    "contentAccepted": true,
+    "startPlanks": 2,
+    "endPlanks": 3,
+    "heroSmithingExp": 4,
+    "monitorViolations": 0,
+    "monitorFirst": []
+  },
+  "duplicateTimedInputs": {
+    "contentAccepted": true
+  },
+  "duplicateItemInputs": {
+    "contentAccepted": false,
+    "error": "INVALID_CONTENT"
+  },
+  "effectiveShares": {
+    "legacyEqualRemainders": [
+      1,
+      0
+    ],
+    "legacyPermuted": [
+      2,
+      1,
+      0
+    ],
+    "legacyPermutedReversed": [
+      1,
+      1,
+      1
+    ],
+    "fractional": "absent in this version",
+    "fractionalPermutedEqual": "absent in this version"
+  }
+}

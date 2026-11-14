@@ -14,9 +14,10 @@ import type { ZoneEstimate } from './estimator.ts';
 import { levelForExp, type LegionSimulation } from './legion.ts';
 import { deployedCount, nextRecruitCost, pointsSpent, productiveRecruits, talentPoints, workerZoneAllowed } from './legionCommands.ts';
 import { estimateSquad, heroAloneAsSquad, type SquadFighter } from './squadEstimator.ts';
+import { buildIndustryObservation } from './industryObservation.ts';
 
 export function displayed(e: ZoneEstimate): DisplayedEstimate {
-  return { ttkS: e.ttkS, killsPerHour: e.killsPerHour, expPerHour: e.expPerHour, goldPerHour: e.goldPerHour, deathsPerHour: e.deathsPerHour, killsPerLife: e.killsPerLife, limitingFactor: e.limitingFactor, reliability: e.reliability, reasons: e.reasons };
+  return { ttkS: e.ttkS, killsPerHour: e.killsPerHour, expPerHour: e.expPerHour, goldPerHour: e.goldPerHour, deathsPerHour: e.deathsPerHour, killsPerLife: e.killsPerLife, limitingFactor: e.limitingFactor, reliability: e.reliability, forecast: e.forecast, reasons: e.reasons };
 }
 
 /** The squad as deployed now (knocked-out members included: they recover), for an attentive or passive hero. */
@@ -46,9 +47,11 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
   const s = sim.state;
   const L = s.legion;
   const rules = sim.content.legion;
+  const industry = sim.industryEnabled ? { industry: buildIndustryObservation(sim) } : {};
   if (!L.enabled) {
     return {
       ...base,
+      ...industry,
       legion: { enabled: false, roster: [], slots: 0, productiveRecruits: 0, deployCap: 0, deployed: 0, gold: sim.goldBalance(), nextRecruitCost: null, quest: { kills: L.quest.kills, target: rules.firstRecruitQuestKills, done: L.quest.done }, records: L.records, heroClassMinLevel: rules.heroClassMinLevel, classChangeCost: rules.classChangeCostGold, squadEstimates: {}, capabilityChangedMs: L.capabilityChangedMs, heroAbilityReady: false, heroInCombat: false, workerZoneAvailability: {} },
     };
   }
@@ -86,6 +89,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
   const hero = L.chars[0] as (typeof L.chars)[number];
   return {
     ...base,
+    ...industry,
     legion: {
       enabled: true,
       roster,

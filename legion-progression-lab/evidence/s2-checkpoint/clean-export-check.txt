@@ -1,0 +1,9 @@
+added 51 packages in 9s
+typecheck ok
+      Tests  926 passed (926)
+      Tests  9 passed (9)
+total cases: 356; problems: 0
+oracle summary: 17 groups, 0 failing
+S2-E04-class-switch-abuse: MATCH (2576 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (19260 ms, 15 workers)
+S1.1-E05-drops-quantities: MATCH (13848 ms, 15 workers)

@@ -1,0 +1,22 @@
+# Historical regression with the final S3 code (industry switch off): every S1.1, S2 and S2.1 experiment re-run and compared with its baseline fingerprint
+# S1.1: results/s1.1; S2: the S2.1 audit baseline evidence/s2.1/experiments/audit (S2 fingerprints differ from results/s2 only by the S2.1 I9 check count); S2.1-E02: the v1.3 re-run evidence/s3/estimator-v1.3-rerun; S2.1-E03: results/s2.1
+S1.1-E01-base-attribution: MATCH (37343 ms, 15 workers)
+S1.1-E02-estimator: MATCH (24553 ms, 15 workers)
+S1.1-E03-earlier-zone-audit: MATCH (2386 ms, 15 workers)
+S1.1-E04-survival-policies: MATCH (43003 ms, 15 workers)
+S1.1-E05-drops-quantities: MATCH (13095 ms, 15 workers)
+S1.1-E06-determinism: MATCH (30830 ms, 15 workers)
+S1.1-E07-policy-comparison: MATCH (56777 ms, 15 workers)
+S2-E00-control-a0: MATCH (4576 ms, 15 workers)
+S2-E01-deploy-scaling: MATCH (26432 ms, 15 workers)
+S2-E02-hero-damage-share: MATCH (35621 ms, 15 workers)
+S2-E04-class-switch-abuse: MATCH (2381 ms, 15 workers)
+S2-E05-squad-vs-workers: MATCH (32722 ms, 15 workers)
+S2-E06-assignment-switching: MATCH (21503 ms, 15 workers)
+S2-E07-knockout-sensitivity: MATCH (14427 ms, 15 workers)
+S2-E08-first-recruit-timing: MATCH (64314 ms, 15 workers)
+S2-E09-hindsight-search: MATCH (234711 ms, 15 workers)
+S2-E10-estimator-vs-realisation: MATCH (39109 ms, 15 workers)
+S2.1-E02-worker-estimator: MATCH (22967 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (16250 ms, 15 workers)
+done 11:03:56Z

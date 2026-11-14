@@ -1,0 +1,29 @@
+# S3.1 engineering gates (final code; registered manifests) start 14:49:33Z
+## attribution start 14:49:33Z
+cells different from S3 with the S3 crafter rule restored: 0
+RESULT: every change in results/s3.1/audit/ is caused by the crafting-eligibility rule alone
+## verify start 15:02:33Z
+S3.1-E02-policy-capacity: MATCH (150203 ms, 15 workers)
+S3.1-E03-equipment-strength: MATCH (40024 ms, 15 workers)
+S3.1-E04-candidate-content: MATCH (77323 ms, 15 workers)
+S3.1-E05-investment: MATCH (77856 ms, 15 workers)
+S3.1-E08-long-horizon-payback: MATCH (50358 ms, 15 workers)
+S3.1-E06-hero-power-full-squad: MATCH (61852 ms, 15 workers)
+S3.1-E09-demand-stop-payback: MATCH (73465 ms, 15 workers)
+S3.1-E10-demand-stop-content: MATCH (103301 ms, 15 workers)
+## determinism S3.1-E02 start 15:13:12Z
+S3.1-E02-policy-capacity: determinism rerun identical=true fingerprint=true; second root differs in 2300/2300; KS rejections 0/276
+## reference ledger S3.1-E05 start 15:18:46Z
+S3.1-E05-investment: 800 runs, 109495 ms, 15 workers, ledger reference, main RSS 1254 MB
+semantic fingerprint d66c82532e47727388945167ce9c587645e7849654038762ee4abc6c01971ffc
+invariant monitor: 190514195 checks, 0 violations
+persistent: d66c82532e47727388945167ce9c587645e7849654038762ee4abc6c01971ffc
+reference:  d66c82532e47727388945167ce9c587645e7849654038762ee4abc6c01971ffc
+## historical start 15:20:36Z
+historical: 19 MATCH, 0 MISMATCH
+## mutation S3.1 start 15:39:56Z
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+## mutation S3 (re-run on the corrected code) start 15:40:46Z
+S3 mutation check: 21 planted bugs, 21 detected, 0 not detected; all files restored: True
+## suites start 15:41:53Z
+done 15:42:23Z

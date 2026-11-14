@@ -1,0 +1,1202 @@
+{
+  "E01": {
+    "S3-E02-queue-contention": {
+      "cells": 24,
+      "identical": 24,
+      "monitorCountOnly": 0,
+      "behavioural": [],
+      "fingerprintMatch": true
+    },
+    "S3-E03-shortage-timelines": {
+      "cells": 6,
+      "identical": 6,
+      "monitorCountOnly": 0,
+      "behavioural": [],
+      "fingerprintMatch": true
+    },
+    "S3-E05-tier-step": {
+      "cells": 14,
+      "identical": 14,
+      "monitorCountOnly": 0,
+      "behavioural": [],
+      "fingerprintMatch": true
+    },
+    "S3-E04-gather-vs-fight": {
+      "cells": 12,
+      "identical": 4,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "PR-BAL|POL3-COMBAT",
+        "PR-BAL|POL3-BAL",
+        "PR-BAL|POL3-PROF",
+        "PR-OPT|POL3-COMBAT",
+        "PR-OPT|POL3-BAL",
+        "PR-OPT|POL3-PROF",
+        "PR-BAL|POL3-BAL|no-affinity",
+        "PR-BAL|POL3-PROF|no-affinity"
+      ],
+      "fingerprintMatch": false
+    },
+    "S3-E07-old-material-demand": {
+      "cells": 4,
+      "identical": 0,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "PR-OPT|POL3-COMBAT",
+        "PR-OPT|POL3-EQUIP",
+        "PR-OPT|POL3-PROF",
+        "PR-OPT|POL3-BAL"
+      ],
+      "fingerprintMatch": false
+    },
+    "S3-E08-first-useful-craft": {
+      "cells": 13,
+      "identical": 3,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "PR-NEW|POL3-COMBAT",
+        "PR-NEW|POL3-EQUIP",
+        "PR-NEW|POL3-PROF",
+        "PR-NEW|POL3-BAL",
+        "PR-NEW|POL3-EARLY",
+        "PR-BAL|POL3-COMBAT",
+        "PR-BAL|POL3-EQUIP",
+        "PR-BAL|POL3-PROF",
+        "PR-BAL|POL3-BAL",
+        "PR-BAL|POL3-EARLY"
+      ],
+      "fingerprintMatch": false
+    },
+    "S3-E09-hero-damage": {
+      "cells": 16,
+      "identical": 0,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "a10-p1.6-g100|POL3-BAL|passive",
+        "a10-p1.6-g100|POL3-BAL|attentive",
+        "a10-p1.6-g100-a125|POL3-BAL|passive",
+        "a10-p1.6-g100-a125|POL3-BAL|attentive",
+        "a10-p1.6-g100-a150|POL3-BAL|passive",
+        "a10-p1.6-g100-a150|POL3-BAL|attentive",
+        "a10-p1.6-g100-a200|POL3-BAL|passive",
+        "a10-p1.6-g100-a200|POL3-BAL|attentive",
+        "a10-p1.6-g100-b-mult|POL3-BAL|passive",
+        "a10-p1.6-g100-b-mult|POL3-BAL|attentive",
+        "a10-p1.6-g100-b-cd|POL3-BAL|passive",
+        "a10-p1.6-g100-b-cd|POL3-BAL|attentive",
+        "a10-p1.6-g100-c|POL3-BAL|passive",
+        "a10-p1.6-g100-c|POL3-BAL|attentive",
+        "a10-p1.6-g100-d|POL3-BAL|passive",
+        "a10-p1.6-g100-d|POL3-BAL|attentive"
+      ],
+      "fingerprintMatch": false
+    },
+    "S3-E10-pacing-levers": {
+      "cells": 14,
+      "identical": 0,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "a10-p1.6-g100|POL3-BAL",
+        "pace-xp-a8|POL3-BAL",
+        "pace-xp-a12|POL3-BAL",
+        "pace-xp-p18|POL3-BAL",
+        "pace-z2hp125|POL3-BAL",
+        "pace-z3hp125|POL3-BAL",
+        "pace-gate1-75|POL3-BAL",
+        "pace-gate1-125|POL3-BAL",
+        "pace-gate2-90|POL3-BAL",
+        "pace-gate2-150|POL3-BAL",
+        "pace-equip-x0.5|POL3-BAL",
+        "pace-equip-x2|POL3-BAL",
+        "quest-20|POL3-BAL",
+        "quest-60|POL3-BAL"
+      ],
+      "fingerprintMatch": false
+    },
+    "S3-E12-investment": {
+      "cells": 16,
+      "identical": 9,
+      "monitorCountOnly": 0,
+      "behavioural": [
+        "session|PR-OPT|POL3-COMBAT",
+        "session|PR-OPT|POL3-EQUIP",
+        "session|PR-OPT|POL3-PROF",
+        "session|PR-OPT|POL3-BAL",
+        "session|PR-OPT|POL3-EARLY",
+        "budget|PR-NEW|POL3-PROF",
+        "budget|PR-NEW|POL3-EARLY"
+      ],
+      "fingerprintMatch": false
+    }
+  },
+  "E07": [
+    [
+      "control",
+      "\"control\"",
+      "18066",
+      "0"
+    ],
+    [
+      "s3.copperOffenceScale1.25",
+      "{\"s3.copperOffenceScale\":1.25}",
+      "18066",
+      "0"
+    ],
+    [
+      "s3.copperOffenceScale1.5s3.copperDefence",
+      "{\"s3.copperOffenceScale\":1.5,\"s3.copperDefenceScale\":1.5}",
+      "18066",
+      "0"
+    ],
+    [
+      "s3.equipCostScale1.5",
+      "{\"s3.equipCostScale\":1.5}",
+      "12556",
+      "0"
+    ],
+    [
+      "s3.nodeYieldScale0.5",
+      "{\"s3.nodeYieldScale\":0.5}",
+      "18066",
+      "0"
+    ],
+    [
+      "s3.oldMaterialRecipeson",
+      "{\"s3.oldMaterialRecipes\":\"on\"}",
+      "17748",
+      "0"
+    ],
+    [
+      "s3.unitTimeScale0.75",
+      "{\"s3.unitTimeScale\":0.75}",
+      "18066",
+      "0"
+    ],
+    [
+      "s3.weaponPercenton",
+      "{\"s3.weaponPercent\":\"on\"}",
+      "18066",
+      "0"
+    ]
+  ],
+  "E02": {
+    "hypotheses": [
+      {
+        "id": "H-S3.1-01",
+        "pass": 13,
+        "miss": 7,
+        "notReached": 0,
+        "results": [
+          {
+            "cell": "PR-NEW|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-NEW|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-PROF",
+            "observed": 6.285,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-NEW|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-NEW|POL3-DEMAND",
+            "observed": 6.36,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-PROF",
+            "observed": 6.285,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-DEMAND",
+            "observed": 6.36,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-OPT|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-OPT|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-PROF",
+            "observed": 6.285,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-OPT|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-OPT|POL3-DEMAND",
+            "observed": 6.36,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-DEMAND|no-affinity",
+            "observed": 6.36,
+            "outcome": "pass"
+          },
+          {
+            "cell": "PR-BAL|POL3-BAL|no-affinity",
+            "observed": 10.805,
+            "outcome": "miss"
+          }
+        ]
+      },
+      {
+        "id": "H-S3.1-02",
+        "pass": 0,
+        "miss": 20,
+        "notReached": 0,
+        "results": [
+          {
+            "cell": "PR-NEW|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-PROF",
+            "observed": 6.471166666666667,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-NEW|POL3-DEMAND",
+            "observed": 6.5616666666666665,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-PROF",
+            "observed": 6.471166666666667,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-DEMAND",
+            "observed": 6.5616666666666665,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-COMBAT",
+            "observed": 9.483333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-EQUIP",
+            "observed": 2.555,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-PROF",
+            "observed": 6.471166666666667,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-BAL",
+            "observed": 10.803333333333333,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-EARLY",
+            "observed": 5.741666666666666,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-OPT|POL3-DEMAND",
+            "observed": 6.5616666666666665,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-DEMAND|no-affinity",
+            "observed": 6.5616666666666665,
+            "outcome": "miss"
+          },
+          {
+            "cell": "PR-BAL|POL3-BAL|no-affinity",
+            "observed": 10.805,
+            "outcome": "miss"
+          }
+        ]
+      }
+    ]
+  },
+  "E03": {
+    "Z2-L4": {
+      "informative": false,
+      "woodFullTtkP50": 1.3,
+      "enhCut": 0,
+      "tierCut": 0.23076923076923084,
+      "h04": true,
+      "variants": [
+        {
+          "v": "control",
+          "ttkCut": 0.23076923076923084,
+          "dpsGain": 0.18331921784832472,
+          "pass": null
+        },
+        {
+          "v": "cu-off125",
+          "ttkCut": 0.23076923076923084,
+          "dpsGain": 0.1900430509889035,
+          "pass": null
+        },
+        {
+          "v": "cu-off150",
+          "ttkCut": 0.23076923076923084,
+          "dpsGain": 0.25685518901601645,
+          "pass": null
+        },
+        {
+          "v": "cu-offdef",
+          "ttkCut": 0.23076923076923084,
+          "dpsGain": 0.25685518901601645,
+          "pass": null
+        },
+        {
+          "v": "wpn-pct",
+          "ttkCut": 0.23076923076923084,
+          "dpsGain": 0.0548950963946222,
+          "pass": null
+        }
+      ]
+    },
+    "Z3-L7": {
+      "informative": true,
+      "woodFullTtkP50": 3.5,
+      "enhCut": 0,
+      "tierCut": 0.2571428571428571,
+      "h04": true,
+      "variants": [
+        {
+          "v": "control",
+          "ttkCut": 0.2571428571428571,
+          "dpsGain": 0.2570685191586799,
+          "pass": true
+        },
+        {
+          "v": "cu-off125",
+          "ttkCut": 0.3142857142857143,
+          "dpsGain": 0.29182792457608375,
+          "pass": true
+        },
+        {
+          "v": "cu-off150",
+          "ttkCut": 0.3142857142857143,
+          "dpsGain": 0.36052622207385987,
+          "pass": true
+        },
+        {
+          "v": "cu-offdef",
+          "ttkCut": 0.3142857142857143,
+          "dpsGain": 0.37577676281768957,
+          "pass": true
+        },
+        {
+          "v": "wpn-pct",
+          "ttkCut": 0.2571428571428571,
+          "dpsGain": 0.2686664985591556,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "E04": [
+    {
+      "cell": "control|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 250389.36,
+      "expTotal": 66213.4,
+      "crafted": 48.84,
+      "craftedCopper": 23.84,
+      "firstCopperCombatEquippedMin": 10.208094666666664,
+      "gearLifetimeMeanMin": 39.904806989037915,
+      "planksAfterCopper": 31.28,
+      "gelAfterCopper": 10.44,
+      "equipmentValue": 0.5715713505085245,
+      "smithUtilisation": 0.46839096005291947,
+      "excessGatheredUnits": 337.4
+    },
+    {
+      "cell": "cu-off150|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 246771.84,
+      "expTotal": 64940.16,
+      "crafted": 48.62,
+      "craftedCopper": 23.7,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.491417915469675,
+      "planksAfterCopper": 17.86,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.907058373730699,
+      "smithUtilisation": 0.366544213018838,
+      "excessGatheredUnits": 6.16
+    },
+    {
+      "cell": "cu-offdef|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 239888.4,
+      "expTotal": 65348.68,
+      "crafted": 48.54,
+      "craftedCopper": 23.66,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.25967710612422,
+      "planksAfterCopper": 17.8,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.8471870880857176,
+      "smithUtilisation": 0.36199584146852226,
+      "excessGatheredUnits": 185.18
+    },
+    {
+      "cell": "wpn-pct|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 256145.92,
+      "expTotal": 67221.28,
+      "crafted": 48.84,
+      "craftedCopper": 23.84,
+      "firstCopperCombatEquippedMin": 10.33839333333333,
+      "gearLifetimeMeanMin": 39.89665435376408,
+      "planksAfterCopper": 31.74,
+      "gelAfterCopper": 10.56,
+      "equipmentValue": 2.467178705147868,
+      "smithUtilisation": 0.46501291395238503,
+      "excessGatheredUnits": 204.56
+    },
+    {
+      "cell": "oldmat|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 244504.52,
+      "expTotal": 63567.88,
+      "crafted": 48.98,
+      "craftedCopper": 23.98,
+      "firstCopperCombatEquippedMin": 10.177407999999998,
+      "gearLifetimeMeanMin": 39.646422226654856,
+      "planksAfterCopper": 47.24,
+      "gelAfterCopper": 18.44,
+      "equipmentValue": 0.577292934797066,
+      "smithUtilisation": 0.4701194335233306,
+      "excessGatheredUnits": 75.08
+    },
+    {
+      "cell": "control|PR-OPT|POL3-BAL",
+      "legionExpTotal": 97898.72,
+      "expTotal": 49095.36,
+      "crafted": 8,
+      "craftedCopper": 2,
+      "firstCopperCombatEquippedMin": 12.180900000000003,
+      "gearLifetimeMeanMin": 52.41556300000002,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "equipmentValue": 0.3305480963383917,
+      "smithUtilisation": 0.016817828477973508,
+      "excessGatheredUnits": 3937.14
+    },
+    {
+      "cell": "cu-off150|PR-OPT|POL3-BAL",
+      "legionExpTotal": 109937.12,
+      "expTotal": 55053.84,
+      "crafted": 8,
+      "craftedCopper": 2,
+      "firstCopperCombatEquippedMin": 12.180900000000003,
+      "gearLifetimeMeanMin": 52.41556300000002,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "equipmentValue": 0.4885332892148913,
+      "smithUtilisation": 0.01682643510925011,
+      "excessGatheredUnits": 3935.48
+    },
+    {
+      "cell": "cu-offdef|PR-OPT|POL3-BAL",
+      "legionExpTotal": 109937.12,
+      "expTotal": 55053.84,
+      "crafted": 8,
+      "craftedCopper": 2,
+      "firstCopperCombatEquippedMin": 12.180900000000003,
+      "gearLifetimeMeanMin": 52.41556300000002,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "equipmentValue": 0.4885332892148913,
+      "smithUtilisation": 0.01682643510925011,
+      "excessGatheredUnits": 3935.48
+    },
+    {
+      "cell": "wpn-pct|PR-OPT|POL3-BAL",
+      "legionExpTotal": 129634.16,
+      "expTotal": 64897.08,
+      "crafted": 8,
+      "craftedCopper": 2,
+      "firstCopperCombatEquippedMin": 12.182866666666664,
+      "gearLifetimeMeanMin": 52.41461266666666,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "equipmentValue": 1.4287449771049423,
+      "smithUtilisation": 0.016797992000261826,
+      "excessGatheredUnits": 3935.86
+    },
+    {
+      "cell": "oldmat|PR-OPT|POL3-BAL",
+      "legionExpTotal": 97904,
+      "expTotal": 49098,
+      "crafted": 8,
+      "craftedCopper": 2,
+      "firstCopperCombatEquippedMin": 12.175621666666668,
+      "gearLifetimeMeanMin": 52.41556300000002,
+      "planksAfterCopper": 1,
+      "gelAfterCopper": 0,
+      "equipmentValue": 0.3305480963383917,
+      "smithUtilisation": 0.01767652269291636,
+      "excessGatheredUnits": 3933.1
+    },
+    {
+      "cell": "yield050|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 175931.44,
+      "expTotal": 62014.96,
+      "crafted": 43.36,
+      "craftedCopper": 18.36,
+      "firstCopperCombatEquippedMin": 12.939466666666672,
+      "gearLifetimeMeanMin": 44.021210011855885,
+      "planksAfterCopper": 30.28,
+      "gelAfterCopper": 10,
+      "equipmentValue": 0.43207484988220446,
+      "smithUtilisation": 0.2916697257216738,
+      "excessGatheredUnits": 1509.2
+    },
+    {
+      "cell": "smith075|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 195187.56,
+      "expTotal": 65712.52,
+      "crafted": 45.26,
+      "craftedCopper": 20.26,
+      "firstCopperCombatEquippedMin": 10.17036266666667,
+      "gearLifetimeMeanMin": 43.2473470271733,
+      "planksAfterCopper": 31.18,
+      "gelAfterCopper": 9.76,
+      "equipmentValue": 0.4484926503160359,
+      "smithUtilisation": 0.33632839115142027,
+      "excessGatheredUnits": 3200.84
+    },
+    {
+      "cell": "cost150|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 219343.76,
+      "expTotal": 57242.16,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 12.014673333333327,
+      "gearLifetimeMeanMin": 38.89734572916665,
+      "planksAfterCopper": 47.94,
+      "gelAfterCopper": 14.46,
+      "equipmentValue": 0.6082101907171176,
+      "smithUtilisation": 0.4938990991769882,
+      "excessGatheredUnits": 13.26
+    }
+  ],
+  "E10reproducesE04": "8/8",
+  "E10": [
+    {
+      "cell": "control|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 250389.36,
+      "expTotal": 66213.4,
+      "crafted": 48.84,
+      "craftedCopper": 23.84,
+      "firstCopperCombatEquippedMin": 10.208094666666664,
+      "gearLifetimeMeanMin": 39.904806989037915,
+      "planksAfterCopper": 31.28,
+      "gelAfterCopper": 10.44,
+      "equipmentValue": 0.5715713505085245,
+      "smithUtilisation": 0.46839096005291947,
+      "excessGatheredUnits": 337.4
+    },
+    {
+      "cell": "cu-off150|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 246771.84,
+      "expTotal": 64940.16,
+      "crafted": 48.62,
+      "craftedCopper": 23.7,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.491417915469675,
+      "planksAfterCopper": 17.86,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.907058373730699,
+      "smithUtilisation": 0.366544213018838,
+      "excessGatheredUnits": 6.16
+    },
+    {
+      "cell": "cu-offdef|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 239888.4,
+      "expTotal": 65348.68,
+      "crafted": 48.54,
+      "craftedCopper": 23.66,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.25967710612422,
+      "planksAfterCopper": 17.8,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.8471870880857176,
+      "smithUtilisation": 0.36199584146852226,
+      "excessGatheredUnits": 185.18
+    },
+    {
+      "cell": "wpn-pct|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 256145.92,
+      "expTotal": 67221.28,
+      "crafted": 48.84,
+      "craftedCopper": 23.84,
+      "firstCopperCombatEquippedMin": 10.33839333333333,
+      "gearLifetimeMeanMin": 39.89665435376408,
+      "planksAfterCopper": 31.74,
+      "gelAfterCopper": 10.56,
+      "equipmentValue": 2.467178705147868,
+      "smithUtilisation": 0.46501291395238503,
+      "excessGatheredUnits": 204.56
+    },
+    {
+      "cell": "oldmat|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 244504.52,
+      "expTotal": 63567.88,
+      "crafted": 48.98,
+      "craftedCopper": 23.98,
+      "firstCopperCombatEquippedMin": 10.177407999999998,
+      "gearLifetimeMeanMin": 39.646422226654856,
+      "planksAfterCopper": 47.24,
+      "gelAfterCopper": 18.44,
+      "equipmentValue": 0.577292934797066,
+      "smithUtilisation": 0.4701194335233306,
+      "excessGatheredUnits": 75.08
+    },
+    {
+      "cell": "yield050|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 175931.44,
+      "expTotal": 62014.96,
+      "crafted": 43.36,
+      "craftedCopper": 18.36,
+      "firstCopperCombatEquippedMin": 12.939466666666672,
+      "gearLifetimeMeanMin": 44.021210011855885,
+      "planksAfterCopper": 30.28,
+      "gelAfterCopper": 10,
+      "equipmentValue": 0.43207484988220446,
+      "smithUtilisation": 0.2916697257216738,
+      "excessGatheredUnits": 1509.2
+    },
+    {
+      "cell": "smith075|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 195187.56,
+      "expTotal": 65712.52,
+      "crafted": 45.26,
+      "craftedCopper": 20.26,
+      "firstCopperCombatEquippedMin": 10.17036266666667,
+      "gearLifetimeMeanMin": 43.2473470271733,
+      "planksAfterCopper": 31.18,
+      "gelAfterCopper": 9.76,
+      "equipmentValue": 0.4484926503160359,
+      "smithUtilisation": 0.33632839115142027,
+      "excessGatheredUnits": 3200.84
+    },
+    {
+      "cell": "cost150|PR-OPT|POL3-DEMAND",
+      "legionExpTotal": 219343.76,
+      "expTotal": 57242.16,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 12.014673333333327,
+      "gearLifetimeMeanMin": 38.89734572916665,
+      "planksAfterCopper": 47.94,
+      "gelAfterCopper": 14.46,
+      "equipmentValue": 0.6082101907171176,
+      "smithUtilisation": 0.4938990991769882,
+      "excessGatheredUnits": 13.26
+    },
+    {
+      "cell": "control|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 256796.84,
+      "expTotal": 66287.92,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 10.208094666666664,
+      "gearLifetimeMeanMin": 39.76271989583334,
+      "planksAfterCopper": 31.28,
+      "gelAfterCopper": 10.44,
+      "equipmentValue": 0.5859615490376672,
+      "smithUtilisation": 0.46783674510347434,
+      "excessGatheredUnits": 3.74
+    },
+    {
+      "cell": "cu-off150|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 248297.28,
+      "expTotal": 65016.68,
+      "crafted": 48.72,
+      "craftedCopper": 23.8,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.404298167892165,
+      "planksAfterCopper": 17.86,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.9115170203472401,
+      "smithUtilisation": 0.3738181227429634,
+      "excessGatheredUnits": 3.18
+    },
+    {
+      "cell": "cu-offdef|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 250405.8,
+      "expTotal": 65790.76,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 14.635500000000002,
+      "gearLifetimeMeanMin": 38.0492883611111,
+      "planksAfterCopper": 18.08,
+      "gelAfterCopper": 2.92,
+      "equipmentValue": 0.8812026313990564,
+      "smithUtilisation": 0.3942756851468022,
+      "excessGatheredUnits": 3.7
+    },
+    {
+      "cell": "wpn-pct|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 259555.8,
+      "expTotal": 67134.24,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 10.33839333333333,
+      "gearLifetimeMeanMin": 39.752974854166666,
+      "planksAfterCopper": 31.74,
+      "gelAfterCopper": 10.56,
+      "equipmentValue": 2.5030841611339487,
+      "smithUtilisation": 0.4637643954874299,
+      "excessGatheredUnits": 3.22
+    },
+    {
+      "cell": "oldmat|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 241846.24,
+      "expTotal": 62560.44,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 10.177407999999998,
+      "gearLifetimeMeanMin": 39.60664533333333,
+      "planksAfterCopper": 47.28,
+      "gelAfterCopper": 18.44,
+      "equipmentValue": 0.5854895399207896,
+      "smithUtilisation": 0.4628766649221253,
+      "excessGatheredUnits": 4.48
+    },
+    {
+      "cell": "yield050|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 241323.44,
+      "expTotal": 63679.56,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 12.939466666666672,
+      "gearLifetimeMeanMin": 38.74297731944443,
+      "planksAfterCopper": 30.28,
+      "gelAfterCopper": 10,
+      "equipmentValue": 0.5784805062466961,
+      "smithUtilisation": 0.3345856679381178,
+      "excessGatheredUnits": 4.34
+    },
+    {
+      "cell": "smith075|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 258290.52,
+      "expTotal": 66620.24,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 10.17036266666667,
+      "gearLifetimeMeanMin": 39.852540791666655,
+      "planksAfterCopper": 31.18,
+      "gelAfterCopper": 9.76,
+      "equipmentValue": 0.5861589184502889,
+      "smithUtilisation": 0.3514367973533077,
+      "excessGatheredUnits": 3.4
+    },
+    {
+      "cell": "cost150|PR-OPT|POL3-DEMAND2",
+      "legionExpTotal": 218913.08,
+      "expTotal": 57122,
+      "crafted": 49,
+      "craftedCopper": 24,
+      "firstCopperCombatEquippedMin": 12.014673333333327,
+      "gearLifetimeMeanMin": 38.89468384027777,
+      "planksAfterCopper": 47.94,
+      "gelAfterCopper": 14.46,
+      "equipmentValue": 0.6076647138894389,
+      "smithUtilisation": 0.5095423174703073,
+      "excessGatheredUnits": 10.82
+    }
+  ],
+  "S3.1-E05-investment": {
+    "fresh": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "midgame": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    }
+  },
+  "S3.1-E08-long-horizon-payback": {
+    "fresh": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "midgame": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    }
+  },
+  "S3.1-E09-demand-stop-payback": {
+    "fresh": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "fresh|POL3-DEMAND2": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "fresh|late": {
+      "POL3-CONQ": 3520.0000000000005,
+      "POL3-DEMAND": 3379.2,
+      "POL3-DEMAND2": 3520
+    },
+    "midgame": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "midgame|POL3-DEMAND2": {
+      "legionExpPayback": null,
+      "heroExpPayback": null
+    },
+    "midgame|late": {
+      "POL3-CONQ": 3519.9999999999995,
+      "POL3-DEMAND": 3520,
+      "POL3-DEMAND2": 3520
+    },
+    "reproducesE08": "4/4"
+  },
+  "E06": [
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-archer|passive",
+      "raw": 0.2286615676853491,
+      "effective": 0.23894553189859316
+    },
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-archer|attentive",
+      "raw": 0.3037307694925627,
+      "effective": 0.3234532495471402
+    },
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-warrior|passive",
+      "raw": 0.1402874301566148,
+      "effective": 0.14446888757178666
+    },
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-warrior|attentive",
+      "raw": 0.18850225404234902,
+      "effective": 0.19089578120740947
+    },
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-mage|passive",
+      "raw": 0.16442735542756132,
+      "effective": 0.16694964694481088
+    },
+    {
+      "cell": "a10-p1.6-g100|Z3-L10|hero-mage|attentive",
+      "raw": 0.26498415849811274,
+      "effective": 0.2518310573355458
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-archer|passive",
+      "raw": 0.2593793361748071,
+      "effective": 0.265449840181624
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-archer|attentive",
+      "raw": 0.34237819968517835,
+      "effective": 0.3562884389787182
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-warrior|passive",
+      "raw": 0.17021598425489992,
+      "effective": 0.17156025494732005
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-warrior|attentive",
+      "raw": 0.22233503235696286,
+      "effective": 0.2218635099212996
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-mage|passive",
+      "raw": 0.17638207025384567,
+      "effective": 0.19896781539522201
+    },
+    {
+      "cell": "s31-a125|Z3-L10|hero-mage|attentive",
+      "raw": 0.29692834821132613,
+      "effective": 0.28525717990318983
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-archer|passive",
+      "raw": 0.2865767762468168,
+      "effective": 0.3016014323394672
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-archer|attentive",
+      "raw": 0.3806596015615034,
+      "effective": 0.39390846137858426
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-warrior|passive",
+      "raw": 0.19350453029371706,
+      "effective": 0.19228145717480719
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-warrior|attentive",
+      "raw": 0.25034020911352345,
+      "effective": 0.24701712809142254
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-mage|passive",
+      "raw": 0.20058377763551888,
+      "effective": 0.2284642898994098
+    },
+    {
+      "cell": "s31-a150|Z3-L10|hero-mage|attentive",
+      "raw": 0.33081840274388513,
+      "effective": 0.31632175014449954
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-archer|passive",
+      "raw": 0.34159786972907213,
+      "effective": 0.35321336884202836
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-archer|attentive",
+      "raw": 0.44119851086773454,
+      "effective": 0.4410397351612834
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-warrior|passive",
+      "raw": 0.23346949943308137,
+      "effective": 0.2283472885183279
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-warrior|attentive",
+      "raw": 0.2975624821194509,
+      "effective": 0.2871091193001747
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-mage|passive",
+      "raw": 0.25159261320198195,
+      "effective": 0.29804363632619013
+    },
+    {
+      "cell": "s31-a200|Z3-L10|hero-mage|attentive",
+      "raw": 0.39530380608391247,
+      "effective": 0.3781320435686199
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-archer|passive",
+      "raw": 0.2593793361748071,
+      "effective": 0.265449840181624
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-archer|attentive",
+      "raw": 0.3768134452383433,
+      "effective": 0.3653479825120812
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-warrior|passive",
+      "raw": 0.17021598425489992,
+      "effective": 0.17156025494732005
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-warrior|attentive",
+      "raw": 0.24791707989414288,
+      "effective": 0.26790084115453344
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-mage|passive",
+      "raw": 0.17638207025384567,
+      "effective": 0.19896781539522201
+    },
+    {
+      "cell": "s31-c|Z3-L10|hero-mage|attentive",
+      "raw": 0.3366891295218338,
+      "effective": 0.30158714418826615
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL3-CONQ|passive",
+      "raw": 0.19376916664461177,
+      "effective": 0.21869036908923017
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL3-CONQ|attentive",
+      "raw": 0.276850465777891,
+      "effective": 0.28753905711261774
+    },
+    {
+      "cell": "s31-a125|PR-BAL|POL3-CONQ|passive",
+      "raw": 0.2293941958163234,
+      "effective": 0.25597209803035365
+    },
+    {
+      "cell": "s31-a125|PR-BAL|POL3-CONQ|attentive",
+      "raw": 0.3223965939475997,
+      "effective": 0.3277345432286099
+    },
+    {
+      "cell": "s31-a150|PR-BAL|POL3-CONQ|passive",
+      "raw": 0.2620454627502843,
+      "effective": 0.2893387469581539
+    },
+    {
+      "cell": "s31-a150|PR-BAL|POL3-CONQ|attentive",
+      "raw": 0.36272847239520495,
+      "effective": 0.36139854089428325
+    },
+    {
+      "cell": "s31-a200|PR-BAL|POL3-CONQ|passive",
+      "raw": 0.3190471054625815,
+      "effective": 0.3471782269511431
+    },
+    {
+      "cell": "s31-a200|PR-BAL|POL3-CONQ|attentive",
+      "raw": 0.4302223791261449,
+      "effective": 0.42169795154644574
+    },
+    {
+      "cell": "s31-c|PR-BAL|POL3-CONQ|passive",
+      "raw": 0.2293941958163234,
+      "effective": 0.25597209803035365
+    },
+    {
+      "cell": "s31-c|PR-BAL|POL3-CONQ|attentive",
+      "raw": 0.36806762099228263,
+      "effective": 0.3566108016643153
+    }
+  ],
+  "monitor": [
+    [
+      "S3.1-E02-policy-capacity",
+      "2300",
+      "432548841",
+      "0",
+      "23/23 cells"
+    ],
+    [
+      "S3.1-E03-equipment-strength",
+      "4200",
+      "37128066",
+      "0",
+      "42/42 cells"
+    ],
+    [
+      "S3.1-E04-candidate-content",
+      "650",
+      "247419611",
+      "0",
+      "13/13 cells"
+    ],
+    [
+      "S3.1-E05-investment",
+      "800",
+      "190514195",
+      "0",
+      "8/8 cells"
+    ],
+    [
+      "S3.1-E08-long-horizon-payback",
+      "200",
+      "81682775",
+      "0",
+      "4/4 cells"
+    ],
+    [
+      "S3.1-E06-hero-power-full-squad",
+      "2000",
+      "76410828",
+      "0",
+      "40/40 cells"
+    ],
+    [
+      "S3.1-E09-demand-stop-payback",
+      "300",
+      "127187358",
+      "0",
+      "6/6 cells"
+    ],
+    [
+      "S3.1-E10-demand-stop-content",
+      "800",
+      "319533521",
+      "0",
+      "16/16 cells"
+    ]
+  ]
+}

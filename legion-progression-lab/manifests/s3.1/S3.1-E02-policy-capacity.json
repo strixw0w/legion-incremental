@@ -1,0 +1,358 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E02-policy-capacity",
+  "question": "On the original content, how do the fixed-role S3 strategies and the demand-aware POL3-DEMAND compare in progression, gathering and smithing capacity, utilisation, realised demand, stockpiles, excess and shortage, and when do the first-craft milestones arrive? Does the affinity matter (no-affinity control)?",
+  "design": "Campaigns at PR-NEW (45 min), PR-BAL (60) and PR-OPT (90) for the six S3 strategies and POL3-DEMAND; POL3-DEMAND and POL3-BAL also with the affinity at 0 (PR-BAL). 100 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s31-noaff",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.affinityBp": 0
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "PR-NEW|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-COMBAT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-COMBAT",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-EQUIP",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-EARLY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-EARLY",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-NEW|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-COMBAT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-COMBAT",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-EQUIP",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-EARLY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-EARLY",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-COMBAT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-COMBAT",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-EQUIP",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-EARLY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-EARLY",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-DEMAND|no-affinity",
+      "kind": "campaign",
+      "variant": "s31-noaff",
+      "profile": "PR-BAL",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "PR-BAL|POL3-BAL|no-affinity",
+      "kind": "campaign",
+      "variant": "s31-noaff",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e02",
+    "replicates": 100
+  },
+  "metrics": [
+    "firstCraftAnyMin",
+    "firstMeaningfulUpgradeMin",
+    "firstCopperCombatEquippedMin",
+    "expTotal",
+    "legionExpTotal",
+    "gatherUtilisation",
+    "smithUtilisation",
+    "excessGatheredUnits",
+    "reassignableGatherMin",
+    "smithIdleNoDemandMin",
+    "smithIdleInputShortageMin",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-01",
+      "statement": "First simple crafted item (S3.1-R04) at 5-10 active minutes (new candidate target, owner S3.1 section 8)",
+      "source": "owner S3.1 section 8",
+      "metric": "firstCraftAnyMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        5,
+        10
+      ],
+      "unit": "active min",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "PR-NEW|POL3-COMBAT",
+          "PR-NEW|POL3-EQUIP",
+          "PR-NEW|POL3-PROF",
+          "PR-NEW|POL3-BAL",
+          "PR-NEW|POL3-EARLY",
+          "PR-NEW|POL3-DEMAND",
+          "PR-BAL|POL3-COMBAT",
+          "PR-BAL|POL3-EQUIP",
+          "PR-BAL|POL3-PROF",
+          "PR-BAL|POL3-BAL",
+          "PR-BAL|POL3-EARLY",
+          "PR-BAL|POL3-DEMAND",
+          "PR-OPT|POL3-COMBAT",
+          "PR-OPT|POL3-EQUIP",
+          "PR-OPT|POL3-PROF",
+          "PR-OPT|POL3-BAL",
+          "PR-OPT|POL3-EARLY",
+          "PR-OPT|POL3-DEMAND",
+          "PR-BAL|POL3-DEMAND|no-affinity",
+          "PR-BAL|POL3-BAL|no-affinity"
+        ]
+      }
+    },
+    {
+      "id": "H-S3.1-02",
+      "statement": "First meaningful combat equipment upgrade (S3.1-R06) at 15-25 active minutes (new candidate target)",
+      "source": "owner S3.1 section 8; R04.20",
+      "metric": "firstMeaningfulUpgradeMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        15,
+        25
+      ],
+      "unit": "active min",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "PR-NEW|POL3-COMBAT",
+          "PR-NEW|POL3-EQUIP",
+          "PR-NEW|POL3-PROF",
+          "PR-NEW|POL3-BAL",
+          "PR-NEW|POL3-EARLY",
+          "PR-NEW|POL3-DEMAND",
+          "PR-BAL|POL3-COMBAT",
+          "PR-BAL|POL3-EQUIP",
+          "PR-BAL|POL3-PROF",
+          "PR-BAL|POL3-BAL",
+          "PR-BAL|POL3-EARLY",
+          "PR-BAL|POL3-DEMAND",
+          "PR-OPT|POL3-COMBAT",
+          "PR-OPT|POL3-EQUIP",
+          "PR-OPT|POL3-PROF",
+          "PR-OPT|POL3-BAL",
+          "PR-OPT|POL3-EARLY",
+          "PR-OPT|POL3-DEMAND",
+          "PR-BAL|POL3-DEMAND|no-affinity",
+          "PR-BAL|POL3-BAL|no-affinity"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "The S3-E08 results and its missed hypothesis are preserved unchanged; these are new candidate metrics and targets, not a retroactive change.",
+    "Capacity and utilisation follow S3.1-R08 to R10."
+  ]
+}

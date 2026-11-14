@@ -7,6 +7,7 @@ import type { RngState } from '../core/rng/xoshiro128ss.ts';
 import type { LegionCreditRegistry } from '../engine/legionCredit.ts';
 import type { ClassId, HeldClass, TalentAllocation } from './legionContent.ts';
 import type { Command, DisplayedEstimate, Encounter, Observation, SimState } from './types.ts';
+import type { IndustryCommand, IndustryObservation, IndustryState } from './industryTypes.ts';
 
 export type CharacterId = string;
 export type CharacterKind = 'hero' | 'ordinary' | 'rare';
@@ -16,7 +17,11 @@ export type Assignment =
   | { readonly kind: 'squad' }
   | { readonly kind: 'idle' }
   | { readonly kind: 'reserve' }
-  | { readonly kind: 'worker'; readonly zoneOrder: number };
+  | { readonly kind: 'worker'; readonly zoneOrder: number }
+  /** S3: gathering at a node (Mining or Woodcutting, set by the node). */
+  | { readonly kind: 'gathering'; readonly nodeId: string }
+  /** S3: production smith (recruits only). */
+  | { readonly kind: 'smithing' };
 
 export interface WorkerFight {
   readonly id: string;
@@ -94,18 +99,21 @@ export interface LegionEncounter extends Encounter {
 export interface LegionSimState extends Omit<SimState, 'encounter'> {
   readonly encounter: LegionEncounter | null;
   readonly legion: LegionState;
+  /** S3: present only when the engine's industry switch is on. */
+  readonly industry?: IndustryState;
 }
 
-export type AssignTarget = 'squad' | 'idle' | 'reserve' | 'worker';
+export type AssignTarget = 'squad' | 'idle' | 'reserve' | 'worker' | 'gathering' | 'smithing';
 
 export type LegionCommand =
   | Command
   | { readonly type: 'Recruit' }
-  | { readonly type: 'Assign'; readonly characterId: CharacterId; readonly to: AssignTarget; readonly zoneId?: string }
+  | { readonly type: 'Assign'; readonly characterId: CharacterId; readonly to: AssignTarget; readonly zoneId?: string; readonly nodeId?: string }
   | { readonly type: 'SetClass'; readonly characterId: CharacterId; readonly cls: ClassId }
   | { readonly type: 'AllocateTalent'; readonly characterId: CharacterId; readonly talentId: string }
   | { readonly type: 'Respec'; readonly characterId: CharacterId }
-  | { readonly type: 'UseAbility' };
+  | { readonly type: 'UseAbility' }
+  | IndustryCommand;
 
 export const LEGION_REASON_CODES = [
   'LEGION_DISABLED',
@@ -143,6 +151,8 @@ export interface SquadEstimate {
   readonly fightsPerKnockout: number | null;
   readonly heroIsThreatTarget: boolean;
   readonly reliability: 'reliable' | 'approximate' | 'unsafe' | 'unreachable' | 'unresolved';
+  /** v1.3: "unavailable" when no forecast exists (unresolved); the rate fields are then placeholders. */
+  readonly forecast: 'available' | 'unavailable';
   readonly reasons: readonly string[];
   readonly assumptions: readonly string[];
 }
@@ -191,6 +201,8 @@ export interface LegionObservation extends Observation {
     /** S2.1 (D-01): per accessible zone, whether a worker may be assigned there now; previews of the others are shown but unavailable. */
     readonly workerZoneAvailability: Readonly<Record<string, 'available' | 'not-visited'>>;
   };
+  /** S3: what the town menus show; absent when the industry switch is off. */
+  readonly industry?: IndustryObservation;
 }
 
 export interface LegionPolicy {

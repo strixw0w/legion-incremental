@@ -1,0 +1,1241 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E03-equipment-strength",
+  "question": "In an informative combat range, how much do weapon-only, armour-only, full sets, enhancement levels and the Wood-to-Copper step change damage per second, TTK, kills per hour, survival and knockouts; and how do the Copper and percentage-weapon candidates compare with the control?",
+  "design": "Matched two-character squads (Archer hero and a Warrior at the same level, levels frozen; labelled diagnostic starts) farming with the realistic fixed-zone policy for 20 min in zone 2 at level 4 and zone 3 at level 7; gear configurations on both characters; candidate variants on the configurations they change. 100 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s31-cu-off125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.25
+      }
+    },
+    {
+      "id": "s31-cu-off150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-cu-offdef",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5,
+        "s3.copperDefenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-wpn-pct",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.weaponPercent": "on"
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "control|Z2-L4|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-weapon",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-armour",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-full",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-full+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-full+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 2,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|wood-full+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 5,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|copper-weapon",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|copper-armour",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|copper-full",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z2-L4|copper-full+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off125|Z2-L4|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-cu-off125",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off125|Z2-L4|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-off125",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off150|Z2-L4|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-cu-off150",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off150|Z2-L4|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-off150",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-offdef|Z2-L4|copper-armour",
+      "kind": "matched",
+      "variant": "s31-cu-offdef",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-offdef|Z2-L4|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-offdef",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z2-L4|wood-weapon",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z2-L4|wood-full",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z2-L4|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z2-L4|copper-full",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 4,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 4,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-weapon",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-armour",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-full",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-full+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-full+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 2,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|wood-full+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 5,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|copper-weapon",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|copper-armour",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|copper-full",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "control|Z3-L7|copper-full+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off125|Z3-L7|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-cu-off125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off125|Z3-L7|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-off125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off150|Z3-L7|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-cu-off150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-off150|Z3-L7|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-off150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-offdef|Z3-L7|copper-armour",
+      "kind": "matched",
+      "variant": "s31-cu-offdef",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "armour"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "armour"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "cu-offdef|Z3-L7|copper-full",
+      "kind": "matched",
+      "variant": "s31-cu-offdef",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z3-L7|wood-weapon",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z3-L7|wood-full",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z3-L7|copper-weapon",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "weapon"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "weapon"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "wpn-pct|Z3-L7|copper-full",
+      "kind": "matched",
+      "variant": "s31-wpn-pct",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 7,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 7,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e03",
+    "replicates": 100
+  },
+  "metrics": [
+    "medianTtkS",
+    "killsPerHour",
+    "squadEffectiveDps",
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "recoveryShare",
+    "heroEffectiveShareFrac",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-03",
+      "statement": "In the informative range (Wood-full TTK p50 >= 3 s), a full Copper set cuts TTK by at least 25% against full Wood (derived by src/cli/s31-analyse.ts; PREREGISTRATION.md section 5)",
+      "source": "M0 H-S3-02 as a diagnostic candidate; owner S3.1 section 9",
+      "metric": "medianTtkS",
+      "stat": "p50",
+      "op": ">=",
+      "value": 0,
+      "unit": "s (derived comparison reported separately)",
+      "role": "reported"
+    }
+  ],
+  "notes": [
+    "The Archer hero at level 4 is a labelled diagnostic start (the class normally opens at level 5).",
+    "The S3 content is the control; variants are candidates only."
+  ]
+}

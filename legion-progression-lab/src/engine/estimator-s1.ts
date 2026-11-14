@@ -120,6 +120,7 @@ export function estimateZoneS1(content: CompiledContent, level: number, zoneOrde
     deathsPerHour,
     limitingFactor,
     reliability: limitingFactor === 'survival' ? 'approximate' : 'reliable',
+    forecast: 'available',
     reasons: ['S1_ESTIMATOR'],
     materialsPerHour,
   };

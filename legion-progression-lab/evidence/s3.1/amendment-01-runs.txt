@@ -1,0 +1,8 @@
+## amendment 01 (registered 2026-11-14T14:45:26Z) start 14:45:34Z
+S3.1-E09-demand-stop-payback: 300 runs, 73938 ms, 15 workers, ledger persistent, main RSS 1042 MB
+semantic fingerprint e6b5b2842d17134cc0eeb9d8876181917a07e3d629dac737df00827a92e0be4b
+invariant monitor: 127187358 checks, 0 violations
+S3.1-E10-demand-stop-content: 800 runs, 105422 ms, 15 workers, ledger persistent, main RSS 1116 MB
+semantic fingerprint 04499f72a5685f917b4ace9c62fac300f0efa64e6041d3b247d136fb40d1f37a
+invariant monitor: 319533521 checks, 0 violations
+done 14:48:34Z

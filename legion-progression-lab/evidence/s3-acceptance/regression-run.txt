@@ -1,0 +1,39 @@
+# S3 acceptance addendum: focused regression comparison with the corrected code (dead hero refused) start 16:05:19Z
+## S3.1 manifests --verify against results/s3.1 (stored S3.1 fingerprints)
+S3.1-E02-policy-capacity: MATCH (101054 ms, 15 workers)
+S3.1-E03-equipment-strength: MATCH (26180 ms, 15 workers)
+S3.1-E04-candidate-content: MATCH (49279 ms, 15 workers)
+S3.1-E05-investment: MATCH (49497 ms, 15 workers)
+S3.1-E08-long-horizon-payback: MATCH (31976 ms, 15 workers)
+S3.1-E06-hero-power-full-squad: MATCH (39947 ms, 15 workers)
+S3.1-E09-demand-stop-payback: MATCH (46787 ms, 15 workers)
+S3.1-E10-demand-stop-content: MATCH (72178 ms, 15 workers)
+## S3 manifests --verify against the S3.1 regression re-runs (results/s3.1/audit)
+S3-E02-queue-contention: MATCH (668 ms, 15 workers)
+S3-E03-shortage-timelines: MATCH (530 ms, 15 workers)
+S3-E05-tier-step: MATCH (14187 ms, 15 workers)
+S3-E04-gather-vs-fight: MATCH (50653 ms, 15 workers)
+S3-E07-old-material-demand: MATCH (22969 ms, 15 workers)
+S3-E08-first-useful-craft: MATCH (40209 ms, 15 workers)
+S3-E09-hero-damage: MATCH (33289 ms, 15 workers)
+S3-E10-pacing-levers: MATCH (25573 ms, 15 workers)
+S3-E12-investment: MATCH (310451 ms, 15 workers)
+## historical spot checks (industry off)
+S1.1-E03-earlier-zone-audit: MATCH (2375 ms, 15 workers)
+S2-E04-class-switch-abuse: MATCH (2532 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (16701 ms, 15 workers)
+verify: 20 MATCH, 0 MISMATCH
+## attribution (S3 crafter rule, including the dead hero, restored temporarily) start 16:21:05Z
+cells different from S3 with the S3 crafter rule restored: 0
+RESULT: every change in results/s3.1/audit/ is caused by the crafting-eligibility rule alone
+## mutation checks start 16:29:15Z
+S3 acceptance mutation check: 5 planted bugs, 5 detected, 0 not detected; all files restored: True
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+S3 mutation check: 21 planted bugs, 21 detected, 0 not detected; all files restored: True
+## suites start 16:31:19Z
+tests:       Tests  1121 passed (1121)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 422; problems: 0
+oracle: oracle summary: 18 groups, 0 failing
+typecheck: exit code 0
+done 16:31:42Z

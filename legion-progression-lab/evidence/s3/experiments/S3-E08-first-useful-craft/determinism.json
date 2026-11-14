@@ -1,0 +1,1157 @@
+{
+  "experimentId": "S3-E08-first-useful-craft",
+  "runsCompared": 1300,
+  "rerunEventLogDigestsIdentical": true,
+  "rerunSemanticFingerprintIdentical": true,
+  "secondSeedRoot": "s3-e08-second",
+  "secondSeedRunsWithDifferentEventLogs": 1300,
+  "ksAlpha": 0.001,
+  "ksTests": 104,
+  "ksRejections": 0,
+  "ks": [
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.050000000000000044,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16999999999999993,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "firstCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.050000000000000044,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.10999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "firstCopperItemMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16999999999999993,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "firstCraftMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "firstCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "heroGatheringMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "firstUsefulCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "firstCraftMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "firstCopperItemMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "crafted",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06999999999999995,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.11000000000000001,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "heroGatheringMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    }
+  ]
+}

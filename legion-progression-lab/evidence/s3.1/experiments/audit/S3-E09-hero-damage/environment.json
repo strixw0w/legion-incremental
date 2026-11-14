@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3-E09-hero-damage",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T14:12:34.375Z",
+  "durationMs": 33883,
+  "jobs": 800,
+  "mainRssMb": 3509,
+  "mainHeapUsedMb": 35
+}

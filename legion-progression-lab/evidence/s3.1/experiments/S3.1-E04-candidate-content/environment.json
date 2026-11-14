@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3.1-E04-candidate-content",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T14:20:49.134Z",
+  "durationMs": 50766,
+  "jobs": 650,
+  "mainRssMb": 3586,
+  "mainHeapUsedMb": 32
+}

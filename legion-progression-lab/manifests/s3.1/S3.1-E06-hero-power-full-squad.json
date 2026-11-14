@@ -1,0 +1,1569 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E06-hero-power-full-squad",
+  "question": "With three deployed recruits, comparable equipment and identical levels, how do hero base-attack and combined ability variants change the hero contribution (raw and fractional effective), damage per second, overkill and progression, by hero class, passive and attentive?",
+  "design": "Matched: zone 3, hero level 10 (Archer, Warrior or Mage) with level-10 Warrior, Archer and Mage recruits, everyone in full Wood +0, the fixed-zone squad policy, 20 min. Campaigns: POL3-CONQ (three deployed) at PR-BAL. Variants control, x1.25, x1.5, x2.0 and combined C (hero only). 50 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s31-a125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 2500
+      }
+    },
+    {
+      "id": "s31-a150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 5000
+      }
+    },
+    {
+      "id": "s31-a200",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 10000
+      }
+    },
+    {
+      "id": "s31-c",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 2500,
+        "s3.heroAbilityMultBp": 5000,
+        "s3.heroAbilityCooldownBp": -2500
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-archer|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-archer|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-warrior|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-warrior|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-mage|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|Z3-L10|hero-mage|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-archer|passive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-archer|attentive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-warrior|passive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-warrior|attentive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-mage|passive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a125|Z3-L10|hero-mage|attentive",
+      "kind": "matched",
+      "variant": "s31-a125",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-archer|passive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-archer|attentive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-warrior|passive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-warrior|attentive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-mage|passive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a150|Z3-L10|hero-mage|attentive",
+      "kind": "matched",
+      "variant": "s31-a150",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-archer|passive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-archer|attentive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-warrior|passive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-warrior|attentive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-mage|passive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-a200|Z3-L10|hero-mage|attentive",
+      "kind": "matched",
+      "variant": "s31-a200",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-archer|passive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-archer|attentive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-warrior|passive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-warrior|attentive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-mage|passive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "s31-c|Z3-L10|hero-mage|attentive",
+      "kind": "matched",
+      "variant": "s31-c",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL3-CONQ|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL3-CONQ|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "s31-a125|PR-BAL|POL3-CONQ|passive",
+      "kind": "campaign",
+      "variant": "s31-a125",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "s31-a125|PR-BAL|POL3-CONQ|attentive",
+      "kind": "campaign",
+      "variant": "s31-a125",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "s31-a150|PR-BAL|POL3-CONQ|passive",
+      "kind": "campaign",
+      "variant": "s31-a150",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "s31-a150|PR-BAL|POL3-CONQ|attentive",
+      "kind": "campaign",
+      "variant": "s31-a150",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "s31-a200|PR-BAL|POL3-CONQ|passive",
+      "kind": "campaign",
+      "variant": "s31-a200",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "s31-a200|PR-BAL|POL3-CONQ|attentive",
+      "kind": "campaign",
+      "variant": "s31-a200",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "s31-c|PR-BAL|POL3-CONQ|passive",
+      "kind": "campaign",
+      "variant": "s31-c",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "s31-c|PR-BAL|POL3-CONQ|attentive",
+      "kind": "campaign",
+      "variant": "s31-c",
+      "profile": "PR-BAL",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e06",
+    "replicates": 50
+  },
+  "metrics": [
+    "heroEffectiveShareFrac",
+    "heroDamageShare",
+    "heroAbilityShareFrac",
+    "heroOverkillShareFrac",
+    "squadEffectiveDps",
+    "heroEffectiveDps",
+    "killsPerHour",
+    "expTotal",
+    "legionExpTotal",
+    "minToL10",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "No variant is applied to the historical control; the owner prefers a modest hero advantage with meaningful manual abilities (S3.1 section 11). The diagnostic starts are labelled."
+  ]
+}

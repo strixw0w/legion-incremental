@@ -1,0 +1,13 @@
+
+> legion-progression-lab@0.1.0 test
+> vitest run --config vitest.config.ts
+
+
+ RUN  v4.1.12 <HOME>/Documents/GitHub/legion-incremental/legion-progression-lab
+
+
+ Test Files  37 passed (37)
+      Tests  1121 passed (1121)
+   Start at  16:31:21
+   Duration  9.92s (transform 2.87s, setup 0ms, import 9.61s, tests 45.26s, environment 4ms)
+

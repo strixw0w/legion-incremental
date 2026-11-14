@@ -1,0 +1,348 @@
+# S3.1 analysis (registered rules and comparisons; model-output from candidate inputs)
+
+## S3.1-E01 regression controls (S3 manifests re-run with the corrected code; stored S3 results untouched)
+
+| S3 experiment | Cells | Identical | Monitor count only | Behaviour changed | Fingerprint / examples (means, S3 -> corrected) |
+|---|---|---|---|---|---|
+| S3-E02-queue-contention | 24 | 24 | 0 | 0 | identical fingerprint |
+| S3-E03-shortage-timelines | 6 | 6 | 0 | 0 | identical fingerprint |
+| S3-E05-tier-step | 14 | 14 | 0 | 0 | identical fingerprint |
+| S3-E04-gather-vs-fight | 12 | 4 | 0 | 8 | PR-BAL|POL3-COMBAT: only other metrics; PR-BAL|POL3-BAL: legionExpTotal 59356.9 -> 59358.2, expTotal 29824.5 -> 29825.1; PR-BAL|POL3-PROF: firstUsefulCraftMin 6.5 -> 6.5 |
+| S3-E07-old-material-demand | 4 | 0 | 0 | 4 | PR-OPT|POL3-COMBAT: only other metrics; PR-OPT|POL3-EQUIP: firstUsefulCraftMin 2.4 -> 2.6; PR-OPT|POL3-PROF: firstUsefulCraftMin 6.5 -> 6.5 |
+| S3-E08-first-useful-craft | 13 | 3 | 0 | 10 | PR-NEW|POL3-COMBAT: only other metrics; PR-NEW|POL3-EQUIP: firstUsefulCraftMin 2.4 -> 2.6; PR-NEW|POL3-PROF: firstUsefulCraftMin 6.5 -> 6.5 |
+| S3-E09-hero-damage | 16 | 0 | 0 | 16 | a10-p1.6-g100|POL3-BAL|passive: legionExpTotal 59305.4 -> 59303.7, expTotal 29798.7 -> 29797.8; a10-p1.6-g100|POL3-BAL|attentive: only other metrics; a10-p1.6-g100-a125|POL3-BAL|passive: legionExpTotal 63459.9 -> 63457.3, expTotal 31810.0 -> 31808.6 |
+| S3-E10-pacing-levers | 14 | 0 | 0 | 14 | a10-p1.6-g100|POL3-BAL: legionExpTotal 59370.6 -> 59378.5, expTotal 29831.3 -> 29835.2; pace-xp-a8|POL3-BAL: legionExpTotal 62036.1 -> 62038.7, expTotal 31099.4 -> 31100.7; pace-xp-a12|POL3-BAL: legionExpTotal 57118.6 -> 57123.0, expTotal 28696.5 -> 28698.7 |
+| S3-E12-investment | 16 | 9 | 0 | 7 | session|PR-OPT|POL3-COMBAT: only other metrics; session|PR-OPT|POL3-EQUIP: firstUsefulCraftMin 2.4 -> 2.6; session|PR-OPT|POL3-PROF: firstUsefulCraftMin 6.5 -> 6.5 |
+
+## S3.1-E07 recycle loops with timed production (depth 4; raw-material equivalents)
+
+| Run | Variant parameters | States | Breaks |
+|---|---|---|---|
+| control | "control" | 18066 | 0 |
+| s3.copperOffenceScale1.25 | {"s3.copperOffenceScale":1.25} | 18066 | 0 |
+| s3.copperOffenceScale1.5s3.copperDefence | {"s3.copperOffenceScale":1.5,"s3.copperDefenceScale":1.5} | 18066 | 0 |
+| s3.equipCostScale1.5 | {"s3.equipCostScale":1.5} | 12556 | 0 |
+| s3.nodeYieldScale0.5 | {"s3.nodeYieldScale":0.5} | 18066 | 0 |
+| s3.oldMaterialRecipeson | {"s3.oldMaterialRecipes":"on"} | 17748 | 0 |
+| s3.unitTimeScale0.75 | {"s3.unitTimeScale":0.75} | 18066 | 0 |
+| s3.weaponPercenton | {"s3.weaponPercent":"on"} | 18066 | 0 |
+
+## S3.1-E02 progression and first craft at PR-NEW (means; milestones p50, active min)
+
+| Strategy | Legion EXP | vs CONQ | Hero EXP vs CONQ | Crafted | First craft | First meaningful upgrade | First Copper equipped | Equipment value |
+|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 122164 | +0.0% | +0.0% | 0 | n/a | n/a | n/a | 0 |
+| POL3-COMBAT | 42500 | -65.2% | -33.6% | 7 | 9.5 | 9.5 | 11.0 | 0.35 |
+| POL3-EQUIP | 23617 | -80.7% | -55.8% | 11 | 2.6 | 2.6 | n/a | 0.25 |
+| POL3-PROF | 10852 | -91.1% | -65.2% | 10 | 6.3 | 6.5 | 15.0 | 0.24 |
+| POL3-BAL | 40308 | -67.0% | -34.9% | 8 | 10.8 | 10.8 | 12.2 | 0.45 |
+| POL3-EARLY | 13243 | -89.2% | -78.5% | 5 | 5.7 | 5.7 | n/a | 0.26 |
+| POL3-DEMAND | 93927 | -23.1% | -14.8% | 48.7 | 6.4 | 6.6 | 10.2 | 0.75 |
+
+## S3.1-E02 progression and first craft at PR-BAL (means; milestones p50, active min)
+
+| Strategy | Legion EXP | vs CONQ | Hero EXP vs CONQ | Crafted | First craft | First meaningful upgrade | First Copper equipped | Equipment value |
+|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 174964 | +0.0% | +0.0% | 0 | n/a | n/a | n/a | 0 |
+| POL3-COMBAT | 61181 | -65.0% | -32.3% | 7 | 9.5 | 9.5 | 11.0 | 0.33 |
+| POL3-EQUIP | 39639 | -77.3% | -50.9% | 11 | 2.6 | 2.6 | n/a | 0.21 |
+| POL3-PROF | 16160 | -90.8% | -63.6% | 10 | 6.3 | 6.5 | 15.0 | 0.21 |
+| POL3-BAL | 59330 | -66.1% | -32.9% | 8 | 10.8 | 10.8 | 12.2 | 0.38 |
+| POL3-EARLY | 18043 | -89.7% | -79.5% | 5 | 5.7 | 5.7 | n/a | 0.24 |
+| POL3-DEMAND | 144219 | -17.6% | -10.4% | 48.7 | 6.4 | 6.6 | 10.2 | 0.63 |
+
+## S3.1-E02 progression and first craft at PR-OPT (means; milestones p50, active min)
+
+| Strategy | Legion EXP | vs CONQ | Hero EXP vs CONQ | Crafted | First craft | First meaningful upgrade | First Copper equipped | Equipment value |
+|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 280564 | +0.0% | +0.0% | 0 | n/a | n/a | n/a | 0 |
+| POL3-COMBAT | 99589 | -64.5% | -30.4% | 7 | 9.5 | 9.5 | 11.0 | 0.29 |
+| POL3-EQUIP | 76684 | -72.7% | -43.1% | 11 | 2.6 | 2.6 | n/a | 0.15 |
+| POL3-PROF | 27742 | -90.1% | -60.8% | 10 | 6.3 | 6.5 | 15.0 | 0.18 |
+| POL3-BAL | 97757 | -65.2% | -30.8% | 8 | 10.8 | 10.8 | 12.2 | 0.33 |
+| POL3-EARLY | 27643 | -90.1% | -80.4% | 5 | 5.7 | 5.7 | n/a | 0.19 |
+| POL3-DEMAND | 244803 | -12.7% | -6.5% | 48.7 | 6.4 | 6.6 | 10.2 | 0.56 |
+
+## S3.1-E02 capacity, utilisation and demand at PR-BAL (means)
+
+Capacity: units the assigned time could have produced at the current efficiency (S3.1-R08). Excess: gathered and never consumed. Reassignable: gathering after the deposits had covered everything later consumed (R09). Smith idle split: input shortage (a job waits) or no demand (no open job) (R10).
+
+| Strategy | Gather min | Gather util. | Gather capacity | Gathered | Consumed (raw) | Excess | Reassignable min | Smith min | Smith util. | Smith capacity (planks) | Units done | Idle: input shortage min | Idle: no demand min |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| POL3-COMBAT | 50.8 | +86.4% | 2071 | 2066 | 42 | 2024 | 48.8 | 50.8 | +2.7% | 851 | 21 | 0.6 | 48.8 |
+| POL3-EQUIP | 53.0 | +86.9% | 2197 | 2223 | 90 | 2133 | 50.8 | 57.9 | +4.1% | 965 | 45 | 4.1 | 51.4 |
+| POL3-PROF | 104.2 | +85.6% | 5036 | 5027 | 60 | 4967 | 101.0 | 53.8 | +2.2% | 1434 | 27 | 7.9 | 44.8 |
+| POL3-BAL | 49.5 | +86.5% | 2348 | 2338 | 58 | 2280 | 46.7 | 55.1 | +2.6% | 1268 | 29 | 7.0 | 46.7 |
+| POL3-EARLY | 0 | n/a | 0 | 28 | 28 | 0 | 0 | 54.8 | +0.4% | 1254 | 14 | 54.3 | 0.3 |
+| POL3-DEMAND | 17.8 | +87.0% | 629 | 599 | 245 | 353 | 8.2 | 14.4 | +46.7% | 270 | 123 | 7.0 | 0.7 |
+
+## S3.1-E02 no-affinity control (PR-BAL means)
+
+| Strategy | Legion EXP | No affinity | Change | Gathered | Gathered, no affinity |
+|---|---|---|---|---|---|
+| POL3-DEMAND | 144219 | 147454 | +2.2% | 599 | 314 |
+| POL3-BAL | 59330 | 59303 | -0.0% | 2338 | 1981 |
+
+## H-S3.1-01 and H-S3.1-02 (candidate targets)
+
+| Hypothesis | Pass | Miss | Not reached | Cells |
+|---|---|---|---|---|
+| H-S3.1-01 | 13 | 7 | 0 | PR-NEW|POL3-COMBAT 9.5 pass; PR-NEW|POL3-EQUIP 2.6 miss; PR-NEW|POL3-PROF 6.3 pass; PR-NEW|POL3-BAL 10.8 miss; PR-NEW|POL3-EARLY 5.7 pass; PR-NEW|POL3-DEMAND 6.4 pass; PR-BAL|POL3-COMBAT 9.5 pass; PR-BAL|POL3-EQUIP 2.6 miss; PR-BAL|POL3-PROF 6.3 pass; PR-BAL|POL3-BAL 10.8 miss; PR-BAL|POL3-EARLY 5.7 pass; PR-BAL|POL3-DEMAND 6.4 pass; PR-OPT|POL3-COMBAT 9.5 pass; PR-OPT|POL3-EQUIP 2.6 miss; PR-OPT|POL3-PROF 6.3 pass; PR-OPT|POL3-BAL 10.8 miss; PR-OPT|POL3-EARLY 5.7 pass; PR-OPT|POL3-DEMAND 6.4 pass; PR-BAL|POL3-DEMAND|no-affinity 6.4 pass; PR-BAL|POL3-BAL|no-affinity 10.8 miss |
+| H-S3.1-02 | 0 | 20 | 0 | PR-NEW|POL3-COMBAT 9.5 miss; PR-NEW|POL3-EQUIP 2.6 miss; PR-NEW|POL3-PROF 6.5 miss; PR-NEW|POL3-BAL 10.8 miss; PR-NEW|POL3-EARLY 5.7 miss; PR-NEW|POL3-DEMAND 6.6 miss; PR-BAL|POL3-COMBAT 9.5 miss; PR-BAL|POL3-EQUIP 2.6 miss; PR-BAL|POL3-PROF 6.5 miss; PR-BAL|POL3-BAL 10.8 miss; PR-BAL|POL3-EARLY 5.7 miss; PR-BAL|POL3-DEMAND 6.6 miss; PR-OPT|POL3-COMBAT 9.5 miss; PR-OPT|POL3-EQUIP 2.6 miss; PR-OPT|POL3-PROF 6.5 miss; PR-OPT|POL3-BAL 10.8 miss; PR-OPT|POL3-EARLY 5.7 miss; PR-OPT|POL3-DEMAND 6.6 miss; PR-BAL|POL3-DEMAND|no-affinity 6.6 miss; PR-BAL|POL3-BAL|no-affinity 10.8 miss |
+
+## S3.1-E03 equipment strength, squad Z2-L4 (control; TTK p50 s, kills/h, effective DPS, knockouts/h, deaths/h means)
+
+| Gear | TTK p50 | Kills/h | Effective DPS | KO/h | Deaths/h |
+|---|---|---|---|---|---|
+| none | 2 | 1045 | 13.08 | 14.3 | 0 |
+| wood-weapon | 1.30 | 1343 | 16.80 | 0 | 0 |
+| wood-armour | 2 | 1063 | 13.30 | 9 | 0 |
+| wood-full | 1.30 | 1343 | 16.80 | 0 | 0 |
+| wood-full+1 | 1.30 | 1343 | 16.80 | 0 | 0 |
+| wood-full+2 | 1.30 | 1343 | 16.80 | 0 | 0 |
+| wood-full+5 | 1.20 | 1395 | 17.45 | 0 | 0 |
+| copper-weapon | 1 | 1590 | 19.88 | 0 | 0 |
+| copper-armour | 2 | 1069 | 13.38 | 8.2 | 0 |
+| copper-full | 1 | 1590 | 19.88 | 0 | 0 |
+| copper-full+1 | 1 | 1598 | 19.98 | 0 | 0 |
+
+H-S3.1-03 (Wood-full TTK p50 1.30 s: NOT informative (below 3 s)); one enhancement level cuts TTK by +0.0%; H-S3.1-04 (one enhancement level cuts less than half the tier cut +23.1%): holds (range not informative).
+
+| Variant | Copper-full TTK cut vs Wood full | Copper-full DPS gain vs Wood full | H-S3.1-03 |
+|---|---|---|---|
+| control | +23.1% | +18.3% | not informative |
+| cu-off125 | +23.1% | +19.0% | not informative |
+| cu-off150 | +23.1% | +25.7% | not informative |
+| cu-offdef | +23.1% | +25.7% | not informative |
+| wpn-pct | +23.1% | +5.5% | not informative |
+
+## S3.1-E03 equipment strength, squad Z3-L7 (control; TTK p50 s, kills/h, effective DPS, knockouts/h, deaths/h means)
+
+| Gear | TTK p50 | Kills/h | Effective DPS | KO/h | Deaths/h |
+|---|---|---|---|---|---|
+| none | 4 | 539 | 18.01 | 29.9 | 0 |
+| wood-weapon | 3.50 | 680 | 22.71 | 24 | 0 |
+| wood-armour | 4 | 558 | 18.63 | 24 | 0 |
+| wood-full | 3.50 | 694 | 23.17 | 18 | 0 |
+| wood-full+1 | 3.50 | 697 | 23.28 | 18 | 0 |
+| wood-full+2 | 3.90 | 714 | 23.84 | 18 | 0 |
+| wood-full+5 | 3 | 780 | 26.03 | 15 | 0 |
+| copper-weapon | 2.60 | 844 | 28.15 | 20.9 | 0 |
+| copper-armour | 4 | 584 | 19.51 | 18.6 | 0 |
+| copper-full | 2.60 | 873 | 29.12 | 12 | 0 |
+| copper-full+1 | 2.60 | 877 | 29.27 | 12 | 0 |
+
+H-S3.1-03 (Wood-full TTK p50 3.50 s: informative); one enhancement level cuts TTK by +0.0%; H-S3.1-04 (one enhancement level cuts less than half the tier cut +25.7%): holds.
+
+| Variant | Copper-full TTK cut vs Wood full | Copper-full DPS gain vs Wood full | H-S3.1-03 |
+|---|---|---|---|
+| control | +25.7% | +25.7% | pass |
+| cu-off125 | +31.4% | +29.2% | pass |
+| cu-off150 | +31.4% | +36.1% | pass |
+| cu-offdef | +31.4% | +37.6% | pass |
+| wpn-pct | +25.7% | +26.9% | pass |
+
+## S3.1-E04-candidate-content candidate content in PR-OPT campaigns (means; EXP change against the same policy on the control)
+
+| Cell | legionExpTotal | expTotal | crafted | craftedCopper | firstCopperCombatEquippedMin | gearLifetimeMeanMin | planksAfterCopper | gelAfterCopper | equipmentValue | smithUtilisation | excessGatheredUnits |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| control|PR-OPT|POL3-DEMAND | 250389 (+0.0%) | 66213 (+0.0%) | 48.84 | 23.84 | 10.21 | 39.90 | 31.28 | 10.44 | 0.57 | 0.47 | 337.40 |
+| cu-off150|PR-OPT|POL3-DEMAND | 246772 (-1.4%) | 64940 (-1.9%) | 48.62 | 23.70 | 14.64 | 38.49 | 17.86 | 2.92 | 0.91 | 0.37 | 6.16 |
+| cu-offdef|PR-OPT|POL3-DEMAND | 239888 (-4.2%) | 65349 (-1.3%) | 48.54 | 23.66 | 14.64 | 38.26 | 17.80 | 2.92 | 0.85 | 0.36 | 185.18 |
+| wpn-pct|PR-OPT|POL3-DEMAND | 256146 (+2.3%) | 67221 (+1.5%) | 48.84 | 23.84 | 10.34 | 39.90 | 31.74 | 10.56 | 2.47 | 0.47 | 204.56 |
+| oldmat|PR-OPT|POL3-DEMAND | 244505 (-2.4%) | 63568 (-4.0%) | 48.98 | 23.98 | 10.18 | 39.65 | 47.24 | 18.44 | 0.58 | 0.47 | 75.08 |
+| control|PR-OPT|POL3-BAL | 97899 (+0.0%) | 49095 (+0.0%) | 8 | 2 | 12.18 | 52.42 | 0 | 0 | 0.33 | 0.02 | 3937.14 |
+| cu-off150|PR-OPT|POL3-BAL | 109937 (+12.3%) | 55054 (+12.1%) | 8 | 2 | 12.18 | 52.42 | 0 | 0 | 0.49 | 0.02 | 3935.48 |
+| cu-offdef|PR-OPT|POL3-BAL | 109937 (+12.3%) | 55054 (+12.1%) | 8 | 2 | 12.18 | 52.42 | 0 | 0 | 0.49 | 0.02 | 3935.48 |
+| wpn-pct|PR-OPT|POL3-BAL | 129634 (+32.4%) | 64897 (+32.2%) | 8 | 2 | 12.18 | 52.41 | 0 | 0 | 1.43 | 0.02 | 3935.86 |
+| oldmat|PR-OPT|POL3-BAL | 97904 (+0.0%) | 49098 (+0.0%) | 8 | 2 | 12.18 | 52.42 | 1 | 0 | 0.33 | 0.02 | 3933.10 |
+| yield050|PR-OPT|POL3-DEMAND | 175931 (-29.7%) | 62015 (-6.3%) | 43.36 | 18.36 | 12.94 | 44.02 | 30.28 | 10 | 0.43 | 0.29 | 1509.20 |
+| smith075|PR-OPT|POL3-DEMAND | 195188 (-22.0%) | 65713 (-0.8%) | 45.26 | 20.26 | 10.17 | 43.25 | 31.18 | 9.76 | 0.45 | 0.34 | 3200.84 |
+| cost150|PR-OPT|POL3-DEMAND | 219344 (-12.4%) | 57242 (-13.5%) | 49 | 24 | 12.01 | 38.90 | 47.94 | 14.46 | 0.61 | 0.49 | 13.26 |
+
+## S3.1-E10-demand-stop-content candidate content in PR-OPT campaigns (means; EXP change against the same policy on the control)
+
+| Cell | legionExpTotal | expTotal | crafted | craftedCopper | firstCopperCombatEquippedMin | gearLifetimeMeanMin | planksAfterCopper | gelAfterCopper | equipmentValue | smithUtilisation | excessGatheredUnits |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| control|PR-OPT|POL3-DEMAND | 250389 (+0.0%) | 66213 (+0.0%) | 48.84 | 23.84 | 10.21 | 39.90 | 31.28 | 10.44 | 0.57 | 0.47 | 337.40 |
+| cu-off150|PR-OPT|POL3-DEMAND | 246772 (-1.4%) | 64940 (-1.9%) | 48.62 | 23.70 | 14.64 | 38.49 | 17.86 | 2.92 | 0.91 | 0.37 | 6.16 |
+| cu-offdef|PR-OPT|POL3-DEMAND | 239888 (-4.2%) | 65349 (-1.3%) | 48.54 | 23.66 | 14.64 | 38.26 | 17.80 | 2.92 | 0.85 | 0.36 | 185.18 |
+| wpn-pct|PR-OPT|POL3-DEMAND | 256146 (+2.3%) | 67221 (+1.5%) | 48.84 | 23.84 | 10.34 | 39.90 | 31.74 | 10.56 | 2.47 | 0.47 | 204.56 |
+| oldmat|PR-OPT|POL3-DEMAND | 244505 (-2.4%) | 63568 (-4.0%) | 48.98 | 23.98 | 10.18 | 39.65 | 47.24 | 18.44 | 0.58 | 0.47 | 75.08 |
+| yield050|PR-OPT|POL3-DEMAND | 175931 (-29.7%) | 62015 (-6.3%) | 43.36 | 18.36 | 12.94 | 44.02 | 30.28 | 10 | 0.43 | 0.29 | 1509.20 |
+| smith075|PR-OPT|POL3-DEMAND | 195188 (-22.0%) | 65713 (-0.8%) | 45.26 | 20.26 | 10.17 | 43.25 | 31.18 | 9.76 | 0.45 | 0.34 | 3200.84 |
+| cost150|PR-OPT|POL3-DEMAND | 219344 (-12.4%) | 57242 (-13.5%) | 49 | 24 | 12.01 | 38.90 | 47.94 | 14.46 | 0.61 | 0.49 | 13.26 |
+| control|PR-OPT|POL3-DEMAND2 | 256797 (+0.0%) | 66288 (+0.0%) | 49 | 24 | 10.21 | 39.76 | 31.28 | 10.44 | 0.59 | 0.47 | 3.74 |
+| cu-off150|PR-OPT|POL3-DEMAND2 | 248297 (-3.3%) | 65017 (-1.9%) | 48.72 | 23.80 | 14.64 | 38.40 | 17.86 | 2.92 | 0.91 | 0.37 | 3.18 |
+| cu-offdef|PR-OPT|POL3-DEMAND2 | 250406 (-2.5%) | 65791 (-0.8%) | 49 | 24 | 14.64 | 38.05 | 18.08 | 2.92 | 0.88 | 0.39 | 3.70 |
+| wpn-pct|PR-OPT|POL3-DEMAND2 | 259556 (+1.1%) | 67134 (+1.3%) | 49 | 24 | 10.34 | 39.75 | 31.74 | 10.56 | 2.50 | 0.46 | 3.22 |
+| oldmat|PR-OPT|POL3-DEMAND2 | 241846 (-5.8%) | 62560 (-5.6%) | 49 | 24 | 10.18 | 39.61 | 47.28 | 18.44 | 0.59 | 0.46 | 4.48 |
+| yield050|PR-OPT|POL3-DEMAND2 | 241323 (-6.0%) | 63680 (-3.9%) | 49 | 24 | 12.94 | 38.74 | 30.28 | 10 | 0.58 | 0.33 | 4.34 |
+| smith075|PR-OPT|POL3-DEMAND2 | 258291 (+0.6%) | 66620 (+0.5%) | 49 | 24 | 10.17 | 39.85 | 31.18 | 9.76 | 0.59 | 0.35 | 3.40 |
+| cost150|PR-OPT|POL3-DEMAND2 | 218913 (-14.8%) | 57122 (-13.8%) | 49 | 24 | 12.01 | 38.89 | 47.94 | 14.46 | 0.61 | 0.51 | 10.82 |
+
+S3.1-E10 cells shared with S3.1-E04 (same seeds and cells) reproduced exactly: 8/8.
+
+## S3.1-E05-investment fresh start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 60 min | end |
+|---|---|---|---|---|
+| POL3-CONQ | 19601 (+0.0%) | 69408 (+0.0%) | 175008 (+0.0%) | 280608 (+0.0%) |
+| POL3-BAL | 7011 (-64.2%) | 22661 (-67.4%) | 59367 (-66.1%) | 97774 (-65.2%) |
+| POL3-PROF | 2196 (-88.8%) | 6132 (-91.2%) | 16166 (-90.8%) | 27759 (-90.1%) |
+| POL3-DEMAND | 4160 (-78.8%) | 44838 (-35.4%) | 146742 (-16.2%) | 248646 (-11.4%) |
+
+Other measures at the end (fresh, means): gold earned, gold held, zones open, items equipped, equipment value, raw and component materials held, profession levels summed.
+
+| Strategy | Gold earned | Gold held | Zones open | Items equipped | Equipment value | Materials held | Profession levels |
+|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 19337 | 18787 | 3 | 0 | 0 | 0 | 12 |
+| POL3-BAL | 13396 | 12646 | 3 | 6 | 0.33 | 3936 | 33.5 |
+| POL3-PROF | 7612 | 7062 | 3 | 5 | 0.17 | 8334 | 50 |
+| POL3-DEMAND | 18132 | 17582 | 3 | 25 | 0.57 | 467 | 36.6 |
+
+H-S3.1-05 payback (fresh): legion EXP none within the horizon; hero EXP none within the horizon.
+
+## S3.1-E05-investment midgame start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 60 min | end |
+|---|---|---|---|---|
+| POL3-CONQ | 33034 (+0.0%) | 85832 (+0.0%) | 191432 (+0.0%) | 297032 (+0.0%) |
+| POL3-BAL | 8820 (-73.3%) | 22007 (-74.4%) | 54807 (-71.4%) | 91311 (-69.3%) |
+| POL3-PROF | 2722 (-91.8%) | 6043 (-93.0%) | 14606 (-92.4%) | 24691 (-91.7%) |
+| POL3-DEMAND | 8562 (-74.1%) | 33503 (-61.0%) | 139103 (-27.3%) | 244703 (-17.6%) |
+
+Other measures at the end (midgame, means): gold earned, gold held, zones open, items equipped, equipment value, raw and component materials held, profession levels summed.
+
+| Strategy | Gold earned | Gold held | Zones open | Items equipped | Equipment value | Materials held | Profession levels |
+|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 20967 | 20567 | 3 | 0 | 0 | 0 | 12 |
+| POL3-BAL | 13127 | 12727 | 3 | 0 | 0 | 4387 | 30 |
+| POL3-PROF | 7424 | 7024 | 3 | 3 | 0 | 7583 | 49 |
+| POL3-DEMAND | 17802 | 17402 | 3 | 25 | 0.58 | 14 | 34.0 |
+
+H-S3.1-05 payback (midgame): legion EXP none within the horizon; hero EXP none within the horizon.
+
+## S3.1-E08-long-horizon-payback fresh start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 45 min | 60 min | 75 min | 90 min | 105 min | 120 min | 135 min | 150 min | 165 min | end |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 19575 (+0.0%) | 69376 (+0.0%) | 122176 (+0.0%) | 174976 (+0.0%) | 227776 (+0.0%) | 280576 (+0.0%) | 333376 (+0.0%) | 386176 (+0.0%) | 438976 (+0.0%) | 491776 (+0.0%) | 544576 (+0.0%) | 597376 (+0.0%) |
+| POL3-DEMAND | 4155 (-78.8%) | 44093 (-36.4%) | 94781 (-22.4%) | 145469 (-16.9%) | 196157 (-13.9%) | 246845 (-12.0%) | 297533 (-10.8%) | 348221 (-9.8%) | 398909 (-9.1%) | 449597 (-8.6%) | 500285 (-8.1%) | 550973 (-7.8%) |
+
+H-S3.1-05 payback (fresh): legion EXP none within the horizon; hero EXP none within the horizon.
+
+## S3.1-E08-long-horizon-payback midgame start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 45 min | 60 min | 75 min | 90 min | 105 min | 120 min | 135 min | 150 min | 165 min | end |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 32929 (+0.0%) | 85720 (+0.0%) | 138520 (+0.0%) | 191320 (+0.0%) | 244120 (+0.0%) | 296920 (+0.0%) | 349720 (+0.0%) | 402520 (+0.0%) | 455320 (+0.0%) | 508120 (+0.0%) | 560920 (+0.0%) | 613720 (+0.0%) |
+| POL3-DEMAND | 8637 (-73.8%) | 34055 (-60.3%) | 86855 (-37.3%) | 139655 (-27.0%) | 192455 (-21.2%) | 245255 (-17.4%) | 298055 (-14.8%) | 350855 (-12.8%) | 403655 (-11.3%) | 456455 (-10.2%) | 509255 (-9.2%) | 562055 (-8.4%) |
+
+H-S3.1-05 payback (midgame): legion EXP none within the horizon; hero EXP none within the horizon.
+
+## S3.1-E09-demand-stop-payback fresh start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 45 min | 60 min | 75 min | 90 min | 105 min | 120 min | 135 min | 150 min | 165 min | end |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 19575 (+0.0%) | 69376 (+0.0%) | 122176 (+0.0%) | 174976 (+0.0%) | 227776 (+0.0%) | 280576 (+0.0%) | 333376 (+0.0%) | 386176 (+0.0%) | 438976 (+0.0%) | 491776 (+0.0%) | 544576 (+0.0%) | 597376 (+0.0%) |
+| POL3-DEMAND | 4155 (-78.8%) | 44093 (-36.4%) | 94781 (-22.4%) | 145469 (-16.9%) | 196157 (-13.9%) | 246845 (-12.0%) | 297533 (-10.8%) | 348221 (-9.8%) | 398909 (-9.1%) | 449597 (-8.6%) | 500285 (-8.1%) | 550973 (-7.8%) |
+| POL3-DEMAND2 | 4054 (-79.3%) | 45714 (-34.1%) | 98514 (-19.4%) | 151314 (-13.5%) | 204114 (-10.4%) | 256914 (-8.4%) | 309714 (-7.1%) | 362514 (-6.1%) | 415314 (-5.4%) | 468114 (-4.8%) | 520914 (-4.3%) | 573714 (-4.0%) |
+
+H-S3.1-05 payback (fresh): legion EXP none within the horizon; hero EXP none within the horizon.
+
+H-S3.1-05 payback (fresh, POL3-DEMAND2): legion EXP none within the horizon; hero EXP none within the horizon.
+
+S3.1-E09 (fresh): late legion EXP rate per minute from 90 to 180 min; materials held; gathering (means).
+
+| Strategy | Late rate | vs CONQ | Materials 30 min | Materials 90 min | Materials 165 min | Gather min | Excess gathered | Reassignable gather min | Crafted |
+|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 3520 | +0.0% | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| POL3-DEMAND | 3379 | -4.0% | 86 | 534 | 1175 | 35.8 | 1311 | 26.2 | 48.7 |
+| POL3-DEMAND2 | 3520 | -0.0% | 3 | 3 | 3 | 9.7 | 3 | 0.1 | 49 |
+
+## S3.1-E09-demand-stop-payback midgame start: legion EXP (mean; change against POL3-CONQ)
+
+| Strategy | 15 min | 30 min | 45 min | 60 min | 75 min | 90 min | 105 min | 120 min | 135 min | 150 min | 165 min | end |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 32929 (+0.0%) | 85720 (+0.0%) | 138520 (+0.0%) | 191320 (+0.0%) | 244120 (+0.0%) | 296920 (+0.0%) | 349720 (+0.0%) | 402520 (+0.0%) | 455320 (+0.0%) | 508120 (+0.0%) | 560920 (+0.0%) | 613720 (+0.0%) |
+| POL3-DEMAND | 8637 (-73.8%) | 34055 (-60.3%) | 86855 (-37.3%) | 139655 (-27.0%) | 192455 (-21.2%) | 245255 (-17.4%) | 298055 (-14.8%) | 350855 (-12.8%) | 403655 (-11.3%) | 456455 (-10.2%) | 509255 (-9.2%) | 562055 (-8.4%) |
+| POL3-DEMAND2 | 8336 (-74.7%) | 30123 (-64.9%) | 82923 (-40.1%) | 135723 (-29.1%) | 188523 (-22.8%) | 241323 (-18.7%) | 294123 (-15.9%) | 346923 (-13.8%) | 399723 (-12.2%) | 452523 (-10.9%) | 505323 (-9.9%) | 558123 (-9.1%) |
+
+H-S3.1-05 payback (midgame): legion EXP none within the horizon; hero EXP none within the horizon.
+
+H-S3.1-05 payback (midgame, POL3-DEMAND2): legion EXP none within the horizon; hero EXP none within the horizon.
+
+S3.1-E09 (midgame): late legion EXP rate per minute from 90 to 180 min; materials held; gathering (means).
+
+| Strategy | Late rate | vs CONQ | Materials 30 min | Materials 90 min | Materials 165 min | Gather min | Excess gathered | Reassignable gather min | Crafted |
+|---|---|---|---|---|---|---|---|---|---|
+| POL3-CONQ | 3520 | +0.0% | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| POL3-DEMAND | 3520 | +0.0% | 11 | 11 | 11 | 9.0 | 11 | 0.3 | 49 |
+| POL3-DEMAND2 | 3520 | +0.0% | 7 | 7 | 7 | 9.0 | 7 | 0.2 | 49 |
+
+S3.1-E09 cells shared with S3.1-E08 (same seeds and cells) reproduced exactly: 4/4.
+
+## S3.1-E06 hero power with a full squad (matched, zone 3, level 10, full Wood; means)
+
+| Variant | Hero class | Mode | Hero raw share | Hero effective share (fractional) | Ability share | Hero overkill | Squad effective DPS | Hero effective DPS (vs control) | Kills/h |
+|---|---|---|---|---|---|---|---|---|---|
+| a10-p1.6-g100 | archer | passive | +22.9% | +23.9% | +0.0% | +18.4% | 57.76 | 13.80 (+0.0%) | 1732 |
+| a10-p1.6-g100 | archer | attentive | +30.4% | +32.3% | +11.5% | +19.2% | 62.93 | 20.36 (+0.0%) | 1888 |
+| a10-p1.6-g100 | warrior | passive | +14.0% | +14.4% | +0.0% | +15.5% | 54.76 | 7.91 (+0.0%) | 1642 |
+| a10-p1.6-g100 | warrior | attentive | +18.9% | +19.1% | +4.8% | +18.6% | 56.81 | 10.84 (+0.0%) | 1704 |
+| a10-p1.6-g100 | mage | passive | +16.4% | +16.7% | +0.0% | +22.9% | 53.55 | 8.94 (+0.0%) | 1605 |
+| a10-p1.6-g100 | mage | attentive | +26.5% | +25.2% | +9.8% | +32.5% | 57.70 | 14.53 (+0.0%) | 1730 |
+| a125 | archer | passive | +25.9% | +26.5% | +0.0% | +23.2% | 57.81 | 15.35 (+11.2%) | 1733 |
+| a125 | archer | attentive | +34.2% | +35.6% | +12.5% | +25.3% | 63.04 | 22.46 (+10.3%) | 1891 |
+| a125 | warrior | passive | +17.0% | +17.2% | +0.0% | +20.0% | 54.85 | 9.41 (+19.0%) | 1645 |
+| a125 | warrior | attentive | +22.2% | +22.2% | +5.4% | +22.9% | 57.06 | 12.66 (+16.7%) | 1711 |
+| a125 | mage | passive | +17.6% | +19.9% | +0.0% | +10.3% | 55.41 | 11.02 (+23.3%) | 1662 |
+| a125 | mage | attentive | +29.7% | +28.5% | +10.1% | +30.2% | 60.28 | 17.20 (+18.3%) | 1808 |
+| a150 | archer | passive | +28.7% | +30.2% | +0.0% | +22.3% | 59.58 | 17.97 (+30.2%) | 1787 |
+| a150 | archer | attentive | +38.1% | +39.4% | +13.1% | +30.0% | 63.21 | 24.90 (+22.3%) | 1896 |
+| a150 | warrior | passive | +19.4% | +19.2% | +0.0% | +22.8% | 55.28 | 10.63 (+34.4%) | 1658 |
+| a150 | warrior | attentive | +25.0% | +24.7% | +6.0% | +25.2% | 58.23 | 14.38 (+32.6%) | 1746 |
+| a150 | mage | passive | +20.1% | +22.8% | +0.0% | +10.9% | 56.15 | 12.83 (+43.5%) | 1684 |
+| a150 | mage | attentive | +33.1% | +31.6% | +10.6% | +33.6% | 60.22 | 19.05 (+31.1%) | 1806 |
+| a200 | archer | passive | +34.2% | +35.3% | +0.0% | +29.2% | 59.72 | 21.09 (+52.8%) | 1791 |
+| a200 | archer | attentive | +44.1% | +44.1% | +13.7% | +38.1% | 64.42 | 28.41 (+39.6%) | 1932 |
+| a200 | warrior | passive | +23.3% | +22.8% | +0.0% | +27.5% | 55.51 | 12.67 (+60.2%) | 1665 |
+| a200 | warrior | attentive | +29.8% | +28.7% | +6.7% | +31.1% | 58.52 | 16.80 (+54.9%) | 1755 |
+| a200 | mage | passive | +25.2% | +29.8% | +0.0% | +10.5% | 58.14 | 17.33 (+93.8%) | 1743 |
+| a200 | mage | attentive | +39.5% | +37.8% | +11.3% | +37.8% | 62.63 | 23.68 (+63.0%) | 1878 |
+| c | archer | passive | +25.9% | +26.5% | +0.0% | +23.2% | 57.81 | 15.35 (+11.2%) | 1733 |
+| c | archer | attentive | +37.7% | +36.5% | +14.4% | +33.4% | 63.68 | 23.26 (+14.3%) | 1910 |
+| c | warrior | passive | +17.0% | +17.2% | +0.0% | +20.0% | 54.85 | 9.41 (+19.0%) | 1645 |
+| c | warrior | attentive | +24.8% | +26.8% | +10.5% | +13.1% | 62.80 | 16.82 (+55.1%) | 1883 |
+| c | mage | passive | +17.6% | +19.9% | +0.0% | +10.3% | 55.41 | 11.02 (+23.3%) | 1662 |
+| c | mage | attentive | +33.7% | +30.2% | +11.6% | +39.1% | 59.25 | 17.87 (+23.0%) | 1777 |
+
+## S3.1-E06 campaigns, POL3-CONQ with three deployed (PR-BAL; means)
+
+| Variant | Mode | Hero raw share | Hero effective share | Hero EXP (vs control) | Legion EXP (vs control) | Level 10 p50 min |
+|---|---|---|---|---|---|---|
+| a10-p1.6-g100 | passive | +19.4% | +21.9% | 44432 (+0.0%) | 175067 (+0.0%) | 7.4 |
+| a10-p1.6-g100 | attentive | +27.7% | +28.8% | 45402 (+0.0%) | 178950 (+0.0%) | 7.1 |
+| a125 | passive | +22.9% | +25.6% | 45360 (+2.1%) | 178781 (+2.1%) | 6.8 |
+| a125 | attentive | +32.2% | +32.8% | 46162 (+1.7%) | 181988 (+1.7%) | 6.6 |
+| a150 | passive | +26.2% | +28.9% | 46064 (+3.7%) | 181595 (+3.7%) | 6.5 |
+| a150 | attentive | +36.3% | +36.1% | 46635 (+2.7%) | 183880 (+2.8%) | 6.4 |
+| a200 | passive | +31.9% | +34.7% | 47323 (+6.5%) | 186630 (+6.6%) | 5.8 |
+| a200 | attentive | +43.0% | +42.2% | 47664 (+5.0%) | 187994 (+5.1%) | 5.7 |
+| c | passive | +22.9% | +25.6% | 45360 (+2.1%) | 178781 (+2.1%) | 6.8 |
+| c | attentive | +36.8% | +35.7% | 46302 (+2.0%) | 182547 (+2.0%) | 6.6 |
+
+## H-S3.1-06 monitor totals and fractional precision (engineering)
+
+| Experiment | Runs | Checks | Violations | Fractional precision pass |
+|---|---|---|---|---|
+| S3.1-E02-policy-capacity | 2300 | 432548841 | 0 | 23/23 cells |
+| S3.1-E03-equipment-strength | 4200 | 37128066 | 0 | 42/42 cells |
+| S3.1-E04-candidate-content | 650 | 247419611 | 0 | 13/13 cells |
+| S3.1-E05-investment | 800 | 190514195 | 0 | 8/8 cells |
+| S3.1-E08-long-horizon-payback | 200 | 81682775 | 0 | 4/4 cells |
+| S3.1-E06-hero-power-full-squad | 2000 | 76410828 | 0 | 40/40 cells |
+| S3.1-E09-demand-stop-payback | 300 | 127187358 | 0 | 6/6 cells |
+| S3.1-E10-demand-stop-content | 800 | 319533521 | 0 | 16/16 cells |
+

@@ -360,9 +360,11 @@ describe('estimator v1.1 never shows impossible farming as efficient (owner revi
     expect([s1.killsPerHour, s1.ttkS]).toEqual([2400, 0]); // the control keeps the S1 defect, for comparison only
   });
 
-  it('a tiny hit chance that cannot resolve within the swing budget is unreachable, not efficient', () => {
+  // Estimator v1.3 (S3 entry, owner "Final L1/S2.1 Acceptance" §4): an exhausted budget is "unresolved" with no forecast,
+  // no longer "unreachable" (reserved for proven impossibility). It is still never shown as efficient.
+  it('a tiny hit chance that cannot resolve within the swing budget is unresolved (no forecast), not efficient', () => {
     const e = estimateZone(withThreshold(1), 1, 1);
-    expect([e.killsPerHour, e.ttkS, e.reliability, e.reasons]).toEqual([0, null, 'unreachable', ['SWING_BUDGET']]);
+    expect([e.killsPerHour, e.ttkS, e.reliability, e.forecast, e.reasons]).toEqual([0, null, 'unresolved', 'unavailable', ['SWING_BUDGET']]);
     expect(e.unresolvedMass).toBeGreaterThan(0.99);
   });
 
@@ -374,7 +376,12 @@ describe('estimator v1.1 never shows impossible farming as efficient (owner revi
     expect(performance.now() - t0).toBeLessThan(10_000);
     const big = variant((p) => force(enemy(p, SLIME).hp, 1_000_000_000));
     const e = estimateZone(big, 1, 1);
-    expect([e.killsPerHour, e.reliability]).toEqual([0, 'unreachable']);
+    expect([e.killsPerHour, e.reliability, e.forecast]).toEqual([0, 'unresolved', 'unavailable']);
+  });
+
+  it('zero hit chance stays proven impossible: unreachable with an available forecast of 0', () => {
+    const e = estimateZone(withThreshold(0), 1, 1);
+    expect([e.killsPerHour, e.reliability, e.forecast, e.reasons]).toEqual([0, 'unreachable', 'available', ['NO_HIT_CHANCE']]);
   });
 
   it('a hero who always dies before dealing lethal damage: exactly 0 kills per life, unreachable', () => {

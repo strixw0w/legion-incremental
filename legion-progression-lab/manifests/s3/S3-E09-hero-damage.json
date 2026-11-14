@@ -1,0 +1,316 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E09-hero-damage",
+  "question": "Directions A-D and H: how do a hero base-damage multiplier, a stronger hero ability, their combination, and a hero-only weapon bonus change the hero damage share (raw and effective), the ability share, EXP and pacing, now that equipment exists?",
+  "design": "PR-BAL campaigns of POL3-BAL, passive and attentive, with hero-only variants: base attack x1.25 / x1.5 / x2.0 (A), ability multiplier +100% or cooldown -50% (B), x1.25 with +50% ability and -25% cooldown (C), hero weapon bonus +100% (D). Recruits unchanged. 50 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 2500
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 5000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a200",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 10000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-mult",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroAbilityMultBp": 10000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-cd",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroAbilityCooldownBp": -5000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-c",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 2500,
+        "s3.heroAbilityMultBp": 5000,
+        "s3.heroAbilityCooldownBp": -2500
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-d",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroExclusiveWeaponBp": 10000
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a125|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a125",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a125|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a125",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a150|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a150",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a150|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a150",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a200|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a200",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-a200|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-a200",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-mult|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-b-mult",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-mult|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-b-mult",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-cd|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-b-cd",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-b-cd|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-b-cd",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-c|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-c",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-c|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-c",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-d|POL3-BAL|passive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-d",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": false
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-d|POL3-BAL|attentive",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100-d",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "over": {
+        "attentive": true
+      }
+    }
+  ],
+  "seeds": {
+    "root": "s3-e09",
+    "replicates": 50
+  },
+  "metrics": [
+    "heroDamageShare",
+    "heroEffectiveShare",
+    "heroAbilityEffectiveShare",
+    "heroOverkillShare",
+    "expTotal",
+    "legionExpTotal",
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3-10",
+      "statement": "Per kill, effective contributions sum exactly to the HP removed (direction H)",
+      "source": "owner S3 section 8 H",
+      "metric": "effectiveExactAllKills",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Variants apply to the hero only (heroAdvantage hooks; 0 in the control). Raw damage is unchanged for historical comparison; effective damage follows S3-R18.",
+    "No variant is a recommendation; the owner chooses directions after the results."
+  ]
+}

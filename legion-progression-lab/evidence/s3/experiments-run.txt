@@ -1,0 +1,42 @@
+# S3 experiment runs (registered 2026-11-14T09:59:41Z); persistent ledger; results/s3/<id>/
+## S3-E02-queue-contention  start 09:59:51Z
+S3-E02-queue-contention: 72 runs, 1071 ms, 15 workers, ledger persistent, main RSS 691 MB
+semantic fingerprint 4a34b2de4c77cc25716355a9d4d29853f80b17b3553f3fd0550b1641277299fe
+invariant monitor: 674499 checks, 0 violations
+## S3-E03-shortage-timelines  start 09:59:53Z
+S3-E03-shortage-timelines: 18 runs, 827 ms, 15 workers, ledger persistent, main RSS 565 MB
+semantic fingerprint 99d9083575f0032f6b1efa3d649e38b93446be8312b3d86a08364c0ae5b6a157
+invariant monitor: 177750 checks, 0 violations
+## S3-E05-tier-step  start 09:59:54Z
+S3-E05-tier-step: 1400 runs, 20417 ms, 15 workers, ledger persistent, main RSS 2876 MB
+semantic fingerprint 9dc8165226511fc198338c19542c758d2c5106ea2c2f6b962cc8df5fd9cc8230
+invariant monitor: 24003300 checks, 0 violations
+## S3-E08-first-useful-craft  start 10:00:15Z
+S3-E08-first-useful-craft: 1300 runs, 59704 ms, 15 workers, ledger persistent, main RSS 3565 MB
+semantic fingerprint 8708e4d0f85a6dbd8cc7f56a480ebe90b9b8fb3d9eaea933dcd08bfc365ec10b
+invariant monitor: 156306954 checks, 0 violations
+## S3-E04-gather-vs-fight  start 10:01:16Z
+S3-E04-gather-vs-fight: 1200 runs, 76721 ms, 15 workers, ledger persistent, main RSS 3011 MB
+semantic fingerprint af86534b58fdfedd31757f70bfa766a128c6d8756f1e1132eb940d3823e10a39
+invariant monitor: 211822974 checks, 0 violations
+## S3-E07-old-material-demand  start 10:02:33Z
+S3-E07-old-material-demand: 400 runs, 33860 ms, 15 workers, ledger persistent, main RSS 3380 MB
+semantic fingerprint bb9f24f5ae22985522d65a4dc14dca77d4bd4f9eb7893cd75fb58dbaa30076b4
+invariant monitor: 111606902 checks, 0 violations
+## S3-E09-hero-damage  start 10:03:08Z
+S3-E09-hero-damage: 800 runs, 49330 ms, 15 workers, ledger persistent, main RSS 3504 MB
+semantic fingerprint 8e2941b6753a0d4808a59983e0aeb35653bbc6d697901c467a768415ff0f25eb
+invariant monitor: 136681128 checks, 0 violations
+## S3-E10-pacing-levers  start 10:03:58Z
+S3-E10-pacing-levers: 700 runs, 35784 ms, 15 workers, ledger persistent, main RSS 3355 MB
+semantic fingerprint a174fad5eb38c6ca1a5534b92c6bb052c09e065a5da35337e9422bc9902efa26
+invariant monitor: 111899418 checks, 0 violations
+## S3-E11-knockout-matrix  start 10:04:35Z
+S3-E11-knockout-matrix: 9600 runs, 260852 ms, 15 workers, ledger persistent, main RSS 1235 MB
+semantic fingerprint aef44f828d9ac690c8ced8e2ac20f960b6e30d3af4e52ac862a3b243dc0ee582
+invariant monitor: 386161417 checks, 0 violations
+## S3-E12-investment  start 10:08:56Z
+S3-E12-investment: 1600 runs, 463553 ms, 15 workers, ledger persistent, main RSS 990 MB
+semantic fingerprint d2d5127b1b1be054adb8f230eb4018b00fa277407c4f6179cb29532c4d30bd00
+invariant monitor: 231131253 checks, 0 violations
+done 10:16:40Z

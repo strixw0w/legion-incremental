@@ -1,0 +1,243 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E03-shortage-timelines",
+  "question": "When does a long job pause for inputs, for how long, and does it resume automatically as deposits arrive (O10), at different supply rates?",
+  "design": "One smith, one long job (60 planks or 20 copper bars), supply from 0-2 gatherers (with and without the Mage woodcutting affinity) after a starting stock. 15 minutes, per-unit FIFO. Deterministic; 3 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "plank|supply-0|stock-40",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 0,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [],
+      "materials": {
+        "res.mat.log": 40
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.plank",
+          "quantity": 60,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1
+      ]
+    },
+    {
+      "id": "plank|supply-1-none",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 0,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [
+        {
+          "nodeId": "node.w1.01.oak",
+          "cls": null,
+          "pickaxe": false
+        }
+      ],
+      "materials": {
+        "res.mat.log": 10
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.plank",
+          "quantity": 60,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1
+      ]
+    },
+    {
+      "id": "plank|supply-1-mage",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 0,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [
+        {
+          "nodeId": "node.w1.01.oak",
+          "cls": "mage",
+          "pickaxe": false
+        }
+      ],
+      "materials": {
+        "res.mat.log": 10
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.plank",
+          "quantity": 60,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1
+      ]
+    },
+    {
+      "id": "plank|supply-2-none",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 0,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [
+        {
+          "nodeId": "node.w1.01.oak",
+          "cls": null,
+          "pickaxe": false
+        },
+        {
+          "nodeId": "node.w1.01.oak",
+          "cls": null,
+          "pickaxe": false
+        }
+      ],
+      "materials": {
+        "res.mat.log": 10
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.plank",
+          "quantity": 60,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1
+      ]
+    },
+    {
+      "id": "bar|miners-0",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 10,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [],
+      "materials": {
+        "res.mat.copper_ore": 10
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.copper_bar",
+          "quantity": 20,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "bar|miners-1",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "minutes": 15,
+      "arm": "fifo",
+      "smiths": [
+        {
+          "smithingExp": 10,
+          "hammer": "none"
+        }
+      ],
+      "gatherers": [
+        {
+          "nodeId": "node.w1.02.copper",
+          "cls": "warrior",
+          "pickaxe": true
+        }
+      ],
+      "materials": {
+        "res.mat.copper_ore": 10
+      },
+      "jobs": [
+        {
+          "recipeId": "recipe.copper_bar",
+          "quantity": 20,
+          "atMs": 0
+        }
+      ],
+      "visitedZones": [
+        1,
+        2
+      ]
+    }
+  ],
+  "seeds": {
+    "root": "s3-e03",
+    "replicates": 3
+  },
+  "metrics": [
+    "unitsPerHour",
+    "totalShortageMin",
+    "jobsPaused",
+    "jobsCompleted",
+    "lastJobCompletionMin",
+    "meanReservedUnits",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "A job pauses when its next unit is short and resumes at the deposit that covers it (same moment: deposit first, D-07)."
+  ]
+}

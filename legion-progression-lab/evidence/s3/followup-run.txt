@@ -1,0 +1,44 @@
+## S3-E11-knockout-matrix-widened (amendment 01) start 10:17:20Z
+S3-E11-knockout-matrix-widened: 12800 runs, 283841 ms, 15 workers, ledger persistent, main RSS 1329 MB
+semantic fingerprint 48197a0f1eb5d70ee521ce978abd36553d17c1a470d5e5728f42c484e65802d3
+invariant monitor: 384429846 checks, 0 violations
+## S3-E01 conservation start 10:22:04Z
+S3-E01: 10000 sequences, 400000 commands (112062 accepted), 178614774 checks, 0 violations; reference ledger 500 compared, 0 mismatches; 83193 ms
+## verify start 10:23:28Z
+S3-E02-queue-contention: MATCH (1065 ms, 15 workers)
+S3-E03-shortage-timelines: MATCH (859 ms, 15 workers)
+S3-E04-gather-vs-fight: MATCH (76860 ms, 15 workers)
+S3-E05-tier-step: MATCH (20653 ms, 15 workers)
+S3-E07-old-material-demand: MATCH (34754 ms, 15 workers)
+S3-E08-first-useful-craft: MATCH (57930 ms, 15 workers)
+S3-E09-hero-damage: MATCH (47032 ms, 15 workers)
+S3-E10-pacing-levers: MATCH (46675 ms, 15 workers)
+S3-E11-knockout-matrix: MATCH (268493 ms, 15 workers)
+S3-E11-knockout-matrix-widened: MATCH (288159 ms, 15 workers)
+S3-E12-investment: MATCH (316571 ms, 15 workers)
+## determinism S3-E08 start 10:42:54Z
+S3-E08-first-useful-craft: determinism rerun identical=true fingerprint=true; second root differs in 1300/1300; KS rejections 0/104
+## reference ledger S3-E04 start 10:44:43Z
+S3-E04-gather-vs-fight: 1200 runs, 80290 ms, 15 workers, ledger reference, main RSS 3497 MB
+semantic fingerprint af86534b58fdfedd31757f70bfa766a128c6d8756f1e1132eb940d3823e10a39
+invariant monitor: 211822974 checks, 0 violations
+persistent: af86534b58fdfedd31757f70bfa766a128c6d8756f1e1132eb940d3823e10a39
+reference:  af86534b58fdfedd31757f70bfa766a128c6d8756f1e1132eb940d3823e10a39
+## L2 measurements start 10:46:04Z
+| Strategy | Ledger | Transactions (mean) | per hour | by category (mean) | Log entries (mean) | Wall ms (mean) | Heap growth MB (mean) | Same balances as reference |
+|---|---|---|---|---|---|---|---|---|
+| POL3-COMBAT | reference | 4055 | 2703 | craft 7, gather.deposit 1611, kill.reward 2393, legion.spend 2, production.complete 21, production.reserve 21 | 26779 | 681 | 18.4 | (reference) |
+| POL3-COMBAT | persistent | 4055 | 2703 | craft 7, gather.deposit 1611, kill.reward 2393, legion.spend 2, production.complete 21, production.reserve 21 | 26779 | 312 | 47.5 | yes |
+| POL3-EQUIP | reference | 3810 | 2540 | craft 11, enhance 9, gather.deposit 1687, kill.reward 2011, legion.spend 2, production.complete 45, production.reserve 45 | 23484 | 597 | 43.7 | (reference) |
+| POL3-EQUIP | persistent | 3810 | 2540 | craft 11, enhance 9, gather.deposit 1687, kill.reward 2011, legion.spend 2, production.complete 45, production.reserve 45 | 23484 | 275 | 50.5 | yes |
+| POL3-PROF | reference | 4577 | 3051 | craft 10, gather.deposit 3063, kill.reward 1448, legion.spend 2, production.complete 27, production.reserve 27 | 19624 | 733 | 74.9 | (reference) |
+| POL3-PROF | persistent | 4577 | 3051 | craft 10, gather.deposit 3063, kill.reward 1448, legion.spend 2, production.complete 27, production.reserve 27 | 19624 | 230 | 35.8 | yes |
+| POL3-BAL | reference | 4028 | 2685 | craft 8, enhance 4, gather.deposit 1579, kill.reward 2377, legion.spend 2, production.complete 29, production.reserve 29 | 26402 | 657 | 28.5 | (reference) |
+| POL3-BAL | persistent | 4028 | 2685 | craft 8, enhance 4, gather.deposit 1579, kill.reward 2377, legion.spend 2, production.complete 29, production.reserve 29 | 26402 | 301 | 41.4 | yes |
+| POL3-EARLY | reference | 3512 | 2341 | craft 5, gather.deposit 27, kill.reward 3451, legion.spend 1, production.complete 14, production.reserve 14 | 28037 | 586 | 8.9 | (reference) |
+| POL3-EARLY | persistent | 3512 | 2341 | craft 5, gather.deposit 27, kill.reward 3451, legion.spend 1, production.complete 14, production.reserve 14 | 28037 | 305 | 18.8 | yes |
+| POL3-CONQ | reference | 3369 | 2246 | kill.reward 3367, legion.spend 2 | 41197 | 619 | 63.9 | (reference) |
+| POL3-CONQ | persistent | 3369 | 2246 | kill.reward 3367, legion.spend 2 | 41197 | 375 | 57.3 | yes |
+
+Heap growth is measured around each run (after a forced collection when --expose-gc is given); it includes the kept state and the ledger, not the event log (not kept).
+done 10:46:22Z

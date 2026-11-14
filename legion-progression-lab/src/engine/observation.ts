@@ -27,6 +27,7 @@ export function buildObservation(sim: Simulation, triggers: string | readonly st
         killsPerLife: e.killsPerLife,
         limitingFactor: e.limitingFactor,
         reliability: e.reliability,
+        forecast: e.forecast,
         reasons: e.reasons,
       };
     }

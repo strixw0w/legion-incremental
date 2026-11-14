@@ -225,8 +225,9 @@ export type Validation = { readonly ok: true } | { readonly ok: false; readonly 
  * - approximate  complete calculation, but deaths take a noticeable share of the time;
  * - unsafe       expected deaths reach the auto-farm stop threshold, or the hero averages under one kill per life;
  * - unreachable  no kill is possible (zero hit chance, the hero always dies first, or no kill within the budget).
- * - unresolved   (S2.1, worker estimates only) basic attacks cannot win but the class ability could: kills are possible,
- *                production is not estimated. Never produced by the S1 / S1.1 hero estimator.
+ * - unresolved   no conclusion: (S2.1) a worker fight only its class ability could win, or (v1.3, S3 entry) a swing or
+ *                work budget exhausted before the fight distribution was resolved. Production is NOT estimated; the
+ *                estimate's `forecast` is "unavailable" (never a claim of zero production, never a positive forecast).
  */
 export type EstimateReliability = 'reliable' | 'approximate' | 'unsafe' | 'unreachable' | 'unresolved';
 
@@ -244,6 +245,11 @@ export interface DisplayedEstimate {
   readonly killsPerLife: number | null;
   readonly limitingFactor: 'attack' | 'spawn' | 'survival';
   readonly reliability: EstimateReliability;
+  /**
+   * v1.3: "available" when the rates are a forecast (including a proven 0 for an unreachable zone); "unavailable" when
+   * no forecast exists (reliability "unresolved"): the rate fields are then 0 placeholders, not predicted production.
+   */
+  readonly forecast: 'available' | 'unavailable';
   /** Machine-readable reasons for the reliability (empty when reliable). */
   readonly reasons: readonly string[];
 }

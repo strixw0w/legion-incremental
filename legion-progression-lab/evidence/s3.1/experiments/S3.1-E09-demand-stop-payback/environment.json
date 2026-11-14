@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3.1-E09-demand-stop-payback",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T14:45:34.732Z",
+  "durationMs": 73938,
+  "jobs": 300,
+  "mainRssMb": 1042,
+  "mainHeapUsedMb": 26
+}

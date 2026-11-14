@@ -1,0 +1,3976 @@
+{
+  "schema": "legion.s3.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S3-E02-queue-contention",
+  "manifestSha256": "31e778acb868d913ea33f62fa13f7a01b1657257c8278cfdde5d735f2ced1e72",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "variantContent": {
+    "a10-p1.6-g100": {
+      "contentHash": "5e2023572707ffa3faf87da8ac44219bb26203894a182930e4d94212b374a53b",
+      "tableHash": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc",
+      "legionContentHash": "1bd654be5fc6ae6366faf34a7070dee5530e9ce48e4c5c485699aff86619d63f",
+      "industryContentHash": "4ce135e2cf83e086c6f380f5950624aaf6546a0ebfa92fb3dea45e8553e988c5"
+    }
+  },
+  "seeds": {
+    "root": "s3-e02",
+    "replicates": 3
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "plank|fifo|smiths-1|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "bd902f76462e91d9ffce71d426b5945558150a41207099f7a50a27186e44088d",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6268666666666667,
+          "p50": 0.6268666666666667,
+          "p90": 0.6268666666666667,
+          "mean": 0.6268666666666667,
+          "min": 0.6268666666666667,
+          "max": 0.6268666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7556,
+          "p50": 7556,
+          "p90": 7556,
+          "mean": 7556,
+          "min": 7556,
+          "max": 7556
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2782333333333333,
+          "p50": 1.2782333333333333,
+          "p90": 1.2782333333333333,
+          "mean": 1.2782333333333333,
+          "min": 1.2782333333333333,
+          "max": 1.2782333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.2556466666666667,
+          "p50": 0.2556466666666667,
+          "p90": 0.2556466666666667,
+          "mean": 0.2556466666666667,
+          "min": 0.2556466666666667,
+          "max": 0.2556466666666667
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "plank|fifo|smiths-1|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "afe0d656123db7ef1349f5227eeafd93a1e0bd2cb9c88a02107490b7697770a1",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2442,
+          "p50": 1.2442,
+          "p90": 1.2442,
+          "mean": 1.2442,
+          "min": 1.2442,
+          "max": 1.2442
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 8978,
+          "p50": 8978,
+          "p90": 8978,
+          "mean": 8978,
+          "min": 8978,
+          "max": 8978
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.8955666666666666,
+          "p50": 1.8955666666666666,
+          "p90": 1.8955666666666666,
+          "mean": 1.8955666666666666,
+          "min": 1.8955666666666666,
+          "max": 1.8955666666666666
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.37911333333333336,
+          "p50": 0.37911333333333336,
+          "p90": 0.37911333333333336,
+          "mean": 0.37911333333333336,
+          "min": 0.37911333333333336,
+          "max": 0.37911333333333336
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "plank|fifo|smiths-1|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "d2a13b6ac6877152e645a7c458f965741a80291ff3dcff3e3f3672b4f66724e2",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.8461333333333334,
+          "p50": 1.8461333333333334,
+          "p90": 1.8461333333333334,
+          "mean": 1.8461333333333334,
+          "min": 1.8461333333333334,
+          "max": 1.8461333333333334
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10493,
+          "p50": 10493,
+          "p90": 10493,
+          "mean": 10493,
+          "min": 10493,
+          "max": 10493
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.4975,
+          "p50": 2.4975,
+          "p90": 2.4975,
+          "mean": 2.4975,
+          "min": 2.4975,
+          "max": 2.4975
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.4995,
+          "p50": 0.4995,
+          "p90": 0.4995,
+          "mean": 0.4995,
+          "min": 0.4995,
+          "max": 0.4995
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "plank|fifo|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "bc89a2aac467121a73f2bf83c84fbbdd02595379af33e1489a2fb15d62b9fdd1",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.16411666666666666,
+          "p50": 0.16411666666666666,
+          "p90": 0.16411666666666666,
+          "mean": 0.16411666666666666,
+          "min": 0.16411666666666666,
+          "max": 0.16411666666666666
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7141166666666666,
+          "p50": 0.7141166666666666,
+          "p90": 0.7141166666666666,
+          "mean": 0.7141166666666666,
+          "min": 0.7141166666666666,
+          "max": 0.7141166666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 8074,
+          "p50": 8074,
+          "p90": 8074,
+          "mean": 8074,
+          "min": 8074,
+          "max": 8074
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.8782333333333333,
+          "p50": 0.8782333333333333,
+          "p90": 0.8782333333333333,
+          "mean": 0.8782333333333333,
+          "min": 0.8782333333333333,
+          "max": 0.8782333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.2102,
+          "p50": 0.2102,
+          "p90": 0.2102,
+          "mean": 0.21020000000000003,
+          "min": 0.2102,
+          "max": 0.2102
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.26054666666666665,
+          "p50": 0.26054666666666665,
+          "p90": 0.26054666666666665,
+          "mean": 0.26054666666666665,
+          "min": 0.26054666666666665,
+          "max": 0.26054666666666665
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.27295,
+          "p50": 0.27295,
+          "p90": 0.27295,
+          "mean": 0.27295,
+          "min": 0.27295,
+          "max": 0.27295
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "plank|fifo|smiths-2|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "9532b6e3792bff86491b2a9886a8a45804c0c5f9568d8e518ed8380686b93ff1",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.90935,
+          "p50": 0.90935,
+          "p90": 0.90935,
+          "mean": 0.90935,
+          "min": 0.90935,
+          "max": 0.90935
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7141166666666666,
+          "p50": 0.7141166666666666,
+          "p90": 0.7141166666666666,
+          "mean": 0.7141166666666666,
+          "min": 0.7141166666666666,
+          "max": 0.7141166666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 9920,
+          "p50": 9920,
+          "p90": 9920,
+          "mean": 9920,
+          "min": 9920,
+          "max": 9920
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 11,
+          "p50": 11,
+          "p90": 11,
+          "mean": 11,
+          "min": 11,
+          "max": 11
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.6234666666666666,
+          "p50": 1.6234666666666666,
+          "p90": 1.6234666666666666,
+          "mean": 1.6234666666666666,
+          "min": 1.6234666666666666,
+          "max": 1.6234666666666666
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.5209166666666667,
+          "p50": 0.5209166666666667,
+          "p90": 0.5209166666666667,
+          "mean": 0.5209166666666667,
+          "min": 0.5209166666666667,
+          "max": 0.5209166666666667
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.38592,
+          "p50": 0.38592,
+          "p90": 0.38592,
+          "mean": 0.38592,
+          "min": 0.38592,
+          "max": 0.38592
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.87975,
+          "p50": 0.87975,
+          "p90": 0.87975,
+          "mean": 0.87975,
+          "min": 0.87975,
+          "max": 0.87975
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "plank|fifo|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "409ee64e8ee58904946d38baca10c61eccd252a3e95cbbb46cc6eb80284aa5f8",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.6476166666666667,
+          "p50": 1.6476166666666667,
+          "p90": 1.6476166666666667,
+          "mean": 1.6476166666666667,
+          "min": 1.6476166666666667,
+          "max": 1.6476166666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7141166666666666,
+          "p50": 0.7141166666666666,
+          "p90": 0.7141166666666666,
+          "mean": 0.7141166666666666,
+          "min": 0.7141166666666666,
+          "max": 0.7141166666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 12318,
+          "p50": 12318,
+          "p90": 12318,
+          "mean": 12318,
+          "min": 12318,
+          "max": 12318
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 24,
+          "p50": 24,
+          "p90": 24,
+          "mean": 24,
+          "min": 24,
+          "max": 24
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.3617333333333335,
+          "p50": 2.3617333333333335,
+          "p90": 2.3617333333333335,
+          "mean": 2.3617333333333335,
+          "min": 2.3617333333333335,
+          "max": 2.3617333333333335
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2591833333333333,
+          "p50": 1.2591833333333333,
+          "p90": 1.2591833333333333,
+          "mean": 1.2591833333333333,
+          "min": 1.2591833333333333,
+          "max": 1.2591833333333333
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.5112933333333334,
+          "p50": 0.5112933333333334,
+          "p90": 0.5112933333333334,
+          "mean": 0.5112933333333334,
+          "min": 0.5112933333333334,
+          "max": 0.5112933333333334
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.5772,
+          "p50": 2.5772,
+          "p90": 2.5772,
+          "mean": 2.5772,
+          "min": 2.5772,
+          "max": 2.5772
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 6,
+      "id": "plank|reserve-all|smiths-1|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "14c4af3d80b0be0dd5cb9080166d0d4f176a6cd41182ce11555045c42981e7c5",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7755,
+          "p50": 0.7755,
+          "p90": 0.7755,
+          "mean": 0.7755,
+          "min": 0.7755,
+          "max": 0.7755
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7526,
+          "p50": 7526,
+          "p90": 7526,
+          "mean": 7526,
+          "min": 7526,
+          "max": 7526
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4268666666666667,
+          "p50": 1.4268666666666667,
+          "p90": 1.4268666666666667,
+          "mean": 1.4268666666666665,
+          "min": 1.4268666666666667,
+          "max": 1.4268666666666667
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.14863333333333334,
+          "p50": 0.14863333333333334,
+          "p90": 0.14863333333333334,
+          "mean": 0.14863333333333334,
+          "min": 0.14863333333333334,
+          "max": 0.14863333333333334
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4178966666666666,
+          "p50": 1.4178966666666666,
+          "p90": 1.4178966666666666,
+          "mean": 1.4178966666666666,
+          "min": 1.4178966666666666,
+          "max": 1.4178966666666666
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.14863333333333334,
+          "p50": 0.14863333333333334,
+          "p90": 0.14863333333333334,
+          "mean": 0.14863333333333334,
+          "min": 0.14863333333333334,
+          "max": 0.14863333333333334
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 7,
+      "id": "plank|reserve-all|smiths-1|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "2d3f8957a42fbac0f989325097f53bda37ccdc408329518bf2a43b6d60e41ba5",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.5159666666666667,
+          "p50": 1.5159666666666667,
+          "p90": 1.5159666666666667,
+          "mean": 1.5159666666666667,
+          "min": 1.5159666666666667,
+          "max": 1.5159666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 8960,
+          "p50": 8960,
+          "p90": 8960,
+          "mean": 8960,
+          "min": 8960,
+          "max": 8960
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.167333333333333,
+          "p50": 2.167333333333333,
+          "p90": 2.167333333333333,
+          "mean": 2.167333333333333,
+          "min": 2.167333333333333,
+          "max": 2.167333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.8986333333333333,
+          "p50": 0.8986333333333333,
+          "p90": 0.8986333333333333,
+          "mean": 0.8986333333333333,
+          "min": 0.8986333333333333,
+          "max": 0.8986333333333333
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.0969633333333335,
+          "p50": 2.0969633333333335,
+          "p90": 2.0969633333333335,
+          "mean": 2.0969633333333335,
+          "min": 2.0969633333333335,
+          "max": 2.0969633333333335
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.0472666666666666,
+          "p50": 1.0472666666666666,
+          "p90": 1.0472666666666666,
+          "mean": 1.0472666666666666,
+          "min": 1.0472666666666666,
+          "max": 1.0472666666666666
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 8,
+      "id": "plank|reserve-all|smiths-1|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "de132d46470b1f1a221489fe2319dba070088f51888a29e08c57211428abdd38",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.250566666666667,
+          "p50": 2.250566666666667,
+          "p90": 2.250566666666667,
+          "mean": 2.250566666666667,
+          "min": 2.250566666666667,
+          "max": 2.250566666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10493,
+          "p50": 10493,
+          "p90": 10493,
+          "mean": 10493,
+          "min": 10493,
+          "max": 10493
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.9019333333333335,
+          "p50": 2.9019333333333335,
+          "p90": 2.9019333333333335,
+          "mean": 2.9019333333333335,
+          "min": 2.9019333333333335,
+          "max": 2.9019333333333335
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.6486333333333334,
+          "p50": 1.6486333333333334,
+          "p90": 1.6486333333333334,
+          "mean": 1.6486333333333334,
+          "min": 1.6486333333333334,
+          "max": 1.6486333333333334
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.76371,
+          "p50": 2.76371,
+          "p90": 2.76371,
+          "mean": 2.76371,
+          "min": 2.76371,
+          "max": 2.76371
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.6959,
+          "p50": 2.6959,
+          "p90": 2.6959,
+          "mean": 2.6959,
+          "min": 2.6959,
+          "max": 2.6959
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 9,
+      "id": "plank|reserve-all|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "2b6b05dbbd7bfa59caee267b5fab4fc3d36ec4523858db2b1c8d23b448f42cbc",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7755,
+          "p50": 0.7755,
+          "p90": 0.7755,
+          "mean": 0.7755,
+          "min": 0.7755,
+          "max": 0.7755
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7774,
+          "p50": 7774,
+          "p90": 7774,
+          "mean": 7774,
+          "min": 7774,
+          "max": 7774
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4268666666666667,
+          "p50": 1.4268666666666667,
+          "p90": 1.4268666666666667,
+          "mean": 1.4268666666666665,
+          "min": 1.4268666666666667,
+          "max": 1.4268666666666667
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7833333333333333,
+          "p50": 0.7833333333333333,
+          "p90": 0.7833333333333333,
+          "mean": 0.7833333333333333,
+          "min": 0.7833333333333333,
+          "max": 0.7833333333333333
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4178966666666666,
+          "p50": 1.4178966666666666,
+          "p90": 1.4178966666666666,
+          "mean": 1.4178966666666666,
+          "min": 1.4178966666666666,
+          "max": 1.4178966666666666
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7833333333333333,
+          "p50": 0.7833333333333333,
+          "p90": 0.7833333333333333,
+          "mean": 0.7833333333333333,
+          "min": 0.7833333333333333,
+          "max": 0.7833333333333333
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 10,
+      "id": "plank|reserve-all|smiths-2|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "b39d90c709daf62819f51ec8c453546ca7965f61e501a8ecbdba2d3d758b79af",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.5159666666666667,
+          "p50": 1.5159666666666667,
+          "p90": 1.5159666666666667,
+          "mean": 1.5159666666666667,
+          "min": 1.5159666666666667,
+          "max": 1.5159666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 9232,
+          "p50": 9232,
+          "p90": 9232,
+          "mean": 9232,
+          "min": 9232,
+          "max": 9232
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.167333333333333,
+          "p50": 2.167333333333333,
+          "p90": 2.167333333333333,
+          "mean": 2.167333333333333,
+          "min": 2.167333333333333,
+          "max": 2.167333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.5166666666666666,
+          "p50": 1.5166666666666666,
+          "p90": 1.5166666666666666,
+          "mean": 1.5166666666666666,
+          "min": 1.5166666666666666,
+          "max": 1.5166666666666666
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.0969633333333335,
+          "p50": 2.0969633333333335,
+          "p90": 2.0969633333333335,
+          "mean": 2.0969633333333335,
+          "min": 2.0969633333333335,
+          "max": 2.0969633333333335
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.3,
+          "p50": 2.3,
+          "p90": 2.3,
+          "mean": 2.3,
+          "min": 2.3,
+          "max": 2.3
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 11,
+      "id": "plank|reserve-all|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "ed6d850ec20ad5896e0afb1e3da95711f4f93eb459ca50bfb5183312e2bc1a85",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.250566666666667,
+          "p50": 2.250566666666667,
+          "p90": 2.250566666666667,
+          "mean": 2.250566666666667,
+          "min": 2.250566666666667,
+          "max": 2.250566666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6513666666666666,
+          "p50": 0.6513666666666666,
+          "p90": 0.6513666666666666,
+          "mean": 0.6513666666666666,
+          "min": 0.6513666666666666,
+          "max": 0.6513666666666666
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10787,
+          "p50": 10787,
+          "p90": 10787,
+          "mean": 10787,
+          "min": 10787,
+          "max": 10787
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.9019333333333335,
+          "p50": 2.9019333333333335,
+          "p90": 2.9019333333333335,
+          "mean": 2.9019333333333335,
+          "min": 2.9019333333333335,
+          "max": 2.9019333333333335
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.25,
+          "p50": 2.25,
+          "p90": 2.25,
+          "mean": 2.25,
+          "min": 2.25,
+          "max": 2.25
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.76371,
+          "p50": 2.76371,
+          "p90": 2.76371,
+          "mean": 2.76371,
+          "min": 2.76371,
+          "max": 2.76371
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4.55,
+          "p50": 4.55,
+          "p90": 4.55,
+          "mean": 4.55,
+          "min": 4.55,
+          "max": 4.55
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 12,
+      "id": "plank|round-robin|smiths-1|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "2bbe8e99a75e45655a86322cfac8abe77843eea712ffedc234f513ec59faffe2",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.061733333333333335,
+          "p50": 0.061733333333333335,
+          "p90": 0.061733333333333335,
+          "mean": 0.061733333333333335,
+          "min": 0.061733333333333335,
+          "max": 0.061733333333333335
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2165,
+          "p50": 1.2165,
+          "p90": 1.2165,
+          "mean": 1.2165,
+          "min": 1.2165,
+          "max": 1.2165
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7527,
+          "p50": 7527,
+          "p90": 7527,
+          "mean": 7527,
+          "min": 7527,
+          "max": 7527
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2782333333333333,
+          "p50": 1.2782333333333333,
+          "p90": 1.2782333333333333,
+          "mean": 1.2782333333333333,
+          "min": 1.2782333333333333,
+          "max": 1.2782333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.2556466666666667,
+          "p50": 0.2556466666666667,
+          "p90": 0.2556466666666667,
+          "mean": 0.2556466666666667,
+          "min": 0.2556466666666667,
+          "max": 0.2556466666666667
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 13,
+      "id": "plank|round-robin|smiths-1|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "354a2f8c47acdb7fa2bc5cc9fc827eed87c259ef290f7fda7c3476a10d681911",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.12346666666666667,
+          "p50": 0.12346666666666667,
+          "p90": 0.12346666666666667,
+          "mean": 0.12346666666666667,
+          "min": 0.12346666666666667,
+          "max": 0.12346666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.7721,
+          "p50": 1.7721,
+          "p90": 1.7721,
+          "mean": 1.7721,
+          "min": 1.7721,
+          "max": 1.7721
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 8891,
+          "p50": 8891,
+          "p90": 8891,
+          "mean": 8891,
+          "min": 8891,
+          "max": 8891
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.8955666666666666,
+          "p50": 1.8955666666666666,
+          "p90": 1.8955666666666666,
+          "mean": 1.8955666666666666,
+          "min": 1.8955666666666666,
+          "max": 1.8955666666666666
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.37911333333333336,
+          "p50": 0.37911333333333336,
+          "p90": 0.37911333333333336,
+          "mean": 0.37911333333333336,
+          "min": 0.37911333333333336,
+          "max": 0.37911333333333336
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 14,
+      "id": "plank|round-robin|smiths-1|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "1202bf323314a814d39cbf8f1e1df65c2174490a9f0c9e700a4ad9324d66f4a7",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.1786,
+          "p50": 0.1786,
+          "p90": 0.1786,
+          "mean": 0.1786,
+          "min": 0.1786,
+          "max": 0.1786
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.3189,
+          "p50": 2.3189,
+          "p90": 2.3189,
+          "mean": 2.3189,
+          "min": 2.3189,
+          "max": 2.3189
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10319,
+          "p50": 10319,
+          "p90": 10319,
+          "mean": 10319,
+          "min": 10319,
+          "max": 10319
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.4975,
+          "p50": 2.4975,
+          "p90": 2.4975,
+          "mean": 2.4975,
+          "min": 2.4975,
+          "max": 2.4975
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.4995,
+          "p50": 0.4995,
+          "p90": 0.4995,
+          "mean": 0.4995,
+          "min": 0.4995,
+          "max": 0.4995
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 15,
+      "id": "plank|round-robin|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "6fe5908097b878f261b5dedd871b96ca0bed512ffe00a17c67d99c4aa68a910c",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.05,
+          "p50": 0.05,
+          "p90": 0.05,
+          "mean": 0.05000000000000001,
+          "min": 0.05,
+          "max": 0.05
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.8141166666666667,
+          "p50": 0.8141166666666667,
+          "p90": 0.8141166666666667,
+          "mean": 0.8141166666666667,
+          "min": 0.8141166666666667,
+          "max": 0.8141166666666667
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 8125,
+          "p50": 8125,
+          "p90": 8125,
+          "mean": 8125,
+          "min": 8125,
+          "max": 8125
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 5,
+          "p50": 5,
+          "p90": 5,
+          "mean": 5,
+          "min": 5,
+          "max": 5
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.8641166666666666,
+          "p50": 0.8641166666666666,
+          "p90": 0.8641166666666666,
+          "mean": 0.8641166666666665,
+          "min": 0.8641166666666666,
+          "max": 0.8641166666666666
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.19608333333333333,
+          "p50": 0.19608333333333333,
+          "p90": 0.19608333333333333,
+          "mean": 0.1960833333333333,
+          "min": 0.19608333333333333,
+          "max": 0.19608333333333333
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.26054666666666665,
+          "p50": 0.26054666666666665,
+          "p90": 0.26054666666666665,
+          "mean": 0.26054666666666665,
+          "min": 0.26054666666666665,
+          "max": 0.26054666666666665
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.35883333333333334,
+          "p50": 0.35883333333333334,
+          "p90": 0.35883333333333334,
+          "mean": 0.35883333333333334,
+          "min": 0.35883333333333334,
+          "max": 0.35883333333333334
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 120,
+          "p50": 120,
+          "p90": 120,
+          "mean": 120,
+          "min": 120,
+          "max": 120
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 16,
+      "id": "plank|round-robin|smiths-2|jobs-3",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "499cf5e8c5715275fefcaa54d4360d257647db0bede7628ebc5a02885565f065",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.15,
+          "p50": 0.15,
+          "p90": 0.15,
+          "mean": 0.15,
+          "min": 0.15,
+          "max": 0.15
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4641166666666667,
+          "p50": 1.4641166666666667,
+          "p90": 1.4641166666666667,
+          "mean": 1.4641166666666667,
+          "min": 1.4641166666666667,
+          "max": 1.4641166666666667
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10081,
+          "p50": 10081,
+          "p90": 10081,
+          "mean": 10081,
+          "min": 10081,
+          "max": 10081
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3,
+          "p50": 3,
+          "p90": 3,
+          "mean": 3,
+          "min": 3,
+          "max": 3
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 15,
+          "p50": 15,
+          "p90": 15,
+          "mean": 15,
+          "min": 15,
+          "max": 15
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.6141166666666666,
+          "p50": 1.6141166666666666,
+          "p90": 1.6141166666666666,
+          "mean": 1.6141166666666666,
+          "min": 1.6141166666666666,
+          "max": 1.6141166666666666
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7727833333333334,
+          "p50": 0.7727833333333334,
+          "p90": 0.7727833333333334,
+          "mean": 0.7727833333333334,
+          "min": 0.7727833333333334,
+          "max": 0.7727833333333334
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.38782666666666665,
+          "p50": 0.38782666666666665,
+          "p90": 0.38782666666666665,
+          "mean": 0.3878266666666666,
+          "min": 0.38782666666666665,
+          "max": 0.38782666666666665
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.208483333333333,
+          "p50": 2.208483333333333,
+          "p90": 2.208483333333333,
+          "mean": 2.208483333333333,
+          "min": 2.208483333333333,
+          "max": 2.208483333333333
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 180,
+          "p50": 180,
+          "p90": 180,
+          "mean": 180,
+          "min": 180,
+          "max": 180
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 17,
+      "id": "plank|round-robin|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "6a5ad4c232be6f1829448bfd7ebc9b6ea27cfcb9dbbf948e29e4e69c6d7e85e8",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.25,
+          "p50": 0.25,
+          "p90": 0.25,
+          "mean": 0.25,
+          "min": 0.25,
+          "max": 0.25
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.1117333333333335,
+          "p50": 2.1117333333333335,
+          "p90": 2.1117333333333335,
+          "mean": 2.1117333333333335,
+          "min": 2.1117333333333335,
+          "max": 2.1117333333333335
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 12178,
+          "p50": 12178,
+          "p90": 12178,
+          "mean": 12178,
+          "min": 12178,
+          "max": 12178
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 25,
+          "p50": 25,
+          "p90": 25,
+          "mean": 25,
+          "min": 25,
+          "max": 25
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.3617333333333335,
+          "p50": 2.3617333333333335,
+          "p90": 2.3617333333333335,
+          "mean": 2.3617333333333335,
+          "min": 2.3617333333333335,
+          "max": 2.3617333333333335
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.4443833333333334,
+          "p50": 1.4443833333333334,
+          "p90": 1.4443833333333334,
+          "mean": 1.4443833333333334,
+          "min": 1.4443833333333334,
+          "max": 1.4443833333333334
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.5112933333333334,
+          "p50": 0.5112933333333334,
+          "p90": 0.5112933333333334,
+          "mean": 0.5112933333333334,
+          "min": 0.5112933333333334,
+          "max": 0.5112933333333334
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 5.422433333333333,
+          "p50": 5.422433333333333,
+          "p90": 5.422433333333333,
+          "mean": 5.422433333333333,
+          "min": 5.422433333333333,
+          "max": 5.422433333333333
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 240,
+          "p50": 240,
+          "p90": 240,
+          "mean": 240,
+          "min": 240,
+          "max": 240
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 18,
+      "id": "bar|fifo|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "7ef51d9963b09141cc831887cc31a8005c6819837562b48ca7febc7bbf2d3d40",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.058333333333333334,
+          "p50": 0.058333333333333334,
+          "p90": 0.058333333333333334,
+          "mean": 0.05833333333333333,
+          "min": 0.058333333333333334,
+          "max": 0.058333333333333334
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6795,
+          "p50": 0.6795,
+          "p90": 0.6795,
+          "mean": 0.6795,
+          "min": 0.6795,
+          "max": 0.6795
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7873,
+          "p50": 7873,
+          "p90": 7873,
+          "mean": 7873,
+          "min": 7873,
+          "max": 7873
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7378333333333333,
+          "p50": 0.7378333333333333,
+          "p90": 0.7378333333333333,
+          "mean": 0.7378333333333332,
+          "min": 0.7378333333333333,
+          "max": 0.7378333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.14416666666666667,
+          "p50": 0.14416666666666667,
+          "p90": 0.14416666666666667,
+          "mean": 0.14416666666666667,
+          "min": 0.14416666666666667,
+          "max": 0.14416666666666667
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.2308,
+          "p50": 0.2308,
+          "p90": 0.2308,
+          "mean": 0.2308,
+          "min": 0.2308,
+          "max": 0.2308
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.24666666666666667,
+          "p50": 0.24666666666666667,
+          "p90": 0.24666666666666667,
+          "mean": 0.24666666666666667,
+          "min": 0.24666666666666667,
+          "max": 0.24666666666666667
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 19,
+      "id": "bar|fifo|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "56c21b3491813debebbe23d33182b74bfea2ef6f489813d0bd68bff99493b265",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.1047666666666667,
+          "p50": 1.1047666666666667,
+          "p90": 1.1047666666666667,
+          "mean": 1.1047666666666667,
+          "min": 1.1047666666666667,
+          "max": 1.1047666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6795,
+          "p50": 0.6795,
+          "p90": 0.6795,
+          "mean": 0.6795,
+          "min": 0.6795,
+          "max": 0.6795
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 11100,
+          "p50": 11100,
+          "p90": 11100,
+          "mean": 11100,
+          "min": 11100,
+          "max": 11100
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 16,
+          "p50": 16,
+          "p90": 16,
+          "mean": 16,
+          "min": 16,
+          "max": 16
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.7842666666666667,
+          "p50": 1.7842666666666667,
+          "p90": 1.7842666666666667,
+          "mean": 1.7842666666666667,
+          "min": 1.7842666666666667,
+          "max": 1.7842666666666667
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.844,
+          "p50": 0.844,
+          "p90": 0.844,
+          "mean": 0.844,
+          "min": 0.844,
+          "max": 0.844
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.45304,
+          "p50": 0.45304,
+          "p90": 0.45304,
+          "mean": 0.45303999999999994,
+          "min": 0.45304,
+          "max": 0.45304
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.8763333333333334,
+          "p50": 1.8763333333333334,
+          "p90": 1.8763333333333334,
+          "mean": 1.8763333333333334,
+          "min": 1.8763333333333334,
+          "max": 1.8763333333333334
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 20,
+      "id": "bar|reserve-all|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "100608e862cbee2bb543424969b7323911e166154d6df67bc2e3c1e1d8242896",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.5071666666666667,
+          "p50": 0.5071666666666667,
+          "p90": 0.5071666666666667,
+          "mean": 0.5071666666666667,
+          "min": 0.5071666666666667,
+          "max": 0.5071666666666667
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6936666666666667,
+          "p50": 0.6936666666666667,
+          "p90": 0.6936666666666667,
+          "mean": 0.6936666666666667,
+          "min": 0.6936666666666667,
+          "max": 0.6936666666666667
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7667,
+          "p50": 7667,
+          "p90": 7667,
+          "mean": 7667,
+          "min": 7667,
+          "max": 7667
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.2008333333333334,
+          "p50": 1.2008333333333334,
+          "p90": 1.2008333333333334,
+          "mean": 1.2008333333333334,
+          "min": 1.2008333333333334,
+          "max": 1.2008333333333334
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.625,
+          "p50": 0.625,
+          "p90": 0.625,
+          "mean": 0.625,
+          "min": 0.625,
+          "max": 0.625
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7971,
+          "p50": 0.7971,
+          "p90": 0.7971,
+          "mean": 0.7971,
+          "min": 0.7971,
+          "max": 0.7971
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7416666666666667,
+          "p50": 0.7416666666666667,
+          "p90": 0.7416666666666667,
+          "mean": 0.7416666666666667,
+          "min": 0.7416666666666667,
+          "max": 0.7416666666666667
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 21,
+      "id": "bar|reserve-all|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "204c32ba768814a543be4b417e13013994fb6021e3dbfb9a54b5f8282c5ca818",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.5472666666666666,
+          "p50": 1.5472666666666666,
+          "p90": 1.5472666666666666,
+          "mean": 1.5472666666666666,
+          "min": 1.5472666666666666,
+          "max": 1.5472666666666666
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6936666666666667,
+          "p50": 0.6936666666666667,
+          "p90": 0.6936666666666667,
+          "mean": 0.6936666666666667,
+          "min": 0.6936666666666667,
+          "max": 0.6936666666666667
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10098,
+          "p50": 10098,
+          "p90": 10098,
+          "mean": 10098,
+          "min": 10098,
+          "max": 10098
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2.2409333333333334,
+          "p50": 2.2409333333333334,
+          "p90": 2.2409333333333334,
+          "mean": 2.2409333333333334,
+          "min": 2.2409333333333334,
+          "max": 2.2409333333333334
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.6416666666666666,
+          "p50": 1.6416666666666666,
+          "p90": 1.6416666666666666,
+          "mean": 1.6416666666666666,
+          "min": 1.6416666666666666,
+          "max": 1.6416666666666666
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.57954,
+          "p50": 1.57954,
+          "p90": 1.57954,
+          "mean": 1.57954,
+          "min": 1.57954,
+          "max": 1.57954
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3.5166666666666666,
+          "p50": 3.5166666666666666,
+          "p90": 3.5166666666666666,
+          "mean": 3.516666666666667,
+          "min": 3.5166666666666666,
+          "max": 3.5166666666666666
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 22,
+      "id": "bar|round-robin|smiths-2|jobs-2",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "7ef51d9963b09141cc831887cc31a8005c6819837562b48ca7febc7bbf2d3d40",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.058333333333333334,
+          "p50": 0.058333333333333334,
+          "p90": 0.058333333333333334,
+          "mean": 0.05833333333333333,
+          "min": 0.058333333333333334,
+          "max": 0.058333333333333334
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.6795,
+          "p50": 0.6795,
+          "p90": 0.6795,
+          "mean": 0.6795,
+          "min": 0.6795,
+          "max": 0.6795
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 7873,
+          "p50": 7873,
+          "p90": 7873,
+          "mean": 7873,
+          "min": 7873,
+          "max": 7873
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.7378333333333333,
+          "p50": 0.7378333333333333,
+          "p90": 0.7378333333333333,
+          "mean": 0.7378333333333332,
+          "min": 0.7378333333333333,
+          "max": 0.7378333333333333
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.14416666666666667,
+          "p50": 0.14416666666666667,
+          "p90": 0.14416666666666667,
+          "mean": 0.14416666666666667,
+          "min": 0.14416666666666667,
+          "max": 0.14416666666666667
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.2308,
+          "p50": 0.2308,
+          "p90": 0.2308,
+          "mean": 0.2308,
+          "min": 0.2308,
+          "max": 0.2308
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.24666666666666667,
+          "p50": 0.24666666666666667,
+          "p90": 0.24666666666666667,
+          "mean": 0.24666666666666667,
+          "min": 0.24666666666666667,
+          "max": 0.24666666666666667
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 72,
+          "p50": 72,
+          "p90": 72,
+          "mean": 72,
+          "min": 72,
+          "max": 72
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 23,
+      "id": "bar|round-robin|smiths-2|jobs-4",
+      "kind": "queue",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 3,
+      "runLogsDigest": "0f6d751c375108a0cecc7d67e84bc9ccba1a6575dd4ea712a5a59e7a513d385f",
+      "metrics": {
+        "barsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "completionSpreadMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.23333333333333334,
+          "p50": 0.23333333333333334,
+          "p90": 0.23333333333333334,
+          "mean": 0.2333333333333333,
+          "min": 0.23333333333333334,
+          "max": 0.23333333333333334
+        },
+        "firstJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.5509333333333333,
+          "p50": 1.5509333333333333,
+          "p90": 1.5509333333333333,
+          "mean": 1.5509333333333333,
+          "min": 1.5509333333333333,
+          "max": 1.5509333333333333
+        },
+        "invariantChecks": {
+          "n": 3,
+          "reached": 3,
+          "p10": 10990,
+          "p50": 10990,
+          "p90": 10990,
+          "mean": 10990,
+          "min": 10990,
+          "max": 10990
+        },
+        "invariantViolations": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsCompleted": {
+          "n": 3,
+          "reached": 3,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "jobsPaused": {
+          "n": 3,
+          "reached": 3,
+          "p10": 16,
+          "p50": 16,
+          "p90": 16,
+          "mean": 16,
+          "min": 16,
+          "max": 16
+        },
+        "lastJobCompletionMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.7842666666666667,
+          "p50": 1.7842666666666667,
+          "p90": 1.7842666666666667,
+          "mean": 1.7842666666666667,
+          "min": 1.7842666666666667,
+          "max": 1.7842666666666667
+        },
+        "maxJobShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 1.0089666666666666,
+          "p50": 1.0089666666666666,
+          "p90": 1.0089666666666666,
+          "mean": 1.0089666666666666,
+          "min": 1.0089666666666666,
+          "max": 1.0089666666666666
+        },
+        "meanReservedUnits": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0.45304,
+          "p50": 0.45304,
+          "p90": 0.45304,
+          "mean": 0.45303999999999994,
+          "min": 0.45304,
+          "max": 0.45304
+        },
+        "planksPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "totalShortageMin": {
+          "n": 3,
+          "reached": 3,
+          "p10": 3.6192,
+          "p50": 3.6192,
+          "p90": 3.6192,
+          "mean": 3.6192000000000006,
+          "min": 3.6192,
+          "max": 3.6192
+        },
+        "unitsPerHour": {
+          "n": 3,
+          "reached": 3,
+          "p10": 144,
+          "p50": 144,
+          "p90": 144,
+          "mean": 144,
+          "min": 144,
+          "max": 144
+        },
+        "unitsReleased": {
+          "n": 3,
+          "reached": 3,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering",
+      "results": [
+        {
+          "cell": "plank|fifo|smiths-1|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|fifo|smiths-1|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|fifo|smiths-1|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|fifo|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|fifo|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|reserve-all|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|reserve-all|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|round-robin|smiths-2|jobs-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "bar|round-robin|smiths-2|jobs-4",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S3-04",
+      "statement": "Shortage time per arm (reported, no target)",
+      "source": "M0 plan section 9.4",
+      "metric": "totalShortageMin",
+      "stat": "mean",
+      "op": ">=",
+      "value": 0,
+      "unit": "min",
+      "role": "reported",
+      "results": [
+        {
+          "cell": "plank|fifo|smiths-1|jobs-2",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|fifo|smiths-1|jobs-3",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|fifo|smiths-1|jobs-4",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-2",
+          "observed": 0.27295,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-3",
+          "observed": 0.87975,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|fifo|smiths-2|jobs-4",
+          "observed": 2.5772,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-2",
+          "observed": 0.14863333333333334,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-3",
+          "observed": 1.0472666666666666,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-1|jobs-4",
+          "observed": 2.6959,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-2",
+          "observed": 0.7833333333333333,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-3",
+          "observed": 2.3,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|reserve-all|smiths-2|jobs-4",
+          "observed": 4.55,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-2",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-3",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-1|jobs-4",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-2",
+          "observed": 0.35883333333333334,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-3",
+          "observed": 2.208483333333333,
+          "outcome": "reported"
+        },
+        {
+          "cell": "plank|round-robin|smiths-2|jobs-4",
+          "observed": 5.422433333333333,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|fifo|smiths-2|jobs-2",
+          "observed": 0.24666666666666667,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|fifo|smiths-2|jobs-4",
+          "observed": 1.8763333333333334,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|reserve-all|smiths-2|jobs-2",
+          "observed": 0.7416666666666667,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|reserve-all|smiths-2|jobs-4",
+          "observed": 3.516666666666667,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|round-robin|smiths-2|jobs-2",
+          "observed": 0.24666666666666667,
+          "outcome": "reported"
+        },
+        {
+          "cell": "bar|round-robin|smiths-2|jobs-4",
+          "observed": 3.6192000000000006,
+          "outcome": "reported"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "invariants": {
+      "runs": 72,
+      "checks": 674499,
+      "violations": 0,
+      "first": []
+    }
+  }
+}

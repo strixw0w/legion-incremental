@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3-E11-knockout-matrix-widened",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T10:17:20.601Z",
+  "durationMs": 283841,
+  "jobs": 12800,
+  "mainRssMb": 1329,
+  "mainHeapUsedMb": 120
+}

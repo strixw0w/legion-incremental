@@ -1,0 +1,76 @@
+# S3.1 runs (registered 2026-11-14T14:10:07Z); persistent ledger
+## S3.1-E01 regression controls: S3 manifests re-run with the corrected code into results/s3.1/audit/ (stored S3 results untouched)
+S3-E02-queue-contention: 72 runs, 683 ms, 15 workers, ledger persistent, main RSS 762 MB semantic fingerprint 4a34b2de4c77cc25716355a9d4d29853f80b17b3553f3fd0550b1641277299fe invariant monitor: 674499 checks, 0 violations 
+S3-E03-shortage-timelines: 18 runs, 552 ms, 15 workers, ledger persistent, main RSS 570 MB semantic fingerprint 99d9083575f0032f6b1efa3d649e38b93446be8312b3d86a08364c0ae5b6a157 invariant monitor: 177750 checks, 0 violations 
+S3-E05-tier-step: 1400 runs, 14438 ms, 15 workers, ledger persistent, main RSS 2889 MB semantic fingerprint 9dc8165226511fc198338c19542c758d2c5106ea2c2f6b962cc8df5fd9cc8230 invariant monitor: 24003300 checks, 0 violations 
+S3-E04-gather-vs-fight: 1200 runs, 52126 ms, 15 workers, ledger persistent, main RSS 3646 MB semantic fingerprint c811c99258b43ae6838ceaee2021ebbd2077f6c05f7858eabfbe647ef75470c3 invariant monitor: 211828812 checks, 0 violations 
+S3-E07-old-material-demand: 400 runs, 23601 ms, 15 workers, ledger persistent, main RSS 3349 MB semantic fingerprint 7a20dda7ab2080a04aa9629c4b7e6f5bbb9723dc3ec2cb5012d877fd74cae431 invariant monitor: 111604523 checks, 0 violations 
+S3-E08-first-useful-craft: 1300 runs, 41045 ms, 15 workers, ledger persistent, main RSS 3656 MB semantic fingerprint 260d7c08ed8bba67b1cfb4a2f18fa729c0dab1d800c3d6a505914ebcd962b162 invariant monitor: 156301178 checks, 0 violations 
+S3-E09-hero-damage: 800 runs, 33883 ms, 15 workers, ledger persistent, main RSS 3509 MB semantic fingerprint 2fd8fc536506d2583b112824e1bb90e455237812608beb257fc0e641dedc261a invariant monitor: 136690490 checks, 0 violations 
+S3-E10-pacing-levers: 700 runs, 26140 ms, 15 workers, ledger persistent, main RSS 3435 MB semantic fingerprint 3aa53265781693a5ad185b10ed5830d9e739f66d49d7723e4228893b223c65d0 invariant monitor: 111910402 checks, 0 violations 
+S3-E12-investment: 1600 runs, 314046 ms, 15 workers, ledger persistent, main RSS 2936 MB semantic fingerprint 70c2b382117530ac26f079315d7e4d2c96f16f9043a41d910bef16c5612b1c3a invariant monitor: 231129581 checks, 0 violations 
+## S3.1-E07 recycle search with timed production, control and every candidate variant  14:18:49Z
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.copperOffenceScale":1.5,"s3.copperDefenceScale":1.5}
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.weaponPercent":"on"}
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.oldMaterialRecipes":"on"}
+S3.1-E07 rich-no-items: depth 4, 6768 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10521 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 406 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.nodeYieldScale":0.5}
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.unitTimeScale":0.75}
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+variant {"s3.equipCostScale":1.5}
+S3.1-E07 rich-no-items: depth 4, 6459 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 5958 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 112 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 27 states, raw breaks 0, content breaks 0
+variant {"s3.copperOffenceScale":1.25}
+S3.1-E07 rich-no-items: depth 4, 6772 states, raw breaks 0, content breaks 0
+S3.1-E07 with-items: depth 4, 10802 states, raw breaks 0, content breaks 0
+S3.1-E07 minimal: depth 4, 439 states, raw breaks 0, content breaks 0
+S3.1-E07 raw-materials: depth 4, 53 states, raw breaks 0, content breaks 0
+## S3.1-E03-equipment-strength start 14:18:56Z
+S3.1-E03-equipment-strength: 4200 runs, 24057 ms, 15 workers, ledger persistent, main RSS 3168 MB
+semantic fingerprint bb367a3b1094398e0c275879ed131b2af55c34a9fa3406b92b58bbdcf6cd013d
+invariant monitor: 37128066 checks, 0 violations
+## S3.1-E02-policy-capacity start 14:19:20Z
+S3.1-E02-policy-capacity: 2300 runs, 87384 ms, 15 workers, ledger persistent, main RSS 3999 MB
+semantic fingerprint f2796fea03c7d718ea7aed15468c32f4401ee8a026616e59d9ae3b010607c8a2
+invariant monitor: 432548841 checks, 0 violations
+## S3.1-E04-candidate-content start 14:20:48Z
+S3.1-E04-candidate-content: 650 runs, 50766 ms, 15 workers, ledger persistent, main RSS 3586 MB
+semantic fingerprint fb571ab59cf933f5b41dc237fdb9f83cdf1ffac210d81fe51dc069bea97c1405
+invariant monitor: 247419611 checks, 0 violations
+## S3.1-E05-investment start 14:21:40Z
+S3.1-E05-investment: 800 runs, 54166 ms, 15 workers, ledger persistent, main RSS 3817 MB
+semantic fingerprint d66c82532e47727388945167ce9c587645e7849654038762ee4abc6c01971ffc
+invariant monitor: 190514195 checks, 0 violations
+## S3.1-E08-long-horizon-payback start 14:22:34Z
+S3.1-E08-long-horizon-payback: 200 runs, 38015 ms, 15 workers, ledger persistent, main RSS 3328 MB
+semantic fingerprint c180715752b71a3385dae867edb507e495db2862b791ba533375462ec71e3933
+invariant monitor: 81682775 checks, 0 violations
+## S3.1-E06-hero-power-full-squad start 14:23:13Z
+S3.1-E06-hero-power-full-squad: 2000 runs, 45632 ms, 15 workers, ledger persistent, main RSS 3409 MB
+semantic fingerprint af08898c5782e3408df5080dbefd350cdfa158e2c4d41c2e8595c5a1ed4dbe64
+invariant monitor: 76410828 checks, 0 violations
+done 14:23:59Z

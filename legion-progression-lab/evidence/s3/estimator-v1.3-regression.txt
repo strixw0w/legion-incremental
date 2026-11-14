@@ -1,0 +1,32 @@
+# Estimator v1.3 regression (S3 entry): every historical experiment re-run and compared with its stored fingerprint
+S1.1-E01-base-attribution: MATCH (38099 ms, 15 workers)
+S1.1-E02-estimator: MATCH (25675 ms, 15 workers)
+S1.1-E03-earlier-zone-audit: MATCH (2368 ms, 15 workers)
+S1.1-E04-survival-policies: MATCH (44336 ms, 15 workers)
+S1.1-E05-drops-quantities: MATCH (14856 ms, 15 workers)
+S1.1-E06-determinism: MATCH (36491 ms, 15 workers)
+S1.1-E07-policy-comparison: MATCH (61537 ms, 15 workers)
+S2-E00-control-a0: MATCH (4797 ms, 15 workers)
+S2-E01-deploy-scaling: MATCH (27672 ms, 15 workers)
+S2-E02-hero-damage-share: MATCH (37028 ms, 15 workers)
+S2-E04-class-switch-abuse: MATCH (2414 ms, 15 workers)
+S2-E05-squad-vs-workers: MATCH (37859 ms, 15 workers)
+S2-E06-assignment-switching: MATCH (23714 ms, 15 workers)
+S2-E07-knockout-sensitivity: MATCH (15938 ms, 15 workers)
+S2-E08-first-recruit-timing: MATCH (71616 ms, 15 workers)
+S2-E09-hindsight-search: MATCH (292460 ms, 15 workers)
+S2-E10-estimator-vs-realisation: MATCH (39761 ms, 15 workers)
+S2.1-E02-worker-estimator: MISMATCH (23908 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (16610 ms, 15 workers)
+
+## Explanation of the one MISMATCH (owner S3 authorisation section 4: explain changed regression outputs)
+S2.1-E02 was re-run into evidence/s3/estimator-v1.3-rerun/ (the stored S2.1 result in results/s2.1/ and the S2.1
+evidence are untouched). A field-by-field comparison of semantic.json finds exactly 7 differences, all in one cell:
+  cell 29 a10-p1.6-g100|L1-Z3|worker-mage, metric predictedWorkerKillsPerHour:
+    p10/p50/p90/mean/min/max  0 -> null;  reached 100 -> 0
+This is the intended v1.3 encoding change: that cell's worker estimate is "unresolved" (the ability-dependent case,
+S2.1), so no forecast exists. v1.2 recorded the placeholder rate 0, which read as "zero production"; v1.3 records
+null ("forecast unavailable"). The classification itself (predictedWorkerReliability 4 = unresolved) is unchanged,
+as is every realised outcome (every run log digest and every other metric). Old fingerprint
+93813b926d1cd825b7ae20c6e9d751bf654d6adfc18fad594978fcd886a6e6f1, new 454e0b016702ef581d65f37fe854421f75795b74d7d414d05d65e2b1d9ab185f.
+No other experiment hit a swing or work budget in a displayed estimate, so every other historical fingerprint matches.

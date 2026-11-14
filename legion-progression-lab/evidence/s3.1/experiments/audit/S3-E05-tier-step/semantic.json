@@ -1,0 +1,7081 @@
+{
+  "schema": "legion.s3.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S3-E05-tier-step",
+  "manifestSha256": "c905e9ce25a4e697553f520b098007c1df527fbb074592a6f39bae649b4dff34",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "variantContent": {
+    "a10-p1.6-g100": {
+      "contentHash": "5e2023572707ffa3faf87da8ac44219bb26203894a182930e4d94212b374a53b",
+      "tableHash": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc",
+      "legionContentHash": "1bd654be5fc6ae6366faf34a7070dee5530e9ce48e4c5c485699aff86619d63f",
+      "industryContentHash": "4ce135e2cf83e086c6f380f5950624aaf6546a0ebfa92fb3dea45e8553e988c5"
+    }
+  },
+  "seeds": {
+    "root": "s3-e05",
+    "replicates": 100
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "Z2-L5|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "9ef33167f7cfe798fd4d6d3abb762e47be646a6daa95653b080baecc1d05b43f",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.31199492948819524,
+          "p50": 0.31457047935453253,
+          "p90": 0.3176836822210222,
+          "mean": 0.31475476817026043,
+          "min": 0.3089939363154386,
+          "max": 0.32043622569938357
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.36208966345158755,
+          "p50": 0.3642762504140444,
+          "p90": 0.3665534945346141,
+          "mean": 0.3643528656349314,
+          "min": 0.35993694777450536,
+          "max": 0.36868959223462067
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 16050,
+          "p50": 16110,
+          "p90": 16140,
+          "mean": 16106.1,
+          "min": 16020,
+          "max": 16200
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.10864047111381867,
+          "p50": 0.11347874158206855,
+          "p90": 0.11808744260331404,
+          "mean": 0.11326150669072138,
+          "min": 0.1049079754601227,
+          "max": 0.12084443129130906
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.31199492948819524,
+          "p50": 0.31457047935453253,
+          "p90": 0.3176836822210222,
+          "mean": 0.31475476817026043,
+          "min": 0.3089939363154386,
+          "max": 0.32043622569938357
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 16197,
+          "p50": 16265,
+          "p90": 16317,
+          "mean": 16261.86,
+          "min": 16161,
+          "max": 16379
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1605,
+          "p50": 1611,
+          "p90": 1614,
+          "mean": 1610.61,
+          "min": 1602,
+          "max": 1620
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 48150,
+          "p50": 48330,
+          "p90": 48420,
+          "mean": 48318.3,
+          "min": 48060,
+          "max": 48600
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1483.6879557893594,
+          "p50": 1483.6879557893594,
+          "p90": 1483.6879557893594,
+          "mean": 1483.687955789358,
+          "min": 1483.6879557893594,
+          "max": 1483.6879557893594
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.9263862127833404,
+          "p50": 0.9263862127833404,
+          "p90": 0.9263862127833404,
+          "mean": 0.9263862127833417,
+          "min": 0.9263862127833404,
+          "max": 0.9263862127833404
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.23105372230192892,
+          "p50": 0.23383572921284276,
+          "p90": 0.23654252467597994,
+          "mean": 0.23398376053718245,
+          "min": 0.22852863379967495,
+          "max": 0.24119923239059993
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "Z2-L5|wood+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "b34d61c7125e4f554ae093141818544b688da0ceaa01adf1f7480f322e0bb569",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3204555986439355,
+          "p50": 0.32248542185874324,
+          "p90": 0.32469024169701116,
+          "mean": 0.3224765905586044,
+          "min": 0.31835923295110186,
+          "max": 0.32604562737642584
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3211204481792717,
+          "p50": 0.32366498032602586,
+          "p90": 0.3263276836158192,
+          "mean": 0.32365978940809337,
+          "min": 0.3192530345471522,
+          "max": 0.328361581920904
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17730,
+          "p50": 17880,
+          "p90": 18030,
+          "mean": 17881.2,
+          "min": 17670,
+          "max": 18210
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.33541698429638667,
+          "p50": 0.34317426759287223,
+          "p90": 0.351828119110441,
+          "mean": 0.3433424543916372,
+          "min": 0.32523606457508375,
+          "max": 0.35908141962421714
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3204555986439355,
+          "p50": 0.32248542185874324,
+          "p90": 0.32469024169701116,
+          "mean": 0.3224765905586044,
+          "min": 0.31835923295110186,
+          "max": 0.32604562737642584
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18024,
+          "p50": 18170,
+          "p90": 18332,
+          "mean": 18177.47,
+          "min": 17946,
+          "max": 18516
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1773,
+          "p50": 1788,
+          "p90": 1803,
+          "mean": 1788.12,
+          "min": 1767,
+          "max": 1821
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 53190,
+          "p50": 53640,
+          "p90": 54090,
+          "mean": 53643.6,
+          "min": 53010,
+          "max": 54630
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5,
+          "p50": 0.5,
+          "p90": 0.5,
+          "mean": 0.48,
+          "min": 0,
+          "max": 0.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1685.568659321987,
+          "p50": 1685.568659321987,
+          "p90": 1685.568659321987,
+          "mean": 1685.568659321987,
+          "min": 1685.568659321987,
+          "max": 1685.568659321987
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.6357777270538981,
+          "p50": 0.6357777270538981,
+          "p90": 0.6357777270538981,
+          "mean": 0.6357777270538988,
+          "min": 0.6357777270538981,
+          "max": 0.6357777270538981
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3422467735627689,
+          "p50": 0.34575075987841947,
+          "p90": 0.34887636337017786,
+          "mean": 0.3457635169319645,
+          "min": 0.33780212853644936,
+          "max": 0.3539777712781515
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "Z2-L5|wood+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "aa6b7351a98229874ebf7d22133015f26d3126d8ecaa9416c44034fab033f03c",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.32885102787947057,
+          "p50": 0.33085423855264384,
+          "p90": 0.33314522197140706,
+          "mean": 0.3309167831960567,
+          "min": 0.32672204592122456,
+          "max": 0.3343731675853172
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3131381381381381,
+          "p50": 0.3161563542330323,
+          "p90": 0.31880425022448367,
+          "mean": 0.3160730590485913,
+          "min": 0.3110364145658263,
+          "max": 0.32144184318097363
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17730,
+          "p50": 17880,
+          "p90": 18030,
+          "mean": 17881.2,
+          "min": 17670,
+          "max": 18210
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3905367736401973,
+          "p50": 0.39826346879225677,
+          "p90": 0.40747755331088664,
+          "mean": 0.3986542751136928,
+          "min": 0.380159977146122,
+          "max": 0.41383410267170234
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.32885102787947057,
+          "p50": 0.33085423855264384,
+          "p90": 0.33314522197140706,
+          "mean": 0.3309167831960567,
+          "min": 0.32672204592122456,
+          "max": 0.3343731675853172
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18024,
+          "p50": 18170,
+          "p90": 18332,
+          "mean": 18177.47,
+          "min": 17946,
+          "max": 18516
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1773,
+          "p50": 1788,
+          "p90": 1803,
+          "mean": 1788.12,
+          "min": 1767,
+          "max": 1821
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 53190,
+          "p50": 53640,
+          "p90": 54090,
+          "mean": 53643.6,
+          "min": 53010,
+          "max": 54630
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5,
+          "p50": 0.5,
+          "p90": 0.5,
+          "mean": 0.48,
+          "min": 0,
+          "max": 0.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1718.6685961255134,
+          "p50": 1718.6685961255134,
+          "p90": 1718.6685961255134,
+          "mean": 1718.66859612551,
+          "min": 1718.6685961255134,
+          "max": 1718.6685961255134
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5946446616384757,
+          "p50": 0.5946446616384757,
+          "p90": 0.5946446616384757,
+          "mean": 0.5946446616384761,
+          "min": 0.5946446616384757,
+          "max": 0.5946446616384757
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.36705072924766147,
+          "p50": 0.3704502880990207,
+          "p90": 0.3735474329178111,
+          "mean": 0.37043647243249145,
+          "min": 0.36263300354676126,
+          "max": 0.37832766506391463
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "Z2-L5|wood+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "f910f78e9ba92acb3e14433c40654b9778e2ea5d8b8c149202c7e5d5f0a7cbeb",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3215613382899628,
+          "p50": 0.32350795604796423,
+          "p90": 0.3257460799190693,
+          "mean": 0.3235551179370965,
+          "min": 0.31941783009398667,
+          "max": 0.326979976604968
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.29954954954954954,
+          "p50": 0.30284324728769174,
+          "p90": 0.3055763753560186,
+          "mean": 0.30269682875061127,
+          "min": 0.2978154425612053,
+          "max": 0.30808080808080807
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17730,
+          "p50": 17880,
+          "p90": 18030,
+          "mean": 17881.2,
+          "min": 17670,
+          "max": 18210
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.41605317704238437,
+          "p50": 0.4235544519333097,
+          "p90": 0.43308080808080807,
+          "mean": 0.42409508623185505,
+          "min": 0.40572775317811743,
+          "max": 0.43922226884879007
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3215613382899628,
+          "p50": 0.32350795604796423,
+          "p90": 0.3257460799190693,
+          "mean": 0.3235551179370965,
+          "min": 0.31941783009398667,
+          "max": 0.326979976604968
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18024,
+          "p50": 18170,
+          "p90": 18332,
+          "mean": 18177.47,
+          "min": 17946,
+          "max": 18516
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1773,
+          "p50": 1788,
+          "p90": 1803,
+          "mean": 1788.12,
+          "min": 1767,
+          "max": 1821
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 53190,
+          "p50": 53640,
+          "p90": 54090,
+          "mean": 53643.6,
+          "min": 53010,
+          "max": 54630
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5,
+          "p50": 0.5,
+          "p90": 0.5,
+          "mean": 0.48,
+          "min": 0,
+          "max": 0.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1735.5043230650022,
+          "p50": 1735.5043230650022,
+          "p90": 1735.5043230650022,
+          "mean": 1735.5043230650003,
+          "min": 1735.5043230650022,
+          "max": 1735.5043230650022
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5743249971525222,
+          "p50": 0.5743249971525222,
+          "p90": 0.5743249971525222,
+          "mean": 0.5743249971525229,
+          "min": 0.5743249971525222,
+          "max": 0.5743249971525222
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.38117067102808044,
+          "p50": 0.3844222841482232,
+          "p90": 0.38741948746060023,
+          "mean": 0.3844356482211962,
+          "min": 0.37688201478237066,
+          "max": 0.3920732126883644
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "Z2-L5|wood+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "d518582ccfcd9d60e6b9a7ab33af53fc3d1826850f283a9cb9a7dfb5129bab2e",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.26549224413438305,
+          "p50": 0.26712408872948423,
+          "p90": 0.2681990844453102,
+          "mean": 0.2670378670824154,
+          "min": 0.2643192488262911,
+          "max": 0.2713610991841992
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2972187281621244,
+          "p50": 0.2989517819706499,
+          "p90": 0.3003494060097834,
+          "mean": 0.298980852550664,
+          "min": 0.29607267645003493,
+          "max": 0.30294898672257164
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 23850,
+          "p50": 23850,
+          "p90": 23850,
+          "mean": 23850,
+          "min": 23850,
+          "max": 23850
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2151759530791789,
+          "p50": 0.21818447168709865,
+          "p90": 0.22076320371445154,
+          "mean": 0.21805234005305438,
+          "min": 0.2130782918149466,
+          "max": 0.2229710144927536
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.26549224413438305,
+          "p50": 0.26712408872948423,
+          "p90": 0.2681990844453102,
+          "mean": 0.2670378670824154,
+          "min": 0.2643192488262911,
+          "max": 0.2713610991841992
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24179,
+          "p50": 24197,
+          "p90": 24214,
+          "mean": 24196.86,
+          "min": 24162,
+          "max": 24235
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2385,
+          "p50": 2385,
+          "p90": 2385,
+          "mean": 2385,
+          "min": 2385,
+          "max": 2385
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 71550,
+          "p50": 71550,
+          "p90": 71550,
+          "mean": 71550,
+          "min": 71550,
+          "max": 71550
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1790.1116391771873,
+          "p50": 1790.1116391771873,
+          "p90": 1790.1116391771873,
+          "mean": 1790.1116391771911,
+          "min": 1790.1116391771873,
+          "max": 1790.1116391771873
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5110477588172746,
+          "p50": 0.5110477588172746,
+          "p90": 0.5110477588172746,
+          "mean": 0.5110477588172753,
+          "min": 0.5110477588172746,
+          "max": 0.5110477588172746
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2992576342232582,
+          "p50": 0.30163780818708885,
+          "p90": 0.3044078474072058,
+          "mean": 0.3015960384696139,
+          "min": 0.2956290608387478,
+          "max": 0.3057172799254774
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "Z2-L5|copper+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "dbd5dbfc49d24ec16a02a3de5f809698d53851c0c134c705b0d9df3e54246313",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.268881910208951,
+          "p50": 0.27060653188180406,
+          "p90": 0.2719581548831005,
+          "mean": 0.2705871820631863,
+          "min": 0.26779838991949595,
+          "max": 0.2743308468626591
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.30907058001397625,
+          "p50": 0.3109154437456324,
+          "p90": 0.3120614954577219,
+          "mean": 0.3108450034940601,
+          "min": 0.30778476589797343,
+          "max": 0.3139622641509434
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 23850,
+          "p50": 23850,
+          "p90": 23850,
+          "mean": 23850,
+          "min": 23850,
+          "max": 23850
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.27730275942479593,
+          "p50": 0.28067346148884015,
+          "p90": 0.2836208014524705,
+          "mean": 0.280539251799583,
+          "min": 0.2750098077677521,
+          "max": 0.2850419084461638
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.268881910208951,
+          "p50": 0.27060653188180406,
+          "p90": 0.2719581548831005,
+          "mean": 0.2705871820631863,
+          "min": 0.26779838991949595,
+          "max": 0.2743308468626591
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24179,
+          "p50": 24197,
+          "p90": 24214,
+          "mean": 24196.86,
+          "min": 24162,
+          "max": 24235
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2385,
+          "p50": 2385,
+          "p90": 2385,
+          "mean": 2385,
+          "min": 2385,
+          "max": 2385
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 71550,
+          "p50": 71550,
+          "p90": 71550,
+          "mean": 71550,
+          "min": 71550,
+          "max": 71550
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1876.1451146805382,
+          "p50": 1876.1451146805382,
+          "p90": 1876.1451146805382,
+          "mean": 1876.1451146805402,
+          "min": 1876.1451146805382,
+          "max": 1876.1451146805382
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.4188281182679157,
+          "p50": 0.4188281182679157,
+          "p90": 0.4188281182679157,
+          "mean": 0.4188281182679156,
+          "min": 0.4188281182679157,
+          "max": 0.4188281182679157
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.37096689114342485,
+          "p50": 0.37377468141716846,
+          "p90": 0.3759267335368513,
+          "mean": 0.37371933503899046,
+          "min": 0.36829001271366013,
+          "max": 0.37908950483364284
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 6,
+      "id": "Z2-L5|copper+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "5bb77df1edd167608dca245b3c23571c9bdec822faa1a5af171309d77edf4972",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2640440838818307,
+          "p50": 0.26585577758470896,
+          "p90": 0.26739508403504586,
+          "mean": 0.2658138989622936,
+          "min": 0.26259622410658146,
+          "max": 0.2700184312922384
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2976659678546471,
+          "p50": 0.29945492662473794,
+          "p90": 0.3009084556254368,
+          "mean": 0.299388679245283,
+          "min": 0.2959049615653389,
+          "max": 0.3026974143955276
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 23850,
+          "p50": 23850,
+          "p90": 23850,
+          "mean": 23850,
+          "min": 23850,
+          "max": 23850
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3113171108536114,
+          "p50": 0.3145052833813641,
+          "p90": 0.3169336384439359,
+          "mean": 0.31437624888751864,
+          "min": 0.3099210968826801,
+          "max": 0.3192290509924054
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2640440838818307,
+          "p50": 0.26585577758470896,
+          "p90": 0.26739508403504586,
+          "mean": 0.2658138989622936,
+          "min": 0.26259622410658146,
+          "max": 0.2700184312922384
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24179,
+          "p50": 24197,
+          "p90": 24214,
+          "mean": 24196.86,
+          "min": 24162,
+          "max": 24235
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2385,
+          "p50": 2385,
+          "p90": 2385,
+          "mean": 2385,
+          "min": 2385,
+          "max": 2385
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 71550,
+          "p50": 71550,
+          "p90": 71550,
+          "mean": 71550,
+          "min": 71550,
+          "max": 71550
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1897.5085723172836,
+          "p50": 1897.5085723172836,
+          "p90": 1897.5085723172836,
+          "mean": 1897.5085723172822,
+          "min": 1897.5085723172836,
+          "max": 1897.5085723172836
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3972246305077782,
+          "p50": 0.3972246305077782,
+          "p90": 0.3972246305077782,
+          "mean": 0.3972246305077787,
+          "min": 0.3972246305077782,
+          "max": 0.3972246305077782
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3883674411447915,
+          "p50": 0.39129177159191453,
+          "p90": 0.39363379040322716,
+          "mean": 0.39126632923264587,
+          "min": 0.38646887326359114,
+          "max": 0.3963146082583824
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 7,
+      "id": "Z3-L10|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "c201fcb968268ac88dfeca6b0782d378f3d75b178c311c49d4ea3b51961d34ed",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3280263831238983,
+          "p50": 0.33047316451361275,
+          "p90": 0.33297340304614687,
+          "mean": 0.3305364829846259,
+          "min": 0.3256913214046503,
+          "max": 0.33596259479596297
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3620186763741606,
+          "p50": 0.365157457999864,
+          "p90": 0.36891672571833495,
+          "mean": 0.36544608163222025,
+          "min": 0.3583782569631626,
+          "max": 0.3732502815638863
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 23958,
+          "p50": 24156,
+          "p90": 24354,
+          "mean": 24183.06,
+          "min": 23892,
+          "max": 24552
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.06188466947960619,
+          "p50": 0.07080103359173126,
+          "p90": 0.07801538809685449,
+          "mean": 0.07070448382371498,
+          "min": 0.057475338177092564,
+          "max": 0.08623040218132243
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3280263831238983,
+          "p50": 0.33047316451361275,
+          "p90": 0.33297340304614687,
+          "mean": 0.3305364829846259,
+          "min": 0.3256913214046503,
+          "max": 0.33596259479596297
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10953,
+          "p50": 11046,
+          "p90": 11132,
+          "mean": 11051.85,
+          "min": 10902,
+          "max": 11233
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1089,
+          "p50": 1098,
+          "p90": 1107,
+          "mean": 1099.23,
+          "min": 1086,
+          "max": 1116
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 70686,
+          "p50": 71280,
+          "p90": 71874,
+          "mean": 71346,
+          "min": 70488,
+          "max": 72468
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.5,
+          "p50": 1.6,
+          "p90": 1.9,
+          "mean": 1.6489999999999996,
+          "min": 1.5,
+          "max": 2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 9,
+          "p50": 9,
+          "p90": 9,
+          "mean": 9,
+          "min": 9,
+          "max": 9
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1066.639331907723,
+          "p50": 1066.639331907723,
+          "p90": 1066.639331907723,
+          "mean": 1066.6393319077215,
+          "min": 1066.639331907723,
+          "max": 1066.639331907723
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.8750864911021699,
+          "p50": 1.8750864911021699,
+          "p90": 1.8750864911021699,
+          "mean": 1.8750864911021672,
+          "min": 1.8750864911021699,
+          "max": 1.8750864911021699
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.025,
+          "p50": 0.025,
+          "p90": 0.025,
+          "mean": 0.024999999999999953,
+          "min": 0.025,
+          "max": 0.025
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.15339753673790432,
+          "p50": 0.15945801117660569,
+          "p90": 0.16567494373879543,
+          "mean": 0.15947197405020241,
+          "min": 0.14505379875210075,
+          "max": 0.17058968571591146
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 8,
+      "id": "Z3-L10|wood+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "4df7dd9d812583ef1a55220587efbb4b74dec8f2c7e3cfb7802446452d948f54",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3393329719733444,
+          "p50": 0.34245830601704536,
+          "p90": 0.346058615053485,
+          "mean": 0.34265141523541104,
+          "min": 0.3375855382297793,
+          "max": 0.3486003035097349
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.34024904214559387,
+          "p50": 0.3422431467841142,
+          "p90": 0.3443137702671843,
+          "mean": 0.34225636963328,
+          "min": 0.33822964669738864,
+          "max": 0.3456018518518518
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 28644,
+          "p50": 28842,
+          "p90": 29040,
+          "mean": 28838.7,
+          "min": 28446,
+          "max": 29238
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.14979605232312815,
+          "p50": 0.1579021703309637,
+          "p90": 0.1667367044870897,
+          "mean": 0.15787747781768366,
+          "min": 0.134993384993385,
+          "max": 0.1787878787878788
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3393329719733444,
+          "p50": 0.34245830601704536,
+          "p90": 0.346058615053485,
+          "mean": 0.34265141523541104,
+          "min": 0.3375855382297793,
+          "max": 0.3486003035097349
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 13213,
+          "p50": 13323,
+          "p90": 13437,
+          "mean": 13323.54,
+          "min": 13130,
+          "max": 13512
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1302,
+          "p50": 1311,
+          "p90": 1320,
+          "mean": 1310.85,
+          "min": 1293,
+          "max": 1329
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 85008,
+          "p50": 85734,
+          "p90": 86724,
+          "mean": 85840.26,
+          "min": 84546,
+          "max": 87252
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.5,
+          "p50": 1.5,
+          "p90": 1.5,
+          "mean": 1.5,
+          "min": 1.5,
+          "max": 1.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3,
+          "p50": 6,
+          "p90": 6,
+          "mean": 4.77,
+          "min": 3,
+          "max": 6
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1195.2892941085277,
+          "p50": 1195.2892941085277,
+          "p90": 1195.2892941085277,
+          "mean": 1195.2892941085292,
+          "min": 1195.2892941085277,
+          "max": 1195.2892941085277
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.5118231776558804,
+          "p50": 1.5118231776558804,
+          "p90": 1.5118231776558804,
+          "mean": 1.5118231776558821,
+          "min": 1.5118231776558804,
+          "max": 1.5118231776558804
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.008333333333333333,
+          "p50": 0.014083333333333333,
+          "p90": 0.016666666666666666,
+          "mean": 0.012627500000000003,
+          "min": 0.008333333333333333,
+          "max": 0.016666666666666666
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.1519395678321905,
+          "p50": 0.15667076618377548,
+          "p90": 0.16125321531849626,
+          "mean": 0.15693658817265022,
+          "min": 0.14801606425702812,
+          "max": 0.1717776674620078
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 9,
+      "id": "Z3-L10|wood+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "79e4f6c98ba55d110f5923a4bb94fba77b8b2d8a1a85848a96505cd985dfcda1",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.29980049953659343,
+          "p50": 0.3018297932286694,
+          "p90": 0.30419558654175355,
+          "mean": 0.30208710850868153,
+          "min": 0.2981690009045822,
+          "max": 0.30741817499765545
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3254555198285102,
+          "p50": 0.3278668091168091,
+          "p90": 0.3301994301994302,
+          "mean": 0.32790119644064786,
+          "min": 0.3238397376488201,
+          "max": 0.3340463458110517
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 30822,
+          "p50": 30822,
+          "p90": 30888,
+          "mean": 30829.26,
+          "min": 30756,
+          "max": 30888
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.04707700231779552,
+          "p50": 0.049540058584716586,
+          "p90": 0.05214660763924637,
+          "mean": 0.049516025699180476,
+          "min": 0.044825416797735135,
+          "max": 0.05632636156554152
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.29980049953659343,
+          "p50": 0.3018297932286694,
+          "p90": 0.30419558654175355,
+          "mean": 0.30208710850868153,
+          "min": 0.2981690009045822,
+          "max": 0.30741817499765545
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14231,
+          "p50": 14252,
+          "p90": 14276,
+          "mean": 14253.52,
+          "min": 14211,
+          "max": 14304
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1401,
+          "p50": 1401,
+          "p90": 1404,
+          "mean": 1401.33,
+          "min": 1398,
+          "max": 1404
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 92466,
+          "p50": 92466,
+          "p90": 92664,
+          "mean": 92487.78,
+          "min": 92268,
+          "max": 92664
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.4,
+          "p90": 1.5,
+          "mean": 1.401,
+          "min": 1.3,
+          "max": 1.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1214.455835260381,
+          "p50": 1214.455835260381,
+          "p90": 1214.455835260381,
+          "mean": 1214.455835260379,
+          "min": 1214.455835260381,
+          "max": 1214.455835260381
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.4642905863498568,
+          "p50": 1.4642905863498568,
+          "p90": 1.4642905863498568,
+          "mean": 1.464290586349857,
+          "min": 1.4642905863498568,
+          "max": 1.4642905863498568
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.12116549970171749,
+          "p50": 0.12427217808026725,
+          "p90": 0.1268957364401375,
+          "mean": 0.12434072066094505,
+          "min": 0.11886792452830189,
+          "max": 0.1292445052808412
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 10,
+      "id": "Z3-L10|wood+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "00019ed7809f685b5e49139bfd68033dd3e97c037c5480a9c76d933dadd510f3",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2990902902407327,
+          "p50": 0.3016146293797404,
+          "p90": 0.3038272330682838,
+          "mean": 0.3016100042912396,
+          "min": 0.29755289674493474,
+          "max": 0.30723918772283365
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.32623885918003565,
+          "p50": 0.3287353863701169,
+          "p90": 0.3311965811965812,
+          "mean": 0.3288414547005848,
+          "min": 0.3244836182336182,
+          "max": 0.3353119429590018
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 30822,
+          "p50": 30822,
+          "p90": 30888,
+          "mean": 30832.56,
+          "min": 30756,
+          "max": 30888
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.049657008293232316,
+          "p50": 0.05220345963756178,
+          "p90": 0.05516637478108581,
+          "mean": 0.05251334930593366,
+          "min": 0.04724655819774718,
+          "max": 0.060821241123803646
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2990902902407327,
+          "p50": 0.3016146293797404,
+          "p90": 0.3038272330682838,
+          "mean": 0.3016100042912396,
+          "min": 0.29755289674493474,
+          "max": 0.30723918772283365
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14237,
+          "p50": 14252,
+          "p90": 14281,
+          "mean": 14254.96,
+          "min": 14216,
+          "max": 14304
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1401,
+          "p50": 1401,
+          "p90": 1404,
+          "mean": 1401.48,
+          "min": 1398,
+          "max": 1404
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 92466,
+          "p50": 92466,
+          "p90": 92664,
+          "mean": 92497.68,
+          "min": 92268,
+          "max": 92664
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.4,
+          "p90": 1.5,
+          "mean": 1.3889999999999998,
+          "min": 1.3,
+          "max": 1.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1219.989271598936,
+          "p50": 1219.989271598936,
+          "p90": 1219.989271598936,
+          "mean": 1219.9892715989379,
+          "min": 1219.989271598936,
+          "max": 1219.989271598936
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.4508456211928709,
+          "p50": 1.4508456211928709,
+          "p90": 1.4508456211928709,
+          "mean": 1.450845621192871,
+          "min": 1.4508456211928709,
+          "max": 1.4508456211928709
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.1277928391137702,
+          "p50": 0.13110818554944628,
+          "p90": 0.13383514428352833,
+          "mean": 0.13097331311328206,
+          "min": 0.12568647029455815,
+          "max": 0.13625424251774143
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 11,
+      "id": "Z3-L10|wood+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "b2c550c590fe8aad12d05400e2f633246d6facc94a8d804ec4d28c085aa44f30",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3094770711260018,
+          "p50": 0.31222418358340687,
+          "p90": 0.31406295969402764,
+          "mean": 0.3119745778336391,
+          "min": 0.3080067642085141,
+          "max": 0.3165000953932403
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.34705778717406627,
+          "p50": 0.3496761931578206,
+          "p90": 0.3520968195890796,
+          "mean": 0.34957265718772135,
+          "min": 0.34452362100818157,
+          "max": 0.3544012102448635
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 31218,
+          "p50": 31218,
+          "p90": 31284,
+          "mean": 31250.34,
+          "min": 31218,
+          "max": 31350
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.061515518687668934,
+          "p50": 0.06419729844213301,
+          "p90": 0.0688208140998741,
+          "mean": 0.06457942598635355,
+          "min": 0.05787026163746536,
+          "max": 0.07371598358722822
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3094770711260018,
+          "p50": 0.31222418358340687,
+          "p90": 0.31406295969402764,
+          "mean": 0.3119745778336391,
+          "min": 0.3080067642085141,
+          "max": 0.3165000953932403
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14423,
+          "p50": 14443,
+          "p90": 14469,
+          "mean": 14446.33,
+          "min": 14405,
+          "max": 14503
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1419,
+          "p50": 1419,
+          "p90": 1422,
+          "mean": 1420.47,
+          "min": 1419,
+          "max": 1425
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 93654,
+          "p50": 93654,
+          "p90": 93852,
+          "mean": 93751.02,
+          "min": 93654,
+          "max": 94050
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.5,
+          "p90": 1.5,
+          "mean": 1.4099999999999995,
+          "min": 1.3,
+          "max": 1.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1263.4521682142718,
+          "p50": 1263.4521682142718,
+          "p90": 1263.4521682142718,
+          "mean": 1263.4521682142692,
+          "min": 1263.4521682142718,
+          "max": 1263.4521682142718
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3493362001096885,
+          "p50": 1.3493362001096885,
+          "p90": 1.3493362001096885,
+          "mean": 1.3493362001096896,
+          "min": 1.3493362001096885,
+          "max": 1.3493362001096885
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.16215898400752587,
+          "p50": 0.16499147710574266,
+          "p90": 0.16842521183030162,
+          "mean": 0.16518763956589674,
+          "min": 0.15810662798614605,
+          "max": 0.17278325302432562
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 12,
+      "id": "Z3-L10|copper+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "b660aa3b16c88e313e56f2656d15254292765b5de2e7381f1adfdf8bb5d7424c",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3166294062231971,
+          "p50": 0.3191709265621945,
+          "p90": 0.32207708116325556,
+          "mean": 0.319278733715138,
+          "min": 0.31480885705893047,
+          "max": 0.3235911081077276
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3604311896151091,
+          "p50": 0.364013744265955,
+          "p90": 0.3669156177643147,
+          "mean": 0.3638716670327535,
+          "min": 0.35837918785261547,
+          "max": 0.3703387169916629
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 31482,
+          "p50": 31548,
+          "p90": 31680,
+          "mean": 31563.84,
+          "min": 31416,
+          "max": 31746
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.07461698088215815,
+          "p50": 0.07871104067617539,
+          "p90": 0.08423058177145643,
+          "mean": 0.07915048208115374,
+          "min": 0.07052180003502014,
+          "max": 0.0892700857692981
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3166294062231971,
+          "p50": 0.3191709265621945,
+          "p90": 0.32207708116325556,
+          "mean": 0.319278733715138,
+          "min": 0.31480885705893047,
+          "max": 0.3235911081077276
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14543,
+          "p50": 14586,
+          "p90": 14637,
+          "mean": 14589.64,
+          "min": 14515,
+          "max": 14670
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1431,
+          "p50": 1434,
+          "p90": 1440,
+          "mean": 1434.72,
+          "min": 1428,
+          "max": 1443
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 94446,
+          "p50": 94644,
+          "p90": 95040,
+          "mean": 94691.52,
+          "min": 94248,
+          "max": 95238
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.3,
+          "p90": 1.3,
+          "mean": 1.2949999999999984,
+          "min": 1.1,
+          "max": 1.3
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1324.8834826279544,
+          "p50": 1324.8834826279544,
+          "p90": 1324.8834826279544,
+          "mean": 1324.8834826279524,
+          "min": 1324.8834826279544,
+          "max": 1324.8834826279544
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.2172200779945337,
+          "p50": 1.2172200779945337,
+          "p90": 1.2172200779945337,
+          "mean": 1.2172200779945361,
+          "min": 1.2172200779945337,
+          "max": 1.2172200779945337
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.1881908374258743,
+          "p50": 0.1917998903277513,
+          "p90": 0.19601934263087814,
+          "mean": 0.19200182712270153,
+          "min": 0.1831651642302195,
+          "max": 0.19916054564533053
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 13,
+      "id": "Z3-L10|copper+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "a324ae778a153845ead5fc65491ac7247ef3de9c3522dd696723902373003340",
+      "metrics": {
+        "autoFarmStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "barsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "crafted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "craftedWood": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "effectiveExactAllKills": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "enhancements": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "firstCopperItemMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "firstUsefulCraftMin": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "gatherInterrupted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "gelAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.31538105480981293,
+          "p50": 0.31865870939611946,
+          "p90": 0.32185087863360157,
+          "mean": 0.31884670186721725,
+          "min": 0.31373029152892845,
+          "max": 0.325168988259763
+        },
+        "heroEffectiveShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3670272222317759,
+          "p50": 0.37080745341614907,
+          "p90": 0.375,
+          "mean": 0.37100263005341566,
+          "min": 0.3647960938037274,
+          "max": 0.37725299531168605
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 31746,
+          "p50": 31878,
+          "p90": 32010,
+          "mean": 31866.78,
+          "min": 31614,
+          "max": 32208
+        },
+        "heroGatheringMin": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.07624683009298394,
+          "p50": 0.08193979933110368,
+          "p90": 0.08716227843744623,
+          "mean": 0.0820295283616093,
+          "min": 0.06928685448034859,
+          "max": 0.0918674061216714
+        },
+        "heroRawShareSquad": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.31538105480981293,
+          "p50": 0.31865870939611946,
+          "p90": 0.32185087863360157,
+          "mean": 0.31884670186721725,
+          "min": 0.31373029152892845,
+          "max": 0.325168988259763
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14660,
+          "p50": 14727,
+          "p90": 14786,
+          "mean": 14728.31,
+          "min": 14601,
+          "max": 14892
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "jobsPaused": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1443,
+          "p50": 1449,
+          "p90": 1455,
+          "mean": 1448.49,
+          "min": 1437,
+          "max": 1464
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 95238,
+          "p50": 95634,
+          "p90": 96030,
+          "mean": 95600.34,
+          "min": 94842,
+          "max": 96624
+        },
+        "logsConsumedAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsGatheredAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "logsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "maxMiningLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxSmithingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "maxWoodcuttingLevel": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1.2,
+          "mean": 1.0610000000000002,
+          "min": 1,
+          "max": 1.2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "orePerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksAfterCopper": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "planksPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1355.2884671770757,
+          "p50": 1355.2884671770757,
+          "p90": 1355.2884671770757,
+          "mean": 1355.2884671770744,
+          "min": 1355.2884671770757,
+          "max": 1355.2884671770757
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.156261074440059,
+          "p50": 1.156261074440059,
+          "p90": 1.156261074440059,
+          "mean": 1.1562610744400568,
+          "min": 1.156261074440059,
+          "max": 1.156261074440059
+        },
+        "recoveryShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "salvaged": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "squadOverkillShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.20626063286832255,
+          "p50": 0.21106585385856044,
+          "p90": 0.21528580953288068,
+          "mean": 0.21108165093135614,
+          "min": 0.20408918367067272,
+          "max": 0.2212523104736977
+        },
+        "unitsCompleted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "unitsReleased": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering",
+      "results": [
+        {
+          "cell": "Z2-L5|none",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|wood+0",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|wood+1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|wood+2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|wood+5",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|copper+0",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z2-L5|copper+1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|none",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|wood+0",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|wood+1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|wood+2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|wood+5",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|copper+0",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "Z3-L10|copper+1",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S3-02",
+      "statement": "A tier upgrade cuts on-tier TTK by >= 25%, while one enhancement level cuts it by less than half a tier (derived across cells by src/cli/s3-analyse.ts; registered formula in PREREGISTRATION.md section 4)",
+      "source": "M0 plan S3 H-S3-02 (candidate)",
+      "metric": "medianTtkS",
+      "stat": "p50",
+      "op": ">=",
+      "value": 0,
+      "unit": "s (derived comparison reported separately)",
+      "role": "reported",
+      "results": [
+        {
+          "cell": "Z2-L5|none",
+          "observed": 1,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|wood+0",
+          "observed": 0.5,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|wood+1",
+          "observed": 0.5,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|wood+2",
+          "observed": 0.5,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|wood+5",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|copper+0",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z2-L5|copper+1",
+          "observed": 0,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|none",
+          "observed": 1.6,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|wood+0",
+          "observed": 1.5,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|wood+1",
+          "observed": 1.4,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|wood+2",
+          "observed": 1.4,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|wood+5",
+          "observed": 1.5,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|copper+0",
+          "observed": 1.3,
+          "outcome": "reported"
+        },
+        {
+          "cell": "Z3-L10|copper+1",
+          "observed": 1,
+          "outcome": "reported"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "invariants": {
+      "runs": 1400,
+      "checks": 24003300,
+      "violations": 0,
+      "first": []
+    },
+    "estimatorComparison": [
+      {
+        "cell": "Z2-L5|none",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1483.6879557893594,
+          "predictedTtkS": 0.9263862127833404,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1610.61,
+        "realisedMedianTtkS": 1,
+        "errorPct": -7.880371052622329,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|wood+0",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1685.568659321987,
+          "predictedTtkS": 0.6357777270538981,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1788.12,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -5.735148685659397,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|wood+1",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1718.6685961255134,
+          "predictedTtkS": 0.5946446616384757,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1788.12,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -3.884046030159411,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|wood+2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1735.5043230650022,
+          "predictedTtkS": 0.5743249971525222,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1788.12,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -2.942513753830713,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|wood+5",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1790.1116391771873,
+          "predictedTtkS": 0.5110477588172746,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2385,
+        "realisedMedianTtkS": 0,
+        "errorPct": -24.942908210600116,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|copper+0",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1876.1451146805382,
+          "predictedTtkS": 0.4188281182679157,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2385,
+        "realisedMedianTtkS": 0,
+        "errorPct": -21.335634604589593,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z2-L5|copper+1",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1897.5085723172836,
+          "predictedTtkS": 0.3972246305077782,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2385,
+        "realisedMedianTtkS": 0,
+        "errorPct": -20.439892146025848,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|none",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1066.639331907723,
+          "predictedTtkS": 1.8750864911021699,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 48.8
+        },
+        "realisedMeanKillsPerHour": 1099.23,
+        "realisedMedianTtkS": 1.6,
+        "errorPct": -2.964863412777756,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|wood+0",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1195.2892941085277,
+          "predictedTtkS": 1.5118231776558804,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1310.85,
+        "realisedMedianTtkS": 1.5,
+        "errorPct": -8.815707814888984,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|wood+1",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1214.455835260381,
+          "predictedTtkS": 1.4642905863498568,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1401.33,
+        "realisedMedianTtkS": 1.4,
+        "errorPct": -13.335485912641484,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|wood+2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1219.989271598936,
+          "predictedTtkS": 1.4508456211928709,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1401.48,
+        "realisedMedianTtkS": 1.4,
+        "errorPct": -12.949933527489794,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|wood+5",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1263.4521682142718,
+          "predictedTtkS": 1.3493362001096885,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1420.47,
+        "realisedMedianTtkS": 1.5,
+        "errorPct": -11.053935090901481,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|copper+0",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1324.8834826279544,
+          "predictedTtkS": 1.2172200779945337,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1434.72,
+        "realisedMedianTtkS": 1.3,
+        "errorPct": -7.655606485728615,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "Z3-L10|copper+1",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1355.2884671770757,
+          "predictedTtkS": 1.156261074440059,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1448.49,
+        "realisedMedianTtkS": 1,
+        "errorPct": -6.434392562111182,
+        "bothZero": false,
+        "worker": null
+      }
+    ]
+  }
+}

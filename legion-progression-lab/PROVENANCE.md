@@ -46,6 +46,16 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
   - **The ability-aware feasibility bound** is an elementary upper bound written for this lab.
   - No code was copied.
 
+- **S3 (industry):**
+  - **No code copied.** Professions, gathering, equipment, crafting and the production queue extend this lab's own S2 engine behind a switch, written from `planning/S3_SPECIFICATION.md` and `planning/S3_OWNER_DECISIONS.md`.
+  - **Largest-remainder apportionment** (Hamilton's method) shares the lethal batch's HP for effective damage: a textbook rule, written for this lab.
+  - **The S3 oracle** (`spec/oracle/s3_oracle.py`), including its discrete-event model of the production queue, was written from `spec/formulas/s3-industry.md`, not from the TypeScript.
+  - **mulberry32** (a public-domain 32-bit generator) generates the S3-E01 test command sequences only (`src/experiments/s3Conservation.ts`); the engine never uses it.
+
+- **S3.1:**
+  - **No code copied.** The corrections, POL3-DEMAND (a greedy gain-per-cost rule written for this lab) and the S3.1 measurements were written from the owner's S3.1 authorisation and `planning/S3_1_RESOLUTIONS.md`.
+  - **The extended oracle** (`spec/oracle/s3_oracle.py`, recipe validation and fractional shares) was written from `spec/formulas/s3-industry.md` v1.1.
+
 ## Dependencies (exact versions; full tree in `package-lock.json`)
 - **Runtime:** `zod` 4.6.7 (MIT).
 - **Development:** `typescript` 7.0.2 (Apache-2.0), `vitest` 4.1.12 (MIT), `fast-check` 4.10.2 (MIT), `@types/node` 24.19.2 (MIT).

@@ -1,0 +1,331 @@
+# S3 analysis (registered rules and comparisons; model-output from candidate inputs)
+
+## H-S3-01 monitor totals (engineering)
+
+| Experiment | Runs | Checks | Violations |
+|---|---|---|---|
+| S3-E02-queue-contention | 72 | 674499 | 0 |
+| S3-E03-shortage-timelines | 18 | 177750 | 0 |
+| S3-E04-gather-vs-fight | 1200 | 211822974 | 0 |
+| S3-E05-tier-step | 1400 | 24003300 | 0 |
+| S3-E07-old-material-demand | 400 | 111606902 | 0 |
+| S3-E08-first-useful-craft | 1300 | 156306954 | 0 |
+| S3-E09-hero-damage | 800 | 136681128 | 0 |
+| S3-E10-pacing-levers | 700 | 111899418 | 0 |
+| S3-E11-knockout-matrix | 9600 | 386161417 | 0 |
+| S3-E11-knockout-matrix-widened | 12800 | 384429846 | 0 |
+| S3-E12-investment | 1600 | 231131253 | 0 |
+
+## H-S3-02 tier step vs enhancement step (S3-E05; candidate target, derived)
+
+Rule: tier cut = 1 - TTK(copper+0)/TTK(wood+0) >= 25%, and enhancement cut = 1 - TTK(wood+1)/TTK(wood+0) < half the tier cut (p50 median TTK, seconds).
+
+| Squad | none | wood+0 | wood+1 | wood+2 | wood+5 | copper+0 | copper+1 | none->wood cut | tier cut | +1 cut | +1 / tier | Outcome |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Z2-L5 | 1 | 0.50 | 0.50 | 0.50 | 0 | 0 | 0 | 50.0% | 100.0% | 0.0% | 0 | pass |
+| Z3-L10 | 1.60 | 1.50 | 1.40 | 1.40 | 1.50 | 1.30 | 1 | 6.3% | 13.3% | 6.7% | 0.50 | miss |
+
+## H-S3-03 first useful craft in 15-25 active min (S3-E08; candidate target)
+
+| Cell | p10 | p50 | p90 | Runs reaching it (of 100) | Outcome |
+|---|---|---|---|---|---|
+| PR-NEW|POL3-COMBAT | 9.4 | 9.5 | 9.5 | 100 | miss |
+| PR-NEW|POL3-EQUIP | 2.4 | 2.4 | 2.4 | 100 | miss |
+| PR-NEW|POL3-PROF | 6.4 | 6.5 | 6.5 | 100 | miss |
+| PR-NEW|POL3-BAL | 10.7 | 10.8 | 10.9 | 100 | miss |
+| PR-NEW|POL3-EARLY | 5.6 | 5.7 | 5.9 | 100 | miss |
+| PR-NEW|POL3-CONQ | not reached | not reached | not reached | 0 | not-reached |
+| PR-BAL|POL3-COMBAT | 9.4 | 9.5 | 9.5 | 100 | miss |
+| PR-BAL|POL3-EQUIP | 2.4 | 2.4 | 2.4 | 100 | miss |
+| PR-BAL|POL3-PROF | 6.4 | 6.5 | 6.5 | 100 | miss |
+| PR-BAL|POL3-BAL | 10.7 | 10.8 | 10.9 | 100 | miss |
+| PR-BAL|POL3-EARLY | 5.6 | 5.7 | 5.9 | 100 | miss |
+| PR-BAL|POL3-CONQ | not reached | not reached | not reached | 0 | not-reached |
+
+## Direction F knockout matrix (S3-E11; amendment 01)
+
+Scope: S3-E11 + S3-E11-knockout-matrix-widened (amendment 01).
+
+Registered rule: informative if >= 50% of the cells with recruits generate knockouts (p50 >= 1 per hour). Result: 76 of 168 (45.2%) -> NOT informative after amendment 01: reported as "knockouts are rare in the S2/S3 candidate content across the tested range"; no knockout-dependent conclusion is drawn and no further widening is made in S3 (AMENDMENT-01.md).
+
+Thresholds of interest (cells, p50): knockouts/h >= 5: 71; >= 20: 49; recovery share >= 10%: 39; hero deaths/h >= 1: 83 of 224; auto-farm stops >= 1: 59.
+
+Descriptive (not a registered rule), knockout-generating cells by squad size: 1 recruit(s) 44/56; 2 recruit(s) 22/56; 3 recruit(s) 10/56.
+
+| Cell | KO/h p50 | Hero deaths/h p50 | Recovery share p50 | Kills/h mean |
+|---|---|---|---|---|
+| a10-p1.6-g100|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 901 |
+| a10-p1.6-g100|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100|L5-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 623 |
+| a10-p1.6-g100|L5-Z2|squad-1|POL2-FIXED | 11 | 0 | 6.1% | 1133 |
+| a10-p1.6-g100|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1968 |
+| a10-p1.6-g100|L10-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 388 |
+| a10-p1.6-g100|L10-Z3|squad-1|POL2-FIXED | 18 | 0 | 10.0% | 733 |
+| a10-p1.6-g100|L10-Z3|squad-2|POL2-FIXED | 11 | 0 | 3.1% | 1186 |
+| a10-p1.6-g100|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+| a10-p1.6-g100-dmg15|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 857 |
+| a10-p1.6-g100-dmg15|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100-dmg15|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg15|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg15|L5-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 598 |
+| a10-p1.6-g100-dmg15|L5-Z2|squad-1|POL2-FIXED | 15 | 0 | 8.3% | 1120 |
+| a10-p1.6-g100-dmg15|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100-dmg15|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1968 |
+| a10-p1.6-g100-dmg15|L10-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 359 |
+| a10-p1.6-g100-dmg15|L10-Z3|squad-1|POL2-FIXED | 26 | 0 | 14.4% | 705 |
+| a10-p1.6-g100-dmg15|L10-Z3|squad-2|POL2-FIXED | 17 | 0 | 4.5% | 1175 |
+| a10-p1.6-g100-dmg15|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+| a10-p1.6-g100-dmg2|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 857 |
+| a10-p1.6-g100-dmg2|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100-dmg2|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg2|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg2|L5-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 554 |
+| a10-p1.6-g100-dmg2|L5-Z2|squad-1|POL2-FIXED | 21 | 0 | 11.7% | 1091 |
+| a10-p1.6-g100-dmg2|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100-dmg2|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1968 |
+| a10-p1.6-g100-dmg2|L10-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 329 |
+| a10-p1.6-g100-dmg2|L10-Z3|squad-1|POL2-FIXED | 29 | 0 | 16.1% | 659 |
+| a10-p1.6-g100-dmg2|L10-Z3|squad-2|POL2-FIXED | 20 | 0 | 5.6% | 1161 |
+| a10-p1.6-g100-dmg2|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+| a10-p1.6-g100-dmg3|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 820 |
+| a10-p1.6-g100-dmg3|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100-dmg3|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg3|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg3|L5-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 502 |
+| a10-p1.6-g100-dmg3|L5-Z2|squad-1|POL2-FIXED | 26 | 0 | 14.4% | 1055 |
+| a10-p1.6-g100-dmg3|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100-dmg3|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1968 |
+| a10-p1.6-g100-dmg3|L10-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 282 |
+| a10-p1.6-g100-dmg3|L10-Z3|squad-1|POL2-FIXED | 20 | 6 | 11.1% | 330 |
+| a10-p1.6-g100-dmg3|L10-Z3|squad-2|POL2-FIXED | 29 | 0 | 8.1% | 1123 |
+| a10-p1.6-g100-dmg3|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+| a10-p1.6-g100|L3-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 395 |
+| a10-p1.6-g100|L3-Z2|squad-1|POL2-FIXED | 19 | 0 | 10.6% | 833 |
+| a10-p1.6-g100|L3-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1429 |
+| a10-p1.6-g100|L3-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1759 |
+| a10-p1.6-g100|L7-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 266 |
+| a10-p1.6-g100|L7-Z3|squad-1|POL2-FIXED | 30 | 0 | 16.7% | 542 |
+| a10-p1.6-g100|L7-Z3|squad-2|POL2-FIXED | 18 | 0 | 5.0% | 952 |
+| a10-p1.6-g100|L7-Z3|squad-3|POL2-FIXED | 8 | 0 | 1.5% | 1271 |
+| a10-p1.6-g100-dmg2|L3-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 334 |
+| a10-p1.6-g100-dmg2|L3-Z2|squad-1|POL2-FIXED | 31 | 0 | 17.2% | 748 |
+| a10-p1.6-g100-dmg2|L3-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1429 |
+| a10-p1.6-g100-dmg2|L3-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1759 |
+| a10-p1.6-g100-dmg2|L7-Z3|squad-0|POL2-FIXED | 0 | 3 | n/a | 3 |
+| a10-p1.6-g100-dmg2|L7-Z3|squad-1|POL2-FIXED | 4 | 3 | 2.2% | 40 |
+| a10-p1.6-g100-dmg2|L7-Z3|squad-2|POL2-FIXED | 35 | 0 | 9.7% | 901 |
+| a10-p1.6-g100-dmg2|L7-Z3|squad-3|POL2-FIXED | 17 | 0 | 3.1% | 1248 |
+| a10-p1.6-g100-dmg3|L3-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 290 |
+| a10-p1.6-g100-dmg3|L3-Z2|squad-1|POL2-FIXED | 43 | 0 | 23.9% | 714 |
+| a10-p1.6-g100-dmg3|L3-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1429 |
+| a10-p1.6-g100-dmg3|L3-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1759 |
+| a10-p1.6-g100-dmg3|L7-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 175 |
+| a10-p1.6-g100-dmg3|L7-Z3|squad-1|POL2-FIXED | 4 | 3 | 2.0% | 26 |
+| a10-p1.6-g100-dmg3|L7-Z3|squad-2|POL2-FIXED | 43 | 0 | 11.8% | 836 |
+| a10-p1.6-g100-dmg3|L7-Z3|squad-3|POL2-FIXED | 22 | 0 | 4.1% | 1219 |
+| a10-p1.6-g100-dmg4|L3-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 268 |
+| a10-p1.6-g100-dmg4|L3-Z2|squad-1|POL2-FIXED | 4 | 3 | 2.2% | 58 |
+| a10-p1.6-g100-dmg4|L3-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1429 |
+| a10-p1.6-g100-dmg4|L3-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1759 |
+| a10-p1.6-g100-dmg4|L7-Z3|squad-0|POL2-FIXED | 0 | 3 | n/a | 3 |
+| a10-p1.6-g100-dmg4|L7-Z3|squad-1|POL2-FIXED | 3 | 3 | 1.3% | 14 |
+| a10-p1.6-g100-dmg4|L7-Z3|squad-2|POL2-FIXED | 53 | 0 | 14.7% | 808 |
+| a10-p1.6-g100-dmg4|L7-Z3|squad-3|POL2-FIXED | 28 | 0 | 5.2% | 1185 |
+| a10-p1.6-g100-dmg6|L3-Z2|squad-0|POL2-FIXED | 0 | 4 | n/a | 187 |
+| a10-p1.6-g100-dmg6|L3-Z2|squad-1|POL2-FIXED | 64 | 1 | 35.4% | 591 |
+| a10-p1.6-g100-dmg6|L3-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1429 |
+| a10-p1.6-g100-dmg6|L3-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1759 |
+| a10-p1.6-g100-dmg6|L7-Z3|squad-0|POL2-FIXED | 0 | 3 | n/a | 0 |
+| a10-p1.6-g100-dmg6|L7-Z3|squad-1|POL2-FIXED | 3 | 3 | 1.0% | 9 |
+| a10-p1.6-g100-dmg6|L7-Z3|squad-2|POL2-FIXED | 14 | 4 | 3.4% | 183 |
+| a10-p1.6-g100-dmg6|L7-Z3|squad-3|POL2-FIXED | 37 | 0 | 6.9% | 1135 |
+| a10-p1.6-g100-dmg4|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 781 |
+| a10-p1.6-g100-dmg4|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100-dmg4|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg4|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg4|L5-Z2|squad-0|POL2-FIXED | 0 | 0 | n/a | 452 |
+| a10-p1.6-g100-dmg4|L5-Z2|squad-1|POL2-FIXED | 32 | 0 | 17.8% | 991 |
+| a10-p1.6-g100-dmg4|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100-dmg4|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1970 |
+| a10-p1.6-g100-dmg4|L10-Z3|squad-0|POL2-FIXED | 0 | 3 | n/a | 3 |
+| a10-p1.6-g100-dmg4|L10-Z3|squad-1|POL2-FIXED | 5 | 3 | 2.8% | 67 |
+| a10-p1.6-g100-dmg4|L10-Z3|squad-2|POL2-FIXED | 36 | 0 | 10.0% | 1078 |
+| a10-p1.6-g100-dmg4|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+| a10-p1.6-g100-dmg6|L1-Z1|squad-0|POL2-FIXED | 0 | 0 | n/a | 732 |
+| a10-p1.6-g100-dmg6|L1-Z1|squad-1|POL2-FIXED | 0 | 0 | 0.0% | 1350 |
+| a10-p1.6-g100-dmg6|L1-Z1|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg6|L1-Z1|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 2395 |
+| a10-p1.6-g100-dmg6|L5-Z2|squad-0|POL2-FIXED | 0 | 3 | n/a | 26 |
+| a10-p1.6-g100-dmg6|L5-Z2|squad-1|POL2-FIXED | 17 | 5 | 9.4% | 393 |
+| a10-p1.6-g100-dmg6|L5-Z2|squad-2|POL2-FIXED | 0 | 0 | 0.0% | 1725 |
+| a10-p1.6-g100-dmg6|L5-Z2|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1970 |
+| a10-p1.6-g100-dmg6|L10-Z3|squad-0|POL2-FIXED | 0 | 0 | n/a | 197 |
+| a10-p1.6-g100-dmg6|L10-Z3|squad-1|POL2-FIXED | 6 | 3 | 2.8% | 53 |
+| a10-p1.6-g100-dmg6|L10-Z3|squad-2|POL2-FIXED | 48 | 0 | 13.3% | 1004 |
+| a10-p1.6-g100-dmg6|L10-Z3|squad-3|POL2-FIXED | 0 | 0 | 0.0% | 1517 |
+
+(Continuous-farming reference cells are in results/s3/S3-E11-knockout-matrix/report.md.)
+
+## S3-E04 gather vs fight (means; reference POL3-CONQ at PR-BAL)
+
+Means; change against PR-BAL|POL3-CONQ in brackets.
+
+| Cell | expTotal | legionExpTotal | conquestScore | crafted | craftedCopper | heroDamageShare |
+|---|---|---|---|---|---|---|
+| PR-BAL|POL2-SQUAD-W|S2-control | 44426.1 (0.0%) | 175044.3 (0.0%) | 3001002166.6 (0.0%) | not reached (n/a) | not reached (n/a) | 0.2 (0.0%) |
+| PR-BAL|POL3-CONQ | 44426.1 (0.0%) | 175044.3 (0.0%) | 3001002166.6 (0.0%) | 0 (n/a) | 0 (n/a) | 0.2 (0.0%) |
+| PR-BAL|POL3-COMBAT | 30073.9 (-32.3%) | 61215.9 (-65.0%) | 3001001514.3 (-0.0%) | 7 (n/a) | 2 (n/a) | 0.6 (187.4%) |
+| PR-BAL|POL3-BAL | 29824.5 (-32.9%) | 59356.9 (-66.1%) | 3001001502.9 (-0.0%) | 8 (n/a) | 2 (n/a) | 0.6 (193.5%) |
+| PR-BAL|POL3-PROF | 16161.1 (-63.6%) | 16161.1 (-90.8%) | 3001000916.2 (-0.0%) | 10 (n/a) | 5 (n/a) | 1 (416.6%) |
+| PR-OPT|POL2-SQUAD-W|S2-control | 70826.1 (59.4%) | 280644.3 (60.3%) | 3001003366.6 (0.0%) | not reached (n/a) | not reached (n/a) | 0.2 (-2.8%) |
+| PR-OPT|POL3-CONQ | 70826.1 (59.4%) | 280644.3 (60.3%) | 3001003366.6 (0.0%) | 0 (n/a) | 0 (n/a) | 0.2 (-2.8%) |
+| PR-OPT|POL3-COMBAT | 49298.2 (11.0%) | 99664.4 (-43.1%) | 3001002388.1 (0.0%) | 7 (n/a) | 2 (n/a) | 0.6 (187.0%) |
+| PR-OPT|POL3-BAL | 49058.0 (10.4%) | 97823.9 (-44.1%) | 3001002377.2 (0.0%) | 8 (n/a) | 2 (n/a) | 0.6 (190.4%) |
+| PR-OPT|POL3-PROF | 27755.8 (-37.5%) | 27755.8 (-84.1%) | 3001001443.2 (-0.0%) | 10 (n/a) | 5 (n/a) | 1 (416.6%) |
+| PR-BAL|POL3-BAL|no-affinity | 29820.5 (-32.9%) | 59349 (-66.1%) | 3001001502.8 (-0.0%) | 8 (n/a) | 2 (n/a) | 0.6 (193.4%) |
+| PR-BAL|POL3-PROF|no-affinity | 16155.7 (-63.6%) | 16155.7 (-90.8%) | 3001000916.0 (-0.0%) | 10 (n/a) | 5 (n/a) | 1 (416.6%) |
+
+## S3-E12 investment strategies (means; reference POL3-CONQ, design 1)
+
+Means; change against session|PR-OPT|POL3-CONQ in brackets.
+
+| Cell | expTotal | legionExpTotal | goldHeld | conquestScore | crafted | enhancements |
+|---|---|---|---|---|---|---|
+| session|PR-OPT|POL3-COMBAT | 49300.6 (-30.4%) | 99669.2 (-64.5%) | 12919.3 (-31.2%) | 3001002388.2 (-0.0%) | 7 (n/a) | 0 (n/a) |
+| session|PR-OPT|POL3-EQUIP | 40319.4 (-43.1%) | 76700.8 (-72.7%) | 9646.2 (-48.7%) | 3001002012.7 (-0.0%) | 11 (n/a) | 9 (n/a) |
+| session|PR-OPT|POL3-PROF | 27737.9 (-60.8%) | 27737.9 (-90.1%) | 7055.7 (-62.4%) | 3001001442.4 (-0.0%) | 10 (n/a) | 0 (n/a) |
+| session|PR-OPT|POL3-BAL | 49041.5 (-30.7%) | 97790.9 (-65.1%) | 12648.6 (-32.7%) | 3001002376.4 (-0.0%) | 8 (n/a) | 4 (n/a) |
+| session|PR-OPT|POL3-EARLY | 13900.7 (-80.4%) | 27641.3 (-90.1%) | 3333.2 (-82.3%) | 2000003451.1 (-33.4%) | 5 (n/a) | 0 (n/a) |
+| session|PR-OPT|POL3-CONQ | 70815.3 (0.0%) | 280601.2 (0.0%) | 18786.9 (0.0%) | 3001003366.2 (0.0%) | 0 (n/a) | 0 (n/a) |
+| session|PR-OPT|ORC3-SEARCH-heroExp | 70815.3 (0.0%) | 280601.2 (0.0%) | 18786.9 (0.0%) | 3001003366.2 (0.0%) | 0 (n/a) | 0 (n/a) |
+| session|PR-OPT|ORC3-SEARCH-legionExp | 70815.3 (0.0%) | 280601.2 (0.0%) | 18786.9 (0.0%) | 3001003366.2 (0.0%) | 0 (n/a) | 0 (n/a) |
+| session|PR-OPT|ORC3-SEARCH-gold | 70815.3 (0.0%) | 280601.2 (0.0%) | 18786.9 (0.0%) | 3001003366.2 (0.0%) | 0 (n/a) | 0 (n/a) |
+| session|PR-OPT|ORC3-SEARCH-conquest | 70815.3 (0.0%) | 280601.2 (0.0%) | 18786.9 (0.0%) | 3001003366.2 (0.0%) | 0 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-COMBAT | 19618.2 (-72.3%) | 40115.6 (-85.7%) | 5583.1 (-70.3%) | 3001000957.2 (-0.0%) | 0 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-EQUIP | 17855.5 (-74.8%) | 34511 (-87.7%) | 5103.5 (-72.8%) | 3001000879.3 (-0.0%) | 0 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-PROF | 10119.3 (-85.7%) | 10119.3 (-96.4%) | 3049.8 (-83.8%) | 3001000640.0 (-0.0%) | 3 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-BAL | 18977.5 (-73.2%) | 37637.6 (-86.6%) | 5408.4 (-71.2%) | 3001000928.1 (-0.0%) | 0 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-EARLY | 6852.1 (-90.3%) | 13704.2 (-95.1%) | 2321.3 (-87.6%) | 2000001688.4 (-33.4%) | 5 (n/a) | 0 (n/a) |
+| budget|PR-NEW|POL3-CONQ | 34944.5 (-50.7%) | 138577.9 (-50.6%) | 9763.0 (-48.0%) | 3001001653.8 (-0.0%) | 0 (n/a) | 0 (n/a) |
+
+### ORC3-SEARCH against each strategy (hindsight; a lower bound on the gap, never an upper bound)
+
+| Search | Metric | Strategy | Search mean | Strategy mean | Ratio |
+|---|---|---|---|---|---|
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-COMBAT | 70815.3 | 49300.6 | 1.436 |
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-EQUIP | 70815.3 | 40319.4 | 1.756 |
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-PROF | 70815.3 | 27737.9 | 2.553 |
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-BAL | 70815.3 | 49041.5 | 1.444 |
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-EARLY | 70815.3 | 13900.7 | 5.094 |
+| session|PR-OPT|ORC3-SEARCH-heroExp | expTotal | session|PR-OPT|POL3-CONQ | 70815.3 | 70815.3 | 1 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-COMBAT | 280601.2 | 99669.2 | 2.815 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-EQUIP | 280601.2 | 76700.8 | 3.658 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-PROF | 280601.2 | 27737.9 | 10.116 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-BAL | 280601.2 | 97790.9 | 2.869 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-EARLY | 280601.2 | 27641.3 | 10.152 |
+| session|PR-OPT|ORC3-SEARCH-legionExp | legionExpTotal | session|PR-OPT|POL3-CONQ | 280601.2 | 280601.2 | 1 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-COMBAT | 18786.9 | 12919.3 | 1.454 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-EQUIP | 18786.9 | 9646.2 | 1.948 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-PROF | 18786.9 | 7055.7 | 2.663 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-BAL | 18786.9 | 12648.6 | 1.485 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-EARLY | 18786.9 | 3333.2 | 5.636 |
+| session|PR-OPT|ORC3-SEARCH-gold | goldHeld | session|PR-OPT|POL3-CONQ | 18786.9 | 18786.9 | 1 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-COMBAT | 3001003366.2 | 3001002388.2 | 1.000 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-EQUIP | 3001003366.2 | 3001002012.7 | 1.000 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-PROF | 3001003366.2 | 3001001442.4 | 1.000 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-BAL | 3001003366.2 | 3001002376.4 | 1.000 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-EARLY | 3001003366.2 | 2000003451.1 | 1.500 |
+| session|PR-OPT|ORC3-SEARCH-conquest | conquestScore | session|PR-OPT|POL3-CONQ | 3001003366.2 | 3001003366.2 | 1 |
+
+## S3-E09 hero damage, directions A-D and H (means; change against the control of the same mode)
+
+| Cell | heroDamageShare | heroEffectiveShare | heroAbilityEffectiveShare | heroOverkillShare | expTotal | legionExpTotal | minToL10 | zone3FirstVisitMin |
+|---|---|---|---|---|---|---|---|---|
+| a10-p1.6-g100|POL3-BAL|passive | 56.8% | 56.0% | 0.0% | 22.1% | 29798.7 (0.0%) | 59305.4 (0.0%) | 8.0 (0.0%) | 9.3 (0.0%) |
+| a10-p1.6-g100|POL3-BAL|attentive | 64.1% | 60.3% | 13.3% | 37.3% | 33786.9 (0.0%) | 67413.8 (0.0%) | 7.5 (0.0%) | 8.7 (0.0%) |
+| a10-p1.6-g100-a125|POL3-BAL|passive | 61.2% | 58.1% | 0.0% | 30.3% | 31810.0 (6.7%) | 63459.9 (7.0%) | 7.5 (-6.6%) | 8.7 (-6.2%) |
+| a10-p1.6-g100-a125|POL3-BAL|attentive | 67.9% | 63.0% | 13.4% | 43.2% | 35747.5 (5.8%) | 71335.0 (5.8%) | 7.1 (-4.9%) | 8.3 (-4.6%) |
+| a10-p1.6-g100-a150|POL3-BAL|passive | 62.5% | 60.3% | 0.0% | 29.7% | 35602.3 (19.5%) | 71044.6 (19.8%) | 7.2 (-9.8%) | 8.5 (-9.0%) |
+| a10-p1.6-g100-a150|POL3-BAL|attentive | 70.2% | 65.6% | 13.9% | 45.7% | 38748.8 (14.7%) | 77337.5 (14.7%) | 7.0 (-6.9%) | 8.1 (-6.5%) |
+| a10-p1.6-g100-a200|POL3-BAL|passive | 65.0% | 64.9% | 0.0% | 31.0% | 42113 (41.3%) | 84066 (41.8%) | 6.2 (-22.0%) | 7.2 (-22.4%) |
+| a10-p1.6-g100-a200|POL3-BAL|attentive | 74.0% | 70.1% | 14.9% | 51.4% | 43734.4 (29.4%) | 87308.8 (29.5%) | 6.1 (-18.7%) | 7.1 (-19.0%) |
+| a10-p1.6-g100-b-mult|POL3-BAL|passive | 56.8% | 56.0% | 0.0% | 22.1% | 29798.7 (0.0%) | 59305.4 (0.0%) | 8.0 (0.0%) | 9.3 (0.0%) |
+| a10-p1.6-g100-b-mult|POL3-BAL|attentive | 67.1% | 61.1% | 14.9% | 44.2% | 33860.8 (0.2%) | 67561.6 (0.2%) | 7.5 (0.0%) | 8.7 (0.0%) |
+| a10-p1.6-g100-b-cd|POL3-BAL|passive | 56.8% | 56.0% | 0.0% | 22.1% | 29798.7 (0.0%) | 59305.4 (0.0%) | 8.0 (0.0%) | 9.3 (0.0%) |
+| a10-p1.6-g100-b-cd|POL3-BAL|attentive | 68.4% | 66.9% | 27.2% | 41.9% | 36139.1 (7.0%) | 72118.2 (7.0%) | 7.3 (-2.8%) | 8.5 (-2.8%) |
+| a10-p1.6-g100-c|POL3-BAL|passive | 61.2% | 58.1% | 0.0% | 30.3% | 31810.0 (6.7%) | 63459.9 (7.0%) | 7.5 (-6.6%) | 8.7 (-6.2%) |
+| a10-p1.6-g100-c|POL3-BAL|attentive | 70.6% | 64.7% | 19.2% | 48.2% | 37620.6 (11.3%) | 75081.2 (11.4%) | 7.0 (-6.6%) | 8.1 (-6.5%) |
+| a10-p1.6-g100-d|POL3-BAL|passive | 60.9% | 58.2% | 0.0% | 29.2% | 31486.1 (5.7%) | 62812.2 (5.9%) | 8.0 (0.0%) | 9.3 (0.0%) |
+| a10-p1.6-g100-d|POL3-BAL|attentive | 67.9% | 62.8% | 13.1% | 43.4% | 34794.5 (3.0%) | 69429.0 (3.0%) | 7.5 (0.0%) | 8.7 (0.0%) |
+
+## S3-E10 pacing levers, each alone (p50; change against the control)
+
+| Cell | minToL5 | minToL10 | zone2FirstVisitMin | zone3FirstVisitMin | firstRecruitMin | recruit3Min | firstUsefulCraftMin | expTotal |
+|---|---|---|---|---|---|---|---|---|
+| a10-p1.6-g100|POL3-BAL | 2.3 (0.0%) | 8.0 (0.0%) | 4.0 (0.0%) | 9.3 (0.0%) | 2.1 (0.0%) | 10.5 (0.0%) | 10.8 (0.0%) | 29848 (0.0%) |
+| pace-xp-a8|POL3-BAL | 2.0 (-15.9%) | 6.7 (-15.7%) | 3.9 (-2.2%) | 9.0 (-2.8%) | 2.0 (-2.2%) | 10.2 (-3.2%) | 10.4 (-3.2%) | 31124 (4.3%) |
+| pace-xp-a12|POL3-BAL | 2.6 (10.5%) | 9.7 (21.3%) | 4.0 (0.5%) | 9.5 (2.3%) | 2.1 (1.9%) | 10.8 (2.7%) | 11.1 (2.8%) | 28704 (-3.8%) |
+| pace-xp-p18|POL3-BAL | 2.6 (13.7%) | 11.1 (39.0%) | 4.0 (0.5%) | 9.7 (4.3%) | 2.1 (1.9%) | 11.0 (4.9%) | 11.3 (5.1%) | 27098 (-9.2%) |
+| pace-z2hp125|POL3-BAL | 2.3 (0.0%) | 8.7 (9.2%) | 4.0 (0.0%) | 10.2 (9.4%) | 2.1 (0.0%) | 11.4 (8.4%) | 11.7 (8.1%) | 29276 (-1.9%) |
+| pace-z3hp125|POL3-BAL | 2.3 (0.0%) | 8.0 (0.0%) | 4.0 (0.0%) | 9.3 (0.0%) | 2.1 (0.0%) | 10.7 (2.0%) | 11.0 (2.1%) | 25316 (-15.2%) |
+| pace-gate1-75|POL3-BAL | 2.3 (0.0%) | 7.9 (-1.5%) | 3.3 (-15.8%) | 8.8 (-5.4%) | 2.1 (0.0%) | 10.4 (-1.0%) | 10.7 (-1.1%) | 29902 (0.2%) |
+| pace-gate1-125|POL3-BAL | 2.3 (0.0%) | 8.1 (1.7%) | 4.6 (15.8%) | 9.8 (5.6%) | 2.1 (0.0%) | 10.7 (1.9%) | 11.0 (1.8%) | 29728 (-0.4%) |
+| pace-gate2-90|POL3-BAL | 2.3 (0.0%) | 8.4 (5.6%) | 4.0 (0.0%) | 8.2 (-12.1%) | 2.1 (0.0%) | 10.5 (0.4%) | 10.8 (0.4%) | 29878 (0.1%) |
+| pace-gate2-150|POL3-BAL | 2.3 (0.0%) | 8.0 (0.0%) | 4.0 (0.0%) | 10.4 (12.1%) | 2.1 (0.0%) | 10.1 (-4.0%) | 10.4 (-3.4%) | 29928 (0.3%) |
+| pace-equip-x0.5|POL3-BAL | 2.3 (0.0%) | 8.0 (0.0%) | 4.0 (0.0%) | 9.3 (0.0%) | 2.1 (0.0%) | 10.5 (0.0%) | 10.7 (-0.7%) | 29892 (0.1%) |
+| pace-equip-x2|POL3-BAL | 2.3 (0.0%) | 8.0 (0.0%) | 4.0 (0.0%) | 9.3 (0.0%) | 2.1 (0.0%) | 10.5 (0.0%) | 10.9 (1.3%) | 29738 (-0.4%) |
+| quest-20|POL3-BAL | 1.9 (-16.3%) | 7.6 (-4.8%) | 3.6 (-9.6%) | 8.9 (-4.1%) | 1.2 (-43.1%) | 10.1 (-3.6%) | 10.4 (-3.6%) | 30134 (1.0%) |
+| quest-60|POL3-BAL | 2.4 (5.2%) | 8.3 (4.0%) | 4.3 (7.6%) | 9.6 (3.4%) | 2.9 (40.2%) | 10.8 (3.2%) | 11.1 (3.2%) | 29584 (-0.9%) |
+
+## S3-E02 queue contention (deterministic; means)
+
+| Cell | unitsPerHour | totalShortageMin | maxJobShortageMin | meanReservedUnits | firstJobCompletionMin | lastJobCompletionMin | completionSpreadMin |
+|---|---|---|---|---|---|---|---|
+| plank|fifo|smiths-1|jobs-2 | 120 | 0 | 0 | 0.26 | 0.65 | 1.28 | 0.63 |
+| plank|fifo|smiths-1|jobs-3 | 180 | 0 | 0 | 0.38 | 0.65 | 1.90 | 1.24 |
+| plank|fifo|smiths-1|jobs-4 | 240 | 0 | 0 | 0.50 | 0.65 | 2.50 | 1.85 |
+| plank|fifo|smiths-2|jobs-2 | 120 | 0.27 | 0.21 | 0.26 | 0.71 | 0.88 | 0.16 |
+| plank|fifo|smiths-2|jobs-3 | 180 | 0.88 | 0.52 | 0.39 | 0.71 | 1.62 | 0.91 |
+| plank|fifo|smiths-2|jobs-4 | 240 | 2.58 | 1.26 | 0.51 | 0.71 | 2.36 | 1.65 |
+| plank|reserve-all|smiths-1|jobs-2 | 120 | 0.15 | 0.15 | 1.42 | 0.65 | 1.43 | 0.78 |
+| plank|reserve-all|smiths-1|jobs-3 | 180 | 1.05 | 0.90 | 2.10 | 0.65 | 2.17 | 1.52 |
+| plank|reserve-all|smiths-1|jobs-4 | 240 | 2.70 | 1.65 | 2.76 | 0.65 | 2.90 | 2.25 |
+| plank|reserve-all|smiths-2|jobs-2 | 120 | 0.78 | 0.78 | 1.42 | 0.65 | 1.43 | 0.78 |
+| plank|reserve-all|smiths-2|jobs-3 | 180 | 2.30 | 1.52 | 2.10 | 0.65 | 2.17 | 1.52 |
+| plank|reserve-all|smiths-2|jobs-4 | 240 | 4.55 | 2.25 | 2.76 | 0.65 | 2.90 | 2.25 |
+| plank|round-robin|smiths-1|jobs-2 | 120 | 0 | 0 | 0.26 | 1.22 | 1.28 | 0.06 |
+| plank|round-robin|smiths-1|jobs-3 | 180 | 0 | 0 | 0.38 | 1.77 | 1.90 | 0.12 |
+| plank|round-robin|smiths-1|jobs-4 | 240 | 0 | 0 | 0.50 | 2.32 | 2.50 | 0.18 |
+| plank|round-robin|smiths-2|jobs-2 | 120 | 0.36 | 0.20 | 0.26 | 0.81 | 0.86 | 0.05 |
+| plank|round-robin|smiths-2|jobs-3 | 180 | 2.21 | 0.77 | 0.39 | 1.46 | 1.61 | 0.15 |
+| plank|round-robin|smiths-2|jobs-4 | 240 | 5.42 | 1.44 | 0.51 | 2.11 | 2.36 | 0.25 |
+| bar|fifo|smiths-2|jobs-2 | 72 | 0.25 | 0.14 | 0.23 | 0.68 | 0.74 | 0.06 |
+| bar|fifo|smiths-2|jobs-4 | 144 | 1.88 | 0.84 | 0.45 | 0.68 | 1.78 | 1.10 |
+| bar|reserve-all|smiths-2|jobs-2 | 72 | 0.74 | 0.63 | 0.80 | 0.69 | 1.20 | 0.51 |
+| bar|reserve-all|smiths-2|jobs-4 | 144 | 3.52 | 1.64 | 1.58 | 0.69 | 2.24 | 1.55 |
+| bar|round-robin|smiths-2|jobs-2 | 72 | 0.25 | 0.14 | 0.23 | 0.68 | 0.74 | 0.06 |
+| bar|round-robin|smiths-2|jobs-4 | 144 | 3.62 | 1.01 | 0.45 | 1.55 | 1.78 | 0.23 |
+
+## S3-E03 shortage timelines (deterministic; means)
+
+| Cell | unitsPerHour | totalShortageMin | jobsPaused | jobsCompleted | lastJobCompletionMin | meanReservedUnits |
+|---|---|---|---|---|---|---|
+| plank|supply-0|stock-40 | 80 | 13.72 | 1 | 0 | not reached | 0.17 |
+| plank|supply-1-none | 240 | 1.33 | 37 | 1 | 5.02 | 0.49 |
+| plank|supply-1-mage | 240 | 0.47 | 18 | 1 | 4.16 | 0.49 |
+| plank|supply-2-none | 240 | 0 | 0 | 1 | 3.69 | 0.49 |
+| bar|miners-0 | 20 | 14.52 | 1 | 0 | not reached | 0.06 |
+| bar|miners-1 | 80 | 0 | 0 | 1 | 1.87 | 0.25 |
+
+## S3-E07 old-material demand after the first Copper item (means)
+
+| Cell | firstCopperItemMin | planksAfterCopper | gelAfterCopper | logsConsumedAfterCopper | logsGatheredAfterCopper | craftedCopper |
+|---|---|---|---|---|---|---|
+| PR-OPT|POL3-COMBAT | 10.96 | 0 | 0 | 0 | 3459.06 | 2 |
+| PR-OPT|POL3-EQUIP | not reached | 0 | 0 | 0 | 0 | 0 |
+| PR-OPT|POL3-PROF | 14.22 | 0 | 0 | 4 | 4475.30 | 5 |
+| PR-OPT|POL3-BAL | 12.19 | 0 | 0 | 0 | 3931.43 | 2 |
+

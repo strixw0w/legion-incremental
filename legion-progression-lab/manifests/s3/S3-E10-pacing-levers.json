@@ -1,0 +1,264 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E10-pacing-levers",
+  "question": "Direction E: how sensitive are level, zone, recruit and first-craft timings to each pacing lever varied alone (EXP curve, enemy HP of one zone, recruit milestone, kill gates, equipment costs)?",
+  "design": "PR-BAL campaigns of POL3-BAL; each variant changes one lever around the control. Enemy HP is changed per zone, never uniformly. 50 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "pace-xp-a8",
+      "params": {
+        "xpCurve": "a8-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "pace-xp-a12",
+      "params": {
+        "xpCurve": "a12-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "pace-xp-p18",
+      "params": {
+        "xpCurve": "a10-p1.8",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "pace-z2hp125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "base.zone2.enemyHpScale": 1.25
+      }
+    },
+    {
+      "id": "pace-z3hp125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "base.zone3.enemyHpScale": 1.25
+      }
+    },
+    {
+      "id": "pace-gate1-75",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 75
+      }
+    },
+    {
+      "id": "pace-gate1-125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 125
+      }
+    },
+    {
+      "id": "pace-gate2-90",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 90
+      }
+    },
+    {
+      "id": "pace-gate2-150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "zone2.killGate": 150
+      }
+    },
+    {
+      "id": "pace-equip-x0.5",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 0.5
+      }
+    },
+    {
+      "id": "pace-equip-x2",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 2
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-xp-a8|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-xp-a8",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-xp-a12|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-xp-a12",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-xp-p18|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-xp-p18",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-z2hp125|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-z2hp125",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-z3hp125|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-z3hp125",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-gate1-75|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-gate1-75",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-gate1-125|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-gate1-125",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-gate2-90|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-gate2-90",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-gate2-150|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-gate2-150",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-equip-x0.5|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-equip-x0.5",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "pace-equip-x2|POL3-BAL",
+      "kind": "campaign",
+      "variant": "pace-equip-x2",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "quest-20|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "questKills": 20
+    },
+    {
+      "id": "quest-60|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "questKills": 60
+    }
+  ],
+  "seeds": {
+    "root": "s3-e10",
+    "replicates": 50
+  },
+  "metrics": [
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "firstRecruitMin",
+    "recruit2Min",
+    "recruit3Min",
+    "firstUsefulCraftMin",
+    "expTotal",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Sensitivity only: no lever is recommended and no target is moved (owner S3 section 8 E)."
+  ]
+}

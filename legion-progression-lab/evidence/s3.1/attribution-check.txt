@@ -1,0 +1,21 @@
+S3-E04-gather-vs-fight: exit 0
+S3-E07-old-material-demand: exit 0
+S3-E08-first-useful-craft: exit 0
+S3-E09-hero-damage: exit 0
+S3-E10-pacing-levers: exit 0
+S3-E12-investment: exit 0
+
+# S3.1-E01 attribution check: the S3 crafter rule restored temporarily, the changed S3 manifests re-run, every cell compared with the stored S3 results
+files restored and re-hashed identical: True
+
+| S3 experiment | Cells | Identical to S3 (event logs and every metric except the monitor's counts) | Different | S3 crafts by characters S3.1 refuses (I20, total over runs) | Examples |
+|---|---|---|---|---|---|
+| S3-E04-gather-vs-fight | 12 | 12 | 0 | 1004 | rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing) |
+| S3-E07-old-material-demand | 4 | 4 | 0 | 803 | rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing) |
+| S3-E08-first-useful-craft | 13 | 13 | 0 | 1826 | rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing) |
+| S3-E09-hero-damage | 16 | 16 | 0 | 1491 | rec:2 crafted while not eligible (smithing); rec:2 crafted while not eligible (smithing); rec:2 crafted while not eligible (smithing) |
+| S3-E10-pacing-levers | 14 | 14 | 0 | 1122 | rec:2 crafted while not eligible (smithing); rec:2 crafted while not eligible (smithing); rec:2 crafted while not eligible (smithing) |
+| S3-E12-investment | 16 | 16 | 0 | 986 | rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing); rec:3 crafted while not eligible (smithing) |
+
+cells different from S3 with the S3 crafter rule restored: 0
+RESULT: every change in results/s3.1/audit/ is caused by the crafting-eligibility rule alone

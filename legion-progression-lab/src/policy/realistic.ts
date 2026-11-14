@@ -63,7 +63,8 @@ export function isBlocked(obs: Observation, z: ZoneObservation): boolean {
   return z.lastDeathStop !== null && obs.hero.level <= z.lastDeathStop.level;
 }
 
-const reachable = (z: ZoneObservation): boolean => z.estimate !== null && z.estimate.reliability !== 'unreachable';
+// v1.3: an unresolved estimate (no forecast) is not a farming target either, exactly as when budgets gave "unreachable".
+const reachable = (z: ZoneObservation): boolean => z.estimate !== null && z.estimate.reliability !== 'unreachable' && z.estimate.reliability !== 'unresolved';
 
 function stopAndReport(obs: Observation, code: PolicyReportCode): Command[] {
   const out: Command[] = [];

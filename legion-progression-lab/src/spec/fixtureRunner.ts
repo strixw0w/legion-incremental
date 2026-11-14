@@ -19,6 +19,7 @@ import { validateContentPack } from '../core/content/validate.ts';
 import type { FixtureCase, FixtureFile } from './fixtureSchema.ts';
 import { runCombatLoopCase, runCreditsCase, runEstimatorCase, runGatesCase, runRewardsCase } from './s1Fixtures.ts';
 import { runLedgerReconstructionCase, runLegionCreditCase, runSquadFightCase, runWorkerFeasibilityCase } from './s2Fixtures.ts';
+import { runEquipmentOpsCase, runIndustryRulesCase, runProductionQueueCase, runRecipeValidationCase } from './s3Fixtures.ts';
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 type Input = Record<string, unknown>;
@@ -291,6 +292,18 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   },
   'ledger-reconstruction'(input) {
     return runLedgerReconstructionCase(input) as unknown as Json;
+  },
+  'industry-rules'(input) {
+    return runIndustryRulesCase(input) as unknown as Json;
+  },
+  'equipment-ops'(input) {
+    return runEquipmentOpsCase(input) as unknown as Json;
+  },
+  'production-queue'(input) {
+    return runProductionQueueCase(input) as unknown as Json;
+  },
+  'recipe-validation'(input) {
+    return runRecipeValidationCase(input) as unknown as Json;
   },
 };
 

@@ -17,7 +17,9 @@
  * - basic attacks cannot win, bound reaches HP -> "unresolved" (ABILITY_DEPENDENT): kills are possible only with the
  *   ability; production is NOT estimated (0 shown, never a claim of impossibility). In practice the ability is ready
  *   at the first fight after each recovery and then on cooldown, so such zones yield about one kill per knockout cycle.
- * - no hit chance, or an unresolved v1.2 computation (budgets): unchanged (unreachable), ABILITY_NOT_MODELLED added.
+ * - no hit chance (proven, abilities hit with the same chance): unreachable, ABILITY_NOT_MODELLED added;
+ * - an exhausted swing or work budget (estimator v1.3): "unresolved" from the basic estimator, kept, ABILITY_NOT_MODELLED
+ *   added; no forecast.
  * Not an exact ability-aware estimator (deliberately bounded for S2.1).
  */
 import { damagePerHit, mitigationRatio } from '../core/formulas/combat.ts';
@@ -59,8 +61,8 @@ export function abilityAwareWorkerEstimate(base: ZoneEstimate, content: LegionCo
   if (stats.ability === null) return base;
   const withReason = (e: ZoneEstimate, ...r: string[]): ZoneEstimate => ({ ...e, reasons: [...e.reasons, ...r.filter((x) => !e.reasons.includes(x))] });
   if (base.reliability !== 'unreachable') return withReason({ ...base, reliability: base.reliability === 'reliable' ? 'approximate' : base.reliability }, 'ABILITY_NOT_MODELLED');
-  if (!base.reasons.includes('DIES_BEFORE_KILL')) return withReason(base, 'ABILITY_NOT_MODELLED'); // no hit chance or unresolved budgets
+  if (!base.reasons.includes('DIES_BEFORE_KILL')) return withReason(base, 'ABILITY_NOT_MODELLED'); // no hit chance (proven)
   const f = workerFeasibility(content, stats, zoneOrder);
   if (f.provenImpossible) return withReason(base, 'ABILITY_INCLUDED_IN_BOUND');
-  return { ...base, reliability: 'unresolved', limitingFactor: 'survival', reasons: ['ABILITY_DEPENDENT', 'BASIC_ATTACKS_DIE_BEFORE_KILL', 'ABILITY_NOT_MODELLED'] };
+  return { ...base, reliability: 'unresolved', forecast: 'unavailable', limitingFactor: 'survival', reasons: ['ABILITY_DEPENDENT', 'BASIC_ATTACKS_DIE_BEFORE_KILL', 'ABILITY_NOT_MODELLED'] };
 }

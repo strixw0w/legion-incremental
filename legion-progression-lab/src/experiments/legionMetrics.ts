@@ -351,7 +351,9 @@ export class LegionMetricsRecorder {
     const squadDamage = [...this.damage.values()].reduce((a, b) => a + b, 0);
     const heroDamage = this.damage.get('hero') ?? 0;
     const lt = s.legion.time;
-    const connectedMs = lt.automation + lt.manualCombat + lt.resting + lt.travelling + lt.waiting + lt.idle;
+    // S3: the hero's gathering time is its own category (kept in the industry state; absent with the switch off).
+    const gatheringMs = s.industry?.gatheringMs ?? 0;
+    const connectedMs = lt.automation + lt.manualCombat + lt.resting + lt.travelling + lt.waiting + lt.idle + gatheringMs;
     if (connectedMs + lt.offline !== s.time.accountedToMs) fail('INVALID_STATE', 'time categories do not add up to the elapsed time', { connectedMs, offline: lt.offline, elapsed: s.time.accountedToMs });
     return {
       base,
@@ -371,7 +373,7 @@ export class LegionMetricsRecorder {
       classChanges: this.classChanges,
       characters,
       records: { ...s.legion.records },
-      time: { ...lt, connectedMs, elapsedMs: connectedMs + lt.offline },
+      time: { ...lt, ...(s.industry !== undefined ? { gathering: gatheringMs } : {}), connectedMs, elapsedMs: connectedMs + lt.offline },
       invariants: { checks: this.checks, violations: this.violations, first: [...this.first] },
     };
   }

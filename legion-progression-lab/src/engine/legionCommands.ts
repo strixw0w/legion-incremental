@@ -10,13 +10,15 @@
 import type { ClassId } from '../model/legionContent.ts';
 import { CLASS_IDS } from '../model/legionContent.ts';
 import type { CharacterState, LegionReasonCode } from '../model/legionTypes.ts';
+import type { IndustryReasonCode } from '../model/industryTypes.ts';
+import { validateIndustryAssign } from './industry.ts';
 import type { ReasonCode } from '../model/types.ts';
 import type { LegionOnlyCommand, LegionSimulation } from './legion.ts';
 
-export type LegionValidation = { readonly ok: true } | { readonly ok: false; readonly code: LegionReasonCode | ReasonCode };
+export type LegionValidation = { readonly ok: true } | { readonly ok: false; readonly code: LegionReasonCode | ReasonCode | IndustryReasonCode };
 
 const ok: LegionValidation = { ok: true };
-const no = (code: LegionReasonCode | ReasonCode): LegionValidation => ({ ok: false, code });
+const no = (code: LegionReasonCode | ReasonCode | IndustryReasonCode): LegionValidation => ({ ok: false, code });
 
 /** Talent points a character has for its current class: 1 per level above 1 (S2-R10). */
 export function talentPoints(level: number, perLevel: number): number {
@@ -76,7 +78,12 @@ export function validateLegionCommand(sim: LegionSimulation, cmd: LegionOnlyComm
         if (!workerZoneAllowed(s.zones, order)) return no('ZONE_NOT_VISITED');
         zoneOrder = order;
       }
-      if (cur.kind === cmd.to && (cur.kind !== 'worker' || cur.zoneOrder === zoneOrder)) return no('ALREADY_ASSIGNED');
+      // S3: gathering needs a discovered node, the level and the tool; smithing is for recruits (industry switch on).
+      if (cmd.to === 'gathering' || cmd.to === 'smithing') {
+        const why = validateIndustryAssign(sim, c, cmd.to, cmd.nodeId);
+        if (why !== null) return no(why);
+      }
+      if (cur.kind === cmd.to && (cur.kind !== 'worker' || cur.zoneOrder === zoneOrder) && (cur.kind !== 'gathering' || cur.nodeId === cmd.nodeId)) return no('ALREADY_ASSIGNED');
       if ((cur.kind === 'reserve' || cmd.to === 'reserve') && sim.inEncounter(c)) return no('CHARACTER_BUSY');
       if (cur.kind === 'reserve' && cmd.to !== 'reserve' && productiveRecruits(L.chars) >= L.slots) return no('NO_FREE_SLOT');
       if (cmd.to === 'squad' && deployedCount(L.chars) >= L.deployCap) return no('DEPLOY_CAP');

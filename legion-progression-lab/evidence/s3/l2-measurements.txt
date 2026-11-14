@@ -1,0 +1,18 @@
+# L2 measurements (S3; model-output; PR-OPT 90 min; 3 seeds per strategy)
+
+| Strategy | Ledger | Transactions (mean) | per hour | by category (mean) | Log entries (mean) | Wall ms (mean) | Heap growth MB (mean) | Same balances as reference |
+|---|---|---|---|---|---|---|---|---|
+| POL3-COMBAT | reference | 4055 | 2703 | craft 7, gather.deposit 1611, kill.reward 2393, legion.spend 2, production.complete 21, production.reserve 21 | 26779 | 681 | 18.4 | (reference) |
+| POL3-COMBAT | persistent | 4055 | 2703 | craft 7, gather.deposit 1611, kill.reward 2393, legion.spend 2, production.complete 21, production.reserve 21 | 26779 | 312 | 47.5 | yes |
+| POL3-EQUIP | reference | 3810 | 2540 | craft 11, enhance 9, gather.deposit 1687, kill.reward 2011, legion.spend 2, production.complete 45, production.reserve 45 | 23484 | 597 | 43.7 | (reference) |
+| POL3-EQUIP | persistent | 3810 | 2540 | craft 11, enhance 9, gather.deposit 1687, kill.reward 2011, legion.spend 2, production.complete 45, production.reserve 45 | 23484 | 275 | 50.5 | yes |
+| POL3-PROF | reference | 4577 | 3051 | craft 10, gather.deposit 3063, kill.reward 1448, legion.spend 2, production.complete 27, production.reserve 27 | 19624 | 733 | 74.9 | (reference) |
+| POL3-PROF | persistent | 4577 | 3051 | craft 10, gather.deposit 3063, kill.reward 1448, legion.spend 2, production.complete 27, production.reserve 27 | 19624 | 230 | 35.8 | yes |
+| POL3-BAL | reference | 4028 | 2685 | craft 8, enhance 4, gather.deposit 1579, kill.reward 2377, legion.spend 2, production.complete 29, production.reserve 29 | 26402 | 657 | 28.5 | (reference) |
+| POL3-BAL | persistent | 4028 | 2685 | craft 8, enhance 4, gather.deposit 1579, kill.reward 2377, legion.spend 2, production.complete 29, production.reserve 29 | 26402 | 301 | 41.4 | yes |
+| POL3-EARLY | reference | 3512 | 2341 | craft 5, gather.deposit 27, kill.reward 3451, legion.spend 1, production.complete 14, production.reserve 14 | 28037 | 586 | 8.9 | (reference) |
+| POL3-EARLY | persistent | 3512 | 2341 | craft 5, gather.deposit 27, kill.reward 3451, legion.spend 1, production.complete 14, production.reserve 14 | 28037 | 305 | 18.8 | yes |
+| POL3-CONQ | reference | 3369 | 2246 | kill.reward 3367, legion.spend 2 | 41197 | 619 | 63.9 | (reference) |
+| POL3-CONQ | persistent | 3369 | 2246 | kill.reward 3367, legion.spend 2 | 41197 | 375 | 57.3 | yes |
+
+Heap growth is measured around each run (after a forced collection when --expose-gc is given); it includes the kept state and the ledger, not the event log (not kept).

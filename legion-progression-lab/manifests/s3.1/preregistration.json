@@ -1,0 +1,62 @@
+{
+  "planRegisteredAt": "2026-11-14T14:10:07Z",
+  "note": "S3.1 plan and manifests registered before any S3.1 balance comparison ran. The runner refuses unregistered or changed manifests; amendments are appended, never edited in place.",
+  "document": {
+    "path": "manifests/s3.1/PREREGISTRATION.md",
+    "sha256": "4a49373c0e08a79c2ef0fbc4eb7da9b6f1a69221a5769537b778ce3f0d528915"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s3.1/S3.1-E02-policy-capacity.json",
+      "sha256": "19eb64fad29c0ea00a51396b6a81349fe86005a225157ad2b83489db62ac5b11",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E03-equipment-strength.json",
+      "sha256": "8d5a0700ed52d870e1f8aa1470880f7c8597d6a249ef407cb705c89216a50914",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E04-candidate-content.json",
+      "sha256": "73f7ca603f132cb2616cbca270c827a0e38f2b4588e0254a846bc198a916c1ec",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E05-investment.json",
+      "sha256": "ce8eec54d97d6aa92e218b4b683bb00cee66966ea2cfb48fb895099d05cb51a9",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E08-long-horizon-payback.json",
+      "sha256": "70d77543fbc800fadd6524b875e6b10b0af7ca8742d96fe7435ea544674e2315",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E06-hero-power-full-squad.json",
+      "sha256": "0bd77acafd203957280528deaab40a67e2311b8df191fae04c640dfcf6f66d2d",
+      "registeredAt": "2026-11-14T14:10:07Z"
+    }
+  ],
+  "amendments": [
+    {
+      "path": "manifests/s3.1/S3.1-E09-demand-stop-payback.json",
+      "sha256": "f2fc61a6dec2e38341a3d282c1820652ee2ee7eda0d13a9f55a457c401a9a974",
+      "registeredAt": "2026-11-14T14:45:26Z",
+      "document": {
+        "path": "manifests/s3.1/AMENDMENT-01.md",
+        "sha256": "a15ea4e69cddab1b149b8b781c7589dfe278f141dded7d5715ebbc45bec47a21"
+      },
+      "reason": "POL3-DEMAND kept an assigned gatherer once no candidate remained (S3.1-E08 fresh: materials held 86 -> 1175 after crafting stopped); POL3-DEMAND2 corrects the stop rule"
+    },
+    {
+      "path": "manifests/s3.1/S3.1-E10-demand-stop-content.json",
+      "sha256": "330298f7ebd25b16ad7d8b18df038c527589a527195dec802dff525a21c5182a",
+      "registeredAt": "2026-11-14T14:45:26Z",
+      "document": {
+        "path": "manifests/s3.1/AMENDMENT-01.md",
+        "sha256": "a15ea4e69cddab1b149b8b781c7589dfe278f141dded7d5715ebbc45bec47a21"
+      },
+      "reason": "POL3-DEMAND kept an assigned gatherer once no candidate remained (S3.1-E08 fresh: materials held 86 -> 1175 after crafting stopped); POL3-DEMAND2 corrects the stop rule"
+    }
+  ]
+}

@@ -9,6 +9,12 @@
  * - per-character epochs make the old work of a reassigned, knocked-out or re-classed character stale.
  * With the legion disabled and a classless hero alone, the hero-only path schedules exactly the S1.1 events in the
  * same order, so control A0 reproduces S1.1 (tested).
+ *
+ * S3 (planning/S3_SPECIFICATION.md): an `industry` switch adds professions, gathering, equipment, crafting and the
+ * production queue. With it off nothing below the S2 rules runs and no S3 event is scheduled (control S2, tested); with
+ * it on but no S3 activity, the event log is the S2 log (tested). Same-moment order (D-07): completed work (COMPLETE),
+ * then deposits and production outputs (CREDIT), then level-ups (PROGRESS), stat recomputation (RECOMPUTE), new work
+ * and reservations (START), and policy commands (POLICY).
  */
 import { createHash, type Hash } from 'node:crypto';
 import { fail } from '../core/errors.ts';
@@ -22,7 +28,10 @@ import { bernoulli } from '../core/rng/sample.ts';
 import { deriveRngState } from '../core/rng/streamId.ts';
 import type { RngState } from '../core/rng/xoshiro128ss.ts';
 import type { CompiledEnemy } from '../model/content.ts';
-import { CLASS_IDS, type CharacterStats, type ClassId, type HeldClass, type LegionContent, type TalentAllocation } from '../model/legionContent.ts';
+import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
+import type { CompiledItemDef, CompiledNode, CompiledRecipe, EquipSlot, IndustryContent, ProfessionId, QtyLine } from '../model/industryContent.ts';
+import type { IndustryCommand, IndustryState, ItemInstance, ProductionJob, QueueArm, Work } from '../model/industryTypes.ts';
+import { autoEquipPlan, computeMods, crafterBlocker, efficiencyBp, emptyIndustry, gatherBlocker, gatherYieldNum, isIndustryCommand, itemById, jobNumber, profLevel, shortInput, toolSlotFor, unitTimeMs, validateIndustryCommand, weaponCompatible, YIELD_DEN, ZERO_PROF } from './industry.ts';
 import type { Assignment, CharacterId, CharacterState, LegionCommand, LegionEncounter, LegionPolicy, LegionReasonCode, LegionSimState, LegionState, TimeCategory, WorkerFight } from '../model/legionTypes.ts';
 import { MAX_PASSES, PHASE, type EventKey, type EventKind, type HeroState, type LogEntry, type Phase, type SimEvent, type SlotState, type ZoneState } from '../model/types.ts';
 import { validateCommand } from './commands.ts';
@@ -37,7 +46,11 @@ import { abilityAwareWorkerEstimate } from './workerFeasibility.ts';
 import { validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
 
 /** Event kinds added by S2 (the S1 kinds keep their meaning). */
-type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack';
+type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind;
+/** Event kinds added by S3 (industry switch on only). */
+type IndustryEventKind = 'GatherStart' | 'GatherAction' | 'UnitComplete' | 'IndustrySettle' | 'ProductionPass';
+type TimedRecipe = Extract<CompiledRecipe, { kind: 'timed' }>;
+type ItemRecipe = Extract<CompiledRecipe, { kind: 'item' }>;
 interface LegionEvent extends Omit<SimEvent, 'kind'> {
   readonly kind: LegionEventKind;
 }
@@ -46,7 +59,7 @@ interface LegionEvent extends Omit<SimEvent, 'kind'> {
 export interface StartCharacter {
   readonly level: number;
   readonly cls?: ClassId;
-  readonly assignment?: 'squad' | 'idle' | 'reserve' | { readonly worker: number };
+  readonly assignment?: 'squad' | 'idle' | 'reserve' | 'smithing' | { readonly worker: number } | { readonly gathering: string };
   readonly talents?: TalentAllocation;
 }
 
@@ -65,6 +78,15 @@ export interface LegionDiagnostics extends DiagnosticOptions {
    * The start zone is always visited. A diagnostic worker assignment must name a visited zone, or construction fails.
    */
   readonly visitedZones?: readonly number[];
+  /**
+   * S3 matched-state start (diagnostic only; labelled `diagnostic` in the ledger and on the items): materials credited
+   * before the run, profession EXP, and items created (and optionally equipped) without a craft.
+   */
+  readonly industry?: {
+    readonly materials?: Readonly<Record<string, number>>;
+    readonly profExp?: Readonly<Record<CharacterId, Partial<Record<ProfessionId, number>>>>;
+    readonly items?: readonly { readonly defId: string; readonly enhancement?: number; readonly equip?: CharacterId; readonly protected?: boolean }[];
+  };
 }
 
 export interface LegionOptions {
@@ -79,6 +101,10 @@ export interface LegionOptions {
   readonly hashLog?: boolean;
   readonly diagnostic?: LegionDiagnostics;
   readonly ledger?: LedgerImplementationId;
+  /** S3 industry on (content must be IndustryContent). Off reproduces S2 exactly (control S2). */
+  readonly industry?: boolean;
+  /** S3 production-queue arm: per-unit FIFO (the O10 rule, default) or a diagnostic alternative. */
+  readonly queueArm?: QueueArm;
 }
 
 export type LegionObserver = (entry: LogEntry, sim: LegionSimulation) => void;
@@ -132,6 +158,7 @@ export class LegionSimulation {
   constructor(options: LegionOptions) {
     this.content = options.content;
     this.options = options;
+    if (options.industry === true && !('items' in options.content)) fail('INVALID_STATE', 'the industry switch needs the S3 industry content');
     this.policy = options.policy;
     this.queue = new EventQueue();
     this.seq = 0;
@@ -151,6 +178,27 @@ export class LegionSimulation {
 
   get legionEnabled(): boolean {
     return this.options.legion === true;
+  }
+
+  get industryEnabled(): boolean {
+    return this.options.industry === true;
+  }
+
+  private get ic(): IndustryContent {
+    return this.content as IndustryContent;
+  }
+
+  private get ind(): IndustryState {
+    return this.state.industry as IndustryState;
+  }
+
+  private setInd(patch: Partial<IndustryState>): void {
+    this.state = { ...this.state, industry: { ...(this.state.industry as IndustryState), ...patch } };
+  }
+
+  /** A character's equipment (and hero-variant) stat modifiers; NO_MODS with the industry switch off. */
+  modsOf(id: CharacterId): StatMods {
+    return this.options.industry === true ? (this.state?.industry?.mods[id] ?? NO_MODS) : NO_MODS;
   }
 
   fork(policy: LegionPolicy): LegionSimulation {
@@ -207,7 +255,7 @@ export class LegionSimulation {
   }
 
   statsOf(c: CharacterState, level: number = c.level): CharacterStats {
-    return this.content.characterStats(level, c.cls, c.cls === 'none' ? {} : c.talents[c.cls]);
+    return this.content.characterStats(level, c.cls, c.cls === 'none' ? {} : c.talents[c.cls], this.modsOf(c.id));
   }
 
   heroStats(): CharacterStats {
@@ -218,10 +266,11 @@ export class LegionSimulation {
   /** Displayed hero-alone rates for a zone at the hero's current stats (S1 estimator v1.2, memoised). */
   estimate(level: number, zoneOrder: number): ZoneEstimate {
     const h = this.hero();
-    const key = `hero|${level}|${h.cls}|${zoneOrder}|${h.cls === 'none' ? '' : JSON.stringify(h.talents[h.cls])}`;
+    const mods = this.modsOf('hero');
+    const key = `hero|${level}|${h.cls}|${zoneOrder}|${h.cls === 'none' ? '' : JSON.stringify(h.talents[h.cls])}${modsKey(mods)}`;
     let e = this.estimateCache.get(key);
     if (!e) {
-      e = h.cls === 'none' ? estimateZone(this.content, level, zoneOrder) : estimateZone(fighterView(this.content, this.statsOf(h, level), 'hero'), level, zoneOrder);
+      e = h.cls === 'none' && mods === NO_MODS ? estimateZone(this.content, level, zoneOrder) : estimateZone(fighterView(this.content, this.statsOf(h, level), 'hero'), level, zoneOrder);
       this.estimateCache.set(key, e);
     }
     return e;
@@ -229,7 +278,7 @@ export class LegionSimulation {
 
   /** Displayed rates for a character fighting alone as an independent worker (estimator v1.2 on its own stats). */
   workerEstimate(c: CharacterState, zoneOrder: number): ZoneEstimate {
-    const key = `worker|${c.level}|${c.cls}|${zoneOrder}|${c.cls === 'none' ? '' : JSON.stringify(c.talents[c.cls])}`;
+    const key = `worker|${c.level}|${c.cls}|${zoneOrder}|${c.cls === 'none' ? '' : JSON.stringify(c.talents[c.cls])}${modsKey(this.modsOf(c.id))}`;
     let e = this.estimateCache.get(key);
     if (!e) {
       const st = this.statsOf(c);
@@ -353,7 +402,9 @@ export class LegionSimulation {
       const t = ZERO_TALENTS();
       if (r.cls && r.talents) t[r.cls] = { ...r.talents };
       const a = r.assignment;
-      const assignment: Assignment = a === undefined || a === 'idle' ? { kind: 'idle' } : a === 'squad' ? { kind: 'squad' } : a === 'reserve' ? { kind: 'reserve' } : { kind: 'worker', zoneOrder: a.worker };
+      const assignment: Assignment =
+        a === undefined || a === 'idle' ? { kind: 'idle' } : a === 'squad' ? { kind: 'squad' } : a === 'reserve' ? { kind: 'reserve' } : a === 'smithing' ? { kind: 'smithing' } : 'gathering' in a ? { kind: 'gathering', nodeId: a.gathering } : { kind: 'worker', zoneOrder: a.worker };
+      if ((assignment.kind === 'smithing' || assignment.kind === 'gathering') && this.options.industry !== true) fail('INVALID_STATE', 'an S3 diagnostic assignment needs the industry switch', { index: i });
       chars.push(this.newCharacter(`rec:${i + 1}`, 'ordinary', i + 1, r.level, r.cls ?? 'none', t, assignment));
     });
     const visited = new Set([startZone, ...(diag.visitedZones ?? [])]);
@@ -375,6 +426,22 @@ export class LegionSimulation {
     for (const ch of chars) {
       if (ch.assignment.kind === 'worker' && !workerZoneAllowed(zones, ch.assignment.zoneOrder)) fail('INVALID_STATE', 'diagnostic worker assignment to a zone that is not accessible and visited', { member: ch.id, zoneOrder: ch.assignment.zoneOrder });
     }
+    const industry = this.options.industry === true ? this.initialIndustry(chars, zones) : undefined;
+    if (industry) {
+      // Equipment given by the diagnostic start changes the starting stats; everyone starts at full HP.
+      for (let i = 0; i < chars.length; i += 1) {
+        const ch = chars[i] as CharacterState;
+        const st = this.content.characterStats(ch.level, ch.cls, ch.cls === 'none' ? {} : ch.talents[ch.cls], industry.mods[ch.id] ?? NO_MODS);
+        chars[i] = { ...ch, hp: st.maxHp, maxHp: st.maxHp };
+        if (ch.id === 'hero') Object.assign(hero, { hp: st.maxHp, maxHp: st.maxHp, defence: st.defence, attackRawMilli: st.attackRawMilli });
+      }
+      for (const ch of chars) if (ch.assignment.kind === 'gathering') {
+        const node = this.ic.nodeById.get(ch.assignment.nodeId);
+        if (!node) fail('INVALID_STATE', 'diagnostic gathering assignment to an unknown node', { member: ch.id });
+        const why = gatherBlocker(this.ic, industry, zones, ch, node);
+        if (why !== null) fail('INVALID_STATE', `diagnostic gathering assignment refused: ${why}`, { member: ch.id, nodeId: node.id });
+      }
+    }
     const root = this.options.seedRoot;
     const recruits = chars.length - 1;
     const legion: LegionState = {
@@ -390,6 +457,9 @@ export class LegionSimulation {
       time: TIME_ZERO(),
       capabilityChangedMs: 0,
     };
+    let ledger = this.startLedger(diag.startGold ?? 0);
+    const mats = Object.entries(diag.industry?.materials ?? {}).filter(([, q]) => q > 0).sort(([a], [b]) => (a < b ? -1 : 1));
+    if (mats.length > 0) ledger = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER].applyTx(ledger, { txId: 'diagnostic:start-materials', purpose: 'diagnostic', lines: mats.map(([resourceId, q]) => ({ resourceId, bucket: 'available' as const, delta: q })) }).ledger;
     return {
       tMs: 0,
       hero,
@@ -397,7 +467,7 @@ export class LegionSimulation {
       encounter: null,
       boss: { opened: false, completed: false, attempts: 0 },
       session: { index: -1, open: false, startMs: 0, endMs: 0 },
-      ledger: this.startLedger(diag.startGold ?? 0),
+      ledger,
       credits: EMPTY_CREDITS,
       rng: {
         hit: deriveRngState({ root, purpose: 'hero.hit', entity: 'hero', counter: 0 }),
@@ -407,7 +477,48 @@ export class LegionSimulation {
       encounterSeq: 0,
       time: { activeManualMs: 0, connectedAutoFarmMs: 0, offlineMs: 0, accountedToMs: 0 },
       legion,
+      ...(industry ? { industry } : {}),
     };
+  }
+
+  /** S3 diagnostic start: profession EXP and items (each labelled `diagnostic`), equipped where asked. */
+  private initialIndustry(chars: readonly CharacterState[], zones: readonly ZoneState[]): IndustryState {
+    const d = this.options.diagnostic?.industry ?? {};
+    const c = this.ic;
+    let ind = emptyIndustry();
+    const profExp: Record<CharacterId, Record<ProfessionId, number>> = {};
+    for (const [id, rec] of Object.entries(d.profExp ?? {})) {
+      if (!chars.some((x) => x.id === id)) fail('INVALID_STATE', 'diagnostic profession EXP for an unknown character', { member: id });
+      profExp[id] = { ...ZERO_PROF, ...rec };
+    }
+    ind = { ...ind, profExp };
+    const items: ItemInstance[] = [];
+    const loadout: Record<CharacterId, Partial<Record<EquipSlot, string>>> = {};
+    for (const spec of d.items ?? []) {
+      const def = c.items.get(spec.defId);
+      if (!def) fail('INVALID_STATE', 'diagnostic item with an unknown definition', { defId: spec.defId });
+      const enh = spec.enhancement ?? 0;
+      if (!Number.isSafeInteger(enh) || enh < 0 || enh > def.maxEnhancement) fail('INVALID_STATE', 'diagnostic item enhancement out of range', { defId: spec.defId });
+      const id = `item:${items.length + 1}`;
+      let location: ItemInstance['location'] = { kind: 'inventory' };
+      if (spec.equip !== undefined) {
+        const owner = chars.find((x) => x.id === spec.equip);
+        if (!owner) fail('INVALID_STATE', 'diagnostic item equipped by an unknown character', { member: spec.equip });
+        if (def.slot === 'weapon' && !weaponCompatible(def, owner.cls)) fail('INVALID_STATE', 'diagnostic weapon is not compatible with its owner', { member: owner.id, defId: def.id });
+        if (loadout[owner.id]?.[def.slot] !== undefined) fail('INVALID_STATE', 'diagnostic items: two items in one slot', { member: owner.id, slot: def.slot });
+        loadout[owner.id] = { ...(loadout[owner.id] ?? {}), [def.slot]: id };
+        location = { kind: 'equipped', characterId: owner.id, slot: def.slot };
+      }
+      items.push({ id, defId: def.id, enhancement: enh, protected: spec.protected === true, location, createdBy: 'diagnostic' });
+    }
+    ind = { ...ind, items, loadout };
+    const mods: Record<CharacterId, StatMods> = {};
+    for (const ch of chars) {
+      const m = computeMods(c, ind, ch.id);
+      if (m !== NO_MODS) mods[ch.id] = m;
+    }
+    void zones;
+    return { ...ind, mods };
   }
 
   private startLedger(gold: number) {
@@ -455,6 +566,12 @@ export class LegionSimulation {
   /** S1 stale rules for hero/squad events, plus per-character epochs for member and worker work. */
   private isStale(ev: LegionEvent): boolean {
     const d = ev.data ?? {};
+    if (ev.kind === 'GatherAction' || ev.kind === 'UnitComplete') {
+      // S3: a gathering action or production unit is stale once its character's work is no longer that work.
+      const w = this.state.industry?.work[String(d['member'])];
+      return w === undefined || w.id !== d['work'];
+    }
+    if (ev.kind === 'GatherStart' || ev.kind === 'IndustrySettle' || ev.kind === 'ProductionPass') return false;
     if (typeof d['member'] === 'string' && typeof d['mepoch'] === 'number') {
       const c = this.char(d['member']);
       if (!c || c.epoch !== d['mepoch']) return true;
@@ -529,8 +646,10 @@ export class LegionSimulation {
     if (!s.session.open) next = { ...next, offlineMs: time.offlineMs + delta };
     else if (s.hero.autoFarm) next = { ...next, connectedAutoFarmMs: time.connectedAutoFarmMs + delta };
     else next = { ...next, activeManualMs: time.activeManualMs + delta };
-    const lt = { ...s.legion.time, [cat]: s.legion.time[cat] + delta };
-    this.state = { ...this.state, time: next, legion: { ...s.legion, time: lt } };
+    // S3: the connected hero gathering (status idle, a node chosen) is its own category, kept in the industry state.
+    const gathering = cat === 'idle' && s.industry !== undefined && s.industry.heroGather !== null;
+    const lt = gathering ? s.legion.time : { ...s.legion.time, [cat]: s.legion.time[cat] + delta };
+    this.state = { ...this.state, time: next, legion: { ...s.legion, time: lt }, ...(gathering ? { industry: { ...(s.industry as IndustryState), gatheringMs: (s.industry as IndustryState).gatheringMs + delta } } : {}) };
   }
 
   private setAutoFarm(on: boolean, reason: 'REPEATED_DEATHS' | null = null): void {
@@ -803,6 +922,10 @@ export class LegionSimulation {
     this.setChar(id, (x) => ({ knockedOut: false, recoverPending: false, hp: x.maxHp, worker: { ...x.worker, recovering: false } }));
     this.log('MemberRecovered', { member: id, at });
     if (c.assignment.kind === 'worker' && this.state.session.open) this.scheduleWorkerEngage(id);
+    if (this.industryEnabled && this.state.session.open) {
+      if (c.assignment.kind === 'gathering') this.scheduleGatherStart(id);
+      if (c.assignment.kind === 'smithing') this.queuePass();
+    }
   }
 
   private recoverPendingMembers(): void {
@@ -997,6 +1120,15 @@ export class LegionSimulation {
         return this.onMemberRecovered(ev);
       case 'WorkerEngage':
         return this.onWorkerEngage(ev);
+      case 'GatherStart':
+        return this.onGatherStart(ev);
+      case 'GatherAction':
+      case 'UnitComplete':
+        return this.onWorkDone(ev);
+      case 'IndustrySettle':
+        return this.onIndustrySettle(ev);
+      case 'ProductionPass':
+        return this.onProductionPass();
       default:
         fail('INVALID_STATE', `unexpected event ${ev.kind} outside a COMPLETE batch`);
     }
@@ -1018,7 +1150,9 @@ export class LegionSimulation {
       if (c.id === 'hero') continue;
       if (c.knockedOut) this.recoverChar(c.id, 'session-start');
       else if (c.assignment.kind === 'worker') this.scheduleWorkerEngage(c.id);
+      else if (c.assignment.kind === 'gathering' && this.industryEnabled) this.scheduleGatherStart(c.id);
     }
+    if (this.industryEnabled && (this.state.legion.chars.some((c) => c.assignment.kind === 'smithing') || this.ind.jobs.some((j) => j.state !== 'complete' && j.state !== 'cancelled'))) this.queuePass();
     this.requestPolicy('session-start');
   }
 
@@ -1042,6 +1176,11 @@ export class LegionSimulation {
       engageOrigin: null,
     });
     for (const c of this.state.legion.chars) if (c.id !== 'hero' && c.assignment.kind === 'worker') this.stopWorkerFight(c.id, 'SESSION_ENDED');
+    if (this.industryEnabled) {
+      // S3-R15: every gathering action and production unit in progress is abandoned (no yield; reservations released).
+      if (this.ind.heroGather !== null) this.stopHeroGather('SESSION_ENDED');
+      for (const c of this.state.legion.chars) if (this.ind.work[c.id] !== undefined) this.interruptWork(c.id, 'SESSION_ENDED', false);
+    }
     this.state = { ...this.state, session: { ...this.state.session, open: false } };
     this.log('SessionEnded', { index });
   }
@@ -1382,20 +1521,29 @@ export class LegionSimulation {
   }
 
   submit(cmd: LegionCommand): boolean {
-    const v = isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd);
+    const industryCmd = isIndustryCommand(cmd);
+    const v = industryCmd ? validateIndustryCommand(this, cmd as IndustryCommand) : isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd as never);
     if (!v.ok) {
       this.counters.commandsRejected[v.code] = (this.counters.commandsRejected[v.code] ?? 0) + 1;
       this.log('CommandRejected', { command: cmd.type, code: v.code });
       return false;
     }
     this.counters.commandsAccepted += 1;
+    if (industryCmd) {
+      const c = cmd as IndustryCommand;
+      this.log('CommandAccepted', { command: c.type, target: 'nodeId' in c ? c.nodeId : 'itemId' in c ? c.itemId : 'recipeId' in c ? c.recipeId : 'jobId' in c ? c.jobId : 'characterId' in c ? c.characterId : null });
+      this.applyIndustry(c);
+      return true;
+    }
     this.log('CommandAccepted', { command: cmd.type, target: 'zoneId' in cmd && cmd.zoneId !== undefined ? cmd.zoneId : 'checkpointId' in cmd ? cmd.checkpointId : 'gateId' in cmd ? cmd.gateId : 'code' in cmd ? cmd.code : 'characterId' in cmd ? cmd.characterId : null });
+    // S3-R12: any other hero activity stops the hero's gathering (the action in progress yields nothing).
+    if (this.industryEnabled && this.ind.heroGather !== null && (cmd.type === 'Engage' || cmd.type === 'Travel' || cmd.type === 'Teleport' || cmd.type === 'Rest' || cmd.type === 'StartBoss' || (cmd.type === 'SetAutoFarm' && cmd.on))) this.stopHeroGather(cmd.type);
     if (isLegionCommand(cmd)) this.applyLegion(cmd);
-    else this.apply(cmd);
+    else this.apply(cmd as Exclude<LegionCommand, LegionOnlyCommand | IndustryCommand>);
     return true;
   }
 
-  private apply(cmd: Exclude<LegionCommand, LegionOnlyCommand>): void {
+  private apply(cmd: Exclude<LegionCommand, LegionOnlyCommand | IndustryCommand>): void {
     const t = this.now().t;
     const h = this.state.hero;
     switch (cmd.type) {
@@ -1524,11 +1672,17 @@ export class LegionSimulation {
           this.log('MemberLeftSquad', { member: c.id, encounterId: enc.id });
         }
         if (old.kind === 'worker') this.stopWorkerFight(c.id, 'REASSIGNED');
-        const to: Assignment = cmd.to === 'worker' ? { kind: 'worker', zoneOrder: this.content.zoneOrderById.get(cmd.zoneId as string) as number } : { kind: cmd.to };
+        // S3: leaving a gathering or smithing role abandons its work in progress (no yield; the unit's reservation is released).
+        if (this.industryEnabled && this.ind.work[c.id] !== undefined) this.interruptWork(c.id, 'REASSIGNED');
+        if (this.industryEnabled && this.ind.blocked[c.id] !== undefined) this.setBlocked(c.id, null);
+        const to: Assignment = cmd.to === 'worker' ? { kind: 'worker', zoneOrder: this.content.zoneOrderById.get(cmd.zoneId as string) as number } : cmd.to === 'gathering' ? { kind: 'gathering', nodeId: cmd.nodeId as string } : { kind: cmd.to };
         this.setChar(c.id, (x) => ({ assignment: to, worker: { ...x.worker, stopReason: null } }));
         if (to.kind === 'squad') this.setLegion({ capabilityChangedMs: t });
-        this.log('Assigned', { member: c.id, from: old.kind === 'worker' ? `worker:${old.zoneOrder}` : old.kind, to: to.kind === 'worker' ? `worker:${to.zoneOrder}` : to.kind });
+        const fmt = (a: Assignment): string => (a.kind === 'worker' ? `worker:${a.zoneOrder}` : a.kind === 'gathering' ? `gathering:${a.nodeId}` : a.kind);
+        this.log('Assigned', { member: c.id, from: fmt(old), to: fmt(to) });
         if (to.kind === 'worker' && this.state.session.open && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleWorkerEngage(c.id);
+        if (to.kind === 'gathering' && this.state.session.open && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleGatherStart(c.id);
+        if (to.kind === 'smithing' || old.kind === 'smithing') this.queuePass();
         return;
       }
       case 'SetClass': {
@@ -1537,6 +1691,7 @@ export class LegionSimulation {
         const paid = c.cls === 'none' ? 0 : rules.classChangeCostGold;
         this.debitGold(`class:${c.id}:${c.classChanges + 1}`, paid);
         this.setChar(c.id, (x) => ({ cls: cmd.cls, classChanges: x.classChanges + 1 }));
+        if (this.industryEnabled) this.dropIncompatibleWeapon(c.id);
         this.recomputeAfterLoadout(c.id, before);
         this.setLegion({ capabilityChangedMs: t });
         this.log('ClassChanged', { member: c.id, from: c.cls, to: cmd.cls, cost: paid });
@@ -1571,6 +1726,431 @@ export class LegionSimulation {
         return;
       }
     }
+  }
+
+  // ------------------------------------------------------------ S3 industry (planning/S3_SPECIFICATION.md §2-§6)
+  private industryTx(txId: string, purpose: string, lines: readonly TxLine[]): void {
+    const out = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER].applyTx(this.state.ledger, { txId, purpose, lines });
+    if (out.result.replayed) fail('INVALID_STATE', 'an industry transaction was replayed', { txId });
+    this.state = { ...this.state, ledger: out.ledger };
+    // Every S3 ledger change is visible in the event log with its categorised transaction ID and its nets.
+    this.log('LedgerTx', { txId, purpose, nets: out.result.nets.map((n) => `${n.resourceId}/${n.bucket}:${n.delta}`).join(',') });
+  }
+
+  private setBlocked(id: CharacterId, why: string | null): void {
+    const blocked = { ...this.ind.blocked };
+    if (why === null) delete blocked[id];
+    else blocked[id] = why;
+    this.setInd({ blocked });
+  }
+
+  private scheduleGatherStart(id: CharacterId): void {
+    this.schedule(this.now().t, PHASE.START, `gather:${id}`, 'GatherStart', { data: { member: id } });
+  }
+
+  /** Queues one scheduling pass at the new-work stage of this moment (several triggers share it). */
+  private queuePass(): void {
+    const t = this.now().t;
+    if (this.ind.passQueuedAt === t) return;
+    this.setInd({ passQueuedAt: t });
+    this.schedule(t, PHASE.START, 'industry', 'ProductionPass');
+  }
+
+  private addProfExp(id: CharacterId, p: ProfessionId, exp: number): { level: number; up: boolean } {
+    const before = profLevel(this.ic, this.ind, id, p);
+    const cur = this.ind.profExp[id] ?? ZERO_PROF;
+    this.setInd({ profExp: { ...this.ind.profExp, [id]: { ...cur, [p]: cur[p] + exp } } });
+    const level = profLevel(this.ic, this.ind, id, p);
+    if (level > before) {
+      this.log('ProfessionLevelUp', { member: id, profession: p, level });
+      this.requestPolicy('profession-level-up');
+    }
+    return { level, up: level > before };
+  }
+
+  private onGatherStart(ev: LegionEvent): void {
+    const id = String(ev.data?.['member']);
+    const c = this.char(id);
+    if (!c || !this.state.session.open || this.ind.work[id] !== undefined) return;
+    let nodeId: string | null;
+    if (id === 'hero') {
+      nodeId = this.ind.heroGather;
+      const h = this.state.hero;
+      if (nodeId === null || h.status !== 'idle' || h.autoFarm || this.state.encounter !== null) return;
+    } else {
+      if (c.assignment.kind !== 'gathering' || c.knockedOut) return;
+      nodeId = c.assignment.nodeId;
+    }
+    const node = this.ic.nodeById.get(nodeId);
+    if (!node) fail('INVALID_STATE', 'gathering at an unknown node', { member: id, nodeId });
+    if (id === 'hero' && this.state.hero.zoneOrder !== node.zoneOrder) fail('INVALID_STATE', 'the hero would gather at a node outside its zone', { nodeId });
+    const why = gatherBlocker(this.ic, this.ind, this.state.zones, c, node);
+    if (why !== null) {
+      if (why === 'NODE_UNDISCOVERED') fail('INVALID_STATE', 'a character would gather at an undiscovered node', { member: id, nodeId });
+      if (this.ind.blocked[id] !== why) {
+        this.setBlocked(id, why);
+        this.log('GatherBlocked', { member: id, nodeId, reason: why });
+        this.requestPolicy('gather-blocked');
+      }
+      return;
+    }
+    if (this.ind.blocked[id] !== undefined) this.setBlocked(id, null);
+    const t = this.now().t;
+    const eff = efficiencyBp(this.ic, this.ind, c, node.profession);
+    const n = (this.ind.workSeq[id] ?? 0) + 1;
+    const w: Work = { kind: 'gather', id: `g:${id}:${n}`, nodeId, startMs: t, endMs: t + node.actionMs, yieldNum: gatherYieldNum(node, eff), efficiencyBp: eff };
+    this.setInd({ work: { ...this.ind.work, [id]: w }, workSeq: { ...this.ind.workSeq, [id]: n } });
+    this.schedule(w.endMs, PHASE.COMPLETE, `gather:${id}`, 'GatherAction', { data: { member: id, work: w.id } });
+  }
+
+  /** A gathering action or production unit has finished (COMPLETE); its credit follows at the CREDIT stage. */
+  private onWorkDone(ev: LegionEvent): void {
+    const id = String(ev.data?.['member']);
+    const w = this.ind.work[id] as Work;
+    const work = { ...this.ind.work };
+    delete work[id];
+    const pending = w.kind === 'gather' ? { kind: 'gather' as const, id: w.id, member: id, nodeId: w.nodeId, yieldNum: w.yieldNum, startMs: w.startMs, efficiencyBp: w.efficiencyBp } : { kind: 'unit' as const, id: w.id, member: id, jobId: w.jobId, startMs: w.startMs, efficiencyBp: w.efficiencyBp };
+    if (this.ind.pending[w.id] !== undefined) fail('INVALID_STATE', 'a work item completed twice', { work: w.id });
+    this.setInd({ work, pending: { ...this.ind.pending, [w.id]: pending } });
+    this.schedule(this.now().t, PHASE.CREDIT, `industry:${id}`, 'IndustrySettle', { data: { pending: w.id } });
+  }
+
+  private onIndustrySettle(ev: LegionEvent): void {
+    const pid = String(ev.data?.['pending']);
+    const p = this.ind.pending[pid];
+    if (p === undefined) {
+      this.counters.rejectedCredits['SETTLEMENT_REPLAYED'] = (this.counters.rejectedCredits['SETTLEMENT_REPLAYED'] ?? 0) + 1;
+      this.counters.duplicateCredits += 1;
+      this.log('SettlementRejected', { work: pid });
+      return;
+    }
+    const pending = { ...this.ind.pending };
+    delete pending[pid];
+    this.setInd({ pending, settled: this.ind.settled + 1 });
+    if (p.kind === 'gather') {
+      const node = this.ic.nodeById.get(p.nodeId) as CompiledNode;
+      const key = `${p.member}|${node.resourceId}`;
+      const r = accrue(this.ind.rem[key] ?? 0, p.yieldNum, 1, YIELD_DEN);
+      this.setInd({ rem: { ...this.ind.rem, [key]: r.rem } });
+      if (r.granted > 0) this.industryTx(`gather:${pid}`, 'gather.deposit', [{ resourceId: node.resourceId, bucket: 'available', delta: r.granted }]);
+      const { level } = this.addProfExp(p.member, node.profession, node.expPerAction);
+      this.log('Gathered', { member: p.member, nodeId: node.id, work: pid, resourceId: node.resourceId, units: r.granted, exp: node.expPerAction, level, startMs: p.startMs, eff: p.efficiencyBp });
+      this.scheduleGatherStart(p.member);
+      if (r.granted > 0) {
+        if (this.ind.jobs.some((j) => j.state === 'queued' || j.state === 'paused-shortage')) this.queuePass();
+        if (p.member === 'hero') this.requestPolicy('gathered');
+      }
+      return;
+    }
+    const n = jobNumber(p.jobId);
+    const job = this.ind.jobs[n - 1] as ProductionJob;
+    const recipe = this.ic.recipes.get(job.recipeId) as TimedRecipe;
+    this.industryTx(`unit:${pid}`, 'production.complete', [...recipe.inputs.map((l) => ({ resourceId: l.resourceId, bucket: 'reserved' as const, delta: -l.qty })), ...recipe.outputs.map((l) => ({ resourceId: l.resourceId, bucket: 'available' as const, delta: l.qty }))]);
+    const completed = job.completed + 1;
+    const reservedUnits = job.reservedUnits - 1;
+    const done = completed >= job.quantity;
+    const state = job.state === 'cancelled' ? 'cancelled' : done ? 'complete' : 'queued';
+    this.setJob({ ...job, completed, reservedUnits, state, shortage: null });
+    const { level } = this.addProfExp(p.member, 'smithing', recipe.exp);
+    this.log('UnitCompleted', { member: p.member, jobId: job.id, work: pid, recipeId: recipe.id, exp: recipe.exp, level, startMs: p.startMs, eff: p.efficiencyBp });
+    if (done) {
+      this.log('JobCompleted', { jobId: job.id, recipeId: recipe.id, quantity: job.quantity });
+      this.requestPolicy('job-completed');
+    }
+    this.queuePass();
+  }
+
+  private setJob(job: ProductionJob): void {
+    const jobs = this.ind.jobs.slice();
+    jobs[jobNumber(job.id) - 1] = job;
+    this.setInd({ jobs });
+  }
+
+  private reserveLines(lines: readonly QtyLine[], units: number, dir: 1 | -1): TxLine[] {
+    return lines.flatMap((l) => [
+      { resourceId: l.resourceId, bucket: 'available' as const, delta: -dir * l.qty * units },
+      { resourceId: l.resourceId, bucket: 'reserved' as const, delta: dir * l.qty * units },
+    ]);
+  }
+
+  /** The scheduling pass (§6; O10): idle smiths in acquisition order scan the jobs in FIFO order. */
+  private onProductionPass(): void {
+    this.setInd({ passQueuedAt: null });
+    if (!this.state.session.open) return;
+    const arm: QueueArm = this.options.queueArm ?? 'fifo';
+    const t = this.now().t;
+    for (const sm of this.state.legion.chars) {
+      if (sm.assignment.kind !== 'smithing' || sm.knockedOut || this.ind.work[sm.id] !== undefined) continue;
+      const smithLevel = profLevel(this.ic, this.ind, sm.id, 'smithing');
+      const order = this.ind.jobs
+        .filter((j) => j.state === 'queued' || j.state === 'paused-shortage')
+        .sort((a, b) => (arm === 'round-robin' ? a.served - b.served : 0) || a.enqueueMs - b.enqueueMs || jobNumber(a.id) - jobNumber(b.id));
+      for (const job0 of order) {
+        const recipe = this.ic.recipes.get(job0.recipeId) as TimedRecipe;
+        if (smithLevel < recipe.smithingLevel) continue;
+        let job = job0;
+        if (job.reservedUnits === 0) {
+          const units = arm === 'reserve-all' ? job.quantity - job.completed : 1;
+          const short = shortInput(this.state.ledger, recipe.inputs, units);
+          if (short !== null) {
+            if (job.state !== 'paused-shortage' || job.shortage !== short) {
+              this.setJob({ ...job, state: 'paused-shortage', shortage: short });
+              this.log('JobPaused', { jobId: job.id, reason: 'SHORTAGE', resourceId: short });
+            }
+            continue;
+          }
+          this.industryTx(`reserve:${job.id}/u${job.unitsStarted + 1}`, 'production.reserve', this.reserveLines(recipe.inputs, units, 1));
+          job = { ...job, reservedUnits: units };
+        }
+        const eff = efficiencyBp(this.ic, this.ind, sm, 'smithing');
+        const dur = unitTimeMs(recipe.unitMs, eff);
+        const unitId = `${job.id}/u${job.unitsStarted + 1}`;
+        const w: Work = { kind: 'unit', id: unitId, jobId: job.id, startMs: t, endMs: t + dur, efficiencyBp: eff };
+        this.setJob({ ...job, state: 'active', unitsStarted: job.unitsStarted + 1, served: job.served + 1, shortage: null });
+        this.setInd({ work: { ...this.ind.work, [sm.id]: w } });
+        if (job0.state === 'paused-shortage') this.log('JobResumed', { jobId: job.id });
+        this.log('UnitStarted', { member: sm.id, jobId: job.id, work: unitId, endMs: w.endMs, eff, reserved: job.reservedUnits });
+        this.schedule(w.endMs, PHASE.COMPLETE, `smith:${sm.id}`, 'UnitComplete', { data: { member: sm.id, work: unitId } });
+        break;
+      }
+    }
+  }
+
+  /**
+   * Abandons a character's work in progress (S3-R15): a gathering action yields nothing; a production unit releases its
+   * reservation (per-unit arms) and its job returns to the queue. The completion event goes stale.
+   */
+  private interruptWork(id: CharacterId, reason: string, reschedule = true): void {
+    const w = this.ind.work[id];
+    if (w === undefined) return;
+    const work = { ...this.ind.work };
+    delete work[id];
+    this.setInd({ work });
+    if (w.kind === 'gather') {
+      this.log('GatherInterrupted', { member: id, work: w.id, nodeId: w.nodeId, reason });
+      return;
+    }
+    const job = this.ind.jobs[jobNumber(w.jobId) - 1] as ProductionJob;
+    const recipe = this.ic.recipes.get(job.recipeId) as TimedRecipe;
+    const arm: QueueArm = this.options.queueArm ?? 'fifo';
+    let reservedUnits = job.reservedUnits;
+    if (arm !== 'reserve-all' || reason === 'CANCELLED') {
+      const units = arm === 'reserve-all' ? job.reservedUnits : 1;
+      if (units > 0) this.industryTx(`release:${w.id}`, 'production.release', this.reserveLines(recipe.inputs, units, -1));
+      reservedUnits -= units;
+    }
+    this.setJob({ ...job, reservedUnits, state: reason === 'CANCELLED' ? 'cancelled' : 'queued' });
+    this.log('UnitReleased', { member: id, jobId: job.id, work: w.id, reason });
+    if (reschedule) this.queuePass();
+  }
+
+  private stopHeroGather(reason: string): void {
+    const nodeId = this.ind.heroGather as string;
+    if (this.ind.work['hero'] !== undefined) this.interruptWork('hero', reason);
+    this.setInd({ heroGather: null });
+    if (this.ind.blocked['hero'] !== undefined) this.setBlocked('hero', null);
+    this.log('HeroGatherStopped', { nodeId, reason });
+  }
+
+  /** After a loadout change: recompute stats and, if the changed slot is the tool of the character's work, abandon that work. */
+  private afterLoadoutChange(id: CharacterId, slot: EquipSlot | null, before: CharacterStats): void {
+    const m = computeMods(this.ic, this.ind, id);
+    const mods = { ...this.ind.mods };
+    if (m === NO_MODS) delete mods[id];
+    else mods[id] = m;
+    this.setInd({ mods });
+    this.recomputeAfterLoadout(id, before);
+    const c = this.char(id) as CharacterState;
+    const w = this.ind.work[id];
+    if (w !== undefined) {
+      const prof: ProfessionId = w.kind === 'unit' ? 'smithing' : (this.ic.nodeById.get(w.nodeId) as { profession: ProfessionId }).profession;
+      if (slot !== null && toolSlotFor(prof) === slot) this.interruptWork(id, 'TOOL_CHANGED');
+    }
+    if (this.state.session.open && this.ind.work[id] === undefined) {
+      if (c.assignment.kind === 'gathering' || (id === 'hero' && this.ind.heroGather !== null)) this.scheduleGatherStart(id);
+      if (c.assignment.kind === 'smithing') this.queuePass();
+    }
+  }
+
+  private statsNow(id: CharacterId): CharacterStats {
+    return id === 'hero' ? this.heroStats() : this.statsOf(this.char(id) as CharacterState);
+  }
+
+  /** Moves an item into a character's slot (atomic): the slot's previous item returns to the inventory; a transfer empties the giver's slot. */
+  private equipItem(id: CharacterId, itemId: string): { slot: EquipSlot; from: string; replaced: string } {
+    const item = itemById(this.ind, itemId) as ItemInstance;
+    const def = this.ic.items.get(item.defId) as CompiledItemDef;
+    const slot = def.slot;
+    const giver = item.location.kind === 'equipped' ? item.location.characterId : null;
+    const beforeTaker = this.statsNow(id);
+    const beforeGiver = giver === null ? null : this.statsNow(giver);
+    const prev = this.ind.loadout[id]?.[slot];
+    const items = this.ind.items.slice();
+    if (prev !== undefined) items[Number(prev.slice(5)) - 1] = { ...(itemById(this.ind, prev) as ItemInstance), location: { kind: 'inventory' } };
+    items[Number(itemId.slice(5)) - 1] = { ...item, location: { kind: 'equipped', characterId: id, slot } };
+    const loadout = { ...this.ind.loadout };
+    if (giver !== null) {
+      const g = { ...(loadout[giver] ?? {}) };
+      delete g[slot];
+      loadout[giver] = g;
+    }
+    loadout[id] = { ...(loadout[id] ?? {}), [slot]: itemId };
+    this.setInd({ items, loadout });
+    if (giver !== null) this.afterLoadoutChange(giver, slot, beforeGiver as CharacterStats);
+    this.afterLoadoutChange(id, slot, beforeTaker);
+    return { slot, from: giver ?? 'inventory', replaced: prev ?? '' };
+  }
+
+  private unequipItem(id: CharacterId, slot: EquipSlot): string {
+    const itemId = this.ind.loadout[id]?.[slot] as string;
+    const before = this.statsNow(id);
+    const items = this.ind.items.slice();
+    items[Number(itemId.slice(5)) - 1] = { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } };
+    const lo = { ...(this.ind.loadout[id] ?? {}) };
+    delete lo[slot];
+    this.setInd({ items, loadout: { ...this.ind.loadout, [id]: lo } });
+    this.afterLoadoutChange(id, slot, before);
+    return itemId;
+  }
+
+  /** A class change unequips a weapon the new class may not wield (stats are recomputed by the caller). */
+  private dropIncompatibleWeapon(id: CharacterId): void {
+    const itemId = this.ind.loadout[id]?.weapon;
+    if (itemId === undefined) return;
+    const c = this.char(id) as CharacterState;
+    const def = this.ic.items.get((itemById(this.ind, itemId) as ItemInstance).defId) as CompiledItemDef;
+    if (weaponCompatible(def, c.cls)) return;
+    const items = this.ind.items.slice();
+    items[Number(itemId.slice(5)) - 1] = { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } };
+    const lo = { ...(this.ind.loadout[id] ?? {}) };
+    delete lo.weapon;
+    const loadout = { ...this.ind.loadout, [id]: lo };
+    const next = { ...this.ind, items, loadout };
+    const m = computeMods(this.ic, next, id);
+    const mods = { ...this.ind.mods };
+    if (m === NO_MODS) delete mods[id];
+    else mods[id] = m;
+    this.setInd({ items, loadout, mods });
+    this.log('Unequipped', { member: id, itemId, slot: 'weapon', reason: 'CLASS_CHANGED' });
+  }
+
+  private applyIndustry(cmd: IndustryCommand): void {
+    const t = this.now().t;
+    const ic = this.ic;
+    switch (cmd.type) {
+      case 'Gather':
+        if (this.ind.heroGather !== null) this.stopHeroGather('NODE_CHANGED');
+        this.setInd({ heroGather: cmd.nodeId });
+        this.log('HeroGatherStarted', { nodeId: cmd.nodeId });
+        this.scheduleGatherStart('hero');
+        return;
+      case 'StopGather':
+        this.stopHeroGather('COMMAND');
+        return;
+      case 'Equip': {
+        const r = this.equipItem(cmd.characterId, cmd.itemId);
+        this.log('Equipped', { member: cmd.characterId, itemId: cmd.itemId, slot: r.slot, from: r.from, replaced: r.replaced });
+        return;
+      }
+      case 'Unequip': {
+        const itemId = this.unequipItem(cmd.characterId, cmd.slot);
+        this.log('Unequipped', { member: cmd.characterId, itemId, slot: cmd.slot, reason: 'COMMAND' });
+        return;
+      }
+      case 'AutoEquip': {
+        const c = this.char(cmd.characterId) as CharacterState;
+        const plan = autoEquipPlan(ic, this.ind, c);
+        for (const step of plan) this.equipItem(c.id, step.itemId);
+        this.log('AutoEquipped', { member: c.id, items: plan.map((p) => `${p.slot}=${p.itemId}`).join(',') });
+        return;
+      }
+      case 'SetProtected': {
+        const item = itemById(this.ind, cmd.itemId) as ItemInstance;
+        const items = this.ind.items.slice();
+        items[Number(item.id.slice(5)) - 1] = { ...item, protected: cmd.on };
+        this.setInd({ items });
+        this.log('ItemProtection', { itemId: item.id, on: cmd.on });
+        return;
+      }
+      case 'Craft': {
+        const recipe = ic.recipes.get(cmd.recipeId) as ItemRecipe;
+        const target = ic.items.get(recipe.itemId) as CompiledItemDef;
+        // S3.1 guard: the engine refuses an ineligible crafter even if validation were bypassed (owner S3.1 §2).
+        const crafter = this.char(cmd.crafterId) as CharacterState;
+        if (crafterBlocker(this, crafter) !== null) fail('INVALID_STATE', 'an ineligible character would craft', { crafter: cmd.crafterId, reason: String(crafterBlocker(this, crafter)) });
+        const craftId = `craft:${this.ind.crafts + 1}`;
+        const newId = `item:${this.ind.items.length + 1}`;
+        // One atomic operation: materials debited, the lower-tier item consumed, the new item created.
+        this.industryTx(craftId, 'craft', recipe.inputs.map((l) => ({ resourceId: l.resourceId, bucket: 'available' as const, delta: -l.qty })));
+        const items = this.ind.items.slice();
+        let enhancement = 0;
+        if (cmd.consumeItemId !== undefined) {
+          const old = itemById(this.ind, cmd.consumeItemId) as ItemInstance;
+          items[Number(old.id.slice(5)) - 1] = { ...old, location: { kind: 'consumed', by: newId } };
+          if (ic.inheritance === 'half') enhancement = Math.min(Math.floor(old.enhancement / 2), target.maxEnhancement);
+        }
+        items.push({ id: newId, defId: target.id, enhancement, protected: false, location: { kind: 'inventory' }, createdBy: craftId });
+        this.setInd({ items, crafts: this.ind.crafts + 1 });
+        const { level } = this.addProfExp(cmd.crafterId, 'smithing', recipe.exp);
+        this.log('Crafted', { crafter: cmd.crafterId, recipeId: recipe.id, itemId: newId, defId: target.id, consumed: cmd.consumeItemId ?? '', enhancement, craft: craftId, exp: recipe.exp, level });
+        return;
+      }
+      case 'Enhance': {
+        const item = itemById(this.ind, cmd.itemId) as ItemInstance;
+        const def = ic.items.get(item.defId) as CompiledItemDef;
+        const n = item.enhancement + 1;
+        const gold = ic.enhancement.goldBase * n * n;
+        const material = ic.enhancement.materialByTier[def.tier] as string;
+        this.industryTx(`enhance:${item.id}:${n}`, 'enhance', [...(gold > 0 ? [{ resourceId: 'res.gold', bucket: 'available' as const, delta: -gold }] : []), { resourceId: material, bucket: 'available', delta: -n }]);
+        const owner = item.location.kind === 'equipped' ? item.location.characterId : null;
+        const before = owner === null ? null : this.statsNow(owner);
+        const items = this.ind.items.slice();
+        items[Number(item.id.slice(5)) - 1] = { ...item, enhancement: n };
+        this.setInd({ items });
+        // An enhancement never abandons work in progress: the rates captured at its start stay (S3-R14).
+        if (owner !== null) this.afterLoadoutChange(owner, null, before as CharacterStats);
+        this.log('Enhanced', { itemId: item.id, level: n, gold, materialId: material, materialQty: n });
+        return;
+      }
+      case 'Salvage': {
+        const item = itemById(this.ind, cmd.itemId) as ItemInstance;
+        const recipe = ic.recipeForItem.get(item.defId) as ItemRecipe;
+        const returns = recipe.recoverable.map((r) => ({ resourceId: r.resourceId, qty: Math.floor((r.qty * ic.salvageReturnBp) / 10_000) })).filter((r) => r.qty > 0);
+        if (returns.length > 0) this.industryTx(`salvage:${item.id}`, 'salvage', returns.map((r) => ({ resourceId: r.resourceId, bucket: 'available' as const, delta: r.qty })));
+        const items = this.ind.items.slice();
+        items[Number(item.id.slice(5)) - 1] = { ...item, location: { kind: 'salvaged' } };
+        this.setInd({ items });
+        this.log('Salvaged', { itemId: item.id, returns: returns.map((r) => `${r.resourceId}:${r.qty}`).join(',') });
+        return;
+      }
+      case 'Enqueue': {
+        const id = `job:${this.ind.jobs.length + 1}`;
+        const job: ProductionJob = { id, recipeId: cmd.recipeId, quantity: cmd.quantity, completed: 0, enqueueMs: t, state: 'queued', unitsStarted: 0, reservedUnits: 0, served: 0, shortage: null };
+        this.setInd({ jobs: [...this.ind.jobs, job] });
+        this.log('JobEnqueued', { jobId: id, recipeId: cmd.recipeId, quantity: cmd.quantity });
+        this.queuePass();
+        return;
+      }
+      case 'CancelJob': {
+        const job = this.ind.jobs[jobNumber(cmd.jobId) - 1] as ProductionJob;
+        const smith = Object.entries(this.ind.work).find(([, w]) => w.kind === 'unit' && w.jobId === job.id);
+        if (smith) this.interruptWork(smith[0], 'CANCELLED', false);
+        const cur = this.ind.jobs[jobNumber(cmd.jobId) - 1] as ProductionJob;
+        if (cur.reservedUnits > 0) {
+          const recipe = ic.recipes.get(cur.recipeId) as TimedRecipe;
+          this.industryTx(`release:${cur.id}:cancel`, 'production.release', this.reserveLines(recipe.inputs, cur.reservedUnits, -1));
+        }
+        this.setJob({ ...cur, state: 'cancelled', reservedUnits: 0 });
+        this.log('JobCancelled', { jobId: job.id, completed: cur.completed, quantity: cur.quantity });
+        this.queuePass();
+        return;
+      }
+    }
+  }
+
+  /** DIAGNOSTIC: industry state (null with the switch off). */
+  industryState(): IndustryState | null {
+    return this.state.industry ?? null;
   }
 
   /** DIAGNOSTIC ONLY (tests of S2-R20): grants a rare hero, or its duplicate material when already owned. */

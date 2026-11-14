@@ -1,0 +1,403 @@
+{
+  "fixtureSet": "recipe-validation",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s3-industry.md#v1.1",
+  "status": "candidate",
+  "independence": "S3.1 per-recipe content rules (spec/formulas/s3-industry.md v1.1 section 7), re-derived by spec/oracle/s3_oracle.py from the rule text; the lab side builds a synthetic S1, S2 and S3 pack set in memory and runs the real content compiler. Every case is also derived by hand.",
+  "cases": [
+    {
+      "id": "s3.1.recipes.baseline.001",
+      "kind": "normal",
+      "description": "the default recipes: one plank recipe, a hammer and a club",
+      "input": {
+        "recipes": []
+      },
+      "derivation": "hand: valid, 3 recipes",
+      "expected": {
+        "valid": true,
+        "recipes": 3
+      }
+    },
+    {
+      "id": "s3.1.recipes.reviewer-triple.001",
+      "kind": "failure",
+      "description": "the reviewer reproduction: the club recipe with three identical 2-plank recoverable lines",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                2
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                2
+              ],
+              [
+                "res.mat.plank",
+                2
+              ],
+              [
+                "res.mat.plank",
+                2
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "spec v1.1 section 7 rule 1 (and rule 2: 6 > 2)",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.dup-timed-inputs.001",
+      "kind": "failure",
+      "description": "a timed recipe listing logs twice",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.plank",
+            "kind": "timed",
+            "unitMs": 4000,
+            "inputs": [
+              [
+                "res.mat.log",
+                1
+              ],
+              [
+                "res.mat.log",
+                1
+              ]
+            ],
+            "outputs": [
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 1 of section 7",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.dup-item-inputs.001",
+      "kind": "failure",
+      "description": "an item recipe listing planks twice",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                1
+              ],
+              [
+                "res.mat.plank",
+                1
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 1 of section 7",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.dup-outputs.001",
+      "kind": "failure",
+      "description": "a timed recipe listing its output twice",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.plank",
+            "kind": "timed",
+            "unitMs": 4000,
+            "inputs": [
+              [
+                "res.mat.log",
+                2
+              ]
+            ],
+            "outputs": [
+              [
+                "res.mat.plank",
+                1
+              ],
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 1 of section 7",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.recover-equal.001",
+      "kind": "boundary",
+      "description": "recoverable exactly equal to the input is allowed",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                3
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                3
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 2: 3 <= 3",
+      "expected": {
+        "valid": true,
+        "recipes": 3
+      }
+    },
+    {
+      "id": "s3.1.recipes.recover-two-resources.001",
+      "kind": "normal",
+      "description": "two different recoverable resources, each within its input",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                2
+              ],
+              [
+                "res.mat.copper_bar",
+                1
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                2
+              ],
+              [
+                "res.mat.copper_bar",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 2 of section 7",
+      "expected": {
+        "valid": true,
+        "recipes": 3
+      }
+    },
+    {
+      "id": "s3.1.recipes.recover-exceeds.001",
+      "kind": "boundary",
+      "description": "recoverable one above the input",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                2
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                3
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 2: 3 > 2",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.recover-not-input.001",
+      "kind": "failure",
+      "description": "a recoverable resource that is not an input",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                2
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.copper_bar",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 2: 1 > 0",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.self-amplifying.001",
+      "kind": "failure",
+      "description": "a timed recipe giving back as many logs as it takes",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.plank",
+            "kind": "timed",
+            "unitMs": 4000,
+            "inputs": [
+              [
+                "res.mat.log",
+                2
+              ]
+            ],
+            "outputs": [
+              [
+                "res.mat.log",
+                2
+              ],
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 3: 2 >= 2",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.partial-return.001",
+      "kind": "boundary",
+      "description": "a timed recipe returning fewer logs than it takes is allowed",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.plank",
+            "kind": "timed",
+            "unitMs": 4000,
+            "inputs": [
+              [
+                "res.mat.log",
+                2
+              ]
+            ],
+            "outputs": [
+              [
+                "res.mat.log",
+                1
+              ],
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 3: 1 < 2",
+      "expected": {
+        "valid": true,
+        "recipes": 3
+      }
+    },
+    {
+      "id": "s3.1.recipes.quantity-limit.001",
+      "kind": "boundary",
+      "description": "a line quantity whose x10000 salvage intermediate leaves the safe range",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.wood.club",
+            "kind": "item",
+            "itemId": "item.wood.club",
+            "inputs": [
+              [
+                "res.mat.plank",
+                1125899906842624
+              ]
+            ],
+            "recoverable": [
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 4: 2^50 x 10000 > 2^53 - 1",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s3.1.recipes.unit-time-limit.001",
+      "kind": "boundary",
+      "description": "a unit time whose x10000 intermediate leaves the safe range",
+      "input": {
+        "recipes": [
+          {
+            "id": "recipe.plank",
+            "kind": "timed",
+            "unitMs": 1125899906842624,
+            "inputs": [
+              [
+                "res.mat.log",
+                2
+              ]
+            ],
+            "outputs": [
+              [
+                "res.mat.plank",
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      "derivation": "rule 4 of section 7",
+      "expectedError": "INVALID_CONTENT"
+    }
+  ]
+}

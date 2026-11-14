@@ -1,0 +1,566 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E05-tier-step",
+  "question": "How much does a tier upgrade cut time-to-kill on its tier, compared with one enhancement level (H-S3-02)?",
+  "design": "Matched squads (Archer hero and Warrior + Mage recruits at the same level, levels frozen) farming continuously in zone 2 (level 5) and zone 3 (level 10) for 20 minutes, everyone equipped with no gear, Wood +0/+1/+2/+5 or Copper +0/+1 in every slot. 100 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "Z2-L5|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|wood+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|wood+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|wood+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 2,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|wood+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 5,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|copper+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z2-L5|copper+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|none",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|wood+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|wood+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|wood+2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 2,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 2,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|wood+5",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "wood",
+        "enhancement": 5,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "wood",
+            "enhancement": 5,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|copper+0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "Z3-L10|copper+1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 20,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "copper",
+        "enhancement": 1,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "copper",
+            "enhancement": 1,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "s3-e05",
+    "replicates": 100
+  },
+  "metrics": [
+    "medianTtkS",
+    "killsPerHour",
+    "predictedTtkS",
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "heroDamageShare",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3-02",
+      "statement": "A tier upgrade cuts on-tier TTK by >= 25%, while one enhancement level cuts it by less than half a tier (derived across cells by src/cli/s3-analyse.ts; registered formula in PREREGISTRATION.md section 4)",
+      "source": "M0 plan S3 H-S3-02 (candidate)",
+      "metric": "medianTtkS",
+      "stat": "p50",
+      "op": ">=",
+      "value": 0,
+      "unit": "s (derived comparison reported separately)",
+      "role": "reported"
+    }
+  ],
+  "notes": [
+    "TTK here is the realised median time-to-kill of the squad (continuous farming, no resting rule).",
+    "Copper is the on-tier upgrade for zones 2-3 in the S3 slice; Wood +5 is the maximum enhancement."
+  ]
+}

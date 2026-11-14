@@ -22,7 +22,11 @@
         "squad-fight",
         "legion-credit",
         "worker-feasibility",
-        "ledger-reconstruction"
+        "ledger-reconstruction",
+        "industry-rules",
+        "equipment-ops",
+        "production-queue",
+        "recipe-validation"
       ]
     },
     "fixtureVersion": {

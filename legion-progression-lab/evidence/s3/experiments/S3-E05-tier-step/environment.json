@@ -1,0 +1,17 @@
+{
+  "experimentId": "S3-E05-tier-step",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "732f3da1ee166639ae504430a8aa0cbca3101846",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T09:59:55.250Z",
+  "durationMs": 20417,
+  "jobs": 1400,
+  "mainRssMb": 2876,
+  "mainHeapUsedMb": 33
+}

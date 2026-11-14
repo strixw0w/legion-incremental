@@ -265,7 +265,8 @@ def estimator(inp):
     if stop == "no-hit" or unresolved > UNRESOLVED_TOL:
         reason = {"no-hit": "NO_HIT_CHANCE", "work-budget": "WORK_BUDGET"}.get(stop, "SWING_BUDGET")
         return {"ttkS": None, "expectedSwings": None, "killsPerHour": 0, "killsPerLife": 0, "winChanceFromFullHp": 0 if stop == "no-hit" else None,
-                "deathsPerHour": None, "limitingFactor": "attack", "reliability": "unreachable", "reasons": [reason]}
+                # estimator.md v1.3: only zero hit chance is proven impossible; an exhausted budget is unresolved
+                "deathsPerHour": None, "limitingFactor": "attack", "reliability": "unreachable" if stop == "no-hit" else "unresolved", "reasons": [reason]}
     first = max(0, interval - overhead)
     outcomes, e_n, e_ttk, e_hits = [], 0.0, 0.0, 0.0
     for i, p in enumerate(dist):

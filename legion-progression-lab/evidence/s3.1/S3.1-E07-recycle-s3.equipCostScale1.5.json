@@ -1,0 +1,71 @@
+{
+  "experimentId": "S3.1-E07-recycle",
+  "withTimed": true,
+  "params": {
+    "s3.equipCostScale": 1.5
+  },
+  "rawEquivalents": {
+    "res.mat.plank": {
+      "res.mat.log": 2
+    },
+    "res.mat.copper_bar": {
+      "res.mat.copper_ore": 2
+    }
+  },
+  "labels": {
+    "values": "engineering check",
+    "approved": false
+  },
+  "rules": {
+    "salvageReturnBp": 5000,
+    "inheritance": "none",
+    "enhancement": {
+      "stepBp": 1000,
+      "goldBase": 20,
+      "materialByTier": {
+        "tier.wood": "res.mat.plank",
+        "tier.copper": "res.mat.copper_bar"
+      }
+    }
+  },
+  "stocks": [
+    {
+      "stock": "rich-no-items",
+      "depth": 4,
+      "statesExplored": 6459,
+      "rawChecks": "applied",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    },
+    {
+      "stock": "with-items",
+      "depth": 4,
+      "statesExplored": 5958,
+      "rawChecks": "not applicable (starting items)",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    },
+    {
+      "stock": "minimal",
+      "depth": 4,
+      "statesExplored": 112,
+      "rawChecks": "not applicable (starting items)",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    },
+    {
+      "stock": "raw-materials",
+      "depth": 4,
+      "statesExplored": 27,
+      "rawChecks": "applied",
+      "rawBreaks": 0,
+      "contentBreaks": 0,
+      "examples": []
+    }
+  ],
+  "failures": 0,
+  "durationMs": 302
+}

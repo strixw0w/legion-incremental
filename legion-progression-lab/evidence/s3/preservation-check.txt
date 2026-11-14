@@ -1,0 +1,5 @@
+Preservation of earlier evidence against s2-checkpoint (tracked files under legion-progression-lab/evidence, excluding evidence/s3 and evidence/s2-checkpoint):
+changed tracked files: 0
+Earlier manifests and plans (manifests/s1, s1.1, s2, s2.1) changed tracked files: 0
+Earlier fixtures changed (spec/fixtures, excluding the three new S3 families): 1 -> spec/fixtures/estimator.v1.json 
+Earlier content packs changed: 0

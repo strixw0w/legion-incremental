@@ -1,0 +1,3086 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E11-knockout-matrix",
+  "question": "Direction F: where do knockouts and deaths appear across squad size, level/zone and enemy damage, with resting allowed and with continuous farming?",
+  "design": "Matched squads of 0-3 recruits (Warrior, Archer, Mage) at levels 1/5/10 in zones 1/2/3, enemy damage x1/x1.5/x2/x3, the realistic fixed-zone squad policy (rests) and continuous farming, 60 minutes (PR-BAL length), no equipment, 100 replicates. Squad size 0 is the single-hero control.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "enemyDamageScale": 1.5
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "enemyDamageScale": 2
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "enemyDamageScale": 3
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L1-Z1|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L5-Z2|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg15|L10-Z3|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg15",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z1|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L10-Z3|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L1-Z1|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L5-Z2|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-0|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-0|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-1|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-1|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-2|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-2|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-3|POL2-FIXED",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg3|L10-Z3|squad-3|CONTINUOUS",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg3",
+      "minutes": 60,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "heroGear": {
+        "tier": "none",
+        "enhancement": 0,
+        "slots": "all"
+      },
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "gear": {
+            "tier": "none",
+            "enhancement": 0,
+            "slots": "all"
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "s3-e11",
+    "replicates": 100
+  },
+  "metrics": [
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "recoveryShare",
+    "autoFarmStops",
+    "killsPerHour",
+    "legionExpPerHour",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3-05",
+      "statement": "The cell generates knockouts (S2.1 threshold, fixed before running): p50 member knockouts per hour >= 1",
+      "source": "S3_EXPERIMENT_DIRECTIONS.md F; S2.1-E03",
+      "metric": "memberKnockoutsPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "value": 1,
+      "unit": "knockouts per hour",
+      "role": "diagnostic"
+    }
+  ],
+  "notes": [
+    "The matrix is informative only if at least 50% of the cells with recruits generate knockouts (registered rule, PREREGISTRATION.md section 4); otherwise its range is widened by a registered amendment before any conclusion.",
+    "Thresholds of interest (reported, not targets): knockouts per hour 1, 5, 20; recovery share >= 10%; hero deaths per hour >= 1; auto-farm stops >= 1."
+  ]
+}

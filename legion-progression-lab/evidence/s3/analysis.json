@@ -1,0 +1,3619 @@
+{
+  "monitor": [
+    {
+      "id": "S3-E02-queue-contention",
+      "runs": 72,
+      "checks": 674499,
+      "violations": 0
+    },
+    {
+      "id": "S3-E03-shortage-timelines",
+      "runs": 18,
+      "checks": 177750,
+      "violations": 0
+    },
+    {
+      "id": "S3-E04-gather-vs-fight",
+      "runs": 1200,
+      "checks": 211822974,
+      "violations": 0
+    },
+    {
+      "id": "S3-E05-tier-step",
+      "runs": 1400,
+      "checks": 24003300,
+      "violations": 0
+    },
+    {
+      "id": "S3-E07-old-material-demand",
+      "runs": 400,
+      "checks": 111606902,
+      "violations": 0
+    },
+    {
+      "id": "S3-E08-first-useful-craft",
+      "runs": 1300,
+      "checks": 156306954,
+      "violations": 0
+    },
+    {
+      "id": "S3-E09-hero-damage",
+      "runs": 800,
+      "checks": 136681128,
+      "violations": 0
+    },
+    {
+      "id": "S3-E10-pacing-levers",
+      "runs": 700,
+      "checks": 111899418,
+      "violations": 0
+    },
+    {
+      "id": "S3-E11-knockout-matrix",
+      "runs": 9600,
+      "checks": 386161417,
+      "violations": 0
+    },
+    {
+      "id": "S3-E11-knockout-matrix-widened",
+      "runs": 12800,
+      "checks": 384429846,
+      "violations": 0
+    },
+    {
+      "id": "S3-E12-investment",
+      "runs": 1600,
+      "checks": 231131253,
+      "violations": 0
+    }
+  ],
+  "H-S3-02": [
+    {
+      "squad": "Z2-L5",
+      "ttk": {
+        "none": 1,
+        "wood+0": 0.5,
+        "wood+1": 0.5,
+        "wood+2": 0.5,
+        "wood+5": 0,
+        "copper+0": 0,
+        "copper+1": 0
+      },
+      "noneToWoodCut": 0.5,
+      "tierCut": 1,
+      "enhCut": 0,
+      "enhOverTier": 0,
+      "outcome": "pass"
+    },
+    {
+      "squad": "Z3-L10",
+      "ttk": {
+        "none": 1.6,
+        "wood+0": 1.5,
+        "wood+1": 1.4,
+        "wood+2": 1.4,
+        "wood+5": 1.5,
+        "copper+0": 1.3,
+        "copper+1": 1
+      },
+      "noneToWoodCut": 0.0625,
+      "tierCut": 0.1333333333333333,
+      "enhCut": 0.06666666666666676,
+      "enhOverTier": 0.5000000000000009,
+      "outcome": "miss"
+    }
+  ],
+  "H-S3-03": [
+    {
+      "cell": "PR-NEW|POL3-COMBAT",
+      "p50": 9.478333333333333,
+      "outcome": "miss",
+      "p10": 9.405,
+      "p90": 9.536666666666667,
+      "reached": 100
+    },
+    {
+      "cell": "PR-NEW|POL3-EQUIP",
+      "p50": 2.388333333333333,
+      "outcome": "miss",
+      "p10": 2.368333333333333,
+      "p90": 2.408333333333333,
+      "reached": 100
+    },
+    {
+      "cell": "PR-NEW|POL3-PROF",
+      "p50": 6.46,
+      "outcome": "miss",
+      "p10": 6.373333333333333,
+      "p90": 6.53285,
+      "reached": 100
+    },
+    {
+      "cell": "PR-NEW|POL3-BAL",
+      "p50": 10.785,
+      "outcome": "miss",
+      "p10": 10.725,
+      "p90": 10.855,
+      "reached": 100
+    },
+    {
+      "cell": "PR-NEW|POL3-EARLY",
+      "p50": 5.693333333333333,
+      "outcome": "miss",
+      "p10": 5.556666666666667,
+      "p90": 5.866666666666666,
+      "reached": 100
+    },
+    {
+      "cell": "PR-NEW|POL3-CONQ",
+      "p50": null,
+      "outcome": "not-reached",
+      "p10": null,
+      "p90": null,
+      "reached": 0
+    },
+    {
+      "cell": "PR-BAL|POL3-COMBAT",
+      "p50": 9.478333333333333,
+      "outcome": "miss",
+      "p10": 9.405,
+      "p90": 9.536666666666667,
+      "reached": 100
+    },
+    {
+      "cell": "PR-BAL|POL3-EQUIP",
+      "p50": 2.388333333333333,
+      "outcome": "miss",
+      "p10": 2.368333333333333,
+      "p90": 2.408333333333333,
+      "reached": 100
+    },
+    {
+      "cell": "PR-BAL|POL3-PROF",
+      "p50": 6.46,
+      "outcome": "miss",
+      "p10": 6.373333333333333,
+      "p90": 6.53285,
+      "reached": 100
+    },
+    {
+      "cell": "PR-BAL|POL3-BAL",
+      "p50": 10.785,
+      "outcome": "miss",
+      "p10": 10.725,
+      "p90": 10.855,
+      "reached": 100
+    },
+    {
+      "cell": "PR-BAL|POL3-EARLY",
+      "p50": 5.693333333333333,
+      "outcome": "miss",
+      "p10": 5.556666666666667,
+      "p90": 5.866666666666666,
+      "reached": 100
+    },
+    {
+      "cell": "PR-BAL|POL3-CONQ",
+      "p50": null,
+      "outcome": "not-reached",
+      "p10": null,
+      "p90": null,
+      "reached": 0
+    }
+  ],
+  "F-scope": "S3-E11 + S3-E11-knockout-matrix-widened (amendment 01)",
+  "F": {
+    "bySize": [
+      {
+        "squad": 1,
+        "cells": 56,
+        "generating": 44
+      },
+      {
+        "squad": 2,
+        "cells": 56,
+        "generating": 22
+      },
+      {
+        "squad": 3,
+        "cells": 56,
+        "generating": 10
+      }
+    ],
+    "cellsWithRecruits": 168,
+    "generatingKnockouts": 76,
+    "share": 0.4523809523809524,
+    "informative": false,
+    "koPerHourAtLeast5": 71,
+    "koPerHourAtLeast20": 49,
+    "recoveryShareAtLeast10pct": 39,
+    "heroDeathsPerHourAtLeast1": 83,
+    "autoFarmStopsAtLeast1": 59,
+    "cells": 224,
+    "matrix": [
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 900.86
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 13,
+        "recoveryP50": null,
+        "killsMean": 898.09
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 623.23
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 34,
+        "recoveryP50": null,
+        "killsMean": 611.51
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 11,
+        "deathsP50": 0,
+        "recoveryP50": 0.06111111111111111,
+        "killsMean": 1133.26
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 11,
+        "deathsP50": 2,
+        "recoveryP50": 0.059166666666666666,
+        "killsMean": 1133.5
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 387.5
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 60,
+        "recoveryP50": null,
+        "killsMean": 360.21
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 18,
+        "deathsP50": 0,
+        "recoveryP50": 0.1,
+        "killsMean": 732.83
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 18,
+        "deathsP50": 7,
+        "recoveryP50": 0.08788888888888889,
+        "killsMean": 730.42
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 11,
+        "deathsP50": 0,
+        "recoveryP50": 0.030555555555555555,
+        "killsMean": 1186.47
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 11,
+        "deathsP50": 2,
+        "recoveryP50": 0.029305555555555557,
+        "killsMean": 1186.41
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 857.23
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 26,
+        "recoveryP50": null,
+        "killsMean": 847.17
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 598.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 44,
+        "recoveryP50": null,
+        "killsMean": 581.33
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 15,
+        "deathsP50": 0,
+        "recoveryP50": 0.08333333333333333,
+        "killsMean": 1119.7
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 15,
+        "deathsP50": 3,
+        "recoveryP50": 0.07777777777777778,
+        "killsMean": 1120.64
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 358.75
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 76,
+        "recoveryP50": null,
+        "killsMean": 307.76
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 26,
+        "deathsP50": 0,
+        "recoveryP50": 0.14444444444444443,
+        "killsMean": 705.4
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 26,
+        "deathsP50": 13,
+        "recoveryP50": 0.1383611111111111,
+        "killsMean": 700.36
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 17,
+        "deathsP50": 0,
+        "recoveryP50": 0.04518055555555556,
+        "killsMean": 1174.88
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 17,
+        "deathsP50": 4,
+        "recoveryP50": 0.044069444444444446,
+        "killsMean": 1173.21
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg15|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 857.23
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 26,
+        "recoveryP50": null,
+        "killsMean": 847.17
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 553.56
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 62,
+        "recoveryP50": null,
+        "killsMean": 526.64
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 21,
+        "deathsP50": 0,
+        "recoveryP50": 0.11666666666666667,
+        "killsMean": 1090.61
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 21,
+        "deathsP50": 7,
+        "recoveryP50": 0.10402777777777777,
+        "killsMean": 1093.56
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 328.62
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 94,
+        "recoveryP50": null,
+        "killsMean": 283.91
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 29,
+        "deathsP50": 0,
+        "recoveryP50": 0.16111111111111112,
+        "killsMean": 659.29
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 32,
+        "deathsP50": 17,
+        "recoveryP50": 0.13716666666666666,
+        "killsMean": 685.29
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 20,
+        "deathsP50": 0,
+        "recoveryP50": 0.05555555555555555,
+        "killsMean": 1160.59
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 20,
+        "deathsP50": 6,
+        "recoveryP50": 0.05188888888888889,
+        "killsMean": 1162.43
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 819.97
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 37,
+        "recoveryP50": null,
+        "killsMean": 802.34
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1349.99
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 501.78
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 81,
+        "recoveryP50": null,
+        "killsMean": 470.02
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 26,
+        "deathsP50": 0,
+        "recoveryP50": 0.14444444444444443,
+        "killsMean": 1054.68
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 27,
+        "deathsP50": 13,
+        "recoveryP50": 0.1371111111111111,
+        "killsMean": 1056.82
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.01
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1967.87
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 281.56
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 123,
+        "recoveryP50": null,
+        "killsMean": 246.56
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 20,
+        "deathsP50": 6,
+        "recoveryP50": 0.1111111111111111,
+        "killsMean": 330.4
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 42,
+        "deathsP50": 42,
+        "recoveryP50": 0.233,
+        "killsMean": 594.75
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 29,
+        "deathsP50": 0,
+        "recoveryP50": 0.08055555555555556,
+        "killsMean": 1122.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 30,
+        "deathsP50": 14,
+        "recoveryP50": 0.07715277777777778,
+        "killsMean": 1119.03
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.92
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 394.8
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 46,
+        "recoveryP50": null,
+        "killsMean": 376.71
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-1|POL2-FIXED",
+        "koP50": 19,
+        "deathsP50": 0,
+        "recoveryP50": 0.10555555555555556,
+        "killsMean": 833.12
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-1|CONTINUOUS",
+        "koP50": 19,
+        "deathsP50": 6,
+        "recoveryP50": 0.10488888888888889,
+        "killsMean": 840.36
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100|L3-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 265.76
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 79,
+        "recoveryP50": null,
+        "killsMean": 237.03
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-1|POL2-FIXED",
+        "koP50": 30,
+        "deathsP50": 0,
+        "recoveryP50": 0.16666666666666666,
+        "killsMean": 541.56
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-1|CONTINUOUS",
+        "koP50": 31,
+        "deathsP50": 15,
+        "recoveryP50": 0.16036111111111112,
+        "killsMean": 542.79
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-2|POL2-FIXED",
+        "koP50": 18,
+        "deathsP50": 0,
+        "recoveryP50": 0.05,
+        "killsMean": 951.95
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-2|CONTINUOUS",
+        "koP50": 19,
+        "deathsP50": 5,
+        "recoveryP50": 0.04826388888888889,
+        "killsMean": 951.68
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-3|POL2-FIXED",
+        "koP50": 8,
+        "deathsP50": 0,
+        "recoveryP50": 0.014814814814814815,
+        "killsMean": 1270.83
+      },
+      {
+        "cell": "a10-p1.6-g100|L7-Z3|squad-3|CONTINUOUS",
+        "koP50": 8,
+        "deathsP50": 1,
+        "recoveryP50": 0.014583333333333334,
+        "killsMean": 1271.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 334.22
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 80,
+        "recoveryP50": null,
+        "killsMean": 320.09
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-1|POL2-FIXED",
+        "koP50": 31,
+        "deathsP50": 0,
+        "recoveryP50": 0.17222222222222222,
+        "killsMean": 747.86
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-1|CONTINUOUS",
+        "koP50": 35,
+        "deathsP50": 17,
+        "recoveryP50": 0.15794444444444444,
+        "killsMean": 787.14
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L3-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 3,
+        "recoveryP50": null,
+        "killsMean": 3.29
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 123,
+        "recoveryP50": null,
+        "killsMean": 132.75
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-1|POL2-FIXED",
+        "koP50": 4,
+        "deathsP50": 3,
+        "recoveryP50": 0.022222222222222223,
+        "killsMean": 39.64
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-1|CONTINUOUS",
+        "koP50": 50,
+        "deathsP50": 49,
+        "recoveryP50": 0.2732222222222222,
+        "killsMean": 428.06
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-2|POL2-FIXED",
+        "koP50": 35,
+        "deathsP50": 0,
+        "recoveryP50": 0.09722222222222222,
+        "killsMean": 901.06
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-2|CONTINUOUS",
+        "koP50": 35,
+        "deathsP50": 17,
+        "recoveryP50": 0.09002777777777778,
+        "killsMean": 892.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-3|POL2-FIXED",
+        "koP50": 17,
+        "deathsP50": 0,
+        "recoveryP50": 0.030916666666666665,
+        "killsMean": 1248.44
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L7-Z3|squad-3|CONTINUOUS",
+        "koP50": 17,
+        "deathsP50": 5,
+        "recoveryP50": 0.02935185185185185,
+        "killsMean": 1246.84
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 289.76
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 107,
+        "recoveryP50": null,
+        "killsMean": 221.15
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-1|POL2-FIXED",
+        "koP50": 43,
+        "deathsP50": 0,
+        "recoveryP50": 0.2388888888888889,
+        "killsMean": 713.97
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-1|CONTINUOUS",
+        "koP50": 41,
+        "deathsP50": 40,
+        "recoveryP50": 0.2222222222222222,
+        "killsMean": 667.66
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L3-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 175.11
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 147,
+        "recoveryP50": null,
+        "killsMean": 147.36
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-1|POL2-FIXED",
+        "koP50": 4,
+        "deathsP50": 3,
+        "recoveryP50": 0.01952777777777778,
+        "killsMean": 26.14
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-1|CONTINUOUS",
+        "koP50": 66,
+        "deathsP50": 66,
+        "recoveryP50": 0.31755555555555554,
+        "killsMean": 405.13
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-2|POL2-FIXED",
+        "koP50": 43,
+        "deathsP50": 0,
+        "recoveryP50": 0.11765277777777777,
+        "killsMean": 835.75
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-2|CONTINUOUS",
+        "koP50": 45,
+        "deathsP50": 30,
+        "recoveryP50": 0.10340277777777777,
+        "killsMean": 837.38
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-3|POL2-FIXED",
+        "koP50": 22,
+        "deathsP50": 0,
+        "recoveryP50": 0.040740740740740744,
+        "killsMean": 1219.02
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg3|L7-Z3|squad-3|CONTINUOUS",
+        "koP50": 22,
+        "deathsP50": 10,
+        "recoveryP50": 0.038342592592592595,
+        "killsMean": 1220.95
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 267.85
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 120,
+        "recoveryP50": null,
+        "killsMean": 241.44
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-1|POL2-FIXED",
+        "koP50": 4,
+        "deathsP50": 3,
+        "recoveryP50": 0.022222222222222223,
+        "killsMean": 57.66
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-1|CONTINUOUS",
+        "koP50": 48,
+        "deathsP50": 47,
+        "recoveryP50": 0.26572222222222225,
+        "killsMean": 646.27
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L3-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 3,
+        "recoveryP50": null,
+        "killsMean": 2.5
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 169,
+        "recoveryP50": null,
+        "killsMean": 130.48
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-1|POL2-FIXED",
+        "koP50": 3,
+        "deathsP50": 3,
+        "recoveryP50": 0.012972222222222222,
+        "killsMean": 13.95
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-1|CONTINUOUS",
+        "koP50": 81,
+        "deathsP50": 81,
+        "recoveryP50": 0.34355555555555556,
+        "killsMean": 353.82
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-2|POL2-FIXED",
+        "koP50": 53,
+        "deathsP50": 0,
+        "recoveryP50": 0.14722222222222223,
+        "killsMean": 808.42
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-2|CONTINUOUS",
+        "koP50": 49,
+        "deathsP50": 47,
+        "recoveryP50": 0.13319444444444445,
+        "killsMean": 762.52
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-3|POL2-FIXED",
+        "koP50": 28,
+        "deathsP50": 0,
+        "recoveryP50": 0.05185185185185185,
+        "killsMean": 1184.61
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L7-Z3|squad-3|CONTINUOUS",
+        "koP50": 29,
+        "deathsP50": 14,
+        "recoveryP50": 0.04762037037037037,
+        "killsMean": 1197.32
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 4,
+        "recoveryP50": null,
+        "killsMean": 186.77
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 149,
+        "recoveryP50": null,
+        "killsMean": 149.07
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-1|POL2-FIXED",
+        "koP50": 64,
+        "deathsP50": 1,
+        "recoveryP50": 0.3541388888888889,
+        "killsMean": 591.35
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-1|CONTINUOUS",
+        "koP50": 66,
+        "deathsP50": 66,
+        "recoveryP50": 0.32716666666666666,
+        "killsMean": 590.49
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1429.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L3-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1758.89
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 3,
+        "recoveryP50": null,
+        "killsMean": 0
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 202,
+        "recoveryP50": null,
+        "killsMean": 0
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-1|POL2-FIXED",
+        "koP50": 3,
+        "deathsP50": 3,
+        "recoveryP50": 0.010138888888888888,
+        "killsMean": 9.02
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-1|CONTINUOUS",
+        "koP50": 105,
+        "deathsP50": 104,
+        "recoveryP50": 0.35333333333333333,
+        "killsMean": 315.25
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-2|POL2-FIXED",
+        "koP50": 14,
+        "deathsP50": 4,
+        "recoveryP50": 0.034,
+        "killsMean": 183.25
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-2|CONTINUOUS",
+        "koP50": 68,
+        "deathsP50": 68,
+        "recoveryP50": 0.15116666666666667,
+        "killsMean": 696.34
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-3|POL2-FIXED",
+        "koP50": 37,
+        "deathsP50": 0,
+        "recoveryP50": 0.06851851851851852,
+        "killsMean": 1135.29
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L7-Z3|squad-3|CONTINUOUS",
+        "koP50": 36,
+        "deathsP50": 29,
+        "recoveryP50": 0.059287037037037034,
+        "killsMean": 1123.94
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 781.25
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 48,
+        "recoveryP50": null,
+        "killsMean": 759.77
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1350.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1350.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 452
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 104,
+        "recoveryP50": null,
+        "killsMean": 400.09
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 32,
+        "deathsP50": 0,
+        "recoveryP50": 0.17777777777777778,
+        "killsMean": 990.95
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 34,
+        "deathsP50": 21,
+        "recoveryP50": 0.15169444444444444,
+        "killsMean": 1018.9
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.03
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.03
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1969.65
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1969.65
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 3,
+        "recoveryP50": null,
+        "killsMean": 3.04
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 143,
+        "recoveryP50": null,
+        "killsMean": 144.12
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 5,
+        "deathsP50": 3,
+        "recoveryP50": 0.027555555555555555,
+        "killsMean": 66.97
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 52,
+        "deathsP50": 52,
+        "recoveryP50": 0.28,
+        "killsMean": 555.42
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 36,
+        "deathsP50": 0,
+        "recoveryP50": 0.1,
+        "killsMean": 1078.33
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 38,
+        "deathsP50": 19,
+        "recoveryP50": 0.09009722222222222,
+        "killsMean": 1096.41
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg4|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 732.44
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 68,
+        "recoveryP50": null,
+        "killsMean": 684.27
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-1|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1350.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-1|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1350.45
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L1-Z1|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 2395
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 3,
+        "recoveryP50": null,
+        "killsMean": 25.59
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 129,
+        "recoveryP50": null,
+        "killsMean": 325.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-1|POL2-FIXED",
+        "koP50": 17,
+        "deathsP50": 5,
+        "recoveryP50": 0.09444444444444444,
+        "killsMean": 392.62
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-1|CONTINUOUS",
+        "koP50": 44,
+        "deathsP50": 44,
+        "recoveryP50": 0.2427777777777778,
+        "killsMean": 884.92
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-2|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.03
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-2|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1725.03
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1969.65
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L5-Z2|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1969.65
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-0|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": null,
+        "killsMean": 196.7
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-0|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 164,
+        "recoveryP50": null,
+        "killsMean": 164.36
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-1|POL2-FIXED",
+        "koP50": 6,
+        "deathsP50": 3,
+        "recoveryP50": 0.027916666666666666,
+        "killsMean": 52.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-1|CONTINUOUS",
+        "koP50": 72,
+        "deathsP50": 72,
+        "recoveryP50": 0.30327777777777776,
+        "killsMean": 505.6
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-2|POL2-FIXED",
+        "koP50": 48,
+        "deathsP50": 0,
+        "recoveryP50": 0.13333333333333333,
+        "killsMean": 1004.36
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-2|CONTINUOUS",
+        "koP50": 48,
+        "deathsP50": 41,
+        "recoveryP50": 0.12384722222222222,
+        "killsMean": 988.05
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-3|POL2-FIXED",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.83
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg6|L10-Z3|squad-3|CONTINUOUS",
+        "koP50": 0,
+        "deathsP50": 0,
+        "recoveryP50": 0,
+        "killsMean": 1516.83
+      }
+    ]
+  },
+  "S3-E04-gather-vs-fight": {
+    "reference": "PR-BAL|POL3-CONQ",
+    "rows": [
+      {
+        "cell": "PR-BAL|POL2-SQUAD-W|S2-control",
+        "values": {
+          "expTotal": 44426.08,
+          "legionExpTotal": 175044.32,
+          "conquestScore": 3001002166.64,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 0.1935654512779826
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 0
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-CONQ",
+        "values": {
+          "expTotal": 44426.08,
+          "legionExpTotal": 175044.32,
+          "conquestScore": 3001002166.64,
+          "crafted": 0,
+          "craftedCopper": 0,
+          "heroDamageShare": 0.1935654512779826
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 0
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-COMBAT",
+        "values": {
+          "expTotal": 30073.94,
+          "legionExpTotal": 61215.88,
+          "conquestScore": 3001001514.27,
+          "crafted": 7,
+          "craftedCopper": 2,
+          "heroDamageShare": 0.5562507168603343
+        },
+        "vsRef": {
+          "expTotal": -0.3230566370024095,
+          "legionExpTotal": -0.6502835396201374,
+          "conquestScore": -2.1738404831772584e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 1.8737086767694575
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-BAL",
+        "values": {
+          "expTotal": 29824.46,
+          "legionExpTotal": 59356.92,
+          "conquestScore": 3001001502.93,
+          "crafted": 8,
+          "craftedCopper": 2,
+          "heroDamageShare": 0.5680809041573085
+        },
+        "vsRef": {
+          "expTotal": -0.3286722573767481,
+          "legionExpTotal": -0.6609034786161585,
+          "conquestScore": -2.2116278597383854e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 1.9348259227390634
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-PROF",
+        "values": {
+          "expTotal": 16161.1,
+          "legionExpTotal": 16161.1,
+          "conquestScore": 3001000916.21,
+          "crafted": 10,
+          "craftedCopper": 5,
+          "heroDamageShare": 1
+        },
+        "vsRef": {
+          "expTotal": -0.6362249381444414,
+          "legionExpTotal": -0.9076742393012238,
+          "conquestScore": -4.1667080874496776e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 4.166211187986658
+        }
+      },
+      {
+        "cell": "PR-OPT|POL2-SQUAD-W|S2-control",
+        "values": {
+          "expTotal": 70826.08,
+          "legionExpTotal": 280644.32,
+          "conquestScore": 3001003366.64,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 0.1880558147620872
+        },
+        "vsRef": {
+          "expTotal": 0.594245542258061,
+          "legionExpTotal": 0.6032757875262675,
+          "conquestScore": 3.9986642241807147e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": -0.028463945810158764
+        }
+      },
+      {
+        "cell": "PR-OPT|POL3-CONQ",
+        "values": {
+          "expTotal": 70826.08,
+          "legionExpTotal": 280644.32,
+          "conquestScore": 3001003366.64,
+          "crafted": 0,
+          "craftedCopper": 0,
+          "heroDamageShare": 0.1880558147620872
+        },
+        "vsRef": {
+          "expTotal": 0.594245542258061,
+          "legionExpTotal": 0.6032757875262675,
+          "conquestScore": 3.9986642241807147e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": -0.028463945810158764
+        }
+      },
+      {
+        "cell": "PR-OPT|POL3-COMBAT",
+        "values": {
+          "expTotal": 49298.2,
+          "legionExpTotal": 99664.4,
+          "conquestScore": 3001002388.1,
+          "crafted": 7,
+          "craftedCopper": 2,
+          "heroDamageShare": 0.5555121951811812
+        },
+        "vsRef": {
+          "expTotal": 0.10966801482372501,
+          "legionExpTotal": -0.43063333903093803,
+          "conquestScore": 7.379534827656187e-8,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 1.8698933178080464
+        }
+      },
+      {
+        "cell": "PR-OPT|POL3-BAL",
+        "values": {
+          "expTotal": 49057.96,
+          "legionExpTotal": 97823.92,
+          "conquestScore": 3001002377.18,
+          "crafted": 8,
+          "craftedCopper": 2,
+          "heroDamageShare": 0.5621859886994248
+        },
+        "vsRef": {
+          "expTotal": 0.10426038038917684,
+          "legionExpTotal": -0.441147704764142,
+          "conquestScore": 7.015656389164349e-8,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 1.904371544548309
+        }
+      },
+      {
+        "cell": "PR-OPT|POL3-PROF",
+        "values": {
+          "expTotal": 27755.76,
+          "legionExpTotal": 27755.76,
+          "conquestScore": 3001001443.24,
+          "crafted": 10,
+          "craftedCopper": 5,
+          "heroDamageShare": 1
+        },
+        "vsRef": {
+          "expTotal": -0.37523724803088643,
+          "legionExpTotal": -0.841435814655397,
+          "conquestScore": -2.410528083807151e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 4.166211187986658
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-BAL|no-affinity",
+        "values": {
+          "expTotal": 29820.5,
+          "legionExpTotal": 59349,
+          "conquestScore": 3001001502.75,
+          "crafted": 8,
+          "craftedCopper": 2,
+          "heroDamageShare": 0.5679409846151556
+        },
+        "vsRef": {
+          "expTotal": -0.3287613942080868,
+          "legionExpTotal": -0.660948724300223,
+          "conquestScore": -2.2122276588376621e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 1.934103068834975
+        }
+      },
+      {
+        "cell": "PR-BAL|POL3-PROF|no-affinity",
+        "values": {
+          "expTotal": 16155.72,
+          "legionExpTotal": 16155.72,
+          "conquestScore": 3001000915.96,
+          "crafted": 10,
+          "craftedCopper": 5,
+          "heroDamageShare": 1
+        },
+        "vsRef": {
+          "expTotal": -0.6363460381829773,
+          "legionExpTotal": -0.9077049743744898,
+          "conquestScore": -4.167541142185982e-7,
+          "crafted": null,
+          "craftedCopper": null,
+          "heroDamageShare": 4.166211187986658
+        }
+      }
+    ],
+    "search": null
+  },
+  "S3-E12-investment": {
+    "reference": "session|PR-OPT|POL3-CONQ",
+    "rows": [
+      {
+        "cell": "session|PR-OPT|POL3-COMBAT",
+        "values": {
+          "expTotal": 49300.62,
+          "legionExpTotal": 99669.24,
+          "goldHeld": 12919.26,
+          "conquestScore": 3001002388.21,
+          "crafted": 7,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.3038140062952498,
+          "legionExpTotal": -0.6448010913709563,
+          "goldHeld": -0.3123261421522444,
+          "conquestScore": -3.258710107312268e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|POL3-EQUIP",
+        "values": {
+          "expTotal": 40319.4,
+          "legionExpTotal": 76700.8,
+          "goldHeld": 9646.2,
+          "conquestScore": 3001002012.7,
+          "crafted": 11,
+          "enhancements": 9
+        },
+        "vsRef": {
+          "expTotal": -0.4306399888159762,
+          "legionExpTotal": -0.7266554811597384,
+          "goldHeld": -0.4865464765341807,
+          "conquestScore": -4.50999161016874e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|POL3-PROF",
+        "values": {
+          "expTotal": 27737.94,
+          "legionExpTotal": 27737.94,
+          "goldHeld": 7055.7,
+          "conquestScore": 3001001442.43,
+          "crafted": 10,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.608305832214225,
+          "legionExpTotal": -0.9011481775559049,
+          "goldHeld": -0.6244351117001741,
+          "conquestScore": -6.410256055966457e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|POL3-BAL",
+        "values": {
+          "expTotal": 49041.46,
+          "legionExpTotal": 97790.92,
+          "goldHeld": 12648.58,
+          "conquestScore": 3001002376.43,
+          "crafted": 8,
+          "enhancements": 4
+        },
+        "vsRef": {
+          "expTotal": -0.30747366741368043,
+          "legionExpTotal": -0.6514950042979146,
+          "goldHeld": -0.3267340540482997,
+          "conquestScore": -3.297963645509938e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|POL3-EARLY",
+        "values": {
+          "expTotal": 13900.66,
+          "legionExpTotal": 27641.32,
+          "goldHeld": 3333.19,
+          "conquestScore": 2000003451.09,
+          "crafted": 5,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.8037054139430321,
+          "legionExpTotal": -0.901492509654271,
+          "goldHeld": -0.8225790311333961,
+          "conquestScore": -0.33355507906150306,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|POL3-CONQ",
+        "values": {
+          "expTotal": 70815.3,
+          "legionExpTotal": 280601.2,
+          "goldHeld": 18786.9,
+          "conquestScore": 3001003366.15,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "goldHeld": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "values": {
+          "expTotal": 70815.3,
+          "legionExpTotal": 280601.2,
+          "goldHeld": 18786.9,
+          "conquestScore": 3001003366.15,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "goldHeld": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "values": {
+          "expTotal": 70815.3,
+          "legionExpTotal": 280601.2,
+          "goldHeld": 18786.9,
+          "conquestScore": 3001003366.15,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "goldHeld": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|ORC3-SEARCH-gold",
+        "values": {
+          "expTotal": 70815.3,
+          "legionExpTotal": 280601.2,
+          "goldHeld": 18786.9,
+          "conquestScore": 3001003366.15,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "goldHeld": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "values": {
+          "expTotal": 70815.3,
+          "legionExpTotal": 280601.2,
+          "goldHeld": 18786.9,
+          "conquestScore": 3001003366.15,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": 0,
+          "legionExpTotal": 0,
+          "goldHeld": 0,
+          "conquestScore": 0,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-COMBAT",
+        "values": {
+          "expTotal": 19618.18,
+          "legionExpTotal": 40115.6,
+          "goldHeld": 5583.14,
+          "conquestScore": 3001000957.19,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.7229669294629832,
+          "legionExpTotal": -0.857036962065736,
+          "goldHeld": -0.7028173887123474,
+          "conquestScore": -8.027181932490635e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-EQUIP",
+        "values": {
+          "expTotal": 17855.5,
+          "legionExpTotal": 34511,
+          "goldHeld": 5103.5,
+          "conquestScore": 3001000879.25,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.7478581605952386,
+          "legionExpTotal": -0.877010504588006,
+          "goldHeld": -0.7283479445784031,
+          "conquestScore": -8.286895070153122e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-PROF",
+        "values": {
+          "expTotal": 10119.34,
+          "legionExpTotal": 10119.34,
+          "goldHeld": 3049.82,
+          "conquestScore": 3001000639.97,
+          "crafted": 3,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.8571023493510583,
+          "legionExpTotal": -0.9639369325576654,
+          "goldHeld": -0.8376624137031655,
+          "conquestScore": -9.084228398403837e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-BAL",
+        "values": {
+          "expTotal": 18977.54,
+          "legionExpTotal": 37637.62,
+          "goldHeld": 5408.42,
+          "conquestScore": 3001000928.07,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.7320135620409713,
+          "legionExpTotal": -0.8658679292889695,
+          "goldHeld": -0.7121174861206478,
+          "conquestScore": -8.124216145377616e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-EARLY",
+        "values": {
+          "expTotal": 6852.12,
+          "legionExpTotal": 13704.24,
+          "goldHeld": 2321.25,
+          "conquestScore": 2000001688.37,
+          "crafted": 5,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.9032395541641425,
+          "legionExpTotal": -0.9511611497028523,
+          "goldHeld": -0.8764431598613928,
+          "conquestScore": -0.3335556664383851,
+          "crafted": null,
+          "enhancements": null
+        }
+      },
+      {
+        "cell": "budget|PR-NEW|POL3-CONQ",
+        "values": {
+          "expTotal": 34944.48,
+          "legionExpTotal": 138577.92,
+          "goldHeld": 9763.04,
+          "conquestScore": 3001001653.84,
+          "crafted": 0,
+          "enhancements": 0
+        },
+        "vsRef": {
+          "expTotal": -0.506540535731685,
+          "legionExpTotal": -0.5061392467316604,
+          "goldHeld": -0.4803272493066978,
+          "conquestScore": -5.705791666921201e-7,
+          "crafted": null,
+          "enhancements": null
+        }
+      }
+    ],
+    "search": [
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-COMBAT",
+        "searchMean": 70815.3,
+        "realisticMean": 49300.62,
+        "ratio": 1.436397757269584,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-EQUIP",
+        "searchMean": 70815.3,
+        "realisticMean": 40319.4,
+        "ratio": 1.756357981517582,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-PROF",
+        "searchMean": 70815.3,
+        "realisticMean": 27737.94,
+        "ratio": 2.553012228016933,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-BAL",
+        "searchMean": 70815.3,
+        "realisticMean": 49041.46,
+        "ratio": 1.4439884130692684,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-EARLY",
+        "searchMean": 70815.3,
+        "realisticMean": 13900.66,
+        "ratio": 5.094384007665823,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "session|PR-OPT|POL3-CONQ",
+        "searchMean": 70815.3,
+        "realisticMean": 70815.3,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-COMBAT",
+        "searchMean": 280601.2,
+        "realisticMean": 99669.24,
+        "ratio": 2.815323965548448,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-EQUIP",
+        "searchMean": 280601.2,
+        "realisticMean": 76700.8,
+        "ratio": 3.6583868747131714,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-PROF",
+        "searchMean": 280601.2,
+        "realisticMean": 27737.94,
+        "ratio": 10.116151379662657,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-BAL",
+        "searchMean": 280601.2,
+        "realisticMean": 97790.92,
+        "ratio": 2.8693993266450506,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-EARLY",
+        "searchMean": 280601.2,
+        "realisticMean": 27641.32,
+        "ratio": 10.15151230114915,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "session|PR-OPT|POL3-CONQ",
+        "searchMean": 280601.2,
+        "realisticMean": 280601.2,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-COMBAT",
+        "searchMean": 18786.9,
+        "realisticMean": 12919.26,
+        "ratio": 1.4541777160611367,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-EQUIP",
+        "searchMean": 18786.9,
+        "realisticMean": 9646.2,
+        "ratio": 1.947595944517012,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-PROF",
+        "searchMean": 18786.9,
+        "realisticMean": 7055.7,
+        "ratio": 2.6626557251583827,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-BAL",
+        "searchMean": 18786.9,
+        "realisticMean": 12648.58,
+        "ratio": 1.4852971637922994,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-EARLY",
+        "searchMean": 18786.9,
+        "realisticMean": 3333.19,
+        "ratio": 5.636312361431542,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "session|PR-OPT|POL3-CONQ",
+        "searchMean": 18786.9,
+        "realisticMean": 18786.9,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-COMBAT",
+        "searchMean": 3001003366.15,
+        "realisticMean": 3001002388.21,
+        "ratio": 1.000000325871117,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-EQUIP",
+        "searchMean": 3001003366.15,
+        "realisticMean": 3001002012.7,
+        "ratio": 1.0000004509993643,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-PROF",
+        "searchMean": 3001003366.15,
+        "realisticMean": 3001001442.43,
+        "ratio": 1.0000006410260165,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-BAL",
+        "searchMean": 3001003366.15,
+        "realisticMean": 3001002376.43,
+        "ratio": 1.0000003297964732,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-EARLY",
+        "searchMean": 3001003366.15,
+        "realisticMean": 2000003451.09,
+        "ratio": 1.5004990938962912,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "session|PR-OPT|ORC3-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "session|PR-OPT|POL3-CONQ",
+        "searchMean": 3001003366.15,
+        "realisticMean": 3001003366.15,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      }
+    ]
+  },
+  "S3-E09": [
+    {
+      "cell": "a10-p1.6-g100|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.568449914337173,
+        "heroEffectiveShare": 0.5595434426955186,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.22140854636628404,
+        "expTotal": 29798.72,
+        "legionExpTotal": 59305.44,
+        "minToL10": 7.997833333333334,
+        "zone3FirstVisitMin": 9.304166666666669
+      },
+      "vsControl": {
+        "heroDamageShare": 0,
+        "heroEffectiveShare": 0,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0,
+        "expTotal": 0,
+        "legionExpTotal": 0,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.6412193847333667,
+        "heroEffectiveShare": 0.6025901492402856,
+        "heroAbilityEffectiveShare": 0.13327652779458007,
+        "heroOverkillShare": 0.37311900705187534,
+        "expTotal": 33786.88,
+        "legionExpTotal": 67413.76,
+        "minToL10": 7.482666666666667,
+        "zone3FirstVisitMin": 8.716833333333334
+      },
+      "vsControl": {
+        "heroDamageShare": 0,
+        "heroEffectiveShare": 0,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0,
+        "expTotal": 0,
+        "legionExpTotal": 0,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a125|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.6117394541091621,
+        "heroEffectiveShare": 0.5814137810361838,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.3029904597713514,
+        "expTotal": 31809.96,
+        "legionExpTotal": 63459.92,
+        "minToL10": 7.467766666666666,
+        "zone3FirstVisitMin": 8.731100000000001
+      },
+      "vsControl": {
+        "heroDamageShare": 0.07615365695404464,
+        "heroEffectiveShare": 0.03908604171162833,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0.36846777030053524,
+        "expTotal": 0.06749417424641058,
+        "legionExpTotal": 0.07005225827512618,
+        "minToL10": -0.06627628316002265,
+        "zone3FirstVisitMin": -0.061592476489028325
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a125|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.6794672458670411,
+        "heroEffectiveShare": 0.6304317425038707,
+        "heroAbilityEffectiveShare": 0.1335350587560162,
+        "heroOverkillShare": 0.4323459542239679,
+        "expTotal": 35747.52,
+        "legionExpTotal": 71335.04,
+        "minToL10": 7.114633333333331,
+        "zone3FirstVisitMin": 8.314966666666665
+      },
+      "vsControl": {
+        "heroDamageShare": 0.0596486351540646,
+        "heroEffectiveShare": 0.04620320013310253,
+        "heroAbilityEffectiveShare": 0.0019398086498367828,
+        "heroOverkillShare": 0.15873473624424106,
+        "expTotal": 0.058029625700863674,
+        "legionExpTotal": 0.058167353371181285,
+        "minToL10": -0.049184782608695965,
+        "zone3FirstVisitMin": -0.04610236897956088
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a150|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.6251623425236642,
+        "heroEffectiveShare": 0.6029383379932218,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.29685345774793775,
+        "expTotal": 35602.32,
+        "legionExpTotal": 71044.64,
+        "minToL10": 7.211299999999998,
+        "zone3FirstVisitMin": 8.463633333333334
+      },
+      "vsControl": {
+        "heroDamageShare": 0.09976679872072691,
+        "heroEffectiveShare": 0.07755411284717173,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0.340749770593058,
+        "expTotal": 0.19476004338441366,
+        "legionExpTotal": 0.19794474166282217,
+        "minToL10": -0.09834330131077207,
+        "zone3FirstVisitMin": -0.09033945364979867
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a150|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.7018869695902111,
+        "heroEffectiveShare": 0.6555852190307787,
+        "heroAbilityEffectiveShare": 0.13857755053000229,
+        "heroOverkillShare": 0.45719501160650144,
+        "expTotal": 38748.76,
+        "legionExpTotal": 77337.52,
+        "minToL10": 6.967633333333332,
+        "zone3FirstVisitMin": 8.149466666666667
+      },
+      "vsControl": {
+        "heroDamageShare": 0.09461283657553698,
+        "heroEffectiveShare": 0.08794546319302854,
+        "heroAbilityEffectiveShare": 0.03977461615441169,
+        "heroOverkillShare": 0.22533294462518993,
+        "expTotal": 0.14685818874071854,
+        "legionExpTotal": 0.14720674236239017,
+        "minToL10": -0.06883018531717766,
+        "zone3FirstVisitMin": -0.06508862163247353
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a200|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.6503619430129183,
+        "heroEffectiveShare": 0.6485958373846031,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.3097684426877829,
+        "expTotal": 42113,
+        "legionExpTotal": 84066,
+        "minToL10": 6.2369,
+        "zone3FirstVisitMin": 7.220233333333332
+      },
+      "vsControl": {
+        "heroDamageShare": 0.14409717832617996,
+        "heroEffectiveShare": 0.15915188686706383,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0.39908078424092075,
+        "expTotal": 0.41324862275963525,
+        "legionExpTotal": 0.417509085169927,
+        "minToL10": -0.22017629774730663,
+        "zone3FirstVisitMin": -0.2239785042543666
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-a200|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.7398134778244717,
+        "heroEffectiveShare": 0.7008445335200701,
+        "heroAbilityEffectiveShare": 0.14852751341973858,
+        "heroOverkillShare": 0.5137183564307253,
+        "expTotal": 43734.4,
+        "legionExpTotal": 87308.8,
+        "minToL10": 6.080733333333333,
+        "zone3FirstVisitMin": 7.064066666666667
+      },
+      "vsControl": {
+        "heroDamageShare": 0.15376031267692047,
+        "heroEffectiveShare": 0.16305341931602846,
+        "heroAbilityEffectiveShare": 0.11443114460983672,
+        "heroOverkillShare": 0.3768217290503837,
+        "expTotal": 0.2944196090316715,
+        "legionExpTotal": 0.2951183853266752,
+        "minToL10": -0.18735744832501788,
+        "zone3FirstVisitMin": -0.18960631727882826
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-b-mult|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.568449914337173,
+        "heroEffectiveShare": 0.5595434426955186,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.22140854636628404,
+        "expTotal": 29798.72,
+        "legionExpTotal": 59305.44,
+        "minToL10": 7.997833333333334,
+        "zone3FirstVisitMin": 9.304166666666669
+      },
+      "vsControl": {
+        "heroDamageShare": 0,
+        "heroEffectiveShare": 0,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0,
+        "expTotal": 0,
+        "legionExpTotal": 0,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-b-mult|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.6705182857579692,
+        "heroEffectiveShare": 0.6111927801344911,
+        "heroAbilityEffectiveShare": 0.14945645978379843,
+        "heroOverkillShare": 0.4416158697593033,
+        "expTotal": 33860.8,
+        "legionExpTotal": 67561.6,
+        "minToL10": 7.482666666666667,
+        "zone3FirstVisitMin": 8.716833333333334
+      },
+      "vsControl": {
+        "heroDamageShare": 0.04569247549617628,
+        "heroEffectiveShare": 0.01427608948644643,
+        "heroAbilityEffectiveShare": 0.12140121187848307,
+        "heroOverkillShare": 0.18357913001710124,
+        "expTotal": 0.0021878314896197626,
+        "legionExpTotal": 0.0021930240947842794,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-b-cd|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.568449914337173,
+        "heroEffectiveShare": 0.5595434426955186,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.22140854636628404,
+        "expTotal": 29798.72,
+        "legionExpTotal": 59305.44,
+        "minToL10": 7.997833333333334,
+        "zone3FirstVisitMin": 9.304166666666669
+      },
+      "vsControl": {
+        "heroDamageShare": 0,
+        "heroEffectiveShare": 0,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0,
+        "expTotal": 0,
+        "legionExpTotal": 0,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-b-cd|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.6836401862439611,
+        "heroEffectiveShare": 0.668802807723756,
+        "heroAbilityEffectiveShare": 0.27183350082158936,
+        "heroOverkillShare": 0.41907026610488357,
+        "expTotal": 36139.12,
+        "legionExpTotal": 72118.24,
+        "minToL10": 7.272033333333335,
+        "zone3FirstVisitMin": 8.469699999999996
+      },
+      "vsControl": {
+        "heroDamageShare": 0.06615645521732616,
+        "heroEffectiveShare": 0.1098800877627153,
+        "heroAbilityEffectiveShare": 1.0396202191024062,
+        "heroOverkillShare": 0.1231544311185937,
+        "expTotal": 0.06961992347325374,
+        "legionExpTotal": 0.06978515958759779,
+        "minToL10": -0.028149501069137384,
+        "zone3FirstVisitMin": -0.028351274354219358
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-c|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.6117394541091621,
+        "heroEffectiveShare": 0.5814137810361838,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.3029904597713514,
+        "expTotal": 31809.96,
+        "legionExpTotal": 63459.92,
+        "minToL10": 7.467766666666666,
+        "zone3FirstVisitMin": 8.731100000000001
+      },
+      "vsControl": {
+        "heroDamageShare": 0.07615365695404464,
+        "heroEffectiveShare": 0.03908604171162833,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0.36846777030053524,
+        "expTotal": 0.06749417424641058,
+        "legionExpTotal": 0.07005225827512618,
+        "minToL10": -0.06627628316002265,
+        "zone3FirstVisitMin": -0.061592476489028325
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-c|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.7055519960654056,
+        "heroEffectiveShare": 0.6468308770005659,
+        "heroAbilityEffectiveShare": 0.19173998611694845,
+        "heroOverkillShare": 0.48171362183286065,
+        "expTotal": 37620.6,
+        "legionExpTotal": 75081.2,
+        "minToL10": 6.988533333333335,
+        "zone3FirstVisitMin": 8.146199999999999
+      },
+      "vsControl": {
+        "heroDamageShare": 0.10032855035845478,
+        "heroEffectiveShare": 0.07341760866163605,
+        "heroAbilityEffectiveShare": 0.4386628260039791,
+        "heroOverkillShare": 0.29104551826245406,
+        "expTotal": 0.11346771291104707,
+        "legionExpTotal": 0.1137370174872312,
+        "minToL10": -0.0660370634354952,
+        "zone3FirstVisitMin": -0.06546337546127245
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-d|POL3-BAL|passive",
+      "values": {
+        "heroDamageShare": 0.6091456967835193,
+        "heroEffectiveShare": 0.581795918612616,
+        "heroAbilityEffectiveShare": 0,
+        "heroOverkillShare": 0.29159059266393,
+        "expTotal": 31486.12,
+        "legionExpTotal": 62812.24,
+        "minToL10": 7.997833333333334,
+        "zone3FirstVisitMin": 9.304166666666669
+      },
+      "vsControl": {
+        "heroDamageShare": 0.07159079704286464,
+        "heroEffectiveShare": 0.039768987033248715,
+        "heroAbilityEffectiveShare": null,
+        "heroOverkillShare": 0.3169798431427362,
+        "expTotal": 0.05662659335703002,
+        "legionExpTotal": 0.059131169079935875,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    },
+    {
+      "cell": "a10-p1.6-g100-d|POL3-BAL|attentive",
+      "values": {
+        "heroDamageShare": 0.6789664446794133,
+        "heroEffectiveShare": 0.6283112037399675,
+        "heroAbilityEffectiveShare": 0.13091192772236576,
+        "heroOverkillShare": 0.4339879271466474,
+        "expTotal": 34794.48,
+        "legionExpTotal": 69428.96,
+        "minToL10": 7.482666666666667,
+        "zone3FirstVisitMin": 8.716833333333334
+      },
+      "vsControl": {
+        "heroDamageShare": 0.05886762135511958,
+        "heroEffectiveShare": 0.0426841602573651,
+        "heroAbilityEffectiveShare": -0.017742059395926657,
+        "heroOverkillShare": 0.16313540437330065,
+        "expTotal": 0.029822226852553646,
+        "legionExpTotal": 0.029893007006285055,
+        "minToL10": 0,
+        "zone3FirstVisitMin": 0
+      }
+    }
+  ],
+  "S3-E10": [
+    {
+      "cell": "a10-p1.6-g100|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.98,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 9.283333333333333,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.493333333333334,
+        "firstUsefulCraftMin": 10.775,
+        "expTotal": 29848
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0,
+        "firstUsefulCraftMin": 0,
+        "expTotal": 0
+      }
+    },
+    {
+      "cell": "pace-xp-a8|POL3-BAL",
+      "values": {
+        "minToL5": 1.9583333333333333,
+        "minToL10": 6.723333333333334,
+        "zone2FirstVisitMin": 3.875,
+        "zone3FirstVisitMin": 9.025,
+        "firstRecruitMin": 2.0416666666666665,
+        "recruit3Min": 10.158333333333333,
+        "firstUsefulCraftMin": 10.426666666666666,
+        "expTotal": 31124
+      },
+      "vsControl": {
+        "minToL5": -0.15891195418754467,
+        "minToL10": -0.15747702589807855,
+        "zone2FirstVisitMin": -0.02187631468237272,
+        "zone3FirstVisitMin": -0.027827648114901238,
+        "firstRecruitMin": -0.022346368715083886,
+        "recruit3Min": -0.03192503176620087,
+        "firstUsefulCraftMin": -0.032327919566898844,
+        "expTotal": 0.04274993299383545
+      }
+    },
+    {
+      "cell": "pace-xp-a12|POL3-BAL",
+      "values": {
+        "minToL5": 2.5733333333333333,
+        "minToL10": 9.676666666666666,
+        "zone2FirstVisitMin": 3.9816666666666665,
+        "zone3FirstVisitMin": 9.493333333333334,
+        "firstRecruitMin": 2.1283333333333334,
+        "recruit3Min": 10.781666666666666,
+        "firstUsefulCraftMin": 11.076666666666666,
+        "expTotal": 28704
+      },
+      "vsControl": {
+        "minToL5": 0.1052254831782391,
+        "minToL10": 0.21261487050960715,
+        "zone2FirstVisitMin": 0.005048380311316825,
+        "zone3FirstVisitMin": 0.02262118491921017,
+        "firstRecruitMin": 0.019154030327214633,
+        "recruit3Min": 0.027477763659466303,
+        "firstUsefulCraftMin": 0.027996906419180068,
+        "expTotal": -0.0383275261324042
+      }
+    },
+    {
+      "cell": "pace-xp-p18|POL3-BAL",
+      "values": {
+        "minToL5": 2.6483333333333334,
+        "minToL10": 11.088333333333333,
+        "zone2FirstVisitMin": 3.9816666666666665,
+        "zone3FirstVisitMin": 9.681666666666667,
+        "firstRecruitMin": 2.1283333333333334,
+        "recruit3Min": 11.011666666666667,
+        "firstUsefulCraftMin": 11.328333333333333,
+        "expTotal": 27098
+      },
+      "vsControl": {
+        "minToL5": 0.1374373657838226,
+        "minToL10": 0.3895154553049289,
+        "zone2FirstVisitMin": 0.005048380311316825,
+        "zone3FirstVisitMin": 0.04290843806104139,
+        "firstRecruitMin": 0.019154030327214633,
+        "recruit3Min": 0.049396442185514644,
+        "firstUsefulCraftMin": 0.051353441608662065,
+        "expTotal": -0.09213347627981772
+      }
+    },
+    {
+      "cell": "pace-z2hp125|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 8.715,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 10.156666666666666,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 11.375,
+        "firstUsefulCraftMin": 11.651666666666667,
+        "expTotal": 29276
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0.09210526315789469,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0.09407540394973068,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0.08402160101651845,
+        "firstUsefulCraftMin": 0.08136117556071154,
+        "expTotal": -0.019163763066202044
+      }
+    },
+    {
+      "cell": "pace-z3hp125|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.98,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 9.283333333333333,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.708333333333334,
+        "firstUsefulCraftMin": 10.996666666666666,
+        "expTotal": 25316
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0.020489199491740884,
+        "firstUsefulCraftMin": 0.0205723124516628,
+        "expTotal": -0.15183596890913964
+      }
+    },
+    {
+      "cell": "pace-gate1-75|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.8566666666666665,
+        "zone2FirstVisitMin": 3.3366666666666664,
+        "zone3FirstVisitMin": 8.786666666666667,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.388333333333334,
+        "firstUsefulCraftMin": 10.661666666666667,
+        "expTotal": 29902
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": -0.015455304928989166,
+        "zone2FirstVisitMin": -0.1577618847286496,
+        "zone3FirstVisitMin": -0.05350089766606814,
+        "firstRecruitMin": 0,
+        "recruit3Min": -0.010006353240152532,
+        "firstUsefulCraftMin": -0.010518174787316315,
+        "expTotal": 0.0018091664433128596
+      }
+    },
+    {
+      "cell": "pace-gate1-125|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 8.118333333333334,
+        "zone2FirstVisitMin": 4.586666666666667,
+        "zone3FirstVisitMin": 9.801666666666666,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.691666666666666,
+        "firstUsefulCraftMin": 10.968333333333334,
+        "expTotal": 29728
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0.017335004177109425,
+        "zone2FirstVisitMin": 0.15776188472864972,
+        "zone3FirstVisitMin": 0.055834829443446976,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0.01890088945362134,
+        "firstUsefulCraftMin": 0.017942768754833693,
+        "expTotal": -0.004020369874028429
+      }
+    },
+    {
+      "cell": "pace-gate2-90|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 8.428333333333333,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 8.163333333333334,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.54,
+        "firstUsefulCraftMin": 10.816666666666666,
+        "expTotal": 29878
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0.056182121971595445,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": -0.1206463195691202,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0.004447268106734237,
+        "firstUsefulCraftMin": 0.003866976024748503,
+        "expTotal": 0.0010050924685069962
+      }
+    },
+    {
+      "cell": "pace-gate2-150|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.98,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 10.403333333333334,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.07,
+        "firstUsefulCraftMin": 10.403333333333334,
+        "expTotal": 29928
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0.12064631956912031,
+        "firstRecruitMin": 0,
+        "recruit3Min": -0.04034307496823386,
+        "firstUsefulCraftMin": -0.0344934261407579,
+        "expTotal": 0.002680246582685619
+      }
+    },
+    {
+      "cell": "pace-equip-x0.5|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.98,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 9.283333333333333,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.493333333333334,
+        "firstUsefulCraftMin": 10.7,
+        "expTotal": 29892
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0,
+        "firstUsefulCraftMin": -0.006960556844547661,
+        "expTotal": 0.0014741356204770462
+      }
+    },
+    {
+      "cell": "pace-equip-x2|POL3-BAL",
+      "values": {
+        "minToL5": 2.328333333333333,
+        "minToL10": 7.98,
+        "zone2FirstVisitMin": 3.9616666666666664,
+        "zone3FirstVisitMin": 9.283333333333333,
+        "firstRecruitMin": 2.0883333333333334,
+        "recruit3Min": 10.493333333333334,
+        "firstUsefulCraftMin": 10.91,
+        "expTotal": 29738
+      },
+      "vsControl": {
+        "minToL5": 0,
+        "minToL10": 0,
+        "zone2FirstVisitMin": 0,
+        "zone3FirstVisitMin": 0,
+        "firstRecruitMin": 0,
+        "recruit3Min": 0,
+        "firstUsefulCraftMin": 0.012529002320185612,
+        "expTotal": -0.0036853390511927264
+      }
+    },
+    {
+      "cell": "quest-20|POL3-BAL",
+      "values": {
+        "minToL5": 1.9483333333333333,
+        "minToL10": 7.596666666666667,
+        "zone2FirstVisitMin": 3.5816666666666666,
+        "zone3FirstVisitMin": 8.903333333333334,
+        "firstRecruitMin": 1.1883333333333332,
+        "recruit3Min": 10.113333333333333,
+        "firstUsefulCraftMin": 10.386666666666667,
+        "expTotal": 30134
+      },
+      "vsControl": {
+        "minToL5": -0.1632068718682892,
+        "minToL10": -0.04803675856307443,
+        "zone2FirstVisitMin": -0.09591922591501889,
+        "zone3FirstVisitMin": -0.04093357271095144,
+        "firstRecruitMin": -0.43096568236233046,
+        "recruit3Min": -0.036213468869123355,
+        "firstUsefulCraftMin": -0.03604021655065737,
+        "expTotal": 0.009581881533101022
+      }
+    },
+    {
+      "cell": "quest-60|POL3-BAL",
+      "values": {
+        "minToL5": 2.4483333333333333,
+        "minToL10": 8.298333333333334,
+        "zone2FirstVisitMin": 4.261666666666667,
+        "zone3FirstVisitMin": 9.6,
+        "firstRecruitMin": 2.9283333333333332,
+        "recruit3Min": 10.826666666666666,
+        "firstUsefulCraftMin": 11.118333333333334,
+        "expTotal": 29584
+      },
+      "vsControl": {
+        "minToL5": 0.05153901216893342,
+        "minToL10": 0.03989139515455298,
+        "zone2FirstVisitMin": 0.07572570466975193,
+        "zone3FirstVisitMin": 0.03411131059245953,
+        "firstRecruitMin": 0.4022346368715084,
+        "recruit3Min": 0.031766200762388674,
+        "firstUsefulCraftMin": 0.03186388244392879,
+        "expTotal": -0.008844813722862499
+      }
+    }
+  ],
+  "S3-E02-queue-contention": [
+    {
+      "cell": "plank|fifo|smiths-1|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.2556466666666667,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 1.2782333333333333,
+      "completionSpreadMin": 0.6268666666666667
+    },
+    {
+      "cell": "plank|fifo|smiths-1|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.37911333333333336,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 1.8955666666666666,
+      "completionSpreadMin": 1.2442
+    },
+    {
+      "cell": "plank|fifo|smiths-1|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.4995,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 2.4975,
+      "completionSpreadMin": 1.8461333333333334
+    },
+    {
+      "cell": "plank|fifo|smiths-2|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0.27295,
+      "maxJobShortageMin": 0.21020000000000003,
+      "meanReservedUnits": 0.26054666666666665,
+      "firstJobCompletionMin": 0.7141166666666666,
+      "lastJobCompletionMin": 0.8782333333333333,
+      "completionSpreadMin": 0.16411666666666666
+    },
+    {
+      "cell": "plank|fifo|smiths-2|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 0.87975,
+      "maxJobShortageMin": 0.5209166666666667,
+      "meanReservedUnits": 0.38592,
+      "firstJobCompletionMin": 0.7141166666666666,
+      "lastJobCompletionMin": 1.6234666666666666,
+      "completionSpreadMin": 0.90935
+    },
+    {
+      "cell": "plank|fifo|smiths-2|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 2.5772,
+      "maxJobShortageMin": 1.2591833333333333,
+      "meanReservedUnits": 0.5112933333333334,
+      "firstJobCompletionMin": 0.7141166666666666,
+      "lastJobCompletionMin": 2.3617333333333335,
+      "completionSpreadMin": 1.6476166666666667
+    },
+    {
+      "cell": "plank|reserve-all|smiths-1|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0.14863333333333334,
+      "maxJobShortageMin": 0.14863333333333334,
+      "meanReservedUnits": 1.4178966666666666,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 1.4268666666666665,
+      "completionSpreadMin": 0.7755
+    },
+    {
+      "cell": "plank|reserve-all|smiths-1|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 1.0472666666666666,
+      "maxJobShortageMin": 0.8986333333333333,
+      "meanReservedUnits": 2.0969633333333335,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 2.167333333333333,
+      "completionSpreadMin": 1.5159666666666667
+    },
+    {
+      "cell": "plank|reserve-all|smiths-1|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 2.6959,
+      "maxJobShortageMin": 1.6486333333333334,
+      "meanReservedUnits": 2.76371,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 2.9019333333333335,
+      "completionSpreadMin": 2.250566666666667
+    },
+    {
+      "cell": "plank|reserve-all|smiths-2|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0.7833333333333333,
+      "maxJobShortageMin": 0.7833333333333333,
+      "meanReservedUnits": 1.4178966666666666,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 1.4268666666666665,
+      "completionSpreadMin": 0.7755
+    },
+    {
+      "cell": "plank|reserve-all|smiths-2|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 2.3,
+      "maxJobShortageMin": 1.5166666666666666,
+      "meanReservedUnits": 2.0969633333333335,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 2.167333333333333,
+      "completionSpreadMin": 1.5159666666666667
+    },
+    {
+      "cell": "plank|reserve-all|smiths-2|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 4.55,
+      "maxJobShortageMin": 2.25,
+      "meanReservedUnits": 2.76371,
+      "firstJobCompletionMin": 0.6513666666666666,
+      "lastJobCompletionMin": 2.9019333333333335,
+      "completionSpreadMin": 2.250566666666667
+    },
+    {
+      "cell": "plank|round-robin|smiths-1|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.2556466666666667,
+      "firstJobCompletionMin": 1.2165,
+      "lastJobCompletionMin": 1.2782333333333333,
+      "completionSpreadMin": 0.061733333333333335
+    },
+    {
+      "cell": "plank|round-robin|smiths-1|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.37911333333333336,
+      "firstJobCompletionMin": 1.7721,
+      "lastJobCompletionMin": 1.8955666666666666,
+      "completionSpreadMin": 0.12346666666666667
+    },
+    {
+      "cell": "plank|round-robin|smiths-1|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 0,
+      "maxJobShortageMin": 0,
+      "meanReservedUnits": 0.4995,
+      "firstJobCompletionMin": 2.3189,
+      "lastJobCompletionMin": 2.4975,
+      "completionSpreadMin": 0.1786
+    },
+    {
+      "cell": "plank|round-robin|smiths-2|jobs-2",
+      "unitsPerHour": 120,
+      "totalShortageMin": 0.35883333333333334,
+      "maxJobShortageMin": 0.1960833333333333,
+      "meanReservedUnits": 0.26054666666666665,
+      "firstJobCompletionMin": 0.8141166666666667,
+      "lastJobCompletionMin": 0.8641166666666665,
+      "completionSpreadMin": 0.05000000000000001
+    },
+    {
+      "cell": "plank|round-robin|smiths-2|jobs-3",
+      "unitsPerHour": 180,
+      "totalShortageMin": 2.208483333333333,
+      "maxJobShortageMin": 0.7727833333333334,
+      "meanReservedUnits": 0.3878266666666666,
+      "firstJobCompletionMin": 1.4641166666666667,
+      "lastJobCompletionMin": 1.6141166666666666,
+      "completionSpreadMin": 0.15
+    },
+    {
+      "cell": "plank|round-robin|smiths-2|jobs-4",
+      "unitsPerHour": 240,
+      "totalShortageMin": 5.422433333333333,
+      "maxJobShortageMin": 1.4443833333333334,
+      "meanReservedUnits": 0.5112933333333334,
+      "firstJobCompletionMin": 2.1117333333333335,
+      "lastJobCompletionMin": 2.3617333333333335,
+      "completionSpreadMin": 0.25
+    },
+    {
+      "cell": "bar|fifo|smiths-2|jobs-2",
+      "unitsPerHour": 72,
+      "totalShortageMin": 0.24666666666666667,
+      "maxJobShortageMin": 0.14416666666666667,
+      "meanReservedUnits": 0.2308,
+      "firstJobCompletionMin": 0.6795,
+      "lastJobCompletionMin": 0.7378333333333332,
+      "completionSpreadMin": 0.05833333333333333
+    },
+    {
+      "cell": "bar|fifo|smiths-2|jobs-4",
+      "unitsPerHour": 144,
+      "totalShortageMin": 1.8763333333333334,
+      "maxJobShortageMin": 0.844,
+      "meanReservedUnits": 0.45303999999999994,
+      "firstJobCompletionMin": 0.6795,
+      "lastJobCompletionMin": 1.7842666666666667,
+      "completionSpreadMin": 1.1047666666666667
+    },
+    {
+      "cell": "bar|reserve-all|smiths-2|jobs-2",
+      "unitsPerHour": 72,
+      "totalShortageMin": 0.7416666666666667,
+      "maxJobShortageMin": 0.625,
+      "meanReservedUnits": 0.7971,
+      "firstJobCompletionMin": 0.6936666666666667,
+      "lastJobCompletionMin": 1.2008333333333334,
+      "completionSpreadMin": 0.5071666666666667
+    },
+    {
+      "cell": "bar|reserve-all|smiths-2|jobs-4",
+      "unitsPerHour": 144,
+      "totalShortageMin": 3.516666666666667,
+      "maxJobShortageMin": 1.6416666666666666,
+      "meanReservedUnits": 1.57954,
+      "firstJobCompletionMin": 0.6936666666666667,
+      "lastJobCompletionMin": 2.2409333333333334,
+      "completionSpreadMin": 1.5472666666666666
+    },
+    {
+      "cell": "bar|round-robin|smiths-2|jobs-2",
+      "unitsPerHour": 72,
+      "totalShortageMin": 0.24666666666666667,
+      "maxJobShortageMin": 0.14416666666666667,
+      "meanReservedUnits": 0.2308,
+      "firstJobCompletionMin": 0.6795,
+      "lastJobCompletionMin": 0.7378333333333332,
+      "completionSpreadMin": 0.05833333333333333
+    },
+    {
+      "cell": "bar|round-robin|smiths-2|jobs-4",
+      "unitsPerHour": 144,
+      "totalShortageMin": 3.6192000000000006,
+      "maxJobShortageMin": 1.0089666666666666,
+      "meanReservedUnits": 0.45303999999999994,
+      "firstJobCompletionMin": 1.5509333333333333,
+      "lastJobCompletionMin": 1.7842666666666667,
+      "completionSpreadMin": 0.2333333333333333
+    }
+  ],
+  "S3-E03-shortage-timelines": [
+    {
+      "cell": "plank|supply-0|stock-40",
+      "unitsPerHour": 80,
+      "totalShortageMin": 13.721766666666667,
+      "jobsPaused": 1,
+      "jobsCompleted": 0,
+      "lastJobCompletionMin": null,
+      "meanReservedUnits": 0.17043111111111112
+    },
+    {
+      "cell": "plank|supply-1-none",
+      "unitsPerHour": 240,
+      "totalShortageMin": 1.3309,
+      "jobsPaused": 37,
+      "jobsCompleted": 1,
+      "lastJobCompletionMin": 5.019066666666666,
+      "meanReservedUnits": 0.49175555555555556
+    },
+    {
+      "cell": "plank|supply-1-mage",
+      "unitsPerHour": 240,
+      "totalShortageMin": 0.47136666666666666,
+      "jobsPaused": 18,
+      "jobsCompleted": 1,
+      "lastJobCompletionMin": 4.159533333333333,
+      "meanReservedUnits": 0.49175555555555556
+    },
+    {
+      "cell": "plank|supply-2-none",
+      "unitsPerHour": 240,
+      "totalShortageMin": 0,
+      "jobsPaused": 0,
+      "jobsCompleted": 1,
+      "lastJobCompletionMin": 3.688166666666666,
+      "meanReservedUnits": 0.49175555555555556
+    },
+    {
+      "cell": "bar|miners-0",
+      "unitsPerHour": 20,
+      "totalShortageMin": 14.519166666666669,
+      "jobsPaused": 1,
+      "jobsCompleted": 0,
+      "lastJobCompletionMin": null,
+      "meanReservedUnits": 0.0641111111111111
+    },
+    {
+      "cell": "bar|miners-1",
+      "unitsPerHour": 80,
+      "totalShortageMin": 0,
+      "jobsPaused": 0,
+      "jobsCompleted": 1,
+      "lastJobCompletionMin": 1.8668000000000002,
+      "meanReservedUnits": 0.2489066666666667
+    }
+  ],
+  "S3-E07-old-material-demand": [
+    {
+      "cell": "PR-OPT|POL3-COMBAT",
+      "firstCopperItemMin": 10.964666666666666,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "logsConsumedAfterCopper": 0,
+      "logsGatheredAfterCopper": 3459.06,
+      "craftedCopper": 2
+    },
+    {
+      "cell": "PR-OPT|POL3-EQUIP",
+      "firstCopperItemMin": null,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "logsConsumedAfterCopper": 0,
+      "logsGatheredAfterCopper": 0,
+      "craftedCopper": 0
+    },
+    {
+      "cell": "PR-OPT|POL3-PROF",
+      "firstCopperItemMin": 14.223366666666669,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "logsConsumedAfterCopper": 4,
+      "logsGatheredAfterCopper": 4475.3,
+      "craftedCopper": 5
+    },
+    {
+      "cell": "PR-OPT|POL3-BAL",
+      "firstCopperItemMin": 12.19255,
+      "planksAfterCopper": 0,
+      "gelAfterCopper": 0,
+      "logsConsumedAfterCopper": 0,
+      "logsGatheredAfterCopper": 3931.43,
+      "craftedCopper": 2
+    }
+  ]
+}

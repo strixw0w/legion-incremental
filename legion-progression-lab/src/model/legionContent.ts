@@ -126,6 +126,27 @@ export interface LegionRules {
 
 export type TalentAllocation = Readonly<Record<string, number>>;
 
+/**
+ * S3: stat modifiers from equipment and hero-only experiment variants (S3_SPECIFICATION.md section 5). All zero (or
+ * absent) gives exactly the S2 stats. The weapon attack is added to base attack before the class and talent
+ * multipliers; equipment HP is added to base HP before the class HP multiplier; defence and crit are added after.
+ * baseAttackBp scales the level base attack (hero-only variant A); abilityMultBp and abilityCooldownBp change the
+ * ability (variant B).
+ */
+export interface StatMods {
+  readonly attackFlatMilli: number;
+  readonly hpFlat: number;
+  readonly defenceFlat: number;
+  readonly critBp: number;
+  readonly baseAttackBp: number;
+  /** S3.1 candidate variant: weapons adding a percentage of the level base attack (0 in the S3 content). */
+  readonly attackPctBp: number;
+  readonly abilityMultBp: number;
+  readonly abilityCooldownBp: number;
+}
+export const NO_MODS: StatMods = Object.freeze({ attackFlatMilli: 0, hpFlat: 0, defenceFlat: 0, critBp: 0, baseAttackBp: 0, abilityMultBp: 0, abilityCooldownBp: 0, attackPctBp: 0 });
+export const modsKey = (m: StatMods): string => (m === NO_MODS ? '' : `|m${m.attackFlatMilli},${m.hpFlat},${m.defenceFlat},${m.critBp},${m.baseAttackBp},${m.abilityMultBp},${m.abilityCooldownBp},${m.attackPctBp}`);
+
 export interface CharacterStats {
   readonly level: number;
   readonly cls: HeldClass;
@@ -148,7 +169,7 @@ export interface LegionContent extends CompiledContent {
   readonly classes: ReadonlyMap<ClassId, CompiledClass>;
   readonly talents: ReadonlyMap<string, CompiledTalent>;
   /** Combat stats of a character. Pure and cached by (level, class, allocation). */
-  characterStats(level: number, cls: HeldClass, allocation: TalentAllocation): CharacterStats;
+  characterStats(level: number, cls: HeldClass, allocation: TalentAllocation, mods?: StatMods): CharacterStats;
 }
 
 /** roundHalfUp(a / b) for a >= 0, b > 0, exact on safe integers. */
@@ -238,18 +259,20 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
   }
   const cache = new Map<string, CharacterStats>();
 
-  const characterStats = (level: number, cls: HeldClass, allocation: TalentAllocation): CharacterStats => {
-    const key = `${level}|${cls}|${Object.entries(allocation).filter(([, p]) => p > 0).sort(([a], [b]) => (a < b ? -1 : 1)).map(([t, p]) => `${t}=${p}`).join(',')}`;
+  const characterStats = (level: number, cls: HeldClass, allocation: TalentAllocation, mods: StatMods = NO_MODS): CharacterStats => {
+    const key = `${level}|${cls}|${Object.entries(allocation).filter(([, p]) => p > 0).sort(([a], [b]) => (a < b ? -1 : 1)).map(([t, p]) => `${t}=${p}`).join(',')}${modsKey(mods)}`;
     const hit = cache.get(key);
     if (hit) return hit;
     const steps = level - 1;
-    const baseHp = h.baseMaxHp + h.maxHpPerLevel * steps;
-    const baseDef = h.baseDefence + h.defencePerLevel * steps;
-    const baseAtk = h.baseAttackMilli + h.attackPerLevelMilli * steps;
+    const baseHp = h.baseMaxHp + h.maxHpPerLevel * steps + mods.hpFlat;
+    const baseDef = h.baseDefence + h.defencePerLevel * steps + mods.defenceFlat;
+    const levelAtk = h.baseAttackMilli + h.attackPerLevelMilli * steps;
+    const pct = mods.baseAttackBp + mods.attackPctBp;
+    const baseAtk = (pct === 0 ? levelAtk : roundDiv(levelAtk * (10_000 + pct), 10_000)) + mods.attackFlatMilli;
     let stats: CharacterStats;
     if (cls === 'none') {
       const atk = attackRawMilli(baseAtk, [], base.categories); // exactly the S1 hero formula
-      stats = { level, cls, maxHp: baseHp, defence: baseDef, attackRawMilli: atk.rawMilli, attackIntervalMs: h.attackIntervalMs, critChanceBp: Math.min(h.critChanceBp, 10_000), critThreshold: thresholdFromBp(Math.min(h.critChanceBp, 10_000)), ability: null, threatRank: 1 };
+      stats = { level, cls, maxHp: baseHp, defence: baseDef, attackRawMilli: atk.rawMilli, attackIntervalMs: h.attackIntervalMs, critChanceBp: Math.min(h.critChanceBp + mods.critBp, 10_000), critThreshold: thresholdFromBp(Math.min(h.critChanceBp + mods.critBp, 10_000)), ability: null, threatRank: 1 };
     } else {
       const c = classes.get(cls) as CompiledClass;
       let hpBp = c.hpBp;
@@ -268,7 +291,7 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
         else sources.push({ sourceId: `talent.${tid}`, kind: 'bp', categoryId: 'cat.damage.additive', value: v });
       }
       const atk = attackRawMilli(baseAtk, sources, base.categories);
-      const crit = Math.min(h.critChanceBp + critBp, 10_000);
+      const crit = Math.min(h.critChanceBp + critBp + mods.critBp, 10_000);
       stats = {
         level,
         cls,
@@ -278,7 +301,7 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
         attackIntervalMs: c.attackIntervalMs,
         critChanceBp: crit,
         critThreshold: thresholdFromBp(crit),
-        ability: { id: c.ability.id, rawMilli: Math.max(1, roundDiv(atk.rawMilli * (c.ability.multBp + abilityBp), 10_000)), cooldownMs: c.ability.cooldownMs },
+        ability: { id: c.ability.id, rawMilli: Math.max(1, roundDiv(atk.rawMilli * (c.ability.multBp + abilityBp + mods.abilityMultBp), 10_000)), cooldownMs: mods.abilityCooldownBp === 0 ? c.ability.cooldownMs : Math.max(1, roundDiv(c.ability.cooldownMs * (10_000 + mods.abilityCooldownBp), 10_000)) },
         threatRank: c.threatRank,
       };
     }

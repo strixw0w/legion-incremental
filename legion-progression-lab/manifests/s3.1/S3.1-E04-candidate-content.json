@@ -1,0 +1,241 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E04-candidate-content",
+  "question": "With each candidate content variant, how do progression, gear lifetime, earlier-material use and production change for POL3-DEMAND and POL3-BAL, and how sensitive is POL3-DEMAND to gathering yield, smith speed and equipment cost?",
+  "design": "PR-OPT (90 min) campaigns; POL3-DEMAND and POL3-BAL with the control and four candidate variants; POL3-DEMAND with three sensitivity variants. 50 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s31-cu-off150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-cu-offdef",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5,
+        "s3.copperDefenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-wpn-pct",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.weaponPercent": "on"
+      }
+    },
+    {
+      "id": "s31-oldmat",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.oldMaterialRecipes": "on"
+      }
+    },
+    {
+      "id": "s31-yield050",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.nodeYieldScale": 0.5
+      }
+    },
+    {
+      "id": "s31-smith075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.unitTimeScale": 0.75
+      }
+    },
+    {
+      "id": "s31-cost150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 1.5
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "control|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-off150|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cu-off150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-offdef|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cu-offdef",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "wpn-pct|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-wpn-pct",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "oldmat|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-oldmat",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "control|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-off150|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "s31-cu-off150",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-offdef|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "s31-cu-offdef",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "wpn-pct|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "s31-wpn-pct",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "oldmat|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "s31-oldmat",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "yield050|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-yield050",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "smith075|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-smith075",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cost150|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cost150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e04",
+    "replicates": 50
+  },
+  "metrics": [
+    "legionExpTotal",
+    "expTotal",
+    "crafted",
+    "craftedCopper",
+    "firstCopperCombatEquippedMin",
+    "gearLifetimeMeanMin",
+    "planksAfterCopper",
+    "gelAfterCopper",
+    "equipmentValue",
+    "gatherUtilisation",
+    "smithUtilisation",
+    "excessGatheredUnits",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "A promising candidate is reported separately with its variant ID; nothing replaces the S3 content."
+  ]
+}

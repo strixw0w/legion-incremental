@@ -1,0 +1,12 @@
+Preservation of the S3 package artefacts in the S3.1 tree (SHA-256 of every file listed in the S3 review package MANIFEST.txt)
+S3 manifests, plan, amendment and registration (manifests/s3/): 14 files, 0 changed or missing
+content packs, including the S3 content (content/): 15 files, 0 changed or missing
+S3 evidence, results copies and fingerprints (evidence/s3/): 129 files, 0 changed or missing
+earlier evidence (evidence/s0 ... s2.1, s2-checkpoint): 454 files, 0 changed or missing
+earlier manifests (manifests/s1, s1.1, s2, s2.1): 37 files, 0 changed or missing
+S3 planning documents (planning/S3_*): 4 files, 0 changed or missing
+S3 repro scripts (repro/s3/): 3 files, 0 changed or missing
+equipment-ops and production-queue fixtures (unchanged families): 2 files, 0 changed or missing
+results/s3 fingerprint.txt and semantic.json against the S3 package copies: 22 files, 0 different
+total changed or missing: 0
+Expected to change (declared S3.1 changes): spec/formulas/s3-industry.md (v1 -> v1.1), spec/fixtures/industry-rules.v1.json (fixture version 2, the 21 S3 cases unchanged), source, tests, CHANGELOG, PROVENANCE, READMEs, planning/L2_DESIGN_UPDATE.md (v1.1).

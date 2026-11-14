@@ -1,9 +1,9 @@
 {
   "fixtureSet": "estimator",
-  "fixtureVersion": 2,
-  "specRef": "spec/formulas/estimator.md#v1.2",
+  "fixtureVersion": 3,
+  "specRef": "spec/formulas/estimator.md#v1.3",
   "status": "candidate",
-  "independence": "Displayed-rate estimates re-derived by spec/oracle/s1_oracle.py from spec/formulas/estimator.md v1.1 (swing-count dynamic programme, exact survival chain, reliability table), with damage from its own exact Fraction formula. Synthetic one-zone packs; compared with a relative tolerance of 1e-9. Two cases are also derived by hand. Fixture v2 (S1.1 acceptance addendum) adds the reviewer's impossible-victory case beyond the survival budget, and a winnable case beyond the budget.",
+  "independence": "Displayed-rate estimates re-derived by spec/oracle/s1_oracle.py from spec/formulas/estimator.md v1.1 (swing-count dynamic programme, exact survival chain, reliability table), with damage from its own exact Fraction formula. Synthetic one-zone packs; compared with a relative tolerance of 1e-9. Two cases are also derived by hand. Fixture v2 (S1.1 acceptance addendum) adds the reviewer's impossible-victory case beyond the survival budget, and a winnable case beyond the budget. Fixture v3 (S3 entry, estimator v1.3): an exhausted swing or work budget is \"unresolved\" (no forecast), no longer \"unreachable\"; only s1.estimator.swing-budget.001 changes.",
   "cases": [
     {
       "id": "s1.estimator.harmless.001",
@@ -314,7 +314,7 @@
         "winChanceFromFullHp": null,
         "deathsPerHour": null,
         "limitingFactor": "attack",
-        "reliability": "unreachable",
+        "reliability": "unresolved",
         "reasons": [
           "SWING_BUDGET"
         ]
@@ -323,7 +323,7 @@
         "rel": 1e-09,
         "abs": 1e-12
       },
-      "derivation": "1 damage per swing, 10^9 HP: more than 100,000 swings"
+      "derivation": "1 damage per swing, 10^9 HP: more than 100,000 swings v1.3: the budget leaves the outcome unresolved, so the reliability is unresolved (no forecast), not unreachable."
     },
     {
       "id": "s1.estimator.impossible-over-budget.001",

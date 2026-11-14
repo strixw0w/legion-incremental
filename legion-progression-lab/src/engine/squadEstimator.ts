@@ -46,6 +46,7 @@ export function heroAloneAsSquad(e: ZoneEstimate, zoneOrder: number): SquadEstim
     fightsPerKnockout: e.killsPerLife,
     heroIsThreatTarget: true,
     reliability: e.reliability,
+    forecast: e.forecast,
     reasons: e.reasons,
     assumptions: ['ESTIMATOR-V1.2-HERO-ALONE'],
   };
@@ -89,7 +90,7 @@ export function estimateSquad(content: LegionContent, hero: SquadFighter, member
     }
     return { f, max: pHit > 0 ? Math.max(n, c) : 0, interval: f.stats.attackIntervalMs, ability };
   });
-  const base = { zoneOrder, members: ids, assumptions };
+  const base = { zoneOrder, members: ids, assumptions, forecast: 'available' as const };
   if (damagePerMs <= 0) {
     return { ...base, ttkS: null, killsPerHour: 0, expPerHourPerMember: 0, legionExpPerHour: 0, goldPerHour: 0, fightsPerKnockout: null, heroIsThreatTarget: threatOrder(all)[0]?.id === hero.id, reliability: 'unreachable', reasons: ['NO_HIT_CHANCE'] };
   }

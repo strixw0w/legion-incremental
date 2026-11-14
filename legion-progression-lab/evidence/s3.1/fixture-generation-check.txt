@@ -1,0 +1,10 @@
+# Fixture generation check (S3.1)
+# repro/s3/make_fixtures.py is restored byte-identical to the S3 package; the S3.1 generator is repro/s3.1/make_fixtures.py.
+# Each generator's drafts were written to an empty scratch folder, filled by spec/oracle/s3_oracle.py --fill, and compared byte for byte.
+S3 generator (repro/s3/make_fixtures.py) -> industry-rules.v1.json: identical to the S3 package's spec/fixtures copy (fixture version 1)
+S3 generator (repro/s3/make_fixtures.py) -> equipment-ops.v1.json: identical to the S3 package's spec/fixtures copy
+S3 generator (repro/s3/make_fixtures.py) -> production-queue.v1.json: identical to the S3 package's spec/fixtures copy
+S3.1 generator (repro/s3.1/make_fixtures.py) -> industry-rules.v1.json: identical to this tree (fixture version 2)
+S3.1 generator (repro/s3.1/make_fixtures.py) -> equipment-ops.v1.json: identical to this tree
+S3.1 generator (repro/s3.1/make_fixtures.py) -> production-queue.v1.json: identical to this tree
+S3.1 generator (repro/s3.1/make_fixtures.py) -> recipe-validation.v1.json: identical to this tree

@@ -1,0 +1,3 @@
+S3-E06 rich-no-items: depth 4, 5741 states, raw breaks 0, content breaks 0
+S3-E06 with-items: depth 4, 9030 states, raw breaks 0, content breaks 0
+S3-E06 minimal: depth 4, 439 states, raw breaks 0, content breaks 0

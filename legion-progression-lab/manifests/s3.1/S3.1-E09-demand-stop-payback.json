@@ -1,0 +1,254 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E09-demand-stop-payback",
+  "question": "Amendment 01 (post-results follow-up): with the stop rule corrected (POL3-DEMAND2), does the demand-aware policy stop stockpiling once nothing is left to build, return its gatherers to combat, and recover its investment against pure combat within 180 minutes?",
+  "design": "As S3.1-E08 (fresh and mid-game, 180 min, snapshots every 15 min, 50 replicates, the same seed root), with POL3-DEMAND2 added; the POL3-CONQ and POL3-DEMAND cells reproduce S3.1-E08.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "fresh|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ]
+    },
+    {
+      "id": "midgame|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "fresh|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ]
+    },
+    {
+      "id": "midgame|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "fresh|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ]
+    },
+    {
+      "id": "midgame|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true,
+      "minutes": 180,
+      "snapshots": [
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165
+      ],
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e08",
+    "replicates": 50
+  },
+  "metrics": [
+    "legionExpAt30",
+    "legionExpAt60",
+    "legionExpAt90",
+    "legionExpAt120",
+    "legionExpAt150",
+    "legionExpTotal",
+    "heroExpAt60",
+    "expTotal",
+    "equipmentValue",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Registered as amendment 01 after the registered results (manifests/s3.1/AMENDMENT-01.md); reported as a follow-up, never in place of a registered outcome.",
+    "H-S3.1-05 payback for POL3-DEMAND2 is derived by src/cli/s31-analyse.ts under the registered rule."
+  ]
+}

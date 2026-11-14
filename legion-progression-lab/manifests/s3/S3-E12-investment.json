@@ -1,0 +1,314 @@
+{
+  "increment": "S3",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3-E12-investment",
+  "question": "Direction G: how do the six investment strategies compare on hero EXP, legion EXP, gold and conquest, (1) over a fixed session and (2) from a matched mid-game state with the same gold, and how far is each from the best hindsight search found?",
+  "design": "Design 1: PR-OPT (90 min) campaigns of the six POL3 strategies, and ORC3-SEARCH (hindsight, bounded: 10-min look-ahead, 6 forks per decision, 180 per run, decisions at least 60 s apart) per objective. Design 2: PR-NEW (45 min) from a matched diagnostic state (hero level 8 in zone 2, zones 1-2 visited, two level-5 recruits, 600 gold, no materials). Strategies: 100 replicates; search: the first 10 replicates are reported (same seeds).",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "session|PR-OPT|POL3-COMBAT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-COMBAT",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-EQUIP",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|POL3-EARLY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-EARLY",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "session|PR-OPT|ORC3-SEARCH-heroExp",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "objective": "heroExp",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 6,
+        "maxForksPerRun": 180,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "session|PR-OPT|ORC3-SEARCH-legionExp",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "objective": "legionExp",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 6,
+        "maxForksPerRun": 180,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "session|PR-OPT|ORC3-SEARCH-gold",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "objective": "gold",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 6,
+        "maxForksPerRun": 180,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "session|PR-OPT|ORC3-SEARCH-conquest",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "objective": "conquest",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 6,
+        "maxForksPerRun": 180,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-COMBAT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-COMBAT",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-EQUIP",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-PROF",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-PROF",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-BAL",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-BAL",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-EARLY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-EARLY",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    },
+    {
+      "id": "budget|PR-NEW|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL3-CONQ",
+      "legion": true,
+      "industry": true,
+      "start": {
+        "heroLevel": 8,
+        "zone": 2,
+        "visited": [
+          1,
+          2
+        ],
+        "recruits": [
+          {
+            "level": 5
+          },
+          {
+            "level": 5
+          }
+        ],
+        "gold": 600
+      }
+    }
+  ],
+  "seeds": {
+    "root": "s3-e12",
+    "replicates": 100
+  },
+  "metrics": [
+    "expTotal",
+    "legionExpTotal",
+    "goldHeld",
+    "conquestScore",
+    "crafted",
+    "enhancements",
+    "heroDamageShare",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3-01",
+      "statement": "No sequence creates or destroys materials except declared sources and sinks; every S3 invariant holds (monitor I10-I19 with I1-I9)",
+      "source": "M0 plan S3; owner S3 section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "ORC3-SEARCH uses hidden information; its result is the best feasible found within the budget, never an upper bound.",
+    "The matched-state start is a labelled diagnostic initialisation."
+  ]
+}

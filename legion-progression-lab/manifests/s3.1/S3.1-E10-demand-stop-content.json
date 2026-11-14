@@ -1,0 +1,268 @@
+{
+  "increment": "S3.1",
+  "contentRef": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "experimentId": "S3.1-E10-demand-stop-content",
+  "question": "Amendment 01 (post-results follow-up): with the stop rule corrected (POL3-DEMAND2), how do the candidate content and sensitivity variants of S3.1-E04 change progression, production and excess gathering for the demand-aware policy?",
+  "design": "The POL3-DEMAND cells of S3.1-E04 (PR-OPT, 90 min, 50 replicates, the same seed root), with POL3-DEMAND2 added; the POL3-DEMAND cells reproduce S3.1-E04.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s31-cu-off150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-cu-offdef",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.copperOffenceScale": 1.5,
+        "s3.copperDefenceScale": 1.5
+      }
+    },
+    {
+      "id": "s31-wpn-pct",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.weaponPercent": "on"
+      }
+    },
+    {
+      "id": "s31-oldmat",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.oldMaterialRecipes": "on"
+      }
+    },
+    {
+      "id": "s31-yield050",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.nodeYieldScale": 0.5
+      }
+    },
+    {
+      "id": "s31-smith075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.unitTimeScale": 0.75
+      }
+    },
+    {
+      "id": "s31-cost150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 1.5
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "control|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-off150|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cu-off150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-offdef|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cu-offdef",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "wpn-pct|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-wpn-pct",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "oldmat|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-oldmat",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "yield050|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-yield050",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "smith075|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-smith075",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cost150|PR-OPT|POL3-DEMAND",
+      "kind": "campaign",
+      "variant": "s31-cost150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "control|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-off150|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-cu-off150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cu-offdef|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-cu-offdef",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "wpn-pct|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-wpn-pct",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "oldmat|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-oldmat",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "yield050|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-yield050",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "smith075|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-smith075",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    },
+    {
+      "id": "cost150|PR-OPT|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s31-cost150",
+      "profile": "PR-OPT",
+      "policy": "POL3-DEMAND2",
+      "legion": true,
+      "industry": true
+    }
+  ],
+  "seeds": {
+    "root": "s3.1-e04",
+    "replicates": 50
+  },
+  "metrics": [
+    "legionExpTotal",
+    "expTotal",
+    "crafted",
+    "craftedCopper",
+    "firstCopperCombatEquippedMin",
+    "gearLifetimeMeanMin",
+    "planksAfterCopper",
+    "gelAfterCopper",
+    "equipmentValue",
+    "gatherUtilisation",
+    "smithUtilisation",
+    "excessGatheredUnits",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S3.1-06",
+      "statement": "Every S2 and S3 invariant holds (monitor I1-I21)",
+      "source": "owner S3.1 sections 2-4, 14",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S3.1-06b",
+      "statement": "Fractional effective attribution is within its precision contract in every run",
+      "source": "owner S3.1 section 4; spec s3-industry v1.1 section 5a",
+      "metric": "fractionalWithinPrecision",
+      "stat": "mean",
+      "op": "==",
+      "value": 1,
+      "unit": "share of runs",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Registered as amendment 01 after the registered results (manifests/s3.1/AMENDMENT-01.md); reported as a follow-up, never in place of a registered outcome."
+  ]
+}
