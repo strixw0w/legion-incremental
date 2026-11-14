@@ -1,0 +1,62 @@
+{
+  "planRegisteredAt": "2026-11-13T21:15:00Z",
+  "note": "S2 plan pre-registered before implementation. Manifests (machine encodings of the plan) are added to `manifests` with their own registeredAt before any S2 experiment runs; the runner refuses unregistered or changed manifests.",
+  "document": {
+    "path": "manifests/s2/PREREGISTRATION.md",
+    "sha256": "f4d70eed1b6ed80c912d58c4938dd8946a7694e45229c8a78e589aee8ee69d39"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s2/S2-E00-control-a0.json",
+      "sha256": "d7b99c07302d657dc0fdd4611a2499d17a3589375f05c7d3ce62fd9ab879fa63",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E01-deploy-scaling.json",
+      "sha256": "1f2b6f01c15e2fdefc42df24d697798b18b0cc7628bf4505a6e95848dfe024b7",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E02-hero-damage-share.json",
+      "sha256": "02ad2d3f4702657de0d9cdd0ca4fb3507c72d0eaaddd226430bade0d82262a37",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E04-class-switch-abuse.json",
+      "sha256": "9c5055132290d80eef8ea12a9a982a1548425092244537931000c4ba384d23f2",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E05-squad-vs-workers.json",
+      "sha256": "53807463b09c637c535e29809c944ef8977907c219bad08645d5d99912f2c7e9",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E06-assignment-switching.json",
+      "sha256": "b433a0b06b5ddd11a8070bde7e9efa6fa17300cc551c5f42d9ac22218834c3d4",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E07-knockout-sensitivity.json",
+      "sha256": "c3f4bf71bcff2c157c92e6dbcc2fb6399ea988831eac107b8f7438bedb7244bd",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E08-first-recruit-timing.json",
+      "sha256": "f2519f9195cffa97ffc1bba428a17c155c3aa888ad2b999a669209f5abbb8a41",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E09-hindsight-search.json",
+      "sha256": "0ee1b60ddd80811324148fa3c8408c18f061f771b943a729b1267b04718192b7",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    },
+    {
+      "path": "manifests/s2/S2-E10-estimator-vs-realisation.json",
+      "sha256": "383926bb5e957ac4c32c1baad6b4453a548e0d0c45f2c67d368ef06c726f609e",
+      "registeredAt": "2026-11-13T22:15:33Z"
+    }
+  ],
+  "amendments": [],
+  "manifestsNote": "Manifests registered before any S2 experiment run. S2-E03 (credit invariants) has no manifest of its own: as pre-registered, it is the invariant monitor over every S2 run plus the property and scenario tests (analysis B1)."
+}

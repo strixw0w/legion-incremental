@@ -1,0 +1,434 @@
+{
+  "note": "Environment measurements on this machine (not a semantic fingerprint). Budgets declared in planning/L1_LEDGER_SPECIFICATION.md section 5 before running.",
+  "environment": {
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "arch": "x64",
+    "cpus": 16,
+    "cpuModel": "AMD Ryzen 7 7800X3D 8-Core Processor",
+    "exposeGc": true,
+    "startedAt": "2026-11-13T21:19:44.749Z",
+    "quick": false
+  },
+  "budgets": {
+    "wallClockMsPerRun": 120000,
+    "heapBytes": 2147483648,
+    "maxRunsPerWorkload": 5,
+    "stageMs": 600000
+  },
+  "s1RuntimeImpact": [
+    {
+      "sessionMin": 60,
+      "policy": "POL-FRONTIER",
+      "seed": "S1-E01#rep-0",
+      "reference": {
+        "medianRunMs": 47.886799999999994,
+        "committedTransactions": 696,
+        "eventLogDigest": "3a1d62ad5575abdd9100b3f74b11aa54e3a6190dced892dde75e9167e2d9290f"
+      },
+      "persistent": {
+        "medianRunMs": 41.1893,
+        "committedTransactions": 696,
+        "eventLogDigest": "3a1d62ad5575abdd9100b3f74b11aa54e3a6190dced892dde75e9167e2d9290f"
+      },
+      "digestsEqual": true
+    },
+    {
+      "sessionMin": 600,
+      "policy": "POL-FRONTIER",
+      "seed": "S1-E01#rep-0",
+      "reference": {
+        "medianRunMs": 2202.009399999999,
+        "committedTransactions": 8663,
+        "eventLogDigest": "ffc555c71e3c2ea5355b63a034f96ba44db5214f4b95a3258dc2df451a711fff"
+      },
+      "persistent": {
+        "medianRunMs": 330.4297000000006,
+        "committedTransactions": 8663,
+        "eventLogDigest": "ffc555c71e3c2ea5355b63a034f96ba44db5214f4b95a3258dc2df451a711fff"
+      },
+      "digestsEqual": true
+    }
+  ],
+  "reference": [
+    {
+      "workload": "W-small",
+      "legionWorkers": 1,
+      "simulatedHours": 24,
+      "transactions": 2880,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 192.71999999999935,
+      "minMaxElapsedMs": [
+        189.04039999999986,
+        197.47390000000087
+      ],
+      "medianTxPerSecond": 14943.960149439652,
+      "firstRun": {
+        "transactions": 2880,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 192.89240000000063,
+        "txPerSecond": 14930.603797764923,
+        "slices": [
+          {
+            "atTx": 288,
+            "medianUs": 10.099999999511056,
+            "p99Us": 31.600000000253203,
+            "heapMB": 15.697471618652344
+          },
+          {
+            "atTx": 1440,
+            "medianUs": 54.500000000189175,
+            "p99Us": 139.60000000042783,
+            "heapMB": 16.333633422851562
+          },
+          {
+            "atTx": 2880,
+            "medianUs": 116.29999999968277,
+            "p99Us": 175.09999999856518,
+            "heapMB": 16.84735107421875
+          }
+        ],
+        "replayMedianUs": 3.3000000003085006,
+        "replays": 28,
+        "conflicts": 2,
+        "branchMedianUs": 123.45150000000103,
+        "serializationMs": 4.196200000000317,
+        "canonicalBytes": 423161,
+        "reconstructionMs": null,
+        "reconstructedEqual": null
+      }
+    },
+    {
+      "workload": "W-day",
+      "legionWorkers": 10,
+      "simulatedHours": 24,
+      "transactions": 28800,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 25950.478600000002,
+      "minMaxElapsedMs": [
+        25726.816400000003,
+        26229.8597
+      ],
+      "medianTxPerSecond": 1109.8061212635978,
+      "firstRun": {
+        "transactions": 28800,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 25824.7129,
+        "txPerSecond": 1115.2108490623336,
+        "slices": [
+          {
+            "atTx": 2880,
+            "medianUs": 57.500000000800355,
+            "p99Us": 126.80000000000291,
+            "heapMB": 16.887130737304688
+          },
+          {
+            "atTx": 14400,
+            "medianUs": 693.1000000004133,
+            "p99Us": 1937.3000000014144,
+            "heapMB": 21.078231811523438
+          },
+          {
+            "atTx": 28800,
+            "medianUs": 1679.7000000005937,
+            "p99Us": 3275.6999999983236,
+            "heapMB": 21.541259765625
+          }
+        ],
+        "replayMedianUs": 3.3999999941443093,
+        "replays": 272,
+        "conflicts": 20,
+        "branchMedianUs": 1874.8979999999938,
+        "serializationMs": 48.62739999999758,
+        "canonicalBytes": 4267023,
+        "reconstructionMs": null,
+        "reconstructedEqual": null
+      }
+    },
+    {
+      "workload": "W-week",
+      "legionWorkers": 10,
+      "simulatedHours": 168,
+      "transactions": 201600,
+      "status": "timed out at 58500 transactions",
+      "runs": 1,
+      "medianElapsedMs": null,
+      "minMaxElapsedMs": null,
+      "medianTxPerSecond": null,
+      "firstRun": {
+        "transactions": 58500,
+        "completed": false,
+        "stoppedBy": "wall-clock budget (120 s)",
+        "elapsedMs": 120401.82559999998,
+        "txPerSecond": 485.87303148001445,
+        "slices": [
+          {
+            "atTx": 20160,
+            "medianUs": 568.2999999844469,
+            "p99Us": 2041.1000000021886,
+            "heapMB": 18.696937561035156
+          }
+        ],
+        "replayMedianUs": 2.9999999969732016,
+        "replays": 574,
+        "conflicts": 62
+      }
+    },
+    {
+      "workload": "W-legion",
+      "transactions": 1008000,
+      "status": "not run: W-week already exceeded the budget"
+    },
+    {
+      "workload": "W-month",
+      "transactions": 4320000,
+      "status": "not run: W-week already exceeded the budget"
+    }
+  ],
+  "persistent": [
+    {
+      "workload": "W-small",
+      "legionWorkers": 1,
+      "simulatedHours": 24,
+      "transactions": 2880,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 28.764100000000326,
+      "minMaxElapsedMs": [
+        27.96379999999772,
+        33.57270000001881
+      ],
+      "medianTxPerSecond": 100124.80835485787,
+      "firstRun": {
+        "transactions": 2880,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 27.96379999999772,
+        "txPerSecond": 102990.29459516356,
+        "slices": [
+          {
+            "atTx": 288,
+            "medianUs": 6.300000008195639,
+            "p99Us": 27.29999998700805,
+            "heapMB": 11.059310913085938
+          },
+          {
+            "atTx": 1440,
+            "medianUs": 5.100000009406358,
+            "p99Us": 13.099999981932342,
+            "heapMB": 11.723060607910156
+          },
+          {
+            "atTx": 2880,
+            "medianUs": 4.4000000052619725,
+            "p99Us": 8.800000010523945,
+            "heapMB": 12.397087097167969
+          }
+        ],
+        "replayMedianUs": 3.3999999868683517,
+        "replays": 28,
+        "conflicts": 2,
+        "branchMedianUs": 4.836499999946682,
+        "serializationMs": 4.428099999990081,
+        "canonicalBytes": 423161,
+        "reconstructionMs": 7.402000000001863,
+        "reconstructedEqual": 1
+      }
+    },
+    {
+      "workload": "W-day",
+      "legionWorkers": 10,
+      "simulatedHours": 24,
+      "transactions": 28800,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 222.52489999998943,
+      "minMaxElapsedMs": [
+        218.30809999999474,
+        225.42789999998058
+      ],
+      "medianTxPerSecond": 129423.71842432629,
+      "firstRun": {
+        "transactions": 28800,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 224.7445000000007,
+        "txPerSecond": 128145.5163530138,
+        "slices": [
+          {
+            "atTx": 2880,
+            "medianUs": 6.099999998696148,
+            "p99Us": 16.39999999315478,
+            "heapMB": 12.473548889160156
+          },
+          {
+            "atTx": 14400,
+            "medianUs": 5.000000004656613,
+            "p99Us": 11.800000007497147,
+            "heapMB": 17.11907958984375
+          },
+          {
+            "atTx": 28800,
+            "medianUs": 5.000000004656613,
+            "p99Us": 10.10000001406297,
+            "heapMB": 22.84943389892578
+          }
+        ],
+        "replayMedianUs": 3.400000015972182,
+        "replays": 272,
+        "conflicts": 20,
+        "branchMedianUs": 4.866000000038184,
+        "serializationMs": 45.73040000000037,
+        "canonicalBytes": 4267023,
+        "reconstructionMs": 57.74780000001192,
+        "reconstructedEqual": 1
+      }
+    },
+    {
+      "workload": "W-week",
+      "legionWorkers": 10,
+      "simulatedHours": 168,
+      "transactions": 201600,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 1419.3087999999989,
+      "minMaxElapsedMs": [
+        1409.5636000000522,
+        1423.756800000032
+      ],
+      "medianTxPerSecond": 142040.97092894808,
+      "firstRun": {
+        "transactions": 201600,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 1423.756800000032,
+        "txPerSecond": 141597.21660328188,
+        "slices": [
+          {
+            "atTx": 20160,
+            "medianUs": 5.099999951198697,
+            "p99Us": 10.899999993853271,
+            "heapMB": 19.44904327392578
+          },
+          {
+            "atTx": 100800,
+            "medianUs": 4.6999999904073775,
+            "p99Us": 9.10000002477318,
+            "heapMB": 51.44854736328125
+          },
+          {
+            "atTx": 201600,
+            "medianUs": 4.500000039115548,
+            "p99Us": 8.800000010523945,
+            "heapMB": 91.45879364013672
+          }
+        ],
+        "replayMedianUs": 4.0000000153668225,
+        "replays": 2001,
+        "conflicts": 212,
+        "branchMedianUs": 5.948000000207685,
+        "serializationMs": 318.52820000000065,
+        "canonicalBytes": 29971625,
+        "reconstructionMs": 446.78759999998147,
+        "reconstructedEqual": 1
+      }
+    },
+    {
+      "workload": "W-legion",
+      "legionWorkers": 50,
+      "simulatedHours": 168,
+      "transactions": 1008000,
+      "status": "measured",
+      "runs": 5,
+      "medianElapsedMs": 7611.574399999983,
+      "minMaxElapsedMs": [
+        7075.373599999992,
+        7808.974300000002
+      ],
+      "medianTxPerSecond": 132429.8951869934,
+      "firstRun": {
+        "transactions": 1008000,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 7119.496600000013,
+        "txPerSecond": 141583.04394723612,
+        "slices": [
+          {
+            "atTx": 100800,
+            "medianUs": 4.899999999906868,
+            "p99Us": 9.4999999855645,
+            "heapMB": 51.45155334472656
+          },
+          {
+            "atTx": 504000,
+            "medianUs": 4.6999999904073775,
+            "p99Us": 9.799999999813735,
+            "heapMB": 211.6100845336914
+          },
+          {
+            "atTx": 1008000,
+            "medianUs": 4.6999999904073775,
+            "p99Us": 9.200000029522926,
+            "heapMB": 411.6208724975586
+          }
+        ],
+        "replayMedianUs": 4.0000000153668225,
+        "replays": 10031,
+        "conflicts": 1024,
+        "branchMedianUs": 9.835500000044703,
+        "serialization": "not measured above W-week (single-string serialization exceeds the V8 string limit)"
+      }
+    },
+    {
+      "workload": "W-month",
+      "legionWorkers": 50,
+      "simulatedHours": 720,
+      "transactions": 4320000,
+      "status": "timed out at 4079500 transactions",
+      "runs": 2,
+      "medianElapsedMs": 36432.2475,
+      "minMaxElapsedMs": [
+        36432.2475,
+        36432.2475
+      ],
+      "medianTxPerSecond": 118576.26955350477,
+      "firstRun": {
+        "transactions": 4320000,
+        "completed": true,
+        "stoppedBy": null,
+        "elapsedMs": 36432.2475,
+        "txPerSecond": 118576.26955350477,
+        "slices": [
+          {
+            "atTx": 432000,
+            "medianUs": 5.299999960698187,
+            "p99Us": 12.199999997392297,
+            "heapMB": 183.2470932006836
+          },
+          {
+            "atTx": 2160000,
+            "medianUs": 5.400000023655593,
+            "p99Us": 14.800000004470348,
+            "heapMB": 877.7196426391602
+          },
+          {
+            "atTx": 4320000,
+            "medianUs": 5.700000037904829,
+            "p99Us": 18.40000000083819,
+            "heapMB": 1751.527961730957
+          }
+        ],
+        "replayMedianUs": 6.500000017695129,
+        "replays": 43409,
+        "conflicts": 4270,
+        "branchMedianUs": 11.843499999959022,
+        "serialization": "not measured above W-week (single-string serialization exceeds the V8 string limit)"
+      }
+    }
+  ]
+}

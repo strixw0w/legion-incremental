@@ -1,0 +1,90 @@
+B0 (gate) control A0 against S1.1-E01
+  148 metric summaries compared, 0 differ; event-log digests identical in 4/4 cells -> PASS
+
+B1 (gate) invariants H-S2-02, H-S2-05, H-S2-06 in every run
+  invariant monitor: 14050 runs, 824963899 checks, 0 violations; engineering hypotheses 148/148 pass -> PASS
+
+B2 targets (a miss does not block acceptance)
+  H-S2-01 first recruit in [2, 5] min (p50): 18/18 cells pass
+    a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-SQUAD: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-WORKERS: 2.09 min pass
+    a10-p1.6-g100|PR-BAL|POL2-MIXED: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-SQUAD: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-WORKERS: 2.09 min pass
+    a10-p1.6-g100|PR-OPT|POL2-MIXED: 2.09 min pass
+  H-S2-03 hero damage share in [0.30, 0.60] (p50, mixed, passive): 0/3 pass
+    a10-p1.6-g100|L10-Z2|hero-warrior|mixed|passive: 0.141 miss
+    a10-p1.6-g100|L10-Z2|hero-archer|mixed|passive: 0.200 miss
+    a10-p1.6-g100|L10-Z2|hero-mage|mixed|passive: 0.185 miss
+  H-S2-04 switching gain over the better set-and-forget (squad 174972, workers 45127 mean legion EXP):
+    a10-p1.6-g100|PR-BAL|POL2-SWITCH-1min: gain -35.84% pass
+    a10-p1.6-g100|PR-BAL|POL2-SWITCH-5min: gain -36.36% pass
+    a10-p1.6-g100|PR-BAL|POL2-SWITCH-30min: gain -35.19% pass
+
+B3 squad versus workers, per objective (no single best across objectives)
+  PR-BAL hero EXP: POL2-SQUAD 44411.8, POL2-WORKERS 13109.2, POL2-MIXED 25345.9 -> best POL2-SQUAD
+  PR-BAL legion EXP: POL2-SQUAD 174987.1, POL2-WORKERS 45128.2, POL2-MIXED 73518.3 -> best POL2-SQUAD
+  PR-BAL gold earned per hour: POL2-SQUAD 12135.9, POL2-WORKERS 12775.3, POL2-MIXED 13665.6 -> best POL2-MIXED
+  PR-BAL gold held: POL2-SQUAD 11585.9, POL2-WORKERS 12225.3, POL2-MIXED 13115.6 -> best POL2-MIXED
+  PR-BAL conquest score: POL2-SQUAD 3001002166.0, POL2-WORKERS 3001005563.6, POL2-MIXED 3001004415.2 -> best POL2-WORKERS
+  PR-BAL zone 3 first visit (min): POL2-SQUAD 8.4, POL2-WORKERS 24.9, POL2-MIXED 9.3 -> best POL2-SQUAD
+  PR-OPT hero EXP: POL2-SQUAD 70811.8, POL2-WORKERS 22855.0, POL2-MIXED 43363.7 -> best POL2-SQUAD
+  PR-OPT legion EXP: POL2-SQUAD 280587.1, POL2-WORKERS 81658.2, POL2-MIXED 129702.0 -> best POL2-SQUAD
+  PR-OPT gold earned per hour: POL2-SQUAD 12890.6, POL2-WORKERS 15491.5, POL2-MIXED 16262.2 -> best POL2-MIXED
+  PR-OPT gold held: POL2-SQUAD 18785.9, POL2-WORKERS 22687.2, POL2-MIXED 23843.2 -> best POL2-MIXED
+  PR-OPT conquest score: POL2-SQUAD 3001003366.0, POL2-WORKERS 3001008222.4, POL2-MIXED 3001006787.5 -> best POL2-WORKERS
+  PR-OPT zone 3 first visit (min): POL2-SQUAD 8.4, POL2-WORKERS 24.9, POL2-MIXED 9.3 -> best POL2-SQUAD
+
+B4 hindsight search (best feasible found; never an upper bound)
+  heroExp: search 44396.6 vs POL2-SQUAD 44396.6 -> ratio 1
+  heroExp: search 44396.6 vs POL2-WORKERS 13090.5 -> ratio 3.392
+  heroExp: search 44396.6 vs POL2-MIXED 25328.3 -> ratio 1.753
+  legionExp: search 174926.4 vs POL2-SQUAD 174926.4 -> ratio 1
+  legionExp: search 174926.4 vs POL2-WORKERS 45125.9 -> ratio 3.876
+  legionExp: search 174926.4 vs POL2-MIXED 73491.7 -> ratio 2.380
+  gold: search 12208.2 vs POL2-SQUAD 11581.8 -> ratio 1.054
+  gold: search 12208.2 vs POL2-WORKERS 12225.1 -> ratio 0.999
+  gold: search 12208.2 vs POL2-MIXED 13114.2 -> ratio 0.931
+  conquest: search 3001006129.6 vs POL2-SQUAD 3001002165.3 -> ratio 1.000
+  conquest: search 3001006129.6 vs POL2-WORKERS 3001005564.3 -> ratio 1.000
+  conquest: search 3001006129.6 vs POL2-MIXED 3001004415.5 -> ratio 1.000
+  a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp: forks 341.4, decisions 30.7, budget exhausted in 0% of runs
+  a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp: forks 341.4, decisions 30.7, budget exhausted in 0% of runs
+  a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold: forks 215.0, decisions 21.0, budget exhausted in 0% of runs
+  a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest: forks 186, decisions 18, budget exhausted in 0% of runs
+
+B5 estimator against realisation (no accuracy target)
+  squad of 0 approximate: 1 cells, median |error| 0.1%, max |error| 0.1%, mean signed 0.1%
+  squad of 0 reliable: 4 cells, median |error| 0.2%, max |error| 0.4%, mean signed 0.2%
+  squad of 0 unsafe: 3 cells, median |error| 0.3%, max |error| 0.7%, mean signed 0.2%
+  squad of 1 approximate: 9 cells, median |error| 10.1%, max |error| 97.0%, mean signed 17.0%
+  squad of 2 approximate: 9 cells, median |error| 8.9%, max |error| 44.6%, mean signed -2.8%
+  squad of 3 approximate: 9 cells, median |error| 12.8%, max |error| 15.3%, mean signed -7.7%
+  worker approximate: 9 cells, median |error| 5.9%, max |error| 382.0%, mean signed 61.6%
+  worker reliable: 2 cells, median |error| 0.1%, max |error| 0.1%, mean signed 0.1%
+  worker unsafe: 6 cells, median |error| 422.2%, max |error| 919.3%, mean signed 507.5%
+  cells where both the estimate and the realisation are 0: 0
+
+B6 / H-S2-07 recruit-dependent timing against the S1.1 control (p50)
+  PR-NEW S1.1 POL-FRONTIER: minToL5 2.45, minToL10 14.16, zone2FirstVisitMin 5.08, zone3FirstVisitMin 38.14, levelAt45 17
+  PR-NEW POL2-SQUAD-W (Q40): minToL5 2.33, minToL10 7.38, zone2FirstVisitMin 3.96, zone3FirstVisitMin 8.37, levelAt45 32
+  PR-NEW POL2-WORKERS (Q40): minToL5 2.45, minToL10 11.24, zone2FirstVisitMin 3.88, zone3FirstVisitMin 24.92, levelAt45 20
+  PR-NEW POL2-MIXED (Q40): minToL5 2.33, minToL10 7.99, zone2FirstVisitMin 3.96, zone3FirstVisitMin 9.29, levelAt45 25
+  PR-BAL S1.1 POL-FRONTIER: minToL5 2.45, minToL10 14.16, zone2FirstVisitMin 5.08, zone3FirstVisitMin 38.14, levelAt45 17
+  PR-BAL POL2-SQUAD-W (Q40): minToL5 2.33, minToL10 7.38, zone2FirstVisitMin 3.96, zone3FirstVisitMin 8.37, levelAt45 32
+  PR-BAL POL2-WORKERS (Q40): minToL5 2.45, minToL10 11.24, zone2FirstVisitMin 3.88, zone3FirstVisitMin 24.92, levelAt45 20
+  PR-BAL POL2-MIXED (Q40): minToL5 2.33, minToL10 7.99, zone2FirstVisitMin 3.96, zone3FirstVisitMin 9.29, levelAt45 25
+
+wrote results/s2.1/audit/analysis-gates.json

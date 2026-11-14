@@ -24,6 +24,8 @@ steps = [
     ("xp table artifact", ["xp_oracle.py", "--check-artifact", os.path.join(LAB, "content", "tables", "xp.w1.candidate.v0.1.0.json")]),
     ("exact families", ["exact_oracle.py", "--check"] + [fixture(n) for n in ("numeric", "remainder", "stats", "combat", "ledger", "canonical-json", "content")]),
     ("S1 / S1.1 families", ["s1_oracle.py", "--check"] + [fixture(n) for n in ("combat-loop", "gates", "rewards", "credits", "estimator")]),
+    ("S2 families", ["s2_oracle.py", "--check"] + [fixture(n) for n in ("squad-fight", "legion-credit")]),
+    ("S2.1 families", ["s2_oracle.py", "--check"] + [fixture(n) for n in ("worker-feasibility", "ledger-reconstruction")]),
 ]
 _sweep_index = os.path.join(LAB, "content", "tables", "xp-sweep.index.json")
 if os.path.exists(_sweep_index):

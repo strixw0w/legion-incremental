@@ -1,0 +1,157 @@
+{
+  "experimentId": "S2-E04-class-switch-abuse",
+  "increment": "S2",
+  "question": "Can switching class create mastery, records or account progress without the matching combat?",
+  "design": "The hero and three recruits at level 50 cycle Warrior -> Archer -> Mage 1, 5 or 20 times each; without training (every switch at the session start, no combat) and with 60 s of squad farming in zone 1 between switches. The invariant monitor checks every switch and credit. 100 replicates.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|L50|cycles-1|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 1,
+      "train": false,
+      "trainMs": 60000
+    },
+    {
+      "id": "a10-p1.6-g100|L50|cycles-1|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 1,
+      "train": true,
+      "trainMs": 60000
+    },
+    {
+      "id": "a10-p1.6-g100|L50|cycles-5|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 5,
+      "train": false,
+      "trainMs": 60000
+    },
+    {
+      "id": "a10-p1.6-g100|L50|cycles-5|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 5,
+      "train": true,
+      "trainMs": 60000
+    },
+    {
+      "id": "a10-p1.6-g100|L50|cycles-20|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 20,
+      "train": false,
+      "trainMs": 60000
+    },
+    {
+      "id": "a10-p1.6-g100|L50|cycles-20|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "level": 50,
+      "cycles": 20,
+      "train": true,
+      "trainMs": 60000
+    }
+  ],
+  "seeds": {
+    "root": "S2-E04",
+    "replicates": 100
+  },
+  "metrics": [
+    "switchesAccepted",
+    "switchesRequested",
+    "masteryTotal",
+    "masteryMinusCombatExp",
+    "recordsSum",
+    "legionExpTotal",
+    "goldSpent",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-05",
+      "statement": "No mastery from switching without training",
+      "source": "owner S2 authorisation section 8, D-05",
+      "metric": "masteryTotal",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "EXP",
+      "role": "engineering",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|L50|cycles-1|no-train",
+          "a10-p1.6-g100|L50|cycles-5|no-train",
+          "a10-p1.6-g100|L50|cycles-20|no-train"
+        ]
+      }
+    },
+    {
+      "id": "H-S2-05",
+      "statement": "No account class record from switching without training",
+      "source": "owner S2 authorisation section 8, R-A5",
+      "metric": "recordsSum",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "levels",
+      "role": "engineering",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|L50|cycles-1|no-train",
+          "a10-p1.6-g100|L50|cycles-5|no-train",
+          "a10-p1.6-g100|L50|cycles-20|no-train"
+        ]
+      }
+    },
+    {
+      "id": "H-S2-05",
+      "statement": "With training, mastery never exceeds the combat EXP earned (only the held class gains)",
+      "source": "owner S2 authorisation section 8",
+      "metric": "masteryMinusCombatExp",
+      "stat": "max",
+      "op": "<=",
+      "value": 0,
+      "unit": "EXP",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "Gold for the switches is credited by a diagnostic transaction before the run (S2-E04 only)."
+  ]
+}

@@ -1,0 +1,1146 @@
+{
+  "experimentId": "S2-E10-estimator-vs-realisation",
+  "increment": "S2",
+  "question": "How close are the displayed squad and worker estimates to realised production in continuous farming?",
+  "design": "Frozen levels 1 / 5 / 10 x zones 1-3 x squad sizes 0-3 (mixed classes; Archer hero from level 5), continuous farming (no rest, auto-farm re-enabled after stops), 30 min; plus one worker (classless or Warrior) per level and zone. The prediction shown at the start is compared with the realised mean (B5). 100 replicates.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": null,
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": null,
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": null,
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": null,
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": null,
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": null,
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": null,
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 1,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 1
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": null,
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 2
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": null,
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": {
+            "worker": 3
+          }
+        }
+      ],
+      "logic": "CONTINUOUS",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "S2-E10",
+    "replicates": 100
+  },
+  "metrics": [
+    "killsPerHour",
+    "predictedKillsPerHour",
+    "predictedReliability",
+    "workerKillsPerHour",
+    "predictedWorkerKillsPerHour",
+    "predictedWorkerReliability",
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "No accuracy target is set for the squad estimator (owner section 11); the error is reported per cell with its reliability. Estimates are never results."
+  ]
+}

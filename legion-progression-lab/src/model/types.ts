@@ -225,8 +225,10 @@ export type Validation = { readonly ok: true } | { readonly ok: false; readonly 
  * - approximate  complete calculation, but deaths take a noticeable share of the time;
  * - unsafe       expected deaths reach the auto-farm stop threshold, or the hero averages under one kill per life;
  * - unreachable  no kill is possible (zero hit chance, the hero always dies first, or no kill within the budget).
+ * - unresolved   (S2.1, worker estimates only) basic attacks cannot win but the class ability could: kills are possible,
+ *                production is not estimated. Never produced by the S1 / S1.1 hero estimator.
  */
-export type EstimateReliability = 'reliable' | 'approximate' | 'unsafe' | 'unreachable';
+export type EstimateReliability = 'reliable' | 'approximate' | 'unsafe' | 'unreachable' | 'unresolved';
 
 /** Displayed rate estimate for one zone at the hero's current level (what a Command Centre would show, R07.16). */
 export interface DisplayedEstimate {

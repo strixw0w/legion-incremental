@@ -1,0 +1,31 @@
+# exp2 --verify of every S2 manifest (L1 persistent ledger; re-run and compare the stored semantic fingerprint)
+S2-E00-control-a0: stored bdebfcd69b2e811153a52943bac6fd9bda1c41eef7fb81f847658998b7466457
+S2-E00-control-a0: rerun  bdebfcd69b2e811153a52943bac6fd9bda1c41eef7fb81f847658998b7466457 (ledger persistent)
+S2-E00-control-a0: MATCH (5665 ms, 15 workers)
+S2-E01-deploy-scaling: stored 6c434caa321dfcb56a6245d80e94a5c73226fb481d9ed8dad9edff7c5897fb58
+S2-E01-deploy-scaling: rerun  6c434caa321dfcb56a6245d80e94a5c73226fb481d9ed8dad9edff7c5897fb58 (ledger persistent)
+S2-E01-deploy-scaling: MATCH (39660 ms, 15 workers)
+S2-E02-hero-damage-share: stored ca7de4c25f6653d56a5d59cb833fced9e4b121bb98a3fc66f875682678ff7ad0
+S2-E02-hero-damage-share: rerun  ca7de4c25f6653d56a5d59cb833fced9e4b121bb98a3fc66f875682678ff7ad0 (ledger persistent)
+S2-E02-hero-damage-share: MATCH (51958 ms, 15 workers)
+S2-E04-class-switch-abuse: stored ca0dd467f43a183ac9e273808e14ea92491a65933e01b3b3759dd884eb71e42a
+S2-E04-class-switch-abuse: rerun  ca0dd467f43a183ac9e273808e14ea92491a65933e01b3b3759dd884eb71e42a (ledger persistent)
+S2-E04-class-switch-abuse: MATCH (3173 ms, 15 workers)
+S2-E05-squad-vs-workers: stored c5bbd0865c8183a3ba30d259da00a1acaaee581c0612de76bb49de0623c538a3
+S2-E05-squad-vs-workers: rerun  c5bbd0865c8183a3ba30d259da00a1acaaee581c0612de76bb49de0623c538a3 (ledger persistent)
+S2-E05-squad-vs-workers: MATCH (39519 ms, 15 workers)
+S2-E06-assignment-switching: stored 73f1f181b2fbdb607ad9d70b7c9c2e2eba8dc7c2a1362bb9191b940563e1c431
+S2-E06-assignment-switching: rerun  73f1f181b2fbdb607ad9d70b7c9c2e2eba8dc7c2a1362bb9191b940563e1c431 (ledger persistent)
+S2-E06-assignment-switching: MATCH (26095 ms, 15 workers)
+S2-E07-knockout-sensitivity: stored acb0c1a54dca30c0a0033eaaa7c0a4cdfe009188d961f5415d8be37a11d30569
+S2-E07-knockout-sensitivity: rerun  acb0c1a54dca30c0a0033eaaa7c0a4cdfe009188d961f5415d8be37a11d30569 (ledger persistent)
+S2-E07-knockout-sensitivity: MATCH (16530 ms, 15 workers)
+S2-E08-first-recruit-timing: stored 48c130a5637ec47472a7274560587761087ee091515a08e73edb4e865cad91a4
+S2-E08-first-recruit-timing: rerun  48c130a5637ec47472a7274560587761087ee091515a08e73edb4e865cad91a4 (ledger persistent)
+S2-E08-first-recruit-timing: MATCH (72280 ms, 15 workers)
+S2-E09-hindsight-search: stored 0dc8463e65cdac3cb642b9a6de22e8ca4ea1a4db6d1764f565ce8d74d0c2cc00
+S2-E09-hindsight-search: rerun  0dc8463e65cdac3cb642b9a6de22e8ca4ea1a4db6d1764f565ce8d74d0c2cc00 (ledger persistent)
+S2-E09-hindsight-search: MATCH (245573 ms, 15 workers)
+S2-E10-estimator-vs-realisation: stored 39c2be19a10fa054003709ff1c7d2a6072ad9abe347356034c12109247a4add2
+S2-E10-estimator-vs-realisation: rerun  39c2be19a10fa054003709ff1c7d2a6072ad9abe347356034c12109247a4add2 (ledger persistent)
+S2-E10-estimator-vs-realisation: MATCH (41240 ms, 15 workers)

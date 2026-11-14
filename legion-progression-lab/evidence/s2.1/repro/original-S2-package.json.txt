@@ -1,0 +1,47 @@
+{
+  "lab": "legion-incremental-S2-review/legion-progression-lab",
+  "workerAccess": {
+    "zone2AccessUnlocked": true,
+    "zone2Visited": false,
+    "assignmentAccepted": true,
+    "rejected": {},
+    "workerKills": 15,
+    "assignment": {
+      "kind": "worker",
+      "zoneOrder": 2
+    }
+  },
+  "ledgerReconstruction": {
+    "chronologicalFinalBalance": 9007199254740991,
+    "reconstruction": {
+      "ok": false,
+      "error": "NUMERIC_LIMIT"
+    }
+  },
+  "workerEstimator": {
+    "mageRawAttackMilli": 7500,
+    "fireballRawMilli": 30000,
+    "estimate": {
+      "killsPerHour": 0,
+      "winChanceFromFullHp": 0,
+      "reliability": "unreachable",
+      "reasons": [
+        "DIES_BEFORE_KILL"
+      ]
+    },
+    "firstFightBlows": [
+      [
+        1500,
+        "swing",
+        8
+      ],
+      [
+        1500,
+        "ability",
+        30
+      ]
+    ],
+    "realisedKillsIn30s": 1,
+    "knockoutsIn30s": 1
+  }
+}

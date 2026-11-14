@@ -1,0 +1,3 @@
+OK    spec/schema/fixture.schema.json
+OK    spec/schema/content-pack-s0.schema.json
+OK    spec/schema/xp-table.schema.json

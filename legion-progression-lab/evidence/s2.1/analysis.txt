@@ -1,0 +1,73 @@
+S2.1-E01 impact audit: every S2 cell re-run with the corrected engine (same manifests, seeds and replicates)
+  S2-E00-control-a0: 4 identical, 0 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E01-deploy-scaling: 12 identical, 0 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E02-hero-damage-share: 24 identical, 0 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E04-class-switch-abuse: 6 identical, 0 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E05-squad-vs-workers: 2 identical, 4 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E06-assignment-switching: 1 identical, 4 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E07-knockout-sensitivity: 4 identical, 0 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E08-first-recruit-timing: 6 identical, 12 differ only in the monitor's own check count, 0 behaviourally changed
+  S2-E09-hindsight-search: 3 identical, 3 differ only in the monitor's own check count, 1 behaviourally changed: PR-BAL|ORC2-SEARCH-gold
+  S2-E10-estimator-vs-realisation: 36 identical, 18 differ only in the monitor's own check count, 0 behaviourally changed
+  total: 140 cells. Registered rule: 98 unaffected, 42 affected.
+  of the 42 affected: 41 differ ONLY in the invariant monitor's own check count (the new I9 check; identical event logs and results), 1 changed behaviour
+  differences from the expectation stated before running (registered rule): 17
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q25: expected affected, observed unaffected
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q25: expected affected, observed unaffected
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40: expected affected, observed unaffected
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40: expected affected, observed unaffected
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q60: expected affected, observed unaffected
+    S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q60: expected affected, observed unaffected
+    S2-E09-hindsight-search a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp: expected affected, observed unaffected
+    S2-E09-hindsight-search a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp: expected affected, observed unaffected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z1|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z2|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z3|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z1|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z2|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z3|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z1|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z2|worker-classless: expected unaffected, observed affected
+    S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z3|worker-classless: expected unaffected, observed affected
+
+  behaviourally changed cells, original -> corrected (means):
+    S2-E09 PR-BAL|ORC2-SEARCH-gold: legionExpTotal 45366.6 -> 46459.5, expTotal 13550.2 -> 13845.1, goldPerHour 12556.6 -> 12758.2, goldHeld 12006.6 -> 12208.2, workerKillsPerHour 4218.0 -> 4199.5, squadKillsPerHour 1615.4 -> 1612.1, zone3FirstVisitMin n/a -> 54.2, recruitLevelMean 21.0 -> 21.2, killsPerHour 5833.4 -> 5811.6 (41 metric summaries differ)
+
+C1 (gate) invariant monitor I1-I9 over every S2.1 run: 20050 runs, 919230389 checks (repeated evaluations, not independent scenarios), 0 violations -> PASS
+
+H-S2.1-01 (engineering) proven impossibility never contradicted: 0 unreachable cells, 0 with any realised worker kill -> PASS
+H-S2.1-02 (reported) unresolved (ability-dependent) cells: 1: L1-Z3|worker-mage realised 6 kills/h
+S2.1-E02 worker estimates by reliability (cells with realised kills):
+  approximate: 19 cells, median |error| 12.4%, max |error| 382.1%
+  unsafe: 13 cells, median |error| 422.2%, max |error| 903.0%
+  reliable: 2 cells, median |error| 0.0%, max |error| 0.1%
+  unresolved: 1 cells, median |error| 100%, max |error| 100%
+  classification counts: approximate 19, unsafe 14, reliable 2, unresolved 1
+
+C7 knockout diagnostic (S2.1-E03): 18 of 24 cells generate knockouts (p50 >= 1/h) -> informative
+  base|L1-Z2|squad-1: knockouts/h 34, hero deaths/h 0, kills/h 592
+  base|L1-Z2|squad-2: knockouts/h 12, hero deaths/h 0, kills/h 1146
+  base|L1-Z2|squad-3: knockouts/h 0, hero deaths/h 0, kills/h 1452
+  base|L1-Z3|squad-1: knockouts/h 8, hero deaths/h 6, kills/h 18
+  base|L1-Z3|squad-2: knockouts/h 6, hero deaths/h 6, kills/h 36
+  base|L1-Z3|squad-3: knockouts/h 52, hero deaths/h 6, kills/h 578
+  base|L5-Z2|squad-1: knockouts/h 10, hero deaths/h 0, kills/h 1134
+  base|L5-Z2|squad-2: knockouts/h 0, hero deaths/h 0, kills/h 1722
+  base|L5-Z2|squad-3: knockouts/h 0, hero deaths/h 0, kills/h 1966
+  base|L5-Z3|squad-1: knockouts/h 20, hero deaths/h 8, kills/h 204
+  base|L5-Z3|squad-2: knockouts/h 30, hero deaths/h 0, kills/h 828
+  base|L5-Z3|squad-3: knockouts/h 20, hero deaths/h 0, kills/h 1078
+  base-dmg2|L1-Z2|squad-1: knockouts/h 12, hero deaths/h 6, kills/h 112
+  base-dmg2|L1-Z2|squad-2: knockouts/h 24, hero deaths/h 0, kills/h 1104
+  base-dmg2|L1-Z2|squad-3: knockouts/h 0, hero deaths/h 0, kills/h 1452
+  base-dmg2|L1-Z3|squad-1: knockouts/h 6, hero deaths/h 6, kills/h 6
+  base-dmg2|L1-Z3|squad-2: knockouts/h 6, hero deaths/h 6, kills/h 18
+  base-dmg2|L1-Z3|squad-3: knockouts/h 8, hero deaths/h 6, kills/h 48
+  base-dmg2|L5-Z2|squad-1: knockouts/h 20, hero deaths/h 0, kills/h 1092
+  base-dmg2|L5-Z2|squad-2: knockouts/h 0, hero deaths/h 0, kills/h 1722
+  base-dmg2|L5-Z2|squad-3: knockouts/h 0, hero deaths/h 0, kills/h 1966
+  base-dmg2|L5-Z3|squad-1: knockouts/h 8, hero deaths/h 6, kills/h 42
+  base-dmg2|L5-Z3|squad-2: knockouts/h 44, hero deaths/h 0, kills/h 742
+  base-dmg2|L5-Z3|squad-3: knockouts/h 32, hero deaths/h 0, kills/h 1034
+
+wrote results/s2.1/analysis.json

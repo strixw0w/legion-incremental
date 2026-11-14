@@ -1,0 +1,11 @@
+2026-11-13T22:15:33Z d7b99c07302d657d manifests/s2/S2-E00-control-a0.json
+2026-11-13T22:15:33Z 1f2b6f01c15e2fde manifests/s2/S2-E01-deploy-scaling.json
+2026-11-13T22:15:33Z 02ad2d3f4702657d manifests/s2/S2-E02-hero-damage-share.json
+2026-11-13T22:15:33Z 9c5055132290d80e manifests/s2/S2-E04-class-switch-abuse.json
+2026-11-13T22:15:33Z 53807463b09c637c manifests/s2/S2-E05-squad-vs-workers.json
+2026-11-13T22:15:33Z b433a0b06b5ddd11 manifests/s2/S2-E06-assignment-switching.json
+2026-11-13T22:15:33Z c3f4bf71bcff2c15 manifests/s2/S2-E07-knockout-sensitivity.json
+2026-11-13T22:15:33Z f2519f9195cffa97 manifests/s2/S2-E08-first-recruit-timing.json
+2026-11-13T22:15:33Z 0ee1b60ddd808113 manifests/s2/S2-E09-hindsight-search.json
+2026-11-13T22:15:33Z 383926bb5e957ac4 manifests/s2/S2-E10-estimator-vs-realisation.json
+plan document unchanged: f4d70eed1b6ed80c

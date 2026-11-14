@@ -33,6 +33,19 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
   - **Absorbing Markov chain and renewal–reward rate** (estimator v1.1 survival chain): textbook expected-value recursions over "hits left", written from `spec/formulas/estimator.md` v1.1.
   - **Persistent (immutable, shared-tail) linked list** for the committed kill-credit history: textbook.
 
+- **L1 (persistent ledger):**
+  - **AVL tree** (Adelson-Velsky and Landis, 1962) with **path copying** for persistence (Driscoll, Sarnak, Sleator and Tarjan, "Making data structures persistent", 1989): textbook algorithms written from their definitions (`src/core/ledger/persistentMap.ts`). No library or project code was copied; the S1 HAMT prototype was not adopted.
+  - **FNV-1a 32-bit** (Fowler, Noll, Vo; public domain) appears only in a test, to brute-force colliding keys and show the tree is unaffected by hash collisions.
+- **S2 (legion engine):**
+  - **No code copied.** The engine generalises this lab's own S1.1 stepper; the squad estimator is an expected-rate (renewal) approximation written from `planning/S2_SPECIFICATION.md` §9; the structural impossibility check is an elementary upper bound.
+  - **ORC2-SEARCH** is a bounded rollout search (fork, simulate each candidate for a horizon, keep the best): a generic technique, written for this lab.
+  - **The S2 oracle** (`spec/oracle/s2_oracle.py`) was written from `spec/formulas/s2-legion.md`, not from the TypeScript.
+
+- **S2.1:**
+  - **Exact conservation** uses JavaScript's built-in BigInt (arbitrary-precision integers).
+  - **The ability-aware feasibility bound** is an elementary upper bound written for this lab.
+  - No code was copied.
+
 ## Dependencies (exact versions; full tree in `package-lock.json`)
 - **Runtime:** `zod` 4.6.7 (MIT).
 - **Development:** `typescript` 7.0.2 (Apache-2.0), `vitest` 4.1.12 (MIT), `fast-check` 4.10.2 (MIT), `@types/node` 24.19.2 (MIT).

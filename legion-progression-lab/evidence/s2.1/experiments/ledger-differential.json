@@ -1,0 +1,388 @@
+{
+  "implementations": [
+    "reference",
+    "persistent"
+  ],
+  "seeds": 50,
+  "opsPerSeed": 20000,
+  "compareEvery": 500,
+  "extremes": true,
+  "reconstruct": true,
+  "totalOperations": 1000000,
+  "contentComparisons": 2000,
+  "reconstructions": 4000,
+  "mismatches": [],
+  "opCounts": {
+    "multi": 100207,
+    "extreme": 49839,
+    "conflict": 80448,
+    "debit": 150405,
+    "credit": 309327,
+    "branch": 59876,
+    "invalid": 39875,
+    "overflow": 30004,
+    "replay": 99697,
+    "reserve": 80322
+  },
+  "outcomeCounts": {
+    "NEGATIVE_BALANCE": 49271,
+    "ok": 753345,
+    "INVALID_TX": 45151,
+    "NUMERIC_LIMIT": 73339,
+    "TX_CONFLICT": 9357,
+    "replayed": 9661
+  },
+  "wallMs": 7938,
+  "runs": [
+    {
+      "seed": 1,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 256,
+      "ms": 2131
+    },
+    {
+      "seed": 2,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 17,
+      "ms": 2704
+    },
+    {
+      "seed": 3,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 103,
+      "ms": 2102
+    },
+    {
+      "seed": 4,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 17,
+      "ms": 2116
+    },
+    {
+      "seed": 5,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 66,
+      "ms": 2734
+    },
+    {
+      "seed": 6,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 401,
+      "ms": 1651
+    },
+    {
+      "seed": 7,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1842,
+      "ms": 2331
+    },
+    {
+      "seed": 8,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 108,
+      "ms": 2596
+    },
+    {
+      "seed": 9,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1283,
+      "ms": 2525
+    },
+    {
+      "seed": 10,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 772,
+      "ms": 1882
+    },
+    {
+      "seed": 11,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 924,
+      "ms": 1362
+    },
+    {
+      "seed": 12,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 640,
+      "ms": 1854
+    },
+    {
+      "seed": 13,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 116,
+      "ms": 1840
+    },
+    {
+      "seed": 14,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 655,
+      "ms": 1919
+    },
+    {
+      "seed": 15,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 202,
+      "ms": 2315
+    },
+    {
+      "seed": 16,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1482,
+      "ms": 1684
+    },
+    {
+      "seed": 17,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1886,
+      "ms": 2013
+    },
+    {
+      "seed": 18,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 867,
+      "ms": 1603
+    },
+    {
+      "seed": 19,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 329,
+      "ms": 1644
+    },
+    {
+      "seed": 20,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 553,
+      "ms": 2134
+    },
+    {
+      "seed": 21,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1194,
+      "ms": 1886
+    },
+    {
+      "seed": 22,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 400,
+      "ms": 2485
+    },
+    {
+      "seed": 23,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 810,
+      "ms": 1586
+    },
+    {
+      "seed": 24,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 206,
+      "ms": 1463
+    },
+    {
+      "seed": 25,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 760,
+      "ms": 1896
+    },
+    {
+      "seed": 26,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 5,
+      "ms": 2563
+    },
+    {
+      "seed": 27,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1489,
+      "ms": 1986
+    },
+    {
+      "seed": 28,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1054,
+      "ms": 1619
+    },
+    {
+      "seed": 29,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 992,
+      "ms": 2300
+    },
+    {
+      "seed": 30,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 245,
+      "ms": 1974
+    },
+    {
+      "seed": 31,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 700,
+      "ms": 3123
+    },
+    {
+      "seed": 32,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 983,
+      "ms": 1445
+    },
+    {
+      "seed": 33,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1099,
+      "ms": 1689
+    },
+    {
+      "seed": 34,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 180,
+      "ms": 2205
+    },
+    {
+      "seed": 35,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 27,
+      "ms": 1514
+    },
+    {
+      "seed": 36,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 160,
+      "ms": 1932
+    },
+    {
+      "seed": 37,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1860,
+      "ms": 1478
+    },
+    {
+      "seed": 38,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 799,
+      "ms": 1380
+    },
+    {
+      "seed": 39,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 216,
+      "ms": 1570
+    },
+    {
+      "seed": 40,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 673,
+      "ms": 1430
+    },
+    {
+      "seed": 41,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 98,
+      "ms": 1705
+    },
+    {
+      "seed": 42,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 287,
+      "ms": 1885
+    },
+    {
+      "seed": 43,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 288,
+      "ms": 1968
+    },
+    {
+      "seed": 44,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 321,
+      "ms": 1987
+    },
+    {
+      "seed": 45,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 670,
+      "ms": 1648
+    },
+    {
+      "seed": 46,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 107,
+      "ms": 916
+    },
+    {
+      "seed": 47,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 294,
+      "ms": 903
+    },
+    {
+      "seed": 48,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1049,
+      "ms": 1054
+    },
+    {
+      "seed": 49,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 450,
+      "ms": 763
+    },
+    {
+      "seed": 50,
+      "steps": 20000,
+      "mismatches": 0,
+      "finalCommitted": 1323,
+      "ms": 1061
+    }
+  ]
+}

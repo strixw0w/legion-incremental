@@ -1,0 +1,811 @@
+{
+  "schema": "legion.s2.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S2-E04-class-switch-abuse",
+  "manifestSha256": "9c5055132290d80eef8ea12a9a982a1548425092244537931000c4ba384d23f2",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variantContent": {
+    "a10-p1.6-g100": {
+      "contentHash": "5e2023572707ffa3faf87da8ac44219bb26203894a182930e4d94212b374a53b",
+      "tableHash": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc",
+      "legionContentHash": "1bd654be5fc6ae6366faf34a7070dee5530e9ce48e4c5c485699aff86619d63f"
+    }
+  },
+  "seeds": {
+    "root": "S2-E04",
+    "replicates": 100
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "a10-p1.6-g100|L50|cycles-1|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "c397c8244f70c4a65815ba607219533aec7b537d23c1ba465928ace8dac032b0",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 60,
+          "p50": 60,
+          "p90": 60,
+          "mean": 60,
+          "min": 60,
+          "max": 60
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "a10-p1.6-g100|L50|cycles-1|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "c6b0ecc3c5a16ac6651f438be4781f1745419cf4f216f9124660ceacda21b33a",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2910,
+          "p50": 2910,
+          "p90": 2910,
+          "mean": 2910,
+          "min": 2910,
+          "max": 2910
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1200,
+          "p50": 1200,
+          "p90": 1200,
+          "mean": 1200,
+          "min": 1200,
+          "max": 1200
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1200,
+          "p50": 1200,
+          "p90": 1200,
+          "mean": 1200,
+          "min": 1200,
+          "max": 1200
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5,
+          "p50": 5,
+          "p90": 5,
+          "mean": 5,
+          "min": 5,
+          "max": 5
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "a10-p1.6-g100|L50|cycles-5|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "d03873faba3ae1ef843722eba45ccdf5deb54e90e84d36fcd73424fb6b11149a",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1600,
+          "p50": 1600,
+          "p90": 1600,
+          "mean": 1600,
+          "min": 1600,
+          "max": 1600
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 300,
+          "p50": 300,
+          "p90": 300,
+          "mean": 300,
+          "min": 300,
+          "max": 300
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 20,
+          "mean": 20,
+          "min": 20,
+          "max": 20
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 20,
+          "mean": 20,
+          "min": 20,
+          "max": 20
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "a10-p1.6-g100|L50|cycles-5|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "c2a060b01049b00c7272827534101cbbd34f3ece49ec7254c5fadb844ca617a8",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1600,
+          "p50": 1600,
+          "p90": 1600,
+          "mean": 1600,
+          "min": 1600,
+          "max": 1600
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 9230,
+          "p50": 9230,
+          "p90": 9230,
+          "mean": 9230,
+          "min": 9230,
+          "max": 9230
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3760,
+          "p50": 3760,
+          "p90": 3760,
+          "mean": 3760,
+          "min": 3760,
+          "max": 3760
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3760,
+          "p50": 3760,
+          "p90": 3760,
+          "mean": 3760,
+          "min": 3760,
+          "max": 3760
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 15,
+          "p50": 15,
+          "p90": 15,
+          "mean": 15,
+          "min": 15,
+          "max": 15
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 20,
+          "mean": 20,
+          "min": 20,
+          "max": 20
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 20,
+          "mean": 20,
+          "min": 20,
+          "max": 20
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "a10-p1.6-g100|L50|cycles-20|no-train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "cd582ad99b74d66d9f6fd96fb459667968affaf91950e80a4f8c7fcb92c5142c",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 7600,
+          "p50": 7600,
+          "p90": 7600,
+          "mean": 7600,
+          "min": 7600,
+          "max": 7600
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1200,
+          "p50": 1200,
+          "p90": 1200,
+          "mean": 1200,
+          "min": 1200,
+          "max": 1200
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 80,
+          "p50": 80,
+          "p90": 80,
+          "mean": 80,
+          "min": 80,
+          "max": 80
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 80,
+          "p50": 80,
+          "p90": 80,
+          "mean": 80,
+          "min": 80,
+          "max": 80
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "a10-p1.6-g100|L50|cycles-20|train",
+      "kind": "switch-abuse",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "9aaba91438e95e1b3fb2b9f71881a264898a2d713d9e090c966e304c0b02ff79",
+      "metrics": {
+        "goldSpent": {
+          "n": 100,
+          "reached": 100,
+          "p10": 7600,
+          "p50": 7600,
+          "p90": 7600,
+          "mean": 7600,
+          "min": 7600,
+          "max": 7600
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 32930,
+          "p50": 32930,
+          "p90": 32930,
+          "mean": 32930,
+          "min": 32930,
+          "max": 32930
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "legionExpTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 13360,
+          "p50": 13360,
+          "p90": 13360,
+          "mean": 13360,
+          "min": 13360,
+          "max": 13360
+        },
+        "masteryMinusCombatExp": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "masteryTotal": {
+          "n": 100,
+          "reached": 100,
+          "p10": 13360,
+          "p50": 13360,
+          "p90": 13360,
+          "mean": 13360,
+          "min": 13360,
+          "max": 13360
+        },
+        "recordsSum": {
+          "n": 100,
+          "reached": 100,
+          "p10": 26,
+          "p50": 26,
+          "p90": 26,
+          "mean": 26,
+          "min": 26,
+          "max": 26
+        },
+        "switchesAccepted": {
+          "n": 100,
+          "reached": 100,
+          "p10": 80,
+          "p50": 80,
+          "p90": 80,
+          "mean": 80,
+          "min": 80,
+          "max": 80
+        },
+        "switchesRequested": {
+          "n": 100,
+          "reached": 100,
+          "p10": 80,
+          "p50": 80,
+          "p90": 80,
+          "mean": 80,
+          "min": 80,
+          "max": 80
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-05",
+      "statement": "No mastery from switching without training",
+      "source": "owner S2 authorisation section 8, D-05",
+      "metric": "masteryTotal",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "EXP",
+      "role": "engineering",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|L50|cycles-1|no-train",
+          "a10-p1.6-g100|L50|cycles-5|no-train",
+          "a10-p1.6-g100|L50|cycles-20|no-train"
+        ]
+      },
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S2-05",
+      "statement": "No account class record from switching without training",
+      "source": "owner S2 authorisation section 8, R-A5",
+      "metric": "recordsSum",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "levels",
+      "role": "engineering",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|L50|cycles-1|no-train",
+          "a10-p1.6-g100|L50|cycles-5|no-train",
+          "a10-p1.6-g100|L50|cycles-20|no-train"
+        ]
+      },
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S2-05",
+      "statement": "With training, mastery never exceeds the combat EXP earned (only the held class gains)",
+      "source": "owner S2 authorisation section 8",
+      "metric": "masteryMinusCombatExp",
+      "stat": "max",
+      "op": "<=",
+      "value": 0,
+      "unit": "EXP",
+      "role": "engineering",
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|train",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering",
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-1|train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-5|train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|no-train",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L50|cycles-20|train",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "invariants": {
+      "runs": 600,
+      "checks": 4663000,
+      "violations": 0,
+      "first": []
+    }
+  }
+}

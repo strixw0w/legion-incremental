@@ -1,0 +1,132 @@
+{
+  "experimentId": "S2-E09-hindsight-search",
+  "increment": "S2",
+  "question": "With hindsight and a bounded budget, how much better than the realistic policies can a squad / worker / zone plan do, per objective?",
+  "design": "ORC2-SEARCH for each objective (hero EXP, legion EXP, gold held, conquest) against POL2-SQUAD, POL2-WORKERS and POL2-MIXED on the same seeds, PR-BAL, 50 replicates. Budget per decision: 12 candidates (3 modes x frontier or a fixed zone), horizon 10 min, at most 360 forks per run, decisions at most once per minute.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "objective": "heroExp",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 12,
+        "maxForksPerRun": 360,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "objective": "legionExp",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 12,
+        "maxForksPerRun": 360,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "objective": "gold",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 12,
+        "maxForksPerRun": 360,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+      "kind": "search",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "objective": "conquest",
+      "budget": {
+        "horizonMs": 600000,
+        "maxForksPerDecision": 12,
+        "maxForksPerRun": 360,
+        "minDecisionGapMs": 60000
+      }
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-SQUAD",
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-WORKERS",
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-MIXED",
+      "legion": true
+    }
+  ],
+  "seeds": {
+    "root": "S2-E09",
+    "replicates": 50
+  },
+  "metrics": [
+    "expTotal",
+    "legionExpTotal",
+    "goldHeld",
+    "conquestScore",
+    "searchForks",
+    "searchDecisions",
+    "searchBudgetExhausted",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "The search uses hidden information (future random draws). It reports the best feasible outcome found within its budget, never a proven optimum or an upper bound (B4)."
+  ]
+}

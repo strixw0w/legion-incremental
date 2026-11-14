@@ -1,0 +1,3 @@
+2026-11-13T23:07:48Z 5ed8366ec99c2562 manifests/s2.1/S2.1-E02-worker-estimator.json
+2026-11-13T23:07:48Z 0def5e9ce79cdefb manifests/s2.1/S2.1-E03-knockout-diagnostic.json
+S2 manifests unchanged for the audit: 10 / 10

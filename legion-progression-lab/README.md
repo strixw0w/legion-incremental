@@ -2,7 +2,7 @@
 
 The Legion Incremental progression lab: a calculator, without a screen, that will play out hypothetical players' progress so balance ideas can be tested before they reach Roblox. It is deterministic (same inputs, same answers), and every number carries a label saying where it came from.
 
-**Accepted checkpoint: S1** (`s1-checkpoint`). It holds S1, a single classless hero in zones 1–3 as a diagnostic simulation, together with the S1.1 correction pass and its acceptance addendum. Next: the L1 ledger and S2 (recruits and squads), as authorised by the owner.
+**Accepted checkpoint: S1** (`s1-checkpoint`). It holds S1, a single classless hero in zones 1–3 as a diagnostic simulation, together with the S1.1 correction pass and its acceptance addendum. **In review (not accepted, not committed): L1, S2 and the S2.1 acceptance pass** (`evidence/s2.1/S2_1_EVIDENCE.md`). L1 adds a structurally shared persistent ledger (`evidence/l1/L1_REPORT.md`). S2 adds the legion: recruits, squads, classes, mastery, talents, abilities, knockouts and independent workers (`evidence/s2/S2_EVIDENCE.md`).
 
 Every coefficient is `candidate`, which means invented for testing and not approved. Every result is model output, not live-validated.
 
@@ -27,6 +27,7 @@ Every coefficient is `candidate`, which means invented for testing and not appro
 | `content/` | Candidate content packs (S0 core, S1 W1 slice) and integer XP table artifacts | — |
 | `manifests/s1/` | S1 manifests and hash register (historical; run by the S1 implementation only) | — |
 | `manifests/s1.1/` | Pre-registered S1.1 regression and experiment plan, manifests and hash register | — |
+| `manifests/s2/` | Pre-registered S2 plan, manifests and hash register | `planning/S2_SPECIFICATION.md` |
 | `repro/s1.1/` | Defect reproductions, run against the original S1 package or this tree (`defects.mjs`), and the pre-registered analyses (`analyse.py`) | — |
 
 ## Commands
@@ -50,6 +51,9 @@ npm run exp:verify -- manifests/s1.1/S1.1-E01-base-attribution.json # re-run and
 npm run bench:ledger    # staged ledger benchmark (budgets in manifests/s1/PREREGISTRATION.md)
 node repro/s1.1/defects.mjs .          # S1.1 defect reproductions against this tree (or pass the S1 package's lab folder)
 python -I repro/s1.1/analyse.py .      # S1.1 pre-registered analyses A1-A8
+node src/cli/exp2.ts manifests/s2/S2-E05-squad-vs-workers.json            # run a pre-registered S2 experiment (L1 ledger)
+node src/cli/exp2.ts manifests/s2/S2-E05-squad-vs-workers.json --verify   # re-run and compare the fingerprint
+node src/cli/s2-analyse.ts             # S2 pre-registered analyses B0-B6
 ```
 
 **Re-verifying results.** `exp:verify` compares a re-run with the fingerprint stored in `results/s1.1/<id>/fingerprint.txt`. `results/` is not in Git. In a fresh copy, first copy the recorded results from `evidence/s1.1/experiments/` into `results/s1.1/`; otherwise there is nothing to compare against, and it reports `MISMATCH` against "(none)".
@@ -72,4 +76,6 @@ If PowerShell refuses to run `npm`, use `npm.cmd`.
 - `evidence/s0/`, `evidence/s0.1/`, `evidence/s0.1-final/`, `evidence/s0-checkpoint/`;
 - `evidence/s1/` (S1, historical);
 - `evidence/s1.1/` (S1.1);
-- `evidence/s1.1-addendum/` (the S1.1 acceptance addendum).
+- `evidence/s1.1-addendum/` (the S1.1 acceptance addendum);
+- `evidence/l1/` (L1 ledger, in review);
+- `evidence/s2/` (S2, in review).

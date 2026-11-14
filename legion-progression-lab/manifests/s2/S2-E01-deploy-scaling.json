@@ -1,0 +1,495 @@
+{
+  "experimentId": "S2-E01-deploy-scaling",
+  "increment": "S2",
+  "question": "How do deploying 0, 1, 2 or 3 recruits change progression, legion EXP and the hero damage share?",
+  "design": "Realistic POL2 with at most k deployed (k = 0..3, undeployed recruits idle so only deployment varies), PR-BAL and PR-OPT; plus frozen-level matched cells (all level 10, zone 2, Archer hero, mixed Warrior / Archer / Mage recruits, 30 min). 100 replicates.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 0,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 1,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 2,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 3,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 0,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 1,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 2,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-OPT",
+      "policy": "POL2-SQUAD",
+      "over": {
+        "maxDeploy": 3,
+        "extras": "idle"
+      },
+      "legion": true
+    },
+    {
+      "id": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "S2-E01",
+    "replicates": 100
+  },
+  "metrics": [
+    "firstRecruitMin",
+    "recruit2Min",
+    "recruit3Min",
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "levelAt45",
+    "levelAt60",
+    "expTotal",
+    "legionExpTotal",
+    "legionExpPerHour",
+    "heroDamageShare",
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "goldPerHour",
+    "invariantViolations",
+    "killsPerHour"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-01",
+      "statement": "First recruit in 2-5 active minutes",
+      "source": "R03.03",
+      "metric": "firstRecruitMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        2,
+        5
+      ],
+      "unit": "min",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-01",
+      "statement": "First kill within 30 s for a newcomer",
+      "source": "R10.10",
+      "metric": "firstKillS",
+      "stat": "p90",
+      "op": "<=",
+      "value": 30,
+      "unit": "s",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-02",
+      "statement": "Level 2 after 1-3 kills",
+      "source": "Bible section 10",
+      "metric": "killsToL2",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        1,
+        3
+      ],
+      "unit": "kills",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-03a",
+      "statement": "On-tier early TTK 2-5 s: zone 1 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ1FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        2,
+        5
+      ],
+      "unit": "s",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-03b",
+      "statement": "On-tier early TTK 2-5 s: zone 2 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ2FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        2,
+        5
+      ],
+      "unit": "s",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-04",
+      "statement": "Harder enemy TTK 5-15 s: zone 3 at first visit",
+      "source": "R02.14",
+      "metric": "ttkZ3FirstVisitS",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        5,
+        15
+      ],
+      "unit": "s",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-05",
+      "statement": "First new zone first-visited in 5-10 active min",
+      "source": "R06.08, N-11",
+      "metric": "zone2FirstVisitMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        5,
+        10
+      ],
+      "unit": "min",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-06",
+      "statement": "Zone 2->3 takes longer than zone 1->2 (ratio of first-visit intervals)",
+      "source": "R06.08",
+      "metric": "gate23Over12Ratio",
+      "stat": "p50",
+      "op": ">",
+      "value": 1,
+      "unit": "ratio",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-07a",
+      "statement": "Level 5 in 3-5 min (single-hero target; recruits change this)",
+      "source": "Bible section 10",
+      "metric": "minToL5",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        3,
+        5
+      ],
+      "unit": "min",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S1-07b",
+      "statement": "Level 10 in 10-20 min (single-hero target; recruits change this)",
+      "source": "Bible section 10",
+      "metric": "minToL10",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        10,
+        20
+      ],
+      "unit": "min",
+      "role": "reported",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+          "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3"
+        ]
+      }
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "deploy-0 still recruits (all idle): it shows the hero alone in the S2 engine with S2 spending on."
+  ]
+}

@@ -18,7 +18,11 @@
         "gates",
         "rewards",
         "credits",
-        "estimator"
+        "estimator",
+        "squad-fight",
+        "legion-credit",
+        "worker-feasibility",
+        "ledger-reconstruction"
       ]
     },
     "fixtureVersion": {

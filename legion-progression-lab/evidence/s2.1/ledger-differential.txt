@@ -1,0 +1,6 @@
+differential: 1000000 operations over 50 seeds, 2000 full-content comparisons, 4000 reconstructions, 0 mismatches (7938 ms)
+operations: {"multi":100207,"extreme":49839,"conflict":80448,"debit":150405,"credit":309327,"branch":59876,"invalid":39875,"overflow":30004,"replay":99697,"reserve":80322}
+outcomes: {"NEGATIVE_BALANCE":49271,"ok":753345,"INVALID_TX":45151,"NUMERIC_LIMIT":73339,"TX_CONFLICT":9357,"replayed":9661}
+exit 0
+# Coverage of near-limit turnover (10 seeds, generator with extremes, persistent ledger alone): accepted near-limit transactions, and final ledgers whose canonical-order partial sums leave the safe-integer range (the S2 refusal condition)
+{"seeds":10,"acceptedExtremeTransactions":3320,"finalLedgersWhoseCanonicalOrderPartialSumsLeaveTheSafeRange":10}

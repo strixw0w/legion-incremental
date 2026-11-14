@@ -1,0 +1,9 @@
+Frozen simulator, Original v1 archive and old workspace check after S2 (2026-11-13T22:43:59Z)
+Frozen workspace files: 3012 (M0: 3012)
+path/size/mtime list vs M0 start: IDENTICAL
+content SHA-256 list vs M0 start: IDENTICAL
+combined fingerprint: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d (M0: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d)
+frozen HEAD: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; Original v1 working files: 12 (M0: 12)
+archive master 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; archive/increment6-original-v1 8d80a440d9818c961713b767f696764b3f18db66; remotes 0
+old Legion workspace: 16 files IDENTICAL to the copy-time hashes
+All git reads used GIT_OPTIONAL_LOCKS=0; nothing was written to these locations.

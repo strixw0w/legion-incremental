@@ -1,0 +1,21 @@
+{
+  "planRegisteredAt": "2026-11-13T23:06:49Z",
+  "note": "S2.1 plan registered before any corrected comparison ran. Manifests are added with their own registeredAt before they run; the runner refuses unregistered or changed manifests. The S2.1-E01 audit re-runs the registered S2 manifests unchanged (manifests/s2/preregistration.json).",
+  "document": {
+    "path": "manifests/s2.1/PREREGISTRATION.md",
+    "sha256": "0bb0748ddba4efb0a25e8df16efb0d81d043099cf4dde56a4ba8dfa6b7f52471"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s2.1/S2.1-E02-worker-estimator.json",
+      "sha256": "5ed8366ec99c256250992afed9249b693bd3136e276e1faaf74c579cc1e8430e",
+      "registeredAt": "2026-11-13T23:07:48Z"
+    },
+    {
+      "path": "manifests/s2.1/S2.1-E03-knockout-diagnostic.json",
+      "sha256": "0def5e9ce79cdefbc7fd3cd4570caa1ad224a42a21ea3b09450452a9a8bccb73",
+      "registeredAt": "2026-11-13T23:07:48Z"
+    }
+  ],
+  "amendments": []
+}

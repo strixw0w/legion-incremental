@@ -1,0 +1,778 @@
+{
+  "fixtureSet": "legion-credit",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s2-legion.md#v1",
+  "status": "candidate",
+  "independence": "Multi-character credit identity (spec/formulas/s2-legion.md v1 section 3) re-derived by spec/oracle/s2_oracle.py: pending claims with their eligible sets, classification before any draw, one reward roll per accepted credit on the stream's own generator (independent RNG of rng_oracle.py), full EXP to every eligible character, mastery to the held class. The lab side uses engine/legionCredit.ts, engine/rewards.ts and the engine's awardEligible. Outcome lists, EXP and mastery are also derived by hand.",
+  "cases": [
+    {
+      "id": "s2.credit.squad-full-exp.001",
+      "kind": "normal",
+      "description": "one squad credit: every eligible character gets the full 4 EXP; one reward roll on the account stream",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:1",
+              "rec:2"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited"
+        ],
+        "exp": {
+          "hero": 4,
+          "rec:1": 4,
+          "rec:2": 4
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 4,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1,
+          "res.mat.slime_gel": 1
+        },
+        "lootDraws": {
+          "squad": 2
+        },
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "outcomes [credited]; exp 4 each; mastery rec:1 warrior 4 (hero and rec:2 classless: none); gold 1; 2 loot draws on squad; 1 kill"
+    },
+    {
+      "id": "s2.credit.duplicate.001",
+      "kind": "failure",
+      "description": "an exact duplicate credit is a replay: nothing twice, no draw",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:1"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "CREDIT_REPLAYED"
+        ],
+        "exp": {
+          "hero": 4,
+          "rec:1": 4,
+          "rec:2": 0
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 4,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1,
+          "res.mat.slime_gel": 1
+        },
+        "lootDraws": {
+          "squad": 2
+        },
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "outcomes [credited, CREDIT_REPLAYED]; exp 4 for hero and rec:1, 0 for rec:2; 2 draws"
+    },
+    {
+      "id": "s2.credit.stream-conflict.001",
+      "kind": "failure",
+      "description": "the same encounter claimed by another stream is a conflict, before and after the genuine credit",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:1"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "worker:rec:1"
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "worker:rec:1"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "CREDIT_CONFLICT",
+          "credited",
+          "CREDIT_CONFLICT"
+        ],
+        "exp": {
+          "hero": 4,
+          "rec:1": 4,
+          "rec:2": 0
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 4,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1,
+          "res.mat.slime_gel": 1
+        },
+        "lootDraws": {
+          "squad": 2
+        },
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "outcomes [CREDIT_CONFLICT, credited, CREDIT_CONFLICT]; one roll"
+    },
+    {
+      "id": "s2.credit.worker-stream.001",
+      "kind": "normal",
+      "description": "a worker kill gives EXP to the worker only and rolls on the worker loot stream",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "w:rec:1:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "worker:rec:1",
+            "eligible": [
+              "rec:1"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "w:rec:1:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "worker:rec:1"
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:2"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "credited"
+        ],
+        "exp": {
+          "hero": 4,
+          "rec:1": 4,
+          "rec:2": 4
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 4,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 2
+        },
+        "totals": {
+          "res.gold": 2,
+          "res.mat.slime_gel": 2
+        },
+        "lootDraws": {
+          "squad": 2,
+          "worker:rec:1": 2
+        },
+        "committed": 2,
+        "pending": 0
+      },
+      "derivation": "rec:1 4 EXP (warrior mastery 4) from the worker kill; hero and rec:2 4 EXP from the squad kill; 2 draws on each stream; 2 kills"
+    },
+    {
+      "id": "s2.credit.class-switch.001",
+      "kind": "boundary",
+      "description": "mastery follows the class held at each credit; switching moves none",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:1"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          },
+          {
+            "op": "class",
+            "id": "rec:1",
+            "cls": "archer"
+          },
+          {
+            "op": "kill",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero",
+              "rec:1"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:2",
+            "instanceId": "z1#2",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited",
+          "credited"
+        ],
+        "exp": {
+          "hero": 8,
+          "rec:1": 8,
+          "rec:2": 0
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 4,
+            "archer": 4,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 2
+        },
+        "totals": {
+          "res.gold": 2,
+          "res.mat.slime_gel": 1
+        },
+        "lootDraws": {
+          "squad": 4
+        },
+        "committed": 2,
+        "pending": 0
+      },
+      "derivation": "rec:1 exp 8; mastery warrior 4, archer 4, mage 0"
+    },
+    {
+      "id": "s2.credit.partial-eligibility.001",
+      "kind": "boundary",
+      "description": "a character missing from the eligible set (knocked out before the kill) gets nothing",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "kill",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad",
+            "eligible": [
+              "hero"
+            ]
+          },
+          {
+            "op": "credit",
+            "encounterId": "enc:1",
+            "instanceId": "z1#1",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "credited"
+        ],
+        "exp": {
+          "hero": 4,
+          "rec:1": 0,
+          "rec:2": 0
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {
+          "1": 1
+        },
+        "totals": {
+          "res.gold": 1,
+          "res.mat.slime_gel": 1
+        },
+        "lootDraws": {
+          "squad": 2
+        },
+        "committed": 1,
+        "pending": 0
+      },
+      "derivation": "hero 4, rec:1 0, rec:2 0; mastery all 0"
+    },
+    {
+      "id": "s2.credit.unknown.001",
+      "kind": "failure",
+      "description": "a credit for an encounter that never ended is unknown",
+      "input": {
+        "seedRoot": "fx-legion-credit",
+        "enemies": {
+          "1": {
+            "exp": 4,
+            "gold": 1,
+            "drops": [
+              {
+                "resourceId": "res.mat.slime_gel",
+                "chanceBp": 3000,
+                "qty": 1
+              },
+              {
+                "resourceId": "res.rare.test_token",
+                "chanceBp": 20,
+                "qty": 1
+              }
+            ]
+          }
+        },
+        "characters": [
+          {
+            "id": "hero",
+            "cls": null
+          },
+          {
+            "id": "rec:1",
+            "cls": "warrior"
+          },
+          {
+            "id": "rec:2",
+            "cls": null
+          }
+        ],
+        "events": [
+          {
+            "op": "credit",
+            "encounterId": "enc:9",
+            "instanceId": "z1#9",
+            "zoneOrder": 1,
+            "boss": false,
+            "stream": "squad"
+          }
+        ]
+      },
+      "expected": {
+        "outcomes": [
+          "CREDIT_UNKNOWN"
+        ],
+        "exp": {
+          "hero": 0,
+          "rec:1": 0,
+          "rec:2": 0
+        },
+        "mastery": {
+          "hero": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:1": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          },
+          "rec:2": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "kills": {},
+        "totals": {},
+        "lootDraws": {},
+        "committed": 0,
+        "pending": 0
+      },
+      "derivation": "outcomes [CREDIT_UNKNOWN]; nothing else"
+    }
+  ]
+}

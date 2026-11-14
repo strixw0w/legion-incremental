@@ -1,0 +1,623 @@
+{
+  "experimentId": "S2.1-E03-knockout-diagnostic",
+  "increment": "S2.1",
+  "question": "Do matched squads at low levels in harder zones generate knockouts, so that knockout rules can be studied (S3 matrix calibration)?",
+  "design": "Matched squads, frozen levels 1 and 5, zones 2 and 3, squads of 1 / 2 / 3 (Warrior, Archer, Mage), enemy damage x1 and x2; the realistic fixed-zone squad logic (rests, respects stops), passive hero (Archer from level 5, classless at level 1); 30 min, 100 replicates.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "enemyDamageScale": 2
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L1-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L5-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 1,
+      "heroClass": null,
+      "recruits": [
+        {
+          "level": 1,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 1,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "minutes": 30,
+      "zone": 3,
+      "heroLevel": 5,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 5,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 5,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    }
+  ],
+  "seeds": {
+    "root": "S2.1-E03",
+    "replicates": 100
+  },
+  "metrics": [
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "killsPerHour",
+    "legionExpPerHour",
+    "heroDamageShare",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2.1-03",
+      "statement": "The cell generates knockouts (threshold fixed before running)",
+      "source": "S2.1 pre-registration section 3",
+      "metric": "memberKnockoutsPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "value": 1,
+      "unit": "knockouts per hour",
+      "role": "diagnostic"
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor (I1-I9) finds no violation",
+      "source": "owner S2 authorisation section 7; S2.1 section 8",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. No content, coefficient, target or policy parameter changed in S2.1.",
+    "Engine: S2 with the S2.1 corrections (worker access requires a visited zone; ability-aware worker classification; exact ledger reconstruction; reserve swaps outside encounters; monitor I9).",
+    "The hero starts in, and farms, the cell zone, so the zone is visited; workers work in that zone.",
+    "The diagnostic is informative if at least 12 of the 24 cells pass H-S2.1-03 (analysis C7). The hero is classless at level 1 because a class needs level 5."
+  ]
+}

@@ -34,9 +34,12 @@ const flag = (name: string): string | undefined => {
   const i = args.indexOf(name);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const manifestRel = (args.find((a) => !a.startsWith('--') && a !== flag('--workers')) ?? '').replace(/\\/g, '/');
+const manifestRel = (args.find((a) => !a.startsWith('--') && a !== flag('--workers') && a !== flag('--ledger')) ?? '').replace(/\\/g, '/');
 const workerCount = Math.max(1, Number(flag('--workers') ?? Math.min(15, cpus().length - 1)));
 const verify = args.includes('--verify');
+// L1: run on another ledger implementation (recorded in environment.json; never part of the semantic result).
+const ledgerImpl = (flag('--ledger') ?? 'reference') as 'reference' | 'persistent';
+if (ledgerImpl !== 'reference' && ledgerImpl !== 'persistent') throw new Error(`unknown --ledger ${String(ledgerImpl)}`);
 
 function refuse(message: string): never {
   console.error(`REFUSED: ${message}`);
@@ -77,7 +80,7 @@ const jobsFor = (seedRoot: string): Job[] => {
   for (const cell of cells) {
     for (let i = 0; i < reps; i += 1) {
       const seed = manifest.seeds.perCell === true ? `${seedRoot}#cell-${cell.index}#rep-${i}` : `${seedRoot}#rep-${i}`;
-      const common = { cell: cell.index, replicate: i, seedRoot: seed, variant: cell.variant, estimator: (cell.estimator ?? 's1.1') as EstimatorVersion };
+      const common = { cell: cell.index, replicate: i, seedRoot: seed, variant: cell.variant, estimator: (cell.estimator ?? 's1.1') as EstimatorVersion, ...(ledgerImpl !== 'reference' ? { ledger: ledgerImpl } : {}) };
       if (manifest.kind === 'campaign' || manifest.kind === 'determinism') {
         jobs.push({ kind: 'campaign', ...common, profile: cell.profile as ProfileId, policy: cell.policy as string, ...(cell.index === 0 && i === 0 ? { trace: true } : {}) });
       } else if (manifest.kind === 'estimator') {
@@ -220,6 +223,7 @@ const environment = {
   arch: arch(),
   cpus: cpus().length,
   workers: workerCount,
+  ledger: ledgerImpl,
   labCommit: git.commit,
   workingTreeDirty: git.dirty,
   startedAt: new Date(started).toISOString(),

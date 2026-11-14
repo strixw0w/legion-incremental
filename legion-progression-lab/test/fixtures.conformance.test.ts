@@ -7,7 +7,7 @@ const files = loadFixtureFiles();
 describe('spec/fixtures conformance', () => {
   it('covers every S0, S1 and S1.1 family with unique case IDs, boundary and failure cases, and derivations', () => {
     const families = files.map((f) => f.file.fixtureSet).sort();
-    expect(families).toEqual(['canonical-json', 'combat', 'combat-loop', 'content', 'credits', 'estimator', 'gates', 'ledger', 'numeric', 'remainder', 'rewards', 'rng', 'stats', 'xp']);
+    expect(families).toEqual(['canonical-json', 'combat', 'combat-loop', 'content', 'credits', 'estimator', 'gates', 'ledger', 'ledger-reconstruction', 'legion-credit', 'numeric', 'remainder', 'rewards', 'rng', 'squad-fight', 'stats', 'worker-feasibility', 'xp']);
     const ids = files.flatMap((f) => f.file.cases.map((c) => c.id));
     expect(new Set(ids).size).toBe(ids.length);
     for (const { file } of files) {

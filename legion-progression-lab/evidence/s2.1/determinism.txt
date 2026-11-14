@@ -1,0 +1,2 @@
+# Determinism: identical re-run, second seed root, KS tests (alpha 0.001)
+S2.1-E02-worker-estimator: determinism rerun identical=true fingerprint=true; second root differs in 3600/3600; KS rejections 0/216

@@ -143,7 +143,8 @@ export function balance(ledger: Ledger, resourceId: string, bucket: Bucket = 'av
   return ledger.balances.get(resourceId)?.[bucket] ?? 0;
 }
 
-function validateTx(tx: Tx): void {
+/** Transaction validation, shared with the L1 persistent ledger so both refuse exactly the same input. */
+export function validateTx(tx: Tx): void {
   assertRecord(tx, 'INVALID_TX', 'transaction');
   const allowed = new Set(['txId', 'purpose', 'cause', 'lines']);
   for (const key of Object.keys(tx)) if (!allowed.has(key)) fail('INVALID_TX', `unknown transaction field ${key}`);

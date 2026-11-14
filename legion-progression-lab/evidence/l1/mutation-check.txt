@@ -1,0 +1,26 @@
+P1: DETECTED (3 failing) restored=True | the tree never rebalances (left-heavy case)
+P2: DETECTED (14 failing) restored=True | key replacement keeps the old value
+P3: DETECTED (7 failing) restored=True | lookup descends the wrong way
+P4: DETECTED (5 failing) restored=True | tree nodes are not frozen (mutable shared structure)
+P5: DETECTED (5 failing) restored=True | an overdraft is skipped instead of refused (partial application)
+P6: DETECTED (4 failing) restored=True | a replay returns a new empty receipt, not the original
+P7: DETECTED (7 failing) restored=True | a conflicting payload is treated as a replay
+P8: DETECTED (5 failing) restored=True | canonical serialization keeps insertion order for balances
+P9: DETECTED (1 failing) restored=True | reconstruction skips the conservation check
+P10: DETECTED (1 failing) restored=True | any object is accepted as a ledger (no identity check)
+P11: DETECTED (2 failing) restored=True | the ledger object is not frozen
+P12: DETECTED (1 failing) restored=True | reconstruction accepts keys out of order
+
+L1 mutation check: 12 planted bugs, 12 detected, 0 not detected; all files restored: True
+- P1 [src/core/ledger/persistentMap.ts] the tree never rebalances (left-heavy case): detected by 3 failing test(s); e.g. × keeps the AVL invariants and ascending order under random inserts and replacements 15ms
+- P2 [src/core/ledger/persistentMap.ts] key replacement keeps the old value: detected by 14 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 34ms
+- P3 [src/core/ledger/persistentMap.ts] lookup descends the wrong way: detected by 7 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 20ms
+- P4 [src/core/ledger/persistentMap.ts] tree nodes are not frozen (mutable shared structure): detected by 5 failing test(s); e.g. × keeps the AVL invariants and ascending order under random inserts and replacements 10ms
+- P5 [src/core/ledger/persistentLedger.ts] an overdraft is skipped instead of refused (partial application): detected by 5 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 54ms
+- P6 [src/core/ledger/persistentLedger.ts] a replay returns a new empty receipt, not the original: detected by 4 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 34ms
+- P7 [src/core/ledger/persistentLedger.ts] a conflicting payload is treated as a replay: detected by 7 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 25ms
+- P8 [src/core/ledger/persistentLedger.ts] canonical serialization keeps insertion order for balances: detected by 5 failing test(s); e.g. × agree on every step of random sequences with replays, conflicts, failures and branch switches 49ms
+- P9 [src/core/ledger/persistentLedger.ts] reconstruction skips the conservation check: detected by 1 failing test(s); e.g. × validated reconstruction refuses every corruption (INVALID_STATE, no ledger) 5ms
+- P10 [src/core/ledger/persistentLedger.ts] any object is accepted as a ledger (no identity check): detected by 1 failing test(s); e.g. × C7: only genuine ledgers of this implementation are accepted 3ms
+- P11 [src/core/ledger/persistentLedger.ts] the ledger object is not frozen: detected by 2 failing test(s); e.g. × C8: every exposed object is frozen and cannot be altered 3ms
+- P12 [src/core/ledger/persistentLedger.ts] reconstruction accepts keys out of order: detected by 1 failing test(s); e.g. × validated reconstruction refuses every corruption (INVALID_STATE, no ledger) 6ms

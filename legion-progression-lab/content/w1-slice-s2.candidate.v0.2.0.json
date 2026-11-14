@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "contentId": "w1-slice-s2",
+  "contentVersion": "0.2.0",
+  "status": "candidate",
+  "note": "S2 legion extension. The S1 pack it extends is referenced by fingerprint and used unchanged. Every value is a candidate (planning/S2_RESOLUTIONS.md); none is approved.",
+  "basePack": { "path": "content/w1-slice.candidate.v0.1.0.json", "sha256": "cb130aba01a3d1242d0d875c514a3c976e9c3c039834e099591f1a0e162f8ec6" },
+  "resources": [
+    { "id": "res.rare.hero_shard", "kind": "rare", "testOnly": true, "note": "S2-R20 duplicate rare-hero conversion; no rare-hero content in S2" }
+  ],
+  "roster": {
+    "firstRecruitQuestKills": { "value": 40, "label": "candidate", "range": [10, 200], "hypothesis": "S2-R02; H-S2-01 first recruit in 2-5 active min (R03.03)" },
+    "slotsAtQuest": { "value": 1, "label": "candidate", "range": [1, 1] },
+    "slotsAtZone2Access": { "value": 2, "label": "candidate", "range": [1, 6], "hypothesis": "S2-R03" },
+    "slotsAtZone3Access": { "value": 3, "label": "candidate", "range": [1, 6], "hypothesis": "S2-R03" },
+    "deployCapAtQuest": { "value": 1, "label": "candidate", "range": [1, 1], "hypothesis": "S2-R05; R10.05 start with 1" },
+    "deployCapAtZone2Access": { "value": 2, "label": "candidate", "range": [1, 3] },
+    "deployCapAtZone3Access": { "value": 3, "label": "candidate", "range": [1, 3], "hypothesis": "R10.05 up to 3 in W1" },
+    "recruitCostGold": [
+      { "value": 150, "label": "candidate", "range": [0, 100000], "note": "2nd recruit (S2-R04); the 1st comes from quest Q1" },
+      { "value": 400, "label": "candidate", "range": [0, 100000], "note": "3rd recruit" }
+    ],
+    "classChangeCostGold": { "value": 100, "label": "candidate", "range": [0, 100000], "hypothesis": "S2-R07; the first class choice is free" },
+    "heroClassMinLevel": { "value": 5, "label": "candidate", "range": [1, 30], "hypothesis": "S2-R06; R03.02" },
+    "respecCooldownMs": { "value": 60000, "label": "candidate", "range": [0, 3600000], "hypothesis": "S2-R10; R03.11 short cooldown" },
+    "talentPointsPerLevel": { "value": 1, "label": "candidate", "range": [1, 5] },
+    "maxPointsPerTalent": { "value": 10, "label": "candidate", "range": [1, 100] },
+    "koRecoveryMs": { "value": 20000, "label": "candidate", "range": [0, 600000], "hypothesis": "S2-R14; D-03 option A" },
+    "workerRecoveryMs": { "value": 30000, "label": "candidate", "range": [0, 600000], "hypothesis": "S2-R17" },
+    "workerStopAfterKos": { "value": 3, "label": "candidate", "range": [1, 10] },
+    "workerKoWindowMs": { "value": 300000, "label": "candidate", "range": [60000, 3600000] },
+    "rareHeroDuplicateResource": "res.rare.hero_shard"
+  },
+  "classes": [
+    {
+      "id": "warrior",
+      "name": "Warrior",
+      "hpBp": { "value": 4000, "label": "candidate", "hypothesis": "S2-R11 melee, HP, defence" },
+      "attackBp": { "value": -1000, "label": "candidate" },
+      "attackIntervalMs": { "value": 1300, "label": "candidate" },
+      "critBp": { "value": 0, "label": "candidate" },
+      "defenceFlat": { "value": 2, "label": "candidate" },
+      "defencePerLevelBp": { "value": 5000, "label": "candidate" },
+      "threatRank": 0,
+      "ability": { "id": "ability.cleave", "name": "Cleave", "multBp": { "value": 20000, "label": "candidate" }, "cooldownMs": { "value": 8000, "label": "candidate" } }
+    },
+    {
+      "id": "archer",
+      "name": "Archer",
+      "hpBp": { "value": -1000, "label": "candidate", "hypothesis": "S2-R11 range, attack speed, crit" },
+      "attackBp": { "value": 0, "label": "candidate" },
+      "attackIntervalMs": { "value": 1000, "label": "candidate" },
+      "critBp": { "value": 1000, "label": "candidate" },
+      "defenceFlat": { "value": 0, "label": "candidate" },
+      "defencePerLevelBp": { "value": 0, "label": "candidate" },
+      "threatRank": 2,
+      "ability": { "id": "ability.power_shot", "name": "Power Shot", "multBp": { "value": 25000, "label": "candidate" }, "cooldownMs": { "value": 6000, "label": "candidate" } }
+    },
+    {
+      "id": "mage",
+      "name": "Mage",
+      "hpBp": { "value": -2000, "label": "candidate", "hypothesis": "S2-R11 magic damage" },
+      "attackBp": { "value": 2500, "label": "candidate" },
+      "attackIntervalMs": { "value": 1500, "label": "candidate" },
+      "critBp": { "value": 0, "label": "candidate" },
+      "defenceFlat": { "value": 0, "label": "candidate" },
+      "defencePerLevelBp": { "value": 0, "label": "candidate" },
+      "threatRank": 2,
+      "ability": { "id": "ability.fireball", "name": "Fireball", "multBp": { "value": 40000, "label": "candidate" }, "cooldownMs": { "value": 10000, "label": "candidate" } }
+    }
+  ],
+  "talents": [
+    { "id": "tal.war.vitality", "classId": "warrior", "effect": "hpBp", "perPointBp": { "value": 500, "label": "candidate" } },
+    { "id": "tal.war.might", "classId": "warrior", "effect": "attackBp", "perPointBp": { "value": 300, "label": "candidate" } },
+    { "id": "tal.arc.precision", "classId": "archer", "effect": "critBp", "perPointBp": { "value": 100, "label": "candidate" } },
+    { "id": "tal.arc.might", "classId": "archer", "effect": "attackBp", "perPointBp": { "value": 300, "label": "candidate" } },
+    { "id": "tal.mag.arcana", "classId": "mage", "effect": "abilityBp", "perPointBp": { "value": 500, "label": "candidate" } },
+    { "id": "tal.mag.might", "classId": "mage", "effect": "attackBp", "perPointBp": { "value": 300, "label": "candidate" } }
+  ]
+}

@@ -1,0 +1,31 @@
+# Reference-ledger cross-check (pre-registration section 1): one cell per experiment re-run on the reference ledger; cell 0 of each experiment, except S2-E09 where cell 4 (the first realistic cell) is used because the search cells fork hundreds of times per run
+S2-E00-control-a0 cell 0 (a10-p1.6-g100|PR-NEW|POL-STAY), 200 runs on the reference ledger: MATCH (1530 ms)
+  cell fingerprint stored 1e7b26aa0c625988ea51f102b5259d388ff03d09ee8852af350fd9f76324cbb6
+  cell fingerprint rerun  1e7b26aa0c625988ea51f102b5259d388ff03d09ee8852af350fd9f76324cbb6
+S2-E01-deploy-scaling cell 0 (a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0), 100 runs on the reference ledger: MATCH (2190 ms)
+  cell fingerprint stored 8cfeaa62cbd69c2881e2c15b9e39812f76ab162086961e5b583bb99e459dd897
+  cell fingerprint rerun  8cfeaa62cbd69c2881e2c15b9e39812f76ab162086961e5b583bb99e459dd897
+S2-E02-hero-damage-share cell 0 (a10-p1.6-g100|L10-Z2|hero-warrior|all-W|passive), 100 runs on the reference ledger: MATCH (2798 ms)
+  cell fingerprint stored c266b361cc01c9415037cb74e6d0d3f267fb38981db1e1e234542d65f0d95866
+  cell fingerprint rerun  c266b361cc01c9415037cb74e6d0d3f267fb38981db1e1e234542d65f0d95866
+S2-E04-class-switch-abuse cell 0 (a10-p1.6-g100|L50|cycles-1|no-train), 100 runs on the reference ledger: MATCH (361 ms)
+  cell fingerprint stored 08b85ba9c93225d613eedb8e97a71da00f505354c051417f43c87c82daa38a3a
+  cell fingerprint rerun  08b85ba9c93225d613eedb8e97a71da00f505354c051417f43c87c82daa38a3a
+S2-E05-squad-vs-workers cell 0 (a10-p1.6-g100|PR-BAL|POL2-SQUAD), 100 runs on the reference ledger: MATCH (5856 ms)
+  cell fingerprint stored 7af8444e1a7643d9d21569cab9386566bd53f08eff71d01f46a8aa4fea15499c
+  cell fingerprint rerun  7af8444e1a7643d9d21569cab9386566bd53f08eff71d01f46a8aa4fea15499c
+S2-E06-assignment-switching cell 0 (a10-p1.6-g100|PR-BAL|POL2-SQUAD), 100 runs on the reference ledger: MATCH (6034 ms)
+  cell fingerprint stored f019560704b3539b42af456450e96ebc7bf87abd728b2f8b401b1511ae296e82
+  cell fingerprint rerun  f019560704b3539b42af456450e96ebc7bf87abd728b2f8b401b1511ae296e82
+S2-E07-knockout-sensitivity cell 0 (a10-p1.6-g100|PR-BAL|POL2-SQUAD), 100 runs on the reference ledger: MATCH (6107 ms)
+  cell fingerprint stored 5c361d953710a22ca3bb830731593a0b37b503f7accdb36480c5d749c8eb2b1a
+  cell fingerprint rerun  5c361d953710a22ca3bb830731593a0b37b503f7accdb36480c5d749c8eb2b1a
+S2-E08-first-recruit-timing cell 0 (a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q25), 100 runs on the reference ledger: MATCH (4341 ms)
+  cell fingerprint stored 1f750ecdc052851711de8ab342e72092d8e95e5008174ca749ecaa764d2a3a9f
+  cell fingerprint rerun  1f750ecdc052851711de8ab342e72092d8e95e5008174ca749ecaa764d2a3a9f
+S2-E09-hindsight-search cell 4 (a10-p1.6-g100|PR-BAL|POL2-SQUAD), 50 runs on the reference ledger: MATCH (3460 ms)
+  cell fingerprint stored 5f77af6a0d742e18239bf694562de66befff9ebb02c39ebba93d7f3fe9a9e5fa
+  cell fingerprint rerun  5f77af6a0d742e18239bf694562de66befff9ebb02c39ebba93d7f3fe9a9e5fa
+S2-E10-estimator-vs-realisation cell 0 (a10-p1.6-g100|L1-Z1|squad-0), 100 runs on the reference ledger: MATCH (1091 ms)
+  cell fingerprint stored ac114ab4a32d85dc3c6635d7e7fc18a1113d6a53259764fba171f97c91dfb7c7
+  cell fingerprint rerun  ac114ab4a32d85dc3c6635d7e7fc18a1113d6a53259764fba171f97c91dfb7c7

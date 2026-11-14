@@ -1,0 +1,1046 @@
+{
+  "fixtureSet": "squad-fight",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s2-legion.md#v1",
+  "status": "candidate",
+  "independence": "Single squad encounters derived from spec/formulas/s2-legion.md v1 (stats from the class table, blows and attacks on their own clocks, threat order, simultaneous resolution from the state before each instant, knockouts, eligibility at the kill). Re-derived by spec/oracle/s2_oracle.py with a plain time loop and exact Fractions; the lab side runs the real S2 engine on a synthetic pack. Every case has certain hits and no crits. Cases 1-4 are also derived by hand.",
+  "cases": [
+    {
+      "id": "s2.squad.ko-in-killing-batch.001",
+      "kind": "boundary",
+      "description": "the Warrior is knocked out by the attack that lands with the killing blow: it is still eligible",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 1,
+          "cls": null
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 1,
+            "cls": "warrior"
+          }
+        ],
+        "enemy": {
+          "hp": 39,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 100000,
+          "firstAttackDelayMs": 2400,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "enemyKilled",
+        "endMs": 10400,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            5
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            11
+          ],
+          [
+            9200,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            9300,
+            "rec:1",
+            "swing",
+            5
+          ],
+          [
+            10400,
+            "hero",
+            "swing",
+            6
+          ]
+        ],
+        "enemyHits": [
+          [
+            10400,
+            "rec:1",
+            980
+          ]
+        ],
+        "knockouts": [
+          [
+            10400,
+            "rec:1"
+          ]
+        ],
+        "awards": [
+          "hero",
+          "rec:1"
+        ]
+      },
+      "derivation": "hero 6 per swing (6000 milli); Warrior raw 5400 -> 5, Cleave raw 10800 -> 11. 8,000: 6+5+11; 9,200: 6; 9,300: 5; 10,400: 6 = 39 = HP. The first attack (10,400) hits the Warrior (threat 0) for 1000: knocked out in the killing batch, so awards [hero, rec:1]"
+    },
+    {
+      "id": "s2.squad.ko-before-kill.001",
+      "kind": "boundary",
+      "description": "the Warrior knocked out one instant before the kill is not eligible and makes no later blow",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 1,
+          "cls": null
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 1,
+            "cls": "warrior"
+          }
+        ],
+        "enemy": {
+          "hp": 34,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 100000,
+          "firstAttackDelayMs": 1200,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "enemyKilled",
+        "endMs": 10400,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            5
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            11
+          ],
+          [
+            9200,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            10400,
+            "hero",
+            "swing",
+            6
+          ]
+        ],
+        "enemyHits": [
+          [
+            9200,
+            "rec:1",
+            980
+          ]
+        ],
+        "knockouts": [
+          [
+            9200,
+            "rec:1"
+          ]
+        ],
+        "awards": [
+          "hero"
+        ]
+      },
+      "derivation": "8,000: 6+5+11; 9,200: hero 6 and the attack knocks the Warrior out; its 9,300 swing never happens; 10,400: 6 -> 34 = HP. Awards [hero]"
+    },
+    {
+      "id": "s2.squad.threat-then-hero.001",
+      "kind": "normal",
+      "description": "the enemy hits the Warrior first; once it is knocked out the hero is the target and dies",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 1,
+          "cls": null
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 1,
+            "cls": "warrior"
+          }
+        ],
+        "enemy": {
+          "hp": 100000,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 1200,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "heroDied",
+        "endMs": 11200,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            5
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            11
+          ],
+          [
+            9200,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            10400,
+            "hero",
+            "swing",
+            6
+          ]
+        ],
+        "enemyHits": [
+          [
+            9200,
+            "rec:1",
+            980
+          ],
+          [
+            11200,
+            "hero",
+            1000
+          ]
+        ],
+        "knockouts": [
+          [
+            9200,
+            "rec:1"
+          ]
+        ],
+        "awards": []
+      },
+      "derivation": "attacks at 9,200 (Warrior, knocked out) and 11,200 (hero, 60 HP, dies): outcome heroDied at 11,200, no awards"
+    },
+    {
+      "id": "s2.squad.classless-hero-before-archer.001",
+      "kind": "normal",
+      "description": "without a Warrior the classless hero (threat 1) is hit before an Archer (threat 2)",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 1,
+          "cls": null
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 1,
+            "cls": "archer"
+          }
+        ],
+        "enemy": {
+          "hp": 100000,
+          "attackMilli": 30000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "heroDied",
+        "endMs": 12000,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            6
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            15
+          ],
+          [
+            9000,
+            "rec:1",
+            "swing",
+            6
+          ],
+          [
+            9200,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            10000,
+            "rec:1",
+            "swing",
+            6
+          ],
+          [
+            10400,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            11000,
+            "rec:1",
+            "swing",
+            6
+          ],
+          [
+            11600,
+            "hero",
+            "swing",
+            6
+          ],
+          [
+            12000,
+            "rec:1",
+            "swing",
+            6
+          ]
+        ],
+        "enemyHits": [
+          [
+            10000,
+            "hero",
+            30
+          ],
+          [
+            12000,
+            "hero",
+            30
+          ]
+        ],
+        "knockouts": [],
+        "awards": []
+      },
+      "derivation": "30 damage per attack at 10,000 and 12,000: the hero (60 HP) dies at 12,000; the Archer is never hit"
+    },
+    {
+      "id": "s2.squad.full-squad-l10.001",
+      "kind": "normal",
+      "description": "a level-10 Archer hero with a level-10 Warrior, Archer and Mage kills a goblin-like enemy; everyone eligible",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 10,
+          "cls": "archer"
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 10,
+            "cls": "warrior"
+          },
+          {
+            "level": 10,
+            "cls": "archer"
+          },
+          {
+            "level": 10,
+            "cls": "mage"
+          }
+        ],
+        "enemy": {
+          "hp": 120,
+          "attackMilli": 6000,
+          "attackIntervalMs": 1600,
+          "firstAttackDelayMs": 1600,
+          "defence": 5
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "enemyKilled",
+        "endMs": 8000,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            14
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            13
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            26
+          ],
+          [
+            8000,
+            "rec:2",
+            "swing",
+            14
+          ],
+          [
+            8000,
+            "rec:2",
+            "ability",
+            36
+          ],
+          [
+            8000,
+            "rec:3",
+            "swing",
+            18
+          ],
+          [
+            8000,
+            "rec:3",
+            "ability",
+            71
+          ]
+        ],
+        "enemyHits": [],
+        "knockouts": [],
+        "awards": [
+          "hero",
+          "rec:1",
+          "rec:2",
+          "rec:3"
+        ]
+      },
+      "derivation": "stats from s2-legion.md v1 section 1 at level 10 (steps 9); every member swings from 8,000 on its own interval, recruits cast at 8,000; damage vs defence 5 with K 100; the Warrior is the target; derived by the oracle time loop"
+    },
+    {
+      "id": "s2.squad.mage-hero-two-recruits.001",
+      "kind": "normal",
+      "description": "a Mage hero (no cast: manual) with a Warrior and a Mage; the Warrior tanks every hit",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 5,
+          "cls": "mage"
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [
+          {
+            "level": 5,
+            "cls": "warrior"
+          },
+          {
+            "level": 5,
+            "cls": "mage"
+          }
+        ],
+        "enemy": {
+          "hp": 300,
+          "attackMilli": 8000,
+          "attackIntervalMs": 1500,
+          "firstAttackDelayMs": 1500,
+          "defence": 2
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expected": {
+        "outcome": "enemyKilled",
+        "endMs": 17000,
+        "blows": [
+          [
+            8000,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            8000,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            8000,
+            "rec:1",
+            "ability",
+            18
+          ],
+          [
+            8000,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            8000,
+            "rec:2",
+            "ability",
+            49
+          ],
+          [
+            9300,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            9500,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            9500,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            10600,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            11000,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            11000,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            11900,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            12500,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            12500,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            13200,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            14000,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            14000,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            14500,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            15500,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            15500,
+            "rec:2",
+            "swing",
+            12
+          ],
+          [
+            15800,
+            "rec:1",
+            "swing",
+            9
+          ],
+          [
+            16000,
+            "rec:1",
+            "ability",
+            18
+          ],
+          [
+            17000,
+            "hero",
+            "swing",
+            12
+          ],
+          [
+            17000,
+            "rec:2",
+            "swing",
+            12
+          ]
+        ],
+        "enemyHits": [
+          [
+            9500,
+            "rec:1",
+            7
+          ],
+          [
+            11000,
+            "rec:1",
+            7
+          ],
+          [
+            12500,
+            "rec:1",
+            7
+          ],
+          [
+            14000,
+            "rec:1",
+            7
+          ],
+          [
+            15500,
+            "rec:1",
+            7
+          ],
+          [
+            17000,
+            "rec:1",
+            7
+          ]
+        ],
+        "knockouts": [],
+        "awards": [
+          "hero",
+          "rec:1",
+          "rec:2"
+        ]
+      },
+      "derivation": "the hero ability is never cast without a command; the recruit Mage casts Fireball every 10 s from 8,000; derived by the oracle time loop"
+    },
+    {
+      "id": "s2.squad.invalid-enemy.001",
+      "kind": "failure",
+      "description": "an enemy with zero attack is refused as content",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1,
+          "level": 1,
+          "cls": null
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "recruits": [],
+        "enemy": {
+          "hp": 10,
+          "attackMilli": 0,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "entryWalkMs": 8000,
+        "untilMs": 30000
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "content rule: attack >= 1 thousandth"
+    }
+  ]
+}

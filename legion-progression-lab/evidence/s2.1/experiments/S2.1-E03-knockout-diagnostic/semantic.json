@@ -1,0 +1,5390 @@
+{
+  "schema": "legion.s2.experiment.v1",
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "liveValidated": false,
+    "approved": false
+  },
+  "experimentId": "S2.1-E03-knockout-diagnostic",
+  "manifestSha256": "0def5e9ce79cdefbc7fd3cd4570caa1ad224a42a21ea3b09450452a9a8bccb73",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variantContent": {
+    "a10-p1.6-g100": {
+      "contentHash": "5e2023572707ffa3faf87da8ac44219bb26203894a182930e4d94212b374a53b",
+      "tableHash": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc",
+      "legionContentHash": "1bd654be5fc6ae6366faf34a7070dee5530e9ce48e4c5c485699aff86619d63f"
+    },
+    "a10-p1.6-g100-dmg2": {
+      "contentHash": "7b760723c7de2297c7666d9b9ad5eb5e9d928fab31f9fb6cefec13e1164381c8",
+      "tableHash": "f9e54b646c87b94f8b3be569af1cb8ab1f85b167a96161bc9eaf647383103cfc",
+      "legionContentHash": "fe4ad52475f289f5e7c2511e18af16d2c1b685fdfdea936507131afdf422c8cf"
+    }
+  },
+  "seeds": {
+    "root": "S2.1-E03",
+    "replicates": 100
+  },
+  "cells": [
+    {
+      "index": 0,
+      "id": "a10-p1.6-g100|L1-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "611c9cd498f0513356633228281c727b3d575bb492e237f55cdc195ac58d4d47",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5506187867721647,
+          "p50": 0.5558751027115859,
+          "p90": 0.5585062807209176,
+          "mean": 0.5554694100441524,
+          "min": 0.5477978485894053,
+          "max": 0.5614697802197802
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5880,
+          "p50": 5920,
+          "p90": 5960,
+          "mean": 5920,
+          "min": 5840,
+          "max": 5980
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6390,
+          "p50": 6437,
+          "p90": 6482,
+          "mean": 6436.71,
+          "min": 6347,
+          "max": 6507
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 588,
+          "p50": 592,
+          "p90": 596,
+          "mean": 592,
+          "min": 584,
+          "max": 598
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10840,
+          "p50": 10940,
+          "p90": 11040,
+          "mean": 10948.6,
+          "min": 10780,
+          "max": 11140
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3.6,
+          "p50": 3.6,
+          "p90": 3.6,
+          "mean": 3.6190000000000033,
+          "min": 3.6,
+          "max": 3.9
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 32,
+          "p50": 34,
+          "p90": 34,
+          "mean": 33.78,
+          "min": 32,
+          "max": 34
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 691.0040769573892,
+          "p50": 691.0040769573892,
+          "p90": 691.0040769573892,
+          "mean": 691.0040769573892,
+          "min": 691.0040769573892,
+          "max": 691.0040769573892
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3.709810072107569,
+          "p50": 3.709810072107569,
+          "p90": 3.709810072107569,
+          "mean": 3.709810072107571,
+          "min": 3.709810072107569,
+          "max": 3.709810072107569
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 1,
+      "id": "a10-p1.6-g100|L1-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "e8cf97ddfcd9b8d923eae154d9c70de651fcded960d7a83d9f3ef535b8a915e6",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2683262175265938,
+          "p50": 0.2706742660501129,
+          "p90": 0.272570504760194,
+          "mean": 0.2705283119769764,
+          "min": 0.26673651504750895,
+          "max": 0.2743102830526693
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 11400,
+          "p50": 11460,
+          "p90": 11520,
+          "mean": 11455.2,
+          "min": 11360,
+          "max": 11560
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 15896,
+          "p50": 15978,
+          "p90": 16066,
+          "mean": 15974.56,
+          "min": 15840,
+          "max": 16122
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1140,
+          "p50": 1146,
+          "p90": 1152,
+          "mean": 1145.52,
+          "min": 1136,
+          "max": 1156
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 33480,
+          "p50": 33660,
+          "p90": 33880,
+          "mean": 33669.4,
+          "min": 33360,
+          "max": 34000
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.3,
+          "p90": 1.3,
+          "mean": 1.2999999999999983,
+          "min": 1.3,
+          "max": 1.3
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 12,
+          "p50": 12,
+          "p90": 12,
+          "mean": 12.2,
+          "min": 12,
+          "max": 14
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1043.9861557545494,
+          "p50": 1043.9861557545494,
+          "p90": 1043.9861557545494,
+          "mean": 1043.986155754551,
+          "min": 1043.9861557545494,
+          "max": 1043.9861557545494
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.9483215894736372,
+          "p50": 1.9483215894736372,
+          "p90": 1.9483215894736372,
+          "mean": 1.9483215894736363,
+          "min": 1.9483215894736372,
+          "max": 1.9483215894736372
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 2,
+      "id": "a10-p1.6-g100|L1-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "1692cf34e080297a2d8e34c3fe0e067a5508f79753d7f804dacad1de4adf74d9",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.16593272495755518,
+          "p50": 0.16724683544303798,
+          "p90": 0.16832937450514648,
+          "mean": 0.16723441163658898,
+          "min": 0.1646655231560892,
+          "max": 0.16949555837563451
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14460,
+          "p50": 14520,
+          "p90": 14600,
+          "mean": 14525.6,
+          "min": 14440,
+          "max": 14640
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24585,
+          "p50": 24684,
+          "p90": 24820,
+          "mean": 24694.66,
+          "min": 24548,
+          "max": 24891
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1446,
+          "p50": 1452,
+          "p90": 1460,
+          "mean": 1452.56,
+          "min": 1444,
+          "max": 1464
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 57840,
+          "p50": 58080,
+          "p90": 58400,
+          "mean": 58102.4,
+          "min": 57760,
+          "max": 58560
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1254.5254089106586,
+          "p50": 1254.5254089106586,
+          "p90": 1254.5254089106586,
+          "mean": 1254.52540891066,
+          "min": 1254.5254089106586,
+          "max": 1254.5254089106586
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.369611069197862,
+          "p50": 1.369611069197862,
+          "p90": 1.369611069197862,
+          "mean": 1.3696110691978607,
+          "min": 1.369611069197862,
+          "max": 1.369611069197862
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 3,
+      "id": "a10-p1.6-g100|L1-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "7c67b3a5ed6c1201fdc381b96497c298e6c4b1f75a01452e6f1b0ad82d648ec5",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6.08,
+          "min": 6,
+          "max": 10
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5837950138504155,
+          "p50": 0.5893358278765201,
+          "p90": 0.5939505041246563,
+          "mean": 0.5892695088902555,
+          "min": 0.5810526315789474,
+          "max": 0.6008037508372405
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 264,
+          "p50": 396,
+          "p90": 660,
+          "mean": 431.2,
+          "min": 264,
+          "max": 1408
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 135,
+          "p50": 200,
+          "p90": 330,
+          "mean": 217.35,
+          "min": 135,
+          "max": 700
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 12,
+          "p50": 18,
+          "p90": 30,
+          "mean": 19.6,
+          "min": 12,
+          "max": 64
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 528,
+          "p50": 748,
+          "p90": 1188,
+          "mean": 806.96,
+          "min": 528,
+          "max": 2464
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10.8,
+          "p50": 10.8,
+          "p90": 10.8,
+          "mean": 10.799999999999985,
+          "min": 10.4,
+          "max": 11.7
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 8,
+          "p90": 12,
+          "mean": 8.54,
+          "min": 6,
+          "max": 24
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 288.1046280030754,
+          "p50": 288.1046280030754,
+          "p90": 288.1046280030754,
+          "mean": 288.1046280030751,
+          "min": 288.1046280030754,
+          "max": 288.1046280030754
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10.995460503194595,
+          "p50": 10.995460503194595,
+          "p90": 10.995460503194595,
+          "mean": 10.995460503194613,
+          "min": 10.995460503194595,
+          "max": 10.995460503194595
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 4,
+      "id": "a10-p1.6-g100|L1-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "1cfbf0e34b67b4c78733304fa8e270b99d403df261d1d8185eab16db01070a69",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.28968713789107764,
+          "p50": 0.29357798165137616,
+          "p90": 0.2980512036683225,
+          "mean": 0.2938466884551476,
+          "min": 0.2848249027237354,
+          "max": 0.302099533437014
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 792,
+          "p50": 792,
+          "p90": 836,
+          "mean": 830.28,
+          "min": 792,
+          "max": 1452
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 498,
+          "p50": 498,
+          "p90": 523,
+          "mean": 521.48,
+          "min": 498,
+          "max": 905
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 36,
+          "p50": 36,
+          "p90": 38,
+          "mean": 37.74,
+          "min": 36,
+          "max": 66
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2112,
+          "p50": 2112,
+          "p90": 2200,
+          "mean": 2207.92,
+          "min": 2112,
+          "max": 3784
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.2,
+          "p50": 6,
+          "p90": 6,
+          "mean": 5.92,
+          "min": 5.2,
+          "max": 6
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6.22,
+          "min": 6,
+          "max": 10
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 488.8848164099245,
+          "p50": 488.8848164099245,
+          "p90": 488.8848164099245,
+          "mean": 488.88481640992524,
+          "min": 488.8848164099245,
+          "max": 488.8848164099245
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.863697703758179,
+          "p50": 5.863697703758179,
+          "p90": 5.863697703758179,
+          "mean": 5.863697703758181,
+          "min": 5.863697703758179,
+          "max": 5.863697703758179
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 5,
+      "id": "a10-p1.6-g100|L1-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "c05ff5b648c7b061d39cf94bb54bc75909c6922fa0a9a4512b2780122a0da805",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 6,
+          "p90": 10,
+          "mean": 5.76,
+          "min": 0,
+          "max": 14
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.18893176115053562,
+          "p50": 0.19028307243085407,
+          "p90": 0.19154698399671727,
+          "mean": 0.1902471600673244,
+          "min": 0.1875250541168925,
+          "max": 0.19357502683954084
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 12584,
+          "p50": 12716,
+          "p90": 12848,
+          "mean": 12472.68,
+          "min": 2288,
+          "max": 12980
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 9583,
+          "p50": 9690,
+          "p90": 9802,
+          "mean": 9502.23,
+          "min": 1753,
+          "max": 9886
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 572,
+          "p50": 578,
+          "p90": 584,
+          "mean": 566.94,
+          "min": 104,
+          "max": 590
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 46640,
+          "p50": 47212,
+          "p90": 47916,
+          "mean": 46298.12,
+          "min": 8580,
+          "max": 48180
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4,
+          "p50": 4,
+          "p90": 4,
+          "mean": 4,
+          "min": 4,
+          "max": 4
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 50,
+          "p50": 52,
+          "p90": 54,
+          "mean": 51.48,
+          "min": 10,
+          "max": 56
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 636.5461300251078,
+          "p50": 636.5461300251078,
+          "p90": 636.5461300251078,
+          "mean": 636.5461300251063,
+          "min": 636.5461300251078,
+          "max": 636.5461300251078
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4.15552099084791,
+          "p50": 4.15552099084791,
+          "p90": 4.15552099084791,
+          "mean": 4.155520990847904,
+          "min": 4.15552099084791,
+          "max": 4.15552099084791
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 6,
+      "id": "a10-p1.6-g100|L5-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "e8cc40e3f5427db291bdde080dbab8619459eb5521ab7f604824b4afbce3829e",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.578364737550471,
+          "p50": 0.5803189158210565,
+          "p90": 0.5843338857510062,
+          "mean": 0.58095982911811,
+          "min": 0.5767490194763836,
+          "max": 0.5869980227722097
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 11220,
+          "p50": 11340,
+          "p90": 11440,
+          "mean": 11336,
+          "min": 11100,
+          "max": 11500
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 12290,
+          "p50": 12434,
+          "p90": 12543,
+          "mean": 12424.86,
+          "min": 12156,
+          "max": 12610
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1122,
+          "p50": 1134,
+          "p90": 1144,
+          "mean": 1133.6,
+          "min": 1110,
+          "max": 1150
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 21860,
+          "p50": 22220,
+          "p90": 22420,
+          "mean": 22166.2,
+          "min": 21600,
+          "max": 22540
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 1.986,
+          "min": 1.3,
+          "max": 2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10,
+          "p50": 10,
+          "p90": 12,
+          "mean": 10.68,
+          "min": 10,
+          "max": 12
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1160.5173305187561,
+          "p50": 1160.5173305187561,
+          "p90": 1160.5173305187561,
+          "mean": 1160.5173305187532,
+          "min": 1160.5173305187561,
+          "max": 1160.5173305187561
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.6020648337847616,
+          "p50": 1.6020648337847616,
+          "p90": 1.6020648337847616,
+          "mean": 1.6020648337847638,
+          "min": 1.6020648337847616,
+          "max": 1.6020648337847616
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 7,
+      "id": "a10-p1.6-g100|L5-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "3d15dcc2333fdd36a93d72ce7b3ea3d1ca8767cf955ed91cef69c83c8af7af48",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.298159509202454,
+          "p50": 0.29964262443974965,
+          "p90": 0.30085416007592536,
+          "mean": 0.2995875632274655,
+          "min": 0.2964473840548141,
+          "max": 0.3025122259031393
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17220,
+          "p50": 17220,
+          "p90": 17220,
+          "mean": 17220.2,
+          "min": 17220,
+          "max": 17240
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24108,
+          "p50": 24108,
+          "p90": 24108,
+          "mean": 24108.44,
+          "min": 24108,
+          "max": 24136
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1722,
+          "p50": 1722,
+          "p90": 1722,
+          "mean": 1722.02,
+          "min": 1722,
+          "max": 1724
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 51660,
+          "p50": 51660,
+          "p90": 51660,
+          "mean": 51660.6,
+          "min": 51660,
+          "max": 51720
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5,
+          "p50": 0.5,
+          "p90": 0.5,
+          "mean": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1521.5035567373561,
+          "p50": 1521.5035567373561,
+          "p90": 1521.5035567373561,
+          "mean": 1521.5035567373561,
+          "min": 1521.5035567373561,
+          "max": 1521.5035567373561
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.8660805681714464,
+          "p50": 0.8660805681714464,
+          "p90": 0.8660805681714464,
+          "mean": 0.8660805681714456,
+          "min": 0.8660805681714464,
+          "max": 0.8660805681714464
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 8,
+      "id": "a10-p1.6-g100|L5-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "aac0e9c3985acefee62f82269574fae4eabb6d320642a9eb83097eab2437c621",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.20351860937828556,
+          "p50": 0.20476317003929687,
+          "p90": 0.20583667930441107,
+          "mean": 0.2047959790148897,
+          "min": 0.202660406885759,
+          "max": 0.20689462976897138
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 19480,
+          "p50": 19660,
+          "p90": 19800,
+          "mean": 19651.2,
+          "min": 19360,
+          "max": 19940
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 33116,
+          "p50": 33422,
+          "p90": 33660,
+          "mean": 33407.52,
+          "min": 32912,
+          "max": 33898
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1948,
+          "p50": 1966,
+          "p90": 1980,
+          "mean": 1965.12,
+          "min": 1936,
+          "max": 1994
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 77920,
+          "p50": 78640,
+          "p90": 79200,
+          "mean": 78604.8,
+          "min": 77440,
+          "max": 79760
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1699.4089531604752,
+          "p50": 1699.4089531604752,
+          "p90": 1699.4089531604752,
+          "mean": 1699.4089531604754,
+          "min": 1699.4089531604752,
+          "max": 1699.4089531604752
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.6183835670071653,
+          "p50": 0.6183835670071653,
+          "p90": 0.6183835670071653,
+          "mean": 0.6183835670071646,
+          "min": 0.6183835670071653,
+          "max": 0.6183835670071653
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 9,
+      "id": "a10-p1.6-g100|L5-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "e60199d047e67d301dada598be232cd122b0cccb68ad50f7d161379fcb30c72b",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 8,
+          "p90": 12,
+          "mean": 8.7,
+          "min": 4,
+          "max": 16
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.6431421258657031,
+          "p50": 0.6488424021624163,
+          "p90": 0.655107973421927,
+          "mean": 0.649240581343634,
+          "min": 0.6372445117335352,
+          "max": 0.6648408433236874
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1760,
+          "p50": 4488,
+          "p90": 9108,
+          "mean": 4947.8,
+          "min": 1320,
+          "max": 9196
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 868,
+          "p50": 2210,
+          "p90": 4482,
+          "mean": 2434.9,
+          "min": 651,
+          "max": 4520
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 80,
+          "p50": 204,
+          "p90": 414,
+          "mean": 224.9,
+          "min": 60,
+          "max": 418
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3168,
+          "p50": 8008,
+          "p90": 16192,
+          "mean": 8797.36,
+          "min": 2376,
+          "max": 16280
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.2,
+          "p50": 5.2,
+          "p90": 5.2,
+          "mean": 5.183999999999993,
+          "min": 5,
+          "max": 5.2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 8,
+          "p50": 20,
+          "p90": 40,
+          "mean": 21.66,
+          "min": 6,
+          "max": 40
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 538.5880511965277,
+          "p50": 538.5880511965277,
+          "p90": 538.5880511965277,
+          "mean": 538.588051196528,
+          "min": 538.5880511965277,
+          "max": 538.5880511965277
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.18414383126814,
+          "p50": 5.18414383126814,
+          "p90": 5.18414383126814,
+          "mean": 5.1841438312681465,
+          "min": 5.18414383126814,
+          "max": 5.18414383126814
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 10,
+      "id": "a10-p1.6-g100|L5-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "1724a8f9e2bd61eb20cb83de4d5a046ca01cd5c6f34ab8ea5d3c47da72495b6e",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.3098070860231196,
+          "p50": 0.3114214053082769,
+          "p90": 0.3129481625336122,
+          "mean": 0.31149588735718686,
+          "min": 0.3084350929926733,
+          "max": 0.31485628966032103
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18128,
+          "p50": 18216,
+          "p90": 18260,
+          "mean": 18204.56,
+          "min": 18040,
+          "max": 18348
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 11421,
+          "p50": 11482,
+          "p90": 11520,
+          "mean": 11476.14,
+          "min": 11370,
+          "max": 11572
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 824,
+          "p50": 828,
+          "p90": 830,
+          "mean": 827.48,
+          "min": 820,
+          "max": 834
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 51524,
+          "p50": 51876,
+          "p90": 52228,
+          "mean": 51877.32,
+          "min": 51392,
+          "max": 52404
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.6,
+          "p50": 2.6,
+          "p90": 2.6,
+          "mean": 2.5999999999999965,
+          "min": 2.6,
+          "max": 2.6
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 28,
+          "p50": 30,
+          "p90": 30,
+          "mean": 29.8,
+          "min": 28,
+          "max": 30
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 824.5124433986276,
+          "p50": 824.5124433986276,
+          "p90": 824.5124433986276,
+          "mean": 824.5124433986291,
+          "min": 824.5124433986276,
+          "max": 824.5124433986276
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.866216700333661,
+          "p50": 2.866216700333661,
+          "p90": 2.866216700333661,
+          "mean": 2.8662167003336645,
+          "min": 2.866216700333661,
+          "max": 2.866216700333661
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 11,
+      "id": "a10-p1.6-g100|L5-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "d58b3935d53e45dd5101c7140ac3fd9eb9dca7809f4a5c6a4e8af5b27ddcd9fb",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.217836137327315,
+          "p50": 0.21905426102177006,
+          "p90": 0.22066516424230007,
+          "mean": 0.21913607736436747,
+          "min": 0.2160863528707157,
+          "max": 0.22137915034731226
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 23584,
+          "p50": 23716,
+          "p90": 23804,
+          "mean": 23701.48,
+          "min": 23540,
+          "max": 23980
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18120,
+          "p50": 18221,
+          "p90": 18297,
+          "mean": 18210.83,
+          "min": 18080,
+          "max": 18425
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1072,
+          "p50": 1078,
+          "p90": 1082,
+          "mean": 1077.34,
+          "min": 1070,
+          "max": 1090
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 91740,
+          "p50": 92268,
+          "p90": 92752,
+          "mean": 92269.76,
+          "min": 91520,
+          "max": 93324
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 1.9939999999999998,
+          "min": 1.7,
+          "max": 2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 20,
+          "mean": 20.02,
+          "min": 20,
+          "max": 22
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1001.1338997112908,
+          "p50": 1001.1338997112908,
+          "p90": 1001.1338997112908,
+          "mean": 1001.1338997112908,
+          "min": 1001.1338997112908,
+          "max": 1001.1338997112908
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.0959225844197023,
+          "p50": 2.0959225844197023,
+          "p90": 2.0959225844197023,
+          "mean": 2.0959225844196983,
+          "min": 2.0959225844197023,
+          "max": 2.0959225844197023
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 12,
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "516dfd28060a22fedea53f0561ae7ce464a11c036c7fe12628de687ff8a68c97",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 12,
+          "mean": 7.62,
+          "min": 6,
+          "max": 16
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5988142292490118,
+          "p50": 0.6073515551366635,
+          "p90": 0.6169505608641462,
+          "mean": 0.6085316790151893,
+          "min": 0.5935984481086324,
+          "max": 0.6234567901234568
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 720,
+          "p50": 1120,
+          "p90": 3520,
+          "mean": 1692.2,
+          "min": 540,
+          "max": 4960
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 779,
+          "p50": 1209,
+          "p90": 3793,
+          "mean": 1824.86,
+          "min": 585,
+          "max": 5351
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 72,
+          "p50": 112,
+          "p90": 352,
+          "mean": 169.22,
+          "min": 54,
+          "max": 496
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1280,
+          "p50": 1960,
+          "p90": 6120,
+          "mean": 2950.2,
+          "min": 960,
+          "max": 8700
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3.6,
+          "p50": 3.9,
+          "p90": 3.9,
+          "mean": 3.778999999999999,
+          "min": 3.6,
+          "max": 4.1
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 8,
+          "p50": 12,
+          "p90": 36,
+          "mean": 17.48,
+          "min": 6,
+          "max": 50
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 691.0040769573892,
+          "p50": 691.0040769573892,
+          "p90": 691.0040769573892,
+          "mean": 691.0040769573892,
+          "min": 691.0040769573892,
+          "max": 691.0040769573892
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3.709810072107569,
+          "p50": 3.709810072107569,
+          "p90": 3.709810072107569,
+          "mean": 3.709810072107571,
+          "min": 3.709810072107569,
+          "max": 3.709810072107569
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 13,
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "3ad31661e8c1afe6d8dc21883fc4998c1bdd5e105ed7b86ef81f9345c2558d47",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.27098795360459477,
+          "p50": 0.27306328168751165,
+          "p90": 0.27535366354372737,
+          "mean": 0.27323250531997056,
+          "min": 0.26906882289376605,
+          "max": 0.27799010791366907
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 11000,
+          "p50": 11040,
+          "p90": 11080,
+          "mean": 11036.2,
+          "min": 10960,
+          "max": 11120
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 15286,
+          "p50": 15346,
+          "p90": 15406,
+          "mean": 15341.04,
+          "min": 15228,
+          "max": 15464
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1100,
+          "p50": 1104,
+          "p90": 1108,
+          "mean": 1103.62,
+          "min": 1096,
+          "max": 1112
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 31740,
+          "p50": 31880,
+          "p90": 32040,
+          "mean": 31881.2,
+          "min": 31600,
+          "max": 32180
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.3,
+          "p50": 1.3,
+          "p90": 1.3,
+          "mean": 1.2999999999999983,
+          "min": 1.3,
+          "max": 1.3
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24,
+          "p50": 24,
+          "p90": 24,
+          "mean": 24.14,
+          "min": 24,
+          "max": 26
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1043.9861557545494,
+          "p50": 1043.9861557545494,
+          "p90": 1043.9861557545494,
+          "mean": 1043.986155754551,
+          "min": 1043.9861557545494,
+          "max": 1043.9861557545494
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.9483215894736372,
+          "p50": 1.9483215894736372,
+          "p90": 1.9483215894736372,
+          "mean": 1.9483215894736363,
+          "min": 1.9483215894736372,
+          "max": 1.9483215894736372
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 14,
+      "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "1692cf34e080297a2d8e34c3fe0e067a5508f79753d7f804dacad1de4adf74d9",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.16593272495755518,
+          "p50": 0.16724683544303798,
+          "p90": 0.16832937450514648,
+          "mean": 0.16723441163658898,
+          "min": 0.1646655231560892,
+          "max": 0.16949555837563451
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 14460,
+          "p50": 14520,
+          "p90": 14600,
+          "mean": 14525.6,
+          "min": 14440,
+          "max": 14640
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24585,
+          "p50": 24684,
+          "p90": 24820,
+          "mean": 24694.66,
+          "min": 24548,
+          "max": 24891
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1446,
+          "p50": 1452,
+          "p90": 1460,
+          "mean": 1452.56,
+          "min": 1444,
+          "max": 1464
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 57840,
+          "p50": 58080,
+          "p90": 58400,
+          "mean": 58102.4,
+          "min": 57760,
+          "max": 58560
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1254.5254089106586,
+          "p50": 1254.5254089106586,
+          "p90": 1254.5254089106586,
+          "mean": 1254.52540891066,
+          "min": 1254.5254089106586,
+          "max": 1254.5254089106586
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.369611069197862,
+          "p50": 1.369611069197862,
+          "p90": 1.369611069197862,
+          "mean": 1.3696110691978607,
+          "min": 1.369611069197862,
+          "max": 1.369611069197862
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 15,
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "d55fc49765a6174f0118004508fa56f93e0ca6532af02ec86922f473d0bd1870",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5873015873015873,
+          "p50": 0.5978835978835979,
+          "p90": 0.6064400715563506,
+          "mean": 0.5973352842065733,
+          "min": 0.5799648506151143,
+          "max": 0.6148409893992933
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 132,
+          "p50": 132,
+          "p90": 132,
+          "mean": 132,
+          "min": 132,
+          "max": 132
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 69,
+          "p50": 69,
+          "p90": 69,
+          "mean": 69,
+          "min": 69,
+          "max": 69
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 264,
+          "p50": 264,
+          "p90": 264,
+          "mean": 264,
+          "min": 264,
+          "max": 264
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 9.6,
+          "p50": 10.4,
+          "p90": 10.8,
+          "mean": 10.399999999999991,
+          "min": 9.6,
+          "max": 10.8
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 288.1046280030754,
+          "p50": 288.1046280030754,
+          "p90": 288.1046280030754,
+          "mean": 288.1046280030751,
+          "min": 288.1046280030754,
+          "max": 288.1046280030754
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10.995460503194595,
+          "p50": 10.995460503194595,
+          "p90": 10.995460503194595,
+          "mean": 10.995460503194613,
+          "min": 10.995460503194595,
+          "max": 10.995460503194595
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 16,
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "9e862e6108dfeb23916cd394b2b6145418d8aeddefff289c5308053985ddda10",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6,
+          "min": 6,
+          "max": 6
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.28218966846569005,
+          "p50": 0.28850488354620585,
+          "p90": 0.29506120726044743,
+          "mean": 0.28869981856920957,
+          "min": 0.27596439169139464,
+          "max": 0.2986822840409956
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 396,
+          "p50": 396,
+          "p90": 748,
+          "mean": 513.04,
+          "min": 396,
+          "max": 1320
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 252,
+          "p50": 252,
+          "p90": 470,
+          "mean": 324.42,
+          "min": 252,
+          "max": 822
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 18,
+          "p50": 18,
+          "p90": 34,
+          "mean": 23.32,
+          "min": 18,
+          "max": 60
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1056,
+          "p50": 1056,
+          "p90": 1936,
+          "mean": 1348.16,
+          "min": 1056,
+          "max": 3344
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.2,
+          "p50": 6,
+          "p90": 6,
+          "mean": 5.92,
+          "min": 5.2,
+          "max": 6
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 10,
+          "mean": 7.32,
+          "min": 6,
+          "max": 16
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 488.8848164099245,
+          "p50": 488.8848164099245,
+          "p90": 488.8848164099245,
+          "mean": 488.88481640992524,
+          "min": 488.8848164099245,
+          "max": 488.8848164099245
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.863697703758179,
+          "p50": 5.863697703758179,
+          "p90": 5.863697703758179,
+          "mean": 5.863697703758181,
+          "min": 5.863697703758179,
+          "max": 5.863697703758179
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 17,
+      "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "f66a6043539818d3ccc7a3826e4ea7ed25feeb96678ed368b059f970e36acad0",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6.06,
+          "min": 6,
+          "max": 8
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.18184067293419098,
+          "p50": 0.18546845124282982,
+          "p90": 0.18950749464668093,
+          "mean": 0.18570997323037577,
+          "min": 0.1798695246971109,
+          "max": 0.19378280177634236
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 792,
+          "p50": 1056,
+          "p90": 1804,
+          "mean": 1265.44,
+          "min": 792,
+          "max": 4400
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 609,
+          "p50": 810,
+          "p90": 1379,
+          "mean": 968.62,
+          "min": 609,
+          "max": 3339
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 36,
+          "p50": 48,
+          "p90": 82,
+          "mean": 57.52,
+          "min": 36,
+          "max": 200
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2904,
+          "p50": 3872,
+          "p90": 6600,
+          "mean": 4620,
+          "min": 2904,
+          "max": 15752
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 3.9,
+          "p50": 4,
+          "p90": 4,
+          "mean": 3.989,
+          "min": 3.9,
+          "max": 4
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 8,
+          "p90": 14,
+          "mean": 9.68,
+          "min": 6,
+          "max": 34
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 636.5461300251078,
+          "p50": 636.5461300251078,
+          "p90": 636.5461300251078,
+          "mean": 636.5461300251063,
+          "min": 636.5461300251078,
+          "max": 636.5461300251078
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 4.15552099084791,
+          "p50": 4.15552099084791,
+          "p90": 4.15552099084791,
+          "mean": 4.155520990847904,
+          "min": 4.15552099084791,
+          "max": 4.15552099084791
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 18,
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "81fcfbd982ac64ae0a7a44865f46453ad7e80feac0ce3d437bbfe4fa307f6c85",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5906007413105812,
+          "p50": 0.5929284408828904,
+          "p90": 0.595891379676119,
+          "mean": 0.5930342334385511,
+          "min": 0.5882517972996668,
+          "max": 0.599689243590649
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10820,
+          "p50": 10920,
+          "p90": 10980,
+          "mean": 10908.6,
+          "min": 10740,
+          "max": 11100
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 11815,
+          "p50": 11934,
+          "p90": 12002,
+          "mean": 11920.22,
+          "min": 11720,
+          "max": 12130
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1082,
+          "p50": 1092,
+          "p90": 1098,
+          "mean": 1090.86,
+          "min": 1074,
+          "max": 1110
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20660,
+          "p50": 20940,
+          "p90": 21100,
+          "mean": 20917.8,
+          "min": 20420,
+          "max": 21300
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 2,
+          "min": 2,
+          "max": 2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 20,
+          "p50": 20,
+          "p90": 22,
+          "mean": 20.44,
+          "min": 20,
+          "max": 22
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1160.5173305187561,
+          "p50": 1160.5173305187561,
+          "p90": 1160.5173305187561,
+          "mean": 1160.5173305187532,
+          "min": 1160.5173305187561,
+          "max": 1160.5173305187561
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1.6020648337847616,
+          "p50": 1.6020648337847616,
+          "p90": 1.6020648337847616,
+          "mean": 1.6020648337847638,
+          "min": 1.6020648337847616,
+          "max": 1.6020648337847616
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 19,
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "3d15dcc2333fdd36a93d72ce7b3ea3d1ca8767cf955ed91cef69c83c8af7af48",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.298159509202454,
+          "p50": 0.29964262443974965,
+          "p90": 0.30085416007592536,
+          "mean": 0.2995875632274655,
+          "min": 0.2964473840548141,
+          "max": 0.3025122259031393
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17220,
+          "p50": 17220,
+          "p90": 17220,
+          "mean": 17220.2,
+          "min": 17220,
+          "max": 17240
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 24108,
+          "p50": 24108,
+          "p90": 24108,
+          "mean": 24108.44,
+          "min": 24108,
+          "max": 24136
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1722,
+          "p50": 1722,
+          "p90": 1722,
+          "mean": 1722.02,
+          "min": 1722,
+          "max": 1724
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 51660,
+          "p50": 51660,
+          "p90": 51660,
+          "mean": 51660.6,
+          "min": 51660,
+          "max": 51720
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.5,
+          "p50": 0.5,
+          "p90": 0.5,
+          "mean": 0.5,
+          "min": 0.5,
+          "max": 0.5
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1521.5035567373561,
+          "p50": 1521.5035567373561,
+          "p90": 1521.5035567373561,
+          "mean": 1521.5035567373561,
+          "min": 1521.5035567373561,
+          "max": 1521.5035567373561
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.8660805681714464,
+          "p50": 0.8660805681714464,
+          "p90": 0.8660805681714464,
+          "mean": 0.8660805681714456,
+          "min": 0.8660805681714464,
+          "max": 0.8660805681714464
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 20,
+      "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "aac0e9c3985acefee62f82269574fae4eabb6d320642a9eb83097eab2437c621",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.20351860937828556,
+          "p50": 0.20476317003929687,
+          "p90": 0.20583667930441107,
+          "mean": 0.2047959790148897,
+          "min": 0.202660406885759,
+          "max": 0.20689462976897138
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 19480,
+          "p50": 19660,
+          "p90": 19800,
+          "mean": 19651.2,
+          "min": 19360,
+          "max": 19940
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 33116,
+          "p50": 33422,
+          "p90": 33660,
+          "mean": 33407.52,
+          "min": 32912,
+          "max": 33898
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1948,
+          "p50": 1966,
+          "p90": 1980,
+          "mean": 1965.12,
+          "min": 1936,
+          "max": 1994
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 77920,
+          "p50": 78640,
+          "p90": 79200,
+          "mean": 78604.8,
+          "min": 77440,
+          "max": 79760
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1699.4089531604752,
+          "p50": 1699.4089531604752,
+          "p90": 1699.4089531604752,
+          "mean": 1699.4089531604754,
+          "min": 1699.4089531604752,
+          "max": 1699.4089531604752
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.6183835670071653,
+          "p50": 0.6183835670071653,
+          "p90": 0.6183835670071653,
+          "mean": 0.6183835670071646,
+          "min": 0.6183835670071653,
+          "max": 0.6183835670071653
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 21,
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "b0fe7a502749a2ae6e3c5c822d0a9ca1ca07b1a4ef59790f8cefa0cd3828946b",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 6,
+          "p90": 6,
+          "mean": 6.04,
+          "min": 6,
+          "max": 10
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.6394927536231884,
+          "p50": 0.6469767441860466,
+          "p90": 0.6547100234663091,
+          "mean": 0.6470893619667086,
+          "min": 0.6302465023317788,
+          "max": 0.6650045330915685
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 660,
+          "p50": 924,
+          "p90": 1188,
+          "mean": 873.4,
+          "min": 660,
+          "max": 2156
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 327,
+          "p50": 456,
+          "p90": 585,
+          "mean": 431.37,
+          "min": 327,
+          "max": 1061
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 30,
+          "p50": 42,
+          "p90": 54,
+          "mean": 39.7,
+          "min": 30,
+          "max": 98
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1188,
+          "p50": 1628,
+          "p90": 2068,
+          "mean": 1546.16,
+          "min": 1188,
+          "max": 3740
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5,
+          "p50": 5,
+          "p90": 5.2,
+          "mean": 5.081999999999996,
+          "min": 5,
+          "max": 5.2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 6,
+          "p50": 8,
+          "p90": 10,
+          "mean": 7.58,
+          "min": 6,
+          "max": 18
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 538.5880511965277,
+          "p50": 538.5880511965277,
+          "p90": 538.5880511965277,
+          "mean": 538.588051196528,
+          "min": 538.5880511965277,
+          "max": 538.5880511965277
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 5.18414383126814,
+          "p50": 5.18414383126814,
+          "p90": 5.18414383126814,
+          "mean": 5.1841438312681465,
+          "min": 5.18414383126814,
+          "max": 5.18414383126814
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 22,
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "794477364bc8915c52aeedb48d1aa04a0121293d68d2055d8a5014df435973be",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.316615850496754,
+          "p50": 0.3187250170867593,
+          "p90": 0.3203323476739828,
+          "mean": 0.3186947913901039,
+          "min": 0.3149463597541923,
+          "max": 0.3218428630193336
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 16192,
+          "p50": 16324,
+          "p90": 16412,
+          "mean": 16315.64,
+          "min": 16060,
+          "max": 16500
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 10149,
+          "p50": 10227,
+          "p90": 10293,
+          "mean": 10226.49,
+          "min": 10060,
+          "max": 10350
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 736,
+          "p50": 742,
+          "p90": 746,
+          "mean": 741.62,
+          "min": 730,
+          "max": 750
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 44660,
+          "p50": 44968,
+          "p90": 45408,
+          "mean": 45020.36,
+          "min": 44132,
+          "max": 45716
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.6,
+          "p50": 2.6,
+          "p90": 2.6,
+          "mean": 2.5999999999999965,
+          "min": 2.6,
+          "max": 2.6
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 42,
+          "p50": 44,
+          "p90": 44,
+          "mean": 43.62,
+          "min": 42,
+          "max": 44
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 824.5124433986276,
+          "p50": 824.5124433986276,
+          "p90": 824.5124433986276,
+          "mean": 824.5124433986291,
+          "min": 824.5124433986276,
+          "max": 824.5124433986276
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.866216700333661,
+          "p50": 2.866216700333661,
+          "p90": 2.866216700333661,
+          "mean": 2.8662167003336645,
+          "min": 2.866216700333661,
+          "max": 2.866216700333661
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    {
+      "index": 23,
+      "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100-dmg2",
+      "tag": "diagnostic",
+      "policy": null,
+      "profile": null,
+      "runs": 100,
+      "runLogsDigest": "fe92caae9fd2f97e909b0e9b1d36063369848317759b8c96027fc59db0a13e0d",
+      "metrics": {
+        "deathsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroAbilityDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "heroDamageShare": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0.2202558787792152,
+          "p50": 0.2212004491379678,
+          "p90": 0.22250106337728626,
+          "mean": 0.2212719082138857,
+          "min": 0.21889916361512046,
+          "max": 0.22374286161865023
+        },
+        "heroExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 22484,
+          "p50": 22748,
+          "p90": 22924,
+          "mean": 22713.24,
+          "min": 22264,
+          "max": 23056
+        },
+        "invariantChecks": {
+          "n": 100,
+          "reached": 100,
+          "p10": 17215,
+          "p50": 17413,
+          "p90": 17564,
+          "mean": 17393.88,
+          "min": 17032,
+          "max": 17659
+        },
+        "invariantViolations": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "killsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1022,
+          "p50": 1034,
+          "p90": 1042,
+          "mean": 1032.42,
+          "min": 1012,
+          "max": 1048
+        },
+        "legionExpPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 86064,
+          "p50": 86988,
+          "p90": 88000,
+          "mean": 87013.52,
+          "min": 84920,
+          "max": 88440
+        },
+        "medianTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2,
+          "p50": 2,
+          "p90": 2,
+          "mean": 1.999,
+          "min": 1.9,
+          "max": 2
+        },
+        "memberKnockoutsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 32,
+          "p50": 32,
+          "p90": 34,
+          "mean": 32.7,
+          "min": 32,
+          "max": 34
+        },
+        "predictedKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1001.1338997112908,
+          "p50": 1001.1338997112908,
+          "p90": 1001.1338997112908,
+          "mean": 1001.1338997112908,
+          "min": 1001.1338997112908,
+          "max": 1001.1338997112908
+        },
+        "predictedReliability": {
+          "n": 100,
+          "reached": 100,
+          "p10": 1,
+          "p50": 1,
+          "p90": 1,
+          "mean": 1,
+          "min": 1,
+          "max": 1
+        },
+        "predictedTtkS": {
+          "n": 100,
+          "reached": 100,
+          "p10": 2.0959225844197023,
+          "p50": 2.0959225844197023,
+          "p90": 2.0959225844197023,
+          "mean": 2.0959225844196983,
+          "min": 2.0959225844197023,
+          "max": 2.0959225844197023
+        },
+        "predictedWorkerKillsPerHour": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "predictedWorkerReliability": {
+          "n": 100,
+          "reached": 0,
+          "p10": null,
+          "p50": null,
+          "p90": null,
+          "mean": null,
+          "min": null,
+          "max": null
+        },
+        "workerKillsPerHour": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "workerStops": {
+          "n": 100,
+          "reached": 100,
+          "p10": 0,
+          "p50": 0,
+          "p90": 0,
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        }
+      }
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2.1-03",
+      "statement": "The cell generates knockouts (threshold fixed before running)",
+      "source": "S2.1 pre-registration section 3",
+      "metric": "memberKnockoutsPerHour",
+      "stat": "p50",
+      "op": ">=",
+      "value": 1,
+      "unit": "knockouts per hour",
+      "role": "diagnostic",
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-1",
+          "observed": 34,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-2",
+          "observed": 12,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-3",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-1",
+          "observed": 8,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-2",
+          "observed": 6,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-3",
+          "observed": 52,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-1",
+          "observed": 10,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-2",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-3",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-1",
+          "observed": 20,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-2",
+          "observed": 30,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-3",
+          "observed": 20,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+          "observed": 12,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+          "observed": 24,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+          "observed": 6,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+          "observed": 6,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+          "observed": 8,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+          "observed": 20,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+          "observed": 0,
+          "outcome": "miss"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+          "observed": 8,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+          "observed": 44,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+          "observed": 32,
+          "outcome": "pass"
+        }
+      ]
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor (I1-I9) finds no violation",
+      "source": "owner S2 authorisation section 7; S2.1 section 8",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering",
+      "results": [
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z2|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L1-Z3|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z2|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|L5-Z3|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+          "observed": 0,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+          "observed": 0,
+          "outcome": "pass"
+        }
+      ]
+    }
+  ],
+  "sections": {
+    "invariants": {
+      "runs": 2400,
+      "checks": 30012020,
+      "violations": 0,
+      "first": []
+    },
+    "estimatorComparison": [
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 691.0040769573892,
+          "predictedTtkS": 3.709810072107569,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 14
+        },
+        "realisedMeanKillsPerHour": 592,
+        "realisedMedianTtkS": 3.6,
+        "errorPct": 16.723661648207635,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1043.9861557545494,
+          "predictedTtkS": 1.9483215894736372,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 28
+        },
+        "realisedMeanKillsPerHour": 1145.52,
+        "realisedMedianTtkS": 1.3,
+        "errorPct": -8.863559278358354,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1254.5254089106586,
+          "predictedTtkS": 1.369611069197862,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1452.56,
+        "realisedMedianTtkS": 1,
+        "errorPct": -13.633487848305153,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 288.1046280030754,
+          "predictedTtkS": 10.995460503194595,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 2.3333333333333335
+        },
+        "realisedMeanKillsPerHour": 19.6,
+        "realisedMedianTtkS": 10.8,
+        "errorPct": 1369.9215714442619,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 488.8848164099245,
+          "predictedTtkS": 5.863697703758179,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 4.666666666666667
+        },
+        "realisedMeanKillsPerHour": 37.74,
+        "realisedMedianTtkS": 6,
+        "errorPct": 1195.4022692366839,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 636.5461300251078,
+          "predictedTtkS": 4.15552099084791,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 7
+        },
+        "realisedMeanKillsPerHour": 566.94,
+        "realisedMedianTtkS": 4,
+        "errorPct": 12.277512615992475,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 1160.5173305187561,
+          "predictedTtkS": 1.6020648337847616,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1133.6,
+        "realisedMedianTtkS": 2,
+        "errorPct": 2.3744998693327646,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1521.5035567373561,
+          "predictedTtkS": 0.8660805681714464,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1722.02,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -11.644257515164973,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1699.4089531604752,
+          "predictedTtkS": 0.6183835670071653,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1965.12,
+        "realisedMedianTtkS": 0,
+        "errorPct": -13.521364946645736,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 538.5880511965277,
+          "predictedTtkS": 5.18414383126814,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 8.166666666666666
+        },
+        "realisedMeanKillsPerHour": 224.9,
+        "realisedMedianTtkS": 5.2,
+        "errorPct": 139.47890226613058,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 824.5124433986276,
+          "predictedTtkS": 2.866216700333661,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 24.5
+        },
+        "realisedMeanKillsPerHour": 827.48,
+        "realisedMedianTtkS": 2.6,
+        "errorPct": -0.3586257796408848,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1001.1338997112908,
+          "predictedTtkS": 2.0959225844197023,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 24.5
+        },
+        "realisedMeanKillsPerHour": 1077.34,
+        "realisedMedianTtkS": 2,
+        "errorPct": -7.073542269729992,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 691.0040769573892,
+          "predictedTtkS": 3.709810072107569,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 7
+        },
+        "realisedMeanKillsPerHour": 169.22,
+        "realisedMedianTtkS": 3.9,
+        "errorPct": 308.3465766206058,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1043.9861557545494,
+          "predictedTtkS": 1.9483215894736372,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 14
+        },
+        "realisedMeanKillsPerHour": 1103.62,
+        "realisedMedianTtkS": 1.3,
+        "errorPct": -5.40347621875741,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1254.5254089106586,
+          "predictedTtkS": 1.369611069197862,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1452.56,
+        "realisedMedianTtkS": 1,
+        "errorPct": -13.633487848305153,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 288.1046280030754,
+          "predictedTtkS": 10.995460503194595,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 1.1666666666666667
+        },
+        "realisedMeanKillsPerHour": 6,
+        "realisedMedianTtkS": 10.4,
+        "errorPct": 4701.743800051257,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 488.8848164099245,
+          "predictedTtkS": 5.863697703758179,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 2.3333333333333335
+        },
+        "realisedMeanKillsPerHour": 23.32,
+        "realisedMedianTtkS": 6,
+        "errorPct": 1996.4185952398136,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 636.5461300251078,
+          "predictedTtkS": 4.15552099084791,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 3.5
+        },
+        "realisedMeanKillsPerHour": 57.52,
+        "realisedMedianTtkS": 4,
+        "errorPct": 1006.6518254956673,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 1160.5173305187561,
+          "predictedTtkS": 1.6020648337847616,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1090.86,
+        "realisedMedianTtkS": 2,
+        "errorPct": 6.385542646971769,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1521.5035567373561,
+          "predictedTtkS": 0.8660805681714464,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1722.02,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -11.644257515164973,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1699.4089531604752,
+          "predictedTtkS": 0.6183835670071653,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1965.12,
+        "realisedMedianTtkS": 0,
+        "errorPct": -13.521364946645736,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 538.5880511965277,
+          "predictedTtkS": 5.18414383126814,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 4.454545454545454
+        },
+        "realisedMeanKillsPerHour": 39.7,
+        "realisedMedianTtkS": 5,
+        "errorPct": 1256.6449652305482,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 824.5124433986276,
+          "predictedTtkS": 2.866216700333661,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 13.363636363636363
+        },
+        "realisedMeanKillsPerHour": 741.62,
+        "realisedMedianTtkS": 2.6,
+        "errorPct": 11.177212507568244,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1001.1338997112908,
+          "predictedTtkS": 2.0959225844197023,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 13.363636363636363
+        },
+        "realisedMeanKillsPerHour": 1032.42,
+        "realisedMedianTtkS": 2,
+        "errorPct": -3.030365576868836,
+        "bothZero": false,
+        "worker": null
+      }
+    ]
+  }
+}

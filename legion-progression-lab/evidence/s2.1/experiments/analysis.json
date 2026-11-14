@@ -1,0 +1,2487 @@
+{
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "approved": false
+  },
+  "audit": {
+    "rule": "registered: a cell is unaffected iff its semantic summary is byte-identical to the stored S2 result",
+    "cells": 140,
+    "affectedByRegisteredRule": 42,
+    "unaffected": 98,
+    "affectedOnlyInMonitorCheckCount": 41,
+    "behaviourallyAffected": 1,
+    "note": "S2.1 adds monitor check I9 (worker eligibility), which raises invariantChecks wherever a worker exists; such cells have identical event logs and identical results",
+    "surprisesAgainstStatedExpectation": [
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q25: expected affected, observed unaffected",
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q25: expected affected, observed unaffected",
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40: expected affected, observed unaffected",
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40: expected affected, observed unaffected",
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q60: expected affected, observed unaffected",
+      "S2-E08-first-recruit-timing a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q60: expected affected, observed unaffected",
+      "S2-E09-hindsight-search a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp: expected affected, observed unaffected",
+      "S2-E09-hindsight-search a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp: expected affected, observed unaffected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z1|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z2|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L1-Z3|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z1|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z2|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L5-Z3|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z1|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z2|worker-classless: expected unaffected, observed affected",
+      "S2-E10-estimator-vs-realisation a10-p1.6-g100|L10-Z3|worker-classless: expected unaffected, observed affected"
+    ],
+    "affectedCells": [
+      {
+        "experiment": "S2-E05-squad-vs-workers",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45128.24,
+            "corrected": 45128.24
+          },
+          "expTotal": {
+            "original": 13109.24,
+            "corrected": 13109.24
+          },
+          "goldPerHour": {
+            "original": 12775.29,
+            "corrected": 12775.29
+          },
+          "goldHeld": {
+            "original": 12225.29,
+            "corrected": 12225.29
+          },
+          "workerKillsPerHour": {
+            "original": 4702.5,
+            "corrected": 4702.5
+          },
+          "squadKillsPerHour": {
+            "original": 861.05,
+            "corrected": 861.05
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.92431666666666,
+            "corrected": 24.92431666666666
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5563.55,
+            "corrected": 5563.55
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E05-squad-vs-workers",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 73518.26,
+            "corrected": 73518.26
+          },
+          "expTotal": {
+            "original": 25345.92,
+            "corrected": 25345.92
+          },
+          "goldPerHour": {
+            "original": 13665.59,
+            "corrected": 13665.59
+          },
+          "goldHeld": {
+            "original": 13115.59,
+            "corrected": 13115.59
+          },
+          "workerKillsPerHour": {
+            "original": 3115.81,
+            "corrected": 3115.81
+          },
+          "squadKillsPerHour": {
+            "original": 1299.36,
+            "corrected": 1299.36
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.291466666666668,
+            "corrected": 9.291466666666668
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 24.33333333333333,
+            "corrected": 24.33333333333333
+          },
+          "killsPerHour": {
+            "original": 4415.17,
+            "corrected": 4415.17
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E05-squad-vs-workers",
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-WORKERS",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 81658.2,
+            "corrected": 81658.2
+          },
+          "expTotal": {
+            "original": 22855.02,
+            "corrected": 22855.02
+          },
+          "goldPerHour": {
+            "original": 15491.460000000005,
+            "corrected": 15491.460000000005
+          },
+          "goldHeld": {
+            "original": 22687.19,
+            "corrected": 22687.19
+          },
+          "workerKillsPerHour": {
+            "original": 4612.22,
+            "corrected": 4612.22
+          },
+          "squadKillsPerHour": {
+            "original": 869.36,
+            "corrected": 869.36
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.92431666666666,
+            "corrected": 24.92431666666666
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 26.699999999999992,
+            "corrected": 26.699999999999992
+          },
+          "killsPerHour": {
+            "original": 5481.580000000001,
+            "corrected": 5481.580000000001
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E05-squad-vs-workers",
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-MIXED",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 129702.02,
+            "corrected": 129702.02
+          },
+          "expTotal": {
+            "original": 43363.7,
+            "corrected": 43363.7
+          },
+          "goldPerHour": {
+            "original": 16262.153333333315,
+            "corrected": 16262.153333333315
+          },
+          "goldHeld": {
+            "original": 23843.23,
+            "corrected": 23843.23
+          },
+          "workerKillsPerHour": {
+            "original": 3112.7399999999993,
+            "corrected": 3112.7399999999993
+          },
+          "squadKillsPerHour": {
+            "original": 1412.2333333333331,
+            "corrected": 1412.2333333333331
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.291466666666668,
+            "corrected": 9.291466666666668
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 30.343333333333362,
+            "corrected": 30.343333333333362
+          },
+          "killsPerHour": {
+            "original": 4524.973333333334,
+            "corrected": 4524.973333333334
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E06-assignment-switching",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45126.56,
+            "corrected": 45126.56
+          },
+          "expTotal": {
+            "original": 13104.96,
+            "corrected": 13104.96
+          },
+          "goldPerHour": {
+            "original": 12774.92,
+            "corrected": 12774.92
+          },
+          "goldHeld": {
+            "original": 12224.92,
+            "corrected": 12224.92
+          },
+          "workerKillsPerHour": {
+            "original": 4702.76,
+            "corrected": 4702.76
+          },
+          "squadKillsPerHour": {
+            "original": 860.82,
+            "corrected": 860.82
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.91605,
+            "corrected": 24.91605
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5563.58,
+            "corrected": 5563.58
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E06-assignment-switching",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-1min",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 112258.72,
+            "corrected": 112258.72
+          },
+          "expTotal": {
+            "original": 28640.8,
+            "corrected": 28640.8
+          },
+          "goldPerHour": {
+            "original": 14481.31,
+            "corrected": 14481.31
+          },
+          "goldHeld": {
+            "original": 13931.31,
+            "corrected": 13931.31
+          },
+          "workerKillsPerHour": {
+            "original": 2099.41,
+            "corrected": 2099.41
+          },
+          "squadKillsPerHour": {
+            "original": 1429.48,
+            "corrected": 1429.48
+          },
+          "zone3FirstVisitMin": {
+            "original": 8.87391666666667,
+            "corrected": 8.87391666666667
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 30.33333333333336,
+            "corrected": 30.33333333333336
+          },
+          "killsPerHour": {
+            "original": 3528.89,
+            "corrected": 3528.89
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E06-assignment-switching",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-5min",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 111349.76,
+            "corrected": 111349.76
+          },
+          "expTotal": {
+            "original": 28356.82,
+            "corrected": 28356.82
+          },
+          "goldPerHour": {
+            "original": 14740.35,
+            "corrected": 14740.35
+          },
+          "goldHeld": {
+            "original": 14190.35,
+            "corrected": 14190.35
+          },
+          "workerKillsPerHour": {
+            "original": 2149.19,
+            "corrected": 2149.19
+          },
+          "squadKillsPerHour": {
+            "original": 1426.33,
+            "corrected": 1426.33
+          },
+          "zone3FirstVisitMin": {
+            "original": 10.38476666666667,
+            "corrected": 10.38476666666667
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 30.33333333333336,
+            "corrected": 30.33333333333336
+          },
+          "killsPerHour": {
+            "original": 3575.52,
+            "corrected": 3575.52
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E06-assignment-switching",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-30min",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 113406.14,
+            "corrected": 113406.14
+          },
+          "expTotal": {
+            "original": 28545.38,
+            "corrected": 28545.38
+          },
+          "goldPerHour": {
+            "original": 17363.44,
+            "corrected": 17363.44
+          },
+          "goldHeld": {
+            "original": 16813.44,
+            "corrected": 16813.44
+          },
+          "workerKillsPerHour": {
+            "original": 2394.08,
+            "corrected": 2394.08
+          },
+          "squadKillsPerHour": {
+            "original": 1444.79,
+            "corrected": 1444.79
+          },
+          "zone3FirstVisitMin": {
+            "original": 8.365733333333333,
+            "corrected": 8.365733333333333
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 30.66666666666664,
+            "corrected": 30.66666666666664
+          },
+          "killsPerHour": {
+            "original": 3838.87,
+            "corrected": 3838.87
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q25",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 29870.8,
+            "corrected": 29870.8
+          },
+          "expTotal": {
+            "original": 8839.1,
+            "corrected": 8839.1
+          },
+          "goldPerHour": {
+            "original": 11088.146666666667,
+            "corrected": 11088.146666666667
+          },
+          "goldHeld": {
+            "original": 7766.11,
+            "corrected": 7766.11
+          },
+          "workerKillsPerHour": {
+            "original": 4805.026666666665,
+            "corrected": 4805.026666666665
+          },
+          "squadKillsPerHour": {
+            "original": 882.7866666666672,
+            "corrected": 882.7866666666672
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.86301666666666,
+            "corrected": 24.86301666666666
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 18,
+            "corrected": 18
+          },
+          "killsPerHour": {
+            "original": 5687.813333333332,
+            "corrected": 5687.813333333332
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q25",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 49563.24,
+            "corrected": 49563.24
+          },
+          "expTotal": {
+            "original": 17196.46,
+            "corrected": 17196.46
+          },
+          "goldPerHour": {
+            "original": 12171.786666666663,
+            "corrected": 12171.786666666663
+          },
+          "goldHeld": {
+            "original": 8578.84,
+            "corrected": 8578.84
+          },
+          "workerKillsPerHour": {
+            "original": 3125.8933333333325,
+            "corrected": 3125.8933333333325
+          },
+          "squadKillsPerHour": {
+            "original": 1238.573333333333,
+            "corrected": 1238.573333333333
+          },
+          "zone3FirstVisitMin": {
+            "original": 8.979666666666665,
+            "corrected": 8.979666666666665
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 4364.466666666665,
+            "corrected": 4364.466666666665
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q25",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45386.76,
+            "corrected": 45386.76
+          },
+          "expTotal": {
+            "original": 13093.46,
+            "corrected": 13093.46
+          },
+          "goldPerHour": {
+            "original": 12854.87,
+            "corrected": 12854.87
+          },
+          "goldHeld": {
+            "original": 12304.87,
+            "corrected": 12304.87
+          },
+          "workerKillsPerHour": {
+            "original": 4729.93,
+            "corrected": 4729.93
+          },
+          "squadKillsPerHour": {
+            "original": 855.47,
+            "corrected": 855.47
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.86301666666666,
+            "corrected": 24.86301666666666
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5585.4,
+            "corrected": 5585.4
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q25",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 74137.34,
+            "corrected": 74137.34
+          },
+          "expTotal": {
+            "original": 25541.06,
+            "corrected": 25541.06
+          },
+          "goldPerHour": {
+            "original": 13770.11,
+            "corrected": 13770.11
+          },
+          "goldHeld": {
+            "original": 13220.11,
+            "corrected": 13220.11
+          },
+          "workerKillsPerHour": {
+            "original": 3132.91,
+            "corrected": 3132.91
+          },
+          "squadKillsPerHour": {
+            "original": 1308.23,
+            "corrected": 1308.23
+          },
+          "zone3FirstVisitMin": {
+            "original": 8.979666666666665,
+            "corrected": 8.979666666666665
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 24.33333333333333,
+            "corrected": 24.33333333333333
+          },
+          "killsPerHour": {
+            "original": 4441.14,
+            "corrected": 4441.14
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 29606.78,
+            "corrected": 29606.78
+          },
+          "expTotal": {
+            "original": 8839.32,
+            "corrected": 8839.32
+          },
+          "goldPerHour": {
+            "original": 10980.41333333333,
+            "corrected": 10980.41333333333
+          },
+          "goldHeld": {
+            "original": 7685.31,
+            "corrected": 7685.31
+          },
+          "workerKillsPerHour": {
+            "original": 4769.786666666665,
+            "corrected": 4769.786666666665
+          },
+          "squadKillsPerHour": {
+            "original": 889.2000000000002,
+            "corrected": 889.2000000000002
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.89511666666665,
+            "corrected": 24.89511666666665
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 17.996666666666666,
+            "corrected": 17.996666666666666
+          },
+          "killsPerHour": {
+            "original": 5658.986666666667,
+            "corrected": 5658.986666666667
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 48971.2,
+            "corrected": 48971.2
+          },
+          "expTotal": {
+            "original": 17009.9,
+            "corrected": 17009.9
+          },
+          "goldPerHour": {
+            "original": 12039.586666666662,
+            "corrected": 12039.586666666662
+          },
+          "goldHeld": {
+            "original": 8479.69,
+            "corrected": 8479.69
+          },
+          "workerKillsPerHour": {
+            "original": 3104.4399999999982,
+            "corrected": 3104.4399999999982
+          },
+          "squadKillsPerHour": {
+            "original": 1227.266666666667,
+            "corrected": 1227.266666666667
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.29103333333333,
+            "corrected": 9.29103333333333
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 20.766666666666683,
+            "corrected": 20.766666666666683
+          },
+          "killsPerHour": {
+            "original": 4331.706666666664,
+            "corrected": 4331.706666666664
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45131.36,
+            "corrected": 45131.36
+          },
+          "expTotal": {
+            "original": 13103.36,
+            "corrected": 13103.36
+          },
+          "goldPerHour": {
+            "original": 12776.39,
+            "corrected": 12776.39
+          },
+          "goldHeld": {
+            "original": 12226.39,
+            "corrected": 12226.39
+          },
+          "workerKillsPerHour": {
+            "original": 4703.4,
+            "corrected": 4703.4
+          },
+          "squadKillsPerHour": {
+            "original": 860.72,
+            "corrected": 860.72
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.89511666666665,
+            "corrected": 24.89511666666665
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5564.12,
+            "corrected": 5564.12
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 73492.16,
+            "corrected": 73492.16
+          },
+          "expTotal": {
+            "original": 25327.88,
+            "corrected": 25327.88
+          },
+          "goldPerHour": {
+            "original": 13663.73,
+            "corrected": 13663.73
+          },
+          "goldHeld": {
+            "original": 13113.73,
+            "corrected": 13113.73
+          },
+          "workerKillsPerHour": {
+            "original": 3116.83,
+            "corrected": 3116.83
+          },
+          "squadKillsPerHour": {
+            "original": 1298.54,
+            "corrected": 1298.54
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.29103333333333,
+            "corrected": 9.29103333333333
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 24.33333333333333,
+            "corrected": 24.33333333333333
+          },
+          "killsPerHour": {
+            "original": 4415.37,
+            "corrected": 4415.37
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q60",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 29303.84,
+            "corrected": 29303.84
+          },
+          "expTotal": {
+            "original": 8844.1,
+            "corrected": 8844.1
+          },
+          "goldPerHour": {
+            "original": 10862.826666666662,
+            "corrected": 10862.826666666662
+          },
+          "goldHeld": {
+            "original": 7597.12,
+            "corrected": 7597.12
+          },
+          "workerKillsPerHour": {
+            "original": 4710.693333333333,
+            "corrected": 4710.693333333333
+          },
+          "squadKillsPerHour": {
+            "original": 896.1333333333334,
+            "corrected": 896.1333333333334
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.914050000000007,
+            "corrected": 24.914050000000007
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 17.66666666666669,
+            "corrected": 17.66666666666669
+          },
+          "killsPerHour": {
+            "original": 5606.826666666669,
+            "corrected": 5606.826666666669
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q60",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 48344.3,
+            "corrected": 48344.3
+          },
+          "expTotal": {
+            "original": 16817.4,
+            "corrected": 16817.4
+          },
+          "goldPerHour": {
+            "original": 11905.266666666663,
+            "corrected": 11905.266666666663
+          },
+          "goldHeld": {
+            "original": 8378.95,
+            "corrected": 8378.95
+          },
+          "workerKillsPerHour": {
+            "original": 3083.0000000000005,
+            "corrected": 3083.0000000000005
+          },
+          "squadKillsPerHour": {
+            "original": 1215.6000000000004,
+            "corrected": 1215.6000000000004
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.603283333333334,
+            "corrected": 9.603283333333334
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 20.666666666666696,
+            "corrected": 20.666666666666696
+          },
+          "killsPerHour": {
+            "original": 4298.5999999999985,
+            "corrected": 4298.5999999999985
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q60",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 44776.7,
+            "corrected": 44776.7
+          },
+          "expTotal": {
+            "original": 13095.6,
+            "corrected": 13095.6
+          },
+          "goldPerHour": {
+            "original": 12668.51,
+            "corrected": 12668.51
+          },
+          "goldHeld": {
+            "original": 12118.51,
+            "corrected": 12118.51
+          },
+          "workerKillsPerHour": {
+            "original": 4668.71,
+            "corrected": 4668.71
+          },
+          "squadKillsPerHour": {
+            "original": 865.35,
+            "corrected": 865.35
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.914050000000007,
+            "corrected": 24.914050000000007
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5534.06,
+            "corrected": 5534.06
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E08-first-recruit-timing",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q60",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 72811.18,
+            "corrected": 72811.18
+          },
+          "expTotal": {
+            "original": 25109.64,
+            "corrected": 25109.64
+          },
+          "goldPerHour": {
+            "original": 13555.19,
+            "corrected": 13555.19
+          },
+          "goldHeld": {
+            "original": 13005.19,
+            "corrected": 13005.19
+          },
+          "workerKillsPerHour": {
+            "original": 3100.49,
+            "corrected": 3100.49
+          },
+          "squadKillsPerHour": {
+            "original": 1288.62,
+            "corrected": 1288.62
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.603283333333334,
+            "corrected": 9.603283333333334
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 24.326666666666664,
+            "corrected": 24.326666666666664
+          },
+          "killsPerHour": {
+            "original": 4389.11,
+            "corrected": 4389.11
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E09-hindsight-search",
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+        "sameEventLogs": false,
+        "differingMetrics": [
+          "activeManualMin",
+          "automationMin",
+          "connectedAutoFarmMin",
+          "conquestScore",
+          "expPerHour",
+          "expTotal",
+          "finalLevel",
+          "finalZone",
+          "gate23Over12Ratio",
+          "goldHeld",
+          "goldPerHour",
+          "heroDamageShare",
+          "heroExpPerHour",
+          "invariantChecks",
+          "killsPerHour",
+          "legionExpPerHour",
+          "legionExpTotal",
+          "levelAt30",
+          "levelAt45",
+          "levelAt60",
+          "materialDropEventsPerHour",
+          "materialsPerHour",
+          "memberKnockoutsPerHour",
+          "objectiveScore",
+          "overkillFraction",
+          "recordArcher",
+          "recordWarrior",
+          "recruit3Min",
+          "recruitLevelMean",
+          "restingMin",
+          "searchDecisions",
+          "searchForks",
+          "squadKillsPerHour",
+          "staleDiscarded",
+          "travellingMin",
+          "ttkZ2FirstVisitS",
+          "ttkZ3FirstVisitS",
+          "workerKillsPerHour",
+          "zone2FirstVisitMin",
+          "zone3FirstVisitMin",
+          "zone3UnlockMin"
+        ],
+        "onlyMonitorCountDiffers": false,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45366.56,
+            "corrected": 46459.52
+          },
+          "expTotal": {
+            "original": 13550.2,
+            "corrected": 13845.08
+          },
+          "goldPerHour": {
+            "original": 12556.64,
+            "corrected": 12758.18
+          },
+          "goldHeld": {
+            "original": 12006.64,
+            "corrected": 12208.18
+          },
+          "workerKillsPerHour": {
+            "original": 4218.02,
+            "corrected": 4199.48
+          },
+          "squadKillsPerHour": {
+            "original": 1615.42,
+            "corrected": 1612.1
+          },
+          "zone3FirstVisitMin": {
+            "original": null,
+            "corrected": 54.22666666666667
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21.013333333333335,
+            "corrected": 21.22000000000001
+          },
+          "killsPerHour": {
+            "original": 5833.44,
+            "corrected": 5811.58
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E09-hindsight-search",
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 48158.72,
+            "corrected": 48158.72
+          },
+          "expTotal": {
+            "original": 11016.52,
+            "corrected": 11016.52
+          },
+          "goldPerHour": {
+            "original": 12474.26,
+            "corrected": 12474.26
+          },
+          "goldHeld": {
+            "original": 11924.26,
+            "corrected": 11924.26
+          },
+          "workerKillsPerHour": {
+            "original": 4360.34,
+            "corrected": 4360.34
+          },
+          "squadKillsPerHour": {
+            "original": 1769.26,
+            "corrected": 1769.26
+          },
+          "zone3FirstVisitMin": {
+            "original": 8.538999999999998,
+            "corrected": 8.538999999999998
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 22.33333333333334,
+            "corrected": 22.33333333333334
+          },
+          "killsPerHour": {
+            "original": 6129.6,
+            "corrected": 6129.6
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E09-hindsight-search",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 45125.92,
+            "corrected": 45125.92
+          },
+          "expTotal": {
+            "original": 13090.52,
+            "corrected": 13090.52
+          },
+          "goldPerHour": {
+            "original": 12775.1,
+            "corrected": 12775.1
+          },
+          "goldHeld": {
+            "original": 12225.1,
+            "corrected": 12225.1
+          },
+          "workerKillsPerHour": {
+            "original": 4704.14,
+            "corrected": 4704.14
+          },
+          "squadKillsPerHour": {
+            "original": 860.12,
+            "corrected": 860.12
+          },
+          "zone3FirstVisitMin": {
+            "original": 24.941666666666674,
+            "corrected": 24.941666666666674
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 21,
+            "corrected": 21
+          },
+          "killsPerHour": {
+            "original": 5564.26,
+            "corrected": 5564.26
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E09-hindsight-search",
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "legionExpTotal": {
+            "original": 73491.72,
+            "corrected": 73491.72
+          },
+          "expTotal": {
+            "original": 25328.32,
+            "corrected": 25328.32
+          },
+          "goldPerHour": {
+            "original": 13664.18,
+            "corrected": 13664.18
+          },
+          "goldHeld": {
+            "original": 13114.18,
+            "corrected": 13114.18
+          },
+          "workerKillsPerHour": {
+            "original": 3116.94,
+            "corrected": 3116.94
+          },
+          "squadKillsPerHour": {
+            "original": 1298.56,
+            "corrected": 1298.56
+          },
+          "zone3FirstVisitMin": {
+            "original": 9.29786666666667,
+            "corrected": 9.29786666666667
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "recruitLevelMean": {
+            "original": 24.333333333333336,
+            "corrected": 24.333333333333336
+          },
+          "killsPerHour": {
+            "original": 4415.5,
+            "corrected": 4415.5
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 844.56,
+            "corrected": 844.56
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 899.32,
+            "corrected": 899.32
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 838.6126593455115,
+            "corrected": 838.6126593455115
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 840.04,
+            "corrected": 840.04
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 899.32,
+            "corrected": 899.32
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 800.123710180784,
+            "corrected": 800.123710180784
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 25.92,
+            "corrected": 25.92
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 266.42,
+            "corrected": 266.42
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 201.71394099569224,
+            "corrected": 201.71394099569224
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 38.72,
+            "corrected": 38.72
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 266.42,
+            "corrected": 266.42
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 187.44455148704617,
+            "corrected": 187.44455148704617
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 0,
+            "corrected": 0
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 0,
+            "corrected": 0
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 1.5319798519736839e-12,
+            "corrected": 1.5319798519736839e-12
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 6,
+            "corrected": 6
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 0,
+            "corrected": 0
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 1.96823509240062e-7,
+            "corrected": 1.96823509240062e-7
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 1362,
+            "corrected": 1362
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 1525.34,
+            "corrected": 1525.34
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 1363.6363636363644,
+            "corrected": 1363.6363636363644
+          },
+          "predictedWorkerReliability": {
+            "original": 0,
+            "corrected": 0
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 1350,
+            "corrected": 1350
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 1525.34,
+            "corrected": 1525.34
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 1285.7142857142871,
+            "corrected": 1285.7142857142871
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 90.02,
+            "corrected": 90.02
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 611,
+            "corrected": 611
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 433.87661112249515,
+            "corrected": 433.87661112249515
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 559.32,
+            "corrected": 559.32
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 611,
+            "corrected": 611
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 445.16581228578696,
+            "corrected": 445.16581228578696
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 6.16,
+            "corrected": 6.16
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 180,
+            "corrected": 180
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 62.78784237174938,
+            "corrected": 62.78784237174938
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 18,
+            "corrected": 18
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 180,
+            "corrected": 180
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 93.990537325044,
+            "corrected": 93.990537325044
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 2398,
+            "corrected": 2398
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 2390,
+            "corrected": 2390
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 2400,
+            "corrected": 2400
+          },
+          "predictedWorkerReliability": {
+            "original": 0,
+            "corrected": 0
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 1398.68,
+            "corrected": 1398.68
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 2390,
+            "corrected": 2390
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 1316.2705667276032,
+            "corrected": 1316.2705667276032
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 774,
+            "corrected": 774
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 1031.3,
+            "corrected": 1031.3
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 770.1492537313446,
+            "corrected": 770.1492537313446
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 830.66,
+            "corrected": 830.66
+          },
+          "workerStops": {
+            "original": 0,
+            "corrected": 0
+          },
+          "killsPerHour": {
+            "original": 1031.3,
+            "corrected": 1031.3
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 600.090169348688,
+            "corrected": 600.090169348688
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 18.08,
+            "corrected": 18.08
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 360.04,
+            "corrected": 360.04
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 152.04067367441215,
+            "corrected": 152.04067367441215
+          },
+          "predictedWorkerReliability": {
+            "original": 2,
+            "corrected": 2
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      },
+      {
+        "experiment": "S2-E10-estimator-vs-realisation",
+        "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+        "sameEventLogs": true,
+        "differingMetrics": [
+          "invariantChecks"
+        ],
+        "onlyMonitorCountDiffers": true,
+        "metrics": {
+          "workerKillsPerHour": {
+            "original": 59.72,
+            "corrected": 59.72
+          },
+          "workerStops": {
+            "original": 1,
+            "corrected": 1
+          },
+          "killsPerHour": {
+            "original": 360.04,
+            "corrected": 360.04
+          },
+          "predictedWorkerKillsPerHour": {
+            "original": 201.1144230288158,
+            "corrected": 201.1144230288158
+          },
+          "predictedWorkerReliability": {
+            "original": 1,
+            "corrected": 1
+          },
+          "invariantViolations": {
+            "original": 0,
+            "corrected": 0
+          }
+        }
+      }
+    ]
+  },
+  "C1": {
+    "gate": true,
+    "pass": true,
+    "runs": 20050,
+    "checks": 919230389,
+    "violations": 0,
+    "note": "repeated invariant evaluations across model runs, not independently designed scenarios"
+  },
+  "H-S2.1-01": {
+    "role": "engineering",
+    "pass": true,
+    "unreachableCells": 0,
+    "contradicted": []
+  },
+  "H-S2.1-02": {
+    "role": "reported",
+    "unresolved": [
+      {
+        "id": "a10-p1.6-g100|L1-Z3|worker-mage",
+        "reliability": "unresolved",
+        "predicted": 0,
+        "realisedMean": 6,
+        "realisedMax": 6
+      }
+    ]
+  },
+  "C5-workers": {
+    "cells": [
+      {
+        "id": "a10-p1.6-g100|L1-Z1|worker-classless",
+        "reliability": "approximate",
+        "predicted": 838.6126593455115,
+        "realisedMean": 844.42,
+        "realisedMax": 856
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|worker-classless",
+        "reliability": "unsafe",
+        "predicted": 201.71394099569224,
+        "realisedMean": 25.72,
+        "realisedMax": 30
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|worker-classless",
+        "reliability": "unsafe",
+        "predicted": 1.5319798519736839e-12,
+        "realisedMean": 0,
+        "realisedMax": 0
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z1|worker-classless",
+        "reliability": "reliable",
+        "predicted": 1363.6363636363644,
+        "realisedMean": 1363.62,
+        "realisedMax": 1376
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|worker-classless",
+        "reliability": "approximate",
+        "predicted": 433.87661112249515,
+        "realisedMean": 90,
+        "realisedMax": 90
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|worker-classless",
+        "reliability": "unsafe",
+        "predicted": 62.78784237174938,
+        "realisedMean": 6.26,
+        "realisedMax": 8
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z1|worker-classless",
+        "reliability": "reliable",
+        "predicted": 2400,
+        "realisedMean": 2398,
+        "realisedMax": 2398
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z2|worker-classless",
+        "reliability": "approximate",
+        "predicted": 770.1492537313446,
+        "realisedMean": 774,
+        "realisedMax": 774
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z3|worker-classless",
+        "reliability": "unsafe",
+        "predicted": 152.04067367441215,
+        "realisedMean": 18.06,
+        "realisedMax": 20
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z1|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 800.123710180784,
+        "realisedMean": 840.52,
+        "realisedMax": 848
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|worker-warrior",
+        "reliability": "unsafe",
+        "predicted": 187.44455148704617,
+        "realisedMean": 39.04,
+        "realisedMax": 42
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|worker-warrior",
+        "reliability": "unsafe",
+        "predicted": 1.96823509240062e-7,
+        "realisedMean": 6,
+        "realisedMax": 6
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z1|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 1285.7142857142871,
+        "realisedMean": 1350,
+        "realisedMax": 1350
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 445.16581228578696,
+        "realisedMean": 559.36,
+        "realisedMax": 560
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|worker-warrior",
+        "reliability": "unsafe",
+        "predicted": 93.990537325044,
+        "realisedMean": 18,
+        "realisedMax": 18
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z1|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 1316.2705667276032,
+        "realisedMean": 1401.62,
+        "realisedMax": 1420
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z2|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 600.090169348688,
+        "realisedMean": 831,
+        "realisedMax": 834
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z3|worker-warrior",
+        "reliability": "approximate",
+        "predicted": 201.1144230288158,
+        "realisedMean": 59.76,
+        "realisedMax": 62
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z1|worker-archer",
+        "reliability": "approximate",
+        "predicted": 993.4079411313833,
+        "realisedMean": 1158.1,
+        "realisedMax": 1178
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|worker-archer",
+        "reliability": "unsafe",
+        "predicted": 246.12280522226774,
+        "realisedMean": 53.56,
+        "realisedMax": 58
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|worker-archer",
+        "reliability": "unsafe",
+        "predicted": 0.0006539336619076895,
+        "realisedMean": 6,
+        "realisedMax": 6
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z1|worker-archer",
+        "reliability": "approximate",
+        "predicted": 1531.914893617021,
+        "realisedMean": 1716.06,
+        "realisedMax": 1732
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|worker-archer",
+        "reliability": "approximate",
+        "predicted": 519.1833567148955,
+        "realisedMean": 776,
+        "realisedMax": 802
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|worker-archer",
+        "reliability": "unsafe",
+        "predicted": 123.63572408796243,
+        "realisedMean": 18.32,
+        "realisedMax": 22
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z1|worker-archer",
+        "reliability": "approximate",
+        "predicted": 2400,
+        "realisedMean": 2398,
+        "realisedMax": 2398
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z2|worker-archer",
+        "reliability": "approximate",
+        "predicted": 939.9623081755376,
+        "realisedMean": 1107.7,
+        "realisedMax": 1144
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z3|worker-archer",
+        "reliability": "unsafe",
+        "predicted": 275.63035298610805,
+        "realisedMean": 60.62,
+        "realisedMax": 64
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z1|worker-mage",
+        "reliability": "approximate",
+        "predicted": 1200,
+        "realisedMean": 1370,
+        "realisedMax": 1370
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|worker-mage",
+        "reliability": "unsafe",
+        "predicted": 166.06747843076258,
+        "realisedMean": 28.02,
+        "realisedMax": 34
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|worker-mage",
+        "reliability": "unresolved",
+        "predicted": 0,
+        "realisedMean": 6,
+        "realisedMax": 6
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z1|worker-mage",
+        "reliability": "approximate",
+        "predicted": 1230.7692307692332,
+        "realisedMean": 1384.76,
+        "realisedMax": 1394
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|worker-mage",
+        "reliability": "approximate",
+        "predicted": 410.2506412993092,
+        "realisedMean": 102,
+        "realisedMax": 102
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|worker-mage",
+        "reliability": "unsafe",
+        "predicted": 66.0463806455421,
+        "realisedMean": 18,
+        "realisedMax": 18
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z1|worker-mage",
+        "reliability": "approximate",
+        "predicted": 2400,
+        "realisedMean": 2398,
+        "realisedMax": 2398
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z2|worker-mage",
+        "reliability": "approximate",
+        "predicted": 691.4741663793537,
+        "realisedMean": 909.66,
+        "realisedMax": 916
+      },
+      {
+        "id": "a10-p1.6-g100|L10-Z3|worker-mage",
+        "reliability": "unsafe",
+        "predicted": 159.27589766419794,
+        "realisedMean": 24.84,
+        "realisedMax": 32
+      }
+    ],
+    "errorByReliability": [
+      {
+        "reliability": "approximate",
+        "cells": 19,
+        "medianAbsErrorPct": 12.408759124087592,
+        "maxAbsErrorPct": 382.08512346943905
+      },
+      {
+        "reliability": "unsafe",
+        "cells": 13,
+        "medianAbsErrorPct": 422.16965180579996,
+        "maxAbsErrorPct": 903.0006768650061
+      },
+      {
+        "reliability": "reliable",
+        "cells": 2,
+        "medianAbsErrorPct": 0.0012000144002384079,
+        "maxAbsErrorPct": 0.08340283569641367
+      },
+      {
+        "reliability": "unresolved",
+        "cells": 1,
+        "medianAbsErrorPct": 100,
+        "maxAbsErrorPct": 100
+      }
+    ],
+    "note": "cells with zero realised kills are excluded from the error (no relative error defined)"
+  },
+  "C7": {
+    "informative": true,
+    "generating": 18,
+    "cells": 24,
+    "threshold": "p50 memberKnockoutsPerHour >= 1",
+    "rows": [
+      {
+        "id": "a10-p1.6-g100|L1-Z2|squad-1",
+        "koPerHourP50": 34,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 592
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|squad-2",
+        "koPerHourP50": 12,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1146
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z2|squad-3",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1452
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|squad-1",
+        "koPerHourP50": 8,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 18
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|squad-2",
+        "koPerHourP50": 6,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 36
+      },
+      {
+        "id": "a10-p1.6-g100|L1-Z3|squad-3",
+        "koPerHourP50": 52,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 578
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|squad-1",
+        "koPerHourP50": 10,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1134
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|squad-2",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1722
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z2|squad-3",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1966
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|squad-1",
+        "koPerHourP50": 20,
+        "deathsPerHourP50": 8,
+        "killsPerHourP50": 204
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|squad-2",
+        "koPerHourP50": 30,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 828
+      },
+      {
+        "id": "a10-p1.6-g100|L5-Z3|squad-3",
+        "koPerHourP50": 20,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1078
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-1",
+        "koPerHourP50": 12,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 112
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-2",
+        "koPerHourP50": 24,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1104
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z2|squad-3",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1452
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-1",
+        "koPerHourP50": 6,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 6
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-2",
+        "koPerHourP50": 6,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 18
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L1-Z3|squad-3",
+        "koPerHourP50": 8,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 48
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-1",
+        "koPerHourP50": 20,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1092
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-2",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1722
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z2|squad-3",
+        "koPerHourP50": 0,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1966
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-1",
+        "koPerHourP50": 8,
+        "deathsPerHourP50": 6,
+        "killsPerHourP50": 42
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-2",
+        "koPerHourP50": 44,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 742
+      },
+      {
+        "id": "a10-p1.6-g100-dmg2|L5-Z3|squad-3",
+        "koPerHourP50": 32,
+        "deathsPerHourP50": 0,
+        "killsPerHourP50": 1034
+      }
+    ]
+  }
+}

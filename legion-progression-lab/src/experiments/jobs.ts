@@ -5,6 +5,7 @@
  */
 import type { CompiledContent } from '../model/content.ts';
 import type { LogEntry, Policy } from '../model/types.ts';
+import type { LedgerImplementationId } from '../core/ledger/implementations.ts';
 import { Simulation, type EstimatorVersion } from '../engine/simulation.ts';
 import { makeOrcBrute } from '../policy/oracle.ts';
 import { CONTROL_POLICIES, fixedZonePolicy, fixedZonePolicyS1, REALISTIC_POLICIES } from '../policy/realistic.ts';
@@ -17,10 +18,10 @@ export type Values = Record<string, number | null>;
 export type FixedLogic = 'CTL-FIXED-S1' | 'POL-FIXED';
 
 export type Job =
-  | { readonly kind: 'campaign'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly profile: ProfileId; readonly policy: string; readonly estimator: EstimatorVersion; readonly trace?: boolean }
-  | { readonly kind: 'estimator'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly level: number; readonly zone: number; readonly sessionMin: number; readonly fixed: FixedLogic; readonly estimator: EstimatorVersion }
-  | { readonly kind: 'audit'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly profile: ProfileId; readonly basePolicy: string; readonly zones: readonly number[]; readonly forkMin: number; readonly estimator: EstimatorVersion }
-  | { readonly kind: 'drops'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly zone: number; readonly level: number; readonly sessionMin: number; readonly estimator: EstimatorVersion };
+  | { readonly kind: 'campaign'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly profile: ProfileId; readonly policy: string; readonly estimator: EstimatorVersion; readonly ledger?: LedgerImplementationId; readonly trace?: boolean }
+  | { readonly kind: 'estimator'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly level: number; readonly zone: number; readonly sessionMin: number; readonly fixed: FixedLogic; readonly estimator: EstimatorVersion; readonly ledger?: LedgerImplementationId }
+  | { readonly kind: 'audit'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly profile: ProfileId; readonly basePolicy: string; readonly zones: readonly number[]; readonly forkMin: number; readonly estimator: EstimatorVersion; readonly ledger?: LedgerImplementationId }
+  | { readonly kind: 'drops'; readonly cell: number; readonly replicate: number; readonly seedRoot: string; readonly variant: string; readonly zone: number; readonly level: number; readonly sessionMin: number; readonly estimator: EstimatorVersion; readonly ledger?: LedgerImplementationId };
 
 export interface JobResult {
   readonly cell: number;
@@ -101,7 +102,7 @@ export function campaignValues(m: RunMetrics, content: CompiledContent): Values 
 
 function runCampaign(job: Extract<Job, { kind: 'campaign' }>, content: CompiledContent): JobResult {
   const sessionMs = PROFILES[job.profile].sessionMin * MIN;
-  const sim = new Simulation({ content, seedRoot: job.seedRoot, sessions: [{ startMs: 0, endMs: sessionMs }], policy: makePolicy(job.policy), keepLog: job.trace ? 800 : 0, estimator: job.estimator });
+  const sim = new Simulation({ content, seedRoot: job.seedRoot, sessions: [{ startMs: 0, endMs: sessionMs }], policy: makePolicy(job.policy), keepLog: job.trace ? 800 : 0, estimator: job.estimator, ...(job.ledger ? { ledger: job.ledger } : {}) });
   const rec = new MetricsRecorder(sim);
   sim.run(sessionMs);
   const result: JobResult = { cell: job.cell, replicate: job.replicate, values: campaignValues(rec.finish(sim, sessionMs), content), digest: sim.logDigest() };
@@ -117,6 +118,7 @@ function runEstimatorJob(job: Extract<Job, { kind: 'estimator' }>, content: Comp
     policy: fixedPolicy(job.fixed, job.zone),
     diagnostic: { startLevel: job.level, freezeLevel: true, startZoneOrder: job.zone, unlockAllZones: true },
     estimator: job.estimator,
+    ...(job.ledger ? { ledger: job.ledger } : {}),
   });
   const rec = new MetricsRecorder(sim);
   sim.run(ms);
@@ -142,7 +144,7 @@ function runEstimatorJob(job: Extract<Job, { kind: 'estimator' }>, content: Comp
 function runAudit(job: Extract<Job, { kind: 'audit' }>, content: CompiledContent): JobResult {
   const sessionMs = PROFILES[job.profile].sessionMin * MIN;
   const forkMs = job.forkMin * MIN;
-  const base = new Simulation({ content, seedRoot: job.seedRoot, sessions: [{ startMs: 0, endMs: sessionMs }], policy: makePolicy(job.basePolicy), estimator: job.estimator });
+  const base = new Simulation({ content, seedRoot: job.seedRoot, sessions: [{ startMs: 0, endMs: sessionMs }], policy: makePolicy(job.basePolicy), estimator: job.estimator, ...(job.ledger ? { ledger: job.ledger } : {}) });
   const pending = new Set(job.zones);
   let visitedZone: number | null = null;
   base.addObserver((e, s) => {
@@ -204,6 +206,7 @@ function runDrops(job: Extract<Job, { kind: 'drops' }>, content: CompiledContent
     policy: fixedZonePolicyS1(job.zone),
     diagnostic: { startLevel: job.level, freezeLevel: true, startZoneOrder: job.zone, unlockAllZones: true },
     estimator: job.estimator,
+    ...(job.ledger ? { ledger: job.ledger } : {}),
   });
   const rec = new MetricsRecorder(sim);
   const perEntry = new Map<number, number>();

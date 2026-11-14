@@ -1,0 +1,78 @@
+{
+  "experimentId": "S2-E00-control-a0",
+  "increment": "S2",
+  "question": "Does the S2 engine, with the hero alone, classless and every S2 feature off, reproduce the S1.1 base metric summaries exactly (same seeds)?",
+  "design": "S1.1 policies POL-STAY and POL-FRONTIER, PR-NEW and PR-BAL, base variant a10-p1.6-g100, the S1-E01 seed root and 200 replicates, exactly as S1.1-E01. Analysis B0 compares every metric summary present in both with S1.1-E01 cells <variant>|<profile>|<policy>|est-s1.1.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|PR-NEW|POL-STAY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL-STAY",
+      "legion": false
+    },
+    {
+      "id": "a10-p1.6-g100|PR-NEW|POL-FRONTIER",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-NEW",
+      "policy": "POL-FRONTIER",
+      "legion": false
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL-STAY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL-STAY",
+      "legion": false
+    },
+    {
+      "id": "a10-p1.6-g100|PR-BAL|POL-FRONTIER",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "profile": "PR-BAL",
+      "policy": "POL-FRONTIER",
+      "legion": false
+    }
+  ],
+  "seeds": {
+    "root": "S1-E01",
+    "replicates": 200
+  },
+  "metrics": [
+    "firstKillS",
+    "killsToL2",
+    "minToL5",
+    "minToL10",
+    "zone2FirstVisitMin",
+    "zone3FirstVisitMin",
+    "deathsPerHour",
+    "levelAt45",
+    "expTotal",
+    "autoFarmStops"
+  ],
+  "hypotheses": [],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "Gate B0: the S2 engine must reproduce S1.1 exactly; any difference is an engine defect, not a balance result."
+  ]
+}

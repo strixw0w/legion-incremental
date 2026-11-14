@@ -1,0 +1,3 @@
+Preservation check (2026-11-13T23:35:03Z), against the reviewed S2 package (ZIP 500f830b...d4675, extracted and manifest-verified):
+evidence/s2/: identical; evidence/l1/: identical; manifests/s2/: identical; spec/fixtures/ledger.v1.json: identical; results/s2/*/semantic.json: identical to the packaged S2 evidence.
+The S2.1 audit wrote only to results/s2.1/audit/ (copied to evidence/s2.1/experiments/audit/).

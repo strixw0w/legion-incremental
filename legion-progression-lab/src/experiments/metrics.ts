@@ -86,6 +86,8 @@ export class MetricsRecorder {
   private readonly drops: Record<string, number> = {};
   private readonly materials: Record<string, number> = {};
   private readonly ledgerAtStart: Map<string, number> = new Map();
+  /** S2: gold and materials spent or granted outside kill credits (LegionSpend / LegionGrant entries; none in S1). */
+  private readonly otherChanges: Record<string, number> = {};
   private damage = 0;
   private overkill = 0;
   private bossAttempts = 0;
@@ -180,6 +182,12 @@ export class MetricsRecorder {
       case 'AutoFarmStopped':
         this.autoFarmStops += 1;
         break;
+      case 'LegionSpend':
+        this.otherChanges[String(d['resourceId'])] = (this.otherChanges[String(d['resourceId'])] ?? 0) - (d['amount'] as number);
+        break;
+      case 'LegionGrant':
+        this.otherChanges[String(d['resourceId'])] = (this.otherChanges[String(d['resourceId'])] ?? 0) + (d['amount'] as number);
+        break;
       case 'Swing':
         this.damage += d['damage'] as number;
         this.overkill += d['overkill'] as number;
@@ -193,6 +201,7 @@ export class MetricsRecorder {
   private reconcile(sim: Simulation): void {
     const expected = new Map<string, number>(Object.entries(this.materials));
     if (this.gold !== 0) expected.set('res.gold', (expected.get('res.gold') ?? 0) + this.gold);
+    for (const [id, delta] of Object.entries(this.otherChanges)) expected.set(id, (expected.get(id) ?? 0) + delta);
     const ids = new Set<string>([...expected.keys(), ...sim.state.ledger.balances.keys()]);
     for (const id of ids) {
       const change = (sim.state.ledger.balances.get(id)?.available ?? 0) - (this.ledgerAtStart.get(id) ?? 0);

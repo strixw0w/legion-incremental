@@ -1,0 +1,635 @@
+{
+  "fixtureSet": "worker-feasibility",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s2-legion.md#v1.1",
+  "status": "candidate",
+  "independence": "Ability-aware structural feasibility and the worker-estimate classification (spec/formulas/s2-legion.md v1.1 section 6), re-derived by spec/oracle/s2_oracle.py from the formula text with exact integer arithmetic; the basic-attack verdict re-derives estimator v1.2 for the single certain outcome. The lab side compiles a synthetic pack and asks the real engine (workerEstimate, workerFeasibility). Certain hits, no crits. The first four cases are also derived by hand.",
+  "cases": [
+    {
+      "id": "s2.1.feasibility.ability-makes-winnable.001",
+      "kind": "boundary",
+      "description": "the reviewer case: a level-1 Mage worker kills a 25-HP enemy only with Fireball before the 1 ms knockout",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 25,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 1,
+        "damageBound": 38,
+        "provenImpossible": false,
+        "basicCanWin": false,
+        "reachability": "unresolved"
+      },
+      "derivation": "Mage raw 7500 -> 8, Fireball raw 30000 -> 30; knocked out at 1 ms (one hit of 1000); bound 8 + 30 = 38 >= 25: not impossible; basic attacks need 4 swings: they cannot win -> unresolved"
+    },
+    {
+      "id": "s2.1.feasibility.bound-equals-hp.001",
+      "kind": "boundary",
+      "description": "a bound exactly equal to the enemy HP is not a proof of impossibility",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 38,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 1,
+        "damageBound": 38,
+        "provenImpossible": false,
+        "basicCanWin": false,
+        "reachability": "unresolved"
+      },
+      "derivation": "bound 38 = HP 38 -> not proven impossible -> unresolved"
+    },
+    {
+      "id": "s2.1.feasibility.cooldown-limits.001",
+      "kind": "failure",
+      "description": "one HP more than one swing and one cast: the cooldown allows no second cast before the knockout",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 39,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 1,
+        "damageBound": 38,
+        "provenImpossible": true,
+        "basicCanWin": false,
+        "reachability": "unreachable"
+      },
+      "derivation": "bound 38 < 39 (cooldown 10 s, knockout at 1 ms) -> proven impossible -> unreachable"
+    },
+    {
+      "id": "s2.1.feasibility.lethal-retaliation.001",
+      "kind": "failure",
+      "description": "the ability cannot overcome lethal retaliation",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 100,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 1,
+        "damageBound": 38,
+        "provenImpossible": true,
+        "basicCanWin": false,
+        "reachability": "unreachable"
+      },
+      "derivation": "bound 38 < 100 -> unreachable"
+    },
+    {
+      "id": "s2.1.feasibility.efficiency-only.001",
+      "kind": "normal",
+      "description": "basic attacks already win; the ability only changes efficiency",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 25,
+          "attackMilli": 1000,
+          "attackIntervalMs": 2000,
+          "firstAttackDelayMs": 2000,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 96000,
+        "damageBound": 820,
+        "provenImpossible": false,
+        "basicCanWin": true,
+        "reachability": "reachable"
+      },
+      "derivation": "4 swings of 8 by 4,500 ms; the 1-damage enemy hits 2 times; the Mage (48 HP) survives -> basic can win -> reachable"
+    },
+    {
+      "id": "s2.1.feasibility.classless.001",
+      "kind": "normal",
+      "description": "a classless worker has no ability: basic attacks decide, and a lost fight is proven impossible",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": null
+        },
+        "enemy": {
+          "hp": 25,
+          "attackMilli": 1000000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 1,
+        "damageBound": 6,
+        "provenImpossible": true,
+        "basicCanWin": false,
+        "reachability": "unreachable"
+      },
+      "derivation": "6 per swing, bound 6 < 25 -> unreachable"
+    },
+    {
+      "id": "s2.1.feasibility.warrior-l5.001",
+      "kind": "normal",
+      "description": "a level-5 Warrior with Cleave against a hard enemy",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 5,
+          "cls": "warrior"
+        },
+        "enemy": {
+          "hp": 90,
+          "attackMilli": 30000,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1000,
+          "defence": 2
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expected": {
+        "knockoutMs": 5000,
+        "damageBound": 54,
+        "provenImpossible": true,
+        "basicCanWin": false,
+        "reachability": "unreachable"
+      },
+      "derivation": "stats from s2-legion.md v1 section 1 at level 5; derived by the oracle"
+    },
+    {
+      "id": "s2.1.feasibility.invalid-enemy.001",
+      "kind": "failure",
+      "description": "an enemy with zero attack is refused as content",
+      "input": {
+        "hero": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "attackIntervalMs": 1200,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "baseDefence": 0,
+          "defencePerLevel": 1
+        },
+        "classes": [
+          {
+            "id": "warrior",
+            "hpBp": 4000,
+            "attackBp": -1000,
+            "attackIntervalMs": 1300,
+            "defenceFlat": 2,
+            "defencePerLevelBp": 5000,
+            "threatRank": 0,
+            "ability": {
+              "multBp": 20000,
+              "cooldownMs": 8000
+            }
+          },
+          {
+            "id": "archer",
+            "hpBp": -1000,
+            "attackBp": 0,
+            "attackIntervalMs": 1000,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 25000,
+              "cooldownMs": 6000
+            }
+          },
+          {
+            "id": "mage",
+            "hpBp": -2000,
+            "attackBp": 2500,
+            "attackIntervalMs": 1500,
+            "defenceFlat": 0,
+            "defencePerLevelBp": 0,
+            "threatRank": 2,
+            "ability": {
+              "multBp": 40000,
+              "cooldownMs": 10000
+            }
+          }
+        ],
+        "worker": {
+          "level": 1,
+          "cls": "mage"
+        },
+        "enemy": {
+          "hp": 10,
+          "attackMilli": 0,
+          "attackIntervalMs": 1000,
+          "firstAttackDelayMs": 1,
+          "defence": 0
+        },
+        "K": 100,
+        "minDamage": 1,
+        "overheadMs": 1500
+      },
+      "expectedError": "INVALID_CONTENT",
+      "derivation": "content rule: attack >= 1 thousandth"
+    }
+  ]
+}

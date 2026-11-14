@@ -7,7 +7,8 @@ import { canonicalJson, sha256Hex } from '../core/hash/canonicalJson.ts';
 import { applyExpAward, buildXpTable, cumulativeReport, type XpCurve } from '../core/formulas/xp.ts';
 import { evaluateStat, type StatCategory, type StatSource } from '../core/formulas/stats.ts';
 import { attackRawMilli, critChanceEffective, damagePerHit, hitChance, hitsToKill, mitigationFactor, mitigationRatio, type HitCurve, type Ratio } from '../core/formulas/combat.ts';
-import { applyTx, emptyLedger, type Ledger, type Tx } from '../core/ledger/ledger.ts';
+import type { Ledger, Tx } from '../core/ledger/ledger.ts';
+import { LEDGER_IMPLEMENTATIONS, type LedgerImplementation } from '../core/ledger/implementations.ts';
 import { accrue, accruePerHour, type PerHourState } from '../core/numeric/remainder.ts';
 import { roundHalfUp, roundHalfUpToSafeInt } from '../core/numeric/rounding.ts';
 import { addSafe, ceilDiv, divRem, mulDivRem, mulSafe, subSafe } from '../core/numeric/safeInt.ts';
@@ -17,6 +18,7 @@ import { nextU32, type RngState } from '../core/rng/xoshiro128ss.ts';
 import { validateContentPack } from '../core/content/validate.ts';
 import type { FixtureCase, FixtureFile } from './fixtureSchema.ts';
 import { runCombatLoopCase, runCreditsCase, runEstimatorCase, runGatesCase, runRewardsCase } from './s1Fixtures.ts';
+import { runLedgerReconstructionCase, runLegionCreditCase, runSquadFightCase, runWorkerFeasibilityCase } from './s2Fixtures.ts';
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 type Input = Record<string, unknown>;
@@ -253,23 +255,7 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
     }
   },
   ledger(input) {
-    let ledger: Ledger = emptyLedger();
-    const steps: Json[] = [];
-    for (const tx of input['txs'] as Tx[]) {
-      try {
-        const out = applyTx(ledger, tx);
-        ledger = out.ledger;
-        steps.push({ ok: true, replayed: out.result.replayed, nets: out.result.nets.map((n) => ({ ...n })) });
-      } catch (e) {
-        if (!isLabError(e)) throw e;
-        steps.push({ ok: false, error: e.code });
-      }
-    }
-    const balances: Record<string, Json> = {};
-    for (const [id, b] of [...ledger.balances.entries()].sort(([x], [y]) => (x < y ? -1 : 1))) {
-      balances[id] = { available: b.available, reserved: b.reserved };
-    }
-    return { steps, balances };
+    return runLedgerCase(input, LEDGER_IMPLEMENTATIONS.reference);
   },
   'canonical-json'(input) {
     const text = canonicalJson(input['value']);
@@ -294,7 +280,40 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   estimator(input) {
     return runEstimatorCase(input) as unknown as Json;
   },
+  'squad-fight'(input) {
+    return runSquadFightCase(input) as unknown as Json;
+  },
+  'legion-credit'(input) {
+    return runLegionCreditCase(input) as unknown as Json;
+  },
+  'worker-feasibility'(input) {
+    return runWorkerFeasibilityCase(input) as unknown as Json;
+  },
+  'ledger-reconstruction'(input) {
+    return runLedgerReconstructionCase(input) as unknown as Json;
+  },
 };
+
+/** Ledger fixture case against any implementation (L1: the same unchanged fixtures run against both). */
+export function runLedgerCase(input: Record<string, unknown>, impl: LedgerImplementation): Json {
+    let ledger: Ledger = impl.empty();
+    const steps: Json[] = [];
+    for (const tx of input['txs'] as Tx[]) {
+      try {
+        const out = impl.applyTx(ledger, tx);
+        ledger = out.ledger;
+        steps.push({ ok: true, replayed: out.result.replayed, nets: out.result.nets.map((n) => ({ ...n })) });
+      } catch (e) {
+        if (!isLabError(e)) throw e;
+        steps.push({ ok: false, error: e.code });
+      }
+    }
+    const balances: Record<string, Json> = {};
+    for (const [id, b] of [...ledger.balances.entries()].sort(([x], [y]) => (x < y ? -1 : 1))) {
+      balances[id] = { available: b.available, reserved: b.reserved };
+    }
+    return { steps, balances };
+}
 
 export interface CaseOutcome {
   readonly id: string;

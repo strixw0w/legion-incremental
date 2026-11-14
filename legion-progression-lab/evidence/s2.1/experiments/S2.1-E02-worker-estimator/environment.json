@@ -1,0 +1,15 @@
+{
+  "experimentId": "S2.1-E02-worker-estimator",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "a7d8476a322b5ededd841c6389b67a944499849f",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T23:15:51.166Z",
+  "durationMs": 22840,
+  "jobs": 3600
+}

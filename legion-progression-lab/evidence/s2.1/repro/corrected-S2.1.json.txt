@@ -1,0 +1,51 @@
+{
+  "lab": "legion-incremental/legion-progression-lab",
+  "workerAccess": {
+    "zone2AccessUnlocked": true,
+    "zone2Visited": false,
+    "assignmentAccepted": false,
+    "rejected": {
+      "ZONE_NOT_VISITED": 1
+    },
+    "workerKills": 0,
+    "assignment": {
+      "kind": "idle"
+    }
+  },
+  "ledgerReconstruction": {
+    "chronologicalFinalBalance": 9007199254740991,
+    "reconstruction": {
+      "ok": true,
+      "finalBalance": 9007199254740991,
+      "sameContent": true
+    }
+  },
+  "workerEstimator": {
+    "mageRawAttackMilli": 7500,
+    "fireballRawMilli": 30000,
+    "estimate": {
+      "killsPerHour": 0,
+      "winChanceFromFullHp": 0,
+      "reliability": "unresolved",
+      "reasons": [
+        "ABILITY_DEPENDENT",
+        "BASIC_ATTACKS_DIE_BEFORE_KILL",
+        "ABILITY_NOT_MODELLED"
+      ]
+    },
+    "firstFightBlows": [
+      [
+        1500,
+        "swing",
+        8
+      ],
+      [
+        1500,
+        "ability",
+        30
+      ]
+    ],
+    "realisedKillsIn30s": 1,
+    "knockoutsIn30s": 1
+  }
+}

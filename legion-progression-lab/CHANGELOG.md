@@ -2,6 +2,53 @@
 
 Every change to formula specs, fixtures, content or baselines is recorded here, with its decision ID, rationale, evidence and version.
 
+## S2.1 — 2026-11-13 (focused acceptance pass; awaiting review; NOT committed)
+
+**Source:** owner "Independent L1/S2 Review and S2.1 Authorisation". **Pre-registration:** `manifests/s2.1/`. **Evidence:** `evidence/s2.1/S2_1_EVIDENCE.md`. **Owner resolutions:** `planning/S2_OWNER_RESOLUTIONS.md` v1.0 (S2-R01 … R20 and further resolutions). **S3 directions (prepared, not implemented):** `planning/S3_EXPERIMENT_DIRECTIONS.md`.
+
+- **Worker access (D-01):**
+  - a worker assignment now needs a zone that is accessible AND visited by the hero (`ZONE_NOT_VISITED`, `legionCommands.ts`);
+  - the observation marks unvisited zones as unavailable (`workerZoneAvailability`), keeping previews; realistic policies consider available zones only;
+  - diagnostic set-ups may mark zones visited (`visitedZones`), but cannot start a worker in an unvisited zone (`INVALID_STATE`);
+  - the engine refuses a worker fight in an unvisited zone;
+  - the invariant monitor adds I9 (worker eligibility).
+- **Reserve swaps** are refused while the character is in an encounter (`CHARACTER_BUSY`; S2-R18 as approved).
+- **Ledger reconstruction** (`persistentLedger.ts`; `spec/formulas/ledger.md` v1.2):
+  - conservation is summed exactly (BigInt), so valid histories with large cumulative turnover are accepted;
+  - structural validity, not authenticity, is documented, with the implications for a Luau reconstruction;
+  - the differential gains near-limit operations and reconstruction round trips (`--extremes --reconstruct`; the original stream is unchanged without them).
+- **Worker estimator** (`workerFeasibility.ts`; `spec/formulas/s2-legion.md` v1.1):
+  - an ability-aware structural bound decides impossibility;
+  - fights only an ability can win are "unresolved" (new reliability value, worker estimates only), never "unreachable";
+  - ability omission is labelled at every reliability.
+- **Numerical domain:** the S2 content compiler checks the class-stat and ability intermediates at the maximum level and talent caps.
+- **Fixtures:** new families `worker-feasibility.v1.json` (8) and `ledger-reconstruction.v1.json` (8), with `s2_oracle.py` extended. Existing fixtures unchanged.
+- **Runner:** `exp2.ts` and `exp2-crosscheck.ts` accept S2.1 manifests and `--results-dir`; `s2-analyse.ts` accepts `--results` / `--out`; new `s21-analyse.ts`.
+- **Not changed:** content, coefficients, targets, policy parameters, the AVL tree, `applyTx`, replay and conflict semantics, the S2 evidence and results (the audit writes to `results/s2.1/audit/`).
+
+## S2 — 2026-11-13 (implemented; awaiting independent review and owner acceptance; NOT committed as a checkpoint)
+
+**Source:** owner "S1.1 Acceptance and S2 Authorisation" §6–§12. **Specification:** `planning/S2_SPECIFICATION.md` v1.0, `planning/S2_RESOLUTIONS.md` v1.0 (S2-R01 … R20, proposed). **Pre-registration:** `manifests/s2/PREREGISTRATION.md` (plan hashed before implementation; manifests hashed before any run). **Evidence:** `evidence/s2/S2_EVIDENCE.md`.
+
+- **New formula spec `spec/formulas/s2-legion.md` v1:** character stats by class, squad fights (threat order, simultaneous resolution, knockouts, eligibility), multi-character credit.
+- **New content `content/w1-slice-s2.candidate.v0.2.0.json`:** the S1 pack unchanged plus S2 sections (roster, classes, talents, abilities); every value a candidate; one new test-only resource `res.rare.hero_shard`.
+- **New engine `src/engine/legion.ts`** (the S1.1 stepper is unchanged): hero, recruits and rare heroes with stable identities; quest Q1, slots, deploy cap, purchases; classes, mastery, records (tracked, not applied), talents, respec, abilities; squad fights; knockouts and recovery; independent workers; one atomic multi-character credit (`legionCredit.ts`); per-character epochs; time categories. With S2 off and the hero alone it reproduces S1.1 exactly (control A0).
+- **New:** command validation (`legionCommands.ts`), observation (`legionObservation.ts`), squad estimator s2.0 (`squadEstimator.ts`, labelled approximate; structural impossibility), realistic POL2 policies (`policy/legionRealistic.ts`), ORC2-SEARCH (`policy/legionSearch.ts`), invariant monitor and S2 metrics (`experiments/legionMetrics.ts`), S2 runner (`cli/exp2.ts`) and analyses (`cli/s2-analyse.ts`).
+- **Fixtures:** two new families with an independent oracle (`spec/oracle/s2_oracle.py`): `squad-fight.v1.json` (7 cases) and `legion-credit.v1.json` (7 cases). The fixture schema gains the two family names; existing fixtures are unchanged.
+- **Changed S1 code (behaviour unchanged for S1/S1.1):** `experiments/metrics.ts` reconciles legion spending (`LegionSpend` / `LegionGrant` entries, which S1 never logs).
+- **Not changed:** S1 content, the EXP curve, S1/S1.1 targets and results. No coefficient is approved.
+
+## L1 persistent ledger — 2026-11-13 (gates passed; awaiting independent review)
+
+**Source:** owner "S1.1 Acceptance and S2 Authorisation" §5. **Specification:** `planning/L1_LEDGER_SPECIFICATION.md` v1.0 (budgets declared before any result). **Report:** `evidence/l1/L1_REPORT.md`.
+
+- **New:** `src/core/ledger/persistentMap.ts` (persistent AVL tree with path copying), `persistentLedger.ts` (same contract as the reference; canonical serialization `legion.ledger.v1` for both implementations; validated reconstruction), `implementations.ts` (registry; default stays `reference`), `differential.ts`.
+- **`spec/formulas/ledger.md` v1 → v1.1:** implementations, canonical serialization, reconstruction.
+- **`ledger.ts`:** only `validateTx` is exported (shared validation). `ledger.v1.json` and `test/ledger.test.ts` are unchanged.
+- **Runners:** `--ledger reference|persistent` for the S1.1 runner (recorded in `environment.json`, never in the semantic result).
+- **Results:** differential 1,000,000 operations, 0 mismatches; gameplay regression 7 of 7 MATCH; planted bugs 12 of 12 detected (run 1: 11 of 12, test strengthened); G1–G4 pass. W-month exceeds the heap budget, as expected (full history; L2).
+- **Not implemented:** history compaction (L2).
+
 ## S1.1 acceptance addendum — 2026-11-13 (S1 and S1.1 accepted; committed as the S1 checkpoint, tag `s1-checkpoint`)
 
 **Source:** owner "S1.1 Acceptance and S2 Authorisation" §1–§4. **Record:** `planning/S1_1_ACCEPTANCE_ADDENDUM.md`. **Evidence:** `evidence/s1.1-addendum/`.

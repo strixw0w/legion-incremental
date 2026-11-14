@@ -1,0 +1,15 @@
+{
+  "experimentId": "S2-E07-knockout-sensitivity",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "a7d8476a322b5ededd841c6389b67a944499849f",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-13T22:18:30.824Z",
+  "durationMs": 18974,
+  "jobs": 400
+}

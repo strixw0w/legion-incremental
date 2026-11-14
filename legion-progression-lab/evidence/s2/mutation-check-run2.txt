@@ -1,0 +1,42 @@
+M1: DETECTED (14 failing) restored=True | squad EXP is divided among the eligible characters
+M2: DETECTED (17 failing) restored=True | the account loot stream is rolled once per eligible character
+M3: DETECTED (4 failing) restored=True | a member knocked out before the killing batch still receives EXP
+M4: DETECTED (4 failing) restored=True | every deployed character is eligible, even one that joined mid-encounter
+M5: DETECTED (1 failing) restored=True | leaving the squad does not cancel the member's pending blows
+M6: DETECTED (2 failing) restored=True | reassigning a worker does not cancel its fight (it can fight in two places)
+M7: DETECTED (19 failing) restored=True | mastery is granted to every class, not only the held one
+M8: DETECTED (1 failing) restored=True | a class change copies the old class's mastery into the new one
+M9: DETECTED (2 failing) restored=True | a knocked-out member keeps being targeted
+M10: DETECTED (1 failing) restored=True | a knocked-out member recovers at the timer even during the encounter
+M11: DETECTED (1 failing) restored=True | workers never stop after repeated knockouts
+M12: DETECTED (2 failing) restored=True | a committed legion claim stays pending (duplicates credited again)
+M13: DETECTED (1 failing) restored=True | the stream is not part of the claim identity
+M14: DETECTED (1 failing) restored=True | class changes are allowed during combat
+M15: DETECTED (1 failing) restored=True | the deploy cap is not enforced
+M16: DETECTED (1 failing) restored=True | a recruit can be bought without enough gold
+M17: DETECTED (1 failing) restored=True | a rare hero takes a productive slot beyond the limit (extra slot)
+M18: DETECTED (1 failing) restored=True | the squad estimator calls a structurally impossible fight merely unsafe
+M19: DETECTED (6 failing) restored=True | a worker kill consumes the account loot stream instead of the worker's
+M20: DETECTED (1 failing) restored=True | the realistic policy never lifts a zone block after a squad capability change (S1.1-R01)
+
+S2 mutation check: 20 planted bugs, 20 detected, 0 not detected; all files restored: True
+- M1 [src/engine/legion.ts] squad EXP is divided among the eligible characters: detected by 14 failing test(s); e.g. × Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 116ms
+- M2 [src/engine/legion.ts] the account loot stream is rolled once per eligible character: detected by 17 failing test(s); e.g. × Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 129ms
+- M3 [src/engine/legion.ts] a member knocked out before the killing batch still receives EXP: detected by 4 failing test(s); e.g. × a member knocked out BEFORE the killing batch gets nothing; its pending blows are discarded; the hero gets full EXP 9ms
+- M4 [src/engine/legion.ts] every deployed character is eligible, even one that joined mid-encounter: detected by 4 failing test(s); e.g. × joining mid-encounter counts from the next engagement only 7ms
+- M5 [src/engine/legion.ts] leaving the squad does not cancel the member's pending blows: detected by 1 failing test(s); e.g. × leaving the squad mid-encounter takes effect at once: pending blows go stale and the member is not eligible 6ms
+- M6 [src/engine/legion.ts] reassigning a worker does not cancel its fight (it can fight in two places): detected by 2 failing test(s); e.g. × reassigning a worker mid-fight cancels the fight: no credit for it, its blows go stale 10ms
+- M7 [src/engine/legion.ts] mastery is granted to every class, not only the held one: detected by 19 failing test(s); e.g. × Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 143ms
+- M8 [src/engine/legion.ts] a class change copies the old class's mastery into the new one: detected by 1 failing test(s); e.g. × with training only the held class gains mastery, by the combat EXP; switching back restores that class talents 18ms
+- M9 [src/engine/legion.ts] a knocked-out member keeps being targeted: detected by 2 failing test(s); e.g. × threat order: the Warrior is targeted first; once knocked out it is never targeted, the hero is next 10ms
+- M10 [src/engine/legion.ts] a knocked-out member recovers at the timer even during the encounter: detected by 1 failing test(s); e.g. × recovery: 20 s after the knockout, but not before the encounter in progress ends 7ms
+- M11 [src/engine/legion.ts] workers never stop after repeated knockouts: detected by 1 failing test(s); e.g. × three knockouts within five minutes stop the worker with a reason; it becomes idle and the stop is remembered 8ms
+- M12 [src/engine/legionCredit.ts] a committed legion claim stays pending (duplicates credited again): detected by 2 failing test(s); e.g. × an exact duplicate after the genuine credit is rejected (CREDIT_REPLAYED) and changes no character, balance, counter or stream 8ms
+- M13 [src/engine/legionCredit.ts] the stream is not part of the claim identity: detected by 1 failing test(s); e.g. × a claim with another stream for the same encounter is rejected (CREDIT_CONFLICT) and changes no character, balance, counter or stream 10ms
+- M14 [src/engine/legionCommands.ts] class changes are allowed during combat: detected by 1 failing test(s); e.g. × class, talent and respec commands are refused while the character is in an encounter, with no effect 10ms
+- M15 [src/engine/legionCommands.ts] the deploy cap is not enforced: detected by 1 failing test(s); e.g. × refused purchases and assignments change nothing (gold, free slot, deploy cap) 8ms
+- M16 [src/engine/legionCommands.ts] a recruit can be bought without enough gold: detected by 1 failing test(s); e.g. × refused purchases and assignments change nothing (gold, free slot, deploy cap) 7ms
+- M17 [src/engine/legion.ts] a rare hero takes a productive slot beyond the limit (extra slot): detected by 1 failing test(s); e.g. × a rare hero never adds a productive slot; extras wait in reserve; a duplicate gives one shard 7ms
+- M18 [src/engine/squadEstimator.ts] the squad estimator calls a structurally impossible fight merely unsafe: detected by 1 failing test(s); e.g. × impossible is structural (unreachable, DIES_BEFORE_KILL), distinct from no hit chance and from merely unsafe 8ms
+- M19 [src/engine/legion.ts] a worker kill consumes the account loot stream instead of the worker's: detected by 6 failing test(s); e.g. × own encounter IDs and loot stream: worker kills never touch the account loot stream; zone kills and quest advance 18ms
+- M20 [src/policy/legionRealistic.ts] the realistic policy never lifts a zone block after a squad capability change (S1.1-R01): detected by 1 failing test(s); e.g. × S1.1-R01 generalised: a zone block lifts after a level-up OR a later squad capability change, not before 6ms

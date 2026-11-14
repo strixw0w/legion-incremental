@@ -1,0 +1,28 @@
+V1: DETECTED (4 failing) restored=True | worker assignment ignores the hero-visited requirement (D-01)
+V2: DETECTED (1 failing) restored=True | realistic policies offer workers unvisited zones
+V3: DETECTED (1 failing) restored=True | a diagnostic set-up may start a worker in an unvisited zone
+V4: DETECTED (1 failing) restored=True | the monitor does not check worker eligibility (I9)
+V5: DETECTED (2 failing) restored=True | reserve swaps are allowed during encounters
+V6: DETECTED (9 failing) restored=True | reconstruction sums conservation with a bounded safe-integer accumulator again (the S2 defect)
+V7: DETECTED (8 failing) restored=True | the feasibility bound leaves out the class ability
+V8: DETECTED (1 failing) restored=True | a bound exactly equal to the enemy HP is treated as impossible
+V9: DETECTED (4 failing) restored=True | ability-dependent fights are still reported as unreachable (the S2 defect)
+V10: DETECTED (2 failing) restored=True | ability omission is reported only for reliable estimates (the S2 behaviour)
+V11: DETECTED (1 failing) restored=True | no numerical-domain check of the class-stat intermediates
+V12: DETECTED (1 failing) restored=True | the engine starts a worker fight in an unvisited zone if the state allows it
+V13: DETECTED (1 failing) restored=True | realistic policies send workers to ability-dependent (unresolved) zones
+
+S2.1 mutation check: 13 planted bugs, 13 detected, 0 not detected; all files restored: True
+- V1 [src/engine/legionCommands.ts] worker assignment ignores the hero-visited requirement (D-01): detected by 4 failing test(s); e.g. × 1. accessible but never visited: refused (ZONE_NOT_VISITED), no worker fight, nothing changes 15ms
+- V2 [src/policy/legionRealistic.ts] realistic policies offer workers unvisited zones: detected by 1 failing test(s); e.g. × realistic policies only recommend available jobs; previews of unvisited zones are marked unavailable 15ms
+- V3 [src/engine/legion.ts] a diagnostic set-up may start a worker in an unvisited zone: detected by 1 failing test(s); e.g. × 5. diagnostic initialisation: explicit visited zones are honoured; invalid set-ups are refused at construction 7ms
+- V4 [src/experiments/legionMetrics.ts] the monitor does not check worker eligibility (I9): detected by 1 failing test(s); e.g. × the monitor detects a worker in an unvisited zone if one were ever constructed (I9) 5ms
+- V5 [src/engine/legionCommands.ts] reserve swaps are allowed during encounters: detected by 2 failing test(s); e.g. × a squad member in an encounter cannot be moved to the reserve; outside the encounter it can 10ms
+- V6 [src/core/ledger/persistentLedger.ts] reconstruction sums conservation with a bounded safe-integer accumulator again (the S2 defect): detected by 9 failing test(s); e.g. × the reviewer reproduction: credit M, debit M, credit M (txIds a, z, b) reconstructs to balance M 5ms
+- V7 [src/engine/workerFeasibility.ts] the feasibility bound leaves out the class ability: detected by 8 failing test(s); e.g. × 1. an ability makes an otherwise impossible fight winnable: "unresolved", never "unreachable"; the engine confirms the kill 28ms
+- V8 [src/engine/workerFeasibility.ts] a bound exactly equal to the enemy HP is treated as impossible: detected by 1 failing test(s); e.g. × s2.1.feasibility.bound-equals-hp.001 (boundary) 5ms
+- V9 [src/engine/workerFeasibility.ts] ability-dependent fights are still reported as unreachable (the S2 defect): detected by 4 failing test(s); e.g. × 1. an ability makes an otherwise impossible fight winnable: "unresolved", never "unreachable"; the engine confirms the kill 27ms
+- V10 [src/engine/workerFeasibility.ts] ability omission is reported only for reliable estimates (the S2 behaviour): detected by 2 failing test(s); e.g. × 4. an ability that changes efficiency but not reachability: the basic-attack estimate is kept, labelled, and conservative 6ms
+- V11 [src/model/legionContent.ts] no numerical-domain check of the class-stat intermediates: detected by 1 failing test(s); e.g. × the candidate pack is inside the domain; a pack whose intermediates exceed 2^53 - 1 is refused as content 7ms
+- V12 [src/engine/legion.ts] the engine starts a worker fight in an unvisited zone if the state allows it: detected by 1 failing test(s); e.g. × the engine refuses to start a worker fight in an unvisited zone even if the state were corrupted 7ms
+- V13 [src/policy/legionRealistic.ts] realistic policies send workers to ability-dependent (unresolved) zones: detected by 1 failing test(s); e.g. × realistic policies never send a worker to an "unresolved" or "unreachable" zone 9ms

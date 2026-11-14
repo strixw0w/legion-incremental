@@ -1,0 +1,564 @@
+{
+  "fixtureSet": "ledger-reconstruction",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/ledger.md#v1.2",
+  "status": "candidate",
+  "independence": "Chronological transaction outcomes and validated reconstruction with EXACT conservation (spec/formulas/ledger.md v1.2), re-derived by spec/oracle/s2_oracle.py with unbounded Python integers. The lab side uses applyTxPersistent, serializeLedger and reconstructPersistentLedger. Outcomes and balances are also derived by hand.",
+  "cases": [
+    {
+      "id": "s2.1.reconstruction.review-turnover.001",
+      "kind": "boundary",
+      "description": "credit M, debit M, credit M with txIds a, z, b: every step valid, reconstruction accepted",
+      "input": {
+        "txs": [
+          {
+            "txId": "a",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "z",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": -9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "b",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "steps": [
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "balances": {
+          "res.gold": [
+            9007199254740991,
+            0
+          ]
+        },
+        "reconstruction": "ok",
+        "reconstructedBalances": {
+          "res.gold": [
+            9007199254740991,
+            0
+          ]
+        }
+      },
+      "derivation": "steps ok, ok, ok; balance M; canonical order a, b, z reaches 2M only as an exact intermediate sum -> accepted"
+    },
+    {
+      "id": "s2.1.reconstruction.txid-orders.001",
+      "kind": "boundary",
+      "description": "the same history under other transaction IDs (canonical order z-last differs)",
+      "input": {
+        "txs": [
+          {
+            "txId": "z",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "a",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": -9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "m",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "steps": [
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "balances": {
+          "res.gold": [
+            9007199254740991,
+            0
+          ]
+        },
+        "reconstruction": "ok",
+        "reconstructedBalances": {
+          "res.gold": [
+            9007199254740991,
+            0
+          ]
+        }
+      },
+      "derivation": "steps ok x3; balance M; canonical order a, m, z: -M, +M, +M"
+    },
+    {
+      "id": "s2.1.reconstruction.independent-resources.001",
+      "kind": "normal",
+      "description": "large turnover on two resources and both buckets, with a multi-line transaction",
+      "input": {
+        "txs": [
+          {
+            "txId": "g1",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "g2",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": -9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "r1",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.iron",
+                "bucket": "reserved",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "r2",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.iron",
+                "bucket": "reserved",
+                "delta": -9007199254740984
+              }
+            ]
+          },
+          {
+            "txId": "multi",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 5
+              },
+              {
+                "resourceId": "res.wood",
+                "bucket": "reserved",
+                "delta": 9007199254740991
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "steps": [
+          "ok",
+          "ok",
+          "ok",
+          "ok",
+          "ok"
+        ],
+        "balances": {
+          "res.gold": [
+            5,
+            0
+          ],
+          "res.iron": [
+            0,
+            7
+          ],
+          "res.wood": [
+            0,
+            9007199254740991
+          ]
+        },
+        "reconstruction": "ok",
+        "reconstructedBalances": {
+          "res.gold": [
+            5,
+            0
+          ],
+          "res.iron": [
+            0,
+            7
+          ],
+          "res.wood": [
+            0,
+            9007199254740991
+          ]
+        }
+      },
+      "derivation": "gold 5, iron reserved 7, wood reserved M"
+    },
+    {
+      "id": "s2.1.reconstruction.refused-steps.001",
+      "kind": "failure",
+      "description": "refused transactions change nothing; replay and conflict keep their meaning; the result still reconstructs",
+      "input": {
+        "txs": [
+          {
+            "txId": "a",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "b",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 1
+              }
+            ]
+          },
+          {
+            "txId": "c",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": -9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "d",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": -1
+              }
+            ]
+          },
+          {
+            "txId": "a",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 9007199254740991
+              }
+            ]
+          },
+          {
+            "txId": "a",
+            "purpose": "fixture",
+            "lines": [
+              {
+                "resourceId": "res.gold",
+                "bucket": "available",
+                "delta": 5
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "steps": [
+          "ok",
+          "NUMERIC_LIMIT",
+          "ok",
+          "NEGATIVE_BALANCE",
+          "replayed",
+          "TX_CONFLICT"
+        ],
+        "balances": {
+          "res.gold": [
+            0,
+            0
+          ]
+        },
+        "reconstruction": "ok",
+        "reconstructedBalances": {
+          "res.gold": [
+            0,
+            0
+          ]
+        }
+      },
+      "derivation": "ok, NUMERIC_LIMIT, ok, NEGATIVE_BALANCE, replayed, TX_CONFLICT; balance 0"
+    },
+    {
+      "id": "s2.1.reconstruction.valid-serialized.001",
+      "kind": "normal",
+      "description": "saved data with turnover beyond 2^53 - 1 in canonical order is accepted",
+      "input": {
+        "serialized": {
+          "schema": "legion.ledger.v1",
+          "balances": [
+            [
+              "res.gold",
+              {
+                "available": 9007199254740991,
+                "reserved": 0
+              }
+            ]
+          ],
+          "committed": [
+            [
+              "a",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    9007199254740991
+                  ]
+                ]
+              }
+            ],
+            [
+              "b",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    9007199254740991
+                  ]
+                ]
+              }
+            ],
+            [
+              "z",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    -9007199254740991
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "reconstruction": "ok",
+        "balances": {
+          "res.gold": [
+            9007199254740991,
+            0
+          ]
+        }
+      },
+      "derivation": "exact sum M + M - M = M equals the balance"
+    },
+    {
+      "id": "s2.1.reconstruction.corrupted-balance.001",
+      "kind": "failure",
+      "description": "a balance that is not the exact sum of the receipts is invalid input",
+      "input": {
+        "serialized": {
+          "schema": "legion.ledger.v1",
+          "balances": [
+            [
+              "res.gold",
+              {
+                "available": 9007199254740990,
+                "reserved": 0
+              }
+            ]
+          ],
+          "committed": [
+            [
+              "a",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    9007199254740991
+                  ]
+                ]
+              }
+            ],
+            [
+              "b",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    9007199254740991
+                  ]
+                ]
+              }
+            ],
+            [
+              "z",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    -9007199254740991
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "sum M, balance M - 1"
+    },
+    {
+      "id": "s2.1.reconstruction.receipt-out-of-range.001",
+      "kind": "failure",
+      "description": "a receipt delta beyond 2^53 - 1 is invalid input, not a numeric overflow",
+      "input": {
+        "serialized": {
+          "schema": "legion.ledger.v1",
+          "balances": [
+            [
+              "res.gold",
+              {
+                "available": 1,
+                "reserved": 0
+              }
+            ]
+          ],
+          "committed": [
+            [
+              "a",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    9007199254740993
+                  ]
+                ]
+              }
+            ],
+            [
+              "b",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    -9007199254740992
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "delta M + 2 is not a safe integer"
+    },
+    {
+      "id": "s2.1.reconstruction.missing-resource.001",
+      "kind": "failure",
+      "description": "turnover on a resource absent from balances that does not net to zero",
+      "input": {
+        "serialized": {
+          "schema": "legion.ledger.v1",
+          "balances": [
+            [
+              "res.gold",
+              {
+                "available": 1,
+                "reserved": 0
+              }
+            ]
+          ],
+          "committed": [
+            [
+              "a",
+              {
+                "payloadHash": "abababababababababababababababababababababababababababababababab",
+                "nets": [
+                  [
+                    "res.gold",
+                    "available",
+                    1
+                  ],
+                  [
+                    "res.iron",
+                    "available",
+                    9007199254740991
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      },
+      "expectedError": "INVALID_STATE",
+      "derivation": "res.iron sums to M but has no balance"
+    }
+  ]
+}

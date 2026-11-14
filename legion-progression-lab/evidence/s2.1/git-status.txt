@@ -1,0 +1,342 @@
+$ git log --oneline -5
+a7d8476 S1 checkpoint: S1 single-character simulation + S1.1 corrections + acceptance addendum
+ad11a50 S0 checkpoint: S0 + S0.1 hardening + final ledger identity correction
+0209d93 M0 resolution and review corrections (v1.1); repository verification; Rojo 7.7.1
+3aced25 M0 import: design pack v1.0, M0 planning documents (as reviewed), Rojo starter
+
+$ git tag -n1
+s0-checkpoint   S0 checkpoint (S0 + S0.1 + final ledger correction), accepted by the owner after independent review. Local only; not pushed.
+s1-checkpoint   S1 checkpoint (S1 + S1.1 + acceptance addendum), accepted by the owner after independent review. Local only; not pushed.
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/CHANGELOG.md
+ M legion-progression-lab/PROVENANCE.md
+ M legion-progression-lab/README.md
+ M legion-progression-lab/src/cli/exp.ts
+ M legion-progression-lab/src/core/ledger/ledger.ts
+ M legion-progression-lab/src/engine/simulation.ts
+ M legion-progression-lab/src/experiments/jobs.ts
+ M legion-progression-lab/src/experiments/metrics.ts
+ M legion-progression-lab/src/model/types.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M spec/formulas/ledger.md
+ M spec/oracle/check_all.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/content/w1-slice-s2.candidate.v0.2.0.json
+?? legion-progression-lab/evidence/l1/L1_REPORT.md
+?? legion-progression-lab/evidence/l1/benchmark.json
+?? legion-progression-lab/evidence/l1/differential.json
+?? legion-progression-lab/evidence/l1/gameplay-regression-persistent.txt
+?? legion-progression-lab/evidence/l1/mutation-check-run1.txt
+?? legion-progression-lab/evidence/l1/mutation-check.txt
+?? legion-progression-lab/evidence/s1-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s1-checkpoint/frozen-check.txt
+?? legion-progression-lab/evidence/s2.1/S2_1_EVIDENCE.md
+?? legion-progression-lab/evidence/s2.1/analysis-s2-on-audit.txt
+?? legion-progression-lab/evidence/s2.1/analysis.txt
+?? legion-progression-lab/evidence/s2.1/determinism.txt
+?? legion-progression-lab/evidence/s2.1/exp-verify.txt
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/determinism.json
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E02-worker-estimator/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/S2.1-E03-knockout-diagnostic/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/analysis.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E00-control-a0/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E01-deploy-scaling/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E02-hero-damage-share/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E04-class-switch-abuse/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E04-class-switch-abuse/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E04-class-switch-abuse/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E04-class-switch-abuse/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E04-class-switch-abuse/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E05-squad-vs-workers/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E06-assignment-switching/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E07-knockout-sensitivity/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E08-first-recruit-timing/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/events.cell-4.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/events.cell-5.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/events.cell-6.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E09-hindsight-search/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/environment.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/fingerprint.txt
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/quantiles.csv
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/report.md
+?? legion-progression-lab/evidence/s2.1/experiments/audit/S2-E10-estimator-vs-realisation/semantic.json
+?? legion-progression-lab/evidence/s2.1/experiments/audit/analysis-gates.json
+?? legion-progression-lab/evidence/s2.1/experiments/ledger-differential.json
+?? legion-progression-lab/evidence/s2.1/fixtures-check.txt
+?? legion-progression-lab/evidence/s2.1/frozen-check.txt
+?? legion-progression-lab/evidence/s2.1/git-status.txt
+?? legion-progression-lab/evidence/s2.1/ledger-differential.txt
+?? legion-progression-lab/evidence/s2.1/manifest-registration.txt
+?? legion-progression-lab/evidence/s2.1/mutation-check-l1.txt
+?? legion-progression-lab/evidence/s2.1/mutation-check-s2.1.txt
+?? legion-progression-lab/evidence/s2.1/mutation-check-s2.txt
+?? legion-progression-lab/evidence/s2.1/oracle-check.txt
+?? legion-progression-lab/evidence/s2.1/plan-registration.txt
+?? legion-progression-lab/evidence/s2.1/reference-ledger-crosscheck.txt
+?? legion-progression-lab/evidence/s2.1/registration.txt
+?? legion-progression-lab/evidence/s2.1/repro/corrected-S2.1.json.txt
+?? legion-progression-lab/evidence/s2.1/repro/original-S2-package.json.txt
+?? legion-progression-lab/evidence/s2.1/schemas-check.txt
+?? legion-progression-lab/evidence/s2.1/test-output.txt
+?? legion-progression-lab/evidence/s2.1/test-stats-output.txt
+?? legion-progression-lab/evidence/s2.1/tool-versions.txt
+?? legion-progression-lab/evidence/s2.1/typecheck.txt
+?? legion-progression-lab/evidence/s2/S2_EVIDENCE.md
+?? legion-progression-lab/evidence/s2/analysis.txt
+?? legion-progression-lab/evidence/s2/determinism.txt
+?? legion-progression-lab/evidence/s2/exp-verify.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E00-control-a0/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/determinism.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E01-deploy-scaling/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E02-hero-damage-share/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E04-class-switch-abuse/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E04-class-switch-abuse/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E04-class-switch-abuse/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E04-class-switch-abuse/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E04-class-switch-abuse/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/determinism.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E05-squad-vs-workers/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E06-assignment-switching/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E07-knockout-sensitivity/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E08-first-recruit-timing/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/events.cell-4.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/events.cell-5.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/events.cell-6.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E09-hindsight-search/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/environment.json
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/fingerprint.txt
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/quantiles.csv
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/report.md
+?? legion-progression-lab/evidence/s2/experiments/S2-E10-estimator-vs-realisation/semantic.json
+?? legion-progression-lab/evidence/s2/experiments/analysis-gates.json
+?? legion-progression-lab/evidence/s2/fixtures-check.txt
+?? legion-progression-lab/evidence/s2/frozen-check.txt
+?? legion-progression-lab/evidence/s2/git-status.txt
+?? legion-progression-lab/evidence/s2/manifest-registration.txt
+?? legion-progression-lab/evidence/s2/mutation-check-run1.txt
+?? legion-progression-lab/evidence/s2/mutation-check-run2.txt
+?? legion-progression-lab/evidence/s2/mutation-check.txt
+?? legion-progression-lab/evidence/s2/oracle-check.txt
+?? legion-progression-lab/evidence/s2/reference-ledger-crosscheck.txt
+?? legion-progression-lab/evidence/s2/s2-vs-s1-checkpoint.patch
+?? legion-progression-lab/evidence/s2/schemas-check.txt
+?? legion-progression-lab/evidence/s2/test-output.txt
+?? legion-progression-lab/evidence/s2/test-stats-output.txt
+?? legion-progression-lab/evidence/s2/tool-versions.txt
+?? legion-progression-lab/evidence/s2/typecheck.txt
+?? legion-progression-lab/manifests/s2.1/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s2.1/S2.1-E02-worker-estimator.json
+?? legion-progression-lab/manifests/s2.1/S2.1-E03-knockout-diagnostic.json
+?? legion-progression-lab/manifests/s2.1/preregistration.json
+?? legion-progression-lab/manifests/s2/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s2/S2-E00-control-a0.json
+?? legion-progression-lab/manifests/s2/S2-E01-deploy-scaling.json
+?? legion-progression-lab/manifests/s2/S2-E02-hero-damage-share.json
+?? legion-progression-lab/manifests/s2/S2-E04-class-switch-abuse.json
+?? legion-progression-lab/manifests/s2/S2-E05-squad-vs-workers.json
+?? legion-progression-lab/manifests/s2/S2-E06-assignment-switching.json
+?? legion-progression-lab/manifests/s2/S2-E07-knockout-sensitivity.json
+?? legion-progression-lab/manifests/s2/S2-E08-first-recruit-timing.json
+?? legion-progression-lab/manifests/s2/S2-E09-hindsight-search.json
+?? legion-progression-lab/manifests/s2/S2-E10-estimator-vs-realisation.json
+?? legion-progression-lab/manifests/s2/preregistration.json
+?? legion-progression-lab/planning/L1_LEDGER_SPECIFICATION.md
+?? legion-progression-lab/planning/S2_OWNER_RESOLUTIONS.md
+?? legion-progression-lab/planning/S2_RESOLUTIONS.md
+?? legion-progression-lab/planning/S2_SPECIFICATION.md
+?? legion-progression-lab/planning/S3_EXPERIMENT_DIRECTIONS.md
+?? legion-progression-lab/repro/s2.1/defects.mjs
+?? legion-progression-lab/repro/s2.1/make-manifests.ts
+?? legion-progression-lab/repro/s2.1/make_fixture_drafts.py
+?? legion-progression-lab/repro/s2/make-manifests.ts
+?? legion-progression-lab/repro/s2/make_fixture_drafts.py
+?? legion-progression-lab/repro/s2/mutation_check.py
+?? legion-progression-lab/src/cli/bench-ledger-l1.ts
+?? legion-progression-lab/src/cli/exp2-crosscheck.ts
+?? legion-progression-lab/src/cli/exp2-worker.ts
+?? legion-progression-lab/src/cli/exp2.ts
+?? legion-progression-lab/src/cli/ledger-differential.ts
+?? legion-progression-lab/src/cli/s2-analyse.ts
+?? legion-progression-lab/src/cli/s2-content.ts
+?? legion-progression-lab/src/cli/s21-analyse.ts
+?? legion-progression-lab/src/core/ledger/differential.ts
+?? legion-progression-lab/src/core/ledger/implementations.ts
+?? legion-progression-lab/src/core/ledger/persistentLedger.ts
+?? legion-progression-lab/src/core/ledger/persistentMap.ts
+?? legion-progression-lab/src/engine/legion.ts
+?? legion-progression-lab/src/engine/legionCommands.ts
+?? legion-progression-lab/src/engine/legionCredit.ts
+?? legion-progression-lab/src/engine/legionObservation.ts
+?? legion-progression-lab/src/engine/squadEstimator.ts
+?? legion-progression-lab/src/engine/workerFeasibility.ts
+?? legion-progression-lab/src/experiments/legionJobs.ts
+?? legion-progression-lab/src/experiments/legionManifest.ts
+?? legion-progression-lab/src/experiments/legionMetrics.ts
+?? legion-progression-lab/src/experiments/legionSummary.ts
+?? legion-progression-lab/src/model/legionContent.ts
+?? legion-progression-lab/src/model/legionTypes.ts
+?? legion-progression-lab/src/policy/legionRealistic.ts
+?? legion-progression-lab/src/policy/legionSearch.ts
+?? legion-progression-lab/src/spec/s2Fixtures.ts
+?? legion-progression-lab/test/helpers/s2.ts
+?? legion-progression-lab/test/ledger.contract.test.ts
+?? legion-progression-lab/test/ledger.differential.test.ts
+?? legion-progression-lab/test/ledger.persistent.test.ts
+?? legion-progression-lab/test/ledger.reconstruction.test.ts
+?? legion-progression-lab/test/s2.invariants.test.ts
+?? legion-progression-lab/test/s2.legion.test.ts
+?? legion-progression-lab/test/s2_1.worker-access.test.ts
+?? legion-progression-lab/test/s2_1.worker-estimator.test.ts
+?? spec/fixtures/ledger-reconstruction.v1.json
+?? spec/fixtures/legion-credit.v1.json
+?? spec/fixtures/squad-fight.v1.json
+?? spec/fixtures/worker-feasibility.v1.json
+?? spec/formulas/s2-legion.md
+?? spec/oracle/s2_oracle.py
+
+$ git diff --stat s1-checkpoint
+ legion-progression-lab/CHANGELOG.md                | 47 +++++++++++++
+ legion-progression-lab/PROVENANCE.md               | 13 ++++
+ legion-progression-lab/README.md                   | 10 ++-
+ legion-progression-lab/src/cli/exp.ts              |  8 ++-
+ legion-progression-lab/src/core/ledger/ledger.ts   |  3 +-
+ legion-progression-lab/src/engine/simulation.ts    |  8 ++-
+ legion-progression-lab/src/experiments/jobs.ts     | 15 ++--
+ legion-progression-lab/src/experiments/metrics.ts  |  9 +++
+ legion-progression-lab/src/model/types.ts          |  4 +-
+ legion-progression-lab/src/spec/fixtureRunner.ts   | 55 ++++++++++-----
+ legion-progression-lab/src/spec/fixtureSchema.ts   |  2 +-
+ .../test/fixtures.conformance.test.ts              |  2 +-
+ spec/formulas/ledger.md                            | 80 ++++++++++++++++++++++
+ spec/oracle/check_all.py                           |  2 +
+ spec/schema/fixture.schema.json                    |  6 +-
+ 15 files changed, 228 insertions(+), 36 deletions(-)

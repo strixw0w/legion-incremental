@@ -1,0 +1,3235 @@
+{
+  "labels": {
+    "values": "model-output from candidate inputs",
+    "approved": false
+  },
+  "B0": {
+    "gate": true,
+    "pass": true,
+    "metricSummariesCompared": 148,
+    "differing": 0,
+    "cellsWithIdenticalRunLogs": 4,
+    "rows": [
+      {
+        "cell": "a10-p1.6-g100|PR-NEW|POL-STAY",
+        "s11Cell": "a10-p1.6-g100|PR-NEW|POL-STAY|est-s1.1",
+        "metricsCompared": 37,
+        "metricsDiffering": [],
+        "runLogsDigestEqual": true
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER",
+        "s11Cell": "a10-p1.6-g100|PR-NEW|POL-FRONTIER|est-s1.1",
+        "metricsCompared": 37,
+        "metricsDiffering": [],
+        "runLogsDigestEqual": true
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL-STAY",
+        "s11Cell": "a10-p1.6-g100|PR-BAL|POL-STAY|est-s1.1",
+        "metricsCompared": 37,
+        "metricsDiffering": [],
+        "runLogsDigestEqual": true
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER",
+        "s11Cell": "a10-p1.6-g100|PR-BAL|POL-FRONTIER|est-s1.1",
+        "metricsCompared": 37,
+        "metricsDiffering": [],
+        "runLogsDigestEqual": true
+      }
+    ]
+  },
+  "B1": {
+    "gate": true,
+    "pass": true,
+    "runs": 14050,
+    "checks": 824963899,
+    "violations": 0,
+    "perExperiment": {
+      "S2-E00-control-a0": {
+        "runs": 800,
+        "checks": 0,
+        "violations": 0
+      },
+      "S2-E01-deploy-scaling": {
+        "runs": 1200,
+        "checks": 66728482,
+        "violations": 0
+      },
+      "S2-E02-hero-damage-share": {
+        "runs": 2400,
+        "checks": 97512000,
+        "violations": 0
+      },
+      "S2-E04-class-switch-abuse": {
+        "runs": 600,
+        "checks": 4663000,
+        "violations": 0
+      },
+      "S2-E05-squad-vs-workers": {
+        "runs": 600,
+        "checks": 126947900,
+        "violations": 0
+      },
+      "S2-E06-assignment-switching": {
+        "runs": 500,
+        "checks": 79252611,
+        "violations": 0
+      },
+      "S2-E07-knockout-sensitivity": {
+        "runs": 400,
+        "checks": 32289696,
+        "violations": 0
+      },
+      "S2-E08-first-recruit-timing": {
+        "runs": 1800,
+        "checks": 261579980,
+        "violations": 0
+      },
+      "S2-E09-hindsight-search": {
+        "runs": 350,
+        "checks": 58764656,
+        "violations": 0
+      },
+      "S2-E10-estimator-vs-realisation": {
+        "runs": 5400,
+        "checks": 97225574,
+        "violations": 0
+      }
+    },
+    "engineeringHypotheses": 148,
+    "engineeringNotPassed": []
+  },
+  "B2": {
+    "gate": false,
+    "H-S2-01": [
+      {
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-WORKERS",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-OPT|POL2-MIXED",
+        "observed": 2.0883333333333334,
+        "outcome": "pass"
+      }
+    ],
+    "H-S2-03": [
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|hero-warrior|mixed|passive",
+        "observed": 0.14109029141674187,
+        "outcome": "miss"
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|hero-archer|mixed|passive",
+        "observed": 0.20018770684800685,
+        "outcome": "miss"
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|hero-mage|mixed|passive",
+        "observed": 0.1854287988604466,
+        "outcome": "miss"
+      }
+    ],
+    "H-S2-04": {
+      "setAndForget": {
+        "squad": 174972.16,
+        "workers": 45126.56
+      },
+      "rows": [
+        {
+          "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-1min",
+          "meanLegionExp": 112258.72,
+          "bestSetAndForget": 174972.16,
+          "gain": -0.358419533713249,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-5min",
+          "meanLegionExp": 111349.76,
+          "bestSetAndForget": 174972.16,
+          "gain": -0.36361441728787025,
+          "outcome": "pass"
+        },
+        {
+          "cell": "a10-p1.6-g100|PR-BAL|POL2-SWITCH-30min",
+          "meanLegionExp": 113406.14,
+          "bestSetAndForget": 174972.16,
+          "gain": -0.35186180475796835,
+          "outcome": "pass"
+        }
+      ]
+    }
+  },
+  "B3": {
+    "gate": false,
+    "rows": [
+      {
+        "profile": "PR-BAL",
+        "objective": "hero EXP",
+        "metric": "expTotal",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 44411.78,
+            "p50": 44412
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 13109.24,
+            "p50": 13110
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 25345.92,
+            "p50": 25338
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      },
+      {
+        "profile": "PR-BAL",
+        "objective": "legion EXP",
+        "metric": "legionExpTotal",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 174987.12,
+            "p50": 174988
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 45128.24,
+            "p50": 45122
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 73518.26,
+            "p50": 73518
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      },
+      {
+        "profile": "PR-BAL",
+        "objective": "gold earned per hour",
+        "metric": "goldPerHour",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 12135.94,
+            "p50": 12136
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 12775.29,
+            "p50": 12773
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 13665.59,
+            "p50": 13664
+          }
+        ],
+        "bestByMean": "POL2-MIXED"
+      },
+      {
+        "profile": "PR-BAL",
+        "objective": "gold held",
+        "metric": "goldHeld",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 11585.94,
+            "p50": 11586
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 12225.29,
+            "p50": 12223
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 13115.59,
+            "p50": 13114
+          }
+        ],
+        "bestByMean": "POL2-MIXED"
+      },
+      {
+        "profile": "PR-BAL",
+        "objective": "conquest score",
+        "metric": "conquestScore",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 3001002165.99,
+            "p50": 3001002166
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 3001005563.55,
+            "p50": 3001005564
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 3001004415.17,
+            "p50": 3001004415
+          }
+        ],
+        "bestByMean": "POL2-WORKERS"
+      },
+      {
+        "profile": "PR-BAL",
+        "objective": "zone 3 first visit (min)",
+        "metric": "zone3FirstVisitMin",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 8.368966666666669,
+            "p50": 8.366666666666667
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 24.92431666666666,
+            "p50": 24.94333333333333
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 9.291466666666668,
+            "p50": 9.293333333333333
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "hero EXP",
+        "metric": "expTotal",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 70811.78,
+            "p50": 70812
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 22855.02,
+            "p50": 22834
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 43363.7,
+            "p50": 43378
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "legion EXP",
+        "metric": "legionExpTotal",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 280587.12,
+            "p50": 280588
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 81658.2,
+            "p50": 81656
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 129702.02,
+            "p50": 129734
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "gold earned per hour",
+        "metric": "goldPerHour",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 12890.626666666667,
+            "p50": 12890.666666666666
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 15491.460000000005,
+            "p50": 15492
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 16262.153333333315,
+            "p50": 16265.333333333334
+          }
+        ],
+        "bestByMean": "POL2-MIXED"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "gold held",
+        "metric": "goldHeld",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 18785.94,
+            "p50": 18786
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 22687.19,
+            "p50": 22688
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 23843.23,
+            "p50": 23848
+          }
+        ],
+        "bestByMean": "POL2-MIXED"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "conquest score",
+        "metric": "conquestScore",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 3001003365.99,
+            "p50": 3001003366
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 3001008222.37,
+            "p50": 3001008221
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 3001006787.46,
+            "p50": 3001006788
+          }
+        ],
+        "bestByMean": "POL2-WORKERS"
+      },
+      {
+        "profile": "PR-OPT",
+        "objective": "zone 3 first visit (min)",
+        "metric": "zone3FirstVisitMin",
+        "values": [
+          {
+            "policy": "POL2-SQUAD",
+            "mean": 8.368966666666669,
+            "p50": 8.366666666666667
+          },
+          {
+            "policy": "POL2-WORKERS",
+            "mean": 24.92431666666666,
+            "p50": 24.94333333333333
+          },
+          {
+            "policy": "POL2-MIXED",
+            "mean": 9.291466666666668,
+            "p50": 9.293333333333333
+          }
+        ],
+        "bestByMean": "POL2-SQUAD"
+      }
+    ]
+  },
+  "B4": {
+    "gate": false,
+    "label": "best feasible found with hindsight within the declared budget; gaps are lower bounds on the true gap, never upper bounds",
+    "comparison": [
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+        "searchMean": 44396.6,
+        "realisticMean": 44396.6,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "searchMean": 44396.6,
+        "realisticMean": 13090.52,
+        "ratio": 3.3915077475913864,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp",
+        "objective": "heroExp",
+        "metric": "expTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "searchMean": 44396.6,
+        "realisticMean": 25328.32,
+        "ratio": 1.7528442470720522,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+        "searchMean": 174926.4,
+        "realisticMean": 174926.4,
+        "ratio": 1,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "searchMean": 174926.4,
+        "realisticMean": 45125.92,
+        "ratio": 3.876406287118357,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp",
+        "objective": "legionExp",
+        "metric": "legionExpTotal",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "searchMean": 174926.4,
+        "realisticMean": 73491.72,
+        "ratio": 2.380219159382853,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+        "searchMean": 12208.18,
+        "realisticMean": 11581.8,
+        "ratio": 1.0540831304287763,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "searchMean": 12208.18,
+        "realisticMean": 12225.1,
+        "ratio": 0.9986159622416176,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+        "objective": "gold",
+        "metric": "goldHeld",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "searchMean": 12208.18,
+        "realisticMean": 13114.18,
+        "ratio": 0.9309144757811774,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-SQUAD",
+        "searchMean": 3001006129.6,
+        "realisticMean": 3001002165.3,
+        "ratio": 1.000001320992049,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-WORKERS",
+        "searchMean": 3001006129.6,
+        "realisticMean": 3001005564.26,
+        "ratio": 1.0000001883835226,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      },
+      {
+        "search": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+        "objective": "conquest",
+        "metric": "conquestScore",
+        "realistic": "a10-p1.6-g100|PR-BAL|POL2-MIXED",
+        "searchMean": 3001006129.6,
+        "realisticMean": 3001004415.5,
+        "ratio": 1.000000571175434,
+        "label": "best feasible found with hindsight within the declared budget; the gap is a lower bound on the true gap, never an upper bound"
+      }
+    ],
+    "budgets": [
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-heroExp",
+        "forksMean": 341.4,
+        "decisionsMean": 30.7,
+        "exhaustedShare": 0
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-legionExp",
+        "forksMean": 341.4,
+        "decisionsMean": 30.7,
+        "exhaustedShare": 0
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-gold",
+        "forksMean": 215.04,
+        "decisionsMean": 21.04,
+        "exhaustedShare": 0
+      },
+      {
+        "cell": "a10-p1.6-g100|PR-BAL|ORC2-SEARCH-conquest",
+        "forksMean": 186,
+        "decisionsMean": 18,
+        "exhaustedShare": 0
+      }
+    ]
+  },
+  "B5": {
+    "gate": false,
+    "note": "No accuracy target for the squad estimator (owner section 11). Estimates are never results.",
+    "summary": [
+      {
+        "group": "squad of 0 approximate",
+        "cells": 1,
+        "medianAbsErrorPct": 0.13308998764019775,
+        "maxAbsErrorPct": 0.13308998764019775,
+        "meanSignedErrorPct": 0.13308998764019775
+      },
+      {
+        "group": "squad of 0 reliable",
+        "cells": 4,
+        "medianAbsErrorPct": 0.1810182474719576,
+        "maxAbsErrorPct": 0.43104446333416924,
+        "meanSignedErrorPct": 0.17500393492649452
+      },
+      {
+        "group": "squad of 0 unsafe",
+        "cells": 3,
+        "medianAbsErrorPct": 0.2958242824497824,
+        "maxAbsErrorPct": 0.6654086091102506,
+        "meanSignedErrorPct": 0.19401399529467997
+      },
+      {
+        "group": "squad of 1 approximate",
+        "cells": 9,
+        "medianAbsErrorPct": 10.104837949170854,
+        "maxAbsErrorPct": 97.00808807650121,
+        "meanSignedErrorPct": 17.04738484668385
+      },
+      {
+        "group": "squad of 2 approximate",
+        "cells": 9,
+        "medianAbsErrorPct": 8.892191524893594,
+        "maxAbsErrorPct": 44.589144803597684,
+        "meanSignedErrorPct": -2.823670662081291
+      },
+      {
+        "group": "squad of 3 approximate",
+        "cells": 9,
+        "medianAbsErrorPct": 12.82650444096137,
+        "maxAbsErrorPct": 15.280666170224189,
+        "meanSignedErrorPct": -7.6726698331431145
+      },
+      {
+        "group": "worker approximate",
+        "cells": 9,
+        "medianAbsErrorPct": 5.891943351759862,
+        "maxAbsErrorPct": 381.97801724338467,
+        "meanSignedErrorPct": 61.55179191143311
+      },
+      {
+        "group": "worker reliable",
+        "cells": 2,
+        "medianAbsErrorPct": 0.08340283569641367,
+        "maxAbsErrorPct": 0.12014417300761672,
+        "meanSignedErrorPct": 0.1017735043520152
+      },
+      {
+        "group": "worker unsafe",
+        "cells": 6,
+        "medianAbsErrorPct": 422.1696518058003,
+        "maxAbsErrorPct": 919.2831553855431,
+        "meanSignedErrorPct": 507.4509615006409
+      }
+    ],
+    "cellsBothZero": 0,
+    "rows": [
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 897.6920666968352,
+          "predictedTtkS": 2.2829999999999995,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 65.48199445983352
+        },
+        "realisedMeanKillsPerHour": 899.32,
+        "realisedMedianTtkS": 2.4,
+        "errorPct": -0.1810182474719576,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 1531.4564062646207,
+          "predictedTtkS": 0.8507035428979464,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1347.24,
+        "realisedMedianTtkS": 1.2,
+        "errorPct": 13.673614668850439,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1876.8337413093789,
+          "predictedTtkS": 0.41812408353680214,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -21.47139157701344,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 2045.824908308862,
+          "predictedTtkS": 0.2596813810307276,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -14.400631451512053,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 897.6920666968352,
+          "predictedTtkS": 2.2829999999999995,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 65.48199445983352
+        },
+        "realisedMeanKillsPerHour": 899.32,
+        "realisedMedianTtkS": 2.4,
+        "errorPct": -0.1810182474719576,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 838.6126593455101,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "realisedMeanKillsPerHour": 844.56,
+          "errorPct": -0.7041939772769058
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 897.6920666968352,
+          "predictedTtkS": 2.2829999999999995,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 65.48199445983352
+        },
+        "realisedMeanKillsPerHour": 899.32,
+        "realisedMedianTtkS": 2.4,
+        "errorPct": -0.1810182474719576,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 800.1237101807844,
+          "reliability": "approximate",
+          "reasons": [
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 840.04,
+          "errorPct": -4.751712992145081
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 265.6318649466973,
+          "predictedTtkS": 8.035328567812497,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 4.307870633482075
+        },
+        "realisedMeanKillsPerHour": 266.42,
+        "realisedMedianTtkS": 8.4,
+        "errorPct": -0.2958242824497824,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 691.0040769573892,
+          "predictedTtkS": 3.709810072107569,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 14
+        },
+        "realisedMeanKillsPerHour": 599.52,
+        "realisedMedianTtkS": 3.6,
+        "errorPct": 15.259553802606957,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1043.9861557545494,
+          "predictedTtkS": 1.9483215894736372,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 28
+        },
+        "realisedMeanKillsPerHour": 1145.88,
+        "realisedMedianTtkS": 1.3,
+        "errorPct": -8.892191524893594,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1254.5254089106586,
+          "predictedTtkS": 1.369611069197862,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1453.58,
+        "realisedMedianTtkS": 1,
+        "errorPct": -13.694092591349724,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 265.6318649466973,
+          "predictedTtkS": 8.035328567812497,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 4.307870633482075
+        },
+        "realisedMeanKillsPerHour": 266.42,
+        "realisedMedianTtkS": 8.4,
+        "errorPct": -0.2958242824497824,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 201.71394099569252,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "realisedMeanKillsPerHour": 25.92,
+          "errorPct": 678.2173649525174
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 265.6318649466973,
+          "predictedTtkS": 8.035328567812497,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 4.307870633482075
+        },
+        "realisedMeanKillsPerHour": 266.42,
+        "realisedMedianTtkS": 8.4,
+        "errorPct": -0.2958242824497824,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 187.44455148704648,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 38.72,
+          "errorPct": 384.1026639644796
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2.5092773437499983e-12,
+          "predictedTtkS": 22.49245669364442,
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.021362304687501e-14
+        },
+        "realisedMeanKillsPerHour": 0,
+        "realisedMedianTtkS": null,
+        "errorPct": null,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 288.1046280030754,
+          "predictedTtkS": 10.995460503194595,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 2.3333333333333335
+        },
+        "realisedMeanKillsPerHour": 146.24,
+        "realisedMedianTtkS": 10.8,
+        "errorPct": 97.00808807650121,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 488.8848164099245,
+          "predictedTtkS": 5.863697703758179,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 4.666666666666667
+        },
+        "realisedMeanKillsPerHour": 338.12,
+        "realisedMedianTtkS": 6,
+        "errorPct": 44.589144803597684,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 636.5461300251078,
+          "predictedTtkS": 4.15552099084791,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 7
+        },
+        "realisedMeanKillsPerHour": 586.28,
+        "realisedMedianTtkS": 4,
+        "errorPct": 8.57374122008389,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2.5092773437499983e-12,
+          "predictedTtkS": 22.49245669364442,
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.021362304687501e-14
+        },
+        "realisedMeanKillsPerHour": 0,
+        "realisedMedianTtkS": null,
+        "errorPct": null,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 1.5319798519736839e-12,
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "realisedMeanKillsPerHour": 0,
+          "errorPct": null
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2.5092773437499983e-12,
+          "predictedTtkS": 22.49245669364442,
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.021362304687501e-14
+        },
+        "realisedMeanKillsPerHour": 0,
+        "realisedMedianTtkS": null,
+        "errorPct": null,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 1.9682350924006198e-7,
+          "reliability": "unsafe",
+          "reasons": [
+            "UNDER_ONE_KILL_PER_LIFE",
+            "AUTO_FARM_STOP_EXPECTED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 6,
+          "errorPct": -99.99999671960818
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1531.9148936170213,
+          "predictedTtkS": 0.8499999999999999,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1525.34,
+        "realisedMedianTtkS": 1,
+        "errorPct": 0.43104446333416924,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 2148.4943730148166,
+          "predictedTtkS": 0.17559200769439168,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -10.104837949170854,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 2299.47423811678,
+          "predictedTtkS": 0.06557526947913232,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -3.787688781724694,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 2361.7997151765126,
+          "predictedTtkS": 0.024261340564582554,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -1.1799282352923612,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1531.9148936170213,
+          "predictedTtkS": 0.8499999999999999,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1525.34,
+        "realisedMedianTtkS": 1,
+        "errorPct": 0.43104446333416924,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 1363.6363636363637,
+          "reliability": "reliable",
+          "reasons": [],
+          "realisedMeanKillsPerHour": 1362,
+          "errorPct": 0.12014417300761672
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1531.9148936170213,
+          "predictedTtkS": 0.8499999999999999,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1525.34,
+        "realisedMedianTtkS": 1,
+        "errorPct": 0.43104446333416924,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 1285.7142857142858,
+          "reliability": "approximate",
+          "reasons": [
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 1350,
+          "errorPct": -4.7619047619047565
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 611.8131798244816,
+          "predictedTtkS": 3.5186312499999994,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 17.62211306319241
+        },
+        "realisedMeanKillsPerHour": 611,
+        "realisedMedianTtkS": 4,
+        "errorPct": 0.13308998764019775,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 1160.5173305187561,
+          "predictedTtkS": 1.6020648337847616,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1132.84,
+        "realisedMedianTtkS": 2,
+        "errorPct": 2.443180900988331,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1521.5035567373561,
+          "predictedTtkS": 0.8660805681714464,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1722,
+        "realisedMedianTtkS": 0.5,
+        "errorPct": -11.643231316065265,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1699.4089531604752,
+          "predictedTtkS": 0.6183835670071653,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1964.74,
+        "realisedMedianTtkS": 0,
+        "errorPct": -13.504639129835235,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 611.8131798244816,
+          "predictedTtkS": 3.5186312499999994,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 17.62211306319241
+        },
+        "realisedMeanKillsPerHour": 611,
+        "realisedMedianTtkS": 4,
+        "errorPct": 0.13308998764019775,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 433.8766111224948,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "realisedMeanKillsPerHour": 90.02,
+          "errorPct": 381.97801724338467
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 611.8131798244816,
+          "predictedTtkS": 3.5186312499999994,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 17.62211306319241
+        },
+        "realisedMeanKillsPerHour": 611,
+        "realisedMedianTtkS": 4,
+        "errorPct": 0.13308998764019775,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 445.16581228578787,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 559.32,
+          "errorPct": -20.40945929239294
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 181.19773549639845,
+          "predictedTtkS": 9.538659285933491,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.0000000609796067
+        },
+        "realisedMeanKillsPerHour": 180,
+        "realisedMedianTtkS": 10,
+        "errorPct": 0.6654086091102506,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 538.5880511965277,
+          "predictedTtkS": 5.18414383126814,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 8.166666666666666
+        },
+        "realisedMeanKillsPerHour": 414.46,
+        "realisedMedianTtkS": 5.2,
+        "errorPct": 29.949344013059807,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 824.5124433986276,
+          "predictedTtkS": 2.866216700333661,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 24.5
+        },
+        "realisedMeanKillsPerHour": 826.3,
+        "realisedMedianTtkS": 2.6,
+        "errorPct": -0.2163326396432688,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1001.1338997112908,
+          "predictedTtkS": 2.0959225844197023,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 24.5
+        },
+        "realisedMeanKillsPerHour": 1078.34,
+        "realisedMedianTtkS": 2,
+        "errorPct": -7.159717741037992,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 181.19773549639845,
+          "predictedTtkS": 9.538659285933491,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.0000000609796067
+        },
+        "realisedMeanKillsPerHour": 180,
+        "realisedMedianTtkS": 10,
+        "errorPct": 0.6654086091102506,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 62.78784237174945,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "realisedMeanKillsPerHour": 6.16,
+          "errorPct": 919.2831553855431
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 181.19773549639845,
+          "predictedTtkS": 9.538659285933491,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 2.0000000609796067
+        },
+        "realisedMeanKillsPerHour": 180,
+        "realisedMedianTtkS": 10,
+        "errorPct": 0.6654086091102506,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 93.99053732504406,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 18,
+          "errorPct": 422.1696518058003
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 2400,
+          "reliability": "reliable",
+          "reasons": [],
+          "realisedMeanKillsPerHour": 2398,
+          "errorPct": 0.08340283569641367
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 2400,
+          "predictedTtkS": 0,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": 0.41841004184100417,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 1316.2705667276052,
+          "reliability": "approximate",
+          "reasons": [
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 1398.68,
+          "errorPct": -5.891943351759862
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1031.6256791978944,
+          "predictedTtkS": 1.7224999999999997,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 54.36332179930798
+        },
+        "realisedMeanKillsPerHour": 1031.3,
+        "realisedMedianTtkS": 2,
+        "errorPct": 0.031579482002762296,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 1567.0589361531397,
+          "predictedTtkS": 0.7972971321917104,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1597.04,
+        "realisedMedianTtkS": 1,
+        "errorPct": -1.8772894759592904,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1903.926406554088,
+          "predictedTtkS": 0.3908293868961204,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -20.337807257151123,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 2024.792078531642,
+          "predictedTtkS": 0.27796033388805147,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 2390,
+        "realisedMedianTtkS": 0,
+        "errorPct": -15.280666170224189,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1031.6256791978944,
+          "predictedTtkS": 1.7224999999999997,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 54.36332179930798
+        },
+        "realisedMeanKillsPerHour": 1031.3,
+        "realisedMedianTtkS": 2,
+        "errorPct": 0.031579482002762296,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 770.149253731343,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED"
+          ],
+          "realisedMeanKillsPerHour": 774,
+          "errorPct": -0.4975124378109771
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 1031.6256791978944,
+          "predictedTtkS": 1.7224999999999997,
+          "reliability": "reliable",
+          "reasons": [],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 54.36332179930798
+        },
+        "realisedMeanKillsPerHour": 1031.3,
+        "realisedMedianTtkS": 2,
+        "errorPct": 0.031579482002762296,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 600.0901693486871,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 830.66,
+          "errorPct": -27.757425499158845
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-0",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 360.80493255626857,
+          "predictedTtkS": 5.774256796874998,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 6.00010342580285
+        },
+        "realisedMeanKillsPerHour": 360.04,
+        "realisedMedianTtkS": 6,
+        "errorPct": 0.2124576592235717,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-1",
+        "squad": {
+          "members": 1,
+          "predictedKillsPerHour": 779.5302929684551,
+          "predictedTtkS": 3.1181656216221985,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 48.8
+        },
+        "realisedMeanKillsPerHour": 730.88,
+        "realisedMedianTtkS": 3,
+        "errorPct": 6.656399541437051,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-2",
+        "squad": {
+          "members": 2,
+          "predictedKillsPerHour": 1138.4741246052665,
+          "predictedTtkS": 1.6621272035920867,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION",
+            "KNOCKOUTS_EXPECTED"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": 48.8
+        },
+        "realisedMeanKillsPerHour": 1186.8,
+        "realisedMedianTtkS": 1.3,
+        "errorPct": -4.0719477076789214,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|squad-3",
+        "squad": {
+          "members": 3,
+          "predictedKillsPerHour": 1321.0794557990068,
+          "predictedTtkS": 1.2250442690615237,
+          "reliability": "approximate",
+          "reasons": [
+            "SQUAD_APPROXIMATION"
+          ],
+          "assumptions": [
+            "EXPECTED-DAMAGE-RATE",
+            "BLOWS-EVENLY-SPREAD",
+            "FIRST-SWING-TIMING",
+            "CONTINUOUS-FARMING",
+            "NO-RESTING",
+            "NO-KO-CASCADE",
+            "HERO-ABILITY-PASSIVE"
+          ],
+          "heroIsThreatTarget": false,
+          "fightsPerKnockout": null
+        },
+        "realisedMeanKillsPerHour": 1515.46,
+        "realisedMedianTtkS": 1,
+        "errorPct": -12.82650444096137,
+        "bothZero": false,
+        "worker": null
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 360.80493255626857,
+          "predictedTtkS": 5.774256796874998,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 6.00010342580285
+        },
+        "realisedMeanKillsPerHour": 360.04,
+        "realisedMedianTtkS": 6,
+        "errorPct": 0.2124576592235717,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 152.0406736744125,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "realisedMeanKillsPerHour": 18.08,
+          "errorPct": 740.9329296151134
+        }
+      },
+      {
+        "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+        "squad": {
+          "members": 0,
+          "predictedKillsPerHour": 360.80493255626857,
+          "predictedTtkS": 5.774256796874998,
+          "reliability": "unsafe",
+          "reasons": [
+            "AUTO_FARM_STOP_EXPECTED"
+          ],
+          "assumptions": [
+            "ESTIMATOR-V1.2-HERO-ALONE"
+          ],
+          "heroIsThreatTarget": true,
+          "fightsPerKnockout": 6.00010342580285
+        },
+        "realisedMeanKillsPerHour": 360.04,
+        "realisedMedianTtkS": 6,
+        "errorPct": 0.2124576592235717,
+        "bothZero": false,
+        "worker": {
+          "predictedKillsPerHour": 201.11442302881605,
+          "reliability": "approximate",
+          "reasons": [
+            "SURVIVAL_LIMITED",
+            "ABILITY_NOT_MODELLED"
+          ],
+          "realisedMeanKillsPerHour": 59.72,
+          "errorPct": 236.76226227196258
+        }
+      }
+    ]
+  },
+  "B6": {
+    "gate": false,
+    "control": "S1.1-E01 POL-FRONTIER est-s1.1",
+    "rows": [
+      {
+        "profile": "PR-NEW",
+        "policy": "POL2-SQUAD-W",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.328333333333333,
+          "minToL10": 7.383333333333334,
+          "zone2FirstVisitMin": 3.9616666666666664,
+          "zone3FirstVisitMin": 8.366666666666667,
+          "levelAt45": 32
+        }
+      },
+      {
+        "profile": "PR-NEW",
+        "policy": "POL2-WORKERS",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 11.243333333333334,
+          "zone2FirstVisitMin": 3.885,
+          "zone3FirstVisitMin": 24.92,
+          "levelAt45": 20
+        }
+      },
+      {
+        "profile": "PR-NEW",
+        "policy": "POL2-MIXED",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.328333333333333,
+          "minToL10": 7.986666666666666,
+          "zone2FirstVisitMin": 3.9616666666666664,
+          "zone3FirstVisitMin": 9.29,
+          "levelAt45": 25
+        }
+      },
+      {
+        "profile": "PR-BAL",
+        "policy": "POL2-SQUAD-W",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.328333333333333,
+          "minToL10": 7.383333333333334,
+          "zone2FirstVisitMin": 3.9616666666666664,
+          "zone3FirstVisitMin": 8.366666666666667,
+          "levelAt45": 32
+        }
+      },
+      {
+        "profile": "PR-BAL",
+        "policy": "POL2-WORKERS",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 11.243333333333334,
+          "zone2FirstVisitMin": 3.885,
+          "zone3FirstVisitMin": 24.92,
+          "levelAt45": 20
+        }
+      },
+      {
+        "profile": "PR-BAL",
+        "policy": "POL2-MIXED",
+        "control": {
+          "minToL5": 2.4483333333333333,
+          "minToL10": 14.16,
+          "zone2FirstVisitMin": 5.081666666666667,
+          "zone3FirstVisitMin": 38.138333333333335,
+          "levelAt45": 17
+        },
+        "s2": {
+          "minToL5": 2.328333333333333,
+          "minToL10": 7.986666666666666,
+          "zone2FirstVisitMin": 3.9616666666666664,
+          "zone3FirstVisitMin": 9.29,
+          "levelAt45": 25
+        }
+      }
+    ]
+  },
+  "S1TargetsReported": [
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 4,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 4,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 4.815,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 4.815,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 4.1907917683990235,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 1.3470071159480954,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 1.113436584344914,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 1.113436584344914,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 4.1907917683990235,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 1.3470071159480954,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 1.113436584344914,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 1.113436584344914,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 2.4483333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 2.4483333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "observed": 11.276666666666667,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "observed": 7.985,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "observed": 7.375,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "observed": 7.375,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "observed": 11.276666666666667,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "observed": 7.985,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "observed": 7.375,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E01-deploy-scaling",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "observed": 7.375,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-01",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 10.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-02",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 2.4,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 3,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-03b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 1.3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 4,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 1,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 4,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-04",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 3,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 3.885,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 3.885,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-05",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 3.9616666666666664,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 1.1135885570046278,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 5.399231426131512,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 1.347076146403029,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 1.1135885570046278,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 5.399231426131512,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-06",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 1.347076146403029,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 2.4483333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 2.4483333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07a",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 2.328333333333333,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-SQUAD-W|Q40",
+      "observed": 7.383333333333334,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-WORKERS|Q40",
+      "observed": 11.243333333333334,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-NEW|POL2-MIXED|Q40",
+      "observed": 7.986666666666666,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD-W|Q40",
+      "observed": 7.383333333333334,
+      "inS1Range": false
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-WORKERS|Q40",
+      "observed": 11.243333333333334,
+      "inS1Range": true
+    },
+    {
+      "experiment": "S2-E08-first-recruit-timing",
+      "id": "H-S1-07b",
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-MIXED|Q40",
+      "observed": 7.986666666666666,
+      "inS1Range": false
+    }
+  ]
+}

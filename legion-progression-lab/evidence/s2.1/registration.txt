@@ -1,0 +1,4 @@
+plan document registered: 2026-11-13T23:06:49Z 0bb0748ddba4efb0a25e8df16efb0d81d043099cf4dde56a4ba8dfa6b7f52471
+2026-11-13T23:07:48Z 5ed8366ec99c2562 manifests/s2.1/S2.1-E02-worker-estimator.json
+2026-11-13T23:07:48Z 0def5e9ce79cdefb manifests/s2.1/S2.1-E03-knockout-diagnostic.json
+S2 manifests unchanged for the audit: 10 / 10

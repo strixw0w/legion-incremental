@@ -1,0 +1,2389 @@
+{
+  "experimentId": "S2.1-E02-worker-estimator",
+  "runsCompared": 3600,
+  "rerunEventLogDigestsIdentical": true,
+  "rerunSemanticFingerprintIdentical": true,
+  "secondSeedRoot": "S2.1-E02-second",
+  "secondSeedRunsWithDifferentEventLogs": 3600,
+  "ksAlpha": 0.001,
+  "ksTests": 216,
+  "ksRejections": 0,
+  "ks": [
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.010000000000000009,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-classless",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.050000000000000044,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.04999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.04999999999999999,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.010000000000000009,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-warrior",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.010000000000000009,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.030000000000000027,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.06,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.02,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-archer",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z1|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.039999999999999994,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z2|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L1-Z3|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z1|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z2|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L5-Z3|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z1|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z2|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "workerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.04999999999999993,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "predictedWorkerKillsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "predictedWorkerReliability",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "workerStops",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|L10-Z3|worker-mage",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    }
+  ]
+}

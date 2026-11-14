@@ -1,0 +1,35 @@
+M1: NOT DETECTED (0 failing) restored=True | squad EXP is divided among the eligible characters
+M2: DETECTED (17 failing) restored=True | the account loot stream is rolled once per eligible character
+M3: DETECTED (4 failing) restored=True | a member knocked out before the killing batch still receives EXP
+M4: DETECTED (4 failing) restored=True | every deployed character is eligible, even one that joined mid-encounter
+M5: DETECTED (1 failing) restored=True | leaving the squad does not cancel the member's pending blows
+M6: DETECTED (2 failing) restored=True | reassigning a worker does not cancel its fight (it can fight in two places)
+M7: DETECTED (19 failing) restored=True | mastery is granted to every class, not only the held one
+M8: DETECTED (1 failing) restored=True | a class change copies the old class's mastery into the new one
+M9: DETECTED (2 failing) restored=True | a knocked-out member keeps being targeted
+M10: DETECTED (1 failing) restored=True | a knocked-out member recovers at the timer even during the encounter
+M11: DETECTED (1 failing) restored=True | workers never stop after repeated knockouts
+M12: DETECTED (2 failing) restored=True | a committed legion claim stays pending (duplicates credited again)
+M13: DETECTED (1 failing) restored=True | the stream is not part of the claim identity
+M14: DETECTED (1 failing) restored=True | class changes are allowed during combat
+M15: DETECTED (1 failing) restored=True | the deploy cap is not enforced
+M16: DETECTED (1 failing) restored=True | a recruit can be bought without enough gold
+M17: DETECTED (1 failing) restored=True | a rare hero takes a productive slot beyond the limit (extra slot)
+M18: DETECTED (1 failing) restored=True | the squad estimator calls a structurally impossible fight merely unsafe
+M19: DETECTED (6 failing) restored=True | a worker kill consumes the account loot stream instead of the worker's
+M20: NOT DETECTED (0 failing) restored=True | the realistic policy never lifts a zone block after a squad capability change (S1.1-R01)
+
+S2 mutation check: 20 planted bugs, 18 detected, 2 not detected; all files restored: True
+- M1 [src/engine/legion.ts] squad EXP is divided among the eligible characters: NOT detected by 0 failing test(s)
+- M2 [src/engine/legion.ts] the account loot stream is rolled once per eligible character: detected by 17 failing test(s); e.g. × Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 129ms
+- M3 [src/engine/legion.ts] a member knocked out before the killing batch still receives EXP: detected by 4 failing test(s); e.g. × a member knocked out BEFORE the killing batch gets nothing; its pending blows are discarded; the hero gets full EXP 8ms
+- M4 [src/engine/legion.ts] every deployed character is eligible, even one that joined mid-encounter: detected by 4 failing test(s); e.g. × joining mid-encounter counts from the next engagement only 8ms
+- M5 [src/engine/legion.ts] leaving the squad does not cancel the member's pending blows: detected by 1 failing test(s); e.g. × leaving the squad mid-encounter takes effect at once: pending blows go stale and the member is not eligible 7ms
+- M6 [src/engine/legion.ts] reassigning a worker does not cancel its fight (it can fight in two places): detected by 2 failing test(s); e.g. × reassigning a worker mid-fight cancels the fight: no credit for it, its blows go stale 8ms
+- M7 [src/engine/legion.ts] mastery is granted to every class, not only the held one: detected by 19 failing test(s); e.g. × Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 130ms
+- M8 [src/engine/legion.ts] a class change copies the old class's mastery into the new one: detected by 1 failing test(s); e.g. × with training only the held class gains mastery, by the combat EXP; switching back restores that class talents 20ms
+- M9 [src/engine/legion.ts] a knocked-out member keeps being targeted: detected by 2 failing test(s); e.g. × threat order: the Warrior is targeted first; once knocked out it is never targeted, the hero is next 9ms
+- M10 [src/engine/legion.ts] a knocked-out member recovers at the timer even during the encounter: detected by 1 failing test(s); e.g. × recovery: 20 s after the knockout, but not before the encounter in progress ends 7ms
+- M11 [src/engine/legion.ts] workers never stop after repeated knockouts: detected by 1 failing test(s); e.g. × three knockouts within five minutes stop the worker with a reason; it becomes idle and the stop is remembered 10ms
+- M12 [src/engine/legionCredit.ts] a committed legion claim stays pending (duplicates credited again): detected by 2 failing test(s); e.g. × an exact duplicate after the genuine credit is rejected (CREDIT_REPLAYED) and changes no character, balance, counter or stream 7ms
+- M13 [src/engine/legionCredit.ts] the stream is not part of the claim identity: detected by 1 failing test(s)

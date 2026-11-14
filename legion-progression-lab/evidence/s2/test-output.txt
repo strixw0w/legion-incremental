@@ -1,0 +1,882 @@
+
+ RUN  v4.1.12 <REPO>/legion-progression-lab
+
+ ✓ test/combat.test.ts > hit chance > is 1 without a requirement and 90% at the requirement (candidate curve) 2ms
+ ✓ test/combat.test.ts > hit chance > is monotonic non-decreasing in accuracy and stays inside [floor, 1] 121ms
+ ✓ test/ledger.persistent.test.ts > persistent ordered map (AVL, path copying) > keeps the AVL invariants and ascending order under random inserts and replacements 32ms
+ ✓ test/ledger.persistent.test.ts > persistent ordered map (AVL, path copying) > never changes an old root: every earlier version still describes its own map 73ms
+ ✓ test/rng.test.ts > stream identity > is injective: different field tuples never share an encoding 77ms
+ ✓ test/rng.test.ts > stream identity > refuses empty, oversized, ill-formed or badly counted identities 1ms
+ ✓ test/rng.test.ts > stream identity > never yields the all-zero state, and applies the fallback rule exactly 36ms
+ ✓ test/remainder.property.test.ts > remainder accumulator properties > matches exact BigInt arithmetic for any valid inputs 192ms
+ ✓ test/numeric.property.test.ts > safe-integer operations agree with exact BigInt arithmetic > addSafe: exact result, or NUMERIC_LIMIT exactly when out of range 255ms
+ ✓ test/xp.property.test.ts > EXP award properties > two awards in sequence equal one combined award (multi-level awards are unambiguous) 265ms
+ ✓ test/remainder.property.test.ts > remainder accumulator properties > G1: any partition of the steps gives the same total and remainder 289ms
+ ✓ test/xp.property.test.ts > EXP award properties > total EXP is conserved: thresholds consumed + leftover = award 249ms
+ ✓ test/combat.test.ts > hit chance > refuses inconsistent curves 0ms
+ ✓ test/combat.test.ts > mitigation, crit and damage > mitigation is diminishing and never reaches zero 72ms
+ ✓ test/combat.test.ts > mitigation, crit and damage > crit chance may reach exactly 100%; the excess is reported, not applied (R-A2) 1ms
+ ✓ test/combat.test.ts > mitigation, crit and damage > damage per landed hit is an integer, rounds exact halves up, and has a floor 1ms
+ ✓ test/combat.test.ts > mitigation, crit and damage > hits-to-kill never increases when damage increases (breakpoints are exact) 342ms
+ ✓ test/numeric.property.test.ts > safe-integer operations agree with exact BigInt arithmetic > mulSafe: exact result, or NUMERIC_LIMIT exactly when out of range 297ms
+ ✓ test/numeric.property.test.ts > safe-integer operations agree with exact BigInt arithmetic > divRem is exact for every non-negative safe dividend 217ms
+ ✓ test/rng.test.ts > generator and sampling > replays exactly: the same stream gives the same sequence 31ms
+ ✓ test/rng.test.ts > generator and sampling > produces unsigned 32-bit integers and never reaches the zero state 628ms
+ ✓ test/numeric.property.test.ts > safe-integer operations agree with exact BigInt arithmetic > roundHalfUp equals exact floor(x + 1/2) for any finite double in the safe range 115ms
+ ✓ test/rng.test.ts > generator and sampling > Bernoulli always consumes exactly one draw, including p = 0 and p = 1 1ms
+ ✓ test/rng.test.ts > generator and sampling > computes thresholds exactly and refuses unrepresentable probabilities 1ms
+ ✓ test/rng.test.ts > generator and sampling > uniformInt stays inside [lo, hi] and reports how many draws it used 165ms
+ ✓ test/remainder.property.test.ts > per-hour chain properties (remainder.md v2, S0.1) > one call matches the BigInt reference for any state, rate and duration; NUMERIC_LIMIT exactly when the grant is unsafe 541ms
+ ✓ test/rng.test.ts > generator and sampling > uniformInt boundary behaviour: span 1, span 2^32, refusals 1ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses sparse array (S0 accepted it) at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses array with a hole at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses undefined word at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses null word at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses three words at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses five words at every entry point 35ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses fractional word at every entry point 1ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses negative word at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses word of 2^32 at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses string word at every entry point 1ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses array-like object at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses typed array at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses null at every entry point 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > refuses the all-zero state at every entry point (S0 accepted it in nextU32, bernoulli and uniformInt) 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > validates the state before other arguments 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > a caller mutating a returned state cannot smuggle the zero state in 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > stateFromDigest accepts only a 32-byte Uint8Array 0ms
+ ✓ test/rng.test.ts > RNG state boundary (S0.1) > valid states are unaffected: a hand-derived step is unchanged 0ms
+ ✓ test/xp.property.test.ts > EXP award properties with thresholds up to 2^53 - 1 (S0.1) > one award matches unbounded integer arithmetic (no NUMERIC_LIMIT is ever needed) 636ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > baseline timeline: first kill at 8,000 + 2 x 1,200 = 10,400 ms; first swing lands on arrival (next pass) 32ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > simultaneous lethal blows: both die, the kill is still credited, the hero respawns without loss 7ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > retaliation at the moment the enemy dies lands, and the enemy still dies 5ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > hero death cancels the pending swing (stale) and frees the enemy at full HP 3ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > stale events from a previous encounter never reach the next one 7ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > respawn: with one slot the hero waits, then engages a new instance with a new ID 4ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > target invalidation: travelling away during the walk frees the reserved enemy and cancels the arrival 4ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > identical timestamps resolve in phase order: kill, credit, level-up, recompute, next engagement, policy 5ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > a multi-level award emits one LevelUp per level in order; stats apply to the next swing; HP rises by the max-HP gain 51ms
+ ✓ test/numeric.property.test.ts > safe-integer operations agree with exact BigInt arithmetic > mulDivRem: exact quotient and remainder for any safe inputs, NUMERIC_LIMIT exactly when the quotient is unsafe (S0.1) 529ms
+ ✓ test/remainder.property.test.ts > per-hour chain properties (remainder.md v2, S0.1) > G1: any partition of a duration gives the same total and state, for rates up to 2^53 - 1 633ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > covers every S0, S1 and S1.1 family with unique case IDs, boundary and failure cases, and derivations 21ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.keys.001 (normal) 7ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.nested.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.numbers.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.strings.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.nan.001 (failure) 10ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.infinity.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > canonical-json > cjson.key-ascii.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.basic.001 (normal) 166ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > S0 review reproduction: 100 * 1.005 = 100.5 rounds up to 101 0ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > exact halves through mitigation ratios that binary64 cannot represent round up 1ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > values just below a half round down, even one part in 10^12 below 0ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > matches exact integer arithmetic for any valid input; NUMERIC_LIMIT exactly when the result is unsafe 1225ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > key replacement: a new balance in the new snapshot, the old one untouched 44ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > adversarial keys: FNV-1a 32-bit collisions, long shared prefixes, Unicode and NUL are all distinct keys 1549ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > serialization is independent of insertion history (commutative transactions in any order) 4ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > validated reconstruction: round trip, then replays and conflicts behave exactly as before saving 3ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > validated reconstruction refuses every corruption (INVALID_STATE, no ledger) 2ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > mutation protection: the tree is unreachable from the public ledger; views expose nothing writable 0ms
+ ✓ test/ledger.persistent.test.ts > persistent ledger: specific properties > a randomly built persistent ledger keeps its tree invariants (balances and committed) 16ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.both-die.001 (boundary) 3ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.retaliation-at-death.001 (boundary) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.hero-dies.001 (normal) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.mitigation.001 (normal) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.min-damage.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.crit.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.crit-half.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.session-end.001 (boundary) 16ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.instant-attack.001 (boundary) 16ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.no-walk.001 (boundary) 14ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.slow-hero.001 (normal) 38ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.no-attack.001 (failure) 10ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > applies mitigation first, so no intermediate overflows when the result fits 0ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > is monotonic: more raw damage, a larger crit multiplier or less defence never lowers damage 129ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > mitigationRatio is exact and agrees with the display factor 0ms
+ ✓ test/combat.test.ts > exact damage v2 (S0.1) > refuses malformed damage inputs 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat-loop > s1.fight.no-hp.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.no-requirement.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.at-requirement.001 (normal) 10ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.above.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.below.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.floor.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.zero-accuracy.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.bad-curve.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.hit.bad-k.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mit.none.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mit.half.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mit.small.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mit.bad-k.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mit.negative.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.crit.normal.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.crit.cap.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.crit.overcap.001 (boundary) 19ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.plain.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.crit-half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.mitigated.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.floor.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.zero-raw.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.bad-mult.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.bad-mitigation.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.reviewer.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.third.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.five-sixths.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.half-mitigation.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.k100-d25.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.milli-half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.milli-below-half.001 (boundary) 8ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.below-half.large-den.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.half.large-den.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.min-damage.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.max.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.huge-den.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.overflow.002 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.not-safe.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.bad-ratio.001 (failure) 34ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.dmg.bad-crit-flag.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mitratio.001 (normal) 17ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mitratio.none.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mitratio.overflow.001 (failure) 3ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.mitratio.bad-k.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.integer.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.below-half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.binary64-half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.half-milli.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.too-low.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.zero.001 (failure) 17ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.attack.range.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.002 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.breakpoint.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.exact.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.overkill.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.bad-hp.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > combat > combat.htk.bad-dmg.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.valid.001 (normal) 25ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.range-edge.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.bad-hash.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.out-of-range.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.duplicate-category.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.hit-floor.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.table-length.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.unknown-field.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.unlabelled.001 (failure) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > content > content.bad-id.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.exact-duplicate.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.conflict-before-genuine.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.unknown.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.exp-only.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.boss.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > credits > s1.credits.interleaved.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.harmless.001 (boundary) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.hand-chain.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.simultaneous.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.dies-first.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.crits-survival.001 (normal) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.spawn-bound.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.regen-gap.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.swing-budget.001 (failure) 120ms
+ ✓ test/remainder.property.test.ts > per-hour chain properties (remainder.md v2, S0.1) > G3: a timeline of rate changes, each segment split arbitrarily, equals the exact integral 471ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/s0-core.candidate.v0.1.0.json stays inside the lab and never references the frozen baseline 2ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp-sweep.index.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.candidate.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a10-p1.6.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a10-p1.8.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a10-p2.0.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a12-p1.6.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a12-p1.8.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a12-p2.0.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a8-p1.6.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a8-p1.8.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/tables/xp.w1.sweep.a8-p2.0.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/w1-slice-s2.candidate.v0.2.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > content/w1-slice.candidate.v0.1.0.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/preregistration.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E01-calibration.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E02-estimator.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E03-earlier-zone-audit.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E04-survival.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E05-gate-pacing.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E06-drop-correctness-b.json stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E06-drop-correctness.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E07-determinism.json stays inside the lab and never references the frozen baseline 2ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1/S1-E08-policy-bound.json stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/preregistration.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E01-base-attribution.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E02-estimator.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E03-earlier-zone-audit.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E04-survival-policies.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E05-drops-quantities.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E06-determinism.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s1.1/S1.1-E07-policy-comparison.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/preregistration.json stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E00-control-a0.json stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E01-deploy-scaling.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E02-hero-damage-share.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E04-class-switch-abuse.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E05-squad-vs-workers.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E06-assignment-switching.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E07-knockout-sensitivity.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E08-first-recruit-timing.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E09-hindsight-search.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > manifests/s2/S2-E10-estimator-vs-realisation.json stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > package.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > repro/s2/make-manifests.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/bench/hamtLedger.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/bench-ledger-l1.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/bench-ledger.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/build-xp-sweep.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/build-xp-table.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/curve-preview.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/exp-worker.ts stays inside the lab and never references the frozen baseline 32ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/exp.ts stays inside the lab and never references the frozen baseline 5ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/exp2-crosscheck.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/exp2-worker.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/exp2.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/export-schemas.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/fixtures-check.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/ledger-differential.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/paths.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/s1-analyse.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/s1-content.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/s1-traces.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/s2-analyse.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/cli/s2-content.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/arrays.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/content/labels.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/content/schema.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/content/validate.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/errors.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/formulas/combat.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/formulas/stats.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/formulas/xp.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/hash/canonicalJson.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/ledger/differential.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/ledger/implementations.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/ledger/ledger.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/ledger/persistentLedger.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/ledger/persistentMap.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/numeric/basisPoints.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/numeric/remainder.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/numeric/rounding.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/numeric/safeInt.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/rng/sample.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/rng/streamId.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/core/rng/xoshiro128ss.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/commands.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/credit.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/estimator-s1.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/estimator.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/legion.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/legionCommands.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/legionCredit.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/legionObservation.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/observation.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/queue.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/rewards.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/simulation.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/engine/squadEstimator.ts stays inside the lab and never references the frozen baseline 12ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/jobs.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/legionJobs.ts stays inside the lab and never references the frozen baseline 3ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/legionManifest.ts stays inside the lab and never references the frozen baseline 12ms
+ ✓ test/xp.property.test.ts > EXP award properties with thresholds up to 2^53 - 1 (S0.1) > any split of an award gives the same final state and the same ordered level-ups 1014ms
+ ✓ test/s1.experiments.test.ts > summary statistics > quantiles are nearest-rank observed values; "not reached" sorts above every number 38ms
+ ✓ test/s1.experiments.test.ts > summary statistics > the exact binomial interval covers at least 99.9% and is tight 48ms
+ ✓ test/stats.test.ts > stat stacking > adds within a category and multiplies across categories 2ms
+ ✓ test/stats.test.ts > stat stacking > the breakdown reproduces the applied value exactly 33ms
+ ✓ test/stats.test.ts > stat stacking > source order does not change the result 0ms
+ ✓ test/stats.test.ts > stat stacking > inactive categories are neutral; unknown or duplicate entries are refused 0ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > S0 review reproduction: an active factor of exactly 1 preserves 2^53 - 1 0ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > neutral factors are an exact identity for any base, any number of them, in any position 97ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/legionMetrics.ts stays inside the lab and never references the frozen baseline 13ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/legionSummary.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/manifest.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/metrics.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/patch.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/report.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/stats.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/experiments/summary.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/model/content.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/model/legionContent.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/model/legionTypes.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/model/types.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/policy/legionRealistic.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/policy/legionSearch.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/policy/oracle.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/policy/realistic.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/report/curvePreview.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/spec/exportedSchemas.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/spec/fixtureRunner.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/spec/fixtureSchema.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/spec/s1Fixtures.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > src/spec/s2Fixtures.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/canonicalJson.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/combat.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/content.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/fixtures.conformance.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/helpers/fixtures.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/helpers/reference.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/helpers/s1.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/helpers/s2.ts stays inside the lab and never references the frozen baseline 19ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/isolation.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/ledger.contract.test.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/ledger.differential.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/ledger.persistent.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/ledger.property.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/ledger.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/numeric.property.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/numeric.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/purity.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/remainder.property.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/remainder.test.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/rng.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/runtime.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1.determinism.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1.events.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1.experiments.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1.gates.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1_1.behaviour.test.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s1_1.credit.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s2.invariants.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/s2.legion.test.ts stays inside the lab and never references the frozen baseline 1ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/schemaDrift.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/stats/rng.distribution.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/stats/s1.drops.distribution.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/stats.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/xp.property.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > test/xp.test.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > tsconfig.json stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > vitest.config.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/isolation.test.ts > isolation of the Legion lab > vitest.stats.config.ts stays inside the lab and never references the frozen baseline 0ms
+ ✓ test/remainder.property.test.ts > per-hour chain properties (remainder.md v2, S0.1) > settling at any cadence equals settling once, from any persisted state (save/load round trip included) 137ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > starts in zone 1 (visited, checkpoint known); other zones have every flag off 28ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > a kill gate unlocks access only; the visit and checkpoint come from arriving, at the same arrival 37ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > flag invariants hold after every event: visited implies access; checkpoint implies visited 1271ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.impossible-over-budget.001 (failure) 373ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > W2 hooks from the candidate content pack stay neutral, however large their sources 1ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > never returns NaN or Infinity: every result is finite and inside [0, 2^53 - 1], or the call is refused 405ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > refuses out-of-range partial and final values (S0 returned Infinity and NaN for these) 22ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > applies categories in ascending id order, whatever order they are listed in 0ms
+ ✓ test/stats.test.ts > stat evaluation v2 hardening (S0.1) > refuses sparse, missing or malformed entries with INVALID_CONTENT 0ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > refuses travel and teleport that break the rules, with the documented reason codes 162ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > splitting an interval never changes the total or the remainder (G1) 2ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > a zero-duration interval changes nothing (G2) 0ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > per-hour chain: one hour at 1.5 units/hour, split three different ways 3ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > settling every millisecond equals settling once (no gain from frequent rejoining) 222ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > persisted remainders survive a save/load round trip and complete later units 1ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > assignment switching: separate keys never leak into each other 0ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > large balances: results near 2^53 are exact and beyond it are refused 0ms
+ ✓ test/remainder.test.ts > exact remainder accumulator > refuses invalid parameters 0ms
+ ✓ test/remainder.test.ts > per-hour chain v2 (S0.1): one exact division, no intermediate overflow > S0 review reproduction: 2 h at rate 2^53 - 1 in one call equals two 1 h calls 0ms
+ ✓ test/remainder.test.ts > per-hour chain v2 (S0.1): one exact division, no intermediate overflow > the largest representable grant succeeds in one call and in parts; one more millisecond is refused 0ms
+ ✓ test/remainder.test.ts > per-hour chain v2 (S0.1): one exact division, no intermediate overflow > a full state plus the largest grant still fits exactly 0ms
+ ✓ test/remainder.test.ts > per-hour chain v2 (S0.1): one exact division, no intermediate overflow > refuses malformed states before doing any arithmetic 0ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > a rejected command changes nothing: the run is identical to one that never sent it 369ms
+ ✓ test/ledger.property.test.ts > ledger properties over random transaction sequences > balances are never negative and always equal the sum of committed nets (conservation) 225ms
+ ✓ test/purity.test.ts > purity of the deterministic core > finds the pure modules 2ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/arrays.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/content/labels.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/content/schema.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/content/validate.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/errors.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/formulas/combat.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/formulas/stats.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/formulas/xp.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/hash/canonicalJson.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/ledger/differential.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/ledger/implementations.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/ledger/ledger.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/ledger/persistentLedger.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/ledger/persistentMap.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/numeric/basisPoints.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/numeric/remainder.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/numeric/rounding.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/numeric/safeInt.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/rng/sample.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/rng/streamId.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/core/rng/xoshiro128ss.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/spec/exportedSchemas.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/spec/fixtureRunner.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/spec/fixtureSchema.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/spec/s1Fixtures.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/spec/s2Fixtures.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/report/curvePreview.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/model/content.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/model/legionContent.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/model/legionTypes.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/model/types.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/commands.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/credit.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/estimator-s1.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/estimator.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/legion.ts uses no clock, ambient RNG, process, timers or I/O 2ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/legionCommands.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/legionCredit.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/legionObservation.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/observation.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/queue.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/rewards.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/simulation.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/engine/squadEstimator.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/policy/legionRealistic.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/policy/legionSearch.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/policy/oracle.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/policy/realistic.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/jobs.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/legionJobs.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/legionManifest.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/legionMetrics.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/legionSummary.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/manifest.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/metrics.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/patch.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/report.ts uses no clock, ambient RNG, process, timers or I/O 0ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/stats.ts uses no clock, ambient RNG, process, timers or I/O 37ms
+ ✓ test/purity.test.ts > purity of the deterministic core > src/experiments/summary.ts uses no clock, ambient RNG, process, timers or I/O 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > estimator > s1.estimator.possible-over-budget.001 (boundary) 559ms
+ ✓ test/s1.experiments.test.ts > summary statistics > KS: identical samples do not differ; shifted samples do 1ms
+ ✓ test/s1.experiments.test.ts > jobs and summaries > a campaign job is deterministic and reports the named metrics 890ms
+ ✓ test/canonicalJson.test.ts > canonical JSON > sorts keys and removes whitespace 2ms
+ ✓ test/canonicalJson.test.ts > canonical JSON > is independent of key insertion order 47ms
+ ✓ test/canonicalJson.test.ts > canonical JSON > formats numbers exactly as ECMAScript does (and -0 as 0) 90ms
+ ✓ test/s1.gates.test.ts > zone flags, kill gates, travel and teleport > teleport to a discovered checkpoint takes teleportMs and is free 81ms
+ ✓ test/s1.gates.test.ts > prototype miniboss stub (active-only) > opens after the zone 3 kill gate count and is cleared inside the timer; the clear is credited once 51ms
+ ✓ test/ledger.property.test.ts > ledger properties over random transaction sequences > replaying every transaction again changes nothing (no repeated claims) 152ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > the gate-completion decision carries "gate-completed" together with "kill" (the reviewer saw only "kill") 850ms
+ ✓ test/canonicalJson.test.ts > canonical JSON > refuses values that have no unambiguous canonical form 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.travel-locked.001 (failure) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.travel-ok.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.travel-far.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.travel-here.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.travel-unknown.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.no-session.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.dead.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.busy.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.teleport-undiscovered.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.teleport-ok.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.teleport-unknown.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.autofarm-elsewhere.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.autofarm-off-closed.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.autofarm-off-dead.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.engage-busy.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-locked.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-autofarm.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-ok.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-resting.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-done.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-wrong-zone.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-unknown.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.boss-busy.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.rest-in-boss.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.end-session.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.report.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.report-dead.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.report-closed.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > gates > s1.gates.report-unknown.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.grant-spend.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.aggregate.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.atomic.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.replay.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.conflict.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.failed-not-recorded.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.aggregate-overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.reserve.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.net-zero.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.invalid.zero-delta.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.invalid.resource-id.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.invalid.fraction.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.invalid.field.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > ledger > ledger.invalid.empty.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.squad-full-exp.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.duplicate.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.stream-conflict.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.worker-stream.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.class-switch.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.partial-eligibility.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > legion-credit > s2.credit.unknown.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.add.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.add.limit.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.add.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.add.nonint.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.add.negzero.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.sub.limit.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.sub.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.mul.limit.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.mul.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldiv.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldiv.intermediate-overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.divrem.limit.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.divrem.limit.002 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.divrem.limit.003 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.divrem.zero.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.divrem.negative.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.ceildiv.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.ceildiv.002 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.ceildiv.003 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.002 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.003 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.naive-bug.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.naive-bug.002 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.half-below-2p52.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.max-safe.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.nan.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.rhu.inf.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.small.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.zero.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.safe-product.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.wide.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.wide.002 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.per-hour.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.exact-carry.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.bad-d.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.negative.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > numeric > numeric.muldivrem.fraction.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.zero-steps.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.split.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.efficiency.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.efficiency.split.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.huge-product.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.max-den.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.den-too-large.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.den-zero.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.bad-rem.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.accrue.negative.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.split.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.split.002 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.tiny.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.persisted.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.large.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.reviewer.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.reviewer-split.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.max-granted.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.max-granted.split.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.slow-max-duration.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.overflow.split.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.max-inputs.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.timeline.rate-change.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.timeline.rate-change.split.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.timeline.carry.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.bad-state.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.bad-state.002 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.bad-state.003 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > remainder > remainder.perhour.bad-rate.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.slime.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.always-never.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.draw-alignment.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.nothing.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.bad-chance.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.qty-three.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rewards > s1.rewards.same-resource-twice.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.injective.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.injective.002 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.utf8.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.empty.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.counter.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.counter.002 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.encode.surrogate.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.state.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.digest.first-half.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.digest.second-half.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.digest.all-zero.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.seq.a0.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.seq.a1.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.seq.b0.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.half.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.one.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.zero.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.full.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.over.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-bp.fraction.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-p.half.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-p.min.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-p.too-small.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-p.range.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.threshold-p.nan.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.bernoulli.half.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.bernoulli.never.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.bernoulli.always.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.d6.001 (normal) 30ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.span1.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.full.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.worst.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.negative.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.inverted.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.too-large.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.uniform.nonint.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.max-words.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.zero.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.short.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.null.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.too-big.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.fraction.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.negative.001 (failure) 16ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > rng > rng.next.not-array.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.ko-in-killing-batch.001 (boundary) 161ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > kill + level-up + gate unlock at the same moment reach the policy together, in the canonical order 4ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > a death and a kill at the same moment (both blows land) reach the policy together 4ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > a boss clear reaches the policy as "boss-cleared" with its kill 11ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > the auto-farm stop reaches the policy at the death that caused it 32ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > decisions at different moments stay separate: one decision per kill moment, and a scheduled future decision runs 112ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.ko-before-kill.001 (boundary) 6ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.threat-then-hero.001 (normal) 9ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.classless-hero-before-archer.001 (normal) 8ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.full-squad-l10.001 (normal) 63ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.mage-hero-two-recruits.001 (normal) 4ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > squad-fight > s2.squad.invalid-enemy.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.stack.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.inactive.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.zero.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.negative-bp.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.inexact.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.unknown-category.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.duplicate-source.001 (failure) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.negative-factor.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.negative-flat.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.neutral.max.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.neutral.w2-hooks.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.order.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.range.largest.001 (boundary) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.overflow.final.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.overflow.intermediate.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.overflow.many.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.overflow.nan.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.bad-active.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.null-source.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > stats > stats.inactive-negative.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.candidate.001 (normal) 1ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.geometric.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.constant.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.bad-a.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.bad-g.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.bad-length.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.table.overflow.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.multi-level.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.none.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.exact.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.table-end.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.zero-at-end.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.exhausted.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.exhausted.002 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.guard.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.bad-state.001 (failure) 19ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.large.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.nan.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.reviewer.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.reviewer-split.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.near-max.exhausted.001 (failure) 2ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.max-award.multi.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.sequence.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.at-end-with-exp.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.guard.exact.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.bad-guard.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.award.null-threshold.001 (failure) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.cumulative.001 (normal) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.cumulative.unsafe.001 (boundary) 0ms
+ ✓ test/fixtures.conformance.test.ts > spec/fixtures conformance > xp > xp.cumulative.bad-table.001 (failure) 1ms
+ ✓ test/ledger.test.ts > ledger > aggregates lines per bucket before validating 3ms
+ ✓ test/ledger.test.ts > ledger > is atomic: a failing line changes nothing, and the input ledger is never mutated 1ms
+ ✓ test/ledger.test.ts > ledger > replays an identical transaction without applying it twice 0ms
+ ✓ test/ledger.test.ts > ledger > identical payloads replay regardless of object key order (canonical hashing) 0ms
+ ✓ test/ledger.test.ts > ledger > refuses the same txId with a different payload 0ms
+ ✓ test/ledger.test.ts > ledger > a failed transaction is not recorded and can succeed later 0ms
+ ✓ test/ledger.test.ts > ledger > refuses overflow, including overflow while aggregating 0ms
+ ✓ test/ledger.test.ts > ledger > refuses malformed transactions 1ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > S0 review reproduction: mutating a returned receipt cannot change the replay receipt 1ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > committed history cannot be cleared or rewritten through the returned ledger (S0 allowed a double grant) 1ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > balances cannot be overwritten through the returned ledger 0ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > every reachable object is frozen, including replay receipts 0ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > only ledgers made by emptyLedger or applyTx are accepted 0ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > refuses sparse or malformed line lists with INVALID_TX (S0 raised INVALID_JSON_VALUE) 0ms
+ ✓ test/ledger.test.ts > ledger immutability boundary (S0.1) > values stay readable: entries can be read, iterated and copied 0ms
+ ✓ test/ledger.test.ts > ledger identity: only registered ledgers are accepted (S0.1 final correction) > S0.1 review reproduction: mixing the balances of one genuine ledger with the history of another is refused 0ms
+ ✓ test/ledger.test.ts > ledger identity: only registered ledgers are accepted (S0.1 final correction) > frozen shallow copies of genuine ledgers are refused, as are maps forged through the map constructor 0ms
+ ✓ test/ledger.test.ts > ledger identity: only registered ledgers are accepted (S0.1 final correction) > every earlier genuine ledger is an independent branch starting point 0ms
+ ✓ test/ledger.test.ts > ledger identity: only registered ledgers are accepted (S0.1 final correction) > replay and conflict detection follow each branch’s own history 1ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > a policy that keeps causing new triggers at one moment is stopped as a cascade, not looped forever 4ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > ORC-BRUTE re-plans (forks every accessible zone) at the zone 2 gate completion 304ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > an injected exact duplicate after an ordinary kill is rejected: no EXP, kill, gold, drop or random draw twice 154ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > passes every unchanged ledger fixture (spec/fixtures/ledger.v1.json) 6ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C4: aggregates lines with checked addition before validating 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C2: a replay returns the original receipt with replayed = true and leaves the ledger unchanged (same object) 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C3: the same txId with a different payload is TX_CONFLICT, ledger unchanged 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C4: NEGATIVE_BALANCE and NUMERIC_LIMIT, exact 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C12: the same validation codes 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C6: a failing transaction is atomic: the input ledger and earlier snapshots are unchanged 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C1: full history: every committed transaction stays, in every later snapshot 12ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C7: only genuine ledgers of this implementation are accepted 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C8: every exposed object is frozen and cannot be altered 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C9: branches from any snapshot are isolated; replay and conflict are judged per branch 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: reference > C10: both implementations give byte-identical canonical serializations for the same history 1ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > passes every unchanged ledger fixture (spec/fixtures/ledger.v1.json) 2ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C4: aggregates lines with checked addition before validating 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C2: a replay returns the original receipt with replayed = true and leaves the ledger unchanged (same object) 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C3: the same txId with a different payload is TX_CONFLICT, ledger unchanged 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C4: NEGATIVE_BALANCE and NUMERIC_LIMIT, exact 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C12: the same validation codes 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C6: a failing transaction is atomic: the input ledger and earlier snapshots are unchanged 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C1: full history: every committed transaction stays, in every later snapshot 5ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C7: only genuine ledgers of this implementation are accepted 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C8: every exposed object is frozen and cannot be altered 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C9: branches from any snapshot are isolated; replay and conflict are judged per branch 0ms
+ ✓ test/ledger.contract.test.ts > ledger contract: persistent > C10: both implementations give byte-identical canonical serializations for the same history 0ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > kill rewards are credited exactly once per kill, with one ledger transaction per kill 2473ms
+ ✓ test/s1.gates.test.ts > prototype miniboss stub (active-only) > the timer is half-open: a lethal hit exactly at the timer is too late 15ms
+ ✓ test/s1.gates.test.ts > prototype miniboss stub (active-only) > death in the boss fight fails it with no loss; the gate stays open for a retry 29ms
+ ✓ test/s1.gates.test.ts > prototype miniboss stub (active-only) > auto-farm never starts the boss, and StartBoss is refused while auto-farm is on 573ms
+ ✓ test/s1_1.behaviour.test.ts > policy triggers are combined, never dropped (owner review section 4) > orderTriggers removes repeats and follows TRIGGER_ORDER, unknown triggers last and alphabetical 0ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > the reviewer scenario: the S1 control resumes and dies 124 times; the corrected fixed policy stops after 3 deaths and reports why 119ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > the run continues normally after a rejected duplicate (later kills are credited) 43ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > a duplicate processed BEFORE the genuine event credits once; the genuine one is then the replay 2ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > a conflicting duplicate (other zone, or the boss flag) is rejected explicitly, before or after the genuine one 2ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > a credit for an encounter that never ended in a kill is rejected as unknown 1ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > an EXP-only encounter (no gold, no drops, so no ledger transaction) has full replay protection 3ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > a duplicated boss credit grants the boss EXP and gold once and completes the gate once 70ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > replay after branching: a branch keeps its own history, rejects replays, and never sees the other branch 6ms
+ ✓ test/s1_1.credit.test.ts > kill credit is complete and happens at most once (owner review section 2) > is atomic: if any part of the credit fails, nothing of it is applied 5ms
+ ✓ test/s1_1.credit.test.ts > credit registry (engine/credit.ts) > accepts only a registered claim, exactly once, and classifies every rejection 1ms
+ ✓ test/s1_1.credit.test.ts > credit registry (engine/credit.ts) > is persistent: committing never changes an earlier registry value, and branches do not share new commits 0ms
+ ✓ test/s1_1.credit.test.ts > credit registry (engine/credit.ts) > refuses to register the same kill twice (an engine error, never a gameplay outcome) 1ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > session boundary: a lethal swing exactly at the session end is not resolved; one ms later it is 83ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > nothing happens between sessions; the next session re-engages with the entry walk; time adds up 35ms
+ ✓ test/s1.events.test.ts > S1 event semantics (architecture 9.3) > an idle hero with no commands does nothing and earns nothing 2ms
+ ✓ test/s1.events.test.ts > kill reward draws (s1-combat-loop.md section 10) > every drop entry uses exactly one draw, even at 0%, so later entries stay aligned 6ms
+ ✓ test/s2.legion.test.ts > control A0: the S2 engine with the hero alone and S2 features off reproduces S1.1 exactly > POL-STAY: identical event log and S1 metrics on 3 seeds (45 min) 2124ms
+ ✓ test/runtime.test.ts > pinned runtime > runs on the pinned Node 24 LTS version 2ms
+ ✓ test/runtime.test.ts > pinned runtime > package.json pins exact dependency versions and the engine 1ms
+ ✓ test/xp.test.ts > XP table > builds the candidate table (values independently confirmed by xp_oracle.py) 2ms
+ ✓ test/xp.test.ts > XP table > is non-decreasing with every threshold >= 1 0ms
+ ✓ test/xp.test.ts > XP table > refuses invalid curves, empty tables and unsafe thresholds 1ms
+ ✓ test/xp.test.ts > thresholds vs cumulative EXP > cumulative EXP can leave the safe range while every single threshold is safe 0ms
+ ✓ test/xp.test.ts > thresholds vs cumulative EXP > reports separate approximate limits for the candidate curve 1ms
+ ✓ test/xp.test.ts > EXP awards > applies multi-level awards in order and keeps the leftover 1ms
+ ✓ test/xp.test.ts > EXP awards > never discards EXP: an award past the table end is refused as a whole 1ms
+ ✓ test/xp.test.ts > EXP awards > refuses invalid state and runaway loops 1ms
+ ✓ test/xp.test.ts > EXP awards v2 (S0.1): no intermediate overflow, dense inputs only > S0 review reproduction: an award of 2 one EXP short of a 2^53 - 1 threshold 0ms
+ ✓ test/xp.test.ts > EXP awards v2 (S0.1): no intermediate overflow, dense inputs only > awards up to 2^53 - 1 cross large thresholds exactly and conserve EXP 0ms
+ ✓ test/xp.test.ts > EXP awards v2 (S0.1): no intermediate overflow, dense inputs only > keeps table-exhaustion, guard and ordering behaviour 0ms
+ ✓ test/xp.test.ts > EXP awards v2 (S0.1): no intermediate overflow, dense inputs only > is atomic: a refused award leaves the caller state object untouched 0ms
+ ✓ test/xp.test.ts > EXP awards v2 (S0.1): no intermediate overflow, dense inputs only > refuses sparse or malformed tables and states (S0 accepted new Array(2)) 0ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > POL-STAY leaves a zone that stopped it, farms a safer one, and does not return while its level is unchanged 33ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > a level-up lifts the block: the realistic policy retries the zone only after levelling past the stop level 221ms
+ ✓ test/numeric.test.ts > safe integers > adds up to the limit and refuses one past it 2ms
+ ✓ test/numeric.test.ts > safe integers > refuses non-integers, NaN, Infinity and unsafe inputs 1ms
+ ✓ test/numeric.test.ts > safe integers > normalises -0 to +0 0ms
+ ✓ test/numeric.test.ts > safe integers > checks intermediate products, not only final results 0ms
+ ✓ test/numeric.test.ts > safe integers > divides exactly near 2^53 where floating division rounds 1ms
+ ✓ test/numeric.test.ts > roundHalfUp > fixes both failure cases of floor(x + 0.5) 0ms
+ ✓ test/numeric.test.ts > roundHalfUp > rounds halves up, including negatives 0ms
+ ✓ test/numeric.test.ts > roundHalfUp > refuses non-finite input and results beyond the safe range 0ms
+ ✓ test/content.test.ts > S0 content pack > validates, and its recorded table hash matches the artifact 13ms
+ ✓ test/content.test.ts > S0 content pack > detects a tampered table 2ms
+ ✓ test/content.test.ts > S0 content pack > every numeric value in the pack is labelled candidate (nothing is approved yet) 0ms
+ ✓ test/content.test.ts > S0 content pack > a derived value is never stronger than its weakest input 0ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > with no safer zone it stops, turns auto-farm off and reports NO_SAFE_ZONE (and stops dying) 3ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > POL-BEST-SHOWN never farms a blocked zone 137ms
+ ✓ test/schemaDrift.test.ts > exported JSON Schemas > spec/schema/fixture.schema.json matches the zod source 2ms
+ ✓ test/schemaDrift.test.ts > exported JSON Schemas > spec/schema/content-pack-s0.schema.json matches the zod source 1ms
+ ✓ test/schemaDrift.test.ts > exported JSON Schemas > spec/schema/xp-table.schema.json matches the zod source 1ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > corrected policies rest below 30% HP between fights; the S1 control never does 258ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > manual retry: re-enabling auto-farm after the stop is accepted, clears the reason, and the next death in the window stops it again 7ms
+ ✓ test/s1_1.behaviour.test.ts > realistic recovery from repeated deaths (owner review section 3) > the death window is (t - window, t]: a death exactly window ms earlier no longer counts 1ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > turning auto-farm off cancels the automatic walk to the next target: no extra kill, the target is released, its events go stale 5ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > turning auto-farm off mid-fight ends an automatic encounter without a kill; the enemy is free at full HP 5ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > a manual encounter continues when auto-farm is turned off, and the hero can engage manually again 5ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > an idle hero regenerates after a manual kill (S1 did not start regeneration there) 5ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > a hero that starts a session hurt regenerates while idle 2ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > a manual Engage still waiting for an enemy ends with the session: no fight in the next session without a command 2ms
+ ✓ test/s1_1.behaviour.test.ts > auto-farm off, regeneration and session boundaries (owner review section 7) > between sessions only world spawns are maintained: no reward, EXP, kill, credit or hero change 2ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > zero hit chance: 0 kills/h, no finite TTK, unreachable (the S1 estimator showed 2,400 kills/h and 0 s) 34ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > a tiny hit chance that cannot resolve within the swing budget is unreachable, not efficient 57ms
+ ✓ test/s1.determinism.test.ts > determinism > the same inputs give the same event log hash and metrics; another seed gives a different log 3745ms
+ ✓ test/s2.legion.test.ts > control A0: the S2 engine with the hero alone and S2 features off reproduces S1.1 exactly > POL-FRONTIER: identical event log and S1 metrics on 3 seeds (45 min) 902ms
+ ✓ test/s1.determinism.test.ts > determinism > a fork continues exactly like the original run 218ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > POL2-SQUAD: 2 seeds x 45 min 3494ms
+ ✓ test/s1.determinism.test.ts > metamorphic: renaming and permuting entity IDs changes no outcome > POL-STAY: identical event log after mapping IDs back 252ms
+ ✓ test/s1.experiments.test.ts > jobs and summaries > pre-registered hypotheses are evaluated exactly as written, and the semantic result fingerprints stably 5ms
+ ✓ test/s1.experiments.test.ts > ORC-BRUTE (oracle upper bound) > is deterministic and never earns less EXP than staying in zone 1 for the whole session 2452ms
+ ✓ test/s1.determinism.test.ts > metamorphic: renaming and permuting entity IDs changes no outcome > POL-FRONTIER: identical event log after mapping IDs back 283ms
+ ✓ test/ledger.differential.test.ts > ledger differential: reference vs persistent > agree on every step of random sequences with replays, conflicts, failures and branch switches 5620ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > high enemy HP with crits stops at the work budget quickly 1578ms
+ ✓ test/ledger.differential.test.ts > ledger differential: reference vs persistent > the generator exercises every operation kind and outcome 240ms
+ ✓ test/s1.determinism.test.ts > metamorphic: renaming and permuting entity IDs changes no outcome > POL-BEST-SHOWN: identical event log after mapping IDs back 668ms
+ ✓ test/s2.legion.test.ts > control A0: the S2 engine with the hero alone and S2 features off reproduces S1.1 exactly > POL-BEST-SHOWN: identical event log and S1 metrics on 3 seeds (45 min) 1474ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > POL2-SQUAD-W: 2 seeds x 45 min 1247ms
+ ✓ test/s1.determinism.test.ts > rate estimator > the swing distribution is a probability distribution and exact when nothing is random 0ms
+ ✓ test/s1.determinism.test.ts > rate estimator > equals the stepper exactly where it should: no crits, no retaliation, no spawn limit 147ms
+ ✓ test/s1.determinism.test.ts > observation boundary (architecture 4.1) > realistic policies import nothing but model types 1ms
+ ✓ test/s1.determinism.test.ts > observation boundary (architecture 4.1) > the observation exposes no RNG state, queue, ledger internals or enemy instance timers 4ms
+ ✓ test/s1.determinism.test.ts > observation boundary (architecture 4.1) > realistic policies never receive the engine handle 3ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > a hero who always dies before dealing lethal damage: exactly 0 kills per life, unreachable 5ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > with crits, a nearly impossible zone is "unsafe" with a vanishing rate (base L1 zone 3) 0ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > an enemy that cannot hurt the hero: unlimited kills per life, no deaths, reliable 0ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > survival chain, hand-derived: 3 swings per kill, 1 enemy hit per fight, 3 hits to die -> 2 kills per life 2ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > survival chain: a lethal hit landing at the kill moment still credits the kill 2ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > S1.1 addendum: an impossible fight beyond the survival budget is exactly 0 kills/h and unreachable (v1.1 showed 0.0176) 441ms
+ ✓ test/s1_1.behaviour.test.ts > estimator v1.1 never shows impossible farming as efficient (owner review section 5) > the S1 control estimator is unchanged (pinned to S1-E02 values) 0ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > three materials per kill: quantities match the ledger; events count successful entries 6ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > two entries for the same resource: two events and the summed quantity per kill 4ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > production rates use quantities; drop-event rates are reported separately 64ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > the metrics recorder refuses a run whose metrics do not match the ledger 3ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > structured drops keep the entry index, and the log encoding round-trips 1ms
+ ✓ test/s1_1.behaviour.test.ts > drop events and awarded quantities are separate (owner review section 6) > the S1.1 drops job checks each entry and the per-resource quantity against the ledger (qty-test variant) 45ms
+ ✓ test/s2.legion.test.ts > control A0: the S2 engine with the hero alone and S2 features off reproduces S1.1 exactly > CTL-FRONTIER-S1: identical event log and S1 metrics on 3 seeds (45 min) 484ms
+ ✓ test/s2.legion.test.ts > roster: identities, quest Q1, purchases, slots, deploy cap, rare heroes > Q1 grants rec:1 after exactly 40 zone-1 kills; later recruits are bought in order with one ledger transaction each 206ms
+ ✓ test/s2.legion.test.ts > roster: identities, quest Q1, purchases, slots, deploy cap, rare heroes > refused purchases and assignments change nothing (gold, free slot, deploy cap) 7ms
+ ✓ test/s2.legion.test.ts > roster: identities, quest Q1, purchases, slots, deploy cap, rare heroes > a rare hero never adds a productive slot; extras wait in reserve; a duplicate gives one shard 4ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > a member knocked out IN the killing batch is eligible (simultaneous blows): full EXP to hero and recruit 4ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > a member knocked out BEFORE the killing batch gets nothing; its pending blows are discarded; the hero gets full EXP 5ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > threat order: the Warrior is targeted first; once knocked out it is never targeted, the hero is next 9ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > recovery: 20 s after the knockout, but not before the encounter in progress ends 6ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > recovery is immediate when the hero respawns 7ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > leaving the squad mid-encounter takes effect at once: pending blows go stale and the member is not eligible 3ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > joining mid-encounter counts from the next engagement only 4ms
+ ✓ test/s2.legion.test.ts > squad combat, eligibility and knockouts (exact scenarios) > class, talent and respec commands are refused while the character is in an encounter, with no effect 6ms
+ ✓ test/s2.legion.test.ts > classes, mastery, records and talents (owner §8; H-S2-05) > switching without training never creates mastery or records; a level-50 switch gives mastery level 1, not 50 5ms
+ ✓ test/s2.legion.test.ts > classes, mastery, records and talents (owner §8; H-S2-05) > with training only the held class gains mastery, by the combat EXP; switching back restores that class talents 23ms
+ ✓ test/s2.legion.test.ts > classes, mastery, records and talents (owner §8; H-S2-05) > the hero chooses a class from level 5 only; the first choice is free, later ones cost gold; level, EXP and HP fraction are kept 6ms
+ ✓ test/s2.legion.test.ts > independent combat workers (S2-R17) > own encounter IDs and loot stream: worker kills never touch the account loot stream; zone kills and quest advance 21ms
+ ✓ test/s2.legion.test.ts > independent combat workers (S2-R17) > three knockouts within five minutes stop the worker with a reason; it becomes idle and the stop is remembered 7ms
+ ✓ test/s2.legion.test.ts > independent combat workers (S2-R17) > workers stop at a session end and resume at the next session start (no offline progress in S2) 9ms
+ ✓ test/s2.legion.test.ts > independent combat workers (S2-R17) > reassigning a worker mid-fight cancels the fight: no credit for it, its blows go stale 6ms
+ ✓ test/s2.legion.test.ts > multi-character credit identity (owner §7) > an exact duplicate after the genuine credit is rejected (CREDIT_REPLAYED) and changes no character, balance, counter or stream 9ms
+ ✓ test/s2.legion.test.ts > multi-character credit identity (owner §7) > an exact duplicate before the genuine credit (the genuine one is then the replay) is rejected (CREDIT_REPLAYED) and changes no character, balance, counter or stream 8ms
+ ✓ test/s2.legion.test.ts > multi-character credit identity (owner §7) > a claim with another stream for the same encounter is rejected (CREDIT_CONFLICT) and changes no character, balance, counter or stream 7ms
+ ✓ test/s2.legion.test.ts > multi-character credit identity (owner §7) > an unknown encounter is rejected (CREDIT_UNKNOWN) and changes no character, balance, counter or stream 7ms
+ ✓ test/s2.legion.test.ts > multi-character credit identity (owner §7) > is atomic: a credit that fails (ledger at its numeric limit) applies nothing to any character 1ms
+ ✓ test/s2.legion.test.ts > estimators (owner §11) > hero alone: the squad estimate is estimator v1.2 unchanged 0ms
+ ✓ test/s2.legion.test.ts > estimators (owner §11) > a squad estimate is labelled approximate and exposes its assumptions 1ms
+ ✓ test/s2.legion.test.ts > estimators (owner §11) > impossible is structural (unreachable, DIES_BEFORE_KILL), distinct from no hit chance and from merely unsafe 6ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > same seed, same log; another seed, another log 149ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > a fork continues exactly like the original run 138ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > the reference and persistent ledgers give the same legion run 97ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > ORC2-SEARCH forks never leak into the real run: replaying its chosen plan reproduces the log exactly 2308ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > S1.1-R01 generalised: a zone block lifts after a level-up OR a later squad capability change, not before 0ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > realistic S2 policies import nothing from the engine (they see only the observation) 1ms
+ ✓ test/s2.legion.test.ts > determinism, forks, search isolation and the observation boundary > time categories add up to the elapsed time and none is called active player input 85ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > POL2-WORKERS: 2 seeds x 45 min 4856ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > POL2-MIXED: 2 seeds x 45 min 4144ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > POL2-SQUAD-ATT: 2 seeds x 45 min 1830ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > harsher enemies (x3 damage): knockouts, hero deaths and worker stops happen, and still no violation 5489ms
+ ✓ test/s2.invariants.test.ts > the reward-invariant monitor finds no violation (B1) > switching every recruit between squad and workers at EVERY decision (all boundaries) credits each kill once 476ms
+ ✓ test/s2.invariants.test.ts > H-S2-02 and H-S2-06 across squad sizes 0-3 (matched state, level 10, zone 2, frozen levels) > squad of 0: account gold per credited kill equals the enemy's, every eligible member gets full EXP 70ms
+ ✓ test/s2.invariants.test.ts > H-S2-02 and H-S2-06 across squad sizes 0-3 (matched state, level 10, zone 2, frozen levels) > squad of 1: account gold per credited kill equals the enemy's, every eligible member gets full EXP 88ms
+ ✓ test/s2.invariants.test.ts > H-S2-02 and H-S2-06 across squad sizes 0-3 (matched state, level 10, zone 2, frozen levels) > squad of 2: account gold per credited kill equals the enemy's, every eligible member gets full EXP 151ms
+ ✓ test/s2.invariants.test.ts > H-S2-02 and H-S2-06 across squad sizes 0-3 (matched state, level 10, zone 2, frozen levels) > squad of 3: account gold per credited kill equals the enemy's, every eligible member gets full EXP 172ms
+
+ Test Files  29 passed (29)
+      Tests  873 passed (873)
+   Start at  22:28:00
+   Duration  25.59s (transform 16.88s, setup 0ms, import 28.61s, tests 68.87s, environment 4ms)
+

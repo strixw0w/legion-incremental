@@ -1,0 +1,18 @@
+
+ RUN  v4.1.12 <REPO>/legion-progression-lab
+
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > high and low bytes of nextU32 are uniform (chi-square, 256 buckets) 200ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 5000 bp has the correct success rate (binomial interval) 290ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 100 bp has the correct success rate (binomial interval) 303ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > Bernoulli at 20 bp has the correct success rate (binomial interval) 287ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > uniformInt(1, 6) is unbiased (chi-square, df = 5) 281ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > uniformInt with span 2^31 + 1 rejects about half of all draws, and stays unbiased across halves 131ms
+ ✓ test/stats/s1.drops.distribution.test.ts > S1 drop rolls (statistical, alpha = 0.001) > counts over 200,000 kills are inside the binomial interval (s1-drops-a) 4432ms
+ ✓ test/stats/rng.distribution.test.ts > RNG distribution (fixed seeds, alpha = 0.001) > streams with adjacent counters are not correlated (chi-square on paired top bits, df = 3) 4594ms
+ ✓ test/stats/s1.drops.distribution.test.ts > S1 drop rolls (statistical, alpha = 0.001) > counts over 200,000 kills are inside the binomial interval (s1-drops-b) 4649ms
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  22:28:28
+   Duration  9.59s (transform 133ms, setup 0ms, import 359ms, tests 15.17s, environment 0ms)
+

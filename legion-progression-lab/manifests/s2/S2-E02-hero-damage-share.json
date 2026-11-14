@@ -1,0 +1,748 @@
+{
+  "experimentId": "S2-E02-hero-damage-share",
+  "increment": "S2",
+  "question": "What share of the squad damage does the hero deal, by hero class, recruit composition and passive or attentive ability use?",
+  "design": "Matched state: every character level 10 (frozen), zone 2, squad of three recruits. Hero class Warrior / Archer / Mage x composition all-Warrior / all-Archer / all-Mage / mixed x passive / attentive (the hero casts whenever ready). 30 min, 100 replicates.",
+  "contentRef": {
+    "path": "content/w1-slice-s2.candidate.v0.2.0.json",
+    "sha256": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0"
+  },
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-W|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-W|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-A|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-A|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-M|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|all-M|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|mixed|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-warrior|mixed|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "warrior",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-W|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-W|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-A|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-A|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-M|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|all-M|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|mixed|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-archer|mixed|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "archer",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-W|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-W|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-A|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-A|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-M|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|all-M|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|mixed|passive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": false
+    },
+    {
+      "id": "a10-p1.6-g100|L10-Z2|hero-mage|mixed|attentive",
+      "kind": "matched",
+      "variant": "a10-p1.6-g100",
+      "minutes": 30,
+      "zone": 2,
+      "heroLevel": 10,
+      "heroClass": "mage",
+      "recruits": [
+        {
+          "level": 10,
+          "cls": "warrior",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "archer",
+          "assignment": "squad"
+        },
+        {
+          "level": 10,
+          "cls": "mage",
+          "assignment": "squad"
+        }
+      ],
+      "logic": "POL2-FIXED",
+      "attentive": true
+    }
+  ],
+  "seeds": {
+    "root": "S2-E02",
+    "replicates": 100
+  },
+  "metrics": [
+    "heroDamageShare",
+    "heroAbilityDamageShare",
+    "killsPerHour",
+    "legionExpPerHour",
+    "memberKnockoutsPerHour",
+    "deathsPerHour",
+    "invariantViolations"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S2-03",
+      "statement": "The hero damage share is 30-60% for balanced builds (band unapproved)",
+      "source": "R02.03",
+      "metric": "heroDamageShare",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        0.3,
+        0.6
+      ],
+      "unit": "share",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "a10-p1.6-g100|L10-Z2|hero-warrior|mixed|passive",
+          "a10-p1.6-g100|L10-Z2|hero-archer|mixed|passive",
+          "a10-p1.6-g100|L10-Z2|hero-mage|mixed|passive"
+        ]
+      }
+    },
+    {
+      "id": "H-S2-06",
+      "statement": "The reward-invariant monitor finds no violation (full personal EXP per eligible member, ineligible get 0, loot and counters once)",
+      "source": "owner S2 authorisation section 7",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "All values are model output from candidate inputs; nothing is approved. Targets were fixed in PREREGISTRATION.md before implementation and are not changed here.",
+    "Development runs of the engine and policies (single seeds, a few replicates) were made while building and testing S2, before these manifests were hashed; they are not results and none is reported.",
+    "Base content: the S1 pack with the S1.1 base calibration variant a10-p1.6-g100 (S1-E01 winner), plus the S2 pack (every S2 number a candidate).",
+    "Realistic S2 policy POL2 (src/policy/legionRealistic.ts): Archer hero from level 5, recruits Warrior / Archer / Mage by acquisition order, fixed talent priority, buys recruits when it can, S1.1 recovery rules generalised (S1.1-R01). Passive unless stated: the hero never casts.",
+    "Ledger: the L1 persistent ledger (L1 gates G1-G4 passed); the reference-ledger cross-check re-runs cells with --ledger reference.",
+    "Talents are allocated in full by the fixed POL2 priority (9 points at level 10). No class is tuned to pass (owner section 9)."
+  ]
+}

@@ -17,7 +17,7 @@ import { fail } from '../core/errors.ts';
 import { damagePerHit, mitigationRatio } from '../core/formulas/combat.ts';
 import { applyExpAward } from '../core/formulas/xp.ts';
 import { canonicalJson } from '../core/hash/canonicalJson.ts';
-import { applyTx, emptyLedger } from '../core/ledger/ledger.ts';
+import { DEFAULT_LEDGER, LEDGER_IMPLEMENTATIONS, type LedgerImplementationId } from '../core/ledger/implementations.ts';
 import { accrue } from '../core/numeric/remainder.ts';
 import { bernoulli, thresholdFromBp } from '../core/rng/sample.ts';
 import { deriveRngState } from '../core/rng/streamId.ts';
@@ -77,6 +77,8 @@ export interface SimOptions {
   readonly diagnostic?: DiagnosticOptions;
   /** Which estimator the displayed rates come from. "s1" is a diagnostic control only (estimator-s1.ts). Default "s1.1". */
   readonly estimator?: EstimatorVersion;
+  /** Ledger implementation (L1). Default "reference"; "persistent" must give semantically identical runs. */
+  readonly ledger?: LedgerImplementationId;
 }
 
 export type LogObserver = (entry: LogEntry, sim: Simulation) => void;
@@ -311,7 +313,7 @@ export class Simulation {
       encounter: null,
       boss: { opened: false, completed: false, attempts: 0 },
       session: { index: -1, open: false, startMs: 0, endMs: 0 },
-      ledger: emptyLedger(),
+      ledger: LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER].empty(),
       credits: EMPTY_CREDITS,
       rng: {
         hit: deriveRngState({ root, purpose: 'hero.hit', entity: 'hero', counter: 0 }),
@@ -844,7 +846,7 @@ export class Simulation {
     const { lines, drops, loot } = rollKillReward(s0.rng.loot, enemy);
     let ledger = s0.ledger;
     if (lines.length > 0) {
-      const out = applyTx(ledger, { txId, purpose: 'kill.reward', lines });
+      const out = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER].applyTx(ledger, { txId, purpose: 'kill.reward', lines });
       if (out.result.replayed) fail('INVALID_STATE', 'the ledger already holds a kill credit the registry has not committed', { txId });
       ledger = out.ledger;
     }

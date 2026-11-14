@@ -1,0 +1,2389 @@
+{
+  "experimentId": "S2-E01-deploy-scaling",
+  "runsCompared": 1200,
+  "rerunEventLogDigestsIdentical": true,
+  "rerunSemanticFingerprintIdentical": true,
+  "secondSeedRoot": "S2-E01-second",
+  "secondSeedRunsWithDifferentEventLogs": 1200,
+  "ksAlpha": 0.001,
+  "ksTests": 216,
+  "ksRejections": 0,
+  "ks": [
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.21000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.02,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19000000000000006,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19000000000000006,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19000000000000006,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19000000000000006,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-0",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19000000000000006,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.17999999999999997,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.010000000000000009,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15999999999999998,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-1",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-2",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.060000000000000026,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-BAL|POL2-SQUAD|deploy-3",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.21000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15000000000000002,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.02,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-0",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.17999999999999997,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.010000000000000009,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-1",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.13,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-2",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.07,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "firstRecruitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "recruit2Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "recruit3Min",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.12000000000000005,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "minToL5",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "minToL10",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.1,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "levelAt45",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "levelAt60",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.060000000000000026,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "expTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "legionExpTotal",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.14,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "goldPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|PR-OPT|POL2-SQUAD|deploy-3",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "firstRecruitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "recruit2Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "recruit3Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "minToL5",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "minToL10",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "levelAt45",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "levelAt60",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "expTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "legionExpTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "goldPerHour",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-0",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "firstRecruitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "recruit2Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "recruit3Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "minToL5",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "minToL10",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "levelAt45",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "levelAt60",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "expTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "legionExpTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.030000000000000027,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.09000000000000008,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "goldPerHour",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-1",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.030000000000000027,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "firstRecruitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "recruit2Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "recruit3Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "minToL5",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "minToL10",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "levelAt45",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "levelAt60",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "expTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "legionExpTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15999999999999998,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "goldPerHour",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-2",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "firstRecruitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "recruit2Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "recruit3Min",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "minToL5",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "minToL10",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "zone2FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "zone3FirstVisitMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "levelAt45",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "levelAt60",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "expTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "legionExpTotal",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "legionExpPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "heroDamageShare",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0.15,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "memberKnockoutsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "deathsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "goldPerHour",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "invariantViolations",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "a10-p1.6-g100|matched-L10-Z2|squad-3",
+      "metric": "killsPerHour",
+      "n": [
+        100,
+        100
+      ],
+      "d": 0,
+      "critical": 0.2756302233065162,
+      "distributionsDiffer": false
+    }
+  ]
+}

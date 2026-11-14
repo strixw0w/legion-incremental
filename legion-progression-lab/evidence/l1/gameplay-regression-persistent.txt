@@ -1,0 +1,22 @@
+# exp:verify of every S1.1 manifest on the L1 persistent ledger (--ledger persistent); stored fingerprints were produced with the reference ledger
+S1.1-E01-base-attribution: stored 46730cdf03bfae235bc5d30c76040059d56721eaa008d6d0afc2431e22dee954
+S1.1-E01-base-attribution: rerun  46730cdf03bfae235bc5d30c76040059d56721eaa008d6d0afc2431e22dee954
+S1.1-E01-base-attribution: MATCH (38048 ms, 15 workers)
+S1.1-E02-estimator: stored dd265cb69af9cf0f85b6b62227bbcee6ff5823d9c5b10faa47649b974c006639
+S1.1-E02-estimator: rerun  dd265cb69af9cf0f85b6b62227bbcee6ff5823d9c5b10faa47649b974c006639
+S1.1-E02-estimator: MATCH (22733 ms, 15 workers)
+S1.1-E03-earlier-zone-audit: stored 12a24bea05f61c4927c16287ac46b6511e29b80bb3b21d23a48f402e1cb49b6f
+S1.1-E03-earlier-zone-audit: rerun  12a24bea05f61c4927c16287ac46b6511e29b80bb3b21d23a48f402e1cb49b6f
+S1.1-E03-earlier-zone-audit: MATCH (2782 ms, 15 workers)
+S1.1-E04-survival-policies: stored ccf0f709f12c037671e2eef082d4cbac961ec6ee09f137e9ab9ff64ccb12678e
+S1.1-E04-survival-policies: rerun  ccf0f709f12c037671e2eef082d4cbac961ec6ee09f137e9ab9ff64ccb12678e
+S1.1-E04-survival-policies: MATCH (39852 ms, 15 workers)
+S1.1-E05-drops-quantities: stored fe72f1a3f7804d2c7ac9c32ccca8bbf563103c36bd15fe48ac144b1156552bc0
+S1.1-E05-drops-quantities: rerun  fe72f1a3f7804d2c7ac9c32ccca8bbf563103c36bd15fe48ac144b1156552bc0
+S1.1-E05-drops-quantities: MATCH (10117 ms, 15 workers)
+S1.1-E06-determinism: stored 6d3ff33d3d3333bf07cfaa76733606255d2d812e3d55b123b19f4e072380919c
+S1.1-E06-determinism: rerun  6d3ff33d3d3333bf07cfaa76733606255d2d812e3d55b123b19f4e072380919c
+S1.1-E06-determinism: MATCH (33631 ms, 15 workers)
+S1.1-E07-policy-comparison: stored a8a931018a94498fcf2e60990057b3f9b159837d462c444e40f5b47807567506
+S1.1-E07-policy-comparison: rerun  a8a931018a94498fcf2e60990057b3f9b159837d462c444e40f5b47807567506
+S1.1-E07-policy-comparison: MATCH (38289 ms, 15 workers)

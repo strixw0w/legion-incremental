@@ -1,0 +1,7 @@
+# Reference-ledger cross-check: cell 0 of each new S2.1 experiment re-run on the reference ledger
+S2.1-E02-worker-estimator cell 0 (a10-p1.6-g100|L1-Z1|worker-classless), 100 runs on the reference ledger: MATCH (1681 ms)
+  cell fingerprint stored d04c41aa300ff336bcc4da1719f20b0c03a36180b0f89b8412afb554b577bd58
+  cell fingerprint rerun  d04c41aa300ff336bcc4da1719f20b0c03a36180b0f89b8412afb554b577bd58
+S2.1-E03-knockout-diagnostic cell 0 (a10-p1.6-g100|L1-Z2|squad-1), 100 runs on the reference ledger: MATCH (1207 ms)
+  cell fingerprint stored 9be5dfb9ae242e548b57721bd817108825ca846be9c969efce369d7c0458af53
+  cell fingerprint rerun  9be5dfb9ae242e548b57721bd817108825ca846be9c969efce369d7c0458af53
