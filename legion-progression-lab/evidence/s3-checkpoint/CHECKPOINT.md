@@ -1,0 +1,32 @@
+# S3 checkpoint
+
+- **Commit:** `f25f296153e0375cc3a294d3f9ebf1fc245ef201` on branch `main`. Local only; **not pushed** (the GitHub repository is public).
+- **Tag:** `s3-checkpoint`, annotated (tag object `1f60bda922a13b7a4737e7fa95f625a3f685986d`); tree `51459b5b4238f72714330ecc6ba2847a938ed6ad`.
+- **Parent:** the S2 checkpoint `732f3da` (tag `s2-checkpoint`).
+- **Content:** S3 + S3.1, exactly as the accepted package `legion-S3.1-review-2026-11-14.zip` (SHA-256 `741a96dd…4dcf`, 1,108 files), plus the acceptance addendum. The tree was compared file by file with the package manifest before committing:
+  - **1,100 files identical;**
+  - **8 changed** (the correction):
+    - `src/engine/industry.ts`, `src/model/industryTypes.ts`, `src/experiments/industryMetrics.ts`;
+    - `repro/s3.1/attribution_check.py`;
+    - `spec/formulas/s3-industry.md` (v1.2) and `spec/README.md`;
+    - the lab `CHANGELOG.md` and `README.md`;
+  - **16 added:**
+    - `test/s3_acceptance.crafting.test.ts` and `repro/s3-acceptance/mutation_check.py`;
+    - `planning/S3_ACCEPTANCE_RESOLUTION.md` and `planning/S3_1_OWNER_RESOLUTIONS.md`;
+    - 12 files in `evidence/s3-acceptance/`;
+  - **0 removed.**
+- **Not in the checkpoint:**
+  - the S4 planning drafts (`planning/S4_SPECIFICATION.md`, `planning/S4_RESOLUTIONS.md`), left untracked;
+  - this `evidence/s3-checkpoint/` folder, written after the commit.
+- **Acceptance:** owner "S3.1 Final Acceptance and S4 Authorisation" (2026-11-14); see `planning/S3_ACCEPTANCE_RESOLUTION.md` and `evidence/s3-acceptance/ADDENDUM.md`.
+- **Clean export check** (`git archive s3-checkpoint`, extracted to an empty folder, offline install; `clean-export-check.txt`):
+  - type check pass;
+  - 1,121 / 1,121 regular tests and 9 / 9 statistical tests;
+  - 422 fixture cases, 0 problems;
+  - 18 oracle groups, 0 failing;
+  - S3.1-E03, S3.1-E09, S3-E02, S2-E04, S2.1-E03 and S1.1-E05 re-verified MATCH;
+  - all five crafting defect reproductions refused.
+- **Frozen simulator and Original v1 archive:** unchanged (`frozen-check.txt`):
+  - M0 fingerprint `1275f219…ce64d`, HEAD `74499ef`, 12 Original v1 files;
+  - archive master `74499ef`, `archive/increment6-original-v1` `8d80a44`.
+- **Old Legion workspace:** the 16 recorded files are unchanged and identical to the S3.1 check (the tool-generated `sourcemap.json` noted since the S2 checkpoint remains).

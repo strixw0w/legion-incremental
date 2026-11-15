@@ -19,7 +19,7 @@ export function buildIndustryObservation(sim: LegionSimulation): IndustryObserva
   const professions: Record<CharacterId, Record<ProfessionId, { level: number; exp: number; efficiencyBp: number }>> = {};
   for (const c of chars) {
     const rec = {} as Record<ProfessionId, { level: number; exp: number; efficiencyBp: number }>;
-    for (const p of PROFESSION_IDS) rec[p] = { level: profLevel(content, ind, c.id, p), exp: ind.profExp[c.id]?.[p] ?? 0, efficiencyBp: efficiencyBp(content, ind, c, p) };
+    for (const p of PROFESSION_IDS) rec[p] = { level: profLevel(content, ind, c.id, p), exp: ind.profExp[c.id]?.[p] ?? 0, efficiencyBp: efficiencyBp(content, ind, c, p, sim.permEfficiencyBp(p)) };
     professions[c.id] = rec;
   }
   const nodes: ObservedNode[] = content.nodes.map((n) => {
@@ -46,7 +46,7 @@ export function buildIndustryObservation(sim: LegionSimulation): IndustryObserva
     const qualified = levelQualified.filter((id) => crafterBlocker(sim, sim.char(id) as CharacterState) === null);
     if (r.kind === 'timed') {
       const unitMsBySmith: Record<CharacterId, number> = {};
-      for (const c of smiths) unitMsBySmith[c.id] = unitTimeMs(r.unitMs, efficiencyBp(content, ind, c, 'smithing'));
+      for (const c of smiths) unitMsBySmith[c.id] = unitTimeMs(r.unitMs, efficiencyBp(content, ind, c, 'smithing', sim.permEfficiencyBp('smithing')));
       return { id: r.id, kind: r.kind, smithingLevel: r.smithingLevel, inputs: r.inputs, outputs: r.outputs, itemId: null, short: shortOf(sim, r.inputs), consumesLowerTierSameSlot: false, consumeCandidates: [], qualified, levelQualified, unitMsBySmith };
     }
     const target = content.items.get(r.itemId) as CompiledItemDef;

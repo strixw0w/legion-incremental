@@ -47,9 +47,10 @@ import type { LegionSimulation } from '../engine/legion.ts';
 import { PROFESSION_IDS, type CompiledItemDef, type CompiledRecipe, type IndustryContent, type ProfessionId } from '../model/industryContent.ts';
 import type { IndustryState, ItemInstance } from '../model/industryTypes.ts';
 import { modsKey } from '../model/legionContent.ts';
+import type { PermanentContent } from '../model/permanentContent.ts';
 import type { LogEntry } from '../model/types.ts';
 
-export const S3_PURPOSES = ['kill.reward', 'legion.spend', 'diagnostic', 'rare.duplicate', 'gather.deposit', 'production.reserve', 'production.release', 'production.complete', 'craft', 'enhance', 'salvage'] as const;
+export const S3_PURPOSES = ['kill.reward', 'legion.spend', 'diagnostic', 'rare.duplicate', 'gather.deposit', 'production.reserve', 'production.release', 'production.complete', 'craft', 'enhance', 'salvage', 'monument.purchase'] as const;
 
 export interface EffectiveDamage {
   readonly raw: Readonly<Record<string, number>>;
@@ -183,7 +184,9 @@ export class IndustryMonitor {
     const ind = sim.state.industry as IndustryState;
     this.prevItems = ind.items;
     for (const [id, rec] of Object.entries(ind.profExp)) this.expShadow.set(id, { ...rec });
-    for (const it of ind.items) this.check(0, it.createdBy === 'diagnostic', `I12 ${it.id} exists at the start without the diagnostic label`);
+    // S4-R23: the starter-weapon variant's item is labelled `starter` (only with the permanent switch and the variant).
+    const starterOk = (it: ItemInstance) => it.createdBy === 'starter' && sim.permanentEnabled && (sim.content as PermanentContent).permanent.starterGrant;
+    for (const it of ind.items) this.check(0, it.createdBy === 'diagnostic' || starterOk(it), `I12 ${it.id} exists at the start without the diagnostic label`);
     sim.addObserver((e) => this.onEntry(e));
     this.audit(0, 'start');
   }
@@ -400,7 +403,7 @@ export class IndustryMonitor {
         this.check(t, it?.location.kind === 'equipped' && it.location.characterId === cid && it.location.slot === slot, `I10 loadout ${cid}/${slot} = ${itemId}, the item disagrees`);
       }
     // I19 stats from the loadout
-    for (const ch of s.legion.chars) this.check(t, modsKey(computeMods(this.c, ind, ch.id)) === modsKey(this.sim.modsOf(ch.id)), `I19 ${ch.id} stat modifiers differ from its loadout`);
+    for (const ch of s.legion.chars) this.check(t, modsKey(computeMods(this.c, ind, ch.id)) === modsKey(this.sim.industryModsOf(ch.id)), `I19 ${ch.id} stat modifiers differ from its loadout`);
     // I15
     const want = new Map<string, number>();
     for (const job of ind.jobs) {
@@ -439,7 +442,7 @@ export class IndustryMonitor {
         const ok =
           purpose === 'gather.deposit' || purpose === 'salvage' || purpose === 'kill.reward' || purpose === 'diagnostic' || purpose === 'rare.duplicate'
             ? n.bucket === 'available' && n.delta > 0
-            : purpose === 'craft' || purpose === 'enhance' || purpose === 'legion.spend'
+            : purpose === 'craft' || purpose === 'enhance' || purpose === 'legion.spend' || purpose === 'monument.purchase'
               ? n.bucket === 'available' && n.delta < 0
               : purpose === 'production.complete'
                 ? (n.bucket === 'reserved' && n.delta < 0) || (n.bucket === 'available' && n.delta > 0)
@@ -579,6 +582,7 @@ export function txPurpose(txId: string): string {
   if (txId.startsWith('craft:')) return 'craft';
   if (txId.startsWith('enhance:')) return 'enhance';
   if (txId.startsWith('salvage:')) return 'salvage';
+  if (txId.startsWith('monument:')) return 'monument.purchase';
   return `undeclared(${txId.split(':')[0] ?? txId})`;
 }
 

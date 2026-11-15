@@ -1,0 +1,27 @@
+Preservation of historical controls against the S3 checkpoint (tracked files; git diff s3-checkpoint):
+evidence/ (all earlier increments, S3, S3.1, the S3 acceptance addendum): 0 tracked files changed
+manifests/ (S1 ... S3.1): 0 tracked files changed
+content/ (S1, S2, S3 packs and tables): 0 tracked files changed
+spec/fixtures/ (every earlier family): 0 tracked files changed
+spec/formulas/ (earlier specs): 0 tracked files changed
+repro/ (earlier scripts): 0 tracked files changed
+Every tracked file changed since the S3 checkpoint:
+legion-progression-lab/CHANGELOG.md
+legion-progression-lab/PROVENANCE.md
+legion-progression-lab/README.md
+legion-progression-lab/src/engine/industry.ts
+legion-progression-lab/src/engine/industryObservation.ts
+legion-progression-lab/src/engine/legion.ts
+legion-progression-lab/src/engine/legionObservation.ts
+legion-progression-lab/src/experiments/industryMetrics.ts
+legion-progression-lab/src/experiments/s31Metrics.ts
+legion-progression-lab/src/experiments/s3Jobs.ts
+legion-progression-lab/src/model/industryContent.ts
+legion-progression-lab/src/model/legionContent.ts
+legion-progression-lab/src/model/legionTypes.ts
+legion-progression-lab/src/spec/fixtureRunner.ts
+legion-progression-lab/src/spec/fixtureSchema.ts
+legion-progression-lab/test/fixtures.conformance.test.ts
+spec/README.md
+spec/oracle/check_all.py
+spec/schema/fixture.schema.json

@@ -1,0 +1,23 @@
+# S4 runs, final code (pass 2; registered 2026-11-14T17:22:17Z); persistent ledger. Pass 1 (before the final monitor check and the version 1.1 policies were added) is kept in evidence/s4/pass1/.
+## S4-E01 start 17:36:22Z
+S4-E01-milestones: {"experimentId":"S4-E01-milestones","seedRoot":"s4-e01","scenarios":2000,"variants":{"control":1000,"fast":1000},"commandsIssued":221074,"commandsAccepted":342137,"injectedReplays":21726,"rejectedCredits":21726,"injectedChecks":36630,"rewardsGranted":45739,"duplicateGrants":0,"recordChangesOutsideCredits":0,"forkMismatches":0,"isolationBreaks":0,"roundTripBreaks":0,"monitorChecks":21861715,"violations":0,"durationMs":30688}
+exit 0
+## S4-E02 start 17:36:53Z
+S4-E02-pools: {"experimentId":"S4-E02-pools","seedRoot":"s4-e02","sets":5000,"byVariant":{"crit-overcap":1257,"control":1282,"additive-pooling":1250,"attack-large":1211},"charactersChecked":14954,"sourcesInForce":131465,"critOvercapSets":741,"monitorChecks":401391,"violations":0,"observationMismatches":0,"durationMs":1172}
+exit 0
+## S4-E05 start 17:36:55Z
+S4-E05-buymax: {"experimentId":"S4-E05-buymax","seedRoot":"s4-e05","states":5000,"byMode":{"zero":825,"random":836,"large":851,"reserved":807,"exact":834,"no-materials":847},"byVariant":{"control":1659,"huge":1695,"tight":1646},"zeroLevelStates":1593,"multiLevelStates":2919,"atMaxStates":453,"disagreements":0,"exactDisagreements":0,"failedPurchasesChanged":0,"branchIsolationBreaks":0,"durationMs":983}
+exit 0
+## S4-E06-investment start 17:36:57Z
+S4-E06-investment: 1000 runs, 175594 ms, 15 workers, ledger persistent, main RSS 3414 MB
+semantic fingerprint c046b0f22cb3d06506c0b2765f3f79e2f2d7e38d12bc95c72d41e0216f0d882b
+invariant monitor: 339728225 checks, 0 violations
+## S4-E04-soft-caps start 17:39:53Z
+S4-E04-soft-caps: 150 runs, 71120 ms, 15 workers, ledger persistent, main RSS 3611 MB
+semantic fingerprint 08078066770acb15763669eb63c5ea6a3aaebdd2eb82a5e2e8143faac7bac5d1
+invariant monitor: 115443670 checks, 0 violations
+## S4-E03-elasticity start 17:41:04Z
+S4-E03-elasticity: 900 runs, 350587 ms, 15 workers, ledger persistent, main RSS 1094 MB
+semantic fingerprint cd605902fcb15bf48dc80897a7e7495b39c5e1ed443cfa046e98f8ac0c00910b
+invariant monitor: 599189888 checks, 0 violations
+done 17:46:56Z

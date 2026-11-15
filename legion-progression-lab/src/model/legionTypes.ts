@@ -8,6 +8,7 @@ import type { LegionCreditRegistry } from '../engine/legionCredit.ts';
 import type { ClassId, HeldClass, TalentAllocation } from './legionContent.ts';
 import type { Command, DisplayedEstimate, Encounter, Observation, SimState } from './types.ts';
 import type { IndustryCommand, IndustryObservation, IndustryState } from './industryTypes.ts';
+import type { PermanentCommand, PermanentObservation, PermanentState } from './permanentTypes.ts';
 
 export type CharacterId = string;
 export type CharacterKind = 'hero' | 'ordinary' | 'rare';
@@ -101,6 +102,8 @@ export interface LegionSimState extends Omit<SimState, 'encounter'> {
   readonly legion: LegionState;
   /** S3: present only when the engine's industry switch is on. */
   readonly industry?: IndustryState;
+  /** S4: present only when the engine's permanent switch is on. */
+  readonly permanent?: PermanentState;
 }
 
 export type AssignTarget = 'squad' | 'idle' | 'reserve' | 'worker' | 'gathering' | 'smithing';
@@ -113,7 +116,8 @@ export type LegionCommand =
   | { readonly type: 'AllocateTalent'; readonly characterId: CharacterId; readonly talentId: string }
   | { readonly type: 'Respec'; readonly characterId: CharacterId }
   | { readonly type: 'UseAbility' }
-  | IndustryCommand;
+  | IndustryCommand
+  | PermanentCommand;
 
 export const LEGION_REASON_CODES = [
   'LEGION_DISABLED',
@@ -203,6 +207,8 @@ export interface LegionObservation extends Observation {
   };
   /** S3: what the town menus show; absent when the industry switch is off. */
   readonly industry?: IndustryObservation;
+  /** S4: present only when the engine's permanent switch is on. */
+  readonly permanent?: PermanentObservation;
 }
 
 export interface LegionPolicy {

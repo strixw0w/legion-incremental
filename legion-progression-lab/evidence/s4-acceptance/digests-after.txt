@@ -1,0 +1,5 @@
+# repro/s4-acceptance/digests.ts on the corrected code
+control_MONUMENT2 cd12018dbcb074c1973d808b86daa12ee863cfa82a6dec15293e544d8e8d5fbb (events 8905)
+control_BALANCED2 1724961c4ad1d6ae08d75f9d7cd27e9f1f9012de86a67c08ab5a5b81f4f87313 (events 6363)
+additive_MONUMENT2 d34f52b48afdabc7f81c8b1e210e6cb1d18b197670b647846ba72efc467305b6 (events 8897)
+additive_BALANCED2 63930a4b6cbcc8203fe29f20219ab37120a5e9d072f032fec81eb04727375689 (events 6349)

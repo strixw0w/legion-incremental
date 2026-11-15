@@ -20,6 +20,8 @@ import type { FixtureCase, FixtureFile } from './fixtureSchema.ts';
 import { runCombatLoopCase, runCreditsCase, runEstimatorCase, runGatesCase, runRewardsCase } from './s1Fixtures.ts';
 import { runLedgerReconstructionCase, runLegionCreditCase, runSquadFightCase, runWorkerFeasibilityCase } from './s2Fixtures.ts';
 import { runEquipmentOpsCase, runIndustryRulesCase, runProductionQueueCase, runRecipeValidationCase } from './s3Fixtures.ts';
+import { runPermanentRulesCase } from './s4Fixtures.ts';
+import { runPermanentAcceptanceCase } from './s4AcceptanceFixtures.ts';
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 type Input = Record<string, unknown>;
@@ -304,6 +306,12 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   },
   'recipe-validation'(input) {
     return runRecipeValidationCase(input) as unknown as Json;
+  },
+  'permanent-rules'(input) {
+    return runPermanentRulesCase(input) as unknown as Json;
+  },
+  'permanent-acceptance'(input) {
+    return runPermanentAcceptanceCase(input) as unknown as Json;
   },
 };
 

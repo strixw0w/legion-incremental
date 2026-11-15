@@ -302,7 +302,7 @@ export function compileIndustryContent(s1Base: unknown, table: unknown, s2Pack: 
     const heroAttack = Math.floor((tot.attack * (10_000 + ha.exclusiveWeaponBp.value)) / 10_000);
     if (!Number.isSafeInteger(tot.attack * (10_000 + ha.exclusiveWeaponBp.value))) problems.push('heroAdvantage: the exclusive weapon bonus leaves the safe range');
     const maxPct = Math.max(0, ...[...items.values()].filter((d) => d.slot === 'weapon').map((d) => enh(d, d.attackBp)));
-    const mods = Object.freeze({ attackFlatMilli: heroAttack, hpFlat: tot.hp, defenceFlat: tot.defence, critBp: Math.min(tot.crit, 10_000), baseAttackBp: ha.baseAttackBp.value, abilityMultBp: ha.abilityMultBp.value, abilityCooldownBp: ha.abilityCooldownBp.value, attackPctBp: maxPct });
+    const mods = Object.freeze({ attackFlatMilli: heroAttack, hpFlat: tot.hp, defenceFlat: tot.defence, critBp: Math.min(tot.crit, 10_000), baseAttackBp: ha.baseAttackBp.value, abilityMultBp: ha.abilityMultBp.value, abilityCooldownBp: ha.abilityCooldownBp.value, attackPctBp: maxPct, permAttackBp: 0, monumentAttackBp: 0, permHpBp: 0, monumentHpBp: 0 });
     for (const cls of ['none', ...CLASS_IDS] as const) {
       try {
         const st = legion.characterStats(maxLevel, cls, {}, mods);

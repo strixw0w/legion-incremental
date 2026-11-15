@@ -1,0 +1,57 @@
+{
+  "planRegisteredAt": "2026-11-14T17:22:17Z",
+  "note": "S4 plan and manifests registered before any S4 balance comparison ran. The runner refuses unregistered or changed manifests; amendments are appended, never edited in place.",
+  "document": {
+    "path": "manifests/s4/PREREGISTRATION.md",
+    "sha256": "213dfbdeef94b8808f9a6f35f3481659b2aea4743383526638b038f19d7e67ce"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s4/S4-E06-investment.json",
+      "sha256": "d4f9e4331ae72ac7b9c74065938357b871367d7fc286215ed8f96af37bed3c09",
+      "registeredAt": "2026-11-14T17:22:17Z"
+    },
+    {
+      "path": "manifests/s4/S4-E03-elasticity.json",
+      "sha256": "0b929b9ce3b3358c1828f0fccc3fb26ab28b1bcb4428b1ca3aef8e3eeaba9c0f",
+      "registeredAt": "2026-11-14T17:22:17Z"
+    },
+    {
+      "path": "manifests/s4/S4-E04-soft-caps.json",
+      "sha256": "c845b8bd685bc44bb0570774c976668c1c02ca6197ad240fe147139871538fc3",
+      "registeredAt": "2026-11-14T17:22:17Z"
+    }
+  ],
+  "amendments": [
+    {
+      "path": "manifests/s4/S4-E07-investment-v11.json",
+      "sha256": "b061397fc3ba3b73ca41b9571b3999d4432e117589fcc0e2f6f24ab8d6b121a8",
+      "registeredAt": "2026-11-14T17:37:09Z",
+      "document": {
+        "path": "manifests/s4/AMENDMENT-01.md",
+        "sha256": "e8bbe52d372c515cf6d63c0203163bd42ebbc0b660fa3ac973f1a52778da39a8"
+      },
+      "reason": "POL4-MONUMENT and POL4-BALANCED version 1 stopped every Monument purchase once their best level waited for a material they could not obtain (S4-E04: 17.2 levels from day 1 to 7, 1,197 of 98,574 gold spent); version 1.1 buys the best affordable level"
+    },
+    {
+      "path": "manifests/s4/S4-E08-elasticity-v11.json",
+      "sha256": "40557af9ffb1347c029419774e1eda164a4679c776c4b114ee366db33c924846",
+      "registeredAt": "2026-11-14T17:37:09Z",
+      "document": {
+        "path": "manifests/s4/AMENDMENT-01.md",
+        "sha256": "e8bbe52d372c515cf6d63c0203163bd42ebbc0b660fa3ac973f1a52778da39a8"
+      },
+      "reason": "POL4-MONUMENT and POL4-BALANCED version 1 stopped every Monument purchase once their best level waited for a material they could not obtain (S4-E04: 17.2 levels from day 1 to 7, 1,197 of 98,574 gold spent); version 1.1 buys the best affordable level"
+    },
+    {
+      "path": "manifests/s4/S4-E09-soft-caps-v11.json",
+      "sha256": "cbe5fd198c9da32aef21cdd9a3dacbe38e59bc9fa0a6268add0d451fb5693cd0",
+      "registeredAt": "2026-11-14T17:37:09Z",
+      "document": {
+        "path": "manifests/s4/AMENDMENT-01.md",
+        "sha256": "e8bbe52d372c515cf6d63c0203163bd42ebbc0b660fa3ac973f1a52778da39a8"
+      },
+      "reason": "POL4-MONUMENT and POL4-BALANCED version 1 stopped every Monument purchase once their best level waited for a material they could not obtain (S4-E04: 17.2 levels from day 1 to 7, 1,197 of 98,574 gold spent); version 1.1 buys the best affordable level"
+    }
+  ]
+}

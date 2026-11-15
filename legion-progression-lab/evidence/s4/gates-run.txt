@@ -1,0 +1,38 @@
+# S4 engineering gates (final code) start 17:57:17Z
+## verify
+S4-E06-investment: MATCH (156189 ms, 15 workers)
+S4-E04-soft-caps: MATCH (66648 ms, 15 workers)
+S4-E03-elasticity: MATCH (402023 ms, 15 workers)
+S4-E07-investment-v11: MATCH (194311 ms, 15 workers)
+S4-E09-soft-caps-v11: MATCH (247708 ms, 15 workers)
+S4-E08-elasticity-v11: MATCH (565361 ms, 15 workers)
+## determinism S4-E06 start 18:24:33Z
+S4-E06-investment: determinism rerun identical=true fingerprint=true; second root differs in 1000/1000; KS rejections 0/480
+## reference ledger S4-E06 start 18:32:15Z
+S4-E06-investment: 1000 runs, 301732 ms, 15 workers, ledger reference, main RSS 2337 MB
+semantic fingerprint c046b0f22cb3d06506c0b2765f3f79e2f2d7e38d12bc95c72d41e0216f0d882b
+invariant monitor: 339728225 checks, 0 violations
+persistent: c046b0f22cb3d06506c0b2765f3f79e2f2d7e38d12bc95c72d41e0216f0d882b
+reference:  c046b0f22cb3d06506c0b2765f3f79e2f2d7e38d12bc95c72d41e0216f0d882b
+## historical start 18:37:18Z
+historical: 36 MATCH, 0 MISMATCH
+## mutation checks start 19:09:46Z
+S4 mutation check: 17 planted bugs, 16 detected, 1 not detected; all files restored: True
+S3 acceptance mutation check: 5 planted bugs, 5 detected, 0 not detected; all files restored: True
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+S3 mutation check: 21 planted bugs, 21 detected, 0 not detected; all files restored: True
+## suites start 19:14:08Z
+tests:       Tests  1228 passed (1228)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 450; problems: 0
+oracle: oracle summary: 19 groups, 0 failing
+typecheck: exit code 0
+done 19:14:39Z
+## follow-up 19:16:21Z: P14 survived the first S4 mutation run (output kept in mutation-check-s4-first-run.txt); the ordering test in test/s4.permanent.test.ts was strengthened (no source change); S4 mutation check and suites re-run
+S4 mutation check: 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+tests:       Tests  1228 passed (1228)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 450; problems: 0
+oracle: oracle summary: 19 groups, 0 failing
+typecheck: exit code 0
+done 19:18:49Z

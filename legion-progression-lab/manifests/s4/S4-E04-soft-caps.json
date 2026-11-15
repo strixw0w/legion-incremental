@@ -1,0 +1,198 @@
+{
+  "increment": "S4",
+  "contentRef": {
+    "path": "content/w1-slice-s4.candidate.v0.4.0.json",
+    "sha256": "c1115512b72d4d7b4abfed652469dfe7bea614013190d732c4df0bb56eff319e"
+  },
+  "experimentId": "S4-E04-soft-caps",
+  "question": "How do Monument cost, marginal bonus, time to the next affordable level, return on investment and material milestones behave over seven days, does the soft cap move spending to alternatives without making earlier levels worthless, and does pooling the Monument bonuses change that?",
+  "design": "Seven days of one 60-minute session; POL4-MONUMENT and POL4-BALANCED on the control and on the additive-pooling sensitivity variant; POL4-MONUMENT in the arena. Snapshots after days 1-6. 30 replicates. The cost, marginal-bonus and ROI tables are derived from the content by src/cli/s4-analyse.ts.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s4-pooled",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.monumentPooling": "additive"
+      }
+    },
+    {
+      "id": "s4-arena",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "control|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "pooled|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "s4-pooled",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "control|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "pooled|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-pooled",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "arena|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    }
+  ],
+  "seeds": {
+    "root": "s4-e04",
+    "replicates": 30
+  },
+  "metrics": [
+    "legionExpTotal",
+    "expTotal",
+    "conquestScore",
+    "killsPerHour",
+    "counter.goldEarned",
+    "goldHeld",
+    "monumentGoldSpent",
+    "permanentRewards",
+    "appliedAttackBp",
+    "appliedMonumentAttackBp",
+    "appliedHpBp",
+    "crafted",
+    "equipmentValue",
+    "professionLevelsSum",
+    "invariantViolations",
+    "level.power",
+    "level.vitality",
+    "level.industry",
+    "monumentPurchases",
+    "monumentPurchaseIntervalEarlyMin",
+    "monumentPurchaseIntervalLateMin",
+    "milestoneBlockedMin"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S4-05",
+      "statement": "Every S2, S3 and S4 invariant holds in every run (monitor I1-I28)",
+      "source": "owner S3.1 acceptance section 18; S4 spec section 11",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Numerical stability: every level of every table is checked in the content compiler and by monitor I25."
+  ]
+}

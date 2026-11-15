@@ -1,0 +1,198 @@
+$ git log --oneline -5
+f25f296 S3 checkpoint: S3 industry + S3.1 corrections and calibration + acceptance addendum
+732f3da S2 checkpoint: L1 persistent ledger + S2 legion + S2.1 acceptance pass
+a7d8476 S1 checkpoint: S1 single-character simulation + S1.1 corrections + acceptance addendum
+ad11a50 S0 checkpoint: S0 + S0.1 hardening + final ledger identity correction
+0209d93 M0 resolution and review corrections (v1.1); repository verification; Rojo 7.7.1
+
+$ git tag -n1
+s0-checkpoint   S0 checkpoint (S0 + S0.1 + final ledger correction), accepted by the owner after independent review. Local only; not pushed.
+s1-checkpoint   S1 checkpoint (S1 + S1.1 + acceptance addendum), accepted by the owner after independent review. Local only; not pushed.
+s2-checkpoint   S2 checkpoint: L1 + S2 + S2.1, accepted 2026-11-14 (package 34a92723...bfc7)
+s3-checkpoint   S3 checkpoint: S3 + S3.1 + acceptance addendum, accepted 2026-11-14 (package 741a96dd...4dcf). Local only; not pushed.
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/CHANGELOG.md
+ M legion-progression-lab/PROVENANCE.md
+ M legion-progression-lab/README.md
+ M legion-progression-lab/src/engine/industry.ts
+ M legion-progression-lab/src/engine/industryObservation.ts
+ M legion-progression-lab/src/engine/legion.ts
+ M legion-progression-lab/src/engine/legionObservation.ts
+ M legion-progression-lab/src/experiments/industryMetrics.ts
+ M legion-progression-lab/src/experiments/s31Metrics.ts
+ M legion-progression-lab/src/experiments/s3Jobs.ts
+ M legion-progression-lab/src/model/industryContent.ts
+ M legion-progression-lab/src/model/legionContent.ts
+ M legion-progression-lab/src/model/legionTypes.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M spec/README.md
+ M spec/oracle/check_all.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/content/w1-slice-s4.candidate.v0.4.0.json
+?? legion-progression-lab/evidence/s3-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s3-checkpoint/clean-export-check.txt
+?? legion-progression-lab/evidence/s3-checkpoint/frozen-check.txt
+?? legion-progression-lab/evidence/s4/S4-E01-milestones.json
+?? legion-progression-lab/evidence/s4/S4-E02-pools.json
+?? legion-progression-lab/evidence/s4/S4-E05-buymax.json
+?? legion-progression-lab/evidence/s4/S4_EVIDENCE.md
+?? legion-progression-lab/evidence/s4/amendment-01-runs.txt
+?? legion-progression-lab/evidence/s4/analysis.json
+?? legion-progression-lab/evidence/s4/analysis.txt
+?? legion-progression-lab/evidence/s4/bonus-registry.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E03-elasticity/semantic.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E04-soft-caps/semantic.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/determinism.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E06-investment/semantic.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E07-investment-v11/semantic.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E08-elasticity-v11/semantic.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/environment.json
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/fingerprint.txt
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/quantiles.csv
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/report.md
+?? legion-progression-lab/evidence/s4/experiments/S4-E09-soft-caps-v11/semantic.json
+?? legion-progression-lab/evidence/s4/fixtures-check.txt
+?? legion-progression-lab/evidence/s4/frozen-check.txt
+?? legion-progression-lab/evidence/s4/gates-run.txt
+?? legion-progression-lab/evidence/s4/git-status.txt
+?? legion-progression-lab/evidence/s4/historical-regression.txt
+?? legion-progression-lab/evidence/s4/mutation-check-s3-acceptance.txt
+?? legion-progression-lab/evidence/s4/mutation-check-s3-rerun.txt
+?? legion-progression-lab/evidence/s4/mutation-check-s3.1.txt
+?? legion-progression-lab/evidence/s4/mutation-check-s4-first-run.txt
+?? legion-progression-lab/evidence/s4/mutation-check-s4.txt
+?? legion-progression-lab/evidence/s4/oracle-check.txt
+?? legion-progression-lab/evidence/s4/pass1/S4-E01-milestones.json
+?? legion-progression-lab/evidence/s4/pass1/S4-E02-pools.json
+?? legion-progression-lab/evidence/s4/pass1/S4-E03-elasticity/fingerprint.txt
+?? legion-progression-lab/evidence/s4/pass1/S4-E03-elasticity/semantic.json
+?? legion-progression-lab/evidence/s4/pass1/S4-E04-soft-caps/fingerprint.txt
+?? legion-progression-lab/evidence/s4/pass1/S4-E04-soft-caps/semantic.json
+?? legion-progression-lab/evidence/s4/pass1/S4-E05-buymax.json
+?? legion-progression-lab/evidence/s4/pass1/S4-E06-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s4/pass1/S4-E06-investment/semantic.json
+?? legion-progression-lab/evidence/s4/pass1/analysis-pass1.txt
+?? legion-progression-lab/evidence/s4/pass1/runs-pass1.txt
+?? legion-progression-lab/evidence/s4/preservation-check.txt
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/environment.json
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/events.cell-0.sample.jsonl
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/events.cell-1.sample.jsonl
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/events.cell-2.sample.jsonl
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/fingerprint.txt
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/quantiles.csv
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/report.md
+?? legion-progression-lab/evidence/s4/reference-ledger/S4-E06-investment/semantic.json
+?? legion-progression-lab/evidence/s4/registration-check.txt
+?? legion-progression-lab/evidence/s4/runs.txt
+?? legion-progression-lab/evidence/s4/schemas-check.txt
+?? legion-progression-lab/evidence/s4/test-output.txt
+?? legion-progression-lab/evidence/s4/test-stats-output.txt
+?? legion-progression-lab/evidence/s4/tool-versions.txt
+?? legion-progression-lab/evidence/s4/tools/bonus_registry.ts
+?? legion-progression-lab/evidence/s4/traces/POL3-CONQ-fresh-20min.jsonl
+?? legion-progression-lab/evidence/s4/traces/POL4-BALANCED2-fresh-30min.jsonl
+?? legion-progression-lab/evidence/s4/traces/POL4-MONUMENT2-fresh-30min.jsonl
+?? legion-progression-lab/evidence/s4/typecheck.txt
+?? legion-progression-lab/manifests/s4/AMENDMENT-01.md
+?? legion-progression-lab/manifests/s4/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s4/S4-E03-elasticity.json
+?? legion-progression-lab/manifests/s4/S4-E04-soft-caps.json
+?? legion-progression-lab/manifests/s4/S4-E06-investment.json
+?? legion-progression-lab/manifests/s4/S4-E07-investment-v11.json
+?? legion-progression-lab/manifests/s4/S4-E08-elasticity-v11.json
+?? legion-progression-lab/manifests/s4/S4-E09-soft-caps-v11.json
+?? legion-progression-lab/manifests/s4/preregistration.json
+?? legion-progression-lab/planning/L2_CONTRACT_PROPOSAL.md
+?? legion-progression-lab/planning/S4_RESOLUTIONS.md
+?? legion-progression-lab/planning/S4_SPECIFICATION.md
+?? legion-progression-lab/repro/s4/make_content.py
+?? legion-progression-lab/repro/s4/make_fixtures.py
+?? legion-progression-lab/repro/s4/mutation_check.py
+?? legion-progression-lab/repro/s4/traces.ts
+?? legion-progression-lab/src/cli/exp4-worker.ts
+?? legion-progression-lab/src/cli/exp4.ts
+?? legion-progression-lab/src/cli/s4-amend.ts
+?? legion-progression-lab/src/cli/s4-analyse.ts
+?? legion-progression-lab/src/cli/s4-content.ts
+?? legion-progression-lab/src/cli/s4-engineering.ts
+?? legion-progression-lab/src/cli/s4-make-manifests.ts
+?? legion-progression-lab/src/engine/permanent.ts
+?? legion-progression-lab/src/experiments/permanentMetrics.ts
+?? legion-progression-lab/src/experiments/s4Engineering.ts
+?? legion-progression-lab/src/experiments/s4Jobs.ts
+?? legion-progression-lab/src/experiments/s4Manifest.ts
+?? legion-progression-lab/src/experiments/s4Metrics.ts
+?? legion-progression-lab/src/experiments/s4Patch.ts
+?? legion-progression-lab/src/model/permanentContent.ts
+?? legion-progression-lab/src/model/permanentTypes.ts
+?? legion-progression-lab/src/policy/permanentPolicies.ts
+?? legion-progression-lab/src/spec/s4Fixtures.ts
+?? legion-progression-lab/test/helpers/s4.ts
+?? legion-progression-lab/test/s4.experiments.test.ts
+?? legion-progression-lab/test/s4.permanent.test.ts
+?? spec/fixtures/permanent-rules.v1.json
+?? spec/formulas/s4-permanent.md
+?? spec/oracle/s4_oracle.py
+
+$ git diff --stat s3-checkpoint
+ legion-progression-lab/CHANGELOG.md                |  13 ++
+ legion-progression-lab/PROVENANCE.md               |   5 +
+ legion-progression-lab/README.md                   |  10 +-
+ legion-progression-lab/src/engine/industry.ts      |   7 +-
+ .../src/engine/industryObservation.ts              |   4 +-
+ legion-progression-lab/src/engine/legion.ts        | 246 ++++++++++++++++++++-
+ .../src/engine/legionObservation.ts                |   2 +-
+ .../src/experiments/industryMetrics.ts             |  12 +-
+ .../src/experiments/s31Metrics.ts                  |   8 +-
+ legion-progression-lab/src/experiments/s3Jobs.ts   |   2 +-
+ .../src/model/industryContent.ts                   |   2 +-
+ legion-progression-lab/src/model/legionContent.ts  |  38 +++-
+ legion-progression-lab/src/model/legionTypes.ts    |   8 +-
+ legion-progression-lab/src/spec/fixtureRunner.ts   |   4 +
+ legion-progression-lab/src/spec/fixtureSchema.ts   |   2 +-
+ .../test/fixtures.conformance.test.ts              |   2 +-
+ spec/README.md                                     |   1 +
+ spec/oracle/check_all.py                           |   1 +
+ spec/schema/fixture.schema.json                    |   3 +-
+ 19 files changed, 336 insertions(+), 34 deletions(-)

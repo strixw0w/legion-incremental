@@ -1,0 +1,23 @@
+# S4 runs (registered 2026-11-14T17:22:17Z); persistent ledger
+## S4-E01 start 17:22:24Z
+S4-E01-milestones: {"experimentId":"S4-E01-milestones","seedRoot":"s4-e01","scenarios":2000,"variants":{"control":1000,"fast":1000},"commandsIssued":221074,"commandsAccepted":342137,"injectedReplays":21726,"rejectedCredits":21726,"injectedChecks":36630,"rewardsGranted":45739,"duplicateGrants":0,"recordChangesOutsideCredits":0,"forkMismatches":0,"isolationBreaks":0,"roundTripBreaks":0,"monitorChecks":21859715,"violations":0,"durationMs":26518}
+exit 0
+## S4-E02 start 17:22:51Z
+S4-E02-pools: {"experimentId":"S4-E02-pools","seedRoot":"s4-e02","sets":5000,"byVariant":{"crit-overcap":1257,"control":1282,"additive-pooling":1250,"attack-large":1211},"charactersChecked":14954,"sourcesInForce":131465,"critOvercapSets":741,"monitorChecks":396391,"violations":0,"observationMismatches":0,"durationMs":1387}
+exit 0
+## S4-E05 start 17:22:53Z
+S4-E05-buymax: {"experimentId":"S4-E05-buymax","seedRoot":"s4-e05","states":5000,"byMode":{"zero":825,"random":836,"large":851,"reserved":807,"exact":834,"no-materials":847},"byVariant":{"control":1659,"huge":1695,"tight":1646},"zeroLevelStates":1593,"multiLevelStates":2919,"atMaxStates":453,"disagreements":0,"exactDisagreements":0,"failedPurchasesChanged":0,"branchIsolationBreaks":0,"durationMs":1102}
+exit 0
+## S4-E06-investment start 17:22:55Z
+S4-E06-investment: 1000 runs, 181057 ms, 15 workers, ledger persistent, main RSS 3328 MB
+semantic fingerprint 26f3085bf2c46c6404afa40f8324cab8f0b7ea47366b9961e90cc8f7b656ff70
+invariant monitor: 339727325 checks, 0 violations
+## S4-E04-soft-caps start 17:25:57Z
+S4-E04-soft-caps: 150 runs, 86255 ms, 15 workers, ledger persistent, main RSS 3121 MB
+semantic fingerprint 616bce4f7520ced49d189c1597a8ac250e1205c581fd19b34381d0932c776e00
+invariant monitor: 115443520 checks, 0 violations
+## S4-E03-elasticity start 17:27:23Z
+S4-E03-elasticity: 900 runs, 410808 ms, 15 workers, ledger persistent, main RSS 1119 MB
+semantic fingerprint d3a5e97746f708cfe8928596111d7a8f9286b5cd800f8dd7991ab99f620c9c09
+invariant monitor: 599188988 checks, 0 violations
+done 17:34:15Z

@@ -115,12 +115,12 @@ export class S31Recorder {
       if (ch.assignment.kind === 'gathering') {
         this.gatherAssignedMs[ch.id] = (this.gatherAssignedMs[ch.id] ?? 0) + dt;
         const node = this.c.nodeById.get(ch.assignment.nodeId);
-        if (node) this.gatherCapacityUnits += ((dt / node.actionMs) * node.baseYieldMilli * (10_000 + efficiencyBp(this.c, ind, ch, node.profession))) / 10_000_000;
+        if (node) this.gatherCapacityUnits += ((dt / node.actionMs) * node.baseYieldMilli * (10_000 + efficiencyBp(this.c, ind, ch, node.profession, this.sim.permEfficiencyBp(node.profession)))) / 10_000_000;
         if (w?.kind === 'gather') this.gatherWorkMs[ch.id] = (this.gatherWorkMs[ch.id] ?? 0) + dt;
       }
       if (ch.assignment.kind === 'smithing') {
         this.smithAssignedMs += dt;
-        if (plank) this.smithCapacityUnits += dt / unitTimeMs(plank.unitMs, efficiencyBp(this.c, ind, ch, 'smithing'));
+        if (plank) this.smithCapacityUnits += dt / unitTimeMs(plank.unitMs, efficiencyBp(this.c, ind, ch, 'smithing', this.sim.permEfficiencyBp('smithing')));
         if (w?.kind === 'unit') this.smithWorkMs += dt;
         else if (openJobs) this.smithIdleInputMs += dt;
         else this.smithIdleNoDemandMs += dt;
@@ -210,7 +210,7 @@ export class S31Recorder {
         break;
     }
     if (e.kind === 'Equipped' || e.kind === 'AutoEquipped' || e.kind === 'Unequipped' || e.kind === 'Crafted' || e.kind === 'Salvaged') this.endLifetimes(e.t);
-    if (e.kind === 'Equipped' || e.kind === 'AutoEquipped' || e.kind === 'Unequipped' || e.kind === 'Enhanced' || e.kind === 'ClassChanged' || e.kind === 'RecruitAcquired') this.refreshMods();
+    if (e.kind === 'Equipped' || e.kind === 'AutoEquipped' || e.kind === 'Unequipped' || e.kind === 'Enhanced' || e.kind === 'ClassChanged' || e.kind === 'RecruitAcquired' || e.kind === 'PermanentBonusesApplied') this.refreshMods();
   }
 
   /** Combat-effective equipment value (R11): summed matched-zone DPS gain of the hero and the deployed squad from their equipment. */
@@ -222,7 +222,7 @@ export class S31Recorder {
       if (ch.id !== 'hero' && ch.assignment.kind !== 'squad') continue;
       const level = ch.id === 'hero' ? s.hero.level : ch.level;
       const talents = ch.cls === 'none' ? {} : ch.talents[ch.cls];
-      const without = combatValue(this.c, this.c.characterStats(level, ch.cls, talents, computeMods(this.c, bare, ch.id)), s.hero.zoneOrder).dps;
+      const without = combatValue(this.c, this.c.characterStats(level, ch.cls, talents, this.sim.mergePermanent(computeMods(this.c, bare, ch.id))), s.hero.zoneOrder).dps;
       const withEq = combatValue(this.c, this.sim.statsOf(ch, level), s.hero.zoneOrder).dps;
       if (without > 0) v += withEq / without - 1;
     }

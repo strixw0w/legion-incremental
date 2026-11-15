@@ -1,0 +1,17 @@
+{
+  "experimentId": "S4-E03-elasticity",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "f25f296153e0375cc3a294d3f9ebf1fc245ef201",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T17:41:05.433Z",
+  "durationMs": 350587,
+  "jobs": 900,
+  "mainRssMb": 1094,
+  "mainHeapUsedMb": 59
+}

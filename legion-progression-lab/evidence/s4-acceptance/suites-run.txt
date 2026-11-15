@@ -1,0 +1,12 @@
+# S4 acceptance verification suite start 2026-11-15T13:18:46Z
+S4 acceptance mutation check: 13 planted bugs, 13 detected, 0 not detected; all files restored: True
+S4 mutation check: repro/s4/mutation_check.py stops at P1 on the corrected code (pattern moved to creditPermanentState); re-run with P1 and P8 re-targeted (repro/s4-acceptance/mutation_check_s4_rerun.py): 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+S3 acceptance mutation check: 5 planted bugs, 5 detected, 0 not detected; all files restored: True
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+S3 mutation check: 21 planted bugs, 21 detected, 0 not detected; all files restored: True
+tests:       Tests  1277 passed (1277)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 481; problems: 0
+oracle: oracle summary: 19 groups, 0 failing
+typecheck: exit code 0
+done 2026-11-15T13:22:56Z

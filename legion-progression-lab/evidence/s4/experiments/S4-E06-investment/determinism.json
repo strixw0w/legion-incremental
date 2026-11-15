@@ -1,0 +1,5293 @@
+{
+  "experimentId": "S4-E06-investment",
+  "runsCompared": 1000,
+  "rerunEventLogDigestsIdentical": true,
+  "rerunSemanticFingerprintIdentical": true,
+  "secondSeedRoot": "s4-e06-second",
+  "secondSeedRunsWithDifferentEventLogs": 1000,
+  "ksAlpha": 0.001,
+  "ksTests": 480,
+  "ksRejections": 0,
+  "ks": [
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.01999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.13999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-EQUIP",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-MONUMENT",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-DEMAND2",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.22000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BALANCED",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.13999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL4-BESTIARY",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.04,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.04,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-CONQ",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.1,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.1,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.05999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.05999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL3-DEMAND2",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.04,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.04,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.17999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-MONUMENT",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.20000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.21999999999999997,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.21999999999999997,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.21999999999999997,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.1,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000001,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena|POL4-BALANCED",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.20000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL3-CONQ",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.19999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.14,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.22000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.32,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "hero150|POL4-BALANCED",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.02,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.02,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.1,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL3-CONQ",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.07999999999999996,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000007,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "arena-hero150|POL4-BALANCED",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.1399999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000004,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-EQUIP",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000009,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL3-DEMAND2",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.26,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.15999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.05999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.040000000000000036,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.05999999999999994,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.06,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999999,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.2,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.26,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "starter|POL4-BALANCED",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.26,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "counter.goldEarned",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "monumentGoldSpent",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "permanentRewards",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.039999999999999925,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "appliedAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "appliedHpBp",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "topSystemShare",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.03999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "fresh|POL3-CONQ|all-W",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.16000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "counter.goldEarned",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "monumentGoldSpent",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "permanentRewards",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "appliedAttackBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "appliedHpBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "topSystemShare",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-CONQ",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.12000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "legionExpTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "expTotal",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "conquestScore",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "killsPerHour",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "counter.goldEarned",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "goldHeld",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.08000000000000002,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "monumentGoldSpent",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "permanentRewards",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "appliedAttackBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "appliedMonumentAttackBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "appliedHpBp",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "crafted",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "equipmentValue",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.020000000000000018,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "professionLevelsSum",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.09999999999999998,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "invariantViolations",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "firstCraftAnyMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "firstEquippedCraftedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.10000000000000003,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "firstUpgradeOverEquippedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "firstHeroUpgradeMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "firstCopperCombatEquippedMin",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.2,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "topSystemShare",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "milestoneBlockedMin",
+      "n": [
+        0,
+        0
+      ],
+      "d": null,
+      "critical": null,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "legionExpAtS1",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    },
+    {
+      "cell": "permanent-off|POL3-DEMAND2",
+      "metric": "legionExpAtS2",
+      "n": [
+        50,
+        50
+      ],
+      "d": 0.18000000000000005,
+      "critical": 0.38980000000000004,
+      "distributionsDiffer": false
+    }
+  ]
+}

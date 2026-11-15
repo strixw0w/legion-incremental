@@ -1,0 +1,14 @@
+# S4 amendment 01 (registered 2026-11-14T17:37:09Z) runs start 17:46:57Z
+## S4-E07-investment-v11 start 17:46:57Z
+S4-E07-investment-v11: 900 runs, 132790 ms, 15 workers, ledger persistent, main RSS 3812 MB
+semantic fingerprint e76dae10444e453476fa8d2dd24127ae3bd32e8b92e954feaa27bc230a409fca
+invariant monitor: 255685080 checks, 0 violations
+## S4-E09-soft-caps-v11 start 17:49:11Z
+S4-E09-soft-caps-v11: 300 runs, 125340 ms, 15 workers, ledger persistent, main RSS 3809 MB
+semantic fingerprint 1dbc6eb2338bb4ffc6f882d21b2f657eed4dbfb0cbb215e51e9b0427ade1b8e0
+invariant monitor: 230870824 checks, 0 violations
+## S4-E08-elasticity-v11 start 17:51:17Z
+S4-E08-elasticity-v11: 960 runs, 359345 ms, 15 workers, ledger persistent, main RSS 1643 MB
+semantic fingerprint 3685ac7aa24bacb878a5715458ff0e769d43887a28ea6da3047df77332484b71
+invariant monitor: 641247008 checks, 0 violations
+done 17:57:17Z

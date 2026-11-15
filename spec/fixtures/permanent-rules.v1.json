@@ -1,0 +1,1924 @@
+{
+  "fixtureSet": "permanent-rules",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s4-permanent.md#v1",
+  "status": "candidate",
+  "independence": "S4 formulas (spec/formulas/s4-permanent.md v1), re-derived by spec/oracle/s4_oracle.py from the formula text (Buy Max also against a brute force over every k); the lab side calls the real S4 functions and the real character stat function of the compiled S4 content. Most cases are also derived by hand.",
+  "cases": [
+    {
+      "id": "s4.mon.costs.power.001",
+      "kind": "normal",
+      "description": "Monument of Power gold table: 40, then x1.15 with ceil",
+      "input": {
+        "op": "monument-costs",
+        "baseGold": 40,
+        "growthBp": 1500,
+        "maxLevel": 30
+      },
+      "derivation": "hand: 40, ceil(46.0)=46, ceil(52.9)=53, ceil(60.95)=61, ...",
+      "expected": {
+        "costs": [
+          40,
+          46,
+          53,
+          61,
+          71,
+          82,
+          95,
+          110,
+          127,
+          147,
+          170,
+          196,
+          226,
+          260,
+          299,
+          344,
+          396,
+          456,
+          525,
+          604,
+          695,
+          800,
+          920,
+          1058,
+          1217,
+          1400,
+          1610,
+          1852,
+          2130,
+          2450
+        ]
+      }
+    },
+    {
+      "id": "s4.mon.costs.ceil.001",
+      "kind": "boundary",
+      "description": "ceil on every step: 3 x1.5",
+      "input": {
+        "op": "monument-costs",
+        "baseGold": 3,
+        "growthBp": 5000,
+        "maxLevel": 5
+      },
+      "derivation": "hand: 3, ceil(4.5)=5, ceil(7.5)=8, 12, 18",
+      "expected": {
+        "costs": [
+          3,
+          5,
+          8,
+          12,
+          18
+        ]
+      }
+    },
+    {
+      "id": "s4.mon.costs.flat.001",
+      "kind": "boundary",
+      "description": "growth 0 gives a flat table",
+      "input": {
+        "op": "monument-costs",
+        "baseGold": 7,
+        "growthBp": 0,
+        "maxLevel": 4
+      },
+      "derivation": "hand: 7, 7, 7, 7",
+      "expected": {
+        "costs": [
+          7,
+          7,
+          7,
+          7
+        ]
+      }
+    },
+    {
+      "id": "s4.mon.costs.overflow.001",
+      "kind": "failure",
+      "description": "a table leaving the safe integer range is refused",
+      "input": {
+        "op": "monument-costs",
+        "baseGold": 4503599627370496,
+        "growthBp": 10000,
+        "maxLevel": 4
+      },
+      "derivation": "hand: 2^52 x 20000 > 2^53 - 1",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4.mon.bonus.tiers.001",
+      "kind": "normal",
+      "description": "three diminishing tiers: 200, 100, 50 bp per level",
+      "input": {
+        "op": "monument-bonuses",
+        "tiers": [
+          {
+            "toLevel": 10,
+            "perLevelBp": 200
+          },
+          {
+            "toLevel": 20,
+            "perLevelBp": 100
+          },
+          {
+            "toLevel": 30,
+            "perLevelBp": 50
+          }
+        ],
+        "maxLevel": 30
+      },
+      "derivation": "hand: 2000 at 10, 3000 at 20, 3500 at 30",
+      "expected": {
+        "bonusAt": [
+          0,
+          200,
+          400,
+          600,
+          800,
+          1000,
+          1200,
+          1400,
+          1600,
+          1800,
+          2000,
+          2100,
+          2200,
+          2300,
+          2400,
+          2500,
+          2600,
+          2700,
+          2800,
+          2900,
+          3000,
+          3050,
+          3100,
+          3150,
+          3200,
+          3250,
+          3300,
+          3350,
+          3400,
+          3450,
+          3500
+        ]
+      }
+    },
+    {
+      "id": "s4.mon.bonus.uncovered.001",
+      "kind": "failure",
+      "description": "a level not covered by any tier is refused",
+      "input": {
+        "op": "monument-bonuses",
+        "tiers": [
+          {
+            "toLevel": 3,
+            "perLevelBp": 10
+          }
+        ],
+        "maxLevel": 4
+      },
+      "derivation": "hand: level 4 has no tier",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4.mon.price.milestone.001",
+      "kind": "normal",
+      "description": "levels 4-6 of Power include the level-5 gel milestone",
+      "input": {
+        "op": "price",
+        "monument": {
+          "baseGold": 40,
+          "growthBp": 1500,
+          "maxLevel": 30,
+          "tiers": [
+            {
+              "toLevel": 10,
+              "perLevelBp": 200
+            },
+            {
+              "toLevel": 20,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 30,
+              "perLevelBp": 50
+            }
+          ],
+          "milestones": [
+            {
+              "level": 5,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 10
+                }
+              ]
+            },
+            {
+              "level": 10,
+              "materials": [
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 10
+                }
+              ]
+            },
+            {
+              "level": 20,
+              "materials": [
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 25
+                },
+                {
+                  "resourceId": "res.mat.copper_bar",
+                  "qty": 5
+                }
+              ]
+            }
+          ]
+        },
+        "level": 3,
+        "levels": 3
+      },
+      "derivation": "hand: 61 + 71 + 82 gold, 10 gel",
+      "expected": {
+        "gold": 214,
+        "materials": [
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4.mon.price.beyond.001",
+      "kind": "failure",
+      "description": "a price past the maximum level is refused",
+      "input": {
+        "op": "price",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 5,
+        "levels": 2
+      },
+      "derivation": "hand: 5 + 2 > 6",
+      "expectedError": "INVALID_STATE"
+    },
+    {
+      "id": "s4.buymax.zero.001",
+      "kind": "boundary",
+      "description": "no gold: nothing",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {}
+      },
+      "derivation": "hand: cost 10 > 0",
+      "expected": {
+        "levels": 0,
+        "gold": 0,
+        "materials": []
+      }
+    },
+    {
+      "id": "s4.buymax.exact.001",
+      "kind": "boundary",
+      "description": "gold exactly covers level 1",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 10
+        }
+      },
+      "derivation": "hand: 10 <= 10; level 2 costs 20 more",
+      "expected": {
+        "levels": 1,
+        "gold": 10,
+        "materials": []
+      }
+    },
+    {
+      "id": "s4.buymax.milestone-unmet.001",
+      "kind": "boundary",
+      "description": "gold for many levels, no gel: stops before the level-2 milestone",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 10000
+        }
+      },
+      "derivation": "hand: k = 1",
+      "expected": {
+        "levels": 1,
+        "gold": 10,
+        "materials": []
+      }
+    },
+    {
+      "id": "s4.buymax.milestone-crossed.001",
+      "kind": "normal",
+      "description": "an affordable milestone is crossed and buying continues",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 10000,
+          "res.mat.slime_gel": 3
+        }
+      },
+      "derivation": "hand: levels 1-3 (gel 3 at level 2); level 4 needs 2 more gel",
+      "expected": {
+        "levels": 3,
+        "gold": 70,
+        "materials": [
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4.buymax.two-milestones.001",
+      "kind": "normal",
+      "description": "two affordable milestones, gold limits next",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 150,
+          "res.mat.slime_gel": 5,
+          "res.mat.wolf_fang": 1
+        }
+      },
+      "derivation": "hand: 10+20+40+80 = 150 for 4 levels; level 5 costs 160",
+      "expected": {
+        "levels": 4,
+        "gold": 150,
+        "materials": [
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 5
+          },
+          {
+            "resourceId": "res.mat.wolf_fang",
+            "qty": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4.buymax.large.001",
+      "kind": "boundary",
+      "description": "very large balances reach the maximum and stop",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 1125899906842624,
+          "res.mat.slime_gel": 1000000000,
+          "res.mat.wolf_fang": 1000000000
+        }
+      },
+      "derivation": "hand: k = 6 (maxLevel)",
+      "expected": {
+        "levels": 6,
+        "gold": 630,
+        "materials": [
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 5
+          },
+          {
+            "resourceId": "res.mat.wolf_fang",
+            "qty": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4.buymax.at-max.001",
+      "kind": "boundary",
+      "description": "already at the maximum: nothing",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 6,
+        "balances": {
+          "res.gold": 1000000000
+        }
+      },
+      "derivation": "hand: k = 0",
+      "expected": {
+        "levels": 0,
+        "gold": 0,
+        "materials": []
+      }
+    },
+    {
+      "id": "s4.buymax.mid.001",
+      "kind": "normal",
+      "description": "from level 3, materials short for level 4",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 10,
+          "growthBp": 10000,
+          "maxLevel": 6,
+          "tiers": [
+            {
+              "toLevel": 3,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 6,
+              "perLevelBp": 40
+            }
+          ],
+          "milestones": [
+            {
+              "level": 2,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 3
+                }
+              ]
+            },
+            {
+              "level": 4,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 2
+                },
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 1
+                }
+              ]
+            }
+          ]
+        },
+        "level": 3,
+        "balances": {
+          "res.gold": 1000000,
+          "res.mat.slime_gel": 2
+        }
+      },
+      "derivation": "hand: level 4 needs 1 fang: k = 0",
+      "expected": {
+        "levels": 0,
+        "gold": 0,
+        "materials": []
+      }
+    },
+    {
+      "id": "s4.buymax.power.001",
+      "kind": "normal",
+      "description": "Power from 0 with 1,000 gold and 10 gel",
+      "input": {
+        "op": "buy-max",
+        "monument": {
+          "baseGold": 40,
+          "growthBp": 1500,
+          "maxLevel": 30,
+          "tiers": [
+            {
+              "toLevel": 10,
+              "perLevelBp": 200
+            },
+            {
+              "toLevel": 20,
+              "perLevelBp": 100
+            },
+            {
+              "toLevel": 30,
+              "perLevelBp": 50
+            }
+          ],
+          "milestones": [
+            {
+              "level": 5,
+              "materials": [
+                {
+                  "resourceId": "res.mat.slime_gel",
+                  "qty": 10
+                }
+              ]
+            },
+            {
+              "level": 10,
+              "materials": [
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 10
+                }
+              ]
+            },
+            {
+              "level": 20,
+              "materials": [
+                {
+                  "resourceId": "res.mat.wolf_fang",
+                  "qty": 25
+                },
+                {
+                  "resourceId": "res.mat.copper_bar",
+                  "qty": 5
+                }
+              ]
+            }
+          ]
+        },
+        "level": 0,
+        "balances": {
+          "res.gold": 1000,
+          "res.mat.slime_gel": 10
+        }
+      },
+      "derivation": "hand: prefix sums 40, 86, 139, 200, 271, 353, 448, 558, 685, 832; the level-10 milestone needs 10 fang: k = 9",
+      "expected": {
+        "levels": 9,
+        "gold": 685,
+        "materials": [
+          {
+            "resourceId": "res.mat.slime_gel",
+            "qty": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4.stats.neutral.001",
+      "kind": "normal",
+      "description": "classless hero level 1 without bonuses equals the S3.1 stats",
+      "input": {
+        "op": "stats",
+        "level": 1,
+        "cls": "none",
+        "perm": {},
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": 0,
+          "classHpBp": 0,
+          "classCritBp": 0,
+          "abilityMultBp": 0
+        }
+      },
+      "derivation": "stats.md v2 with no factor",
+      "expected": {
+        "attackRawMilli": 6000,
+        "maxHp": 60,
+        "critChanceBp": 500,
+        "abilityRawMilli": null
+      }
+    },
+    {
+      "id": "s4.stats.additive.001",
+      "kind": "normal",
+      "description": "classless hero level 6, +5% attack in the additive pool, +20% HP pool",
+      "input": {
+        "op": "stats",
+        "level": 6,
+        "cls": "none",
+        "perm": {
+          "attackBp": 500,
+          "hpBp": 2000
+        },
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": 0,
+          "classHpBp": 0,
+          "classCritBp": 0,
+          "abilityMultBp": 0
+        }
+      },
+      "derivation": "one additive factor 10500; HP roundDiv(base x 12000, 10000)",
+      "expected": {
+        "attackRawMilli": 11550,
+        "maxHp": 120,
+        "critChanceBp": 500,
+        "abilityRawMilli": null
+      }
+    },
+    {
+      "id": "s4.stats.monument.001",
+      "kind": "normal",
+      "description": "Warrior level 10: class -10% and rewards +3% in one pool, then the Monument factor +10%",
+      "input": {
+        "op": "stats",
+        "level": 10,
+        "cls": "warrior",
+        "perm": {
+          "attackBp": 300,
+          "monumentAttackBp": 1000
+        },
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": -1000,
+          "classHpBp": 4000,
+          "classCritBp": 0,
+          "abilityMultBp": 20000
+        }
+      },
+      "derivation": "v x 9300/10000 x 11000/10000, binary64 in id order",
+      "expected": {
+        "attackRawMilli": 15345,
+        "maxHp": 185,
+        "critChanceBp": 500,
+        "abilityRawMilli": 30690
+      }
+    },
+    {
+      "id": "s4.stats.vitality.001",
+      "kind": "normal",
+      "description": "Mage level 20: HP pool +20% then the Vitality factor +15%",
+      "input": {
+        "op": "stats",
+        "level": 20,
+        "cls": "mage",
+        "perm": {
+          "hpBp": 2000,
+          "monumentHpBp": 1500
+        },
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": 2500,
+          "classHpBp": -2000,
+          "classCritBp": 0,
+          "abilityMultBp": 40000
+        }
+      },
+      "derivation": "roundDiv twice",
+      "expected": {
+        "attackRawMilli": 31250,
+        "maxHp": 244,
+        "critChanceBp": 500,
+        "abilityRawMilli": 125000
+      }
+    },
+    {
+      "id": "s4.stats.critcap.001",
+      "kind": "boundary",
+      "description": "Archer crit over the cap is capped at 10,000",
+      "input": {
+        "op": "stats",
+        "level": 12,
+        "cls": "archer",
+        "perm": {
+          "critBp": 20000
+        },
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": 0,
+          "classHpBp": -1000,
+          "classCritBp": 1000,
+          "abilityMultBp": 25000
+        }
+      },
+      "derivation": "min(..., 10000)",
+      "expected": {
+        "attackRawMilli": 17000,
+        "maxHp": 133,
+        "critChanceBp": 10000,
+        "abilityRawMilli": 42500
+      }
+    },
+    {
+      "id": "s4.stats.ability.001",
+      "kind": "normal",
+      "description": "Mage ability gains the permanent ability bp",
+      "input": {
+        "op": "stats",
+        "level": 8,
+        "cls": "mage",
+        "perm": {
+          "abilityBp": 5000
+        },
+        "rules": {
+          "baseAttackMilli": 6000,
+          "attackPerLevelMilli": 1000,
+          "critChanceBp": 500,
+          "baseMaxHp": 60,
+          "maxHpPerLevel": 8,
+          "classAttackBp": 2500,
+          "classHpBp": -2000,
+          "classCritBp": 0,
+          "abilityMultBp": 40000
+        }
+      },
+      "derivation": "roundDiv(atk x (multBp + 5000), 10000)",
+      "expected": {
+        "attackRawMilli": 16250,
+        "maxHp": 93,
+        "critChanceBp": 500,
+        "abilityRawMilli": 73125
+      }
+    },
+    {
+      "id": "s4.miles.multi.001",
+      "kind": "normal",
+      "description": "one event crossing two Feat tiers grants both",
+      "input": {
+        "op": "milestones",
+        "rewards": [
+          {
+            "id": "feat:feat.kills:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 10
+            }
+          },
+          {
+            "id": "feat:feat.kills:2",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 50
+            }
+          },
+          {
+            "id": "feat:feat.kills:3",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 500
+            }
+          },
+          {
+            "id": "feat:feat.gold:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "goldEarned",
+              "threshold": 100
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:bronze",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 25
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:gold",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 600
+            }
+          },
+          {
+            "id": "emblem:enemy.w1.wolf",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "emblem",
+              "enemyId": "enemy.w1.wolf"
+            }
+          },
+          {
+            "id": "region:r:completion",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionCompletion",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ]
+            }
+          },
+          {
+            "id": "region:r:mastery",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionMastery",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ],
+              "kills": {
+                "enemy.w1.green_slime": 600,
+                "enemy.w1.wolf": 600
+              }
+            }
+          },
+          {
+            "id": "class:warrior:5",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "warrior",
+              "record": 5
+            }
+          },
+          {
+            "id": "class:mage:10",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "mage",
+              "record": 10
+            }
+          }
+        ],
+        "facts": {
+          "counters": {
+            "accountKills": 60,
+            "goldEarned": 0,
+            "rosterLevelsHigh": 0,
+            "professionLevelsHigh": 0,
+            "gatheredUnits": 0,
+            "unitsCompleted": 0,
+            "itemsCrafted": 0,
+            "enhancements": 0,
+            "zonesVisited": 0,
+            "gatesCompleted": 0,
+            "bossCleared": 0,
+            "recruitsAcquired": 0
+          },
+          "bestiary": {},
+          "records": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "granted": []
+      },
+      "derivation": "hand: kills:1 and kills:2",
+      "expected": {
+        "earned": [
+          "feat:feat.kills:1",
+          "feat:feat.kills:2"
+        ]
+      }
+    },
+    {
+      "id": "s4.miles.granted.001",
+      "kind": "boundary",
+      "description": "an already granted reward is never earned again",
+      "input": {
+        "op": "milestones",
+        "rewards": [
+          {
+            "id": "feat:feat.kills:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 10
+            }
+          },
+          {
+            "id": "feat:feat.kills:2",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 50
+            }
+          },
+          {
+            "id": "feat:feat.kills:3",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 500
+            }
+          },
+          {
+            "id": "feat:feat.gold:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "goldEarned",
+              "threshold": 100
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:bronze",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 25
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:gold",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 600
+            }
+          },
+          {
+            "id": "emblem:enemy.w1.wolf",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "emblem",
+              "enemyId": "enemy.w1.wolf"
+            }
+          },
+          {
+            "id": "region:r:completion",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionCompletion",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ]
+            }
+          },
+          {
+            "id": "region:r:mastery",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionMastery",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ],
+              "kills": {
+                "enemy.w1.green_slime": 600,
+                "enemy.w1.wolf": 600
+              }
+            }
+          },
+          {
+            "id": "class:warrior:5",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "warrior",
+              "record": 5
+            }
+          },
+          {
+            "id": "class:mage:10",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "mage",
+              "record": 10
+            }
+          }
+        ],
+        "facts": {
+          "counters": {
+            "accountKills": 60,
+            "goldEarned": 0,
+            "rosterLevelsHigh": 0,
+            "professionLevelsHigh": 0,
+            "gatheredUnits": 0,
+            "unitsCompleted": 0,
+            "itemsCrafted": 0,
+            "enhancements": 0,
+            "zonesVisited": 0,
+            "gatesCompleted": 0,
+            "bossCleared": 0,
+            "recruitsAcquired": 0
+          },
+          "bestiary": {},
+          "records": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "granted": [
+          "feat:feat.kills:1"
+        ]
+      },
+      "derivation": "hand: kills:2 only",
+      "expected": {
+        "earned": [
+          "feat:feat.kills:2"
+        ]
+      }
+    },
+    {
+      "id": "s4.miles.bestiary.001",
+      "kind": "normal",
+      "description": "Bestiary rank, emblem and regional completion",
+      "input": {
+        "op": "milestones",
+        "rewards": [
+          {
+            "id": "feat:feat.kills:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 10
+            }
+          },
+          {
+            "id": "feat:feat.kills:2",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 50
+            }
+          },
+          {
+            "id": "feat:feat.kills:3",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 500
+            }
+          },
+          {
+            "id": "feat:feat.gold:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "goldEarned",
+              "threshold": 100
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:bronze",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 25
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:gold",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 600
+            }
+          },
+          {
+            "id": "emblem:enemy.w1.wolf",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "emblem",
+              "enemyId": "enemy.w1.wolf"
+            }
+          },
+          {
+            "id": "region:r:completion",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionCompletion",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ]
+            }
+          },
+          {
+            "id": "region:r:mastery",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionMastery",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ],
+              "kills": {
+                "enemy.w1.green_slime": 600,
+                "enemy.w1.wolf": 600
+              }
+            }
+          },
+          {
+            "id": "class:warrior:5",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "warrior",
+              "record": 5
+            }
+          },
+          {
+            "id": "class:mage:10",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "mage",
+              "record": 10
+            }
+          }
+        ],
+        "facts": {
+          "counters": {
+            "accountKills": 0,
+            "goldEarned": 0,
+            "rosterLevelsHigh": 0,
+            "professionLevelsHigh": 0,
+            "gatheredUnits": 0,
+            "unitsCompleted": 0,
+            "itemsCrafted": 0,
+            "enhancements": 0,
+            "zonesVisited": 0,
+            "gatesCompleted": 0,
+            "bossCleared": 0,
+            "recruitsAcquired": 0
+          },
+          "bestiary": {
+            "enemy.w1.green_slime": {
+              "kills": 3,
+              "emblems": 0
+            },
+            "enemy.w1.wolf": {
+              "kills": 25,
+              "emblems": 2
+            }
+          },
+          "records": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "granted": []
+      },
+      "derivation": "hand: wolf bronze, wolf emblem (2 copies, one reward), region completion",
+      "expected": {
+        "earned": [
+          "bestiary:enemy.w1.wolf:bronze",
+          "emblem:enemy.w1.wolf",
+          "region:r:completion"
+        ]
+      }
+    },
+    {
+      "id": "s4.miles.mastery.001",
+      "kind": "boundary",
+      "description": "regional mastery needs every species at its top rank",
+      "input": {
+        "op": "milestones",
+        "rewards": [
+          {
+            "id": "feat:feat.kills:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 10
+            }
+          },
+          {
+            "id": "feat:feat.kills:2",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 50
+            }
+          },
+          {
+            "id": "feat:feat.kills:3",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 500
+            }
+          },
+          {
+            "id": "feat:feat.gold:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "goldEarned",
+              "threshold": 100
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:bronze",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 25
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:gold",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 600
+            }
+          },
+          {
+            "id": "emblem:enemy.w1.wolf",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "emblem",
+              "enemyId": "enemy.w1.wolf"
+            }
+          },
+          {
+            "id": "region:r:completion",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionCompletion",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ]
+            }
+          },
+          {
+            "id": "region:r:mastery",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionMastery",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ],
+              "kills": {
+                "enemy.w1.green_slime": 600,
+                "enemy.w1.wolf": 600
+              }
+            }
+          },
+          {
+            "id": "class:warrior:5",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "warrior",
+              "record": 5
+            }
+          },
+          {
+            "id": "class:mage:10",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "mage",
+              "record": 10
+            }
+          }
+        ],
+        "facts": {
+          "counters": {
+            "accountKills": 0,
+            "goldEarned": 0,
+            "rosterLevelsHigh": 0,
+            "professionLevelsHigh": 0,
+            "gatheredUnits": 0,
+            "unitsCompleted": 0,
+            "itemsCrafted": 0,
+            "enhancements": 0,
+            "zonesVisited": 0,
+            "gatesCompleted": 0,
+            "bossCleared": 0,
+            "recruitsAcquired": 0
+          },
+          "bestiary": {
+            "enemy.w1.green_slime": {
+              "kills": 600,
+              "emblems": 0
+            },
+            "enemy.w1.wolf": {
+              "kills": 599,
+              "emblems": 0
+            }
+          },
+          "records": {
+            "warrior": 0,
+            "archer": 0,
+            "mage": 0
+          }
+        },
+        "granted": []
+      },
+      "derivation": "hand: no mastery at 599; wolf bronze and completion",
+      "expected": {
+        "earned": [
+          "bestiary:enemy.w1.wolf:bronze",
+          "region:r:completion"
+        ]
+      }
+    },
+    {
+      "id": "s4.miles.class.001",
+      "kind": "normal",
+      "description": "class records: the account record, per class",
+      "input": {
+        "op": "milestones",
+        "rewards": [
+          {
+            "id": "feat:feat.kills:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 10
+            }
+          },
+          {
+            "id": "feat:feat.kills:2",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 50
+            }
+          },
+          {
+            "id": "feat:feat.kills:3",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "accountKills",
+              "threshold": 500
+            }
+          },
+          {
+            "id": "feat:feat.gold:1",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "counter",
+              "counter": "goldEarned",
+              "threshold": 100
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:bronze",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 25
+            }
+          },
+          {
+            "id": "bestiary:enemy.w1.wolf:gold",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "bestiary",
+              "enemyId": "enemy.w1.wolf",
+              "kills": 600
+            }
+          },
+          {
+            "id": "emblem:enemy.w1.wolf",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "emblem",
+              "enemyId": "enemy.w1.wolf"
+            }
+          },
+          {
+            "id": "region:r:completion",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionCompletion",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ]
+            }
+          },
+          {
+            "id": "region:r:mastery",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "regionMastery",
+              "regionId": "r",
+              "species": [
+                "enemy.w1.green_slime",
+                "enemy.w1.wolf"
+              ],
+              "kills": {
+                "enemy.w1.green_slime": 600,
+                "enemy.w1.wolf": 600
+              }
+            }
+          },
+          {
+            "id": "class:warrior:5",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "warrior",
+              "record": 5
+            }
+          },
+          {
+            "id": "class:mage:10",
+            "system": "feat",
+            "target": "attack",
+            "bp": 50,
+            "condition": {
+              "kind": "classRecord",
+              "cls": "mage",
+              "record": 10
+            }
+          }
+        ],
+        "facts": {
+          "counters": {
+            "accountKills": 0,
+            "goldEarned": 100,
+            "rosterLevelsHigh": 0,
+            "professionLevelsHigh": 0,
+            "gatheredUnits": 0,
+            "unitsCompleted": 0,
+            "itemsCrafted": 0,
+            "enhancements": 0,
+            "zonesVisited": 0,
+            "gatesCompleted": 0,
+            "bossCleared": 0,
+            "recruitsAcquired": 0
+          },
+          "bestiary": {},
+          "records": {
+            "warrior": 7,
+            "archer": 0,
+            "mage": 9
+          }
+        },
+        "granted": []
+      },
+      "derivation": "hand: warrior 5 and gold 1; mage 10 not yet",
+      "expected": {
+        "earned": [
+          "class:warrior:5",
+          "feat:feat.gold:1"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "experimentId": "S4-E04-soft-caps",
+  "node": "v24.22.3",
+  "platform": "win32",
+  "release": "10.0.26300",
+  "arch": "x64",
+  "cpus": 16,
+  "workers": 15,
+  "ledger": "persistent",
+  "labCommit": "f25f296153e0375cc3a294d3f9ebf1fc245ef201",
+  "workingTreeDirty": true,
+  "startedAt": "2026-11-14T17:39:53.639Z",
+  "durationMs": 71120,
+  "jobs": 150,
+  "mainRssMb": 3611,
+  "mainHeapUsedMb": 25
+}

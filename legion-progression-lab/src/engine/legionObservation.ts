@@ -47,7 +47,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
   const s = sim.state;
   const L = s.legion;
   const rules = sim.content.legion;
-  const industry = sim.industryEnabled ? { industry: buildIndustryObservation(sim) } : {};
+  const industry = sim.industryEnabled ? { industry: buildIndustryObservation(sim), ...(sim.permanentEnabled ? { permanent: sim.permanentObservation() } : {}) } : {};
   if (!L.enabled) {
     return {
       ...base,

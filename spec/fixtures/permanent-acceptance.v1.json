@@ -1,0 +1,1070 @@
+{
+  "fixtureSet": "permanent-acceptance",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s4-permanent.md#v1.1",
+  "status": "candidate",
+  "independence": "S4 acceptance corrections (spec/formulas/s4-permanent.md v1.1, section 9), re-derived by spec/oracle/s4_oracle.py from the formula text with Python integers; the lab side calls the real corrected S4 functions. Most cases are also derived by hand. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "s4acc.counter.exact.001",
+      "kind": "boundary",
+      "description": "2^53 - 3 + 2 = 2^53 - 1 exactly",
+      "input": {
+        "op": "counter-add",
+        "value": 9007199254740989,
+        "delta": 2
+      },
+      "derivation": "hand: 9007199254740989 + 2 = 9007199254740991",
+      "expected": {
+        "value": 9007199254740991
+      }
+    },
+    {
+      "id": "s4acc.counter.zero.001",
+      "kind": "boundary",
+      "description": "0 + (2^53 - 1)",
+      "input": {
+        "op": "counter-add",
+        "value": 0,
+        "delta": 9007199254740991
+      },
+      "derivation": "hand: the maximum itself",
+      "expected": {
+        "value": 9007199254740991
+      }
+    },
+    {
+      "id": "s4acc.counter.over.001",
+      "kind": "failure",
+      "description": "the reviewer's reproduction: 2^53 - 1 + 2 is refused (not 2^53)",
+      "input": {
+        "op": "counter-add",
+        "value": 9007199254740991,
+        "delta": 2
+      },
+      "derivation": "hand: 9007199254740993 > 2^53 - 1",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.counter.over.002",
+      "kind": "failure",
+      "description": "2^53 - 1 + 1 is refused",
+      "input": {
+        "op": "counter-add",
+        "value": 9007199254740991,
+        "delta": 1
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.counter.over.003",
+      "kind": "failure",
+      "description": "2^53 - 2 + 2 is refused (the float sum 2^53 would look exact)",
+      "input": {
+        "op": "counter-add",
+        "value": 9007199254740990,
+        "delta": 2
+      },
+      "derivation": "hand: 2^53 is not a safe integer",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.counter.over.004",
+      "kind": "failure",
+      "description": "two halves of the range overflow",
+      "input": {
+        "op": "counter-add",
+        "value": 4503599627370496,
+        "delta": 4503599627370496
+      },
+      "derivation": "hand: 2^53",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.counter.neg.001",
+      "kind": "failure",
+      "description": "a negative increment is refused",
+      "input": {
+        "op": "counter-add",
+        "value": 5,
+        "delta": -1
+      },
+      "derivation": "hand: counters are monotone",
+      "expectedError": "INVALID_NUMBER"
+    },
+    {
+      "id": "s4acc.counter.frac.001",
+      "kind": "failure",
+      "description": "a fractional count is refused",
+      "input": {
+        "op": "counter-add",
+        "value": 1.5,
+        "delta": 1
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "INVALID_NUMBER"
+    },
+    {
+      "id": "s4acc.credit.normal.001",
+      "kind": "normal",
+      "description": "a kill credit adds one kill, its gold and one Bestiary kill",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 41,
+          "goldEarned": 1000
+        },
+        "kills": 7,
+        "gold": 12,
+        "boss": false
+      },
+      "derivation": "hand: 42, 1012, 8",
+      "expected": {
+        "accountKills": 42,
+        "goldEarned": 1012,
+        "kills": 8,
+        "discovered": false
+      }
+    },
+    {
+      "id": "s4acc.credit.first.001",
+      "kind": "normal",
+      "description": "the first kill of a species discovers it",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 0,
+          "goldEarned": 0
+        },
+        "kills": 0,
+        "gold": 3,
+        "boss": false
+      },
+      "derivation": "hand: 1, 3, 1, discovered",
+      "expected": {
+        "accountKills": 1,
+        "goldEarned": 3,
+        "kills": 1,
+        "discovered": true
+      }
+    },
+    {
+      "id": "s4acc.credit.boss.001",
+      "kind": "normal",
+      "description": "a boss credit counts for the account, not the Bestiary",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 5,
+          "goldEarned": 50
+        },
+        "kills": 2,
+        "gold": 100,
+        "boss": true
+      },
+      "derivation": "hand: 6, 150, Bestiary unchanged 2",
+      "expected": {
+        "accountKills": 6,
+        "goldEarned": 150,
+        "kills": 2,
+        "discovered": false
+      }
+    },
+    {
+      "id": "s4acc.credit.turnover.001",
+      "kind": "boundary",
+      "description": "lifetime gold reaches exactly 2^53 - 1",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 10,
+          "goldEarned": 9007199254740979
+        },
+        "kills": 0,
+        "gold": 12,
+        "boss": false
+      },
+      "derivation": "hand: 9007199254740991",
+      "expected": {
+        "accountKills": 11,
+        "goldEarned": 9007199254740991,
+        "kills": 1,
+        "discovered": true
+      }
+    },
+    {
+      "id": "s4acc.credit.turnover.002",
+      "kind": "failure",
+      "description": "lifetime gold one past the limit: refused (current balances are not involved)",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 10,
+          "goldEarned": 9007199254740980
+        },
+        "kills": 0,
+        "gold": 12,
+        "boss": false
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.credit.reviewer.001",
+      "kind": "failure",
+      "description": "the reviewer's reproduction: lifetime gold 2^53 - 1, gold reward 2",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 10,
+          "goldEarned": 9007199254740991
+        },
+        "kills": 0,
+        "gold": 2,
+        "boss": false
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.credit.kills.001",
+      "kind": "failure",
+      "description": "account kills at the limit",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 9007199254740991,
+          "goldEarned": 0
+        },
+        "kills": 0,
+        "gold": 1,
+        "boss": false
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.credit.bestiary.001",
+      "kind": "failure",
+      "description": "Bestiary kills at the limit",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 0,
+          "goldEarned": 0
+        },
+        "kills": 9007199254740991,
+        "gold": 1,
+        "boss": false
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "NUMERIC_LIMIT"
+    },
+    {
+      "id": "s4acc.credit.boss.002",
+      "kind": "boundary",
+      "description": "a boss credit with the Bestiary count at the limit is accepted (the Bestiary is not counted)",
+      "input": {
+        "op": "kill-credit",
+        "counters": {
+          "accountKills": 0,
+          "goldEarned": 0
+        },
+        "kills": 9007199254740991,
+        "gold": 1,
+        "boss": true
+      },
+      "derivation": "hand: 1, 1, unchanged",
+      "expected": {
+        "accountKills": 1,
+        "goldEarned": 1,
+        "kills": 9007199254740991,
+        "discovered": false
+      }
+    },
+    {
+      "id": "s4acc.groups.control.001",
+      "kind": "normal",
+      "description": "the reviewer's example, control pooling: ordinary attack 200 and Power 2,000 are two groups",
+      "input": {
+        "op": "applied-groups",
+        "pooling": "category",
+        "rewards": [
+          {
+            "id": "feat:a:1",
+            "target": "attack",
+            "bp": 200
+          }
+        ],
+        "monuments": [
+          {
+            "id": "monument.power",
+            "target": "attack",
+            "bonusBp": 2000
+          }
+        ]
+      },
+      "derivation": "hand: additive 200; monument 2000",
+      "expected": {
+        "sources": [
+          [
+            "reward:feat:a:1",
+            "cat.damage.additive",
+            "attack",
+            "cat.damage.additive",
+            200
+          ],
+          [
+            "monument:monument.power:monumentAttack",
+            "cat.damage.monument",
+            "attack",
+            "cat.damage.monument",
+            2000
+          ]
+        ],
+        "groups": [
+          [
+            "attack",
+            "cat.damage.additive",
+            200
+          ],
+          [
+            "attack",
+            "cat.damage.monument",
+            2000
+          ]
+        ]
+      }
+    },
+    {
+      "id": "s4acc.groups.additive.001",
+      "kind": "normal",
+      "description": "the reviewer's example, additive pooling: one attack group of 2,200 bp; Power keeps its canonical category",
+      "input": {
+        "op": "applied-groups",
+        "pooling": "additive",
+        "rewards": [
+          {
+            "id": "feat:a:1",
+            "target": "attack",
+            "bp": 200
+          }
+        ],
+        "monuments": [
+          {
+            "id": "monument.power",
+            "target": "attack",
+            "bonusBp": 2000
+          }
+        ]
+      },
+      "derivation": "hand: additive 2200; canonical cat.damage.monument",
+      "expected": {
+        "sources": [
+          [
+            "reward:feat:a:1",
+            "cat.damage.additive",
+            "attack",
+            "cat.damage.additive",
+            200
+          ],
+          [
+            "monument:monument.power:monumentAttack",
+            "cat.damage.monument",
+            "attack",
+            "cat.damage.additive",
+            2000
+          ]
+        ],
+        "groups": [
+          [
+            "attack",
+            "cat.damage.additive",
+            2200
+          ]
+        ]
+      }
+    },
+    {
+      "id": "s4acc.groups.vitality.001",
+      "kind": "normal",
+      "description": "Vitality, control: the HP pool and the Monument factor are separate",
+      "input": {
+        "op": "applied-groups",
+        "pooling": "category",
+        "rewards": [
+          {
+            "id": "bestiary:x:bronze",
+            "target": "maxHp",
+            "bp": 200
+          }
+        ],
+        "monuments": [
+          {
+            "id": "monument.vitality",
+            "target": "maxHp",
+            "bonusBp": 1500
+          }
+        ]
+      },
+      "derivation": "hand: pool.hp 200; factor.monument.hp 1500",
+      "expected": {
+        "sources": [
+          [
+            "reward:bestiary:x:bronze",
+            "pool.hp",
+            "maxHp",
+            "pool.hp",
+            200
+          ],
+          [
+            "monument:monument.vitality:monumentHp",
+            "factor.monument.hp",
+            "maxHp",
+            "factor.monument.hp",
+            1500
+          ]
+        ],
+        "groups": [
+          [
+            "maxHp",
+            "pool.hp",
+            200
+          ],
+          [
+            "maxHp",
+            "factor.monument.hp",
+            1500
+          ]
+        ]
+      }
+    },
+    {
+      "id": "s4acc.groups.vitality.002",
+      "kind": "normal",
+      "description": "Vitality, additive: one HP pool of 1,700 bp",
+      "input": {
+        "op": "applied-groups",
+        "pooling": "additive",
+        "rewards": [
+          {
+            "id": "bestiary:x:bronze",
+            "target": "maxHp",
+            "bp": 200
+          }
+        ],
+        "monuments": [
+          {
+            "id": "monument.vitality",
+            "target": "maxHp",
+            "bonusBp": 1500
+          }
+        ]
+      },
+      "derivation": "hand: pool.hp 1700",
+      "expected": {
+        "sources": [
+          [
+            "reward:bestiary:x:bronze",
+            "pool.hp",
+            "maxHp",
+            "pool.hp",
+            200
+          ],
+          [
+            "monument:monument.vitality:monumentHp",
+            "factor.monument.hp",
+            "maxHp",
+            "pool.hp",
+            1500
+          ]
+        ],
+        "groups": [
+          [
+            "maxHp",
+            "pool.hp",
+            1700
+          ]
+        ]
+      }
+    },
+    {
+      "id": "s4acc.groups.mixed.001",
+      "kind": "normal",
+      "description": "every target, additive pooling; Industry is unaffected by pooling",
+      "input": {
+        "op": "applied-groups",
+        "pooling": "additive",
+        "rewards": [
+          {
+            "id": "class:warrior:5",
+            "target": "maxHp",
+            "bp": 300
+          },
+          {
+            "id": "emblem:e",
+            "target": "gatherEfficiency",
+            "bp": 200
+          },
+          {
+            "id": "feat:c:1",
+            "target": "critChance",
+            "bp": 100
+          },
+          {
+            "id": "feat:k:1",
+            "target": "attack",
+            "bp": 50
+          },
+          {
+            "id": "roster:r:1",
+            "target": "abilityPower",
+            "bp": 500
+          }
+        ],
+        "monuments": [
+          {
+            "id": "monument.power",
+            "target": "attack",
+            "bonusBp": 1000
+          },
+          {
+            "id": "monument.vitality",
+            "target": "maxHp",
+            "bonusBp": 600
+          },
+          {
+            "id": "monument.industry",
+            "target": "efficiency",
+            "bonusBp": 900
+          }
+        ]
+      },
+      "derivation": "hand: rewards in ID order, then Monuments; attack 1050, HP 900, crit 100, ability 500, gather 1100, smith 900",
+      "expected": {
+        "sources": [
+          [
+            "reward:class:warrior:5",
+            "pool.hp",
+            "maxHp",
+            "pool.hp",
+            300
+          ],
+          [
+            "reward:emblem:e",
+            "pool.efficiency.gather",
+            "gatherEfficiency",
+            "pool.efficiency.gather",
+            200
+          ],
+          [
+            "reward:feat:c:1",
+            "pool.crit",
+            "critChance",
+            "pool.crit",
+            100
+          ],
+          [
+            "reward:feat:k:1",
+            "cat.damage.additive",
+            "attack",
+            "cat.damage.additive",
+            50
+          ],
+          [
+            "reward:roster:r:1",
+            "pool.ability",
+            "abilityPower",
+            "pool.ability",
+            500
+          ],
+          [
+            "monument:monument.power:monumentAttack",
+            "cat.damage.monument",
+            "attack",
+            "cat.damage.additive",
+            1000
+          ],
+          [
+            "monument:monument.vitality:monumentHp",
+            "factor.monument.hp",
+            "maxHp",
+            "pool.hp",
+            600
+          ],
+          [
+            "monument:monument.industry:gatherEfficiency",
+            "pool.efficiency.gather",
+            "gatherEfficiency",
+            "pool.efficiency.gather",
+            900
+          ],
+          [
+            "monument:monument.industry:smithEfficiency",
+            "pool.efficiency.smith",
+            "smithEfficiency",
+            "pool.efficiency.smith",
+            900
+          ]
+        ],
+        "groups": [
+          [
+            "maxHp",
+            "pool.hp",
+            900
+          ],
+          [
+            "gatherEfficiency",
+            "pool.efficiency.gather",
+            1100
+          ],
+          [
+            "critChance",
+            "pool.crit",
+            100
+          ],
+          [
+            "attack",
+            "cat.damage.additive",
+            1050
+          ],
+          [
+            "abilityPower",
+            "pool.ability",
+            500
+          ],
+          [
+            "smithEfficiency",
+            "pool.efficiency.smith",
+            900
+          ]
+        ]
+      }
+    },
+    {
+      "id": "s4acc.mastery.v1.001",
+      "kind": "normal",
+      "description": "schema 1: Gold by name",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 1,
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              }
+            ]
+          },
+          {
+            "enemyId": "w",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 30
+              },
+              {
+                "rank": "silver",
+                "kills": 160
+              },
+              {
+                "rank": "gold",
+                "kills": 650
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s",
+          "w"
+        ]
+      },
+      "derivation": "hand: s 600, w 650",
+      "expected": {
+        "rank": "gold",
+        "kills": {
+          "s": 600,
+          "w": 650
+        }
+      }
+    },
+    {
+      "id": "s4acc.mastery.v1.002",
+      "kind": "normal",
+      "description": "the reviewer's case: a Diamond rank does not raise a schema-1 requirement",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 1,
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              },
+              {
+                "rank": "diamond",
+                "kills": 700
+              }
+            ]
+          },
+          {
+            "enemyId": "w",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 30
+              },
+              {
+                "rank": "silver",
+                "kills": 160
+              },
+              {
+                "rank": "gold",
+                "kills": 650
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s",
+          "w"
+        ]
+      },
+      "derivation": "hand: s 600 (not 700), w 650",
+      "expected": {
+        "rank": "gold",
+        "kills": {
+          "s": 600,
+          "w": 650
+        }
+      }
+    },
+    {
+      "id": "s4acc.mastery.v2.001",
+      "kind": "normal",
+      "description": "schema 2: explicit Gold with a Diamond defined",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 2,
+        "requiredRank": "gold",
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              },
+              {
+                "rank": "diamond",
+                "kills": 700
+              }
+            ]
+          },
+          {
+            "enemyId": "w",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 30
+              },
+              {
+                "rank": "silver",
+                "kills": 160
+              },
+              {
+                "rank": "gold",
+                "kills": 650
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s",
+          "w"
+        ]
+      },
+      "derivation": "hand: s 600, w 650",
+      "expected": {
+        "rank": "gold",
+        "kills": {
+          "s": 600,
+          "w": 650
+        }
+      }
+    },
+    {
+      "id": "s4acc.mastery.v2.002",
+      "kind": "normal",
+      "description": "schema 2: an explicit Silver region",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 2,
+        "requiredRank": "silver",
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              }
+            ]
+          },
+          {
+            "enemyId": "w",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 30
+              },
+              {
+                "rank": "silver",
+                "kills": 160
+              },
+              {
+                "rank": "gold",
+                "kills": 650
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "w",
+          "s"
+        ]
+      },
+      "derivation": "hand: w 160, s 150",
+      "expected": {
+        "rank": "silver",
+        "kills": {
+          "w": 160,
+          "s": 150
+        }
+      }
+    },
+    {
+      "id": "s4acc.mastery.v2.003",
+      "kind": "failure",
+      "description": "schema 2 without requiredRank",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 2,
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s"
+        ]
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4acc.mastery.v1.003",
+      "kind": "failure",
+      "description": "schema 1 stating requiredRank",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 1,
+        "requiredRank": "gold",
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s"
+        ]
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4acc.mastery.v2.004",
+      "kind": "failure",
+      "description": "a required Diamond that one species does not define",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 2,
+        "requiredRank": "diamond",
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              },
+              {
+                "rank": "diamond",
+                "kills": 700
+              }
+            ]
+          },
+          {
+            "enemyId": "w",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 30
+              },
+              {
+                "rank": "silver",
+                "kills": 160
+              },
+              {
+                "rank": "gold",
+                "kills": 650
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s",
+          "w"
+        ]
+      },
+      "derivation": "hand: w has no diamond",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4acc.mastery.v1.004",
+      "kind": "failure",
+      "description": "schema 1 with a species lacking Gold",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 1,
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s"
+        ]
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "INVALID_CONTENT"
+    },
+    {
+      "id": "s4acc.mastery.v1.005",
+      "kind": "failure",
+      "description": "a region species without a Bestiary entry",
+      "input": {
+        "op": "mastery",
+        "schemaVersion": 1,
+        "species": [
+          {
+            "enemyId": "s",
+            "ranks": [
+              {
+                "rank": "bronze",
+                "kills": 25
+              },
+              {
+                "rank": "silver",
+                "kills": 150
+              },
+              {
+                "rank": "gold",
+                "kills": 600
+              }
+            ]
+          }
+        ],
+        "regionSpecies": [
+          "s",
+          "boss"
+        ]
+      },
+      "derivation": "hand: see the description",
+      "expectedError": "INVALID_CONTENT"
+    }
+  ]
+}

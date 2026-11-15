@@ -30,7 +30,7 @@ export const FixtureCaseSchema = z
 
 export const FixtureFileSchema = z
   .object({
-    fixtureSet: z.enum(['numeric', 'remainder', 'rng', 'xp', 'stats', 'combat', 'ledger', 'canonical-json', 'content', 'combat-loop', 'gates', 'rewards', 'credits', 'estimator', 'squad-fight', 'legion-credit', 'worker-feasibility', 'ledger-reconstruction', 'industry-rules', 'equipment-ops', 'production-queue', 'recipe-validation']),
+    fixtureSet: z.enum(['numeric', 'remainder', 'rng', 'xp', 'stats', 'combat', 'ledger', 'canonical-json', 'content', 'combat-loop', 'gates', 'rewards', 'credits', 'estimator', 'squad-fight', 'legion-credit', 'worker-feasibility', 'ledger-reconstruction', 'industry-rules', 'equipment-ops', 'production-queue', 'recipe-validation', 'permanent-rules', 'permanent-acceptance']),
     fixtureVersion: z.number().int().min(1),
     specRef: z.string().regex(/^spec\/formulas\/[a-z0-9-]+\.md#v\d+(\.\d+)?$/),
     status: z.enum(['candidate', 'approved']),

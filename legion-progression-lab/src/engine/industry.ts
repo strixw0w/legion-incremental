@@ -54,12 +54,13 @@ export function equippedDef(content: IndustryContent, ind: IndustryState, id: Ch
  * Profession efficiency in basis points (§2): (level - 1) x efficiencyPerLevelBp + the equipped tool's (enhanced)
  * efficiency + the affinity bonus when the character holds the class whose affinity is this profession (O06).
  */
-export function efficiencyBp(content: IndustryContent, ind: IndustryState, c: CharacterState, p: ProfessionId): number {
+/** S4: `permBp` is the account's permanent efficiency bonus for the profession (0 outside the permanent switch). */
+export function efficiencyBp(content: IndustryContent, ind: IndustryState, c: CharacterState, p: ProfessionId, permBp = 0): number {
   const lvl = profLevel(content, ind, c.id, p);
   const tool = equippedDef(content, ind, c.id, toolSlotFor(p));
   const toolEff = tool ? itemStats(tool.def, tool.item.enhancement, content.enhancement.stepBp).efficiencyBp : 0;
   const affinity = c.cls !== 'none' && content.professions.affinities[c.cls] === p ? content.professions.affinityBp : 0;
-  return (lvl - 1) * content.professions.efficiencyPerLevelBp + toolEff + affinity;
+  return (lvl - 1) * content.professions.efficiencyPerLevelBp + toolEff + affinity + permBp;
 }
 
 /** Yield numerator of one gathering action (units = numerator / 10^7, accrued exactly). */
@@ -154,7 +155,7 @@ export function computeMods(content: IndustryContent, ind: IndustryState, id: Ch
   const abilityMultBp = isHero ? ha.abilityMultBp : 0;
   const abilityCooldownBp = isHero ? ha.abilityCooldownBp : 0;
   if (attack === 0 && hp === 0 && defence === 0 && crit === 0 && baseAttackBp === 0 && abilityMultBp === 0 && abilityCooldownBp === 0 && pct === 0) return NO_MODS;
-  return Object.freeze({ attackFlatMilli: attack, hpFlat: hp, defenceFlat: defence, critBp: crit, baseAttackBp, abilityMultBp, abilityCooldownBp, attackPctBp: pct });
+  return Object.freeze({ attackFlatMilli: attack, hpFlat: hp, defenceFlat: defence, critBp: crit, baseAttackBp, abilityMultBp, abilityCooldownBp, attackPctBp: pct, permAttackBp: 0, monumentAttackBp: 0, permHpBp: 0, monumentHpBp: 0 });
 }
 
 /**

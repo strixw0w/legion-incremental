@@ -52,6 +52,15 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
   - **The S3 oracle** (`spec/oracle/s3_oracle.py`), including its discrete-event model of the production queue, was written from `spec/formulas/s3-industry.md`, not from the TypeScript.
   - **mulberry32** (a public-domain 32-bit generator) generates the S3-E01 test command sequences only (`src/experiments/s3Conservation.ts`); the engine never uses it.
 
+- **S4 acceptance:**
+  - **No code copied.** The checked counters, the effective bonus metadata and the regional mastery rank were written for this lab from the owner's "Independent S4 Review and L2 Authorisation".
+  - **The new oracle family** (`permanent-acceptance` in `spec/oracle/s4_oracle.py`) was written from `spec/formulas/s4-permanent.md` v1.1 §9 by the same author (not an independent party).
+
+- **S4:**
+  - **No code copied.** The permanent-progression engine, the bonus registry, the Buy Max rule, the monitor I22–I28, the POL4 policies and the S4 experiments were written for this lab from the owner's S4 authorisation and `planning/S4_SPECIFICATION.md`.
+  - **The S4 oracle** (`spec/oracle/s4_oracle.py`) was written from `spec/formulas/s4-permanent.md` v1 by the same author (not an independent party).
+  - **mulberry32** generates the S4-E01, E02 and E05 test cases only (`src/experiments/s4Engineering.ts`); the engine never uses it.
+
 - **S3.1:**
   - **No code copied.** The corrections, POL3-DEMAND (a greedy gain-per-cost rule written for this lab) and the S3.1 measurements were written from the owner's S3.1 authorisation and `planning/S3_1_RESOLUTIONS.md`.
   - **The extended oracle** (`spec/oracle/s3_oracle.py`, recipe validation and fractional shares) was written from `spec/formulas/s3-industry.md` v1.1.

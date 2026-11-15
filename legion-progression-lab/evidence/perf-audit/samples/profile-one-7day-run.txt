@@ -1,0 +1,72 @@
+total sampled 4.74 s
+self time by file:
+   17.7%  src/engine/legion.ts
+   12.9%  src/core/hash/canonicalJson.ts
+   10.1%  src/model/legionContent.ts
+    7.7%  src/engine/permanent.ts
+    7.2%  src/engine/industryObservation.ts
+    5.4%  src/policy/industryDemand.ts
+    4.4%  src/engine/legionObservation.ts
+    4.3%  (native/gc)
+    3.9%  hash
+    3.7%  src/experiments/legionMetrics.ts
+    2.8%  src/experiments/industryMetrics.ts
+    2.3%  src/engine/industry.ts
+    1.3%  src/core/formulas/xp.ts
+    1.3%  src/core/ledger/persistentLedger.ts
+self time by function:
+   12.3%  serialise @ src/core/hash/canonicalJson.ts:20
+    9.7%  characterStats @ src/model/legionContent.ts:286
+    3.9%  decide @ src/policy/industryDemand.ts:107
+    3.3%  workerEstimate @ src/engine/legion.ts:346
+    3.0%  (anon) @ src/engine/industryObservation.ts:43
+    2.5%  update @ hash:186
+    2.3%  buildPermanentObservation @ src/engine/permanent.ts:143
+    2.2%  buildIndustryObservation @ src/engine/industryObservation.ts:14
+    2.1%  run @ src/engine/legion.ts:359
+    2.0%  (garbage collector) @ (native/gc):0
+    2.0%  (anon) @ src/engine/legionObservation.ts:59
+    1.6%  onCredit @ src/experiments/legionMetrics.ts:262
+    1.2%  resolveSquad @ src/engine/legion.ts:847
+    1.2%  assertXpTable @ src/core/formulas/xp.ts:63
+    1.2%  bonusSources @ src/engine/permanent.ts:40
+    1.1%  assertDenseArray @ src/core/arrays.ts:11
+    1.1%  estimate @ src/engine/legion.ts:333
+    1.0%  (anon) @ src/engine/industryObservation.ts:37
+    1.0%  onKillCredited @ src/engine/legion.ts:1434
+    1.0%  (anon) @ src/engine/permanent.ts:132
+    1.0%  schedule @ src/engine/legion.ts:618
+    1.0%  squadEstimateFor @ src/engine/legionObservation.ts:32
+inclusive time by lab file:
+   92.1%  src/experiments/s4Jobs.ts
+   91.1%  src/engine/legion.ts
+   31.9%  src/engine/legionObservation.ts
+   15.2%  src/core/hash/canonicalJson.ts
+   10.4%  src/model/legionContent.ts
+    9.6%  src/engine/industryObservation.ts
+    7.7%  src/engine/permanent.ts
+    7.5%  src/policy/permanentPolicies.ts
+    6.3%  src/policy/industryDemand.ts
+    5.6%  src/core/ledger/persistentLedger.ts
+    4.1%  src/experiments/legionMetrics.ts
+    3.0%  src/experiments/industryMetrics.ts
+    2.4%  src/core/formulas/xp.ts
+    2.4%  src/engine/industry.ts
+    1.5%  src/engine/observation.ts
+    1.1%  src/core/arrays.ts
+== serialise: inclusive 12.8%
+   11.6%  canonicalJson@canonicalJson.ts:16 <- log@legion.ts:631
+    1.2%  canonicalJson@canonicalJson.ts:16 <- fingerprint@canonicalJson.ts:65
+== characterStats: inclusive 10.1%
+    3.7%  statsOf@legion.ts:323 <- (anon)@legionObservation.ts:28
+    2.4%  statsOf@legion.ts:323 <- resolveSquad@legion.ts:847
+    1.8%  statsOf@legion.ts:323 <- currentSquadFighters@legionObservation.ts:24
+    1.5%  statsOf@legion.ts:323 <- beginEncounter@legion.ts:1315
+    0.4%  statsOf@legion.ts:323 <- heroStats@legion.ts:327
+    0.1%  statsOf@legion.ts:323 <- (anon)@legion.ts:915
+== buildPermanentObservation: inclusive 6.1%
+    6.1%  permanentObservation@legion.ts:265 <- buildLegionObservation@legionObservation.ts:45
+== buildIndustryObservation: inclusive 9.6%
+    9.6%  buildLegionObservation@legionObservation.ts:45 <- policyBatch@legion.ts:1597
+== workerEstimate: inclusive 3.8%
+    3.8%  (anon)@legionObservation.ts:59 <- buildLegionObservation@legionObservation.ts:45

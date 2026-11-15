@@ -1,0 +1,23 @@
+{
+  "experimentId": "S4-E02-pools",
+  "labels": {
+    "values": "engineering check",
+    "approved": false
+  },
+  "seedRoot": "s4-e02",
+  "sets": 5000,
+  "byVariant": {
+    "crit-overcap": 1257,
+    "control": 1282,
+    "additive-pooling": 1250,
+    "attack-large": 1211
+  },
+  "charactersChecked": 14954,
+  "sourcesInForce": 131465,
+  "critOvercapSets": 741,
+  "monitorChecks": 396391,
+  "violations": 0,
+  "observationMismatches": 0,
+  "setsWithViolations": [],
+  "durationMs": 1387
+}

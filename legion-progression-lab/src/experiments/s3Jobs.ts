@@ -113,7 +113,7 @@ function policyFor(cell: Extract<S3Cell, { kind: 'campaign' }>): LegionPolicy {
   return makeS2Policy(cell.policy, over);
 }
 
-function finishRun(sim: LegionSimulation, ms: number, rec: LegionMetricsRecorder, mon: IndustryMonitor | null, content: IndustryContent, extraValues: Values = {}, extended = false): { values: Values; first: string[] } {
+export function finishRun(sim: LegionSimulation, ms: number, rec: LegionMetricsRecorder, mon: IndustryMonitor | null, content: IndustryContent, extraValues: Values = {}, extended = false): { values: Values; first: string[] } {
   const m = rec.finish(ms);
   const m3 = mon ? mon.finish(ms) : null;
   const values: Values = { ...campaignValues(m.base, content), ...legionValues(m, sim), ...(m3 ? industryValues(m3, ms) : {}), ...(m3 && extended ? fractionalValues(m3, (m.time.connectedMs || ms) / 1000) : {}), ...extraValues };

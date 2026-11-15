@@ -143,9 +143,25 @@ export interface StatMods {
   readonly attackPctBp: number;
   readonly abilityMultBp: number;
   readonly abilityCooldownBp: number;
+  /**
+   * S4 permanent bonuses (planning/S4_SPECIFICATION.md section 2; S4-R03). All 0 outside the permanent switch, which
+   * gives exactly the S3.1 stats. permAttackBp joins the existing additive pool `cat.damage.additive` (with class and
+   * talent bonuses); monumentAttackBp is the one Monument of Power category `cat.damage.monument`; permHpBp joins the
+   * class and talent HP bp sum; monumentHpBp is the one Monument of Vitality factor applied after it. Permanent crit
+   * and ability power are added to critBp and abilityMultBp by the engine (both are additive sums already).
+   */
+  readonly permAttackBp: number;
+  readonly monumentAttackBp: number;
+  readonly permHpBp: number;
+  readonly monumentHpBp: number;
 }
-export const NO_MODS: StatMods = Object.freeze({ attackFlatMilli: 0, hpFlat: 0, defenceFlat: 0, critBp: 0, baseAttackBp: 0, abilityMultBp: 0, abilityCooldownBp: 0, attackPctBp: 0 });
-export const modsKey = (m: StatMods): string => (m === NO_MODS ? '' : `|m${m.attackFlatMilli},${m.hpFlat},${m.defenceFlat},${m.critBp},${m.baseAttackBp},${m.abilityMultBp},${m.abilityCooldownBp},${m.attackPctBp}`);
+export const NO_MODS: StatMods = Object.freeze({ attackFlatMilli: 0, hpFlat: 0, defenceFlat: 0, critBp: 0, baseAttackBp: 0, abilityMultBp: 0, abilityCooldownBp: 0, attackPctBp: 0, permAttackBp: 0, monumentAttackBp: 0, permHpBp: 0, monumentHpBp: 0 });
+export const modsKey = (m: StatMods): string =>
+  m === NO_MODS ? '' : `|m${m.attackFlatMilli},${m.hpFlat},${m.defenceFlat},${m.critBp},${m.baseAttackBp},${m.abilityMultBp},${m.abilityCooldownBp},${m.attackPctBp}${m.permAttackBp === 0 && m.monumentAttackBp === 0 && m.permHpBp === 0 && m.monumentHpBp === 0 ? '' : `,p${m.permAttackBp},${m.monumentAttackBp},${m.permHpBp},${m.monumentHpBp}`}`;
+/** The Monument of Power category (registered, inactive, in the S1 pack; activated only where a Monument bonus exists). */
+export const MONUMENT_ATTACK_CATEGORY = 'cat.damage.monument';
+/** The additive damage pool shared by class, talent and every non-Monument permanent bonus. */
+export const ADDITIVE_ATTACK_CATEGORY = 'cat.damage.additive';
 
 export interface CharacterStats {
   readonly level: number;
@@ -258,6 +274,14 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
     if (domain.length > 0) fail('INVALID_CONTENT', `S2 legion pack refused (numerical domain): ${domain.join('; ')}`);
   }
   const cache = new Map<string, CharacterStats>();
+  // S4: the Monument of Power category is active only where a Monument attack bonus exists (otherwise factor 1, skipped).
+  const monumentCategories = base.categories.map((c) => (c.id === MONUMENT_ATTACK_CATEGORY ? { ...c, active: true } : c));
+  const permSources = (mods: StatMods): StatSource[] => [
+    ...(mods.permAttackBp !== 0 ? [{ sourceId: 'perm.additive', kind: 'bp' as const, categoryId: ADDITIVE_ATTACK_CATEGORY, value: mods.permAttackBp }] : []),
+    ...(mods.monumentAttackBp !== 0 ? [{ sourceId: 'perm.monument', kind: 'bp' as const, categoryId: MONUMENT_ATTACK_CATEGORY, value: mods.monumentAttackBp }] : []),
+  ];
+  const categoriesFor = (mods: StatMods) => (mods.monumentAttackBp !== 0 ? monumentCategories : base.categories);
+  const monumentHp = (hp: number, mods: StatMods): number => (mods.monumentHpBp === 0 ? hp : Math.max(1, roundDiv(hp * (10_000 + mods.monumentHpBp), 10_000)));
 
   const characterStats = (level: number, cls: HeldClass, allocation: TalentAllocation, mods: StatMods = NO_MODS): CharacterStats => {
     const key = `${level}|${cls}|${Object.entries(allocation).filter(([, p]) => p > 0).sort(([a], [b]) => (a < b ? -1 : 1)).map(([t, p]) => `${t}=${p}`).join(',')}${modsKey(mods)}`;
@@ -271,8 +295,9 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
     const baseAtk = (pct === 0 ? levelAtk : roundDiv(levelAtk * (10_000 + pct), 10_000)) + mods.attackFlatMilli;
     let stats: CharacterStats;
     if (cls === 'none') {
-      const atk = attackRawMilli(baseAtk, [], base.categories); // exactly the S1 hero formula
-      stats = { level, cls, maxHp: baseHp, defence: baseDef, attackRawMilli: atk.rawMilli, attackIntervalMs: h.attackIntervalMs, critChanceBp: Math.min(h.critChanceBp + mods.critBp, 10_000), critThreshold: thresholdFromBp(Math.min(h.critChanceBp + mods.critBp, 10_000)), ability: null, threatRank: 1 };
+      const atk = attackRawMilli(baseAtk, permSources(mods), categoriesFor(mods)); // exactly the S1 hero formula without S4 bonuses
+      const hpPool = mods.permHpBp === 0 ? baseHp : Math.max(1, roundDiv(baseHp * (10_000 + mods.permHpBp), 10_000));
+      stats = { level, cls, maxHp: monumentHp(hpPool, mods), defence: baseDef, attackRawMilli: atk.rawMilli, attackIntervalMs: h.attackIntervalMs, critChanceBp: Math.min(h.critChanceBp + mods.critBp, 10_000), critThreshold: thresholdFromBp(Math.min(h.critChanceBp + mods.critBp, 10_000)), ability: null, threatRank: 1 };
     } else {
       const c = classes.get(cls) as CompiledClass;
       let hpBp = c.hpBp;
@@ -290,12 +315,13 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
         else if (t.effect === 'abilityBp') abilityBp += v;
         else sources.push({ sourceId: `talent.${tid}`, kind: 'bp', categoryId: 'cat.damage.additive', value: v });
       }
-      const atk = attackRawMilli(baseAtk, sources, base.categories);
+      sources.push(...permSources(mods));
+      const atk = attackRawMilli(baseAtk, sources, categoriesFor(mods));
       const crit = Math.min(h.critChanceBp + critBp + mods.critBp, 10_000);
       stats = {
         level,
         cls,
-        maxHp: Math.max(1, roundDiv(baseHp * (10_000 + hpBp), 10_000)),
+        maxHp: monumentHp(Math.max(1, roundDiv(baseHp * (10_000 + hpBp + mods.permHpBp), 10_000)), mods),
         defence: baseDef + c.defenceFlat + Math.floor((h.defencePerLevel * steps * c.defencePerLevelBp) / 10_000),
         attackRawMilli: atk.rawMilli,
         attackIntervalMs: c.attackIntervalMs,

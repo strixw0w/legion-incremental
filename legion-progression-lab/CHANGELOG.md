@@ -2,6 +2,30 @@
 
 Every change to formula specs, fixtures, content or baselines is recorded here, with its decision ID, rationale, evidence and version.
 
+## S4 acceptance — 2026-11-15 (three targeted corrections; S4 checkpoint)
+
+**Source:** owner "Independent S4 Review and L2 Authorisation" §1–§7. **Decision:** `planning/S4_ACCEPTANCE_RESOLUTION.md`. **Owner rule decisions:** `planning/S4_OWNER_RESOLUTIONS.md` (S4-R01 … R28). **Evidence:** `evidence/s4-acceptance/ADDENDUM.md`.
+
+- **A, checked lifetime counters:** `addCounter` and `creditPermanentState` (`src/engine/permanent.ts`); domain validation before every run (`permanentStateProblems`). A refused step restores the account state from before the step and stops the run (`src/engine/legion.ts`).
+- **B, effective bonus metadata:** `canonicalCategory`, `appliedStat` and `appliedCategory` on every bonus source, and the observation's effective `groups` (`src/model/permanentTypes.ts`, `src/engine/permanent.ts`). Gameplay unchanged (identical event logs).
+- **C, regional mastery rank:** the required rank is named: Gold for schema-1 packs, or an explicit `mastery.requiredRank` in schema 2 (`src/model/permanentContent.ts`). New candidate pack `content/w1-slice-s4.candidate.v0.4.1.json` (v0.4.0 unchanged).
+- **Spec:** `spec/formulas/s4-permanent.md` v1.1 (§9). **Fixtures:** new family `permanent-acceptance.v1.json` (31 cases), with the oracle extended. **Tests:** `test/s4_acceptance.permanent.test.ts`. **Mutation checks:** `repro/s4-acceptance/mutation_check.py` (13). **Error codes:** none added for S4.
+- **Not changed:** every S1–S4 result and fingerprint; the S4 v0.4.0 pack; the registered S4 manifests.
+- **Performance audit:** `evidence/perf-audit/PERFORMANCE_AUDIT.md` (requested with the authorisation; measurements only, nothing adopted).
+
+## S4 — 2026-11-14 (permanent progression; accepted with the 2026-11-15 corrections)
+
+**Source:** owner "S3.1 Final Acceptance and S4 Authorisation" §6–§18. **Specification:** `planning/S4_SPECIFICATION.md` v1.0; **proposed rules:** `planning/S4_RESOLUTIONS.md` (S4-R01 … R28, awaiting owner review). **Pre-registration:** `manifests/s4/` (with amendment 01). **Evidence:** `evidence/s4/S4_EVIDENCE.md`. **L2:** `planning/L2_CONTRACT_PROPOSAL.md` (design only).
+
+- **Engine:** a `permanent` switch (with `legion` and `industry`; off reproduces S3.1 exactly). Permanent state, the bonus registry (`src/engine/permanent.ts`), Monuments with independent cost and bonus curves, soft-cap tiers, material milestones, atomic purchases and Buy Max; the Bestiary (per accepted credit), emblems (own RNG stream, first copy rewarded), regional rewards; lifetime Feats; class-record and roster milestones; one coalesced milestone evaluation per moment at PROGRESS and the stat recompute at RECOMPUTE (S4-R07).
+- **Stats:** StatMods gain `permAttackBp`, `monumentAttackBp`, `permHpBp`, `monumentHpBp` (0 outside S4). Ordinary permanent bonuses join the existing pools; the S1-registered `cat.damage.monument` is the one Monument of Power category; efficiency bonuses join the S3 efficiency sum once.
+- **Content:** `content/w1-slice-s4.candidate.v0.4.0.json` (generator `repro/s4/make_content.py`); every number a candidate; the starter weapon is a variant only.
+- **Monitor:** I22–I28 (`src/experiments/permanentMetrics.ts`); I12 accepts the starter-variant item; I13 knows the `monument.purchase` sink; I19 compares S3 modifiers only.
+- **Measurements and policies:** `src/experiments/s4Metrics.ts`; POL4-MONUMENT, POL4-BESTIARY, POL4-BALANCED (`src/policy/permanentPolicies.ts`), and version 1.1 (POL4-MONUMENT2, POL4-BALANCED2) from amendment 01.
+- **Experiments:** `src/cli/exp4.ts` (+ worker), `src/cli/s4-engineering.ts` (S4-E01, E02, E05), `src/cli/s4-make-manifests.ts`, `src/cli/s4-amend.ts`, `src/cli/s4-analyse.ts`, `src/experiments/s4Manifest.ts`, `s4Patch.ts`, `s4Jobs.ts`, `s4Engineering.ts`.
+- **Fixtures:** new family `permanent-rules.v1.json` (28 cases; generator `repro/s4/make_fixtures.py`), `spec/formulas/s4-permanent.md` v1, oracle `spec/oracle/s4_oracle.py`.
+- **Not changed:** the S1–S3 packs, every S1–S3.1 manifest, result and fingerprint; S3.1 measures gain only permanent-aware inputs that are identities outside S4.
+
 ## S3 acceptance addendum — 2026-11-14 (S3 and S3.1 accepted subject to this correction; committed with them as the `s3-checkpoint`)
 
 **Source:** owner "S3.1 Final Acceptance and S4 Authorisation" §2–§5. **Records:** `planning/S3_ACCEPTANCE_RESOLUTION.md`, `planning/S3_1_OWNER_RESOLUTIONS.md` v1.0, `evidence/s3-acceptance/ADDENDUM.md`.

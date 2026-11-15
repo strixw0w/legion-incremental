@@ -1,0 +1,34 @@
+X1: DETECTED (3 failing) restored=True | a reserve character may craft (blocker A)
+X2: DETECTED (1 failing) restored=True | a knocked-out character may craft
+X3: DETECTED (1 failing) restored=True | a character with other productive work may craft
+X4: DETECTED (4 failing) restored=True | crafting validation skips the eligibility rule
+X5: DETECTED (1 failing) restored=True | the menu offers reserve and busy characters as crafters
+X6: DETECTED (1 failing) restored=True | the engine guard against an ineligible crafter is removed
+X7: DETECTED (1 failing) restored=True | the monitor no longer checks crafting eligibility (I20)
+X8: DETECTED (5 failing) restored=True | duplicate resources in a recipe list are accepted (blocker B)
+X9: DETECTED (4 failing) restored=True | the summed recoverable bound is removed
+X10: DETECTED (2 failing) restored=True | self-amplifying timed recipes are accepted
+X11: DETECTED (1 failing) restored=True | the node-yield number domain is not checked
+X12: DETECTED (1 failing) restored=True | input checks no longer sum duplicate lines
+X13: DETECTED (1 failing) restored=True | the monitor no longer bounds salvage by the craft's inputs (I21)
+X14: DETECTED (6 failing) restored=True | fractional attribution falls back to the order-dependent integer method (measurement C)
+X15: DETECTED (1 failing) restored=True | the fractional product is not checked against the safe integer range
+X16: DETECTED (1 failing) restored=True | POL3-DEMAND2 falls back to the version 1 stop rule (a gatherer is never released; amendment 01)
+
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+- X1 [src/engine/industry.ts] a reserve character may craft (blocker A): detected by 3 failing test(s); e.g. × the reviewer reproduction: a reserve recruit with enough planks is refused; no item, no EXP 14ms
+- X2 [src/engine/industry.ts] a knocked-out character may craft: detected by 1 failing test(s); e.g. × a knocked-out character cannot craft; it may once recovered 24ms
+- X3 [src/engine/industry.ts] a character with other productive work may craft: detected by 1 failing test(s); e.g. × a character with another productive activity is refused and its work is never interrupted; a free smith may craft 6ms
+- X4 [src/engine/industry.ts] crafting validation skips the eligibility rule: detected by 4 failing test(s); e.g. × the reviewer reproduction: a reserve recruit with enough planks is refused; no item, no EXP 13ms
+- X5 [src/engine/industryObservation.ts] the menu offers reserve and busy characters as crafters: detected by 1 failing test(s); e.g. × a reserve character can still have its equipment inspected and managed 7ms
+- X6 [src/engine/legion.ts] the engine guard against an ineligible crafter is removed: detected by 1 failing test(s); e.g. × the engine refuses an ineligible crafter even if validation were bypassed, and the monitor reports one (I20) 3ms
+- X7 [src/experiments/industryMetrics.ts] the monitor no longer checks crafting eligibility (I20): detected by 1 failing test(s); e.g. × the engine refuses an ineligible crafter even if validation were bypassed, and the monitor reports one (I20) 5ms
+- X8 [src/model/industryContent.ts] duplicate resources in a recipe list are accepted (blocker B): detected by 5 failing test(s); e.g. × the reviewer reproduction: three identical "2 planks" recoverable lines on the Wooden Club are refused before play 9ms
+- X9 [src/model/industryContent.ts] the summed recoverable bound is removed: detected by 4 failing test(s); e.g. × the summed recoverable bound and the equipment number domain are checked; the candidate content still compiles 7ms
+- X10 [src/model/industryContent.ts] self-amplifying timed recipes are accepted: detected by 2 failing test(s); e.g. × duplicate inputs (timed and instant), duplicate outputs and self-amplifying timed recipes are refused 18ms
+- X11 [src/model/industryContent.ts] the node-yield number domain is not checked: detected by 1 failing test(s); e.g. × the summed recoverable bound and the equipment number domain are checked; the candidate content still compiles 13ms
+- X12 [src/engine/industry.ts] input checks no longer sum duplicate lines: detected by 1 failing test(s); e.g. × input checks sum lines naming the same resource (defence in depth) 4ms
+- X13 [src/experiments/industryMetrics.ts] the monitor no longer bounds salvage by the craft's inputs (I21): detected by 1 failing test(s); e.g. × the monitor bounds every salvage by what the item's own craft consumed (I21) 6ms
+- X14 [src/experiments/industryMetrics.ts] fractional attribution falls back to the order-dependent integer method (measurement C): detected by 6 failing test(s); e.g. × the reviewer reproduction: equal blows get equal shares 5ms
+- X15 [src/experiments/industryMetrics.ts] the fractional product is not checked against the safe integer range: detected by 1 failing test(s); e.g. × refuses inputs whose product leaves the safe integer range 3ms
+- X16 [src/policy/industryDemand.ts] POL3-DEMAND2 falls back to the version 1 stop rule (a gatherer is never released; amendment 01): detected by 1 failing test(s); e.g. × with nothing left to build and 10 logs held, version 1 keeps the gatherer and version 1.1 releases it 14ms

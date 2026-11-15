@@ -1,0 +1,1573 @@
+{
+  "increment": "S4",
+  "contentRef": {
+    "path": "content/w1-slice-s4.candidate.v0.4.0.json",
+    "sha256": "c1115512b72d4d7b4abfed652469dfe7bea614013190d732c4df0bb56eff319e"
+  },
+  "experimentId": "S4-E08-elasticity-v11",
+  "question": "Amendment 01 (post-results follow-up): with the corrected purchase rule, how elastic is seven-day progress to each loop parameter, and do purchase intervals shrink or one system dominate?",
+  "design": "S4-E03 with POL4-BALANCED2 and POL4-MONUMENT2 in place of version 1 (every variant and setting), plus the three version 1 control cells. Same seeds and sessions as S4-E03. 20 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s4-arena",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4
+      }
+    },
+    {
+      "id": "s4-mcost075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.monumentCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-mcost075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.monumentCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-mcost125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.monumentCostScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-mcost125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.monumentCostScale": 1.25
+      }
+    },
+    {
+      "id": "s4-mbonus075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.monumentBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-mbonus075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.monumentBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-mbonus125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.monumentBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-mbonus125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.monumentBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-bestiary075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.bestiaryBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-bestiary075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.bestiaryBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-bestiary125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.bestiaryBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-bestiary125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.bestiaryBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-feat075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.featBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-feat075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.featBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-feat125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.featBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-feat125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.featBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-industry075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.industryBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-industry075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.industryBonusScale": 0.75
+      }
+    },
+    {
+      "id": "s4-industry125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.industryBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-industry125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.industryBonusScale": 1.25
+      }
+    },
+    {
+      "id": "s4-gear075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-gear075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s3.equipCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-gear125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.equipCostScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-gear125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s3.equipCostScale": 1.25
+      }
+    },
+    {
+      "id": "s4-recruit075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.recruitCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-arena-recruit075",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.recruitCostScale": 0.75
+      }
+    },
+    {
+      "id": "s4-recruit125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.recruitCostScale": 1.25
+      }
+    },
+    {
+      "id": "s4-arena-recruit125",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s4.recruitCostScale": 1.25
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "a10-p1.6-g100|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "a10-p1.6-g100|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "a10-p1.6-g100|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "a10-p1.6-g100|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-mcost075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-mcost075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-mcost075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-mcost075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-mcost075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-mcost075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-mcost125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-mcost125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-mcost125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-mcost125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-mcost125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-mcost125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-mbonus075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-mbonus075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-mbonus075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-mbonus075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-mbonus075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-mbonus075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-mbonus125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-mbonus125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-mbonus125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-mbonus125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-mbonus125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-mbonus125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-bestiary075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-bestiary075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-bestiary075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-bestiary075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-bestiary075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-bestiary075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-bestiary125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-bestiary125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-bestiary125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-bestiary125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-bestiary125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-bestiary125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-feat075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-feat075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-feat075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-feat075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-feat075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-feat075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-feat125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-feat125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-feat125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-feat125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-feat125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-feat125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-industry075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-industry075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-industry075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-industry075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-industry075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-industry075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-industry125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-industry125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-industry125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-industry125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-industry125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-industry125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-gear075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-gear075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-gear075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-gear075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-gear075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-gear075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-gear125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-gear125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-gear125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-gear125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-gear125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-gear125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-recruit075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-recruit075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-recruit075|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-recruit075",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-recruit075|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-recruit075",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "s4-recruit125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-recruit125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-recruit125|POL4-MONUMENT2",
+      "kind": "campaign",
+      "variant": "s4-recruit125",
+      "policy": "POL4-MONUMENT2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s4-arena-recruit125|POL4-BALANCED2",
+      "kind": "campaign",
+      "variant": "s4-arena-recruit125",
+      "policy": "POL4-BALANCED2",
+      "sessions": {
+        "count": 7,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    }
+  ],
+  "seeds": {
+    "root": "s4-e03",
+    "replicates": 20
+  },
+  "metrics": [
+    "legionExpTotal",
+    "expTotal",
+    "conquestScore",
+    "killsPerHour",
+    "counter.goldEarned",
+    "goldHeld",
+    "monumentGoldSpent",
+    "permanentRewards",
+    "appliedAttackBp",
+    "appliedMonumentAttackBp",
+    "appliedHpBp",
+    "crafted",
+    "equipmentValue",
+    "professionLevelsSum",
+    "invariantViolations",
+    "monumentPurchaseIntervalEarlyMin",
+    "monumentPurchaseIntervalLateMin",
+    "topSystemShare",
+    "milestoneBlockedMin"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S4-05",
+      "statement": "Every S2, S3 and S4 invariant holds in every run (monitor I1-I28)",
+      "source": "owner S3.1 acceptance section 18; S4 spec section 11",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    }
+  ],
+  "notes": [
+    "Registered as amendment 01 after the registered results (manifests/s4/AMENDMENT-01.md); reported as a follow-up, never in place of a registered outcome. Cells shared with the original manifest must reproduce it exactly.",
+    "Elasticity = (ln P(x1.25) - ln P(x0.75)) / (ln 1.25 - ln 0.75) per parameter, policy and progress metric (M0 plan section 8); H-S4-01 is derived by src/cli/s4-analyse.ts. An elasticity above 1 is a sensitivity warning, not a proof of instability (owner section 13)."
+  ]
+}

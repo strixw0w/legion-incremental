@@ -43,10 +43,16 @@ import { encodeDropItems, killTxId, rollKillReward } from './rewards.ts';
 import { deathsInWindow, MAX_POLICY_DECISIONS_PER_TIMESTAMP, orderTriggers, type DiagnosticOptions, type SessionSpec } from './simulation.ts';
 import { buildLegionObservation } from './legionObservation.ts';
 import { abilityAwareWorkerEstimate } from './workerFeasibility.ts';
+import { addCounter, aggregate, bonusSources, buildPermanentObservation, buyMaxLevels, creditPermanentState, emptyPermanent, monumentPrice, newlyEarned, permanentStateProblems } from './permanent.ts';
+import { PROFESSION_IDS } from '../model/industryContent.ts';
+import type { CompiledPermanent, PermanentContent, PermCounter } from '../model/permanentContent.ts';
+import { permEqual, ZERO_PERM, type MonumentState, type PermanentCommand, type PermanentObservation, type PermanentReasonCode, type PermanentState, type PermMods } from '../model/permanentTypes.ts';
 import { validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
 
 /** Event kinds added by S2 (the S1 kinds keep their meaning). */
-type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind;
+type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind | PermanentEventKind;
+/** Event kinds added by S4 (permanent switch on only): one milestone evaluation per moment, and the stat recompute. */
+type PermanentEventKind = 'PermanentCheck' | 'PermanentRecompute';
 /** Event kinds added by S3 (industry switch on only). */
 type IndustryEventKind = 'GatherStart' | 'GatherAction' | 'UnitComplete' | 'IndustrySettle' | 'ProductionPass';
 type TimedRecipe = Extract<CompiledRecipe, { kind: 'timed' }>;
@@ -105,6 +111,11 @@ export interface LegionOptions {
   readonly industry?: boolean;
   /** S3 production-queue arm: per-unit FIFO (the O10 rule, default) or a diagnostic alternative. */
   readonly queueArm?: QueueArm;
+  /**
+   * S4 permanent progression on (Monuments, Bestiary, Feats, class and roster milestones; planning/S4_SPECIFICATION.md).
+   * Needs `legion`, `industry` and PermanentContent. Off reproduces S3.1 exactly.
+   */
+  readonly permanent?: boolean;
 }
 
 export type LegionObserver = (entry: LogEntry, sim: LegionSimulation) => void;
@@ -152,13 +163,19 @@ export class LegionSimulation {
   private observers: LegionObserver[];
   private policyDecisionsAt: { t: number; n: number };
   private stopRequested: boolean;
+  /** Set when a step was refused (a LabError): the state is the one before that step and the run cannot continue. */
+  private refused: Error | null = null;
   private readonly damageCache: Map<string, number>;
   readonly estimateCache: Map<string, ZoneEstimate>;
+  /** S4: merged (S3 + permanent) modifiers, keyed by the S3 modifiers object, valid for one permanent aggregate. */
+  private mergeCache: { applied: PermMods | null; map: WeakMap<StatMods, StatMods> };
 
   constructor(options: LegionOptions) {
     this.content = options.content;
     this.options = options;
     if (options.industry === true && !('items' in options.content)) fail('INVALID_STATE', 'the industry switch needs the S3 industry content');
+    if (options.permanent === true && (options.industry !== true || options.legion !== true || !('permanent' in options.content))) fail('INVALID_STATE', 'the permanent switch needs the legion and industry switches and the S4 permanent content');
+    this.mergeCache = { applied: null, map: new WeakMap() };
     this.policy = options.policy;
     this.queue = new EventQueue();
     this.seq = 0;
@@ -196,9 +213,59 @@ export class LegionSimulation {
     this.state = { ...this.state, industry: { ...(this.state.industry as IndustryState), ...patch } };
   }
 
-  /** A character's equipment (and hero-variant) stat modifiers; NO_MODS with the industry switch off. */
+  /** A character's stat modifiers: equipment and hero variants (S3), with the S4 permanent bonuses merged in (S4-R03). */
   modsOf(id: CharacterId): StatMods {
+    return this.mergePermanent(this.industryModsOf(id));
+  }
+
+  /** The S3 part only: equipment and hero-variant modifiers; NO_MODS with the industry switch off. */
+  industryModsOf(id: CharacterId): StatMods {
     return this.options.industry === true ? (this.state?.industry?.mods[id] ?? NO_MODS) : NO_MODS;
+  }
+
+  /**
+   * Adds the permanent aggregate in force to S3 modifiers, once (S4-R04). The identity without the permanent switch or
+   * without any permanent bonus, so S3.1 stats are reproduced exactly.
+   */
+  mergePermanent(base: StatMods): StatMods {
+    const a = this.state?.permanent?.applied;
+    if (a === undefined || permEqual(a, ZERO_PERM)) return base;
+    if (this.mergeCache.applied !== a) this.mergeCache = { applied: a, map: new WeakMap() };
+    const hit = this.mergeCache.map.get(base);
+    if (hit) return hit;
+    // S4-R03: Power and Vitality are their own factors; the 'additive' sensitivity variant pools them with the rest.
+    const pooled = (this.content as PermanentContent).permanent.monumentPooling === 'additive';
+    const m: StatMods = Object.freeze({ ...base, permAttackBp: a.attackBp + (pooled ? a.monumentAttackBp : 0), monumentAttackBp: pooled ? 0 : a.monumentAttackBp, permHpBp: a.hpBp + (pooled ? a.monumentHpBp : 0), monumentHpBp: pooled ? 0 : a.monumentHpBp, critBp: base.critBp + a.critBp, abilityMultBp: base.abilityMultBp + a.abilityBp });
+    this.mergeCache.map.set(base, m);
+    return m;
+  }
+
+  /** The permanent efficiency bonus (bp) of a profession: smithing, or gathering (mining and woodcutting). */
+  permEfficiencyBp(p: ProfessionId): number {
+    const a = this.state?.permanent?.applied;
+    if (a === undefined) return 0;
+    return p === 'smithing' ? a.smithBp : a.gatherBp;
+  }
+
+  get permanentEnabled(): boolean {
+    return this.options.permanent === true;
+  }
+
+  private get pc(): CompiledPermanent {
+    return (this.content as PermanentContent).permanent;
+  }
+
+  private get perm(): PermanentState {
+    return this.state.permanent as PermanentState;
+  }
+
+  private setPerm(patch: Partial<PermanentState>): void {
+    this.state = { ...this.state, permanent: { ...(this.state.permanent as PermanentState), ...patch } };
+  }
+
+  /** The S4 observation section (realistic information only). */
+  permanentObservation(): PermanentObservation {
+    return buildPermanentObservation(this.pc, this.perm, this.state.legion.records, (r) => balance(this.state.ledger, r, 'available'));
   }
 
   fork(policy: LegionPolicy): LegionSimulation {
@@ -218,8 +285,10 @@ export class LegionSimulation {
       observers: [],
       policyDecisionsAt: { t: -1, n: 0 },
       stopRequested: false,
+      refused: this.refused ?? null,
       damageCache: this.damageCache,
       estimateCache: this.estimateCache,
+      mergeCache: this.mergeCache,
     });
     return copy;
   }
@@ -291,6 +360,12 @@ export class LegionSimulation {
 
   // ------------------------------------------------------------ run loop (S1.1)
   run(untilMs: number): void {
+    if (this.refused) fail('INVALID_STATE', 'the simulation stopped at a refused step and cannot continue', { cause: this.refused.message });
+    // S4 acceptance correction A: the permanent state must be inside the supported numerical domain before a run.
+    if (this.permanentEnabled) {
+      const problems = permanentStateProblems(this.pc, this.perm);
+      if (problems.length > 0) fail('INVALID_STATE', `the permanent state is outside its supported domain: ${problems.slice(0, 3).join('; ')}`, { problems });
+    }
     const maxEvents = this.options.maxEvents ?? DEFAULT_MAX_EVENTS;
     let stopAt: number | null = null;
     for (;;) {
@@ -309,13 +384,24 @@ export class LegionSimulation {
       if (first.key.t > this.state.time.accountedToMs) this.accountTimeTo(first.key.t);
       this.current = first.key;
       if (this.state.tMs !== first.key.t) this.state = { ...this.state, tMs: first.key.t };
-      if (first.key.phase === PHASE.COMPLETE) this.completeBatch(batch);
-      else if (first.key.phase === PHASE.POLICY) this.policyBatch(batch);
-      else
-        for (const ev of batch) {
-          this.current = ev.key;
-          this.dispatch(ev);
-        }
+      // One step commits as a whole: if any part of it is refused (a numeric limit, an invalid state), the account state
+      // returns to what it was before the step, so no kill reward, RNG draw, resource, EXP, entitlement or counter is
+      // partly committed, and the run stops (S4 acceptance correction A).
+      const before = this.state;
+      try {
+        if (first.key.phase === PHASE.COMPLETE) this.completeBatch(batch);
+        else if (first.key.phase === PHASE.POLICY) this.policyBatch(batch);
+        else
+          for (const ev of batch) {
+            this.current = ev.key;
+            this.dispatch(ev);
+          }
+      } catch (e) {
+        this.state = before;
+        this.refused = e instanceof Error ? e : new Error(String(e));
+        this.current = null;
+        throw e;
+      }
     }
     this.current = null;
     if (stopAt !== null) {
@@ -331,7 +417,8 @@ export class LegionSimulation {
   // ------------------------------------------------------------ setup
   private newCharacter(id: CharacterId, kind: CharacterState['kind'], order: number, level: number, cls: HeldClass, talents: Record<ClassId, TalentAllocation>, assignment: Assignment): CharacterState {
     const root = this.options.seedRoot;
-    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls]);
+    // S4: a new recruit gets the account bonuses at once (S4-R04); the identity before and without them.
+    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls], this.mergePermanent(NO_MODS));
     return {
       id,
       kind,
@@ -478,6 +565,7 @@ export class LegionSimulation {
       time: { activeManualMs: 0, connectedAutoFarmMs: 0, offlineMs: 0, accountedToMs: 0 },
       legion,
       ...(industry ? { industry } : {}),
+      ...(this.options.permanent === true ? { permanent: emptyPermanent(this.pc, root) } : {}),
     };
   }
 
@@ -494,6 +582,12 @@ export class LegionSimulation {
     ind = { ...ind, profExp };
     const items: ItemInstance[] = [];
     const loadout: Record<CharacterId, Partial<Record<EquipSlot, string>>> = {};
+    // S4-R23 candidate variant: the hero starts with the starter weapon (never in the control).
+    if (this.options.permanent === true && (this.content as PermanentContent).permanent.starterGrant) {
+      const def = (this.content as PermanentContent).permanent.starterWeapon;
+      items.push({ id: 'item:1', defId: def.id, enhancement: 0, protected: false, location: { kind: 'equipped', characterId: 'hero', slot: 'weapon' }, createdBy: 'starter' });
+      loadout['hero'] = { weapon: 'item:1' };
+    }
     for (const spec of d.items ?? []) {
       const def = c.items.get(spec.defId);
       if (!def) fail('INVALID_STATE', 'diagnostic item with an unknown definition', { defId: spec.defId });
@@ -1106,6 +1200,10 @@ export class LegionSimulation {
         return this.onRegenTick(ev);
       case 'KillCredited':
         return this.onKillCredited(ev);
+      case 'PermanentCheck':
+        return this.onPermanentCheck();
+      case 'PermanentRecompute':
+        return this.onPermanentRecompute();
       case 'ProgressCheck':
         return this.onProgressCheck(ev);
       case 'StatsRecomputed':
@@ -1145,6 +1243,7 @@ export class LegionSimulation {
       this.log('HeroRespawned', { at: 'session-start', zoneOrder: this.state.hero.zoneOrder });
     }
     this.log('SessionStarted', { index, endMs });
+    if (this.permanentEnabled) this.schedulePermanentCheck();
     if (this.squadNeedsRegen()) this.startRegen();
     for (const c of this.state.legion.chars) {
       if (c.id === 'hero') continue;
@@ -1261,6 +1360,7 @@ export class LegionSimulation {
     if (!z.visited) {
       this.setZone(to, { visited: true });
       this.log('ZoneVisited', { zoneOrder: to, zoneId: id });
+      if (this.permanentEnabled) this.schedulePermanentCheck();
     }
     if (!(this.state.zones[to - 1] as ZoneState).checkpointDiscovered) {
       this.setZone(to, { checkpointDiscovered: true });
@@ -1389,6 +1489,8 @@ export class LegionSimulation {
     }
     let quest = s0.legion.quest;
     if (s0.legion.enabled && !quest.done && !credit.boss && credit.zoneOrder === 1) quest = { ...quest, kills: quest.kills + 1 };
+    // S4: lifetime kills and gold, the Bestiary count and the emblem draw commit with this one credit (S4-R07, R14, R15).
+    const permOut = this.permanentEnabled ? this.creditPermanent(enemy.id, credit.boss, enemy.gold) : null;
     // Commit: one assignment.
     this.state = {
       ...s0,
@@ -1397,6 +1499,7 @@ export class LegionSimulation {
       hero,
       zones,
       legion: { ...s0.legion, chars: withLoot, records, quest, credits: commitLegionClaim(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 ? this.now().t : s0.legion.capabilityChangedMs },
+      ...(permOut ? { permanent: permOut.state } : {}),
     };
     const heroAward = credit.eligible.includes('hero');
     this.log('KillCredited', {
@@ -1412,6 +1515,11 @@ export class LegionSimulation {
       levelTo: hero.level,
       ...(this.legionEnabled || worker !== null || credit.eligible.length > 1 ? { encounterId: credit.encounterId, stream: credit.stream, awards: awards.join(','), enemyExp: enemy.exp } : {}),
     });
+    if (permOut) {
+      if (permOut.discovered) this.log('BestiaryDiscovered', { enemyId: enemy.id });
+      if (permOut.emblem > 0) this.log('EmblemFound', { enemyId: enemy.id, copy: permOut.emblem });
+      this.schedulePermanentCheck();
+    }
     const t = this.now().t;
     this.schedule(t, PHASE.PROGRESS, 'account', 'ProgressCheck', { data: { zoneOrder: credit.zoneOrder, levelFrom: s0.hero.level, levelTo: hero.level, bossClear: credit.boss, members: leveled.filter((x) => x !== 'hero').join(',') } });
     if (leveled.includes('hero')) this.schedule(t, PHASE.RECOMPUTE, 'hero', 'StatsRecomputed');
@@ -1469,6 +1577,7 @@ export class LegionSimulation {
     this.setLegion({ quest: { ...L.quest, done: true }, chars: [...L.chars, c], nextRecruit: L.nextRecruit + 1, slots: Math.max(L.slots, rules.slotsAtQuest), deployCap: Math.max(L.deployCap, rules.deployCapAtQuest), capabilityChangedMs: this.now().t });
     this.log('QuestCompleted', { quest: 'Q1', kills: L.quest.kills });
     this.log('RecruitAcquired', { member: id, cost: 0, via: 'quest' });
+    if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
     this.log('RosterMilestone', { slots: this.state.legion.slots, deployCap: this.state.legion.deployCap });
     this.requestPolicy('recruit-acquired');
   }
@@ -1521,6 +1630,7 @@ export class LegionSimulation {
   }
 
   submit(cmd: LegionCommand): boolean {
+    if (cmd.type === 'UpgradeMonument') return this.submitPermanent(cmd);
     const industryCmd = isIndustryCommand(cmd);
     const v = industryCmd ? validateIndustryCommand(this, cmd as IndustryCommand) : isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd as never);
     if (!v.ok) {
@@ -1659,6 +1769,7 @@ export class LegionSimulation {
         const c = this.newCharacter(id, 'ordinary', n, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
         this.setLegion({ chars: [...this.state.legion.chars, c], nextRecruit: n + 1, capabilityChangedMs: t });
         this.log('RecruitAcquired', { member: id, cost, via: 'purchase' });
+        if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
         this.requestPolicy('recruit-acquired');
         return;
       }
@@ -1729,6 +1840,129 @@ export class LegionSimulation {
   }
 
   // ------------------------------------------------------------ S3 industry (planning/S3_SPECIFICATION.md §2-§6)
+  // ------------------------------------------------------------ S4 permanent progression
+  /** One milestone evaluation at this moment's PROGRESS stage (coalesced: later requests in the same pass are no-ops). */
+  private schedulePermanentCheck(): void {
+    this.schedule(this.now().t, PHASE.PROGRESS, 'permanent', 'PermanentCheck');
+  }
+
+  private bumpCounter(counter: PermCounter, n: number, onlyIfPositive = false): void {
+    if (onlyIfPositive && n <= 0) return;
+    const p = this.perm;
+    this.setPerm({ counters: { ...p.counters, [counter]: addCounter(p.counters[counter], n, `lifetime ${counter}`) } });
+    this.schedulePermanentCheck();
+  }
+
+  /** The permanent part of one accepted kill credit (pure on the current permanent state; checked, correction A). */
+  private creditPermanent(enemyId: string, boss: boolean, gold: number): { state: PermanentState; discovered: boolean; emblem: number } {
+    return creditPermanentState(this.pc, this.perm, enemyId, boss, gold);
+  }
+
+  /**
+   * PROGRESS: refresh the derived counters and high-water marks, discover Monuments whose guaranteed condition holds,
+   * and grant every newly earned reward once, in ascending reward-ID order (S4-R05, R07, R09). Rewards are stat bonuses
+   * only, so this single pass is complete and cannot cascade.
+   */
+  private onPermanentCheck(): void {
+    const key = this.now();
+    const p0 = this.perm;
+    if (p0.lastCheck !== null && p0.lastCheck.t === key.t && p0.lastCheck.pass === key.pass) return;
+    const s = this.state;
+    const L = s.legion;
+    const rosterLevels = L.chars.filter((c) => c.assignment.kind !== 'reserve').reduce((a, c) => addCounter(a, c.id === 'hero' ? s.hero.level : c.level, 'combined roster level'), 0);
+    const profLevels = L.chars.reduce((a, c) => PROFESSION_IDS.reduce((b, pr) => addCounter(b, profLevel(this.ic, this.ind, c.id, pr), 'combined profession level'), a), 0);
+    const c0 = p0.counters;
+    const counters = {
+      ...c0,
+      zonesVisited: Math.max(c0.zonesVisited, s.zones.filter((z) => z.visited).length),
+      gatesCompleted: Math.max(c0.gatesCompleted, s.zones.filter((z) => z.gateCompleted).length),
+      bossCleared: Math.max(c0.bossCleared, s.boss.completed ? 1 : 0),
+      rosterLevelsHigh: Math.max(c0.rosterLevelsHigh, rosterLevels),
+      professionLevelsHigh: Math.max(c0.professionLevelsHigh, profLevels),
+    };
+    const earned = newlyEarned(this.pc, p0, { counters, bestiary: p0.bestiary, records: L.records });
+    const monuments: Record<string, MonumentState> = { ...p0.monuments };
+    const discovered: string[] = [];
+    for (const m of this.pc.monuments) {
+      const st = monuments[m.id] as MonumentState;
+      if (st.discovered) continue;
+      const d = m.discovery;
+      const ok = d.kind === 'quest' ? L.quest.done : d.kind === 'zoneVisited' ? s.zones[d.zoneOrder - 1]?.visited === true : s.zones[d.zoneOrder - 1]?.gateCompleted === true;
+      if (ok) {
+        monuments[m.id] = { ...st, discovered: true };
+        discovered.push(m.id);
+      }
+    }
+    const granted = { ...p0.granted };
+    for (const r of earned) granted[r.id] = key.t;
+    this.setPerm({ counters, monuments, granted, lastCheck: { t: key.t, pass: key.pass } });
+    for (const id of discovered) this.log('MonumentDiscovered', { monumentId: id });
+    for (const r of earned) {
+      const c = r.condition;
+      const value = c.kind === 'counter' ? counters[c.counter] : c.kind === 'bestiary' ? (p0.bestiary[c.enemyId]?.kills ?? 0) : c.kind === 'classRecord' ? L.records[c.cls] : c.kind === 'emblem' ? (p0.bestiary[c.enemyId]?.emblems ?? 0) : 0;
+      this.log('MilestoneGranted', { reward: r.id, system: r.system, target: r.target, bp: r.bp, value });
+    }
+    if (earned.length > 0) this.schedule(key.t, PHASE.RECOMPUTE, 'permanent', 'PermanentRecompute');
+    if (earned.length > 0 || discovered.length > 0) this.requestPolicy('permanent');
+  }
+
+  /** RECOMPUTE: the registry's aggregate becomes the bonuses in force for every character (S4-R04, R08). */
+  private onPermanentRecompute(): void {
+    this.applyPermanentMods(aggregate(bonusSources(this.pc, this.perm)), 'milestone');
+  }
+
+  /** Puts a new aggregate in force and recomputes every character once; current HP keeps its fraction (S4-R08). */
+  private applyPermanentMods(next: PermMods, cause: string): void {
+    if (permEqual(this.perm.applied, next)) return;
+    const before = new Map(this.state.legion.chars.map((c) => [c.id, this.statsNow(c.id)]));
+    this.setPerm({ applied: next });
+    for (const c of this.state.legion.chars) this.recomputeAfterLoadout(c.id, before.get(c.id) as CharacterStats);
+    this.log('PermanentBonusesApplied', { cause, attackBp: next.attackBp, monumentAttackBp: next.monumentAttackBp, hpBp: next.hpBp, monumentHpBp: next.monumentHpBp, critBp: next.critBp, abilityBp: next.abilityBp, gatherBp: next.gatherBp, smithBp: next.smithBp });
+  }
+
+  /** Validation of a Monument purchase (S4-R11, R12); the number of levels it would buy, or the refusal. */
+  private validatePermanent(cmd: PermanentCommand): { ok: true; k: number } | { ok: false; code: PermanentReasonCode } {
+    if (!this.permanentEnabled) return { ok: false, code: 'PERMANENT_DISABLED' };
+    const m = this.pc.monumentById.get(cmd.monumentId);
+    if (!m) return { ok: false, code: 'MONUMENT_UNKNOWN' };
+    const st = this.perm.monuments[m.id] as MonumentState;
+    if (!st.discovered) return { ok: false, code: 'MONUMENT_UNDISCOVERED' };
+    if (st.level >= m.maxLevel) return { ok: false, code: 'MONUMENT_MAX_LEVEL' };
+    const avail = (r: string) => balance(this.state.ledger, r, 'available');
+    if (cmd.levels === 'max') {
+      const k = buyMaxLevels(m, st.level, avail);
+      return k > 0 ? { ok: true, k } : { ok: false, code: 'NOT_AFFORDABLE' };
+    }
+    if (!Number.isSafeInteger(cmd.levels) || cmd.levels < 1) return { ok: false, code: 'BAD_LEVEL_COUNT' };
+    if (cmd.levels > m.maxLevel - st.level) return { ok: false, code: 'MONUMENT_MAX_LEVEL' };
+    const price = monumentPrice(m, st.level, cmd.levels);
+    if (price.gold > avail('res.gold') || price.materials.some((q) => q.qty > avail(q.resourceId))) return { ok: false, code: 'NOT_AFFORDABLE' };
+    return { ok: true, k: cmd.levels };
+  }
+
+  /** An account command: validation first, then one atomic transaction; stats recompute at once (S4-R11, R21). */
+  private submitPermanent(cmd: PermanentCommand): boolean {
+    const v = this.validatePermanent(cmd);
+    if (!v.ok) {
+      this.counters.commandsRejected[v.code] = (this.counters.commandsRejected[v.code] ?? 0) + 1;
+      this.log('CommandRejected', { command: cmd.type, code: v.code });
+      return false;
+    }
+    this.counters.commandsAccepted += 1;
+    this.log('CommandAccepted', { command: cmd.type, target: cmd.monumentId });
+    const m = this.pc.monumentById.get(cmd.monumentId) as NonNullable<ReturnType<CompiledPermanent['monumentById']['get']>>;
+    const from = (this.perm.monuments[m.id] as MonumentState).level;
+    const to = from + v.k;
+    const price = monumentPrice(m, from, v.k);
+    const lines: TxLine[] = [{ resourceId: 'res.gold', bucket: 'available', delta: -price.gold }, ...price.materials.map((q) => ({ resourceId: q.resourceId, bucket: 'available' as const, delta: -q.qty }))];
+    const txId = `monument:${m.id}:${from + 1}-${to}`;
+    this.industryTx(txId, 'monument.purchase', lines);
+    this.setPerm({ monuments: { ...this.perm.monuments, [m.id]: { discovered: true, level: to } }, purchases: addCounter(this.perm.purchases, 1, 'Monument purchases') });
+    this.log('MonumentUpgraded', { monumentId: m.id, from, to, gold: price.gold, materials: price.materials.map((q) => `${q.resourceId}:${q.qty}`).join(','), bonusBp: m.bonusAt[to] as number, mode: cmd.levels === 'max' ? 'max' : 'exact' });
+    this.applyPermanentMods(aggregate(bonusSources(this.pc, this.perm)), 'purchase');
+    return true;
+  }
+
   private industryTx(txId: string, purpose: string, lines: readonly TxLine[]): void {
     const out = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER].applyTx(this.state.ledger, { txId, purpose, lines });
     if (out.result.replayed) fail('INVALID_STATE', 'an industry transaction was replayed', { txId });
@@ -1796,7 +2030,7 @@ export class LegionSimulation {
     }
     if (this.ind.blocked[id] !== undefined) this.setBlocked(id, null);
     const t = this.now().t;
-    const eff = efficiencyBp(this.ic, this.ind, c, node.profession);
+    const eff = efficiencyBp(this.ic, this.ind, c, node.profession, this.permEfficiencyBp(node.profession));
     const n = (this.ind.workSeq[id] ?? 0) + 1;
     const w: Work = { kind: 'gather', id: `g:${id}:${n}`, nodeId, startMs: t, endMs: t + node.actionMs, yieldNum: gatherYieldNum(node, eff), efficiencyBp: eff };
     this.setInd({ work: { ...this.ind.work, [id]: w }, workSeq: { ...this.ind.workSeq, [id]: n } });
@@ -1835,6 +2069,7 @@ export class LegionSimulation {
       if (r.granted > 0) this.industryTx(`gather:${pid}`, 'gather.deposit', [{ resourceId: node.resourceId, bucket: 'available', delta: r.granted }]);
       const { level } = this.addProfExp(p.member, node.profession, node.expPerAction);
       this.log('Gathered', { member: p.member, nodeId: node.id, work: pid, resourceId: node.resourceId, units: r.granted, exp: node.expPerAction, level, startMs: p.startMs, eff: p.efficiencyBp });
+      if (this.permanentEnabled) this.bumpCounter('gatheredUnits', r.granted, true);
       this.scheduleGatherStart(p.member);
       if (r.granted > 0) {
         if (this.ind.jobs.some((j) => j.state === 'queued' || j.state === 'paused-shortage')) this.queuePass();
@@ -1853,6 +2088,7 @@ export class LegionSimulation {
     this.setJob({ ...job, completed, reservedUnits, state, shortage: null });
     const { level } = this.addProfExp(p.member, 'smithing', recipe.exp);
     this.log('UnitCompleted', { member: p.member, jobId: job.id, work: pid, recipeId: recipe.id, exp: recipe.exp, level, startMs: p.startMs, eff: p.efficiencyBp });
+    if (this.permanentEnabled) this.bumpCounter('unitsCompleted', 1);
     if (done) {
       this.log('JobCompleted', { jobId: job.id, recipeId: recipe.id, quantity: job.quantity });
       this.requestPolicy('job-completed');
@@ -1902,7 +2138,7 @@ export class LegionSimulation {
           this.industryTx(`reserve:${job.id}/u${job.unitsStarted + 1}`, 'production.reserve', this.reserveLines(recipe.inputs, units, 1));
           job = { ...job, reservedUnits: units };
         }
-        const eff = efficiencyBp(this.ic, this.ind, sm, 'smithing');
+        const eff = efficiencyBp(this.ic, this.ind, sm, 'smithing', this.permEfficiencyBp('smithing'));
         const dur = unitTimeMs(recipe.unitMs, eff);
         const unitId = `${job.id}/u${job.unitsStarted + 1}`;
         const w: Work = { kind: 'unit', id: unitId, jobId: job.id, startMs: t, endMs: t + dur, efficiencyBp: eff };
@@ -2093,6 +2329,7 @@ export class LegionSimulation {
         this.setInd({ items, crafts: this.ind.crafts + 1 });
         const { level } = this.addProfExp(cmd.crafterId, 'smithing', recipe.exp);
         this.log('Crafted', { crafter: cmd.crafterId, recipeId: recipe.id, itemId: newId, defId: target.id, consumed: cmd.consumeItemId ?? '', enhancement, craft: craftId, exp: recipe.exp, level });
+        if (this.permanentEnabled) this.bumpCounter('itemsCrafted', 1);
         return;
       }
       case 'Enhance': {
@@ -2110,6 +2347,7 @@ export class LegionSimulation {
         // An enhancement never abandons work in progress: the rates captured at its start stay (S3-R14).
         if (owner !== null) this.afterLoadoutChange(owner, null, before as CharacterStats);
         this.log('Enhanced', { itemId: item.id, level: n, gold, materialId: material, materialQty: n });
+        if (this.permanentEnabled) this.bumpCounter('enhancements', 1);
         return;
       }
       case 'Salvage': {

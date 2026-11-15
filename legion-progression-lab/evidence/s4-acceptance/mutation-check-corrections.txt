@@ -1,0 +1,28 @@
+Q1: DETECTED (4 failing) restored=True | lifetime gold earned is added without a check (the reviewer's reproduction: 2^53 - 1 + 2 rounds silently)
+Q2: DETECTED (13 failing) restored=True | the checked addition accepts an unsafe result (rounding past 2^53 - 1)
+Q3: DETECTED (2 failing) restored=True | Bestiary kills are added without a check
+Q4: DETECTED (1 failing) restored=True | a refused step keeps what it committed before the refusal (no rollback)
+Q5: DETECTED (1 failing) restored=True | the run continues after a refused step
+Q6: DETECTED (1 failing) restored=True | the supported numerical domain is not validated before a run
+Q7: DETECTED (4 failing) restored=True | the Monument of Power is described by its canonical category under additive pooling (the reviewer's finding)
+Q8: DETECTED (4 failing) restored=True | the Monument of Vitality is described by its canonical category under additive pooling
+Q9: DETECTED (8 failing) restored=True | regional mastery takes the highest defined rank (the reviewer's reproduction with a Diamond rank)
+Q10: DETECTED (1 failing) restored=True | a schema-2 region without requiredRank is accepted
+Q11: DETECTED (3 failing) restored=True | a species missing the required rank is skipped silently instead of refused
+Q12: DETECTED (1 failing) restored=True | the emblem count is added without a check
+Q13: DETECTED (1 failing) restored=True | the lifetime counter bump at recruits, gathering and crafting is unchecked
+
+S4 acceptance mutation check: 13 planted bugs, 13 detected, 0 not detected; all files restored: True
+- Q1 [src/engine/permanent.ts] lifetime gold earned is added without a check (the reviewer's reproduction: 2^53 - 1 + 2 rounds silently): detected by 4 failing test(s); e.g. × s4acc.credit.turnover.002 (failure) 5ms
+- Q2 [src/engine/permanent.ts] the checked addition accepts an unsafe result (rounding past 2^53 - 1): detected by 13 failing test(s); e.g. × s4acc.counter.over.001 (failure) 3ms
+- Q3 [src/engine/permanent.ts] Bestiary kills are added without a check: detected by 2 failing test(s); e.g. × s4acc.credit.bestiary.001 (failure) 3ms
+- Q4 [src/engine/legion.ts] a refused step keeps what it committed before the refusal (no rollback): detected by 1 failing test(s); e.g. × a counter bumped by another step (recruits at the quest) is refused with the whole step rolled back 13ms
+- Q5 [src/engine/legion.ts] the run continues after a refused step: detected by 1 failing test(s); e.g. × the reviewer's reproduction: lifetime gold at 2^53 - 1 and a kill worth gold is refused; the step commits nothing 7ms
+- Q6 [src/engine/legion.ts] the supported numerical domain is not validated before a run: detected by 1 failing test(s); e.g. × a state outside the supported domain is refused before a run, never repaired 5ms
+- Q7 [src/engine/permanent.ts] the Monument of Power is described by its canonical category under additive pooling (the reviewer's finding): detected by 4 failing test(s); e.g. × s4acc.groups.additive.001 (normal) 4ms
+- Q8 [src/engine/permanent.ts] the Monument of Vitality is described by its canonical category under additive pooling: detected by 4 failing test(s); e.g. × s4acc.groups.vitality.002 (normal) 3ms
+- Q9 [src/model/permanentContent.ts] regional mastery takes the highest defined rank (the reviewer's reproduction with a Diamond rank): detected by 8 failing test(s); e.g. × s4acc.mastery.v1.002 (normal) 4ms
+- Q10 [src/model/permanentContent.ts] a schema-2 region without requiredRank is accepted: detected by 1 failing test(s); e.g. × missing or invalid required-rank definitions are refused 9ms
+- Q11 [src/model/permanentContent.ts] a species missing the required rank is skipped silently instead of refused: detected by 3 failing test(s); e.g. × s4acc.mastery.v2.004 (failure) 3ms
+- Q12 [src/engine/permanent.ts] the emblem count is added without a check: detected by 1 failing test(s); e.g. × account kills, Bestiary kills and emblem counts are checked the same way 218ms
+- Q13 [src/engine/legion.ts] the lifetime counter bump at recruits, gathering and crafting is unchecked: detected by 1 failing test(s); e.g. × a counter bumped by another step (recruits at the quest) is refused with the whole step rolled back 221ms

@@ -1,0 +1,36 @@
+P1: DETECTED (21 failing) restored=True | a kill credit counts twice in the Bestiary (per participant)
+P2: DETECTED (21 failing) restored=True | an already granted reward is earned again (no exactly-once)
+P3: DETECTED (7 failing) restored=True | Buy Max crosses a milestone whose materials are not available
+P4: DETECTED (3 failing) restored=True | an exact purchase is not checked for affordability
+P5: DETECTED (8 failing) restored=True | the Monument of Power joins the additive pool instead of its own category
+P6: DETECTED (1 failing) restored=True | a permanent efficiency bonus is applied twice
+P7: DETECTED (21 failing) restored=True | granted rewards are never put in force (no recompute)
+P8: DETECTED (21 failing) restored=True | lifetime gold earned is replaced by the last credit (a lowered counter)
+P9: DETECTED (1 failing) restored=True | reserve characters count in the combined-level high-water mark
+P10: DETECTED (1 failing) restored=True | the monitor no longer reports a reward granted twice (I22)
+P11: DETECTED (4 failing) restored=True | the monitor no longer checks Monument purchases (I25)
+P12: DETECTED (1 failing) restored=True | the Buy Max preview is computed from the wrong level
+P13: DETECTED (3 failing) restored=True | the starter weapon is granted in the control
+P14: DETECTED (1 failing) restored=True | rewards are granted in content order, not ascending ID order
+P15: DETECTED (1 failing) restored=True | a max-HP bonus heals instead of keeping the HP fraction
+P16: DETECTED (1 failing) restored=True | version 1.1 falls back to the version 1 purchase rule (amendment 01)
+P17: DETECTED (15 failing) restored=True | the permanent crit bonus is merged twice
+
+S4 mutation check: 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+- P1 [src/engine/legion.ts] a kill credit counts twice in the Bestiary (per participant): detected by 21 failing test(s); e.g. × rewards apply once to every character, including a recruit bought afterwards; the hero record carries them 141ms
+- P2 [src/engine/permanent.ts] an already granted reward is earned again (no exactly-once): detected by 21 failing test(s); e.g. × s4.miles.granted.001 (boundary) 4ms
+- P3 [src/engine/permanent.ts] Buy Max crosses a milestone whose materials are not available: detected by 7 failing test(s); e.g. × s4.buymax.milestone-unmet.001 (boundary) 4ms
+- P4 [src/engine/legion.ts] an exact purchase is not checked for affordability: detected by 3 failing test(s); e.g. × reserved production materials cannot pay for a milestone; a failed purchase changes nothing 7ms
+- P5 [src/model/legionContent.ts] the Monument of Power joins the additive pool instead of its own category: detected by 8 failing test(s); e.g. × s4.stats.monument.001 (normal) 5ms
+- P6 [src/engine/industry.ts] a permanent efficiency bonus is applied twice: detected by 1 failing test(s); e.g. × an efficiency bonus enters the efficiency sum once: the captured rate and the deposit use it once 20ms
+- P7 [src/engine/legion.ts] granted rewards are never put in force (no recompute): detected by 21 failing test(s); e.g. × rewards apply once to every character, including a recruit bought afterwards; the hero record carries them 126ms
+- P8 [src/engine/legion.ts] lifetime gold earned is replaced by the last credit (a lowered counter): detected by 21 failing test(s); e.g. × rewards apply once to every character, including a recruit bought afterwards; the hero record carries them 138ms
+- P9 [src/engine/legion.ts] reserve characters count in the combined-level high-water mark: detected by 1 failing test(s); e.g. × the combined-level high-water mark counts the hero and non-reserve recruits only (S4-R19) 5ms
+- P10 [src/experiments/permanentMetrics.ts] the monitor no longer reports a reward granted twice (I22): detected by 1 failing test(s); e.g. × the monitor reports a reward granted twice (I22) and a purchase that does not match the price table (I25) 5ms
+- P11 [src/experiments/permanentMetrics.ts] the monitor no longer checks Monument purchases (I25): detected by 4 failing test(s); e.g. × the monitor reports a reward granted twice (I22) and a purchase that does not match the price table (I25) 4ms
+- P12 [src/engine/permanent.ts] the Buy Max preview is computed from the wrong level: detected by 1 failing test(s); e.g. × discovery is guaranteed (quest, zone visit, conquest); purchases are atomic, exact or Buy Max, and refused cleanly 341ms
+- P13 [src/model/permanentContent.ts] the starter weapon is granted in the control: detected by 3 failing test(s); e.g. × starts neutral: every character stat equals the S3.1 stat (identity) 11ms
+- P14 [src/model/permanentContent.ts] rewards are granted in content order, not ascending ID order: detected by 1 failing test(s); e.g. × one event crossing several thresholds grants every tier once, in reward-ID order 7ms
+- P15 [src/engine/legion.ts] a max-HP bonus heals instead of keeping the HP fraction: detected by 1 failing test(s); e.g. × a max-HP bonus keeps the current HP fraction by the S2 proportional rule (no free heal, S4-R08) 5ms
+- P16 [src/policy/permanentPolicies.ts] version 1.1 falls back to the version 1 purchase rule (amendment 01): detected by 1 failing test(s); e.g. × version 1 stalls once its best level waits for planks it cannot get; version 1.1 keeps buying affordable levels 2663ms
+- P17 [src/engine/legion.ts] the permanent crit bonus is merged twice: detected by 15 failing test(s); e.g. × rewards apply once to every character, including a recruit bought afterwards; the hero record carries them 140ms

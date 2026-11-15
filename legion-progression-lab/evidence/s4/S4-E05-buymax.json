@@ -1,0 +1,31 @@
+{
+  "experimentId": "S4-E05-buymax",
+  "labels": {
+    "values": "engineering check",
+    "approved": false
+  },
+  "seedRoot": "s4-e05",
+  "states": 5000,
+  "byMode": {
+    "zero": 825,
+    "random": 836,
+    "large": 851,
+    "reserved": 807,
+    "exact": 834,
+    "no-materials": 847
+  },
+  "byVariant": {
+    "control": 1659,
+    "huge": 1695,
+    "tight": 1646
+  },
+  "zeroLevelStates": 1593,
+  "multiLevelStates": 2919,
+  "atMaxStates": 453,
+  "disagreements": 0,
+  "exactDisagreements": 0,
+  "failedPurchasesChanged": 0,
+  "branchIsolationBreaks": 0,
+  "examples": [],
+  "durationMs": 983
+}

@@ -1,0 +1,29 @@
+{
+  "experimentId": "S4-E01-milestones",
+  "labels": {
+    "values": "engineering check",
+    "approved": false
+  },
+  "seedRoot": "s4-e01",
+  "scenarios": 2000,
+  "variants": {
+    "control": 1000,
+    "fast": 1000
+  },
+  "commandsIssued": 221074,
+  "commandsAccepted": 342137,
+  "injectedReplays": 21726,
+  "rejectedCredits": 21726,
+  "injectedChecks": 36630,
+  "rewardsGranted": 45739,
+  "duplicateGrants": 0,
+  "recordChangesOutsideCredits": 0,
+  "forkMismatches": 0,
+  "isolationBreaks": 0,
+  "roundTripBreaks": 0,
+  "monitorChecks": 21861715,
+  "violations": 0,
+  "scenariosWithViolations": [],
+  "runDigestsFingerprint": "24e44d22b23eeb366f8e164a0d712304106ac6f51e4fa5330059a8a8e080b19e",
+  "durationMs": 30688
+}

@@ -1,0 +1,14 @@
+git archive s3-checkpoint (f25f296153e0375cc3a294d3f9ebf1fc245ef201): 1124 files extracted
+added 51 packages in 2s
+typecheck ok
+      Tests  1121 passed (1121)
+      Tests  9 passed (9)
+total cases: 422; problems: 0
+oracle summary: 18 groups, 0 failing
+S3.1-E03-equipment-strength: MATCH (25123 ms, 15 workers)
+S3.1-E09-demand-stop-payback: MATCH (48070 ms, 15 workers)
+S3-E02-queue-contention: MATCH (659 ms, 15 workers)
+S2-E04-class-switch-abuse: MATCH (2494 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (18839 ms, 15 workers)
+S1.1-E05-drops-quantities: MATCH (17982 ms, 15 workers)
+defect reproductions refused: 5

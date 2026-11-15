@@ -31,6 +31,7 @@ This folder holds **data and prose only**. It is shared by the TypeScript progre
 | [gates.md](formulas/gates.md): zone flags, kill gates, travel, commands, miniboss stub | **v1.1** (S1.1: `Report`, auto-farm off) | `gates.v1.json` (2) |
 | [estimator.md](formulas/estimator.md): displayed farming-rate estimator | **v1.3** (S3 entry: an exhausted budget is "unresolved" with no forecast, never "unreachable"; v1.2 S1.1 addendum; v1.1 the first written version) | `estimator.v1.json` (3) |
 | [s2-legion.md](formulas/s2-legion.md): S2 legion stats, squad fights, credit, worker feasibility | v1.1 (S2.1) | `squad-fight.v1.json`, `legion-credit.v1.json`, `worker-feasibility.v1.json` |
+| [s4-permanent.md](formulas/s4-permanent.md): S4 Monument tables, purchases and Buy Max, permanent bonus pools, rewards and counters; v1.1: the S4 acceptance corrections (checked counters, effective bonus metadata, the regional mastery rank) | **v1.1** (S4 acceptance) | `permanent-rules.v1.json`, `permanent-acceptance.v1.json` (2) |
 | [s3-industry.md](formulas/s3-industry.md): S3 professions, gathering, equipment, production queue, effective damage | **v1.2** (S3.1: crafting eligibility, recipe validation, fractional attribution; S3 acceptance addendum: a dead hero cannot craft) | `industry-rules.v1.json` (2), `equipment-ops.v1.json` (1), `production-queue.v1.json` (1), `recipe-validation.v1.json` (1) |
 
 **File naming:**

@@ -1,0 +1,578 @@
+{
+  "increment": "S4",
+  "contentRef": {
+    "path": "content/w1-slice-s4.candidate.v0.4.0.json",
+    "sha256": "c1115512b72d4d7b4abfed652469dfe7bea614013190d732c4df0bb56eff319e"
+  },
+  "experimentId": "S4-E06-investment",
+  "question": "With equal starts, matched seeds and equal session lengths, how do pure combat and recruitment, equipment investment, Monument investment, demand-aware industry, balanced progression and Bestiary collection compare, on a fresh account and in the under-levelled diagnostic arena; what do the starter weapon, the hero x1.5 candidate, an all-Warrior squad and the permanent switch change?",
+  "design": "Three days of one 60-minute session (180 active minutes), snapshots after days 1 and 2. Fresh account: POL3-CONQ, POL3-EQUIP, POL4-MONUMENT, POL3-DEMAND2, POL4-BALANCED, POL4-BESTIARY. Arena (labelled diagnostic: hero Archer 10, Warrior and Mage 8, 600 gold, zone 3 with goblins x4 HP, 20 spawns, 2 s respawn): POL3-CONQ, POL3-DEMAND2, POL4-MONUMENT, POL4-BALANCED. Hero x1.5 on both; the starter weapon with the crafting policies; POL3-CONQ all-Warrior; POL3-CONQ and POL3-DEMAND2 with the permanent switch off (the S3.1 control). 50 replicates.",
+  "variants": [
+    {
+      "id": "a10-p1.6-g100",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100
+      }
+    },
+    {
+      "id": "s4-starter",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.starterWeapon": "on"
+      }
+    },
+    {
+      "id": "s4-hero150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s3.heroBaseAttackBp": 5000
+      }
+    },
+    {
+      "id": "s4-arena",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4
+      }
+    },
+    {
+      "id": "s4-arena-hero150",
+      "params": {
+        "xpCurve": "a10-p1.6",
+        "zone1.killGate": 100,
+        "s4.arena": 4,
+        "s3.heroBaseAttackBp": 5000
+      }
+    }
+  ],
+  "cells": [
+    {
+      "id": "fresh|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-EQUIP",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-DEMAND2",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL4-BESTIARY",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL4-BESTIARY",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "arena|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "arena|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL3-DEMAND2",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "arena|POL4-MONUMENT",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL4-MONUMENT",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "arena|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-arena",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "hero150|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "s4-hero150",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "hero150|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-hero150",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "arena-hero150|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "s4-arena-hero150",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "arena-hero150|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-arena-hero150",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "start": {
+        "heroLevel": 10,
+        "heroClass": "archer",
+        "zone": 3,
+        "visited": [
+          1,
+          2,
+          3
+        ],
+        "recruits": [
+          {
+            "level": 8,
+            "cls": "warrior"
+          },
+          {
+            "level": 8,
+            "cls": "mage"
+          }
+        ],
+        "gold": 600
+      },
+      "fixedZone": 3
+    },
+    {
+      "id": "starter|POL3-EQUIP",
+      "kind": "campaign",
+      "variant": "s4-starter",
+      "policy": "POL3-EQUIP",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "starter|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "s4-starter",
+      "policy": "POL3-DEMAND2",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "starter|POL4-BALANCED",
+      "kind": "campaign",
+      "variant": "s4-starter",
+      "policy": "POL4-BALANCED",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "fresh|POL3-CONQ|all-W",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "composition": "all-W"
+    },
+    {
+      "id": "permanent-off|POL3-CONQ",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-CONQ",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "permanentOff": true
+    },
+    {
+      "id": "permanent-off|POL3-DEMAND2",
+      "kind": "campaign",
+      "variant": "a10-p1.6-g100",
+      "policy": "POL3-DEMAND2",
+      "sessions": {
+        "count": 3,
+        "minutes": 60,
+        "gapMin": 1440
+      },
+      "snapshots": [
+        1,
+        2
+      ],
+      "permanentOff": true
+    }
+  ],
+  "seeds": {
+    "root": "s4-e06",
+    "replicates": 50
+  },
+  "metrics": [
+    "legionExpTotal",
+    "expTotal",
+    "conquestScore",
+    "killsPerHour",
+    "counter.goldEarned",
+    "goldHeld",
+    "monumentGoldSpent",
+    "permanentRewards",
+    "appliedAttackBp",
+    "appliedMonumentAttackBp",
+    "appliedHpBp",
+    "crafted",
+    "equipmentValue",
+    "professionLevelsSum",
+    "invariantViolations",
+    "firstCraftAnyMin",
+    "firstEquippedCraftedMin",
+    "firstUpgradeOverEquippedMin",
+    "firstHeroUpgradeMin",
+    "firstCopperCombatEquippedMin",
+    "topSystemShare",
+    "milestoneBlockedMin",
+    "legionExpAtS1",
+    "legionExpAtS2"
+  ],
+  "hypotheses": [
+    {
+      "id": "H-S4-05",
+      "statement": "Every S2, S3 and S4 invariant holds in every run (monitor I1-I28)",
+      "source": "owner S3.1 acceptance section 18; S4 spec section 11",
+      "metric": "invariantViolations",
+      "stat": "max",
+      "op": "==",
+      "value": 0,
+      "unit": "violations",
+      "role": "engineering"
+    },
+    {
+      "id": "H-S4-07",
+      "statement": "With the starter weapon, the first meaningful upgrade over an already equipped combat item comes in [15, 25] active minutes (owner section 4B candidate)",
+      "source": "owner S3.1 acceptance section 4B",
+      "metric": "firstUpgradeOverEquippedMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        15,
+        25
+      ],
+      "unit": "active minutes",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "starter|POL3-EQUIP",
+          "starter|POL3-DEMAND2",
+          "starter|POL4-BALANCED"
+        ]
+      }
+    },
+    {
+      "id": "H-S4-08",
+      "statement": "With the starter weapon, the first simple crafted item comes in [5, 10] active minutes (owner section 4B candidate)",
+      "source": "owner S3.1 acceptance section 4B",
+      "metric": "firstCraftAnyMin",
+      "stat": "p50",
+      "op": "in",
+      "range": [
+        5,
+        10
+      ],
+      "unit": "active minutes",
+      "role": "target",
+      "scope": {
+        "cells": [
+          "starter|POL3-EQUIP",
+          "starter|POL3-DEMAND2",
+          "starter|POL4-BALANCED"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Payback over full campaigns is deferred to S6 (owner section 4A); the arena is labelled diagnostic content, not a zone and not a baseline.",
+    "Policies are realistic: observation only; their decisions are not measured human behaviour."
+  ]
+}
