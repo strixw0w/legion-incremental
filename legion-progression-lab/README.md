@@ -2,7 +2,7 @@
 
 The Legion Incremental progression lab: a calculator, without a screen, that will play out hypothetical players' progress so balance ideas can be tested before they reach Roblox. It is deterministic (same inputs, same answers), and every number carries a label saying where it came from.
 
-**Accepted checkpoints: S1** (`s1-checkpoint`) and **S2** (`s2-checkpoint`, commit `732f3da`: L1, S2 and the S2.1 acceptance pass; `evidence/s2-checkpoint/`). L1 adds a structurally shared persistent ledger (`evidence/l1/L1_REPORT.md`). S2 adds the legion: recruits, squads, classes, mastery, talents, abilities, knockouts and independent workers (`evidence/s2/S2_EVIDENCE.md`, `evidence/s2.1/S2_1_EVIDENCE.md`). **Accepted checkpoint S3** (`s3-checkpoint`): S3, professions, gathering, equipment, crafting and the production queue behind an `industry` switch (`evidence/s3/S3_EVIDENCE.md`), with S3.1, its corrections and economic calibration (`evidence/s3.1/S3_1_EVIDENCE.md`), and the acceptance addendum (`evidence/s3-acceptance/ADDENDUM.md`; `planning/S3_ACCEPTANCE_RESOLUTION.md`). **Accepted: S4** (`s4-checkpoint`), permanent progression (Monuments, Bestiary, Feats, class and roster bonuses) behind a `permanent` switch (`evidence/s4/S4_EVIDENCE.md`), with three acceptance corrections (`evidence/s4-acceptance/ADDENDUM.md`; `planning/S4_ACCEPTANCE_RESOLUTION.md`).
+**Accepted checkpoints: S1** (`s1-checkpoint`) and **S2** (`s2-checkpoint`, commit `732f3da`: L1, S2 and the S2.1 acceptance pass; `evidence/s2-checkpoint/`). L1 adds a structurally shared persistent ledger (`evidence/l1/L1_REPORT.md`). S2 adds the legion: recruits, squads, classes, mastery, talents, abilities, knockouts and independent workers (`evidence/s2/S2_EVIDENCE.md`, `evidence/s2.1/S2_1_EVIDENCE.md`). **Accepted checkpoint S3** (`s3-checkpoint`): S3, professions, gathering, equipment, crafting and the production queue behind an `industry` switch (`evidence/s3/S3_EVIDENCE.md`), with S3.1, its corrections and economic calibration (`evidence/s3.1/S3_1_EVIDENCE.md`), and the acceptance addendum (`evidence/s3-acceptance/ADDENDUM.md`; `planning/S3_ACCEPTANCE_RESOLUTION.md`). **Accepted: S4** (`s4-checkpoint`, commit `dc39492`), permanent progression (Monuments, Bestiary, Feats, class and roster bonuses) behind a `permanent` switch (`evidence/s4/S4_EVIDENCE.md`), with three acceptance corrections (`evidence/s4-acceptance/ADDENDUM.md`; `planning/S4_ACCEPTANCE_RESOLUTION.md`).
 
 Every coefficient is `candidate`, which means invented for testing and not approved. Every result is model output, not live-validated.
 
@@ -68,6 +68,8 @@ node src/cli/s31-analyse.ts            # S3.1 registered rules and comparisons
 node src/cli/exp4.ts manifests/s4/S4-E06-investment.json             # run a pre-registered S4 experiment
 node src/cli/s4-engineering.ts --experiment E05 --n 5000 --seed s4-e05   # S4-E01 / E02 / E05 engineering checks
 node src/cli/s4-analyse.ts             # S4 registered rules and comparisons
+node src/cli/l2-run.ts manifests/l2.1/L2.1-E01-differential.json --out evidence/l2.1/experiments/L2.1-E01-differential.json   # L2.1 (E04: add --expose-gc); L2 manifests are reproduced from the L2 package
+python -I repro/l2.1/history_cache.py . <L2 review zip> <node dir>   # which historical experiments are exact cache hits
 python -I repro/s3.1/attribution_check.py . <node dir> <scratch dir>   # S3 regression changes come from the crafter rule alone
 ```
 
@@ -98,4 +100,6 @@ If PowerShell refuses to run `npm`, use `npm.cmd`.
 - `evidence/s3.1/` (S3.1, accepted with the S3 checkpoint);
 - `evidence/s3-acceptance/` and `evidence/s3-checkpoint/` (the S3 acceptance addendum and checkpoint);
 - `evidence/s4/` (S4, accepted with the S4 checkpoint);
-- `evidence/s4-acceptance/` (the S4 acceptance addendum) and `evidence/perf-audit/` (the verification performance audit).
+- `evidence/s4-acceptance/` (the S4 acceptance addendum), `evidence/s4-checkpoint/` and `evidence/perf-audit/` (the verification performance audit);
+- `evidence/l2/` (L2 bounded replay infrastructure, reviewed; corrected by L2.1);
+- `evidence/l2.1/` (L2.1 correction, in review).

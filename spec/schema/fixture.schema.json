@@ -28,7 +28,15 @@
         "production-queue",
         "recipe-validation",
         "permanent-rules",
-        "permanent-acceptance"
+        "permanent-acceptance",
+        "l2-ranges",
+        "l2-requests",
+        "l2-work",
+        "l2-settlement",
+        "l21-requests",
+        "l21-credits",
+        "l21-lifecycle",
+        "l21-delivery"
       ]
     },
     "fixtureVersion": {
@@ -111,7 +119,10 @@
               "INVALID_JSON_VALUE",
               "INVALID_CONTENT",
               "EVENT_CASCADE_LIMIT",
-              "SIM_EVENT_LIMIT"
+              "SIM_EVENT_LIMIT",
+              "RANGE_OVERLAP",
+              "INVALID_CHECKPOINT",
+              "BRANCH_MISMATCH"
             ]
           },
           "tolerance": {

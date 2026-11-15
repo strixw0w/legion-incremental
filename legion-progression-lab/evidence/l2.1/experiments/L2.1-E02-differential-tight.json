@@ -1,0 +1,81 @@
+{
+  "environment": {
+    "experimentId": "L2.1-E02-differential-tight",
+    "manifestSha256": "ff65ae1f4dd1beabbf07f032f3ada20f4f511d930fe54eea8bfc732f4de76f17",
+    "formulaVersion": "l2.1-v2",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 74635,
+    "peakRssMbSampled": 298,
+    "peakRssMbOs": 298,
+    "endRssMb": 293
+  },
+  "status": "COMPLETED",
+  "result": {
+    "seed": "l21-e02",
+    "operations": 250000,
+    "executed": 250000,
+    "stopped": false,
+    "byType": {
+      "request.new": 99916,
+      "work": 70392,
+      "credit.new": 28864,
+      "request.retry": 24963,
+      "request.late": 5024,
+      "credit.duplicate": 9288,
+      "request.conflict": 7368,
+      "credit.late": 1927,
+      "credit.ahead": 210,
+      "credit.abandon": 837,
+      "request.ahead": 1211
+    },
+    "outcomes": {
+      "APPLIED": 132307,
+      "PRODUCER_UNKNOWN": 1,
+      "WORK_NOT_RESERVED": 221,
+      "REPLAY": 2572,
+      "WORK_REPLAYED": 8387,
+      "CONFLICTING_PAYLOAD": 14,
+      "REQUEST_CLOSED": 34765,
+      "WORK_INELIGIBLE": 27903,
+      "CREDIT_REPLAYED": 9218,
+      "WORK_OUT_OF_ORDER": 37,
+      "PRODUCER_RETIRED": 33078,
+      "CREDIT_AHEAD": 280,
+      "REQUEST_AHEAD": 1150,
+      "INVALID_REQUEST": 61,
+      "PRODUCER_CLOSED": 6
+    },
+    "declaredDifferences": {
+      "closedReplay": 22471,
+      "closedConflict": 9674,
+      "closedUnseen": 2620,
+      "requestAhead": 1150,
+      "creditAhead": 280,
+      "streamLimit": 0
+    },
+    "mismatches": 0,
+    "firstMismatches": [],
+    "comparisonDisagreements": 0,
+    "invariantViolations": 0,
+    "boundViolations": 0,
+    "checkpoints": 50,
+    "restoredIdentically": 50,
+    "branches": 25,
+    "branchIsolationBreaks": 0,
+    "wrongBranchAdmitted": 0,
+    "retiredProducers": 7998,
+    "l2Max": {
+      "receiptsPerStream": 8,
+      "creditRuns": 14,
+      "producerRuns": 23,
+      "openProducers": 64,
+      "reservedPerProducer": 8
+    },
+    "l1ReceiptsAtEnd": 99920,
+    "finalSimulatedMs": 290004821733
+  }
+}

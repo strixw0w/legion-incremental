@@ -1,0 +1,7 @@
+# Representative historical controls executed with the L2.1 code (--verify against the stored baseline fingerprints)
+S1.1-E03-earlier-zone-audit: MATCH (3470 ms, 15 workers)
+S2-E04-class-switch-abuse: MATCH (3192 ms, 15 workers)
+S2.1-E03-knockout-diagnostic: MATCH (23579 ms, 15 workers)
+S3-E02-queue-contention: MATCH (846 ms, 15 workers)
+S3.1-E03-equipment-strength: MATCH (34805 ms, 15 workers)
+S4-E04-soft-caps: MATCH (94933 ms, 15 workers)

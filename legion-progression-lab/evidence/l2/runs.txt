@@ -1,0 +1,19 @@
+# L2 registered experiments start 2026-11-15T13:27:05Z
+## L2-E03-partition start 13:27:05Z
+L2-E03-partition: done in 258704 ms (main RSS 229 MB, no worker threads)
+## L2-E02-differential-tight start 13:31:24Z
+L2-E02-differential-tight: done in 395585 ms (main RSS 613 MB, no worker threads)
+## L2-E01-differential start 13:38:00Z
+L2-E01-differential: done in 2093617 ms (main RSS 1068 MB, no worker threads)
+## L2-E04-perf start 14:12:54Z
+day: COMPLETED, 27471 deliveries in 324 ms; retained 3.04 MB; checkpoint 54228 B; reconstruction p95 1.55 ms
+week: COMPLETED, 192484 deliveries in 49266 ms; retained 28.17 MB; checkpoint 138096 B; reconstruction p95 8.58 ms
+month: COMPLETED, 825128 deliveries in 341489 ms; retained 55.57 MB; checkpoint 419145 B; reconstruction p95 21.2 ms
+L2-E04-perf: done in 391847 ms (main RSS 315 MB, no worker threads)
+done 2026-11-15T14:19:27Z
+## L2-E05-perf-v11 (amendment 01) start 14:21:56Z
+day: COMPLETED, 27561 deliveries in 326 ms; retained 2.99 MB; account alone 0.09 MB; checkpoint 57051 B; reconstruction p95 1.58 ms; jobs retired 90
+week: COMPLETED, 193175 deliveries in 49864 ms; retained 28.28 MB; account alone 0.13 MB; checkpoint 69330 B; reconstruction p95 2.81 ms; jobs retired 691
+month: COMPLETED, 828118 deliveries in 307316 ms; retained 55.42 MB; account alone 0.14 MB; checkpoint 72206 B; reconstruction p95 2.8 ms; jobs retired 2990
+L2-E05-perf-v11: done in 357799 ms (main RSS 273 MB, no worker threads)
+done 2026-11-15T14:27:54Z

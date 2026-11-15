@@ -1,0 +1,165 @@
+{
+  "account": {
+    "balances": {
+      "res.bar": {
+        "available": 0,
+        "reserved": 0
+      },
+      "res.gold": {
+        "available": 450,
+        "reserved": 0
+      },
+      "res.ore": {
+        "available": 0,
+        "reserved": 0
+      }
+    },
+    "counters": {
+      "bars": 0,
+      "gold": 500,
+      "kills": 1,
+      "ore": 0,
+      "requests": 6
+    },
+    "economy": "l2-econ-v1",
+    "emblems": 1,
+    "feats": [],
+    "formulaVersion": "l2-v1",
+    "gatherers": [
+      {
+        "action": {
+          "num": 10000000,
+          "startMs": 0
+        },
+        "assigned": true,
+        "exp": 0,
+        "id": "g1",
+        "level": 1,
+        "rem": 0
+      },
+      {
+        "action": {
+          "num": 10000000,
+          "startMs": 0
+        },
+        "assigned": true,
+        "exp": 0,
+        "id": "g2",
+        "level": 1,
+        "rem": 0
+      }
+    ],
+    "ids": {
+      "credits": {
+        "squad": {
+          "p": 1,
+          "runs": []
+        }
+      },
+      "producers": {
+        "job": {
+          "allocated": 1,
+          "open": {
+            "1": {
+              "abandoned": {
+                "p": 0,
+                "runs": []
+              },
+              "maxUnit": 0,
+              "released": {
+                "p": 0,
+                "runs": []
+              },
+              "reserved": [],
+              "settled": {
+                "p": 0,
+                "runs": []
+              }
+            }
+          },
+          "retired": {
+            "p": 0,
+            "runs": []
+          }
+        }
+      },
+      "requests": {
+        "client": {
+          "closedBelow": 4,
+          "recent": [
+            {
+              "atMs": 8000,
+              "payloadHash": "2ed5e45cbf16ca48444611a421f4933fc6c2811805264108575930e4da66a8ef",
+              "receipt": {
+                "code": "OK",
+                "ore": 0,
+                "t": 8000
+              },
+              "seq": 5
+            },
+            {
+              "atMs": 9000,
+              "payloadHash": "0ccd020fa66033debe6afbce7961571b55397901bfcde5bc2066bf4d7111b93b",
+              "receipt": {
+                "code": "OK",
+                "ore": 0,
+                "t": 9000
+              },
+              "seq": 6
+            },
+            {
+              "atMs": 10000,
+              "payloadHash": "0d5effa14125a7e0149948a4c95af412a97e9a1af5e273c16c3a8cf8759a086c",
+              "receipt": {
+                "code": "OK",
+                "ore": 0,
+                "t": 10000
+              },
+              "seq": 7
+            }
+          ],
+          "settled": {
+            "p": 1,
+            "runs": [
+              [
+                3,
+                7
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "items": {},
+    "monumentLevel": 1,
+    "rng": [
+      7,
+      0,
+      1026,
+      12288
+    ],
+    "schema": "legion.l2.account.v1",
+    "smith": {
+      "done": 0,
+      "job": 1,
+      "quantity": 3,
+      "unit": null
+    },
+    "t": 10000
+  },
+  "branch": [
+    "main"
+  ],
+  "checkpointId": 1,
+  "cursor": 10000,
+  "digest": "fa9966328325ff433474bf16c061bcdeb634eb11d0b770ec08634b435322a705",
+  "schema": "legion.l2.checkpoint.v1",
+  "versions": {
+    "economy": "l2-econ-v1",
+    "formula": "l2-v1",
+    "receipts": {
+      "maxAgeMs": 3600000,
+      "maxRecent": 3
+    }
+  }
+}

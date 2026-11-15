@@ -1,0 +1,44 @@
+{
+  "planRegisteredAt": "2026-11-15T13:26:46Z",
+  "document": {
+    "path": "manifests/l2/PREREGISTRATION.md",
+    "sha256": "2ddb9aee7a4d0fdeea68f8300fb2a96d9a61969c4fbb4dd42323862bfb1c88fb"
+  },
+  "contract": {
+    "path": "planning/L2_CONTRACT.md",
+    "sha256": "17efb33703f0a1a610a7b0a90878e1014bfb7682162d81ec82af29190120c42d"
+  },
+  "spec": {
+    "path": "../spec/formulas/l2-replay.md",
+    "sha256": "9c927070dfd9d571913f7bb0f1ef335f42aac65ff2a25930f23bea7744491c90"
+  },
+  "manifests": [
+    {
+      "path": "manifests/l2/L2-E01-differential.json",
+      "sha256": "da4fd1d155f0e17c67b2f827ca1ea3da621e38f2bcd060ecf6502ff4580ed79c"
+    },
+    {
+      "path": "manifests/l2/L2-E02-differential-tight.json",
+      "sha256": "00905e68e4479e08cb18707aa6e6de71a134bc578c7faf3b77bb6b1549fe4f8c"
+    },
+    {
+      "path": "manifests/l2/L2-E03-partition.json",
+      "sha256": "fe3f64a20f358b019ebfa8a779d694e49c6e7bb4d530f24fd1b81cdf1961ffc9"
+    },
+    {
+      "path": "manifests/l2/L2-E04-perf.json",
+      "sha256": "8c69bfbb0cd39a3a7e8a38cc21c21c0b9308de7f88226f13f60a4a80e2d5001d"
+    }
+  ],
+  "amendments": [
+    {
+      "path": "manifests/l2/L2-E05-perf-v11.json",
+      "sha256": "5eaec3ff29a5aad9e2f8243da1574c6de784997e29701db58f50d18c187117f9",
+      "registeredAt": "2026-11-15T14:21:56Z",
+      "document": {
+        "path": "manifests/l2/AMENDMENT-01.md",
+        "sha256": "97784c9f25011d8664a5e3a9c7211316e4833d86d07350e481dabd32f20794b1"
+      }
+    }
+  ]
+}

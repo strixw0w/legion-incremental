@@ -1,0 +1,20 @@
+Preservation against the S4 checkpoint (tracked files; git diff s4-checkpoint):
+legion-progression-lab/evidence: 0 tracked files changed
+legion-progression-lab/manifests: 0 tracked files changed
+legion-progression-lab/content: 0 tracked files changed
+spec/fixtures: 0 tracked files changed
+spec/formulas: 0 tracked files changed
+legion-progression-lab/repro: 0 tracked files changed
+Every tracked file changed since the S4 checkpoint:
+legion-progression-lab/CHANGELOG.md
+legion-progression-lab/PROVENANCE.md
+legion-progression-lab/README.md
+legion-progression-lab/src/core/errors.ts
+legion-progression-lab/src/engine/legion.ts
+legion-progression-lab/src/spec/fixtureRunner.ts
+legion-progression-lab/src/spec/fixtureSchema.ts
+legion-progression-lab/test/fixtures.conformance.test.ts
+legion-progression-lab/test/purity.test.ts
+spec/README.md
+spec/oracle/check_all.py
+spec/schema/fixture.schema.json

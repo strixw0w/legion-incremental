@@ -1,0 +1,49 @@
+{
+  "lab": ".",
+  "results": [
+    {
+      "id": "A-compact",
+      "finding": "stream \"constructor\": a request (seq 1, settle 0) and a credit (n 1, gold 1), compact store",
+      "observed": {
+        "request": {
+          "code": "APPLIED",
+          "receipt": {
+            "code": "OK",
+            "t": 0,
+            "ore": 0
+          }
+        },
+        "credit": {
+          "code": "APPLIED",
+          "receipt": null
+        }
+      }
+    },
+    {
+      "id": "A-full-history reference",
+      "finding": "stream \"constructor\": a request (seq 1, settle 0) and a credit (n 1, gold 1), full-history reference store",
+      "observed": {
+        "request": {
+          "code": "APPLIED",
+          "receipt": {
+            "code": "OK",
+            "t": 0,
+            "ore": 0
+          }
+        },
+        "credit": {
+          "code": "APPLIED",
+          "receipt": null
+        }
+      }
+    },
+    {
+      "id": "B",
+      "finding": "client seq 1 openBatch; checkpoint; delete the retained receipt (top 1, horizon 0); digest recomputed; restore; retry",
+      "observed": {
+        "restore": "threw LabError: INVALID_CHECKPOINT: request stream client: the highest executed sequence 1 has neither a retained receipt nor lies at or below the horizon 0",
+        "retry": "not attempted (restore refused)"
+      }
+    }
+  ]
+}

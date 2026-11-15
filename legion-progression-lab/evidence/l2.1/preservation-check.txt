@@ -1,0 +1,45 @@
+1. Original L2 records against the L2 review package (be59c7c6...):
+   L2 evidence: 32 files, 0 changed
+   L2 registrations: 8 files, 0 changed
+   L2 reproduction tools: 3 files, 0 changed
+   L2 contract and proposal: 2 files, 0 changed
+   L2 spec: 1 files, 0 changed
+   L2 fixtures: 4 files, 0 changed
+   L2 oracle: 1 files, 0 changed
+2. Other L2 package files changed or removed for L2.1 (expected: L2 code revised by L2.1, docs):
+   changed: legion-progression-lab/CHANGELOG.md
+   changed: legion-progression-lab/PROVENANCE.md
+   changed: legion-progression-lab/README.md
+   changed: legion-progression-lab/src/cli/fixtures-check.ts
+   changed: legion-progression-lab/src/cli/l2-perf.ts
+   changed: legion-progression-lab/src/cli/l2-run.ts
+   changed: legion-progression-lab/src/l2/account.ts
+   changed: legion-progression-lab/src/l2/checkpoint.ts
+   changed: legion-progression-lab/src/l2/compactIds.ts
+   changed: legion-progression-lab/src/l2/differential.ts
+   changed: legion-progression-lab/src/l2/ids.ts
+   changed: legion-progression-lab/src/l2/l1Reference.ts
+   changed: legion-progression-lab/src/l2/partition.ts
+   changed: legion-progression-lab/src/l2/producers.ts
+   changed: legion-progression-lab/src/l2/ranges.ts
+   changed: legion-progression-lab/src/l2/requests.ts
+   changed: legion-progression-lab/src/l2/simCheckpoint.ts
+   changed: legion-progression-lab/src/spec/fixtureRunner.ts
+   changed: legion-progression-lab/src/spec/fixtureSchema.ts
+   changed: legion-progression-lab/src/spec/l2Fixtures.ts
+   changed: legion-progression-lab/test/fixtures.conformance.test.ts
+   changed: legion-progression-lab/test/l2.core.test.ts
+   changed: legion-progression-lab/test/l2.sim.test.ts
+   changed: spec/README.md
+   changed: spec/oracle/check_all.py
+   changed: spec/schema/fixture.schema.json
+   1330 other files in the L2 package; 26 changed or removed
+3. Tracked files against s4-checkpoint:
+   legion-progression-lab/evidence: 0 tracked files changed
+   legion-progression-lab/manifests: 0 tracked files changed
+   legion-progression-lab/content: 0 tracked files changed
+   spec/fixtures: 0 tracked files changed
+   spec/formulas: 0 tracked files changed
+   legion-progression-lab/repro: 0 tracked files changed
+original L2 records changed: 0; tracked evidence/manifests/content/fixtures/formulas/repro changed since s4-checkpoint: 0
+preservation problems: 0

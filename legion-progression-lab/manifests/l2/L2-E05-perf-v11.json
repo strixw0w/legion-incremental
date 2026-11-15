@@ -1,0 +1,37 @@
+{
+  "experimentId": "L2-E05-perf-v11",
+  "kind": "perf",
+  "description": "Amendment 01 follow-up of L2-E04: the same seed, stages, workload and budgets; the client additionally retires every finished job producer every 10 simulated minutes (housekeeping requests on their own stream); the account heap is also measured alone (restored from its checkpoint after GC). Run with node --expose-gc.",
+  "seed": "l2-e04",
+  "policy": {
+    "maxRecent": 256,
+    "maxAgeMs": 86400000
+  },
+  "withL1": true,
+  "stages": [
+    {
+      "id": "day",
+      "days": 1,
+      "budgetWallMs": 300000,
+      "budgetPeakHeapMb": 2048
+    },
+    {
+      "id": "week",
+      "days": 7,
+      "budgetWallMs": 900000,
+      "budgetPeakHeapMb": 3072
+    },
+    {
+      "id": "month",
+      "days": 30,
+      "budgetWallMs": 1800000,
+      "budgetPeakHeapMb": 4096
+    }
+  ],
+  "budgets": {
+    "retainedMb": 16,
+    "reconstructionP95Ms": 200,
+    "checkpointKb": 1024
+  },
+  "retireFinished": true
+}

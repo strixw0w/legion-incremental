@@ -1,0 +1,48 @@
+{
+  "lab": "<HOME>/AppData/Local/Temp/claude/278b8a1dbacfe479/21149cb6-cbb9-4084-8aec-c79d4edcb607/scratchpad/zipcheck-l21-175341/legion-incremental-L2.1-review/legion-progression-lab",
+  "results": [
+    {
+      "id": "A-compact",
+      "finding": "stream \"constructor\": a request (seq 1, settle 0) and a credit (n 1, gold 1), compact store",
+      "observed": {
+        "request": "threw TypeError: s.receipts is not iterable",
+        "credit": "threw TypeError: Cannot read properties of undefined (reading 'length')"
+      }
+    },
+    {
+      "id": "A-full-history reference",
+      "finding": "stream \"constructor\": a request (seq 1, settle 0) and a credit (n 1, gold 1), full-history reference store",
+      "observed": {
+        "request": {
+          "code": "APPLIED",
+          "receipt": {
+            "code": "OK",
+            "t": 0,
+            "ore": 0
+          }
+        },
+        "credit": {
+          "code": "APPLIED",
+          "receipt": null
+        }
+      }
+    },
+    {
+      "id": "B",
+      "finding": "client seq 1 openBatch; checkpoint; delete the retained receipt (top 1, horizon 0); digest recomputed; restore; retry",
+      "observed": {
+        "restore": "ACCEPTED",
+        "retry": {
+          "outcome": {
+            "code": "APPLIED",
+            "receipt": {
+              "code": "OK",
+              "producer": 2
+            }
+          },
+          "batchProducersAllocated": 2
+        }
+      }
+    }
+  ]
+}

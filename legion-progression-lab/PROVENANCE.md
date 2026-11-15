@@ -52,6 +52,15 @@ Source: the owner's private `progression-lab/` repository, commit `74499ef2a7ec1
   - **The S3 oracle** (`spec/oracle/s3_oracle.py`), including its discrete-event model of the production queue, was written from `spec/formulas/s3-industry.md`, not from the TypeScript.
   - **mulberry32** (a public-domain 32-bit generator) generates the S3-E01 test command sequences only (`src/experiments/s3Conservation.ts`); the engine never uses it.
 
+- **L2:**
+  - **No code copied.** The range sets, bounded receipts, producers, identity stores, synthetic account, checkpoints and harnesses were written for this lab from the owner's L2 authorisation and `planning/L2_CONTRACT.md` v2.0.
+  - **The L1 reference store** (`src/l2/l1Reference.ts`) and **the L2 oracle** (`spec/oracle/l2_oracle.py`) were written independently of the range-set code, but **by the same author** (not an independent party).
+  - **mulberry32** generates the differential, partition and workload cases only; the engine never uses it.
+
+- **L2.1:**
+  - **No code copied.** The bounded window, limits, lifecycle, validators (including the simulation-state validator) and harness changes were written for this lab from the owner's "Independent L2 Review and L2.1 Authorisation" and `planning/L2_1_CONTRACT.md` v3.0.
+  - **The L2.1 oracle** (`spec/oracle/l21_oracle.py`) derives the window from the full request history by definition and re-simulates the account from `spec/formulas/l21-replay.md` v2; it was written by the same author (not an independent party).
+
 - **S4 acceptance:**
   - **No code copied.** The checked counters, the effective bonus metadata and the regional mastery rank were written for this lab from the owner's "Independent S4 Review and L2 Authorisation".
   - **The new oracle family** (`permanent-acceptance` in `spec/oracle/s4_oracle.py`) was written from `spec/formulas/s4-permanent.md` v1.1 §9 by the same author (not an independent party).

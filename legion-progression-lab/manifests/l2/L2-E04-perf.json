@@ -1,0 +1,14 @@
+{
+  "experimentId": "L2-E04-perf",
+  "kind": "perf",
+  "description": "Staged workloads: one account with 4 gatherers, a kill credit every 4 s, a request every minute, two to three work operations every 30 s, over 1, 7 and 30 simulated days; the L1 reference runs alongside to count its retained receipts. Run with node --expose-gc for the retained heap.",
+  "seed": "l2-e04",
+  "policy": { "maxRecent": 256, "maxAgeMs": 86400000 },
+  "withL1": true,
+  "stages": [
+    { "id": "day", "days": 1, "budgetWallMs": 300000, "budgetPeakHeapMb": 2048 },
+    { "id": "week", "days": 7, "budgetWallMs": 900000, "budgetPeakHeapMb": 3072 },
+    { "id": "month", "days": 30, "budgetWallMs": 1800000, "budgetPeakHeapMb": 4096 }
+  ],
+  "budgets": { "retainedMb": 16, "reconstructionP95Ms": 200, "checkpointKb": 1024 }
+}

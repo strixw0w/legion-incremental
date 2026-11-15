@@ -1,0 +1,274 @@
+{
+  "label": "baseline",
+  "node": "v24.22.3",
+  "timings": {
+    "differential-serialized": 142437,
+    "differential-structural": 118376,
+    "perf-day": 345,
+    "perf-week": 27240,
+    "partition": 11616
+  },
+  "resultsCanonicalLength": 4271,
+  "results": {
+    "differential-serialized": {
+      "seed": "opt-compare",
+      "operations": 100000,
+      "executed": 100000,
+      "stopped": false,
+      "byType": {
+        "request.new": 39784,
+        "credit.new": 11545,
+        "request.conflict": 2936,
+        "work": 28082,
+        "request.retry": 10167,
+        "credit.duplicate": 3728,
+        "credit.abandon": 327,
+        "request.ahead": 568,
+        "request.late": 1974,
+        "credit.late": 807,
+        "credit.ahead": 82
+      },
+      "outcomes": {
+        "APPLIED": 53020,
+        "REQUEST_CLOSED": 12267,
+        "WORK_NOT_RESERVED": 185,
+        "REPLAY": 2773,
+        "CREDIT_REPLAYED": 3719,
+        "WORK_INELIGIBLE": 14979,
+        "WORK_REPLAYED": 4744,
+        "WORK_OUT_OF_ORDER": 32,
+        "REQUEST_AHEAD": 539,
+        "CONFLICTING_PAYLOAD": 23,
+        "PRODUCER_RETIRED": 7598,
+        "CREDIT_AHEAD": 91,
+        "PRODUCER_CLOSED": 1,
+        "INVALID_REQUEST": 29
+      },
+      "declaredDifferences": {
+        "closedReplay": 7420,
+        "closedConflict": 3853,
+        "closedUnseen": 994,
+        "requestAhead": 539,
+        "creditAhead": 91,
+        "streamLimit": 0
+      },
+      "mismatches": 0,
+      "firstMismatches": [],
+      "comparisonDisagreements": 0,
+      "invariantViolations": 0,
+      "boundViolations": 0,
+      "checkpoints": 10,
+      "restoredIdentically": 10,
+      "branches": 4,
+      "branchIsolationBreaks": 0,
+      "wrongBranchAdmitted": 0,
+      "retiredProducers": 3207,
+      "l2Max": {
+        "receiptsPerStream": 64,
+        "creditRuns": 9,
+        "producerRuns": 15,
+        "openProducers": 64,
+        "reservedPerProducer": 9
+      },
+      "l1ReceiptsAtEnd": 39798,
+      "finalSimulatedMs": 117340106550
+    },
+    "differential-structural": {
+      "seed": "opt-compare",
+      "operations": 100000,
+      "executed": 100000,
+      "stopped": false,
+      "byType": {
+        "request.new": 39784,
+        "credit.new": 11545,
+        "request.conflict": 2936,
+        "work": 28082,
+        "request.retry": 10167,
+        "credit.duplicate": 3728,
+        "credit.abandon": 327,
+        "request.ahead": 568,
+        "request.late": 1974,
+        "credit.late": 807,
+        "credit.ahead": 82
+      },
+      "outcomes": {
+        "APPLIED": 53020,
+        "REQUEST_CLOSED": 12267,
+        "WORK_NOT_RESERVED": 185,
+        "REPLAY": 2773,
+        "CREDIT_REPLAYED": 3719,
+        "WORK_INELIGIBLE": 14979,
+        "WORK_REPLAYED": 4744,
+        "WORK_OUT_OF_ORDER": 32,
+        "REQUEST_AHEAD": 539,
+        "CONFLICTING_PAYLOAD": 23,
+        "PRODUCER_RETIRED": 7598,
+        "CREDIT_AHEAD": 91,
+        "PRODUCER_CLOSED": 1,
+        "INVALID_REQUEST": 29
+      },
+      "declaredDifferences": {
+        "closedReplay": 7420,
+        "closedConflict": 3853,
+        "closedUnseen": 994,
+        "requestAhead": 539,
+        "creditAhead": 91,
+        "streamLimit": 0
+      },
+      "mismatches": 0,
+      "firstMismatches": [],
+      "comparisonDisagreements": 0,
+      "invariantViolations": 0,
+      "boundViolations": 0,
+      "checkpoints": 10,
+      "restoredIdentically": 10,
+      "branches": 4,
+      "branchIsolationBreaks": 0,
+      "wrongBranchAdmitted": 0,
+      "retiredProducers": 3207,
+      "l2Max": {
+        "receiptsPerStream": 64,
+        "creditRuns": 9,
+        "producerRuns": 15,
+        "openProducers": 64,
+        "reservedPerProducer": 9
+      },
+      "l1ReceiptsAtEnd": 39798,
+      "finalSimulatedMs": 117340106550
+    },
+    "perf-day": {
+      "id": "day",
+      "status": "COMPLETED",
+      "simulatedDays": 1,
+      "deliveries": 32583,
+      "outcomes": {
+        "APPLIED": 30748,
+        "APPLIED:JOB_NOT_ACTIVE": 81,
+        "APPLIED:MONUMENT_MAX_LEVEL": 207,
+        "APPLIED:NOT_AFFORDABLE": 51,
+        "APPLIED:OK": 1135,
+        "APPLIED:SMITH_BUSY": 67,
+        "CREDIT_REPLAYED": 203,
+        "PRODUCER_RETIRED": 60,
+        "REQUEST_CLOSED": 31
+      },
+      "reloads": 4,
+      "retiredProducers": 288,
+      "unitsProduced": 57460,
+      "checkpointBytes": 42892,
+      "maxRetained": {
+        "receipts": 256,
+        "creditRuns": 5,
+        "producerRuns": 6,
+        "openProducers": 3,
+        "reservedUnits": 2
+      },
+      "finalRetained": {
+        "receipts": 256,
+        "creditRuns": 0,
+        "producerRuns": 1,
+        "openProducers": 3,
+        "reservedUnits": 2
+      },
+      "growth": [
+        {
+          "day": 1,
+          "checkpointBytes": 42892,
+          "receipts": 256
+        }
+      ]
+    },
+    "perf-week": {
+      "id": "week",
+      "status": "COMPLETED",
+      "simulatedDays": 7,
+      "deliveries": 228650,
+      "outcomes": {
+        "APPLIED": 215718,
+        "APPLIED:JOB_NOT_ACTIVE": 619,
+        "APPLIED:MONUMENT_MAX_LEVEL": 1892,
+        "APPLIED:NOT_AFFORDABLE": 42,
+        "APPLIED:OK": 7811,
+        "APPLIED:SMITH_BUSY": 410,
+        "CREDIT_REPLAYED": 1484,
+        "NOT_AFFORDABLE": 1,
+        "PRODUCER_FULL": 2,
+        "PRODUCER_RETIRED": 496,
+        "REQUEST_CLOSED": 175
+      },
+      "reloads": 28,
+      "retiredProducers": 2012,
+      "unitsProduced": 816336,
+      "checkpointBytes": 54215,
+      "maxRetained": {
+        "receipts": 256,
+        "creditRuns": 20,
+        "producerRuns": 10,
+        "openProducers": 4,
+        "reservedUnits": 3
+      },
+      "finalRetained": {
+        "receipts": 256,
+        "creditRuns": 1,
+        "producerRuns": 1,
+        "openProducers": 2,
+        "reservedUnits": 1
+      },
+      "growth": [
+        {
+          "day": 1,
+          "checkpointBytes": 43171,
+          "receipts": 256
+        },
+        {
+          "day": 2,
+          "checkpointBytes": 45128,
+          "receipts": 256
+        },
+        {
+          "day": 3,
+          "checkpointBytes": 46796,
+          "receipts": 256
+        },
+        {
+          "day": 4,
+          "checkpointBytes": 49039,
+          "receipts": 256
+        },
+        {
+          "day": 5,
+          "checkpointBytes": 50322,
+          "receipts": 256
+        },
+        {
+          "day": 6,
+          "checkpointBytes": 52070,
+          "receipts": 256
+        },
+        {
+          "day": 7,
+          "checkpointBytes": 54215,
+          "receipts": 256
+        }
+      ]
+    },
+    "partition": {
+      "seed": "opt-compare",
+      "cases": 200,
+      "partitionsChecked": 1000,
+      "withCheckpoints": 957,
+      "mismatches": 0,
+      "firstMismatches": [],
+      "ownerExample": {
+        "oneBatch": 250,
+        "twoBatches": 250,
+        "manyBatches": 250
+      },
+      "boundaryEvents": {
+        "featGrants": 388,
+        "levelUps": 14502,
+        "windowEdges": 400
+      }
+    }
+  }
+}

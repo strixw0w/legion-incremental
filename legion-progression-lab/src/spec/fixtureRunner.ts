@@ -2,7 +2,7 @@
  * Runs one fixture case through the lab and compares with the independently derived expectation.
  * Pure (no I/O). Special number markers in inputs: { "$special": "NaN" | "Infinity" | "-Infinity" | "-0" }.
  */
-import { isLabError } from '../core/errors.ts';
+import { fail, isLabError } from '../core/errors.ts';
 import { canonicalJson, sha256Hex } from '../core/hash/canonicalJson.ts';
 import { applyExpAward, buildXpTable, cumulativeReport, type XpCurve } from '../core/formulas/xp.ts';
 import { evaluateStat, type StatCategory, type StatSource } from '../core/formulas/stats.ts';
@@ -22,6 +22,8 @@ import { runLedgerReconstructionCase, runLegionCreditCase, runSquadFightCase, ru
 import { runEquipmentOpsCase, runIndustryRulesCase, runProductionQueueCase, runRecipeValidationCase } from './s3Fixtures.ts';
 import { runPermanentRulesCase } from './s4Fixtures.ts';
 import { runPermanentAcceptanceCase } from './s4AcceptanceFixtures.ts';
+import { runL2Case, SUPERSEDED_FAMILIES } from './l2Fixtures.ts';
+export { SUPERSEDED_FAMILIES };
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 type Input = Record<string, unknown>;
@@ -312,6 +314,30 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   },
   'permanent-acceptance'(input) {
     return runPermanentAcceptanceCase(input) as unknown as Json;
+  },
+  'l2-ranges'(input) {
+    return runL2Case('l2-ranges', input) as unknown as Json;
+  },
+  'l2-requests'() {
+    return fail('INVALID_STATE', `l2-requests is ${SUPERSEDED_FAMILIES['l2-requests'] ?? 'superseded'}`);
+  },
+  'l2-work'(input) {
+    return runL2Case('l2-work', input) as unknown as Json;
+  },
+  'l2-settlement'(input) {
+    return runL2Case('l2-settlement', input) as unknown as Json;
+  },
+  'l21-requests'(input) {
+    return runL2Case('l21-requests', input) as unknown as Json;
+  },
+  'l21-credits'(input) {
+    return runL2Case('l21-credits', input) as unknown as Json;
+  },
+  'l21-lifecycle'(input) {
+    return runL2Case('l21-lifecycle', input) as unknown as Json;
+  },
+  'l21-delivery'(input) {
+    return runL2Case('l21-delivery', input) as unknown as Json;
   },
 };
 

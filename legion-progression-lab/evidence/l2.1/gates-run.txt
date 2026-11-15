@@ -1,0 +1,34 @@
+# L2.1 gates start 2026-11-15T17:43:45Z
+wrote evidence/l2.1/examples
+time examples-and-findings: 3 s
+## mutation set 17:43:48Z
+L2.1 mutation check: 38 planted bugs, 38 detected, 0 not detected; all files restored: True
+time mutation-set: 260 s
+## suites 17:48:08Z
+time typecheck: 2 s
+time tests: 15 s
+time test-stats: 5 s
+time fixtures: 2 s
+time schemas: 1 s
+time oracle: 4 s
+tests:       Tests  1475 passed (1475)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 607; problems: 0
+oracle: oracle summary: 21 groups, 0 failing
+typecheck: typecheck: exit code 0
+## representative historical controls, executed fresh 17:48:41Z
+time historical-controls: 164 s
+controls: 6 MATCH, 0 MISMATCH
+time history-cache: 2 s
+cache: cache: 45 HIT (reused, not executed), 0 MISS (must be executed)
+## registration, preservation, git, frozen 17:51:27Z
+total changed: 0
+original L2 records changed: 0; tracked evidence/manifests/content/fixtures/formulas/repro changed since s4-checkpoint: 0
+preservation problems: 0
+patch vs s4-checkpoint: 71 file diffs, 25278 lines
+patch vs the L2 package: 51 files (25 added, 26 changed, 0 removed), 17287 lines
+combined fingerprint: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d (M0: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d)
+frozen HEAD: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; Original v1 working files: 12 (M0: 12)
+archive master 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; archive/increment6-original-v1 8d80a440d9818c961713b767f696764b3f18db66; remotes 0
+time all gates: 487 s
+done 2026-11-15T17:51:52Z

@@ -1,0 +1,8 @@
+N36: DETECTED (1 failing) restored=True | REQUEST_CLOSED is accepted as a declared difference without its reason
+N37: DETECTED (1 failing) restored=True | CREDIT_AHEAD is accepted as a declared difference without its reason
+N38: DETECTED (1 failing) restored=True | an economy difference is not reported
+
+L2.1 mutation check: 3 planted bugs, 3 detected, 0 not detected; all files restored: True
+- N36 [src/l2/differential.ts] REQUEST_CLOSED is accepted as a declared difference without its reason: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 945ms
+- N37 [src/l2/differential.ts] CREDIT_AHEAD is accepted as a declared difference without its reason: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 1699ms
+- N38 [src/l2/differential.ts] an economy difference is not reported: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 3229ms

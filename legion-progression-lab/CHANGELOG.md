@@ -2,6 +2,52 @@
 
 Every change to formula specs, fixtures, content or baselines is recorded here, with its decision ID, rationale, evidence and version.
 
+## L2 acceptance — 2026-11-15 (two boundary corrections; L2 checkpoint)
+
+**Source:** owner "L2.1 Acceptance and S5 Authorisation" §1–§5. **Decision:** `planning/L2_ACCEPTANCE_RESOLUTION.md` (L2 and L2.1 accepted; all five L2.1 contract decisions approved). **Evidence:** `evidence/l2-acceptance/ADDENDUM.md`.
+
+- **A. Safe stream dictionaries:** request, credit and producer-kind dictionaries are read by own property only (`own()` in `src/l2/compactIds.ts`), so a stream named `constructor` (or any inherited name) behaves like any other.
+- **B. Reconstruction invariant:** `streamProblems` refuses a stream whose highest executed sequence has no retained receipt and lies above the horizon.
+- **Tests:** 5 new in `test/l2.core.test.ts`. **Mutation checks:** `repro/l2-acceptance/mutation_check.py` (4 / 4). **Reproductions:** `repro/l2-acceptance/findings.ts`.
+
+## L2.1 — 2026-11-15 (correctness and bounded-memory correction of L2; accepted 2026-11-15 with the L2 acceptance corrections)
+
+**Source:** owner "Independent L2 Review and L2.1 Authorisation". **Contract:** `planning/L2_1_CONTRACT.md` v3.0 (revises `L2_CONTRACT.md` v2.0, which is kept). **Rules:** `spec/formulas/l21-replay.md` v2 (formula version `l2.1-v2`). **Pre-registration:** `manifests/l2.1/`. **Evidence:** `evidence/l2.1/L2_1_EVIDENCE.md`.
+
+- **Receipt expiry and the bounded window** (`src/l2/requests.ts`): receipts expire by trusted acceptance time on every delivery, out of order included. A stream keeps a horizon, the highest executed number and at most `maxRecent` receipts; `REQUEST_CLOSED` replaces `REPLAY_TOO_OLD` and `REQUEST_EXPIRED`; far-ahead numbers are `REQUEST_AHEAD`; stream count limit.
+- **Limits** (`src/l2/limits.ts`): every retained structure has a declared bound.
+- **Credits:** exact range sets with an admission window (`CREDIT_AHEAD`) and explicit abandonment (`creditAbandon`).
+- **Producer lifecycle** (`src/l2/producers.ts`, `account.ts`): units in order, outstanding and unit limits (rotation), closing (`closeBatch`; jobs on completion or cancellation), automatic retirement. The explicit `retire` request is removed.
+- **Validated reconstruction:** exact interval arithmetic for producers (`ranges.ts`: `isSubset`, `disjoint`); a full simulation-state validator (`src/l2/simState.ts`) with required fields per feature, domains, cross-references and event rules. The simulation checkpoint is now v2: committed kill credits are stored flat, because L2's nested encoding overflowed after a few thousand kills.
+- **Immutability:** frozen receipts, nested records, RNG and reservation lines; only module-made accounts are accepted.
+- **Branch identity:** accounts and deliveries carry their branch (`fork`, `BRANCH_MISMATCH`).
+- **Delivery parts:** envelope (`INVALID_DELIVERY`, `TIME_BACKWARDS`, `BRANCH_MISMATCH`), independently committed advancement (`advanceTo`), atomic command; `settle` can no longer go ahead of the trusted time (`SETTLE_AHEAD`).
+- **Approved optimisations,** each verified byte-identical against the previous implementation (`evidence/l2.1/optimisation/`): copy-on-write items, structural comparison in the differential, Feat evaluation only when a tier can become eligible; independent partition cases on worker threads.
+- **Runners:** enforced wall and memory budgets for every experiment kind; peak memory measured during execution; manifests of another formula version are refused.
+- **Fixtures and oracle:** new families `l21-requests`, `l21-credits`, `l21-lifecycle`, `l21-delivery` with `spec/oracle/l21_oracle.py`; `l2-requests` is superseded (kept, not run against the code).
+- **Tests:** `test/l2.core.test.ts` (rewritten), `test/l21.findings.test.ts`, additions to `test/l2.sim.test.ts`. **Mutation checks:** `repro/l2.1/mutation_check.py`. **Reproductions:** `repro/l2.1/findings_before.ts`, `findings_after.ts`. **Cache:** `repro/l2.1/history_cache.py`.
+- **Not built:** offline gameplay, the Monument of Eternity, the store's integration into the gameplay engine, Roblox persistence.
+
+## L2 — 2026-11-15 (bounded replay infrastructure; accepted with L2.1 and the L2 acceptance corrections)
+
+**Source:** owner "Independent S4 Review and L2 Authorisation" §8–§12. **Contract:** `planning/L2_CONTRACT.md` v2.0 (revises the v1.0 proposal, which is kept). **Rules:** `spec/formulas/l2-replay.md` v1. **Pre-registration:** `manifests/l2/` (registered 2026-11-15T13:26:46Z). **Evidence:** `evidence/l2/L2_EVIDENCE.md`.
+
+- **New module `src/l2/`** (pure; the purity scan now covers it):
+  - range sets (`ranges.ts`);
+  - request streams with bounded receipts and closed horizons (`requests.ts`);
+  - producers, work operations and retirement (`producers.ts`, `ids.ts`);
+  - the COMPACT identity store (`compactIds.ts`) and the FULL L1 reference (`l1Reference.ts`);
+  - the synthetic account with request identities, atomic batch settlement and chronological settlement (`account.ts`);
+  - validated checkpoints (`checkpoint.ts`) and validated save and restore of the actual simulation (`simCheckpoint.ts`);
+  - the differential and partition harnesses (`differential.ts`, `partition.ts`).
+- **CLI:** `src/cli/l2-run.ts` (refuses unregistered or changed manifests) and `src/cli/l2-perf.ts` (staged workloads with enforced budgets; the differential and partition harnesses have no deadline check).
+- **Engine (additive):** `LegionSimulation.runtimeSnapshot()` and `LegionSimulation.restoreRuntime()`, plus the exported `SimRuntime` type. No existing behaviour changed.
+- **Error codes (append-only):** `RANGE_OVERLAP`, `INVALID_CHECKPOINT`, `BRANCH_MISMATCH`.
+- **Fixtures:** families `l2-ranges`, `l2-requests`, `l2-work` and `l2-settlement` (generator `repro/l2/make_fixtures.py`), with the oracle `spec/oracle/l2_oracle.py`.
+- **Tests:** `test/l2.core.test.ts` and `test/l2.sim.test.ts`. **Mutation checks:** `repro/l2/mutation_check.py`. **Examples:** `repro/l2/examples.ts`.
+- **Not built:** offline combat, gathering or Smithing simulation, the Monument of Eternity, offline rewards UI, S5 campaigns, new zones, Roblox gameplay. The engine's own commands are not yet routed through the L2 request layer.
+- **Performance:** `evidence/perf-audit/PERFORMANCE_AUDIT_L2_ADDENDUM.md` (the L2 cycle measured, a profile of the L2 differential, the suites revised, and a correction to the audit's §8; the audit itself is unchanged).
+
 ## S4 acceptance — 2026-11-15 (three targeted corrections; S4 checkpoint)
 
 **Source:** owner "Independent S4 Review and L2 Authorisation" §1–§7. **Decision:** `planning/S4_ACCEPTANCE_RESOLUTION.md`. **Owner rule decisions:** `planning/S4_OWNER_RESOLUTIONS.md` (S4-R01 … R28). **Evidence:** `evidence/s4-acceptance/ADDENDUM.md`.

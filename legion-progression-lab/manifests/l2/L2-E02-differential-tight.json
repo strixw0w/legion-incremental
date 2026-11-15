@@ -1,0 +1,10 @@
+{
+  "experimentId": "L2-E02-differential-tight",
+  "kind": "differential",
+  "description": "250,000 randomized deliveries with a deliberately tight receipt window (8 receipts or 1 h per stream), so that eviction, REPLAY_TOO_OLD and REQUEST_EXPIRED occur often; checkpoints every 5,000, a branch every 10,000.",
+  "seed": "l2-e02",
+  "policy": { "maxRecent": 8, "maxAgeMs": 3600000 },
+  "operations": 250000,
+  "checkpointEvery": 5000,
+  "branchEvery": 10000
+}

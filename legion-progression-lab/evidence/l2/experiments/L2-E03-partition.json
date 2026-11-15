@@ -1,0 +1,31 @@
+{
+  "environment": {
+    "experimentId": "L2-E03-partition",
+    "manifestSha256": "fe3f64a20f358b019ebfa8a779d694e49c6e7bb4d530f24fd1b81cdf1961ffc9",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 258704,
+    "mainRssMb": 229
+  },
+  "result": {
+    "seed": "l2-e03",
+    "cases": 2000,
+    "partitionsChecked": 10000,
+    "withCheckpoints": 9407,
+    "mismatches": 0,
+    "firstMismatches": [],
+    "ownerExample": {
+      "oneBatch": 250,
+      "twoBatches": 250,
+      "manyBatches": 250
+    },
+    "boundaryEvents": {
+      "featGrants": 3892,
+      "levelUps": 151516,
+      "windowEdges": 4000
+    }
+  }
+}

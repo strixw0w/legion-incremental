@@ -1,0 +1,25 @@
+# L2 gates start 2026-11-15T14:28:12Z
+wrote evidence/l2/examples
+## mutation checks 14:28:13Z
+L2 mutation check: 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+S4 acceptance mutation check: 13 planted bugs, 13 detected, 0 not detected; all files restored: True
+S4 mutation check (re-run on the corrected code, P1 and P8 re-targeted): 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+S3 acceptance mutation check: 5 planted bugs, 5 detected, 0 not detected; all files restored: True
+S3.1 mutation check: 16 planted bugs, 16 detected, 0 not detected; all files restored: True
+S3 mutation check: 21 planted bugs, 21 detected, 0 not detected; all files restored: True
+## suites 14:36:09Z
+tests:       Tests  1401 passed (1401)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 550; problems: 0
+oracle: oracle summary: 20 groups, 0 failing
+typecheck: exit code 0
+## historical regression 14:36:45Z
+historical: 42 MATCH, 0 MISMATCH, 3 engineering identical, 0 different
+## registration, preservation, git, frozen 15:40:54Z
+total changed: 0 (re-run at packaging so the check also covers amendment 01 and its manifest; see registration-check.txt)
+patch: 46 file diffs, 11253 lines
+done 2026-11-15T15:41:23Z
+## regenerated at packaging, after a one-line comment fix in src/cli/l2-run.ts: git status, patch, preservation, frozen
+patch: 46 file diffs, 11253 lines
+## regenerated again at packaging: the first regeneration showed evidence/perf-audit/PERFORMANCE_AUDIT.md (tracked, S4 checkpoint) edited; it was restored from s4-checkpoint and the L2 additions moved to the new PERFORMANCE_AUDIT_L2_ADDENDUM.md
+patch: 46 file diffs, 11254 lines

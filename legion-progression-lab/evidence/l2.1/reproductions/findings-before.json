@@ -1,0 +1,118 @@
+{
+  "lab": "the L2 (v1) code",
+  "results": [
+    {
+      "id": "F1",
+      "finding": "maxAgeMs 100: seq 2 at t=0, seq 1 at t=90, seq 3 at t=150; then retry seq 2 at t=150",
+      "observed": {
+        "retained": [
+          1,
+          2,
+          3
+        ],
+        "retrySeq2": {
+          "kind": "REPLAY",
+          "receipt": {
+            "code": "OK",
+            "which": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "F2",
+      "finding": "maxAgeMs 1 h: request at 1 s, a credit at 10 h, retry at 10 h",
+      "observed": {
+        "retryOutcome": {
+          "code": "REPLAY",
+          "receipt": {
+            "code": "OK",
+            "level": 1,
+            "gold": 50
+          }
+        },
+        "receiptAgeMs": 35999001
+      }
+    },
+    {
+      "id": "F3",
+      "finding": "2,000 requests with sequences 2, 4, ..., 4000 (maxRecent 101)",
+      "observed": {
+        "settledRuns": 2000,
+        "closedBelow": 3798,
+        "receipts": 101,
+        "checkpointBytes": 38655
+      }
+    },
+    {
+      "id": "F4",
+      "finding": "producer batch:1 with settled prefix 100001, released prefix 100002, maxUnit 100002 (digest recomputed)",
+      "observed": "ACCEPTED"
+    },
+    {
+      "id": "F5",
+      "finding": "producer batch:1 with unit 1 both released and abandoned, settled prefix 1 (digest recomputed)",
+      "observed": "ACCEPTED"
+    },
+    {
+      "id": "F6",
+      "finding": "actual S4 simulation checkpoint (seed independent-l2-sim, POL4-BALANCED2) edited, digest recomputed",
+      "observed": {
+        "delete state.hero": "ACCEPTED",
+        "state.hero.hp = -1": "ACCEPTED",
+        "a queued event's kind = NOT_A_REAL_EVENT": "ACCEPTED",
+        "delete state.rng.loot": "ACCEPTED",
+        "delete state.permanent (permanent switch on)": "ACCEPTED"
+      }
+    },
+    {
+      "id": "F7",
+      "finding": "buy one Monument level, set the returned receipt level to 999, retry; and frozen-ness of nested records",
+      "observed": {
+        "mutation": "mutation succeeded",
+        "accountLevel": 1,
+        "replayedReceipt": {
+          "code": "OK",
+          "level": 999,
+          "gold": 50
+        },
+        "gathererActionFrozen": false,
+        "initialRngFrozen": false,
+        "rngIsCallersArray": true
+      }
+    },
+    {
+      "id": "F8",
+      "finding": "a request meant for branch main/what-if delivered to the parent account",
+      "observed": {
+        "outcome": {
+          "code": "APPLIED",
+          "receipt": {
+            "code": "OK",
+            "producer": 1
+          }
+        },
+        "parentChanged": true,
+        "accountHasBranchField": false
+      }
+    },
+    {
+      "id": "F9",
+      "finding": "one gatherer; open a batch at 0; at 1 h settle unreserved units 1-2",
+      "observed": {
+        "receipt": {
+          "code": "WORK_NOT_RESERVED",
+          "unit": 1
+        },
+        "before": {
+          "t": 0,
+          "lifetimeOre": 0
+        },
+        "after": {
+          "t": 3600000,
+          "lifetimeOre": 129
+        }
+      }
+    }
+  ]
+}

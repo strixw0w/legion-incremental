@@ -1,0 +1,25 @@
+{
+  "experimentId": "L2.1-E02-differential-tight",
+  "kind": "differential",
+  "formulaVersion": "l2.1-v2",
+  "description": "250,000 deliveries with a tight window (8 receipts or 1 h per stream, maxAhead 64): many receipts expire or are evicted, so the declared differences are frequent; checkpoint every 5,000; a branch every 10,000; budgets 15 min and 4 GB, enforced.",
+  "seed": "l21-e02",
+  "limits": {
+    "maxRecent": 8,
+    "maxAgeMs": 3600000,
+    "maxAhead": 64,
+    "maxStreams": 8,
+    "creditWindow": 4096,
+    "maxCreditStreams": 8,
+    "maxOpenProducers": 64,
+    "maxUnits": 4096,
+    "maxOutstanding": 64
+  },
+  "operations": 250000,
+  "checkpointEvery": 5000,
+  "branchEvery": 10000,
+  "budgets": {
+    "wallMs": 900000,
+    "peakRssMb": 4096
+  }
+}

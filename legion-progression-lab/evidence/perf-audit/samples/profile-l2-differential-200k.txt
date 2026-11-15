@@ -1,0 +1,77 @@
+Diagnostic CPU profile (not evidence): a shortened L2 differential, 200,000 deliveries, E01 policy and settings, seed 'perf-audit-l2-profile' (tools/l2_profile.ts), node --cpu-prof, 2026-11-15.
+Unprofiled timings on the same probe: 50,000 deliveries 59.7 s; 200,000 deliveries 335.7 s. Profiled: 352.0 s.
+
+total sampled 352.17 s
+self time by file:
+   53.4%  src/l2/account.ts
+   32.4%  src/core/hash/canonicalJson.ts
+    4.6%  (native/gc)
+    3.0%  src/l2/ranges.ts
+    2.8%  src/core/numeric/safeInt.ts
+    1.3%  src/core/numeric/remainder.ts
+    1.0%  src/l2/differential.ts
+    0.7%  src/l2/compactIds.ts
+    0.3%  hash
+    0.1%  src/l2/checkpoint.ts
+    0.1%  src/l2/l1Reference.ts
+    0.1%  src/l2/producers.ts
+    0.1%  src/l2/requests.ts
+    0.0%  evidence/perf-audit/tools/l2_profile.ts
+self time by function:
+   36.1%  working @ src/l2/account.ts:167
+   32.3%  serialise @ src/core/hash/canonicalJson.ts:20
+    7.6%  grantFeats @ src/l2/account.ts:217
+    5.3%  advance @ src/l2/account.ts:236
+    3.0%  (garbage collector) @ (native/gc):0
+    1.5%  startAction @ src/l2/account.ts:208
+    1.4%  RegExp: ^[\x20-\x7e]*$ @ (native/gc):0
+    1.4%  addRun @ src/l2/ranges.ts:49
+    1.3%  accrue @ src/core/numeric/remainder.ts:37
+    1.0%  move @ src/l2/account.ts:183
+    1.0%  divRem @ src/core/numeric/safeInt.ts:74
+    0.9%  mulSafe @ src/core/numeric/safeInt.ts:63
+    0.9%  (anon) @ src/l2/ranges.ts:73
+    0.8%  addSafe @ src/core/numeric/safeInt.ts:51
+    0.8%  runDifferential @ src/l2/differential.ts:82
+    0.5%  intersects @ src/l2/ranges.ts:39
+    0.5%  deliver @ src/l2/account.ts:282
+    0.4%  reservedLines @ src/l2/compactIds.ts:41
+    0.4%  efficiencyAt @ src/l2/account.ts:195
+    0.3%  (anon) @ src/l2/account.ts:193
+    0.2%  freeze @ src/l2/account.ts:178
+    0.2%  (anon) @ src/l2/account.ts:218
+inclusive time by lab file:
+   96.8%  src/l2/differential.ts
+   62.0%  src/l2/account.ts
+   33.9%  src/core/hash/canonicalJson.ts
+    4.1%  src/core/numeric/remainder.ts
+    3.8%  src/l2/compactIds.ts
+    3.0%  src/l2/ranges.ts
+    2.8%  src/core/numeric/safeInt.ts
+    1.8%  src/l2/requests.ts
+    0.6%  src/l2/checkpoint.ts
+    0.2%  src/l2/producers.ts
+    0.1%  src/l2/l1Reference.ts
+    0.0%  src/core/rng/sample.ts
+    0.0%  src/core/rng/xoshiro128ss.ts
+    0.0%  src/core/content/schema.ts
+    0.0%  src/engine/permanent.ts
+    0.0%  src/model/content.ts
+
+== serialise: inclusive 33.8%
+   32.6%  canonicalJson@canonicalJson.ts:16 <- economyView@differential.ts:43
+    0.5%  canonicalJson@canonicalJson.ts:16 <- runDifferential@differential.ts:82
+    0.3%  canonicalJson@canonicalJson.ts:16 <- fingerprint@canonicalJson.ts:65
+    0.2%  canonicalJson@canonicalJson.ts:16 <- serializeCheckpoint@checkpoint.ts:33
+    0.1%  canonicalJson@canonicalJson.ts:16 <- payloadHash@requests.ts:47
+    0.0%  (root)@:0
+== working: inclusive 36.2%
+   36.2%  deliver@account.ts:282 <- runDifferential@differential.ts:82
+== grantFeats: inclusive 7.8%
+    7.4%  advance@account.ts:236 <- deliver@account.ts:282
+    0.4%  advance@account.ts:236 <- execute@account.ts:344
+== addRun: inclusive 2.8%
+    1.5%  addOne@ranges.ts:76 <- creditAdd@compactIds.ts:23
+    1.2%  addOne@ranges.ts:76 <- record@requests.ts:82
+    0.0%  addOne@ranges.ts:76 <- retire@producers.ts:106
+    0.0%  addOne@ranges.ts:76 <- withSettled@producers.ts:89

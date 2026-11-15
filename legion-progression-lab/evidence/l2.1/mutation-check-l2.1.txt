@@ -1,0 +1,78 @@
+N1: DETECTED (6 failing) restored=True | the age boundary is off by one (a receipt replays at exactly maxAgeMs)
+N2: DETECTED (19 failing) restored=True | age expiry does not raise the horizon (an expired request runs again)
+N3: DETECTED (19 failing) restored=True | expiry waits for a request on the stream (the review's credit-advance case)
+N4: DETECTED (9 failing) restored=True | receipts kept in sequence order, so age expiry follows sequence numbers (the review's out-of-order case)
+N5: DETECTED (22 failing) restored=True | a number below the horizon is treated as new
+N6: DETECTED (16 failing) restored=True | far-ahead numbers are admitted
+N7: DETECTED (10 failing) restored=True | count eviction does not raise the horizon
+N8: DETECTED (10 failing) restored=True | count eviction removes the highest sequence number
+N9: DETECTED (13 failing) restored=True | a conflicting payload replays the original receipt
+N10: DETECTED (10 failing) restored=True | the credit window is not enforced (unbounded gaps)
+N11: DETECTED (1 failing) restored=True | an abandoned encounter is not settled (it can be paid later)
+N12: DETECTED (10 failing) restored=True | units may start out of order (skipped units)
+N13: DETECTED (2 failing) restored=True | the outstanding limit is not enforced
+N14: DETECTED (1 failing) restored=True | a closed producer accepts new units
+N15: DETECTED (1 failing) restored=True | the unit limit is not enforced (no rotation)
+N16: DETECTED (28 failing) restored=True | finished producers never retire (unbounded open producers)
+N17: DETECTED (4 failing) restored=True | a cancelled job is not closed (its unstarted units remain producible)
+N18: DETECTED (2 failing) restored=True | the released ⊆ settled check is skipped (the review's case A)
+N19: DETECTED (2 failing) restored=True | the released ∩ abandoned check is skipped (the review's case B)
+N20: DETECTED (2 failing) restored=True | the settled ∪ reserved = 1..maxUnit check is skipped
+N21: DETECTED (1 failing) restored=True | hero health may be negative (the review's simulation case 2)
+N22: DETECTED (1 failing) restored=True | unknown event kinds are read as policy decisions (the review's simulation case 3)
+N23: DETECTED (1 failing) restored=True | only the RNG streams present are checked (the review's simulation case 4)
+N24: DETECTED (1 failing) restored=True | the permanent state is optional while switched on (the review's simulation case 5)
+N25: DETECTED (6 failing) restored=True | the committed kill credits are saved as the nested chain (long runs overflow)
+N26: DETECTED (1 failing) restored=True | checkpoint validation skips the reservation balance
+N27: DETECTED (1 failing) restored=True | checkpoint validation ignores the digest
+N28: DETECTED (2 failing) restored=True | the returned receipt is not frozen (the review's mutation case)
+N29: DETECTED (2 failing) restored=True | a gatherer's action record is not frozen
+N30: DETECTED (1 failing) restored=True | spread or hand-built accounts are accepted
+N31: DETECTED (5 failing) restored=True | deliveries for another branch are admitted (the review's branch case)
+N32: DETECTED (2 failing) restored=True | a branch's checkpoint restores into another branch
+N33: DETECTED (3 failing) restored=True | a settlement request may claim time ahead of the trusted clock (L2 behaviour)
+N34: DETECTED (2 failing) restored=True | a delivery behind the account's time is accepted
+N35: DETECTED (29 failing) restored=True | Feat tiers are evaluated only at the batch end (the owner's 200-instead-of-250 defect)
+N36: DETECTED (1 failing) restored=True | REQUEST_CLOSED is accepted as a declared difference without its reason
+N37: DETECTED (1 failing) restored=True | CREDIT_AHEAD is accepted as a declared difference without its reason
+N38: DETECTED (1 failing) restored=True | an economy difference is not reported
+
+L2.1 mutation check: 38 planted bugs, 38 detected, 0 not detected; all files restored: True
+- N1 [src/l2/requests.ts] the age boundary is off by one (a receipt replays at exactly maxAgeMs): detected by 6 failing test(s); e.g. × §2: an out-of-order receipt expires by its own acceptance time (seq 2 at 0, seq 1 at 90, seq 3 at 150, maxAgeMs 100) 7ms
+- N2 [src/l2/requests.ts] age expiry does not raise the horizon (an expired request runs again): detected by 19 failing test(s); e.g. × §2: an out-of-order receipt expires by its own acceptance time (seq 2 at 0, seq 1 at 90, seq 3 at 150, maxAgeMs 100) 7ms
+- N3 [src/l2/compactIds.ts] expiry waits for a request on the stream (the review's credit-advance case): detected by 19 failing test(s); e.g. × §2: receipts expire when time advances through any delivery, with no new request on their stream 11ms
+- N4 [src/l2/requests.ts] receipts kept in sequence order, so age expiry follows sequence numbers (the review's out-of-order case): detected by 9 failing test(s); e.g. × §2: an out-of-order receipt expires by its own acceptance time (seq 2 at 0, seq 1 at 90, seq 3 at 150, maxAgeMs 100) 7ms
+- N5 [src/l2/requests.ts] a number below the horizon is treated as new: detected by 22 failing test(s); e.g. × §2: an out-of-order receipt expires by its own acceptance time (seq 2 at 0, seq 1 at 90, seq 3 at 150, maxAgeMs 100) 7ms
+- N6 [src/l2/requests.ts] far-ahead numbers are admitted: detected by 16 failing test(s); e.g. × l21.req.basic.001 (normal) 4ms
+- N7 [src/l2/requests.ts] count eviction does not raise the horizon: detected by 10 failing test(s); e.g. × §3: 2,000 requests with sequences 2, 4, ..., 4000 leave a bounded stream (no gap membership); 20,000 leave the same size 213ms
+- N8 [src/l2/requests.ts] count eviction removes the highest sequence number: detected by 10 failing test(s); e.g. × §3: 2,000 requests with sequences 2, 4, ..., 4000 leave a bounded stream (no gap membership); 20,000 leave the same size 195ms
+- N9 [src/l2/requests.ts] a conflicting payload replays the original receipt: detected by 13 failing test(s); e.g. × l21.del.retries (normal) 5ms
+- N10 [src/l2/compactIds.ts] the credit window is not enforced (unbounded gaps): detected by 10 failing test(s); e.g. × l21.cr.basic.001 (normal) 5ms
+- N11 [src/l2/account.ts] an abandoned encounter is not settled (it can be paid later): detected by 1 failing test(s); e.g. × each credit pays once; abandoned credits never pay; far-ahead credits are refused without effect; the set stays bounded 9ms
+- N12 [src/l2/producers.ts] units may start out of order (skipped units): detected by 10 failing test(s); e.g. × l21.del.batches (normal) 4ms
+- N13 [src/l2/producers.ts] the outstanding limit is not enforced: detected by 2 failing test(s); e.g. × l21.life.basic.001 (normal) 4ms
+- N14 [src/l2/producers.ts] a closed producer accepts new units: detected by 1 failing test(s); e.g. × units start in order and within the limits; closing retires once the work has settled; retired producers stay retired 9ms
+- N15 [src/l2/producers.ts] the unit limit is not enforced (no rotation): detected by 1 failing test(s); e.g. × units start in order and within the limits; closing retires once the work has settled; retired producers stay retired 10ms
+- N16 [src/l2/account.ts] finished producers never retire (unbounded open producers): detected by 28 failing test(s); e.g. × §4: closed and retired producers cannot be reactivated, and their numbers are never reused 5ms
+- N17 [src/l2/account.ts] a cancelled job is not closed (its unstarted units remain producible): detected by 4 failing test(s); e.g. × l2.settle.mixed.001 (normal) 10ms
+- N18 [src/l2/producers.ts] the released ⊆ settled check is skipped (the review's case A): detected by 2 failing test(s); e.g. × decoded producers are validated exactly by interval arithmetic, without iterating over unit numbers 6ms
+- N19 [src/l2/producers.ts] the released ∩ abandoned check is skipped (the review's case B): detected by 2 failing test(s); e.g. × decoded producers are validated exactly by interval arithmetic, without iterating over unit numbers 6ms
+- N20 [src/l2/producers.ts] the settled ∪ reserved = 1..maxUnit check is skipped: detected by 2 failing test(s); e.g. × decoded producers are validated exactly by interval arithmetic, without iterating over unit numbers 5ms
+- N21 [src/l2/simState.ts] hero health may be negative (the review's simulation case 2): detected by 1 failing test(s); e.g. × L2.1: the review cases and further edits are refused after the digest is recomputed (validation is independent of the digest) 70ms
+- N22 [src/l2/simState.ts] unknown event kinds are read as policy decisions (the review's simulation case 3): detected by 1 failing test(s); e.g. × L2.1: the review cases and further edits are refused after the digest is recomputed (validation is independent of the digest) 71ms
+- N23 [src/l2/simState.ts] only the RNG streams present are checked (the review's simulation case 4): detected by 1 failing test(s); e.g. × L2.1: the review cases and further edits are refused after the digest is recomputed (validation is independent of the digest) 79ms
+- N24 [src/l2/simState.ts] the permanent state is optional while switched on (the review's simulation case 5): detected by 1 failing test(s); e.g. × L2.1: the review cases and further edits are refused after the digest is recomputed (validation is independent of the digest) 80ms
+- N25 [src/l2/simCheckpoint.ts] the committed kill credits are saved as the nested chain (long runs overflow): detected by 6 failing test(s); e.g. × POL4-BALANCED2: four save / load cycles continue exactly as the uninterrupted run 443ms
+- N26 [src/l2/checkpoint.ts] checkpoint validation skips the reservation balance: detected by 1 failing test(s); e.g. × malformed and inconsistent checkpoints are refused with the problem named (digest recomputed), never repaired 7ms
+- N27 [src/l2/checkpoint.ts] checkpoint validation ignores the digest: detected by 1 failing test(s); e.g. × malformed and inconsistent checkpoints are refused with the problem named (digest recomputed), never repaired 10ms
+- N28 [src/l2/account.ts] the returned receipt is not frozen (the review's mutation case): detected by 2 failing test(s); e.g. × §6: a returned receipt cannot be changed, so the stored replay receipt stays the original 3ms
+- N29 [src/l2/account.ts] a gatherer's action record is not frozen: detected by 2 failing test(s); e.g. × §6: a returned receipt cannot be changed, so the stored replay receipt stays the original 5ms
+- N30 [src/l2/account.ts] spread or hand-built accounts are accepted: detected by 1 failing test(s); e.g. × only accounts made by the account module are accepted: spread or hand-built copies are refused 5ms
+- N31 [src/l2/account.ts] deliveries for another branch are admitted (the review's branch case): detected by 5 failing test(s); e.g. × §7: a message meant for a child branch is refused by the parent; a child's checkpoint cannot be restored as the parent 5ms
+- N32 [src/l2/checkpoint.ts] a branch's checkpoint restores into another branch: detected by 2 failing test(s); e.g. × §7: a message meant for a child branch is refused by the parent; a child's checkpoint cannot be restored as the parent 6ms
+- N33 [src/l2/account.ts] a settlement request may claim time ahead of the trusted clock (L2 behaviour): detected by 3 failing test(s); e.g. × §8: a failed settlement batch commits nothing of its own; what remains is exactly the independent advancement and its receipt 7ms
+- N34 [src/l2/account.ts] a delivery behind the account's time is accepted: detected by 2 failing test(s); e.g. × l21.del.envelope (boundary) 5ms
+- N35 [src/l2/account.ts] Feat tiers are evaluated only at the batch end (the owner's 200-instead-of-250 defect): detected by 29 failing test(s); e.g. × l2.settle.owner.001 (boundary) 10ms
+- N36 [src/l2/differential.ts] REQUEST_CLOSED is accepted as a declared difference without its reason: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 1071ms
+- N37 [src/l2/differential.ts] CREDIT_AHEAD is accepted as a declared difference without its reason: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 1428ms
+- N38 [src/l2/differential.ts] an economy difference is not reported: detected by 1 failing test(s); e.g. × the harness's power: planted faults in the compact store are reported, never absorbed as declared differences 3343ms

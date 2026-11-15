@@ -1,0 +1,1916 @@
+{
+  "fixtureSet": "l2-requests",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l2-replay.md#v1",
+  "status": "candidate",
+  "independence": "L2 rules (spec/formulas/l2-replay.md v1) re-derived by spec/oracle/l2_oracle.py from the rule text with Python sets and integers; the lab side calls the real L2 functions.  Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l2.req.basic.001",
+      "kind": "normal",
+      "description": "new, replay, conflict",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: NEW REPLAY CONFLICTING_PAYLOAD NEW",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REPLAY",
+          "CONFLICTING_PAYLOAD",
+          "NEW"
+        ],
+        "closedBelow": 0,
+        "recent": [
+          1,
+          2
+        ],
+        "settled": {
+          "p": 2,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.count.001",
+      "kind": "normal",
+      "description": "count eviction raises the horizon; an evicted replay is too old",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: 1 evicted at 4; replay of 1 REPLAY_TOO_OLD",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW"
+        ],
+        "closedBelow": 2,
+        "recent": [
+          3,
+          4,
+          5
+        ],
+        "settled": {
+          "p": 5,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.expired.001",
+      "kind": "normal",
+      "description": "a skipped number below the horizon is expired, not executed late",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: horizon 3 after evicting 1 and 3; 2 REQUEST_EXPIRED",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_EXPIRED"
+        ],
+        "closedBelow": 3,
+        "recent": [
+          4,
+          5,
+          6
+        ],
+        "settled": {
+          "p": 1,
+          "runs": [
+            [
+              3,
+              6
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.late.001",
+      "kind": "normal",
+      "description": "a skipped number above the horizon is still new (out of order)",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: NEW NEW NEW",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW"
+        ],
+        "closedBelow": 0,
+        "recent": [
+          1,
+          2,
+          3
+        ],
+        "settled": {
+          "p": 3,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.age.001",
+      "kind": "normal",
+      "description": "age eviction: the oldest goes when older than maxAgeMs",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 500,
+            "nowMs": 500
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2000,
+            "nowMs": 2000
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2100,
+            "nowMs": 2100
+          }
+        ]
+      },
+      "derivation": "hand: 1 and 2 evicted at 2000; 1 REPLAY_TOO_OLD",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD"
+        ],
+        "closedBelow": 2,
+        "recent": [
+          3
+        ],
+        "settled": {
+          "p": 3,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.invalid.001",
+      "kind": "normal",
+      "description": "a non-positive sequence number is invalid",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 0,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": -4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: INVALID_REQUEST twice",
+      "expected": {
+        "kinds": [
+          "INVALID_REQUEST",
+          "INVALID_REQUEST",
+          "NEW"
+        ],
+        "closedBelow": 0,
+        "recent": [
+          1
+        ],
+        "settled": {
+          "p": 1,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.boundary.001",
+      "kind": "boundary",
+      "description": "exactly maxRecent receipts: nothing is evicted; one more evicts the lowest",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: REPLAY at 3 kept; REPLAY_TOO_OLD after the fourth",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "REPLAY_TOO_OLD"
+        ],
+        "closedBelow": 1,
+        "recent": [
+          2,
+          3,
+          4
+        ],
+        "settled": {
+          "p": 4,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.boundary.002",
+      "kind": "boundary",
+      "description": "age exactly maxAgeMs is kept; one millisecond more evicts",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1000,
+            "nowMs": 1000
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1000,
+            "nowMs": 1000
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1001,
+            "nowMs": 1001
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1001,
+            "nowMs": 1001
+          }
+        ]
+      },
+      "derivation": "hand: kept at 1000, evicted at 1001",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "REPLAY_TOO_OLD"
+        ],
+        "closedBelow": 1,
+        "recent": [
+          2,
+          3
+        ],
+        "settled": {
+          "p": 3,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.policy.001",
+      "kind": "failure",
+      "description": "maxRecent 0 is not a policy",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 0,
+          "maxAgeMs": 10
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 0,
+            "nowMs": 0
+          }
+        ]
+      },
+      "derivation": "hand: maxRecent >= 1",
+      "expectedError": "INVALID_NUMBER"
+    },
+    {
+      "id": "l2.req.random.001",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 550,
+            "nowMs": 550
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 614,
+            "nowMs": 614
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 864,
+            "nowMs": 864
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1217,
+            "nowMs": 1217
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1583,
+            "nowMs": 1583
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1632,
+            "nowMs": 1632
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2095,
+            "nowMs": 2095
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2317,
+            "nowMs": 2317
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2728,
+            "nowMs": 2728
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3232,
+            "nowMs": 3232
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3363,
+            "nowMs": 3363
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3941,
+            "nowMs": 3941
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "NEW"
+        ],
+        "closedBelow": 9,
+        "recent": [
+          10,
+          11
+        ],
+        "settled": {
+          "p": 5,
+          "runs": [
+            [
+              7,
+              11
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.002",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 427,
+            "nowMs": 427
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 742,
+            "nowMs": 742
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 996,
+            "nowMs": 996
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1184,
+            "nowMs": 1184
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1827,
+            "nowMs": 1827
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2494,
+            "nowMs": 2494
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3028,
+            "nowMs": 3028
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3391,
+            "nowMs": 3391
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4085,
+            "nowMs": 4085
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4773,
+            "nowMs": 4773
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5274,
+            "nowMs": 5274
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5436,
+            "nowMs": 5436
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5744,
+            "nowMs": 5744
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5771,
+            "nowMs": 5771
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 6282,
+            "nowMs": 6282
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6563,
+            "nowMs": 6563
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 7179,
+            "nowMs": 7179
+          },
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 7879,
+            "nowMs": 7879
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 8076,
+            "nowMs": 8076
+          },
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 8195,
+            "nowMs": 8195
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 8643,
+            "nowMs": 8643
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 8881,
+            "nowMs": 8881
+          },
+          {
+            "seq": 12,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 9577,
+            "nowMs": 9577
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "REPLAY",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "REPLAY",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW"
+        ],
+        "closedBelow": 10,
+        "recent": [
+          11,
+          12
+        ],
+        "settled": {
+          "p": 6,
+          "runs": [
+            [
+              8,
+              12
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.003",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 98,
+            "nowMs": 98
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 115,
+            "nowMs": 115
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 361,
+            "nowMs": 361
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 401,
+            "nowMs": 401
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 727,
+            "nowMs": 727
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1361,
+            "nowMs": 1361
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1493,
+            "nowMs": 1493
+          },
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2105,
+            "nowMs": 2105
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2268,
+            "nowMs": 2268
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD"
+        ],
+        "closedBelow": 4,
+        "recent": [
+          5,
+          6,
+          7
+        ],
+        "settled": {
+          "p": 1,
+          "runs": [
+            [
+              3,
+              7
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.004",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 581,
+            "nowMs": 581
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1083,
+            "nowMs": 1083
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1713,
+            "nowMs": 1713
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1828,
+            "nowMs": 1828
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1870,
+            "nowMs": 1870
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2085,
+            "nowMs": 2085
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2498,
+            "nowMs": 2498
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3146,
+            "nowMs": 3146
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3719,
+            "nowMs": 3719
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4192,
+            "nowMs": 4192
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4245,
+            "nowMs": 4245
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4698,
+            "nowMs": 4698
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4915,
+            "nowMs": 4915
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 5356,
+            "nowMs": 5356
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5670,
+            "nowMs": 5670
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 5747,
+            "nowMs": 5747
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW"
+        ],
+        "closedBelow": 9,
+        "recent": [
+          11,
+          12,
+          13
+        ],
+        "settled": {
+          "p": 9,
+          "runs": [
+            [
+              11,
+              13
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.005",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 397,
+            "nowMs": 397
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 780,
+            "nowMs": 780
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1395,
+            "nowMs": 1395
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1440,
+            "nowMs": 1440
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2100,
+            "nowMs": 2100
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2729,
+            "nowMs": 2729
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3219,
+            "nowMs": 3219
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3385,
+            "nowMs": 3385
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3722,
+            "nowMs": 3722
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3937,
+            "nowMs": 3937
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4049,
+            "nowMs": 4049
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4177,
+            "nowMs": 4177
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4284,
+            "nowMs": 4284
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4460,
+            "nowMs": 4460
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4780,
+            "nowMs": 4780
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 5087,
+            "nowMs": 5087
+          },
+          {
+            "seq": 14,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5546,
+            "nowMs": 5546
+          },
+          {
+            "seq": 15,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5831,
+            "nowMs": 5831
+          },
+          {
+            "seq": 16,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6304,
+            "nowMs": 6304
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6852,
+            "nowMs": 6852
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 7451,
+            "nowMs": 7451
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 8110,
+            "nowMs": 8110
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 8235,
+            "nowMs": 8235
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 8704,
+            "nowMs": 8704
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 9107,
+            "nowMs": 9107
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 9556,
+            "nowMs": 9556
+          },
+          {
+            "seq": 24,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 10228,
+            "nowMs": 10228
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW"
+        ],
+        "closedBelow": 23,
+        "recent": [
+          24
+        ],
+        "settled": {
+          "p": 7,
+          "runs": [
+            [
+              9,
+              11
+            ],
+            [
+              13,
+              20
+            ],
+            [
+              22,
+              24
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.006",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 121,
+            "nowMs": 121
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 469,
+            "nowMs": 469
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 664,
+            "nowMs": 664
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1029,
+            "nowMs": 1029
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1263,
+            "nowMs": 1263
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1859,
+            "nowMs": 1859
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2109,
+            "nowMs": 2109
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "REPLAY_TOO_OLD",
+          "NEW"
+        ],
+        "closedBelow": 4,
+        "recent": [
+          5
+        ],
+        "settled": {
+          "p": 5,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.007",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 560,
+            "nowMs": 560
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 851,
+            "nowMs": 851
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1521,
+            "nowMs": 1521
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1573,
+            "nowMs": 1573
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1916,
+            "nowMs": 1916
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2269,
+            "nowMs": 2269
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2279,
+            "nowMs": 2279
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2561,
+            "nowMs": 2561
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2773,
+            "nowMs": 2773
+          },
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3075,
+            "nowMs": 3075
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3132,
+            "nowMs": 3132
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3165,
+            "nowMs": 3165
+          },
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3418,
+            "nowMs": 3418
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3790,
+            "nowMs": 3790
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4041,
+            "nowMs": 4041
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4087,
+            "nowMs": 4087
+          },
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4346,
+            "nowMs": 4346
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 4424,
+            "nowMs": 4424
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5017,
+            "nowMs": 5017
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5705,
+            "nowMs": 5705
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 5748,
+            "nowMs": 5748
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 5842,
+            "nowMs": 5842
+          },
+          {
+            "seq": 12,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6206,
+            "nowMs": 6206
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 6353,
+            "nowMs": 6353
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6838,
+            "nowMs": 6838
+          },
+          {
+            "seq": 14,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 6851,
+            "nowMs": 6851
+          },
+          {
+            "seq": 15,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 7291,
+            "nowMs": 7291
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "REPLAY",
+          "REPLAY",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "CONFLICTING_PAYLOAD",
+          "REQUEST_EXPIRED",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "REPLAY_TOO_OLD",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW",
+          "NEW"
+        ],
+        "closedBelow": 12,
+        "recent": [
+          13,
+          14,
+          15
+        ],
+        "settled": {
+          "p": 0,
+          "runs": [
+            [
+              2,
+              4
+            ],
+            [
+              6,
+              15
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.008",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 72,
+            "nowMs": 72
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 527,
+            "nowMs": 527
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 897,
+            "nowMs": 897
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1376,
+            "nowMs": 1376
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1584,
+            "nowMs": 1584
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1833,
+            "nowMs": 1833
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2108,
+            "nowMs": 2108
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2513,
+            "nowMs": 2513
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3205,
+            "nowMs": 3205
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3397,
+            "nowMs": 3397
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3532,
+            "nowMs": 3532
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3547,
+            "nowMs": 3547
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REPLAY",
+          "REPLAY",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "CONFLICTING_PAYLOAD",
+          "REPLAY",
+          "NEW",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW"
+        ],
+        "closedBelow": 3,
+        "recent": [
+          4,
+          5,
+          6
+        ],
+        "settled": {
+          "p": 6,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.009",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 689,
+            "nowMs": 689
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 769,
+            "nowMs": 769
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1278,
+            "nowMs": 1278
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 1945,
+            "nowMs": 1945
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2180,
+            "nowMs": 2180
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2229,
+            "nowMs": 2229
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2899,
+            "nowMs": 2899
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3482,
+            "nowMs": 3482
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 3554,
+            "nowMs": 3554
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 3903,
+            "nowMs": 3903
+          },
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4312,
+            "nowMs": 4312
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4665,
+            "nowMs": 4665
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4707,
+            "nowMs": 4707
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 4858,
+            "nowMs": 4858
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "REPLAY",
+          "REPLAY",
+          "NEW",
+          "REPLAY",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "REPLAY_TOO_OLD",
+          "NEW",
+          "NEW"
+        ],
+        "closedBelow": 6,
+        "recent": [
+          7,
+          8,
+          9
+        ],
+        "settled": {
+          "p": 9,
+          "runs": []
+        }
+      }
+    },
+    {
+      "id": "l2.req.random.010",
+      "kind": "normal",
+      "description": "seeded random deliveries",
+      "input": {
+        "op": "stream",
+        "policy": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 538,
+            "nowMs": 538
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1120,
+            "nowMs": 1120
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 1461,
+            "nowMs": 1461
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "atMs": 2102,
+            "nowMs": 2102
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2366,
+            "nowMs": 2366
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "atMs": 2785,
+            "nowMs": 2785
+          }
+        ]
+      },
+      "derivation": "oracle: rules 1-5 in order",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REPLAY",
+          "REPLAY",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "CONFLICTING_PAYLOAD"
+        ],
+        "closedBelow": 1,
+        "recent": [
+          2
+        ],
+        "settled": {
+          "p": 2,
+          "runs": []
+        }
+      }
+    }
+  ]
+}

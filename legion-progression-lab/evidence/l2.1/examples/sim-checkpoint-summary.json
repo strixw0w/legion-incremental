@@ -1,0 +1,29 @@
+{
+  "schema": "legion.l2.sim-checkpoint.v2",
+  "bytes": 84717,
+  "stateKeys": [
+    "boss",
+    "credits",
+    "encounter",
+    "encounterSeq",
+    "hero",
+    "industry",
+    "ledger",
+    "legion",
+    "permanent",
+    "rng",
+    "session",
+    "tMs",
+    "time",
+    "zones"
+  ],
+  "pendingEventKinds": [
+    "EnemyAttack",
+    "GatherAction",
+    "HeroSwing",
+    "SessionEnded",
+    "SessionStarted",
+    "SlotRespawned"
+  ],
+  "digest": "5b851cb7d8003d76d21231e4f874b9708be1287368b603806a0fa021e4dff3e3"
+}

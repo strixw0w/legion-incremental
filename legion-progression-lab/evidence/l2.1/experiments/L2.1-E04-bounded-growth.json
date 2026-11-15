@@ -1,0 +1,415 @@
+{
+  "environment": {
+    "experimentId": "L2.1-E04-bounded-growth",
+    "manifestSha256": "40ed7a27166b1efc0f8cba3914e4bcbf6ec55e179f875b08057a515648e1ad31",
+    "formulaVersion": "l2.1-v2",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 11271,
+    "peakRssMbSampled": 236,
+    "peakRssMbOs": 242,
+    "endRssMb": 236
+  },
+  "status": "COMPLETED",
+  "result": {
+    "stages": [
+      {
+        "id": "day",
+        "status": "COMPLETED",
+        "simulatedDays": 1,
+        "deliveries": 32630,
+        "outcomes": {
+          "credit -> APPLIED": 22428,
+          "credit -> CREDIT_REPLAYED": 222,
+          "creditAbandon -> APPLIED": 265,
+          "request cancelJob -> APPLIED:JOB_NOT_ACTIVE": 71,
+          "request cancelJob -> APPLIED:OK": 28,
+          "request closeBatch -> APPLIED:OK": 199,
+          "request craft -> APPLIED:OK": 133,
+          "request craft -> REQUEST_CLOSED": 33,
+          "request createJob -> APPLIED:OK": 98,
+          "request createJob -> APPLIED:SMITH_BUSY": 45,
+          "request monument -> APPLIED:MONUMENT_MAX_LEVEL": 179,
+          "request monument -> APPLIED:NOT_AFFORDABLE": 45,
+          "request monument -> APPLIED:OK": 30,
+          "request openBatch -> APPLIED:OK": 201,
+          "request settle -> APPLIED:OK": 519,
+          "work abandon -> APPLIED": 1,
+          "work complete -> APPLIED": 3762,
+          "work complete -> PRODUCER_RETIRED": 51,
+          "work release -> APPLIED": 278,
+          "work reserve -> APPLIED": 4041,
+          "work reserve -> NOT_AFFORDABLE": 1
+        },
+        "reloads": 4,
+        "retiredProducers": 297,
+        "unitsProduced": 57303,
+        "wallMs": 242,
+        "deliveriesPerSecond": 135052,
+        "peakHeapMb": 25,
+        "peakRssMbSampled": 87,
+        "retainedHeapMb": 1.42,
+        "accountRetainedMb": 0,
+        "checkpointBytes": 42984,
+        "maxRetained": {
+          "receipts": 256,
+          "creditRuns": 10,
+          "producerRuns": 4,
+          "openProducers": 3,
+          "reservedUnits": 2
+        },
+        "finalRetained": {
+          "receipts": 256,
+          "creditRuns": 4,
+          "producerRuns": 1,
+          "openProducers": 2,
+          "reservedUnits": 1
+        },
+        "reconstructionMs": {
+          "n": 30,
+          "median": 0.81,
+          "p95": 1.11,
+          "max": 1.27
+        },
+        "growth": [
+          {
+            "day": 1,
+            "checkpointBytes": 42984,
+            "receipts": 256
+          }
+        ],
+        "budgets": {
+          "accountRetained": true,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      },
+      {
+        "id": "week",
+        "status": "COMPLETED",
+        "simulatedDays": 7,
+        "deliveries": 228691,
+        "outcomes": {
+          "credit -> APPLIED": 156890,
+          "credit -> CREDIT_REPLAYED": 1473,
+          "creditAbandon -> APPLIED": 1948,
+          "request cancelJob -> APPLIED:JOB_NOT_ACTIVE": 414,
+          "request cancelJob -> APPLIED:OK": 180,
+          "request closeBatch -> APPLIED:OK": 1282,
+          "request craft -> APPLIED:OK": 934,
+          "request craft -> REQUEST_CLOSED": 171,
+          "request createJob -> APPLIED:OK": 814,
+          "request createJob -> APPLIED:SMITH_BUSY": 368,
+          "request monument -> APPLIED:MONUMENT_MAX_LEVEL": 1983,
+          "request monument -> APPLIED:NOT_AFFORDABLE": 49,
+          "request monument -> APPLIED:OK": 30,
+          "request openBatch -> APPLIED:OK": 1284,
+          "request settle -> APPLIED:OK": 3487,
+          "work abandon -> APPLIED": 1,
+          "work complete -> APPLIED": 26555,
+          "work complete -> PRODUCER_RETIRED": 507,
+          "work release -> APPLIED": 1881,
+          "work reserve -> APPLIED": 28437,
+          "work reserve -> NOT_AFFORDABLE": 1,
+          "work reserve -> PRODUCER_FULL": 2
+        },
+        "reloads": 28,
+        "retiredProducers": 2095,
+        "unitsProduced": 815886,
+        "wallMs": 1756,
+        "deliveriesPerSecond": 130205,
+        "peakHeapMb": 63,
+        "peakRssMbSampled": 156,
+        "retainedHeapMb": 0.71,
+        "accountRetainedMb": 0.133,
+        "checkpointBytes": 54332,
+        "maxRetained": {
+          "receipts": 256,
+          "creditRuns": 7,
+          "producerRuns": 10,
+          "openProducers": 4,
+          "reservedUnits": 3
+        },
+        "finalRetained": {
+          "receipts": 256,
+          "creditRuns": 1,
+          "producerRuns": 1,
+          "openProducers": 3,
+          "reservedUnits": 2
+        },
+        "reconstructionMs": {
+          "n": 30,
+          "median": 1.61,
+          "p95": 2.29,
+          "max": 2.54
+        },
+        "growth": [
+          {
+            "day": 1,
+            "checkpointBytes": 43256,
+            "receipts": 256
+          },
+          {
+            "day": 2,
+            "checkpointBytes": 45390,
+            "receipts": 256
+          },
+          {
+            "day": 3,
+            "checkpointBytes": 46971,
+            "receipts": 256
+          },
+          {
+            "day": 4,
+            "checkpointBytes": 48584,
+            "receipts": 256
+          },
+          {
+            "day": 5,
+            "checkpointBytes": 50413,
+            "receipts": 256
+          },
+          {
+            "day": 6,
+            "checkpointBytes": 52021,
+            "receipts": 256
+          },
+          {
+            "day": 7,
+            "checkpointBytes": 54332,
+            "receipts": 256
+          }
+        ],
+        "budgets": {
+          "accountRetained": true,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      },
+      {
+        "id": "month",
+        "status": "COMPLETED",
+        "simulatedDays": 30,
+        "deliveries": 980279,
+        "outcomes": {
+          "credit -> APPLIED": 672585,
+          "credit -> CREDIT_REPLAYED": 6401,
+          "creditAbandon -> APPLIED": 7988,
+          "request cancelJob -> APPLIED:JOB_NOT_ACTIVE": 1715,
+          "request cancelJob -> APPLIED:OK": 793,
+          "request closeBatch -> APPLIED:OK": 5612,
+          "request craft -> APPLIED:ITEM_LIMIT": 2978,
+          "request craft -> APPLIED:OK": 1000,
+          "request craft -> REQUEST_CLOSED": 850,
+          "request createJob -> APPLIED:OK": 3519,
+          "request createJob -> APPLIED:SMITH_BUSY": 1620,
+          "request monument -> APPLIED:MONUMENT_MAX_LEVEL": 8497,
+          "request monument -> APPLIED:NOT_AFFORDABLE": 57,
+          "request monument -> APPLIED:OK": 30,
+          "request openBatch -> APPLIED:OK": 5613,
+          "request settle -> APPLIED:OK": 15010,
+          "work abandon -> APPLIED": 1,
+          "work complete -> APPLIED": 114151,
+          "work complete -> PRODUCER_RETIRED": 2090,
+          "work complete -> WORK_INELIGIBLE": 1,
+          "work complete -> WORK_REPLAYED": 3,
+          "work release -> APPLIED": 7801,
+          "work reserve -> APPLIED": 121953,
+          "work reserve -> NOT_AFFORDABLE": 1,
+          "work reserve -> PRODUCER_FULL": 10
+        },
+        "reloads": 120,
+        "retiredProducers": 9131,
+        "unitsProduced": 4215361,
+        "wallMs": 9093,
+        "deliveriesPerSecond": 107805,
+        "peakHeapMb": 116,
+        "peakRssMbSampled": 240,
+        "retainedHeapMb": 0.85,
+        "accountRetainedMb": 0.141,
+        "checkpointBytes": 55021,
+        "maxRetained": {
+          "receipts": 256,
+          "creditRuns": 20,
+          "producerRuns": 15,
+          "openProducers": 4,
+          "reservedUnits": 3
+        },
+        "finalRetained": {
+          "receipts": 256,
+          "creditRuns": 2,
+          "producerRuns": 1,
+          "openProducers": 1,
+          "reservedUnits": 1
+        },
+        "reconstructionMs": {
+          "n": 30,
+          "median": 1.39,
+          "p95": 1.82,
+          "max": 1.91
+        },
+        "growth": [
+          {
+            "day": 1,
+            "checkpointBytes": 43174,
+            "receipts": 256
+          },
+          {
+            "day": 2,
+            "checkpointBytes": 45125,
+            "receipts": 256
+          },
+          {
+            "day": 3,
+            "checkpointBytes": 46718,
+            "receipts": 256
+          },
+          {
+            "day": 4,
+            "checkpointBytes": 48426,
+            "receipts": 256
+          },
+          {
+            "day": 5,
+            "checkpointBytes": 50017,
+            "receipts": 256
+          },
+          {
+            "day": 6,
+            "checkpointBytes": 52264,
+            "receipts": 256
+          },
+          {
+            "day": 7,
+            "checkpointBytes": 54316,
+            "receipts": 256
+          },
+          {
+            "day": 8,
+            "checkpointBytes": 54903,
+            "receipts": 256
+          },
+          {
+            "day": 9,
+            "checkpointBytes": 55246,
+            "receipts": 256
+          },
+          {
+            "day": 10,
+            "checkpointBytes": 54825,
+            "receipts": 256
+          },
+          {
+            "day": 11,
+            "checkpointBytes": 54965,
+            "receipts": 256
+          },
+          {
+            "day": 12,
+            "checkpointBytes": 55519,
+            "receipts": 256
+          },
+          {
+            "day": 13,
+            "checkpointBytes": 55187,
+            "receipts": 256
+          },
+          {
+            "day": 14,
+            "checkpointBytes": 55340,
+            "receipts": 256
+          },
+          {
+            "day": 15,
+            "checkpointBytes": 55912,
+            "receipts": 256
+          },
+          {
+            "day": 16,
+            "checkpointBytes": 55130,
+            "receipts": 256
+          },
+          {
+            "day": 17,
+            "checkpointBytes": 55501,
+            "receipts": 256
+          },
+          {
+            "day": 18,
+            "checkpointBytes": 55779,
+            "receipts": 256
+          },
+          {
+            "day": 19,
+            "checkpointBytes": 55160,
+            "receipts": 256
+          },
+          {
+            "day": 20,
+            "checkpointBytes": 55230,
+            "receipts": 256
+          },
+          {
+            "day": 21,
+            "checkpointBytes": 55496,
+            "receipts": 256
+          },
+          {
+            "day": 22,
+            "checkpointBytes": 55406,
+            "receipts": 256
+          },
+          {
+            "day": 23,
+            "checkpointBytes": 55364,
+            "receipts": 256
+          },
+          {
+            "day": 24,
+            "checkpointBytes": 55557,
+            "receipts": 256
+          },
+          {
+            "day": 25,
+            "checkpointBytes": 55224,
+            "receipts": 256
+          },
+          {
+            "day": 26,
+            "checkpointBytes": 55332,
+            "receipts": 256
+          },
+          {
+            "day": 27,
+            "checkpointBytes": 55346,
+            "receipts": 256
+          },
+          {
+            "day": 28,
+            "checkpointBytes": 55478,
+            "receipts": 256
+          },
+          {
+            "day": 29,
+            "checkpointBytes": 55410,
+            "receipts": 256
+          },
+          {
+            "day": 30,
+            "checkpointBytes": 55021,
+            "receipts": 256
+          }
+        ],
+        "budgets": {
+          "accountRetained": true,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      }
+    ],
+    "gcExposed": true
+  }
+}

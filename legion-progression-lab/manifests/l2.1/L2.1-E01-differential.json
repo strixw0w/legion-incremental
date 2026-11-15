@@ -1,0 +1,25 @@
+{
+  "experimentId": "L2.1-E01-differential",
+  "kind": "differential",
+  "formulaVersion": "l2.1-v2",
+  "description": "1,000,000 randomized deliveries through the synthetic account with the COMPACT (L2.1) and FULL (full-history reference) stores; candidate limits (256 receipts or 24 h per stream); checkpoint save/restore every 10,000 deliveries; a branch with wrong-branch probes every 25,000; every declared difference reason-checked; registered budgets 30 min wall and 4 GB peak process memory, enforced (a run over budget is stopped and reported as stopped).",
+  "seed": "l21-e01",
+  "limits": {
+    "maxRecent": 256,
+    "maxAgeMs": 86400000,
+    "maxAhead": 1024,
+    "maxStreams": 8,
+    "creditWindow": 4096,
+    "maxCreditStreams": 8,
+    "maxOpenProducers": 64,
+    "maxUnits": 4096,
+    "maxOutstanding": 64
+  },
+  "operations": 1000000,
+  "checkpointEvery": 10000,
+  "branchEvery": 25000,
+  "budgets": {
+    "wallMs": 1800000,
+    "peakRssMb": 4096
+  }
+}

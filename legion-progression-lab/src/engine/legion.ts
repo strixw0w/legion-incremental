@@ -95,6 +95,17 @@ export interface LegionDiagnostics extends DiagnosticOptions {
   };
 }
 
+/** L2: the runtime of a between-steps simulation checkpoint (src/l2/simCheckpoint.ts). Plain JSON data. */
+export interface SimRuntime {
+  readonly seq: number;
+  readonly logCount: number;
+  readonly logDigest: string | null;
+  readonly counters: LegionCounters;
+  readonly policyDecisionsAt: { readonly t: number; readonly n: number };
+  /** Every pending event, in processing (key) order. */
+  readonly events: readonly SimEvent[];
+}
+
 export interface LegionOptions {
   readonly content: LegionContent;
   readonly seedRoot: string;
@@ -291,6 +302,48 @@ export class LegionSimulation {
       mergeCache: this.mergeCache,
     });
     return copy;
+  }
+
+  /**
+   * L2: the runtime part of a checkpoint, taken between steps only (never inside a step, never after a refused step).
+   * Events are immutable; they are listed in key order so the serialized form is canonical.
+   */
+  runtimeSnapshot(): SimRuntime {
+    if (this.current !== null) fail('INVALID_STATE', 'a checkpoint can only be taken between steps');
+    if (this.refused) fail('INVALID_STATE', 'a simulation stopped at a refused step cannot be checkpointed');
+    const q = this.queue.clone();
+    const events: SimEvent[] = [];
+    for (let e = q.pop(); e !== undefined; e = q.pop()) events.push(e);
+    return { seq: this.seq, logCount: this.logCount, logDigest: this.logDigest(), counters: JSON.parse(JSON.stringify(this.counters)) as LegionCounters, policyDecisionsAt: { ...this.policyDecisionsAt }, events };
+  }
+
+  /**
+   * L2: a simulation from a validated checkpoint (src/l2/simCheckpoint.ts validates before calling this). The log digest
+   * restarts as a chain from the saved digest; the kept log starts empty; caches start empty (they are derived).
+   */
+  static restoreRuntime(options: LegionOptions, state: LegionSimState, rt: SimRuntime): LegionSimulation {
+    const sim = Object.create(LegionSimulation.prototype) as LegionSimulation;
+    Object.assign(sim, {
+      content: options.content,
+      options,
+      policy: options.policy,
+      state,
+      queue: new EventQueue(rt.events),
+      seq: rt.seq,
+      current: null,
+      logHash: options.hashLog === false ? null : createHash('sha256').update(`resume:${rt.logDigest ?? ''}\n`),
+      logCount: rt.logCount,
+      keptLog: [],
+      counters: JSON.parse(JSON.stringify(rt.counters)) as LegionCounters,
+      observers: [],
+      policyDecisionsAt: { ...rt.policyDecisionsAt },
+      stopRequested: false,
+      refused: null,
+      damageCache: new Map(),
+      estimateCache: new Map(),
+      mergeCache: { applied: null, map: new WeakMap() },
+    });
+    return sim;
   }
 
   addObserver(observer: LegionObserver): void {

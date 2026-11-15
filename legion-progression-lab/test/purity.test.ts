@@ -1,6 +1,6 @@
 /**
  * The deterministic core must not touch the clock, ambient randomness, the process, timers or I/O.
- * Scanned folders: src/core, src/spec, src/report, src/model, src/engine, src/policy, src/experiments (pure modules).
+ * Scanned folders: src/core, src/spec, src/report, src/model, src/engine, src/policy, src/experiments, src/l2 (pure modules).
  * src/cli is the only place for I/O, timers and worker threads.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -8,7 +8,7 @@ import { join, relative, resolve, sep } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { LAB_ROOT } from '../src/cli/paths.ts';
 
-const PURE_DIRS = ['src/core', 'src/spec', 'src/report', 'src/model', 'src/engine', 'src/policy', 'src/experiments'];
+const PURE_DIRS = ['src/core', 'src/spec', 'src/report', 'src/model', 'src/engine', 'src/policy', 'src/experiments', 'src/l2'];
 const ALLOWED_PACKAGES = new Set(['zod', 'node:crypto']);
 const FORBIDDEN: [RegExp, string][] = [
   [/\bDate\b/, 'Date (clock)'],

@@ -1,0 +1,56 @@
+{
+  "environment": {
+    "experimentId": "L2-E02-differential-tight",
+    "manifestSha256": "00905e68e4479e08cb18707aa6e6de71a134bc578c7faf3b77bb6b1549fe4f8c",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 395585,
+    "mainRssMb": 613
+  },
+  "result": {
+    "seed": "l2-e02",
+    "operations": 250000,
+    "byType": {
+      "request.new": 100052,
+      "work": 69834,
+      "credit.new": 28763,
+      "request.retry": 25166,
+      "request.conflict": 7471,
+      "credit.duplicate": 9645,
+      "request.late": 6211,
+      "credit.late": 2858
+    },
+    "outcomes": {
+      "APPLIED": 167814,
+      "WORK_NOT_RESERVED": 16044,
+      "PRODUCER_UNKNOWN": 2,
+      "WORK_REPLAYED": 5805,
+      "REPLAY": 2608,
+      "CONFLICTING_PAYLOAD": 16,
+      "REPLAY_TOO_OLD": 31133,
+      "WORK_INELIGIBLE": 13873,
+      "CREDIT_REPLAYED": 7069,
+      "PRODUCER_RETIRED": 1015,
+      "REQUEST_EXPIRED": 4621
+    },
+    "changedSemantics": {
+      "replayTooOld": 22590,
+      "replayTooOldConflict": 8543,
+      "requestExpired": 4621
+    },
+    "mismatches": 0,
+    "firstMismatches": [],
+    "invariantViolations": 0,
+    "checkpoints": 50,
+    "restoredIdentically": 50,
+    "branches": 25,
+    "branchIsolationBreaks": 0,
+    "l2MaxRecentPerStream": 8,
+    "l2MaxRuns": 5866,
+    "l1ReceiptsAtEnd": 100522,
+    "finalSimulatedMs": 290496571266
+  }
+}

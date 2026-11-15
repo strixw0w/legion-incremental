@@ -1,0 +1,8 @@
+# L2.1 result fingerprints: SHA-256 of the canonical (sorted-key) JSON of each result's deterministic part
+# E01-E03: the whole result object. E04: per stage, everything except the measured timings and memory (wallMs, deliveriesPerSecond, peakHeapMb, peakRssMbSampled, retainedHeapMb, accountRetainedMb, reconstructionMs, budgets).
+L2.1-E01-differential: 4fd7edf3c4874df425dbc8fe6254ba4705cd6dcb03aa8c07a567246fc7fe355d  (status COMPLETED)
+L2.1-E02-differential-tight: f83f2586e5d2b6f9cb8ff5762e8c231852995835705516eb32f28f70da45758b  (status COMPLETED)
+L2.1-E03-partition: 7e2a691eded42b092156f27c8f3bbfee309b2c55d634e29a21c36ac79cd4eb4a  (status COMPLETED)
+L2.1-E04-bounded-growth/day: 0edd6cfcabdb359a304442be3a1aba055799dcaa96d67376254be06bca82a9af  (status COMPLETED)
+L2.1-E04-bounded-growth/week: 5c949adaaa8dda4edb3d0d31ebf89fe5da4f4dfa79696dff354d7e41dbef1a4f  (status COMPLETED)
+L2.1-E04-bounded-growth/month: 9fa373bb71b7fdf9210d2fa5097fcc64336965db3460e874532004b060d75824  (status COMPLETED)

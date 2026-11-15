@@ -1,0 +1,24 @@
+# L2 acceptance checks start 2026-11-15T18:20:05Z
+time mutation-acceptance: 22 s
+L2 acceptance mutation check: 4 planted bugs, 4 detected, 0 not detected; all files restored: True
+time mutation-l2.1-set: 241 s
+L2.1 mutation check: 38 planted bugs, 38 detected, 0 not detected; all files restored: True
+time typecheck: 1 s
+time tests: 14 s
+time test-stats: 5 s
+time fixtures: 1 s
+time oracle: 4 s
+tests:       Tests  1480 passed (1480)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 607; problems: 0
+oracle: oracle summary: 21 groups, 0 failing
+typecheck: typecheck: exit code 0
+time l21-e02: 55 s
+time l21-e03: 11 s
+L2.1-E02-differential-tight re-run on the corrected code: status and result IDENTICAL to the L2.1 packaged ones
+L2.1-E03-partition re-run on the corrected code: status and result IDENTICAL to the L2.1 packaged ones
+time history-cache: 2 s
+cache: cache: 45 HIT (reused, not executed), 0 MISS (must be executed)
+total changed: 0
+preservation problems: 0
+done 2026-11-15T18:26:02Z

@@ -1,0 +1,1616 @@
+{
+  "fixtureSet": "l2-settlement",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l2-replay.md#v1",
+  "status": "candidate",
+  "independence": "L2 rules (spec/formulas/l2-replay.md v1) re-derived by spec/oracle/l2_oracle.py from the rule text with Python sets and integers; the lab side calls the real L2 functions. The lab side settles every listed partition (with a checkpoint save and restore at each point) and requires the same result. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l2.settle.owner.001",
+      "kind": "boundary",
+      "description": "the owner's example: 100 ore per hour, +50% after 100 ore, two hours: 250 in every partition",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 36000,
+          "y0Milli": 1000,
+          "y1Milli": 0,
+          "expPerAction": 0,
+          "expBase": 100,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 100,
+              "bp": 5000
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [],
+        "untilMs": 7200000,
+        "partitions": [
+          [],
+          [
+            3600000
+          ],
+          [
+            600000,
+            3599999,
+            3600000,
+            3600001
+          ]
+        ]
+      },
+      "derivation": "hand: 100 in hour 1 (the 100th deposit at 3,600,000 grants the Feat), 150 in hour 2",
+      "expected": {
+        "t": 7200000,
+        "ore": 250,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 0,
+        "lifetimeOre": 250,
+        "feats": [
+          0
+        ],
+        "monument": 0,
+        "levels": [
+          1
+        ],
+        "remainders": [
+          0
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.negative.001",
+      "kind": "failure",
+      "description": "an efficiency window that makes production negative is refused",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 36000,
+          "y0Milli": 1000,
+          "y1Milli": 0,
+          "expPerAction": 0,
+          "expBase": 100,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 100,
+              "bp": 5000
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": -20000
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [],
+        "untilMs": 3600000,
+        "partitions": [
+          []
+        ]
+      },
+      "derivation": "hand: 10000 - 20000 < 0",
+      "expectedError": "INVALID_STATE"
+    },
+    {
+      "id": "l2.settle.window.001",
+      "kind": "boundary",
+      "description": "an offline-efficiency window edge is captured at the next action start",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 36000,
+          "y0Milli": 1000,
+          "y1Milli": 0,
+          "expPerAction": 0,
+          "expBase": 100,
+          "maxLevel": 50,
+          "featTiers": [],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 1800000,
+              "bp": -5000
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [],
+        "untilMs": 3600000,
+        "partitions": [
+          [],
+          [
+            1800000
+          ],
+          [
+            1799999,
+            1800001
+          ]
+        ]
+      },
+      "derivation": "hand: 50 full actions, then 50 half actions: 75",
+      "expected": {
+        "t": 3600000,
+        "ore": 75,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 0,
+        "lifetimeOre": 75,
+        "feats": [],
+        "monument": 0,
+        "levels": [
+          1
+        ],
+        "remainders": [
+          0
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.mixed.001",
+      "kind": "normal",
+      "description": "Monument purchases, a recruit and the smith queue at their chronological points",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 36000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 100,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 100,
+              "bp": 5000
+            },
+            {
+              "threshold": 1000,
+              "bp": 2500
+            },
+            {
+              "threshold": 10000,
+              "bp": 2500
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 2,
+        "schedule": [
+          {
+            "atMs": 0,
+            "kind": "credit",
+            "gold": 400
+          },
+          {
+            "atMs": 600000,
+            "kind": "monument"
+          },
+          {
+            "atMs": 900000,
+            "kind": "monument"
+          },
+          {
+            "atMs": 1200000,
+            "kind": "recruit"
+          },
+          {
+            "atMs": 1500000,
+            "kind": "createJob",
+            "quantity": 30
+          },
+          {
+            "atMs": 2700000,
+            "kind": "cancelJob",
+            "job": 1
+          },
+          {
+            "atMs": 3000000,
+            "kind": "createJob",
+            "quantity": 5
+          }
+        ],
+        "untilMs": 5400000,
+        "partitions": [
+          [],
+          [
+            1500000,
+            2700000
+          ],
+          [
+            100,
+            1234567,
+            2699999,
+            4000000
+          ]
+        ]
+      },
+      "derivation": "oracle",
+      "expected": {
+        "t": 5400000,
+        "ore": 701,
+        "oreReserved": 0,
+        "bar": 25,
+        "gold": 92,
+        "lifetimeOre": 751,
+        "feats": [
+          0
+        ],
+        "monument": 2,
+        "levels": [
+          6,
+          6,
+          5
+        ],
+        "remainders": [
+          4940000,
+          4940000,
+          2960000
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.001",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 59000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 188,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 9,
+              "bp": 2879
+            },
+            {
+              "threshold": 1954,
+              "bp": 3448
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 23988399,
+              "bp": -3311
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [
+          {
+            "atMs": 4017013,
+            "kind": "credit",
+            "gold": 82
+          },
+          {
+            "atMs": 15302642,
+            "kind": "credit",
+            "gold": 32
+          },
+          {
+            "atMs": 16059702,
+            "kind": "createJob",
+            "quantity": 5
+          },
+          {
+            "atMs": 17080483,
+            "kind": "credit",
+            "gold": 127
+          },
+          {
+            "atMs": 19148096,
+            "kind": "credit",
+            "gold": 82
+          },
+          {
+            "atMs": 22997968,
+            "kind": "monument"
+          },
+          {
+            "atMs": 24119611,
+            "kind": "cancelJob",
+            "job": 1
+          },
+          {
+            "atMs": 24607150,
+            "kind": "monument"
+          },
+          {
+            "atMs": 24825849,
+            "kind": "monument"
+          }
+        ],
+        "untilMs": 25200000,
+        "partitions": [
+          [],
+          [
+            1194289,
+            3421396,
+            4685462,
+            7829846,
+            13278290,
+            17305805,
+            20375484
+          ],
+          [
+            2553431,
+            5465480,
+            6163704,
+            13761761
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 25200000,
+        "ore": 722,
+        "oreReserved": 0,
+        "bar": 5,
+        "gold": 148,
+        "lifetimeOre": 732,
+        "feats": [
+          0
+        ],
+        "monument": 3,
+        "levels": [
+          7
+        ],
+        "remainders": [
+          6163200
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.002",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 37000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 32,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 69,
+              "bp": 5330
+            },
+            {
+              "threshold": 337,
+              "bp": 2667
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 3427228,
+              "bp": -4640
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [
+          {
+            "atMs": 804439,
+            "kind": "createJob",
+            "quantity": 15
+          },
+          {
+            "atMs": 16797396,
+            "kind": "cancelJob",
+            "job": 2
+          },
+          {
+            "atMs": 29002408,
+            "kind": "cancelJob",
+            "job": 2
+          },
+          {
+            "atMs": 42547049,
+            "kind": "monument"
+          }
+        ],
+        "untilMs": 46800000,
+        "partitions": [
+          [],
+          [
+            8256038,
+            13130443,
+            46109186
+          ],
+          [
+            17825995,
+            18132830,
+            20201942,
+            30668535,
+            31205591,
+            31423212,
+            42895408
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 46800000,
+        "ore": 4598,
+        "oreReserved": 0,
+        "bar": 15,
+        "gold": 0,
+        "lifetimeOre": 4628,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          28
+        ],
+        "remainders": [
+          9428400
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.003",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 13000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 172,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 177,
+              "bp": 3121
+            },
+            {
+              "threshold": 888,
+              "bp": 2151
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 22639609,
+              "bp": -391
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [
+          {
+            "atMs": 106176,
+            "kind": "credit",
+            "gold": 180
+          },
+          {
+            "atMs": 1334715,
+            "kind": "cancelJob",
+            "job": 3
+          },
+          {
+            "atMs": 1418251,
+            "kind": "credit",
+            "gold": 353
+          },
+          {
+            "atMs": 1802910,
+            "kind": "createJob",
+            "quantity": 10
+          },
+          {
+            "atMs": 1983422,
+            "kind": "credit",
+            "gold": 235
+          },
+          {
+            "atMs": 2640522,
+            "kind": "monument"
+          },
+          {
+            "atMs": 9706454,
+            "kind": "monument"
+          },
+          {
+            "atMs": 9937439,
+            "kind": "recruit"
+          },
+          {
+            "atMs": 10072566,
+            "kind": "credit",
+            "gold": 132
+          },
+          {
+            "atMs": 10094074,
+            "kind": "cancelJob",
+            "job": 1
+          }
+        ],
+        "untilMs": 10800000,
+        "partitions": [
+          [],
+          [
+            6128499
+          ],
+          [
+            8621645
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 10800000,
+        "ore": 5877,
+        "oreReserved": 0,
+        "bar": 10,
+        "gold": 492,
+        "lifetimeOre": 5897,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 2,
+        "levels": [
+          10,
+          10,
+          10,
+          3
+        ],
+        "remainders": [
+          3052800,
+          3052800,
+          3052800,
+          1518400
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.004",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 50000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 62,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 123,
+              "bp": 5687
+            },
+            {
+              "threshold": 2347,
+              "bp": 2944
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 7044018,
+              "bp": -745
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [
+          {
+            "atMs": 52179522,
+            "kind": "monument"
+          },
+          {
+            "atMs": 60187668,
+            "kind": "cancelJob",
+            "job": 1
+          },
+          {
+            "atMs": 72177042,
+            "kind": "createJob",
+            "quantity": 18
+          },
+          {
+            "atMs": 73068103,
+            "kind": "createJob",
+            "quantity": 12
+          },
+          {
+            "atMs": 79894604,
+            "kind": "cancelJob",
+            "job": 3
+          }
+        ],
+        "untilMs": 82800000,
+        "partitions": [
+          [],
+          [
+            6510888,
+            26409340,
+            34181772,
+            54979254,
+            58684661,
+            66788414
+          ],
+          [
+            1575544,
+            6996580,
+            10490837,
+            33624762,
+            40204969,
+            55708149
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 82800000,
+        "ore": 6665,
+        "oreReserved": 0,
+        "bar": 18,
+        "gold": 0,
+        "lifetimeOre": 6701,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          23
+        ],
+        "remainders": [
+          8613000
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.005",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 20000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 88,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 154,
+              "bp": 5596
+            },
+            {
+              "threshold": 1762,
+              "bp": 3954
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 8654055,
+              "bp": -3554
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [],
+        "untilMs": 64800000,
+        "partitions": [
+          [],
+          [
+            37886219,
+            40513911,
+            53417335,
+            63407458
+          ],
+          [
+            9176289,
+            20384928,
+            21999892,
+            35923163
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 64800000,
+        "ore": 42297,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 0,
+        "lifetimeOre": 42297,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          27,
+          27,
+          27
+        ],
+        "remainders": [
+          7185800,
+          7185800,
+          7185800
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.006",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 53000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 92,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 16,
+              "bp": 2708
+            },
+            {
+              "threshold": 1767,
+              "bp": 2749
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 10595871,
+              "bp": -2962
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [
+          {
+            "atMs": 320620,
+            "kind": "credit",
+            "gold": 113
+          },
+          {
+            "atMs": 1888860,
+            "kind": "credit",
+            "gold": 383
+          },
+          {
+            "atMs": 1965540,
+            "kind": "monument"
+          },
+          {
+            "atMs": 2266376,
+            "kind": "monument"
+          },
+          {
+            "atMs": 3882861,
+            "kind": "credit",
+            "gold": 158
+          },
+          {
+            "atMs": 6487080,
+            "kind": "credit",
+            "gold": 302
+          },
+          {
+            "atMs": 7336412,
+            "kind": "recruit"
+          },
+          {
+            "atMs": 7357108,
+            "kind": "credit",
+            "gold": 192
+          },
+          {
+            "atMs": 7520414,
+            "kind": "cancelJob",
+            "job": 1
+          },
+          {
+            "atMs": 8582726,
+            "kind": "credit",
+            "gold": 391
+          }
+        ],
+        "untilMs": 10800000,
+        "partitions": [
+          [],
+          [
+            682326,
+            6066636,
+            6751465,
+            8116836,
+            8905140,
+            9188143,
+            9415038,
+            10643703
+          ],
+          [
+            9171219
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 10800000,
+        "ore": 447,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 1331,
+        "lifetimeOre": 447,
+        "feats": [
+          0
+        ],
+        "monument": 2,
+        "levels": [
+          7,
+          4
+        ],
+        "remainders": [
+          1393600,
+          2859000
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.007",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 54000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 161,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 87,
+              "bp": 4203
+            },
+            {
+              "threshold": 886,
+              "bp": 1586
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 27803779,
+              "bp": -3152
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [
+          {
+            "atMs": 2363688,
+            "kind": "credit",
+            "gold": 130
+          },
+          {
+            "atMs": 18659011,
+            "kind": "monument"
+          },
+          {
+            "atMs": 21303002,
+            "kind": "createJob",
+            "quantity": 10
+          },
+          {
+            "atMs": 45442899,
+            "kind": "monument"
+          },
+          {
+            "atMs": 50111320,
+            "kind": "monument"
+          },
+          {
+            "atMs": 56528264,
+            "kind": "credit",
+            "gold": 277
+          },
+          {
+            "atMs": 59285432,
+            "kind": "recruit"
+          }
+        ],
+        "untilMs": 86400000,
+        "partitions": [
+          [],
+          [
+            53710680,
+            64851814,
+            76469369
+          ],
+          [
+            10400626,
+            10514215,
+            42429952,
+            55737639,
+            55902957,
+            57032278,
+            80592020,
+            85515684
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 86400000,
+        "ore": 4814,
+        "oreReserved": 0,
+        "bar": 10,
+        "gold": 199,
+        "lifetimeOre": 4834,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 2,
+        "levels": [
+          14,
+          8
+        ],
+        "remainders": [
+          6688800,
+          7958600
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.008",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 15000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 54,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 190,
+              "bp": 2363
+            },
+            {
+              "threshold": 2213,
+              "bp": 2254
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 10841756,
+              "bp": -4448
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [
+          {
+            "atMs": 11826820,
+            "kind": "monument"
+          },
+          {
+            "atMs": 21316216,
+            "kind": "createJob",
+            "quantity": 20
+          },
+          {
+            "atMs": 37903977,
+            "kind": "monument"
+          },
+          {
+            "atMs": 40427028,
+            "kind": "cancelJob",
+            "job": 3
+          }
+        ],
+        "untilMs": 68400000,
+        "partitions": [
+          [],
+          [
+            1092251,
+            60040821
+          ],
+          [
+            12855015,
+            44256723,
+            63000570,
+            63007027
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 68400000,
+        "ore": 52061,
+        "oreReserved": 0,
+        "bar": 20,
+        "gold": 0,
+        "lifetimeOre": 52101,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          41,
+          41,
+          41
+        ],
+        "remainders": [
+          4587600,
+          4587600,
+          4587600
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.009",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 55000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 50,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 151,
+              "bp": 846
+            },
+            {
+              "threshold": 608,
+              "bp": 3531
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 23892746,
+              "bp": -4483
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [
+          {
+            "atMs": 58130800,
+            "kind": "createJob",
+            "quantity": 10
+          }
+        ],
+        "untilMs": 75600000,
+        "partitions": [
+          [],
+          [
+            65896654,
+            70176955
+          ],
+          [
+            1342905,
+            6205494,
+            34493786,
+            58734752,
+            72387020,
+            74097068,
+            74962262
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 75600000,
+        "ore": 10849,
+        "oreReserved": 0,
+        "bar": 10,
+        "gold": 0,
+        "lifetimeOre": 10869,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          23,
+          23,
+          23
+        ],
+        "remainders": [
+          8598200,
+          8598200,
+          8598200
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.010",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 22000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 131,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 22,
+              "bp": 5762
+            },
+            {
+              "threshold": 2738,
+              "bp": 1717
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 12557047,
+              "bp": -235
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [
+          {
+            "atMs": 2546204,
+            "kind": "createJob",
+            "quantity": 16
+          },
+          {
+            "atMs": 3958580,
+            "kind": "createJob",
+            "quantity": 1
+          },
+          {
+            "atMs": 4260146,
+            "kind": "createJob",
+            "quantity": 6
+          },
+          {
+            "atMs": 4334454,
+            "kind": "recruit"
+          },
+          {
+            "atMs": 4706238,
+            "kind": "credit",
+            "gold": 123
+          },
+          {
+            "atMs": 4989394,
+            "kind": "createJob",
+            "quantity": 16
+          },
+          {
+            "atMs": 9986320,
+            "kind": "credit",
+            "gold": 41
+          },
+          {
+            "atMs": 10455330,
+            "kind": "monument"
+          }
+        ],
+        "untilMs": 10800000,
+        "partitions": [
+          [],
+          [
+            9365641
+          ],
+          [
+            4427997,
+            5429329,
+            6839596
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 10800000,
+        "ore": 3405,
+        "oreReserved": 0,
+        "bar": 39,
+        "gold": 114,
+        "lifetimeOre": 3483,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 1,
+        "levels": [
+          9,
+          9,
+          9
+        ],
+        "remainders": [
+          9377200,
+          9377200,
+          9377200
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.011",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 8000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 118,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 180,
+              "bp": 3376
+            },
+            {
+              "threshold": 391,
+              "bp": 3509
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 13003050,
+              "bp": -708
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 1,
+        "schedule": [],
+        "untilMs": 14400000,
+        "partitions": [
+          [],
+          [
+            384881,
+            1181969,
+            3072623,
+            3527482,
+            3533545,
+            7911691,
+            12262884
+          ],
+          [
+            5318478,
+            6875121,
+            7456390,
+            9424750,
+            11824643
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 14400000,
+        "ore": 6063,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 0,
+        "lifetimeOre": 6063,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          17
+        ],
+        "remainders": [
+          9678200
+        ]
+      }
+    },
+    {
+      "id": "l2.settle.random.012",
+      "kind": "normal",
+      "description": "seeded random economy, schedule and partitions",
+      "input": {
+        "op": "settle",
+        "economy": {
+          "actionMs": 35000,
+          "y0Milli": 1000,
+          "y1Milli": 100,
+          "expPerAction": 10,
+          "expBase": 124,
+          "maxLevel": 50,
+          "featTiers": [
+            {
+              "threshold": 145,
+              "bp": 4904
+            },
+            {
+              "threshold": 1708,
+              "bp": 2401
+            }
+          ],
+          "efficiency": [
+            {
+              "fromMs": 0,
+              "bp": 0
+            },
+            {
+              "fromMs": 4284652,
+              "bp": -3733
+            }
+          ],
+          "monumentBaseGold": 50,
+          "monumentGrowthBp": 1500,
+          "monumentBpPerLevel": 200,
+          "monumentMaxLevel": 30,
+          "recruitGold": 100,
+          "maxGatherers": 8,
+          "smithOrePerBar": 2,
+          "smithUnitMs": 60000
+        },
+        "gatherers": 3,
+        "schedule": [
+          {
+            "atMs": 1655908,
+            "kind": "credit",
+            "gold": 96
+          },
+          {
+            "atMs": 8427634,
+            "kind": "credit",
+            "gold": 114
+          },
+          {
+            "atMs": 14407234,
+            "kind": "recruit"
+          }
+        ],
+        "untilMs": 21600000,
+        "partitions": [
+          [],
+          [
+            2000068,
+            12723438,
+            15256137,
+            18756038
+          ],
+          [
+            6093123,
+            9566030,
+            14034941
+          ]
+        ]
+      },
+      "derivation": "oracle: spec section 4 as a single run",
+      "expected": {
+        "t": 21600000,
+        "ore": 3681,
+        "oreReserved": 0,
+        "bar": 0,
+        "gold": 210,
+        "lifetimeOre": 3681,
+        "feats": [
+          0,
+          1
+        ],
+        "monument": 0,
+        "levels": [
+          10,
+          10,
+          10
+        ],
+        "remainders": [
+          532200,
+          532200,
+          532200
+        ]
+      }
+    }
+  ]
+}

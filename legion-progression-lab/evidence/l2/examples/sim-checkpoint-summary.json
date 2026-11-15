@@ -1,0 +1,89 @@
+{
+  "schema": "legion.l2.sim-checkpoint.v1",
+  "versions": {
+    "contentHash": "144d60a338637f4cfcb502e2da8be09253be083e1dd51cbc58e1abbec3ecab89",
+    "industryContentHash": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b",
+    "legionContentHash": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0",
+    "permanentContentHash": "c1115512b72d4d7b4abfed652469dfe7bea614013190d732c4df0bb56eff319e",
+    "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc"
+  },
+  "options": {
+    "diagnostic": null,
+    "industry": true,
+    "ledger": "persistent",
+    "legion": true,
+    "permanent": true,
+    "queueArm": null,
+    "seedRoot": "l2-example#rep-0",
+    "sessions": [
+      {
+        "endMs": 1200000,
+        "startMs": 0
+      }
+    ]
+  },
+  "stateKeys": [
+    "boss",
+    "credits",
+    "encounter",
+    "encounterSeq",
+    "hero",
+    "industry",
+    "ledger",
+    "legion",
+    "permanent",
+    "rng",
+    "session",
+    "tMs",
+    "time",
+    "zones"
+  ],
+  "runtime": {
+    "seq": 2704,
+    "logCount": 2264,
+    "pendingEvents": 8,
+    "firstEvents": [
+      {
+        "data": {
+          "member": "rec:2",
+          "work": "job:18/u2"
+        },
+        "key": {
+          "entityOrder": "smith:rec:2",
+          "pass": 0,
+          "phase": 1,
+          "seq": 2681,
+          "t": 600216
+        },
+        "kind": "UnitComplete"
+      },
+      {
+        "data": {
+          "slotIndex": 8,
+          "zoneOrder": 2
+        },
+        "key": {
+          "entityOrder": "zone:2",
+          "pass": 0,
+          "phase": 1,
+          "seq": 2664,
+          "t": 600900
+        },
+        "kind": "SlotRespawned"
+      },
+      {
+        "epoch": 193,
+        "key": {
+          "entityOrder": "hero",
+          "pass": 0,
+          "phase": 1,
+          "seq": 2704,
+          "t": 601400
+        },
+        "kind": "EngageArrived"
+      }
+    ]
+  },
+  "digest": "9088f8e8fee4aaea7703ef4d0cfa23053bd14872d86be88bb05ca9ac4c5c7706",
+  "bytes": 87374
+}

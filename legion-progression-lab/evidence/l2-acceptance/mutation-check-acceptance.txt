@@ -1,0 +1,10 @@
+A1: DETECTED (2 failing) restored=True | request streams are read through the prototype (the review's constructor case)
+A2: DETECTED (1 failing) restored=True | credit streams are read through the prototype
+A3: DETECTED (2 failing) restored=True | a recorded stream starts from the prototype's value
+B1: DETECTED (2 failing) restored=True | the highest executed request may lose its receipt (the review's reconstruction case)
+
+L2 acceptance mutation check: 4 planted bugs, 4 detected, 0 not detected; all files restored: True
+- A1 [src/l2/compactIds.ts] request streams are read through the prototype (the review's constructor case): detected by 2 failing test(s); e.g. × A: streams named like inherited properties work exactly like any other, in both stores and through a checkpoint 6ms
+- A2 [src/l2/compactIds.ts] credit streams are read through the prototype: detected by 1 failing test(s); e.g. × A: streams named like inherited properties work exactly like any other, in both stores and through a checkpoint 6ms
+- A3 [src/l2/compactIds.ts] a recorded stream starts from the prototype's value: detected by 2 failing test(s); e.g. × A: streams named like inherited properties work exactly like any other, in both stores and through a checkpoint 5ms
+- B1 [src/l2/requests.ts] the highest executed request may lose its receipt (the review's reconstruction case): detected by 2 failing test(s); e.g. × B: the review case: the highest executed receipt removed (top 1, horizon 0) is refused, so its retry cannot execute again 4ms

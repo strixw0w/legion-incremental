@@ -1,0 +1,6 @@
+# L2 result fingerprints: SHA-256 of the key-sorted JSON of each result's deterministic part (environment and timing excluded)
+L2-E01-differential: 86878c9d7e36c60fc32acff77a46e410a57ccc7c4d457f5974744d90ebbca033
+L2-E02-differential-tight: add7dda22f879a466df57ea1e2940236757c1520c5e334d40d3b54044b8e357e
+L2-E03-partition: ea5ae8ba09173d56dc6686d7c28a63c8d477a6e9a7ed7f24f3b834750f1e9957
+L2-E04-perf (deterministic fields: deliveries, units, checkpoint bytes, tail, runs, L1 receipts, growth): fa14b6d1c90ae4c88ab12e0850f1462813c4eefe655be6209d4e9cc8f9cdbd75
+L2-E05-perf-v11 (deterministic fields: deliveries, units, checkpoint bytes, tail, runs, L1 receipts, growth, jobs retired): c1755b22bc62774dd365bf630b4ed5555ddd51e241b4a23bbeeb61e6b1112319

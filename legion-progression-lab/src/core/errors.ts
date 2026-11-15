@@ -26,6 +26,10 @@ export const ERROR_CODES = [
   // S1 engine errors (s1-combat-loop.md section 14)
   'EVENT_CASCADE_LIMIT',
   'SIM_EVENT_LIMIT',
+  // L2 bounded replay (spec/formulas/l2-replay.md v1)
+  'RANGE_OVERLAP',
+  'INVALID_CHECKPOINT',
+  'BRANCH_MISMATCH',
 ] as const;
 
 export type ErrorCode = (typeof ERROR_CODES)[number];

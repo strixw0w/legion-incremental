@@ -1,0 +1,282 @@
+{
+  "environment": {
+    "experimentId": "L2-E04-perf",
+    "manifestSha256": "8c69bfbb0cd39a3a7e8a38cc21c21c0b9308de7f88226f13f60a4a80e2d5001d",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 391847,
+    "mainRssMb": 315
+  },
+  "result": {
+    "stages": [
+      {
+        "id": "day",
+        "status": "COMPLETED",
+        "simulatedDays": 0.9999537037037037,
+        "deliveries": 27471,
+        "unitsProduced": 57364,
+        "wallMs": 324,
+        "deliveriesPerSecond": 84726,
+        "peakHeapMb": 24,
+        "peakRssMb": 87,
+        "retainedHeapMb": 3.04,
+        "checkpointBytes": 54228,
+        "replayTailReceipts": 256,
+        "replayTailBytes": 39193,
+        "rangeRuns": 0,
+        "reconstructionMs": {
+          "n": 30,
+          "median": 1.29,
+          "p95": 1.55,
+          "max": 3.7
+        },
+        "l1ReceiptsRetained": 1587,
+        "growth": [],
+        "budgets": {
+          "retained": true,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      },
+      {
+        "id": "week",
+        "status": "COMPLETED",
+        "simulatedDays": 6.999953703703704,
+        "deliveries": 192484,
+        "unitsProduced": 815952,
+        "wallMs": 49266,
+        "deliveriesPerSecond": 3907,
+        "peakHeapMb": 118,
+        "peakRssMb": 250,
+        "retainedHeapMb": 28.17,
+        "checkpointBytes": 138096,
+        "replayTailReceipts": 256,
+        "replayTailBytes": 39937,
+        "rangeRuns": 0,
+        "reconstructionMs": {
+          "n": 30,
+          "median": 5.78,
+          "p95": 8.58,
+          "max": 8.65
+        },
+        "l1ReceiptsRetained": 11092,
+        "growth": [
+          {
+            "day": 1,
+            "checkpointBytes": 55384,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 2,
+            "checkpointBytes": 70296,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 3,
+            "checkpointBytes": 85741,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 4,
+            "checkpointBytes": 99889,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 5,
+            "checkpointBytes": 114533,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 6,
+            "checkpointBytes": 126177,
+            "replayTailReceipts": 256
+          }
+        ],
+        "budgets": {
+          "retained": false,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      },
+      {
+        "id": "month",
+        "status": "COMPLETED",
+        "simulatedDays": 29.999953703703703,
+        "deliveries": 825128,
+        "unitsProduced": 4215493,
+        "wallMs": 341489,
+        "deliveriesPerSecond": 2416,
+        "peakHeapMb": 184,
+        "peakRssMb": 325,
+        "retainedHeapMb": 55.57,
+        "checkpointBytes": 419145,
+        "replayTailReceipts": 256,
+        "replayTailBytes": 40100,
+        "rangeRuns": 0,
+        "reconstructionMs": {
+          "n": 30,
+          "median": 14.86,
+          "p95": 21.2,
+          "max": 21.56
+        },
+        "l1ReceiptsRetained": 47570,
+        "growth": [
+          {
+            "day": 1,
+            "checkpointBytes": 56328,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 2,
+            "checkpointBytes": 71947,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 3,
+            "checkpointBytes": 88176,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 4,
+            "checkpointBytes": 102908,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 5,
+            "checkpointBytes": 117814,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 6,
+            "checkpointBytes": 129525,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 7,
+            "checkpointBytes": 143286,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 8,
+            "checkpointBytes": 155171,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 9,
+            "checkpointBytes": 165945,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 10,
+            "checkpointBytes": 176778,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 11,
+            "checkpointBytes": 190099,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 12,
+            "checkpointBytes": 202977,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 13,
+            "checkpointBytes": 214767,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 14,
+            "checkpointBytes": 225717,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 15,
+            "checkpointBytes": 237376,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 16,
+            "checkpointBytes": 250005,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 17,
+            "checkpointBytes": 261435,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 18,
+            "checkpointBytes": 273927,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 19,
+            "checkpointBytes": 285295,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 20,
+            "checkpointBytes": 297467,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 21,
+            "checkpointBytes": 309527,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 22,
+            "checkpointBytes": 321528,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 23,
+            "checkpointBytes": 334238,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 24,
+            "checkpointBytes": 345806,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 25,
+            "checkpointBytes": 358127,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 26,
+            "checkpointBytes": 368973,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 27,
+            "checkpointBytes": 381946,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 28,
+            "checkpointBytes": 393310,
+            "replayTailReceipts": 256
+          },
+          {
+            "day": 29,
+            "checkpointBytes": 405777,
+            "replayTailReceipts": 256
+          }
+        ],
+        "budgets": {
+          "retained": false,
+          "reconstruction": true,
+          "checkpoint": true
+        }
+      }
+    ],
+    "gcExposed": true
+  }
+}

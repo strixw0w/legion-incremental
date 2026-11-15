@@ -1,0 +1,1698 @@
+{
+  "fixtureSet": "l21-credits",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l21-replay.md#v2",
+  "status": "candidate",
+  "independence": "L2.1 rules (spec/formulas/l21-replay.md v2) re-derived by spec/oracle/l21_oracle.py from the rule text with a full-history window model, plain sets and dictionaries; the lab side calls the real L2.1 functions. The window-edge case is hand-derived. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l21.cr.basic.001",
+      "kind": "normal",
+      "description": "credit, duplicate, abandon, a credit for the abandoned number, ahead, then fill",
+      "input": {
+        "limits": {
+          "creditWindow": 8
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 2
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 2
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 11
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 10
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 5
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 6
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 7
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 8
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 9
+          }
+        ]
+      },
+      "derivation": "spec 3.4: each number settles once; 11 - p(3) > 8; the gaps close as their credits arrive",
+      "expected": {
+        "codes": [
+          "APPLIED",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED"
+        ],
+        "paid": 8,
+        "streams": {
+          "squad": {
+            "p": 10,
+            "runs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.window-edge",
+      "kind": "boundary",
+      "description": "n - p equal to the window is admitted; one more is refused",
+      "input": {
+        "limits": {
+          "creditWindow": 8
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 8
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 10
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 9
+          }
+        ]
+      },
+      "derivation": "hand-derived: p = 0, 8 - 0 = 8 is admitted; 10 > 8 refused; 9 - 0 = 9 > 8 refused",
+      "expected": {
+        "codes": [
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD"
+        ],
+        "paid": 1,
+        "streams": {
+          "squad": {
+            "p": 0,
+            "runs": [
+              [
+                8,
+                8
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.streams",
+      "kind": "boundary",
+      "description": "a stream limit; an invalid number; streams are independent",
+      "input": {
+        "limits": {
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "a",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "b",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "c",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "a",
+            "n": 0
+          },
+          {
+            "op": "credit",
+            "stream": "a",
+            "n": 2
+          }
+        ]
+      },
+      "derivation": "spec 3.4 order: invalid, stream limit, replay, ahead",
+      "expected": {
+        "codes": [
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_STREAM_LIMIT",
+          "INVALID_REQUEST",
+          "APPLIED"
+        ],
+        "paid": 3,
+        "streams": {
+          "a": {
+            "p": 2,
+            "runs": []
+          },
+          "b": {
+            "p": 1,
+            "runs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.000",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 20,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 12
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 27
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 28
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 23
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 22
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 16
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 2
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 17
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 13
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 10
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 29
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 9
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 16
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 15
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 14
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 1
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 28
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 39
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 16
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 23
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 8
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 32
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 2
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 19
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED"
+        ],
+        "paid": 16,
+        "streams": {
+          "squad": {
+            "p": 0,
+            "runs": [
+              [
+                4,
+                4
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                14,
+                14
+              ],
+              [
+                16,
+                17
+              ],
+              [
+                20,
+                20
+              ]
+            ]
+          },
+          "worker:1": {
+            "p": 4,
+            "runs": [
+              [
+                8,
+                10
+              ],
+              [
+                13,
+                13
+              ],
+              [
+                15,
+                16
+              ],
+              [
+                18,
+                20
+              ],
+              [
+                23,
+                23
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.001",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 5,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 12
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 21
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 9
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 29
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 4
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 5
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 12
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 13
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD"
+        ],
+        "paid": 2,
+        "streams": {
+          "worker:1": {
+            "p": 0,
+            "runs": [
+              [
+                4,
+                5
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.002",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 17,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 27
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 24
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 31
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 30
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 35
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 11
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 38
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 37
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 22
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 7
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 11
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 2
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 5
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 29
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 26
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 13
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 13
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 5
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 21
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 4
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 38
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 7
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 19
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 14
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 28
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 27
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 39
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 6
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 36
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 2
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 25
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 40
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 22
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_REPLAYED",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD"
+        ],
+        "paid": 11,
+        "streams": {
+          "squad": {
+            "p": 1,
+            "runs": [
+              [
+                3,
+                4
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                13,
+                13
+              ]
+            ]
+          },
+          "worker:1": {
+            "p": 0,
+            "runs": [
+              [
+                2,
+                7
+              ],
+              [
+                11,
+                11
+              ],
+              [
+                14,
+                14
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.003",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 13,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 29
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 29
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 32
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 36
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 28
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 14
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 11
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 4
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 8
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 6
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 10
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 11
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 24
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 17
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 22
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 35
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 11
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 39
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 10
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 7
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 1
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 10
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 12
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "APPLIED"
+        ],
+        "paid": 9,
+        "streams": {
+          "squad": {
+            "p": 1,
+            "runs": [
+              [
+                4,
+                4
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                10,
+                12
+              ],
+              [
+                14,
+                14
+              ]
+            ]
+          },
+          "worker:1": {
+            "p": 1,
+            "runs": [
+              [
+                6,
+                6
+              ],
+              [
+                8,
+                8
+              ],
+              [
+                10,
+                11
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.004",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 8,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 7
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 24
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 37
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 32
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 35
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 3
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 23
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 27
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 6
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 24
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 33
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 28
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 40
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 14
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 33
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 29
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 36
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 5
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 20
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 13
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 30
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 31
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_REPLAYED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD"
+        ],
+        "paid": 3,
+        "streams": {
+          "squad": {
+            "p": 0,
+            "runs": [
+              [
+                3,
+                3
+              ],
+              [
+                5,
+                7
+              ]
+            ]
+          },
+          "worker:1": {
+            "p": 0,
+            "runs": [
+              [
+                3,
+                3
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.random.005",
+      "kind": "normal",
+      "description": "seeded random credits and abandonments",
+      "input": {
+        "limits": {
+          "creditWindow": 8,
+          "maxCreditStreams": 2
+        },
+        "steps": [
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 9
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 3
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 21
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 33
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 8
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 34
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 37
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 4
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 17
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 27
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 26
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 25
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 13
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 26
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 9
+          },
+          {
+            "op": "abandon",
+            "stream": "worker:1",
+            "n": 1
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 3
+          },
+          {
+            "op": "credit",
+            "stream": "squad",
+            "n": 18
+          },
+          {
+            "op": "credit",
+            "stream": "worker:1",
+            "n": 21
+          },
+          {
+            "op": "abandon",
+            "stream": "squad",
+            "n": 21
+          }
+        ]
+      },
+      "derivation": "oracle: plain sets, prefix by counting (spec 3.4)",
+      "expected": {
+        "codes": [
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "APPLIED",
+          "CREDIT_REPLAYED",
+          "APPLIED",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD",
+          "CREDIT_AHEAD"
+        ],
+        "paid": 5,
+        "streams": {
+          "squad": {
+            "p": 0,
+            "runs": [
+              [
+                3,
+                3
+              ],
+              [
+                8,
+                8
+              ]
+            ]
+          },
+          "worker:1": {
+            "p": 1,
+            "runs": [
+              [
+                3,
+                4
+              ],
+              [
+                9,
+                9
+              ]
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "l21.cr.bad-limits",
+      "kind": "failure",
+      "description": "creditWindow 0",
+      "input": {
+        "limits": {
+          "creditWindow": 0
+        },
+        "steps": []
+      },
+      "derivation": "every limit is a positive safe integer (spec 0)",
+      "expectedError": "INVALID_NUMBER"
+    }
+  ]
+}

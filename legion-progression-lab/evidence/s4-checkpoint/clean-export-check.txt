@@ -1,0 +1,12 @@
+Clean export check of s4-checkpoint (dc39492f3ed2c8f66884e964bcd2cfbb521e6a4d), 2026-11-15T13:26:32Z: git archive into an empty folder, offline install
+npm-ci: exit 0 | added 51 packages in 3s
+typecheck: exit 0 | 
+test: exit 0 |       Tests  1277 passed (1277)
+test-stats: exit 0 |       Tests  9 passed (9)
+fixtures: exit 0 | total cases: 481; problems: 0
+oracle: exit 0 | oracle summary: 19 groups, 0 failing
+verify-s4-e04: exit 0 | S4-E04-soft-caps: MATCH (87337 ms, 15 workers)
+verify-s4-e09: exit 0 | S4-E09-soft-caps-v11: MATCH (166720 ms, 15 workers)
+verify-s31-e03: exit 0 | S3.1-E03-equipment-strength: MATCH (33518 ms, 15 workers)
+acceptance-tests: exit 0 |       Tests  13 passed (13)
+done 13:31:54Z

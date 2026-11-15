@@ -1,0 +1,2319 @@
+{
+  "fixtureSet": "l21-requests",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l21-replay.md#v2",
+  "status": "candidate",
+  "independence": "L2.1 rules (spec/formulas/l21-replay.md v2) re-derived by spec/oracle/l21_oracle.py from the rule text with a full-history window model, plain sets and dictionaries; the lab side calls the real L2.1 functions. Review case l21.req.review.out-of-order and the boundary cases are hand-derived. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l21.req.basic.001",
+      "kind": "normal",
+      "description": "new, replay, conflict, closed after count eviction, ahead, invalid",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 1000,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4
+          },
+          {
+            "seq": 40,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4
+          },
+          {
+            "seq": 0,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4
+          }
+        ]
+      },
+      "derivation": "spec 2.3 rules 2 (replay, conflict), 2.4 count eviction of seq 1 raises H to 1 (rule 3), 40 - T(5) > 16 (rule 4), 0 invalid (rule 1)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REPLAY",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "INVALID_REQUEST"
+        ],
+        "horizon": 1,
+        "top": 5,
+        "receipts": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "id": "l21.req.review.out-of-order",
+      "kind": "boundary",
+      "description": "review section 2: seq 2 at 0, seq 1 at 90, seq 3 at 150 (maxAgeMs 100); retries at 150 and 190",
+      "input": {
+        "limits": {
+          "maxRecent": 256,
+          "maxAgeMs": 100,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 2,
+            "hash": "twotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwo",
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "oneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneone",
+            "nowMs": 90
+          },
+          {
+            "seq": 3,
+            "hash": "threethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethreethree",
+            "nowMs": 150
+          },
+          {
+            "seq": 2,
+            "hash": "twotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwotwo",
+            "nowMs": 150
+          },
+          {
+            "seq": 1,
+            "hash": "oneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneone",
+            "nowMs": 150
+          },
+          {
+            "seq": 1,
+            "hash": "oneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneoneone",
+            "nowMs": 190
+          }
+        ]
+      },
+      "derivation": "hand-derived: at 150 receipt 2 (age 150 >= 100) expires and H = 2, so its retry is REQUEST_CLOSED; receipt 1 (age 60) still replays; at 190 it expires too",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REPLAY",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 2,
+        "top": 3,
+        "receipts": [
+          3
+        ]
+      }
+    },
+    {
+      "id": "l21.req.age-boundary",
+      "kind": "boundary",
+      "description": "a receipt is live at age maxAgeMs - 1 and closed at age maxAgeMs",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 1000,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 999
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1000
+          }
+        ]
+      },
+      "derivation": "hand-derived: live while now - at < 1000 (spec 2.2)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REPLAY",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 1,
+        "top": 1,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.no-request-expiry",
+      "kind": "boundary",
+      "description": "receipts expire with time alone (finalNowMs, no further request)",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 1000,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 500
+          }
+        ],
+        "finalNowMs": 1200
+      },
+      "derivation": "spec 2.2 at 1200: receipt 1 expires (age 1200), receipt 2 stays (age 700)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW"
+        ],
+        "horizon": 1,
+        "top": 2,
+        "receipts": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "l21.req.far-ahead",
+      "kind": "normal",
+      "description": "a far-ahead number is refused and closes nothing; out-of-order numbers in the window execute",
+      "input": {
+        "limits": {
+          "maxRecent": 8,
+          "maxAgeMs": 1000000000,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1
+          },
+          {
+            "seq": 1000000000000,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5
+          }
+        ]
+      },
+      "derivation": "spec 2.3 rule 4 against T = 5; H stays 0",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "NEW"
+        ],
+        "horizon": 0,
+        "top": 5,
+        "receipts": [
+          5,
+          3,
+          1,
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "id": "l21.req.even-gaps",
+      "kind": "normal",
+      "description": "only even numbers arrive: no gap membership is kept",
+      "input": {
+        "limits": {
+          "maxRecent": 5,
+          "maxAgeMs": 1000000000,
+          "maxAhead": 4
+        },
+        "steps": [
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 6
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 12
+          },
+          {
+            "seq": 14,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 14
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 16
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 18
+          },
+          {
+            "seq": 20,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 20
+          },
+          {
+            "seq": 22,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 22
+          },
+          {
+            "seq": 24,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 24
+          },
+          {
+            "seq": 26,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 26
+          },
+          {
+            "seq": 28,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 28
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 30
+          },
+          {
+            "seq": 32,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 32
+          },
+          {
+            "seq": 34,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 34
+          },
+          {
+            "seq": 36,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 36
+          },
+          {
+            "seq": 38,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 38
+          },
+          {
+            "seq": 40,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 40
+          },
+          {
+            "seq": 31,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 41
+          },
+          {
+            "seq": 39,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 42
+          }
+        ]
+      },
+      "derivation": "spec 2.4: the five highest receipts remain; H = 30; 31 is closed, 39 executes (above H)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW"
+        ],
+        "horizon": 32,
+        "top": 40,
+        "receipts": [
+          34,
+          36,
+          38,
+          40,
+          39
+        ]
+      }
+    },
+    {
+      "id": "l21.req.expiry-raises-past-live",
+      "kind": "boundary",
+      "description": "an older-numbered live receipt stays replayable after a higher one expires",
+      "input": {
+        "limits": {
+          "maxRecent": 8,
+          "maxAgeMs": 100,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 50
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 101
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 101
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 101
+          }
+        ]
+      },
+      "derivation": "spec 2.2: receipt 5 expires at 101, H = 5; receipt 2 still replays (rule 2 before rule 3); 1 and 3 are closed",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REPLAY",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 5,
+        "top": 5,
+        "receipts": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "l21.req.random.000",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 3,
+          "maxAgeMs": 1000,
+          "maxAhead": 3
+        },
+        "steps": [
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 200
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1700
+          },
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3200
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3400
+          },
+          {
+            "seq": 14,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4900
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5100
+          },
+          {
+            "seq": 16,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6600
+          },
+          {
+            "seq": 27,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6800
+          },
+          {
+            "seq": 15,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8300
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8300
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8500
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 9200
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 9400
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10100
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10150
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10150
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10200
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10400
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11100
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11100
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11150
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 11200
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 11250
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11250
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11250
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 12750
+          },
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 13450
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 14150
+          },
+          {
+            "seq": 24,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 14150
+          },
+          {
+            "seq": 22,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 14200
+          },
+          {
+            "seq": 26,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 14250
+          },
+          {
+            "seq": 15,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 14300
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 14500
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 14500
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 15200
+          },
+          {
+            "seq": 24,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 15200
+          },
+          {
+            "seq": 24,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 15250
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD"
+        ],
+        "horizon": 11,
+        "top": 11,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.001",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 100,
+          "maxAhead": 12
+        },
+        "steps": [
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 0
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 200
+          },
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 200
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 400
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1100
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1300
+          },
+          {
+            "seq": 21,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1350
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1550
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1550
+          },
+          {
+            "seq": 25,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1750
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1950
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2150
+          },
+          {
+            "seq": 23,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2150
+          },
+          {
+            "seq": 29,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2200
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3700
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 29,
+        "top": 29,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.002",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 3,
+          "maxAgeMs": 100,
+          "maxAhead": 4
+        },
+        "steps": [
+          {
+            "seq": 21,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 200
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 200
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 200
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 250
+          },
+          {
+            "seq": -1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 450
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 450
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1150
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1850
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2050
+          },
+          {
+            "seq": 17,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2050
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2050
+          },
+          {
+            "seq": 26,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2050
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2250
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2950
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3650
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3650
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4350
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4550
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4550
+          },
+          {
+            "seq": 23,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4750
+          },
+          {
+            "seq": 15,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4950
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6450
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6500
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6500
+          },
+          {
+            "seq": 20,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 6700
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7400
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7450
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7450
+          },
+          {
+            "seq": 26,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7450
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8950
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8950
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10450
+          },
+          {
+            "seq": 30,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 11150
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 11350
+          },
+          {
+            "seq": 0,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11350
+          },
+          {
+            "seq": 5,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 11400
+          },
+          {
+            "seq": 14,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 12100
+          },
+          {
+            "seq": 14,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 12800
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 12800
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 13500
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "INVALID_REQUEST",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "INVALID_REQUEST",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD"
+        ],
+        "horizon": 14,
+        "top": 14,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.003",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 2,
+          "maxAgeMs": 5000,
+          "maxAhead": 10
+        },
+        "steps": [
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 50
+          },
+          {
+            "seq": 0,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 50
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 50
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1550
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1750
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3250
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3450
+          },
+          {
+            "seq": 17,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3500
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5000
+          },
+          {
+            "seq": 0,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5000
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6500
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "NEW",
+          "INVALID_REQUEST",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "INVALID_REQUEST",
+          "NEW"
+        ],
+        "horizon": 17,
+        "top": 20,
+        "receipts": [
+          19,
+          20
+        ]
+      }
+    },
+    {
+      "id": "l21.req.random.004",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 1,
+          "maxAgeMs": 1000,
+          "maxAhead": 3
+        },
+        "steps": [
+          {
+            "seq": 26,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 24,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 200
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 900
+          },
+          {
+            "seq": 20,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 950
+          },
+          {
+            "seq": 14,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2450
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2450
+          },
+          {
+            "seq": 23,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3950
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4650
+          },
+          {
+            "seq": 14,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4650
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4650
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5350
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD"
+        ],
+        "horizon": 1,
+        "top": 1,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.005",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 3,
+          "maxAgeMs": 5000,
+          "maxAhead": 7
+        },
+        "steps": [
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 50
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 50
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 100
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 800
+          },
+          {
+            "seq": 0,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 850
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1550
+          },
+          {
+            "seq": 12,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1550
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1550
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1550
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1550
+          },
+          {
+            "seq": 28,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1550
+          },
+          {
+            "seq": 25,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1750
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1950
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2650
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3350
+          },
+          {
+            "seq": 28,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4850
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4850
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5550
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5550
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5550
+          },
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6250
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6250
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 6300
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6300
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 6350
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7050
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7050
+          },
+          {
+            "seq": 6,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7050
+          },
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7100
+          },
+          {
+            "seq": -1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7800
+          },
+          {
+            "seq": 19,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8500
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8500
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8700
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "INVALID_REQUEST",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REPLAY",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "NEW",
+          "NEW",
+          "CONFLICTING_PAYLOAD",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_CLOSED",
+          "NEW",
+          "INVALID_REQUEST",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 19,
+        "top": 29,
+        "receipts": [
+          22,
+          23,
+          29
+        ]
+      }
+    },
+    {
+      "id": "l21.req.random.006",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 2,
+          "maxAgeMs": 100,
+          "maxAhead": 9
+        },
+        "steps": [
+          {
+            "seq": 7,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 700
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 900
+          },
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 950
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 950
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 950
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1000
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1050
+          },
+          {
+            "seq": 14,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1050
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1250
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1250
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1450
+          },
+          {
+            "seq": 22,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2150
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3650
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3650
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4350
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4550
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4750
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4950
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5150
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5200
+          },
+          {
+            "seq": 2,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5400
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5400
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5600
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5800
+          },
+          {
+            "seq": 5,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5850
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6550
+          },
+          {
+            "seq": 28,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7250
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8750
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8750
+          },
+          {
+            "seq": 0,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8950
+          },
+          {
+            "seq": 6,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10450
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10650
+          },
+          {
+            "seq": 25,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10650
+          },
+          {
+            "seq": 1,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 11350
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "INVALID_REQUEST",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 30,
+        "top": 30,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.007",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 3,
+          "maxAgeMs": 100,
+          "maxAhead": 10
+        },
+        "steps": [
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 0
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 0
+          },
+          {
+            "seq": 25,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 50
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 750
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 750
+          },
+          {
+            "seq": 11,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 750
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2250
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2300
+          },
+          {
+            "seq": 28,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2300
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2350
+          },
+          {
+            "seq": 23,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 2550
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4050
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4050
+          },
+          {
+            "seq": 30,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5550
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6250
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6950
+          },
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7000
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7050
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7050
+          },
+          {
+            "seq": 26,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7750
+          },
+          {
+            "seq": 17,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7750
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8450
+          },
+          {
+            "seq": 28,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 9950
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "NEW",
+          "NEW",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 30,
+        "top": 30,
+        "receipts": []
+      }
+    },
+    {
+      "id": "l21.req.random.008",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 1000,
+          "maxAhead": 7
+        },
+        "steps": [
+          {
+            "seq": 10,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 0
+          },
+          {
+            "seq": 8,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 200
+          },
+          {
+            "seq": 16,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 250
+          },
+          {
+            "seq": 12,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 450
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1150
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2650
+          },
+          {
+            "seq": 10,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 2700
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4200
+          },
+          {
+            "seq": 20,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4900
+          },
+          {
+            "seq": 9,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4950
+          },
+          {
+            "seq": 30,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4950
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 5150
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 5150
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "NEW",
+          "CONFLICTING_PAYLOAD"
+        ],
+        "horizon": 0,
+        "top": 9,
+        "receipts": [
+          3,
+          9,
+          8
+        ]
+      }
+    },
+    {
+      "id": "l21.req.random.009",
+      "kind": "normal",
+      "description": "seeded random traffic",
+      "input": {
+        "limits": {
+          "maxRecent": 1,
+          "maxAgeMs": 5000,
+          "maxAhead": 4
+        },
+        "steps": [
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1500
+          },
+          {
+            "seq": 23,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1500
+          },
+          {
+            "seq": 26,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 1500
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 1500
+          },
+          {
+            "seq": 19,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3000
+          },
+          {
+            "seq": 28,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 3200
+          },
+          {
+            "seq": 4,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3400
+          },
+          {
+            "seq": 21,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3400
+          },
+          {
+            "seq": 25,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 3400
+          },
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4900
+          },
+          {
+            "seq": 24,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4900
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4950
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 4950
+          },
+          {
+            "seq": 18,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 4950
+          },
+          {
+            "seq": 20,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 6450
+          },
+          {
+            "seq": 11,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 6450
+          },
+          {
+            "seq": 16,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7150
+          },
+          {
+            "seq": 8,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7200
+          },
+          {
+            "seq": 22,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 7400
+          },
+          {
+            "seq": 7,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7400
+          },
+          {
+            "seq": 28,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 7450
+          },
+          {
+            "seq": 17,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8150
+          },
+          {
+            "seq": 3,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 8150
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 8150
+          },
+          {
+            "seq": 16,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 9650
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 9850
+          },
+          {
+            "seq": 22,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 9850
+          },
+          {
+            "seq": 3,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10550
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10550
+          },
+          {
+            "seq": 27,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10600
+          },
+          {
+            "seq": 9,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10600
+          },
+          {
+            "seq": 4,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10650
+          },
+          {
+            "seq": 29,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10850
+          },
+          {
+            "seq": 29,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10900
+          },
+          {
+            "seq": 18,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 10950
+          },
+          {
+            "seq": 13,
+            "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "nowMs": 12450
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 13950
+          }
+        ]
+      },
+      "derivation": "oracle: full-history window by definition (spec 2)",
+      "expected": {
+        "kinds": [
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "CONFLICTING_PAYLOAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "NEW",
+          "REQUEST_AHEAD",
+          "REQUEST_CLOSED",
+          "REQUEST_CLOSED",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REQUEST_AHEAD",
+          "REPLAY",
+          "REQUEST_CLOSED"
+        ],
+        "horizon": 11,
+        "top": 13,
+        "receipts": [
+          13
+        ]
+      }
+    },
+    {
+      "id": "l21.req.clock-backwards",
+      "kind": "failure",
+      "description": "the trusted clock goes backwards",
+      "input": {
+        "limits": {
+          "maxRecent": 4,
+          "maxAgeMs": 1000,
+          "maxAhead": 16
+        },
+        "steps": [
+          {
+            "seq": 1,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 10
+          },
+          {
+            "seq": 2,
+            "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "nowMs": 9
+          }
+        ]
+      },
+      "derivation": "the trusted clock is monotonic (contract 2.1)",
+      "expectedError": "INVALID_NUMBER"
+    },
+    {
+      "id": "l21.req.bad-limits",
+      "kind": "failure",
+      "description": "maxRecent 0",
+      "input": {
+        "limits": {
+          "maxRecent": 0
+        },
+        "steps": []
+      },
+      "derivation": "every limit is a positive safe integer (spec 0)",
+      "expectedError": "INVALID_NUMBER"
+    }
+  ]
+}

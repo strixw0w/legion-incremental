@@ -1,0 +1,1954 @@
+{
+  "fixtureSet": "l2-work",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l2-replay.md#v1",
+  "status": "candidate",
+  "independence": "L2 rules (spec/formulas/l2-replay.md v1) re-derived by spec/oracle/l2_oracle.py from the rule text with Python sets and integers; the lab side calls the real L2 functions.  Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l2.work.table.001",
+      "kind": "normal",
+      "description": "the transition table",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          }
+        ]
+      },
+      "derivation": "hand: NOT_RESERVED OK REPLAYED OK REPLAYED INELIGIBLE OK OK INELIGIBLE OK REPLAYED INELIGIBLE",
+      "expected": {
+        "codes": [
+          "WORK_NOT_RESERVED",
+          "OK",
+          "WORK_REPLAYED",
+          "OK",
+          "WORK_REPLAYED",
+          "WORK_INELIGIBLE",
+          "OK",
+          "OK",
+          "WORK_INELIGIBLE",
+          "OK",
+          "WORK_REPLAYED",
+          "WORK_INELIGIBLE"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.retire.001",
+      "kind": "normal",
+      "description": "retirement needs no open work and no gap; a retired producer refuses everything",
+      "input": {
+        "op": "work",
+        "allocated": 3,
+        "ops": [
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 4,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          }
+        ]
+      },
+      "derivation": "hand: OK OPEN_WORK OK OK GAP OK OK RETIRED UNKNOWN OK",
+      "expected": {
+        "codes": [
+          "OK",
+          "RETIRE_OPEN_WORK",
+          "OK",
+          "OK",
+          "RETIRE_GAP",
+          "OK",
+          "OK",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "OK"
+        ],
+        "retired": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "l2.work.boundary.001",
+      "kind": "boundary",
+      "description": "a producer that never did any work may retire; its number is never reused",
+      "input": {
+        "op": "work",
+        "allocated": 1,
+        "ops": [
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "reserve"
+          }
+        ]
+      },
+      "derivation": "hand: OK RETIRED UNKNOWN",
+      "expected": {
+        "codes": [
+          "OK",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "l2.work.invalid.001",
+      "kind": "failure",
+      "description": "a negative allocation is not a producer table",
+      "input": {
+        "op": "work",
+        "allocated": -1,
+        "ops": []
+      },
+      "derivation": "hand: allocations count from 0",
+      "expectedError": "INVALID_NUMBER"
+    },
+    {
+      "id": "l2.work.random.001",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "release"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "OK",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.random.002",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "release"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "OK",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "OK",
+          "PRODUCER_RETIRED",
+          "OK",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED",
+          "WORK_REPLAYED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_RETIRED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "l2.work.random.003",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 5,
+            "op": "abandon"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "WORK_NOT_RESERVED",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "WORK_NOT_RESERVED",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "OK",
+          "WORK_REPLAYED",
+          "OK",
+          "WORK_REPLAYED",
+          "PRODUCER_UNKNOWN",
+          "RETIRE_GAP",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "WORK_INELIGIBLE",
+          "WORK_NOT_RESERVED",
+          "RETIRE_OPEN_WORK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.random.004",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "WORK_REPLAYED",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED"
+        ],
+        "retired": [
+          2
+        ]
+      }
+    },
+    {
+      "id": "l2.work.random.005",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "abandon"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "OK",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "WORK_REPLAYED",
+          "PRODUCER_UNKNOWN",
+          "WORK_REPLAYED",
+          "OK",
+          "WORK_REPLAYED",
+          "RETIRE_OPEN_WORK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.random.006",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_RETIRED",
+          "OK",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "WORK_NOT_RESERVED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE"
+        ],
+        "retired": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "l2.work.random.007",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 3,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "complete"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "RETIRE_GAP",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "OK",
+          "RETIRE_OPEN_WORK",
+          "WORK_INELIGIBLE"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.random.008",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 3,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "abandon"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "RETIRE_OPEN_WORK",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_REPLAYED",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_RETIRED",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "l2.work.random.009",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 1,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 3,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "release"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 2,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "abandon"
+          },
+          {
+            "producer": 1,
+            "op": "retire"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "complete"
+          },
+          {
+            "producer": 0,
+            "unit": 2,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 4,
+            "op": "complete"
+          },
+          {
+            "producer": 1,
+            "unit": 1,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 4,
+            "op": "release"
+          },
+          {
+            "producer": 3,
+            "unit": 1,
+            "op": "reserve"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_NOT_RESERVED",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "RETIRE_OPEN_WORK",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_REPLAYED",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "WORK_INELIGIBLE",
+          "WORK_NOT_RESERVED",
+          "WORK_INELIGIBLE",
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN"
+        ],
+        "retired": []
+      }
+    },
+    {
+      "id": "l2.work.random.010",
+      "kind": "normal",
+      "description": "seeded random work operations",
+      "input": {
+        "op": "work",
+        "allocated": 2,
+        "ops": [
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 3,
+            "unit": 2,
+            "op": "abandon"
+          },
+          {
+            "producer": 2,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 0,
+            "unit": 5,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 1,
+            "unit": 5,
+            "op": "release"
+          },
+          {
+            "producer": 0,
+            "unit": 3,
+            "op": "reserve"
+          },
+          {
+            "producer": 2,
+            "unit": 4,
+            "op": "reserve"
+          }
+        ]
+      },
+      "derivation": "oracle: the transition table",
+      "expected": {
+        "codes": [
+          "PRODUCER_UNKNOWN",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "OK",
+          "PRODUCER_UNKNOWN",
+          "OK",
+          "WORK_NOT_RESERVED",
+          "PRODUCER_UNKNOWN",
+          "OK"
+        ],
+        "retired": []
+      }
+    }
+  ]
+}

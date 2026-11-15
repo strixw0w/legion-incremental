@@ -1,0 +1,36 @@
+L1: DETECTED (22 failing) restored=True | touching runs are not merged (range sets leave normal form)
+L2: DETECTED (2 failing) restored=True | an overlap at a run's last member is missed (a duplicate is trimmed in)
+L3: DETECTED (18 failing) restored=True | eviction does not raise the closed horizon (stale requests run late)
+L4: DETECTED (15 failing) restored=True | an evicted settled request is treated as new (an old message re-applied)
+L5: DETECTED (12 failing) restored=True | a conflicting payload replays the original receipt
+L6: DETECTED (2 failing) restored=True | a completed or released unit can be settled again another way (cancelled work credited)
+L7: DETECTED (8 failing) restored=True | retirement does not record the retired number (a retired producer looks unknown)
+L8: DETECTED (5 failing) restored=True | a producer with a gap may retire (its open gap is lost)
+L9: DETECTED (16 failing) restored=True | Feat tiers are evaluated only at the batch end (the owner's 200-instead-of-250 defect)
+L10: DETECTED (2 failing) restored=True | an overlapping batch settlement is not refused before settling
+L11: DETECTED (3 failing) restored=True | a retried request is executed again instead of returning its receipt
+L12: DETECTED (1 failing) restored=True | checkpoint validation skips the reservation balance
+L13: DETECTED (1 failing) restored=True | checkpoint validation ignores the digest
+L14: DETECTED (1 failing) restored=True | a branch's checkpoint restores into the parent
+L15: DETECTED (1 failing) restored=True | a simulation checkpoint with a queued event before its state time is accepted
+L16: DETECTED (2 failing) restored=True | the compact store forgets credits (a duplicate encounter credit is paid twice)
+L17: DETECTED (13 failing) restored=True | the smith's unit completion keeps its reservation (reserved balance drifts)
+
+L2 mutation check: 17 planted bugs, 17 detected, 0 not detected; all files restored: True
+- L1 [src/l2/ranges.ts] touching runs are not merged (range sets leave normal form): detected by 22 failing test(s); e.g. × agree with a plain set for random additions; normal form; overlaps refused whole (property) 73ms
+- L2 [src/l2/ranges.ts] an overlap at a run's last member is missed (a duplicate is trimmed in): detected by 2 failing test(s); e.g. × l2.ranges.overlap.002 (failure) 3ms
+- L3 [src/l2/requests.ts] eviction does not raise the closed horizon (stale requests run late): detected by 18 failing test(s); e.g. × l2.req.count.001 (normal) 4ms
+- L4 [src/l2/requests.ts] an evicted settled request is treated as new (an old message re-applied): detected by 15 failing test(s); e.g. × l2.req.count.001 (normal) 4ms
+- L5 [src/l2/requests.ts] a conflicting payload replays the original receipt: detected by 12 failing test(s); e.g. × l2.req.basic.001 (normal) 4ms
+- L6 [src/l2/ids.ts] a completed or released unit can be settled again another way (cancelled work credited): detected by 2 failing test(s); e.g. × batch settlement is atomic: overlapping or partly unreserved ranges are refused whole 5ms
+- L7 [src/l2/producers.ts] retirement does not record the retired number (a retired producer looks unknown): detected by 8 failing test(s); e.g. × l2.work.retire.001 (normal) 4ms
+- L8 [src/l2/producers.ts] a producer with a gap may retire (its open gap is lost): detected by 5 failing test(s); e.g. × l2.work.retire.001 (normal) 4ms
+- L9 [src/l2/account.ts] Feat tiers are evaluated only at the batch end (the owner's 200-instead-of-250 defect): detected by 16 failing test(s); e.g. × l2.settle.owner.001 (boundary) 8ms
+- L10 [src/l2/account.ts] an overlapping batch settlement is not refused before settling: detected by 2 failing test(s); e.g. × batch settlement is atomic: overlapping or partly unreserved ranges are refused whole 6ms
+- L11 [src/l2/account.ts] a retried request is executed again instead of returning its receipt: detected by 3 failing test(s); e.g. × a retried one-level Monument purchase returns its original receipt and never buys the next level 7ms
+- L12 [src/l2/checkpoint.ts] checkpoint validation skips the reservation balance: detected by 1 failing test(s); e.g. × malformed and inconsistent checkpoints are refused with the problem named, never repaired 6ms
+- L13 [src/l2/checkpoint.ts] checkpoint validation ignores the digest: detected by 1 failing test(s); e.g. × malformed and inconsistent checkpoints are refused with the problem named, never repaired 4ms
+- L14 [src/l2/checkpoint.ts] a branch's checkpoint restores into the parent: detected by 1 failing test(s); e.g. × malformed and inconsistent checkpoints are refused with the problem named, never repaired 9ms
+- L15 [src/l2/simCheckpoint.ts] a simulation checkpoint with a queued event before its state time is accepted: detected by 1 failing test(s); e.g. × malformed and inconsistent simulation checkpoints are refused 119ms
+- L16 [src/l2/compactIds.ts] the compact store forgets credits (a duplicate encounter credit is paid twice): detected by 2 failing test(s); e.g. × a duplicate encounter credit is refused; out-of-order credits are accepted once each 3ms
+- L17 [src/l2/account.ts] the smith's unit completion keeps its reservation (reserved balance drifts): detected by 13 failing test(s); e.g. × l2.settle.mixed.001 (normal) 6ms

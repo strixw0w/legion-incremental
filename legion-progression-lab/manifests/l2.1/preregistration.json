@@ -1,0 +1,33 @@
+{
+  "planRegisteredAt": "2026-11-15T17:39:09Z",
+  "document": {
+    "path": "manifests/l2.1/PREREGISTRATION.md",
+    "sha256": "67afa8ea8d79a653672ddce6be99f40be61363ed4306388b324b4e150787dbe2"
+  },
+  "contract": {
+    "path": "planning/L2_1_CONTRACT.md",
+    "sha256": "9dd6cf46abf752bb4b7bfcf3b205ec2c04f1688bed8a0040cfb2edf93e54b481"
+  },
+  "spec": {
+    "path": "../spec/formulas/l21-replay.md",
+    "sha256": "f4580cffa319e564aa18f98ac88f88d1512a8867ad66790f8b3efc38bf361b5f"
+  },
+  "manifests": [
+    {
+      "path": "manifests/l2.1/L2.1-E01-differential.json",
+      "sha256": "9567ba5010a3a54a5e50a44c173f7f1d6ecd770c20d3184128858dd6f3659bdc"
+    },
+    {
+      "path": "manifests/l2.1/L2.1-E02-differential-tight.json",
+      "sha256": "ff65ae1f4dd1beabbf07f032f3ada20f4f511d930fe54eea8bfc732f4de76f17"
+    },
+    {
+      "path": "manifests/l2.1/L2.1-E03-partition.json",
+      "sha256": "60c964e67fcdd7f5878505b2c1d833ee7623103abb02777e0b2969025c3ecfbf"
+    },
+    {
+      "path": "manifests/l2.1/L2.1-E04-bounded-growth.json",
+      "sha256": "40ed7a27166b1efc0f8cba3914e4bcbf6ec55e179f875b08057a515648e1ad31"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+files changed or added since s4-checkpoint (lab src): 18
+src/cli/exp.ts (S1 / S1.1): 43 files in the import closure; changed: 1 -> src/core/errors.ts
+src/cli/exp2.ts (S2 / S2.1): 62 files in the import closure; changed: 2 -> src/core/errors.ts, src/engine/legion.ts
+src/cli/exp3.ts (S3 / S3.1): 70 files in the import closure; changed: 2 -> src/core/errors.ts, src/engine/legion.ts
+src/cli/exp4.ts (S4): 76 files in the import closure; changed: 2 -> src/core/errors.ts, src/engine/legion.ts

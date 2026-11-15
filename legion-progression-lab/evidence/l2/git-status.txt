@@ -1,0 +1,113 @@
+$ git log --oneline -3
+dc39492 S4 checkpoint: permanent progression + acceptance corrections
+f25f296 S3 checkpoint: S3 industry + S3.1 corrections and calibration + acceptance addendum
+732f3da S2 checkpoint: L1 persistent ledger + S2 legion + S2.1 acceptance pass
+
+$ git tag -n1
+s0-checkpoint   S0 checkpoint (S0 + S0.1 + final ledger correction), accepted by the owner after independent review. Local only; not pushed.
+s1-checkpoint   S1 checkpoint (S1 + S1.1 + acceptance addendum), accepted by the owner after independent review. Local only; not pushed.
+s2-checkpoint   S2 checkpoint: L1 + S2 + S2.1, accepted 2026-11-14 (package 34a92723...bfc7)
+s3-checkpoint   S3 checkpoint: S3 + S3.1 + acceptance addendum, accepted 2026-11-14 (package 741a96dd...4dcf). Local only; not pushed.
+s4-checkpoint   S4 checkpoint: S4 + the three S4 acceptance corrections (accepted by the owner, 2026-11-15)
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/CHANGELOG.md
+ M legion-progression-lab/PROVENANCE.md
+ M legion-progression-lab/README.md
+ M legion-progression-lab/src/core/errors.ts
+ M legion-progression-lab/src/engine/legion.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M legion-progression-lab/test/purity.test.ts
+ M spec/README.md
+ M spec/oracle/check_all.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/evidence/l2/L2_EVIDENCE.md
+?? legion-progression-lab/evidence/l2/examples/account-checkpoint.json
+?? legion-progression-lab/evidence/l2/examples/reconstruction-examples.md
+?? legion-progression-lab/evidence/l2/examples/replay-contract-comparison.md
+?? legion-progression-lab/evidence/l2/examples/sim-checkpoint-summary.json
+?? legion-progression-lab/evidence/l2/experiments/L2-E01-differential.json
+?? legion-progression-lab/evidence/l2/experiments/L2-E02-differential-tight.json
+?? legion-progression-lab/evidence/l2/experiments/L2-E03-partition.json
+?? legion-progression-lab/evidence/l2/experiments/L2-E04-perf.json
+?? legion-progression-lab/evidence/l2/experiments/L2-E05-perf-v11.json
+?? legion-progression-lab/evidence/l2/fingerprints.txt
+?? legion-progression-lab/evidence/l2/fixtures-check.txt
+?? legion-progression-lab/evidence/l2/frozen-check.txt
+?? legion-progression-lab/evidence/l2/gates-run.txt
+?? legion-progression-lab/evidence/l2/git-status.txt
+?? legion-progression-lab/evidence/l2/historical-regression.txt
+?? legion-progression-lab/evidence/l2/l2-vs-s4-checkpoint.patch
+?? legion-progression-lab/evidence/l2/mutation-check-l2.txt
+?? legion-progression-lab/evidence/l2/mutation-check-s3-acceptance.txt
+?? legion-progression-lab/evidence/l2/mutation-check-s3-rerun.txt
+?? legion-progression-lab/evidence/l2/mutation-check-s3.1.txt
+?? legion-progression-lab/evidence/l2/mutation-check-s4-acceptance.txt
+?? legion-progression-lab/evidence/l2/mutation-check-s4.txt
+?? legion-progression-lab/evidence/l2/oracle-check.txt
+?? legion-progression-lab/evidence/l2/preservation-check.txt
+?? legion-progression-lab/evidence/l2/registration-check.txt
+?? legion-progression-lab/evidence/l2/runs.txt
+?? legion-progression-lab/evidence/l2/schemas-check.txt
+?? legion-progression-lab/evidence/l2/test-output.txt
+?? legion-progression-lab/evidence/l2/test-stats-output.txt
+?? legion-progression-lab/evidence/l2/tool-versions.txt
+?? legion-progression-lab/evidence/l2/typecheck.txt
+?? legion-progression-lab/evidence/perf-audit/PERFORMANCE_AUDIT_L2_ADDENDUM.md
+?? legion-progression-lab/evidence/perf-audit/samples/closure-check-vs-s4-checkpoint.txt
+?? legion-progression-lab/evidence/perf-audit/samples/profile-l2-differential-200k.txt
+?? legion-progression-lab/evidence/perf-audit/tools/l2_profile.ts
+?? legion-progression-lab/evidence/s4-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s4-checkpoint/clean-export-check.txt
+?? legion-progression-lab/evidence/s4-checkpoint/frozen-check.txt
+?? legion-progression-lab/manifests/l2/AMENDMENT-01.md
+?? legion-progression-lab/manifests/l2/L2-E01-differential.json
+?? legion-progression-lab/manifests/l2/L2-E02-differential-tight.json
+?? legion-progression-lab/manifests/l2/L2-E03-partition.json
+?? legion-progression-lab/manifests/l2/L2-E04-perf.json
+?? legion-progression-lab/manifests/l2/L2-E05-perf-v11.json
+?? legion-progression-lab/manifests/l2/PREREGISTRATION.md
+?? legion-progression-lab/manifests/l2/preregistration.json
+?? legion-progression-lab/planning/L2_CONTRACT.md
+?? legion-progression-lab/repro/l2/examples.ts
+?? legion-progression-lab/repro/l2/make_fixtures.py
+?? legion-progression-lab/repro/l2/mutation_check.py
+?? legion-progression-lab/src/cli/l2-perf.ts
+?? legion-progression-lab/src/cli/l2-run.ts
+?? legion-progression-lab/src/l2/account.ts
+?? legion-progression-lab/src/l2/checkpoint.ts
+?? legion-progression-lab/src/l2/compactIds.ts
+?? legion-progression-lab/src/l2/differential.ts
+?? legion-progression-lab/src/l2/ids.ts
+?? legion-progression-lab/src/l2/l1Reference.ts
+?? legion-progression-lab/src/l2/partition.ts
+?? legion-progression-lab/src/l2/producers.ts
+?? legion-progression-lab/src/l2/ranges.ts
+?? legion-progression-lab/src/l2/requests.ts
+?? legion-progression-lab/src/l2/simCheckpoint.ts
+?? legion-progression-lab/src/spec/l2Fixtures.ts
+?? legion-progression-lab/test/l2.core.test.ts
+?? legion-progression-lab/test/l2.sim.test.ts
+?? spec/fixtures/l2-ranges.v1.json
+?? spec/fixtures/l2-requests.v1.json
+?? spec/fixtures/l2-settlement.v1.json
+?? spec/fixtures/l2-work.v1.json
+?? spec/formulas/l2-replay.md
+?? spec/oracle/l2_oracle.py
+
+$ git diff --stat s4-checkpoint
+ legion-progression-lab/CHANGELOG.md                | 20 ++++++++
+ legion-progression-lab/PROVENANCE.md               |  5 ++
+ legion-progression-lab/README.md                   |  6 ++-
+ legion-progression-lab/src/core/errors.ts          |  4 ++
+ legion-progression-lab/src/engine/legion.ts        | 53 ++++++++++++++++++++++
+ legion-progression-lab/src/spec/fixtureRunner.ts   | 13 ++++++
+ legion-progression-lab/src/spec/fixtureSchema.ts   |  2 +-
+ .../test/fixtures.conformance.test.ts              |  2 +-
+ legion-progression-lab/test/purity.test.ts         |  4 +-
+ spec/README.md                                     |  1 +
+ spec/oracle/check_all.py                           |  1 +
+ spec/schema/fixture.schema.json                    | 11 ++++-
+ 12 files changed, 114 insertions(+), 8 deletions(-)

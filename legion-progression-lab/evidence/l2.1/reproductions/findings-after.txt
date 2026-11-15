@@ -1,0 +1,19 @@
+F1: maxAgeMs 100: seq 2 at t=0, seq 1 at t=90, seq 3 at t=150; then retry seq 2 at t=150
+  observed: {"retained":[1,3],"horizon":2,"retrySeq2":{"kind":"REQUEST_CLOSED"},"retrySeq1":"REPLAY","retrySeq1At190":"REQUEST_CLOSED"}
+F2: maxAgeMs 1 h: request at 1 s, a credit at 10 h, retry at 10 h
+  observed: {"receiptsAfterCredit":0,"retryOutcome":{"code":"REQUEST_CLOSED","receipt":null},"monumentLevel":1}
+F3: 2,000 requests with sequences 2, 4, ..., 4000 (maxRecent 101), then on to 20,000 requests
+  observed: {"stateFields":["horizon","top","receipts"],"horizon":3798,"top":4000,"receipts":101,"checkpointBytes":15868,"checkpointBytesAfter20000":16181,"oddBelowHorizon":"REQUEST_CLOSED"}
+F4: producer batch:1 with settled prefix 100001, released prefix 100002, maxUnit 100002 (digest recomputed; maxUnits raised so only the subset rule applies)
+  observed: "refused: INVALID_CHECKPOINT: producers batch:1: a released unit is not settled"
+F5: producer batch:1 with unit 1 both released and abandoned, settled prefix 1 (digest recomputed)
+  observed: "refused: INVALID_CHECKPOINT: producers batch:1: a unit is both released and abandoned"
+F6: actual S4 simulation checkpoint (seed independent-l2-sim, POL4-BALANCED2) edited, digest recomputed
+  observed: {"delete state.hero":"refused: INVALID_CHECKPOINT: state (industry on, permanent on): not an object with exactly the fields tMs, hero, zones, encounter, boss, session, ledger, credits, rng, encounterSeq, time, legion, industry, permanent","state.hero.hp = -1":"refused: INVALID_CHECKPOINT: hero: health -1 outside [0, maximum health]","a queued event's kind = NOT_A_REAL_EVENT":"refused: INVALID_CHECKPOINT: event NOT_A_REAL_EVENT #2723: unknown event kind","delete state.rng.loot":"refused: INVALID_CHECKPOINT: state: the account RNG streams are not exactly hit, crit and loot, each four 32-bit words not all zero","delete state.permanent (permanent switch on)":"refused: INVALID_CHECKPOINT: state (industry on, permanent on): not an object with exactly the fields tMs, hero, zones, encounter, boss, session, ledger, credits, rng, encounterSeq, time, legion, industry, permanent","unedited, re-sealed":"ACCEPTED"}
+F7: buy one Monument level, set the returned receipt level to 999, retry; and frozen-ness of nested records
+  observed: {"mutation":"refused: Cannot assign to read only property 'level' of object '#<Object>'","accountLevel":1,"replayedReceipt":{"code":"OK","level":1,"gold":50},"gathererActionFrozen":true,"initialRngFrozen":true,"rngIsCallersArray":false,"spreadCopyAccepted":"refused: INVALID_STATE: not an account made by the L2 account module (use newAccount, deliver, advanceTo, fork or a validated checkpoint)"}
+F8: a request meant for branch main/what-if delivered to the parent account, and to the child
+  observed: {"toParent":{"code":"BRANCH_MISMATCH","receipt":null},"parentChanged":false,"toChild":{"code":"APPLIED","receipt":{"code":"OK","producer":1}},"restoreChildCheckpointIntoParent":"refused: BRANCH_MISMATCH: checkpoint of branch main/what-if restored into main"}
+F9: one gatherer; open a batch at 0; at 1 h settle unreserved units 1-2
+  observed: {"receipt":{"code":"WORK_NOT_RESERVED","unit":1},"before":{"t":0,"lifetimeOre":0},"after":{"t":3600000,"lifetimeOre":129},"identicalToAdvancementAloneExceptTheRequestReceipt":true,"batchProducerUnchanged":true}
+wrote evidence/l2.1/reproductions/findings-after.json

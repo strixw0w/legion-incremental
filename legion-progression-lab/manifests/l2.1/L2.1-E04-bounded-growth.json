@@ -1,0 +1,45 @@
+{
+  "experimentId": "L2.1-E04-bounded-growth",
+  "kind": "perf",
+  "formulaVersion": "l2.1-v2",
+  "description": "The bounded-growth workload (src/cli/l2-perf.ts): automatic retirement and rotation, permanently missing request numbers, out-of-order, abandoned and duplicate credits, completed and cancelled jobs, a long-lived producer with multi-day reservations, a save/reload every 6 simulated hours, late messages for closed and retired identities; the compact store alone (no reference alongside); day, week and month stages, each under its own wall and memory budget; run alone (no competing workload) with --expose-gc.",
+  "seed": "l21-e04",
+  "limits": {
+    "maxRecent": 256,
+    "maxAgeMs": 86400000,
+    "maxAhead": 1024,
+    "maxStreams": 8,
+    "creditWindow": 4096,
+    "maxCreditStreams": 8,
+    "maxOpenProducers": 64,
+    "maxUnits": 4096,
+    "maxOutstanding": 64
+  },
+  "stages": [
+    {
+      "id": "day",
+      "days": 1,
+      "budgetWallMs": 120000,
+      "budgetPeakRssMb": 2048
+    },
+    {
+      "id": "week",
+      "days": 7,
+      "budgetWallMs": 600000,
+      "budgetPeakRssMb": 2048
+    },
+    {
+      "id": "month",
+      "days": 30,
+      "budgetWallMs": 1800000,
+      "budgetPeakRssMb": 4096
+    }
+  ],
+  "budgets": {
+    "wallMs": 3600000,
+    "peakRssMb": 4096,
+    "accountRetainedMb": 1,
+    "reconstructionP95Ms": 50,
+    "checkpointKb": 256
+  }
+}

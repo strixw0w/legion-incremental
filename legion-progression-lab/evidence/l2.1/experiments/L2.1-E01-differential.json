@@ -1,0 +1,81 @@
+{
+  "environment": {
+    "experimentId": "L2.1-E01-differential",
+    "manifestSha256": "9567ba5010a3a54a5e50a44c173f7f1d6ecd770c20d3184128858dd6f3659bdc",
+    "formulaVersion": "l2.1-v2",
+    "node": "v24.22.3",
+    "platform": "win32",
+    "release": "10.0.26300",
+    "cpus": 16,
+    "workers": 0,
+    "durationMs": 243940,
+    "peakRssMbSampled": 574,
+    "peakRssMbOs": 574,
+    "endRssMb": 574
+  },
+  "status": "COMPLETED",
+  "result": {
+    "seed": "l21-e01",
+    "operations": 1000000,
+    "executed": 1000000,
+    "stopped": false,
+    "byType": {
+      "request.new": 399734,
+      "work": 280363,
+      "request.retry": 99795,
+      "request.conflict": 30226,
+      "credit.duplicate": 37254,
+      "credit.new": 114978,
+      "request.ahead": 5055,
+      "request.late": 20263,
+      "credit.late": 8048,
+      "credit.abandon": 3450,
+      "credit.ahead": 834
+    },
+    "outcomes": {
+      "APPLIED": 526894,
+      "PRODUCER_UNKNOWN": 6,
+      "REPLAY": 27221,
+      "CONFLICTING_PAYLOAD": 128,
+      "WORK_NOT_RESERVED": 199,
+      "CREDIT_REPLAYED": 37021,
+      "WORK_REPLAYED": 46646,
+      "REQUEST_CLOSED": 122917,
+      "WORK_INELIGIBLE": 145553,
+      "REQUEST_AHEAD": 4815,
+      "WORK_OUT_OF_ORDER": 29,
+      "PRODUCER_RETIRED": 87262,
+      "CREDIT_AHEAD": 1067,
+      "INVALID_REQUEST": 240,
+      "PRODUCER_CLOSED": 2
+    },
+    "declaredDifferences": {
+      "closedReplay": 72952,
+      "closedConflict": 39368,
+      "closedUnseen": 10597,
+      "requestAhead": 4815,
+      "creditAhead": 1067,
+      "streamLimit": 0
+    },
+    "mismatches": 0,
+    "firstMismatches": [],
+    "comparisonDisagreements": 0,
+    "invariantViolations": 0,
+    "boundViolations": 0,
+    "checkpoints": 100,
+    "restoredIdentically": 100,
+    "branches": 40,
+    "branchIsolationBreaks": 0,
+    "wrongBranchAdmitted": 0,
+    "retiredProducers": 31923,
+    "l2Max": {
+      "receiptsPerStream": 89,
+      "creditRuns": 15,
+      "producerRuns": 23,
+      "openProducers": 64,
+      "reservedPerProducer": 12
+    },
+    "l1ReceiptsAtEnd": 399752,
+    "finalSimulatedMs": 1163899809728
+  }
+}

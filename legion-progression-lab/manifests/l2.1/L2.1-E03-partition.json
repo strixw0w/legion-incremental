@@ -1,0 +1,24 @@
+{
+  "experimentId": "L2.1-E03-partition",
+  "kind": "partition",
+  "formulaVersion": "l2.1-v2",
+  "description": "2,000 independent cases x 5 random partitions (with checkpoint save/restore at random points) of the synthetic economy's chronological settlement, each case from its own random stream; run on worker threads (the result is identical for any worker count); budgets 15 min and 8 GB (all threads), enforced.",
+  "seed": "l21-e03",
+  "limits": {
+    "maxRecent": 256,
+    "maxAgeMs": 86400000,
+    "maxAhead": 1024,
+    "maxStreams": 8,
+    "creditWindow": 4096,
+    "maxCreditStreams": 8,
+    "maxOpenProducers": 64,
+    "maxUnits": 4096,
+    "maxOutstanding": 64
+  },
+  "cases": 2000,
+  "partitionsPerCase": 5,
+  "budgets": {
+    "wallMs": 900000,
+    "peakRssMb": 8192
+  }
+}

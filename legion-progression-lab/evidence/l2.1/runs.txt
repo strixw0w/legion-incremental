@@ -1,0 +1,14 @@
+# L2.1 registered experiments start 2026-11-15T17:39:09Z
+## E01, E02, E03 in parallel (separate processes) 17:39:09Z
+E01 exit 0
+E02 exit 0
+E03 exit 0
+L2.1-E01-differential: COMPLETED in 243940 ms (peak RSS 574 MB by the OS, 574 MB sampled; 0 worker threads)
+L2.1-E02-differential-tight: COMPLETED in 74635 ms (peak RSS 298 MB by the OS, 298 MB sampled; 0 worker threads)
+L2.1-E03-partition: COMPLETED in 13474 ms (peak RSS 893 MB by the OS, 893 MB sampled; 13 worker threads)
+## E04 alone (--expose-gc) 17:43:13Z
+day: COMPLETED, 32630 deliveries in 242 ms; account alone 0 MB; checkpoint 42984 B; reconstruction p95 1.11 ms; reloads 4; retired producers 297
+week: COMPLETED, 228691 deliveries in 1756 ms; account alone 0.133 MB; checkpoint 54332 B; reconstruction p95 2.29 ms; reloads 28; retired producers 2095
+month: COMPLETED, 980279 deliveries in 9093 ms; account alone 0.141 MB; checkpoint 55021 B; reconstruction p95 1.82 ms; reloads 120; retired producers 9131
+L2.1-E04-bounded-growth: COMPLETED in 11271 ms (peak RSS 242 MB by the OS, 236 MB sampled; 0 worker threads)
+done 2026-11-15T17:43:25Z

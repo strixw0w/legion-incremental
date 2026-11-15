@@ -1,0 +1,9 @@
+{
+  "experimentId": "L2-E03-partition",
+  "kind": "partition",
+  "description": "Batch partition invariance at chronological boundaries: 2,000 random economies and schedules (Feat tiers, level-ups, offline-efficiency windows, Monument purchases, recruits, queue creation and cancellation, kill credits), each settled once and in 5 random partitions with checkpoint save/restore at some points; plus the owner's 100 ore per hour example.",
+  "seed": "l2-e03",
+  "policy": { "maxRecent": 256, "maxAgeMs": 86400000 },
+  "cases": 2000,
+  "partitionsPerCase": 5
+}

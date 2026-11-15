@@ -1,0 +1,1893 @@
+{
+  "fixtureSet": "l21-lifecycle",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l21-replay.md#v2",
+  "status": "candidate",
+  "independence": "L2.1 rules (spec/formulas/l21-replay.md v2) re-derived by spec/oracle/l21_oracle.py from the rule text with a full-history window model, plain sets and dictionaries; the lab side calls the real L2.1 functions. The close-empty case is hand-derived. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l21.life.basic.001",
+      "kind": "normal",
+      "description": "in order, outstanding limit, unit limit, close, retirement once settled, retired refusals",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 6,
+          "maxOutstanding": 3
+        },
+        "ops": [
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "open"
+          }
+        ]
+      },
+      "derivation": "spec 3.2: WORK_OUT_OF_ORDER, WORK_LIMIT, PRODUCER_FULL, PRODUCER_CLOSED; the last settlement on the closed producer retires it; the next open is number 2",
+      "expected": {
+        "allocated": 2,
+        "retired": [
+          1
+        ],
+        "open": [
+          {
+            "producer": 2,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.close-empty",
+      "kind": "boundary",
+      "description": "closing a producer with nothing reserved retires it at once; the open limit counts open producers only",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 6,
+          "maxOutstanding": 3
+        },
+        "ops": [
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "close",
+            "producer": 9
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          }
+        ]
+      },
+      "derivation": "hand-derived: open 1, 2; the third is PRODUCER_LIMIT; close 1 retires it; open gives 3; close 1 again is PRODUCER_RETIRED; 9 is unknown",
+      "expected": {
+        "allocated": 3,
+        "retired": [
+          1
+        ],
+        "open": [
+          {
+            "producer": 2,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 3,
+            "maxUnit": 1,
+            "reserved": [
+              1
+            ],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.table",
+      "kind": "boundary",
+      "description": "the transition table refusals",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 6,
+          "maxOutstanding": 3
+        },
+        "ops": [
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 0
+          }
+        ]
+      },
+      "derivation": "L2 v1 section 3 table, then spec 3.2 admission",
+      "expected": {
+        "allocated": 1,
+        "retired": [],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 2,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.000",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 1,
+          "maxUnits": 4,
+          "maxOutstanding": 3
+        },
+        "ops": [
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 6
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 4
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 8
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 4
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 4
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 0
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 8
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 1
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 4
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 1
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 2,
+        "retired": [
+          1
+        ],
+        "open": [
+          {
+            "producer": 2,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.001",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 3,
+          "maxOutstanding": 2
+        },
+        "ops": [
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 2
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 4
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 4
+          },
+          {
+            "op": "close",
+            "producer": 3
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 2,
+        "retired": [],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 2,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.002",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 1,
+          "maxUnits": 6,
+          "maxOutstanding": 1
+        },
+        "ops": [
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 1
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 4
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 5
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 1,
+        "retired": [
+          1
+        ],
+        "open": []
+      }
+    },
+    {
+      "id": "l21.life.random.003",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 2,
+          "maxOutstanding": 3
+        },
+        "ops": [
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 8
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 4
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 8
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 7
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 4,
+        "retired": [
+          2,
+          3
+        ],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 2,
+            "reserved": [
+              2
+            ],
+            "closed": false
+          },
+          {
+            "producer": 4,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.004",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 3,
+          "maxUnits": 8,
+          "maxOutstanding": 1
+        },
+        "ops": [
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 5
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 6
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 1
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 3,
+        "retired": [],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 2,
+            "maxUnit": 1,
+            "reserved": [
+              1
+            ],
+            "closed": false
+          },
+          {
+            "producer": 3,
+            "maxUnit": 1,
+            "reserved": [
+              1
+            ],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.005",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 1,
+          "maxUnits": 4,
+          "maxOutstanding": 2
+        },
+        "ops": [
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 3
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 0
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 4
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 2
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 1
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 1,
+        "retired": [
+          1
+        ],
+        "open": []
+      }
+    },
+    {
+      "id": "l21.life.random.006",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 3,
+          "maxUnits": 5,
+          "maxOutstanding": 1
+        },
+        "ops": [
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 5
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 0
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 4
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 8
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 8
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 8
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 2
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 2
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 8
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 8
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 3
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 7
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "release",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 0
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 1
+          },
+          {
+            "op": "complete",
+            "producer": 4,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "open"
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 3,
+        "retired": [],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 2,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 3,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.random.007",
+      "kind": "normal",
+      "description": "seeded random lifecycle",
+      "input": {
+        "limits": {
+          "maxOpenProducers": 2,
+          "maxUnits": 3,
+          "maxOutstanding": 2
+        },
+        "ops": [
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "close",
+            "producer": 1
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 1
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 5
+          },
+          {
+            "op": "release",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "complete",
+            "producer": 2,
+            "unit": 5
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 0
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "complete",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 6
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 4,
+            "unit": 8
+          },
+          {
+            "op": "close",
+            "producer": 4
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 6
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "close",
+            "producer": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 8
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 1
+          },
+          {
+            "op": "abandon",
+            "producer": 4,
+            "unit": 0
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 7
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 1,
+            "unit": 5
+          },
+          {
+            "op": "reserve",
+            "producer": 1,
+            "unit": 3
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "complete",
+            "producer": 1,
+            "unit": 0
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 4
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 3
+          },
+          {
+            "op": "reserve",
+            "producer": 2,
+            "unit": 4
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "release",
+            "producer": 2,
+            "unit": 8
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 7
+          },
+          {
+            "op": "abandon",
+            "producer": 3,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 4,
+            "unit": 2
+          },
+          {
+            "op": "reserve",
+            "producer": 3,
+            "unit": 1
+          },
+          {
+            "op": "open"
+          },
+          {
+            "op": "abandon",
+            "producer": 2,
+            "unit": 3
+          }
+        ]
+      },
+      "derivation": "oracle: plain dictionaries of unit states (spec 3.2)",
+      "expected": {
+        "allocated": 3,
+        "retired": [
+          2
+        ],
+        "open": [
+          {
+            "producer": 1,
+            "maxUnit": 0,
+            "reserved": [],
+            "closed": false
+          },
+          {
+            "producer": 3,
+            "maxUnit": 1,
+            "reserved": [
+              1
+            ],
+            "closed": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "l21.life.bad-limits",
+      "kind": "failure",
+      "description": "maxUnits 0",
+      "input": {
+        "limits": {
+          "maxUnits": 0
+        },
+        "ops": []
+      },
+      "derivation": "every limit is a positive safe integer (spec 0)",
+      "expectedError": "INVALID_NUMBER"
+    }
+  ]
+}

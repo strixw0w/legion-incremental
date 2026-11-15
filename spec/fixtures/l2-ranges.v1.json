@@ -1,0 +1,1588 @@
+{
+  "fixtureSet": "l2-ranges",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/l2-replay.md#v1",
+  "status": "candidate",
+  "independence": "L2 rules (spec/formulas/l2-replay.md v1) re-derived by spec/oracle/l2_oracle.py from the rule text with Python sets and integers; the lab side calls the real L2 functions.  Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "l2.ranges.prefix.001",
+      "kind": "normal",
+      "description": "contiguous additions collapse into the prefix",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            6,
+            6
+          ]
+        ],
+        "queries": [
+          1,
+          6,
+          7
+        ]
+      },
+      "derivation": "hand: p 6, no runs",
+      "expected": {
+        "p": 6,
+        "runs": [],
+        "gaps": [],
+        "member": [
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.gap.001",
+      "kind": "normal",
+      "description": "a gap keeps a run above the prefix",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "queries": [
+          4,
+          5
+        ]
+      },
+      "derivation": "hand: p 3, run [5,7], gap [4,4]",
+      "expected": {
+        "p": 3,
+        "runs": [
+          [
+            5,
+            7
+          ]
+        ],
+        "gaps": [
+          [
+            4,
+            4
+          ]
+        ],
+        "member": [
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.fill.001",
+      "kind": "normal",
+      "description": "filling the gap merges everything into the prefix",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "queries": [
+          4
+        ]
+      },
+      "derivation": "hand: p 7",
+      "expected": {
+        "p": 7,
+        "runs": [],
+        "gaps": [],
+        "member": [
+          true
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.touch.001",
+      "kind": "normal",
+      "description": "touching runs merge",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            10,
+            12
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            20,
+            20
+          ]
+        ],
+        "queries": [
+          9,
+          15,
+          20
+        ]
+      },
+      "derivation": "hand: runs [10,15], [20,20]",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            10,
+            15
+          ],
+          [
+            20,
+            20
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            9
+          ],
+          [
+            16,
+            19
+          ]
+        ],
+        "member": [
+          false,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.overlap.001",
+      "kind": "failure",
+      "description": "an overlapping run is refused whole (never trimmed)",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            1,
+            5
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "queries": []
+      },
+      "derivation": "hand: 4 and 5 are members",
+      "expectedError": "RANGE_OVERLAP"
+    },
+    {
+      "id": "l2.ranges.overlap.002",
+      "kind": "failure",
+      "description": "re-adding a single member",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            3,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "queries": []
+      },
+      "derivation": "hand: 3 is already a member",
+      "expectedError": "RANGE_OVERLAP"
+    },
+    {
+      "id": "l2.ranges.invalid.001",
+      "kind": "failure",
+      "description": "zero is not a member",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            0,
+            2
+          ]
+        ],
+        "queries": []
+      },
+      "derivation": "hand: members are positive",
+      "expectedError": "INVALID_RANGE"
+    },
+    {
+      "id": "l2.ranges.boundary.001",
+      "kind": "boundary",
+      "description": "the largest safe member",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            9007199254740990,
+            9007199254740991
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "queries": [
+          9007199254740991,
+          2
+        ]
+      },
+      "derivation": "hand: p 1, one run at the top",
+      "expected": {
+        "p": 1,
+        "runs": [
+          [
+            9007199254740990,
+            9007199254740991
+          ]
+        ],
+        "gaps": [
+          [
+            2,
+            9007199254740989
+          ]
+        ],
+        "member": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.001",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            2,
+            5
+          ],
+          [
+            39,
+            40
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            2,
+            5
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            39,
+            40
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            22
+          ],
+          [
+            25,
+            28
+          ],
+          [
+            31,
+            38
+          ]
+        ],
+        "member": [
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.002",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            34,
+            35
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            11,
+            13
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            10,
+            13
+          ],
+          [
+            34,
+            35
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            9
+          ],
+          [
+            14,
+            33
+          ]
+        ],
+        "member": [
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.003",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            9,
+            11
+          ],
+          [
+            30,
+            32
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            40,
+            43
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            36,
+            38
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 3,
+        "runs": [
+          [
+            9,
+            12
+          ],
+          [
+            30,
+            32
+          ],
+          [
+            36,
+            38
+          ],
+          [
+            40,
+            43
+          ]
+        ],
+        "gaps": [
+          [
+            4,
+            8
+          ],
+          [
+            13,
+            29
+          ],
+          [
+            33,
+            35
+          ],
+          [
+            39,
+            39
+          ]
+        ],
+        "member": [
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.004",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            21,
+            23
+          ],
+          [
+            25,
+            27
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            29,
+            32
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            40,
+            42
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            17,
+            18
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 1,
+        "runs": [
+          [
+            6,
+            10
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            21,
+            23
+          ],
+          [
+            25,
+            27
+          ],
+          [
+            29,
+            32
+          ],
+          [
+            40,
+            42
+          ]
+        ],
+        "gaps": [
+          [
+            2,
+            5
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            19,
+            20
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            33,
+            39
+          ]
+        ],
+        "member": [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.005",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            19,
+            20
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            21,
+            22
+          ],
+          [
+            35,
+            36
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            19,
+            22
+          ],
+          [
+            35,
+            36
+          ],
+          [
+            38,
+            39
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            18
+          ],
+          [
+            23,
+            34
+          ],
+          [
+            37,
+            37
+          ]
+        ],
+        "member": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.006",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            33,
+            36
+          ],
+          [
+            24,
+            26
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            24,
+            26
+          ],
+          [
+            33,
+            36
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            23
+          ],
+          [
+            27,
+            32
+          ]
+        ],
+        "member": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.007",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            37,
+            37
+          ],
+          [
+            38,
+            41
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            27,
+            27
+          ],
+          [
+            28,
+            28
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            4,
+            7
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            27,
+            30
+          ],
+          [
+            37,
+            41
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            3
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            16,
+            26
+          ],
+          [
+            31,
+            36
+          ]
+        ],
+        "member": [
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.008",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            13,
+            16
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            39,
+            40
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            2,
+            2
+          ],
+          [
+            13,
+            16
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            39,
+            40
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            17,
+            35
+          ],
+          [
+            37,
+            38
+          ]
+        ],
+        "member": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.009",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            2,
+            4
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            29,
+            31
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            40,
+            43
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            32,
+            34
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            2,
+            4
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            28,
+            34
+          ],
+          [
+            40,
+            43
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            8
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            17,
+            27
+          ],
+          [
+            35,
+            39
+          ]
+        ],
+        "member": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.010",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            15,
+            17
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            39,
+            40
+          ],
+          [
+            27,
+            29
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            13,
+            13
+          ],
+          [
+            18,
+            18
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 4,
+        "runs": [
+          [
+            13,
+            13
+          ],
+          [
+            15,
+            18
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            27,
+            29
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            39,
+            40
+          ]
+        ],
+        "gaps": [
+          [
+            5,
+            12
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            19,
+            21
+          ],
+          [
+            23,
+            26
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            33,
+            38
+          ]
+        ],
+        "member": [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.011",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            20,
+            21
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            32,
+            33
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            35,
+            38
+          ],
+          [
+            27,
+            30
+          ],
+          [
+            39,
+            41
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            4,
+            4
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            19,
+            21
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            27,
+            33
+          ],
+          [
+            35,
+            41
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            3
+          ],
+          [
+            5,
+            11
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            25,
+            26
+          ],
+          [
+            34,
+            34
+          ]
+        ],
+        "member": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "l2.ranges.random.012",
+      "kind": "normal",
+      "description": "seeded random disjoint additions",
+      "input": {
+        "op": "ranges",
+        "adds": [
+          [
+            24,
+            27
+          ],
+          [
+            20,
+            22
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "queries": [
+          1,
+          4,
+          7,
+          10,
+          13,
+          16,
+          19,
+          22,
+          25,
+          28,
+          31,
+          34,
+          37,
+          40,
+          43
+        ]
+      },
+      "derivation": "oracle: plain set, re-encoded",
+      "expected": {
+        "p": 0,
+        "runs": [
+          [
+            7,
+            7
+          ],
+          [
+            20,
+            22
+          ],
+          [
+            24,
+            27
+          ]
+        ],
+        "gaps": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            19
+          ],
+          [
+            23,
+            23
+          ]
+        ],
+        "member": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}
