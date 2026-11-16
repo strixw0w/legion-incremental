@@ -1,0 +1,42 @@
+{
+ "cutsPerRun": 40,
+ "configs": [
+  "s2-squad",
+  "s2-workers",
+  "s3-bal",
+  "s3-equip",
+  "s4-bal2",
+  "s4-best",
+  "s2-diag-deaths",
+  "s2-diag-workers"
+ ],
+ "identities": [
+  "l1",
+  "l2"
+ ],
+ "checkpoints": 768,
+ "falseRefusals": 0,
+ "firstFalse": [],
+ "requiredEventRemovals": 1382,
+ "removalsAccepted": 0,
+ "resumes": 72,
+ "resumeBreaks": 0,
+ "coverage": {
+  "after-last": 64,
+  "between": 140,
+  "enc:ordinary": 39,
+  "hero-dead": 6,
+  "hero:dead": 6,
+  "hero:engaged": 39,
+  "hero:idle": 303,
+  "hero:resting": 20,
+  "hero:travelling": 42,
+  "hero:walking": 358,
+  "in-session": 534,
+  "ko": 6,
+  "pre-session": 30,
+  "work": 144,
+  "worker-fight": 8
+ },
+ "wallMs": 430213
+}

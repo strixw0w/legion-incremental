@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E03-mid-absence",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e03",
+ "tasks": 200,
+ "description": "200 seeds: a short first session (logout at the first moment from 20 minutes on where the offline preview changes no assignment), then a 24-hour absence with many combat level-ups, member level-ups, Bestiary and emblem events and permanent bonus recomputes. Offline against connected automated play for the credited duration from the same state; and the absence settled in storage batches cut exactly at hero level-up moments.",
+ "budgets": {
+  "wallMs": 1800000,
+  "peakRssMb": 8192
+ }
+}

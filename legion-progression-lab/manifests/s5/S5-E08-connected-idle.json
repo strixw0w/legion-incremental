@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E08-connected-idle",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e08",
+ "tasks": 200,
+ "description": "200 seeds: the same account after a two-hour POL5-BAL session, then six wall hours of active play (POL5-BAL-ATT: decisions and the hero's manual ability), connected idle (no decisions) and offline (default rules). Lifetime progress per wall hour in each mode.",
+ "budgets": {
+  "wallMs": 1200000,
+  "peakRssMb": 8192
+ }
+}

@@ -20,23 +20,50 @@
  * list (oldest first) and rebuilds the links on restore. The chain still grows with the history: that is the engine's
  * L1 credit model, which S5 engine integration replaces (limitation, contract §9).
  */
+import { creditedMs, offlineRules } from '../engine/offline.ts';
 import { fail } from '../core/errors.ts';
 import { canonicalJson, fingerprint } from '../core/hash/canonicalJson.ts';
 import { DEFAULT_LEDGER } from '../core/ledger/implementations.ts';
+import { reconstructBoundedLedger, serializeBoundedLedger } from '../core/ledger/boundedLedger.ts';
+import { reconstructBoundedReferenceLedger, serializeBoundedReferenceLedger } from '../core/ledger/boundedReferenceLedger.ts';
 import { reconstructPersistentLedger, serializeLedger } from '../core/ledger/persistentLedger.ts';
 import { LegionSimulation, type LegionOptions, type SimRuntime } from '../engine/legion.ts';
 import { simRuntimeProblems, simStateProblems } from './simState.ts';
 
-export const SIM_CHECKPOINT_SCHEMA = 'legion.l2.sim-checkpoint.v2';
+export const SIM_CHECKPOINT_SCHEMA = 'legion.l2.sim-checkpoint.v3';
 
-function versionsOf(content: LegionOptions['content']): Record<string, string | null> {
+export function versionsOf(content: LegionOptions['content']): Record<string, string | null> {
   const c = content as unknown as Record<string, unknown>;
   const v = (k: string) => (typeof c[k] === 'string' ? (c[k] as string) : null);
   return { contentHash: v('contentHash'), tableHash: v('tableHash'), legionContentHash: v('legionContentHash'), industryContentHash: v('industryContentHash'), permanentContentHash: v('permanentContentHash') };
 }
 
 function optionsOf(o: LegionOptions): Record<string, unknown> {
-  return { seedRoot: o.seedRoot, sessions: o.sessions, legion: o.legion === true, industry: o.industry === true, permanent: o.permanent === true, ledger: o.ledger ?? DEFAULT_LEDGER, diagnostic: o.diagnostic ?? null, queueArm: (o as { queueArm?: string }).queueArm ?? null };
+  return { seedRoot: o.seedRoot, sessions: o.sessions, legion: o.legion === true, industry: o.industry === true, permanent: o.permanent === true, ledger: o.ledger === 'bounded-reference' ? 'bounded' : (o.ledger ?? DEFAULT_LEDGER), diagnostic: o.diagnostic ?? null, queueArm: (o as { queueArm?: string }).queueArm ?? null, identity: o.identity ?? 'l1', offline: o.offline === undefined ? null : offlineRules(o.offline), ...((o.sessionOffset ?? 0) !== 0 ? { sessionOffset: o.sessionOffset } : {}) };
+}
+
+/**
+ * S5 offline mode: the schedule may have grown since the checkpoint (a reconnect the account learned about later). The
+ * saved sessions must be an exact prefix; every added session starts at or after the checkpoint's game time.
+ */
+function scheduleProblems(doc: Record<string, unknown>, options: LegionOptions): string[] | null {
+  if (options.offline === undefined) return null;
+  const saved = (doc['options'] as Record<string, unknown>)['sessions'];
+  if (!Array.isArray(saved) || saved.length > options.sessions.length) return null;
+  if (canonicalJson(saved as never) !== canonicalJson(options.sessions.slice(0, saved.length) as never)) return null;
+  if (saved.length === options.sessions.length) return [];
+  const st = doc['state'] as Record<string, unknown>;
+  const ses = isObj(st) ? (st['session'] as Record<string, unknown>) : null;
+  const off = isObj(st) ? (st['offline'] as Record<string, unknown>) : null;
+  const a = off && isObj(off) ? (off['absence'] as Record<string, unknown> | null) : null;
+  if (!ses || ses['open'] !== false || ses['index'] !== (options.sessionOffset ?? 0) + saved.length - 1 || !isObj(a)) return ['sim checkpoint: the schedule may only grow during the absence after its last session'];
+  const next = options.sessions[saved.length] as { startMs: number };
+  const w = next.startMs - (a['wallStartMs'] as number);
+  if (!Number.isSafeInteger(w) || w < 0) return ['sim checkpoint: an added session starts before the absence began (backwards time)'];
+  const r = offlineRules(options.offline);
+  const g = (a['gameStartMs'] as number) + (a['unlocked'] === true ? creditedMs(w, a['normalBp'] as number, a['rateE8'] as number, r.firstMs, r.secondMs) : w);
+  if (g < (st['tMs'] as number)) return ['sim checkpoint: an added session would start before the checkpoint (backwards time)'];
+  return [];
 }
 
 type Chain = { readonly creditId: string; readonly claim: string; readonly prev: Chain | null } | null;
@@ -60,15 +87,18 @@ function encodeRegistry(r: { committed: Chain } & Record<string, unknown>): Reco
 
 /** Saves a simulation between steps (refused inside a step or after a refused step). */
 export function saveSimulation(sim: LegionSimulation): string {
-  // The persistent (L1) ledger has the validated reconstruction; the reference ledger is the differential control only.
-  if ((sim.options.ledger ?? DEFAULT_LEDGER) !== 'persistent') fail('INVALID_STATE', 'a simulation checkpoint needs the persistent ledger (options.ledger)');
+  // The persistent (L1) and bounded (S5) ledgers have validated reconstructions; the reference ledger is the
+  // differential control only.
+  const kind = sim.options.ledger ?? DEFAULT_LEDGER;
+  // The two bounded ledgers (efficient and reference) share one stored form, so their checkpoints are interchangeable.
+  if (kind !== 'persistent' && kind !== 'bounded' && kind !== 'bounded-reference') fail('INVALID_STATE', 'a simulation checkpoint needs the persistent or a bounded ledger (options.ledger)');
   const runtime = sim.runtimeSnapshot();
   const st = sim.state as unknown as Record<string, unknown> & { credits: { committed: Chain }; legion: Record<string, unknown> & { credits: { committed: Chain } } };
   const body = {
     schema: SIM_CHECKPOINT_SCHEMA,
     versions: versionsOf(sim.content),
     options: optionsOf(sim.options),
-    state: { ...st, ledger: JSON.parse(serializeLedger(sim.state.ledger)), credits: encodeRegistry(st.credits as never), legion: { ...st.legion, credits: encodeRegistry(st.legion.credits as never) } },
+    state: { ...st, ledger: JSON.parse(kind === 'bounded' ? serializeBoundedLedger(sim.state.ledger) : kind === 'bounded-reference' ? serializeBoundedReferenceLedger(sim.state.ledger) : serializeLedger(sim.state.ledger)), credits: encodeRegistry(st.credits as never), legion: { ...st.legion, credits: encodeRegistry(st.legion.credits as never) } },
     runtime,
   };
   return canonicalJson({ ...body, digest: fingerprint(body as never) } as never);
@@ -89,11 +119,15 @@ export function simCheckpointProblems(doc: unknown, options: LegionOptions): str
       return [`sim checkpoint: not canonical JSON data (${(e as Error).message})`];
     }
     if (canonicalJson(doc['versions'] as never) !== canonicalJson(versionsOf(options.content) as never)) out.push('sim checkpoint: content versions differ from the running content');
-    if (canonicalJson(doc['options'] as never) !== canonicalJson(optionsOf(options) as never)) out.push('sim checkpoint: options (seed, sessions, switches, ledger, diagnostics) differ');
+    // The saved part is validated against the schedule it was saved with (S5: the schedule may have grown since).
+    const grown = scheduleProblems(doc, options);
+    const savedOptions: LegionOptions = grown === null ? options : { ...options, sessions: (doc['options'] as { sessions: LegionOptions['sessions'] }).sessions };
+    if (canonicalJson(doc['options'] as never) !== canonicalJson(optionsOf(savedOptions) as never)) out.push('sim checkpoint: options (seed, sessions, switches, ledger, diagnostics, offline rules) differ');
+    if (grown !== null) out.push(...grown);
     if (out.length > 0) return out;
-    out.push(...simStateProblems(doc['state'], options));
+    out.push(...simStateProblems(doc['state'], savedOptions));
     if (out.length > 0) return out;
-    out.push(...simRuntimeProblems(doc['runtime'], doc['state'] as Record<string, unknown>, options));
+    out.push(...simRuntimeProblems(doc['runtime'], doc['state'] as Record<string, unknown>, savedOptions));
     return out;
   } catch (e) {
     // A safety net only (every rule guards its own input): an unforeseen shape is a named refusal, never a crash.
@@ -126,12 +160,15 @@ export function restoreSimulation(text: string, options: LegionOptions): LegionS
   const st = doc['state'] as Record<string, unknown> & { credits: Record<string, unknown>; legion: Record<string, unknown> & { credits: Record<string, unknown> } };
   const state = {
     ...st,
-    ledger: reconstructPersistentLedger(st['ledger']),
+    ledger: options.ledger === 'bounded' ? reconstructBoundedLedger(st['ledger']) : options.ledger === 'bounded-reference' ? reconstructBoundedReferenceLedger(st['ledger']) : reconstructPersistentLedger(st['ledger']),
     credits: { ...st.credits, committed: relink(st.credits['committed'] as { creditId: string; claim: string }[]) },
     legion: { ...st.legion, credits: { ...st.legion.credits, committed: relink(st.legion.credits['committed'] as { creditId: string; claim: string }[]) } },
   } as unknown as LegionSimulation['state'];
   // The queued events are immutable by the engine's design; freezing the restored ones makes that hold for them too.
   const runtime = doc['runtime'] as unknown as SimRuntime;
   for (const e of runtime.events) deepFreeze(e);
-  return LegionSimulation.restoreRuntime(options, state, runtime);
+  const sim = LegionSimulation.restoreRuntime(options, state, runtime);
+  // S5: a grown schedule places its next session now (at its credited game time).
+  sim.extendSchedule();
+  return sim;
 }

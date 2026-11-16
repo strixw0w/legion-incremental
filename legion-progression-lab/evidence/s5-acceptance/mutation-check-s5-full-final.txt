@@ -1,0 +1,18 @@
+M1: DETECTED (21 failing) restored=True | the reduced window has no length (no 72-hour cap)
+M2: DETECTED (20 failing) restored=True | the credited duration rounds up instead of down
+M3: DETECTED (17 failing) restored=True | the ratio rule ignores the normal rate (the reduced window is not proportional)
+M4: DETECTED (20 failing) restored=True | the beyond-cap window is not reported
+M5: DETECTED (1 failing) restored=True | reserve recruits produce offline
+M6: DETECTED (1 failing) restored=True | deployed recruits farm even when the hero's assignment is not combat
+M7: DETECTED (1 failing) restored=True | a combat worker zone needs no prior hero visitation
+M8: DETECTED (5 failing) restored=True | an overlapping interval is not refused
+M9: DETECTED (3 failing) restored=True | a settlement beyond the trusted clock is accepted
+M10: DETECTED (1 failing) restored=True | an earlier (closed) absence is reported as unknown
+M11: DETECTED (25 failing) restored=True | an absence credits its whole wall time (no efficiency)
+M12: DETECTED (2 failing) restored=True | policy decisions (and so purchases) run offline
+M13: DETECTED (1 failing) restored=True | a reconnect instantly recovers knocked-out recruits (an advantageous timer reset)
+M14: DETECTED (21 failing) restored=True | work in progress is abandoned at every logout (offline never unlocks)
+M15: DETECTED (2 failing) restored=True | a Monument purchase is accepted outside a connected session
+M16: DETECTED (1 failing) restored=True | the normal offline rate is not capped at 100 %
+M17: DETECTED (17 failing) restored=True | a session boundary is not processed at its moment (runThrough is exclusive)
+M18: pattern found 0 times in src/engine/legion.ts

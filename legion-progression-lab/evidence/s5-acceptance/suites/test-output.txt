@@ -1,0 +1,13 @@
+
+> legion-progression-lab@0.1.0 test
+> vitest run --config vitest.config.ts
+
+
+ RUN  v4.1.12 <HOME>/AppData/Local/Temp/claude/278b8a1dbacfe479/21149cb6-cbb9-4084-8aec-c79d4edcb607/scratchpad/s6ck/s5tree/legion-progression-lab
+
+
+ Test Files  49 passed (49)
+      Tests  1668 passed (1668)
+   Start at  18:24:03
+   Duration  78.29s (transform 6.14s, setup 0ms, import 21.81s, tests 315.62s, environment 6ms)
+

@@ -1,0 +1,10 @@
+# A/B exactness of the S5 optimisations on the final code (2026-11-15T21:57:46Z)
+# optimised = the lab; unoptimised = a copy of the final src with the stats cache, the chunked ledger and the validated-once frozen EXP table removed
+== optimised
+s4-72h: state f6444908367c81fe log eac16378568dcde9 events 1150223 level 151 gold 485207 (6466 ms)
+s4-best-30h: state 7f279535308a13c4 log ccca32e80f5a3d80 events 849867 level 134 gold 354164 (4511 ms)
+s3-20h: state c502518ad7634ef4 log d53504bbaf3264c8 events 456606 level 117 gold 250012 (2708 ms)
+== unoptimised copy
+s4-72h: state f6444908367c81fe log eac16378568dcde9 events 1150223 level 151 gold 485207 (10240 ms)
+s4-best-30h: state 7f279535308a13c4 log ccca32e80f5a3d80 events 849867 level 134 gold 354164 (7242 ms)
+s3-20h: state c502518ad7634ef4 log d53504bbaf3264c8 events 456606 level 117 gold 250012 (5058 ms)

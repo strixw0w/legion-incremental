@@ -36,7 +36,9 @@
         "l21-requests",
         "l21-credits",
         "l21-lifecycle",
-        "l21-delivery"
+        "l21-delivery",
+        "s5-offline-credit",
+        "s5-settlement-timing"
       ]
     },
     "fixtureVersion": {

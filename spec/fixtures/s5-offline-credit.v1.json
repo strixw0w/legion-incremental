@@ -1,0 +1,1418 @@
+{
+  "fixtureSet": "s5-offline-credit",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s5-offline.md#v1",
+  "status": "candidate",
+  "independence": "S5 rules (spec/formulas/s5-offline.md v1) re-derived by spec/oracle/s5_oracle.py from the rule text with Python integers and exact fractions; the lab side calls the real S5 functions. Derivations are hand-written. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "s5.cr.zero",
+      "kind": "boundary",
+      "description": "zero absence credits nothing",
+      "input": {
+        "w": 0,
+        "normalBp": 6000
+      },
+      "derivation": "P(0) = 0 by the first case of the rule (w <= 0).",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 0,
+        "windows": []
+      }
+    },
+    {
+      "id": "s5.cr.negative",
+      "kind": "boundary",
+      "description": "a negative clock anomaly credits nothing",
+      "input": {
+        "w": -5000,
+        "normalBp": 6000
+      },
+      "derivation": "w <= 0 gives 0; the absence clock never runs backwards into credit.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 0,
+        "windows": []
+      }
+    },
+    {
+      "id": "s5.cr.one-ms",
+      "kind": "boundary",
+      "description": "one millisecond floors to zero at 60 %",
+      "input": {
+        "w": 1,
+        "normalBp": 6000
+      },
+      "derivation": "floor(6000 * 10^4 * 1 / 10^8) = floor(0.6) = 0.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 0,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 1,
+            "rateE8": 60000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.two-ms",
+      "kind": "boundary",
+      "description": "two milliseconds credit one",
+      "input": {
+        "w": 2,
+        "normalBp": 6000
+      },
+      "derivation": "floor(6000 * 10^4 * 2 / 10^8) = floor(1.2) = 1.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 1,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 2,
+            "rateE8": 60000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.24h",
+      "kind": "boundary",
+      "description": "exactly 24 hours: the whole normal window",
+      "input": {
+        "w": 86400000,
+        "normalBp": 6000
+      },
+      "derivation": "0.6 * 86,400,000 = 51,840,000 exactly; the reduced window has not begun.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 51840000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.24h-plus-1",
+      "kind": "boundary",
+      "description": "24 hours plus one millisecond: the reduced window adds 0.3 ms, floored",
+      "input": {
+        "w": 86400001,
+        "normalBp": 6000
+      },
+      "derivation": "51,840,000 + floor(0.3) = 51,840,000; the windows now list the reduced window (one ms).",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 51840000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 86400001,
+            "rateE8": 30000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.24h-plus-10",
+      "kind": "boundary",
+      "description": "24 hours plus ten milliseconds",
+      "input": {
+        "w": 86400010,
+        "normalBp": 6000
+      },
+      "derivation": "51,840,000 + floor(10 * 0.3) = 51,840,003.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 51840003,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 86400010,
+            "rateE8": 30000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.72h",
+      "kind": "boundary",
+      "description": "exactly 72 hours: both windows full",
+      "input": {
+        "w": 259200000,
+        "normalBp": 6000
+      },
+      "derivation": "0.6 * 24 h + 0.3 * 48 h = 14.4 h + 14.4 h = 28.8 h = 103,680,000.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 103680000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.72h-plus-1",
+      "kind": "boundary",
+      "description": "one millisecond beyond the cap credits nothing more",
+      "input": {
+        "w": 259200001,
+        "normalBp": 6000
+      },
+      "derivation": "clamp(w - F, 0, S) = S, so P is constant from F + S; a beyond-cap window of one ms is listed.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 103680000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30000000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 259200001,
+            "rateE8": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.30d",
+      "kind": "boundary",
+      "description": "a 30-day absence is capped",
+      "input": {
+        "w": 2592000000,
+        "normalBp": 6000
+      },
+      "derivation": "Same as 72 h: 103,680,000; the beyond-cap window runs from 72 h to 720 h.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 103680000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30000000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 2592000000,
+            "rateE8": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.flat25",
+      "kind": "normal",
+      "description": "registered alternative: flat 25 % second window",
+      "input": {
+        "w": 259200000,
+        "normalBp": 6000,
+        "second": {
+          "kind": "flat",
+          "bp": 2500
+        }
+      },
+      "derivation": "0.6 * 24 h + 0.25 * 48 h = 14.4 h + 12 h = 26.4 h = 95,040,000.",
+      "expected": {
+        "rateE8": 25000000,
+        "creditedMs": 95040000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 25000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.ratio03",
+      "kind": "normal",
+      "description": "registered alternative: ratio 0.3",
+      "input": {
+        "w": 259200000,
+        "normalBp": 6000,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 3000
+        }
+      },
+      "derivation": "0.6 * 24 h + 0.18 * 48 h = 14.4 h + 8.64 h = 23.04 h.",
+      "expected": {
+        "rateE8": 18000000,
+        "creditedMs": 82944000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 18000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.ratio07",
+      "kind": "normal",
+      "description": "registered alternative: ratio 0.7",
+      "input": {
+        "w": 259200000,
+        "normalBp": 6000,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 7000
+        }
+      },
+      "derivation": "0.6 * 24 h + 0.42 * 48 h = 14.4 h + 20.16 h = 34.56 h.",
+      "expected": {
+        "rateE8": 42000000,
+        "creditedMs": 124416000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 42000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.n80",
+      "kind": "normal",
+      "description": "Monument of Eternity at 80 %: the reduced window stays proportional",
+      "input": {
+        "w": 259200000,
+        "normalBp": 8000
+      },
+      "derivation": "0.8 * 24 h + 0.4 * 48 h = 19.2 h + 19.2 h = 38.4 h.",
+      "expected": {
+        "rateE8": 40000000,
+        "creditedMs": 138240000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 80000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 40000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.n100",
+      "kind": "normal",
+      "description": "Monument of Eternity at 100 %",
+      "input": {
+        "w": 259200000,
+        "normalBp": 10000
+      },
+      "derivation": "24 h + 0.5 * 48 h = 48 h = 172,800,000.",
+      "expected": {
+        "rateE8": 50000000,
+        "creditedMs": 172800000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 100000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 50000000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.n0",
+      "kind": "boundary",
+      "description": "a zero normal rate credits nothing",
+      "input": {
+        "w": 180000000,
+        "normalBp": 0
+      },
+      "derivation": "n = 0 and r = 0 * k = 0.",
+      "expected": {
+        "rateE8": 0,
+        "creditedMs": 0,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 0
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 180000000,
+            "rateE8": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.custom-windows",
+      "kind": "normal",
+      "description": "custom window lengths (1 h and 2 h)",
+      "input": {
+        "w": 14400000,
+        "normalBp": 6000,
+        "firstMs": 3600000,
+        "secondMs": 7200000
+      },
+      "derivation": "0.6 * 1 h + 0.3 * 2 h = 1.2 h; one hour beyond the cap.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 4320000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 3600000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 3600000,
+            "toMs": 10800000,
+            "rateE8": 30000000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 10800000,
+            "toMs": 14400000,
+            "rateE8": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.fraction",
+      "kind": "normal",
+      "description": "an odd millisecond count floors the exact rational once",
+      "input": {
+        "w": 90000007,
+        "normalBp": 6100,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 4300
+        }
+      },
+      "derivation": "0.61 * 24 h + 0.2623 * (1 h + 7 ms) floored once from the exact rational sum.",
+      "expected": {
+        "rateE8": 26230000,
+        "creditedMs": 53648281,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 61000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 90000007,
+            "rateE8": 26230000
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5.cr.not-integer",
+      "kind": "failure",
+      "description": "a wall offset that is not an integer is refused",
+      "input": {
+        "w": 1.5,
+        "normalBp": 6000
+      },
+      "derivation": "Spec §1: a wall offset that is not a safe integer is refused (INVALID_STATE).",
+      "expectedError": "INVALID_STATE"
+    },
+    {
+      "id": "s5.cr.batches-even",
+      "kind": "normal",
+      "description": "storage batches never restart a window: 30 h in six batches",
+      "input": {
+        "w": 108000000,
+        "normalBp": 6000,
+        "batches": [
+          18000000,
+          36000000,
+          54000000,
+          72000000,
+          90000000,
+          108000000
+        ]
+      },
+      "derivation": "Each batch credits P(w_j) - P(w_{j-1}); the sum telescopes to P(30 h) = 14.4 h + 1.8 h.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 58320000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 108000000,
+            "rateE8": 30000000
+          }
+        ],
+        "batchCredits": [
+          10800000,
+          10800000,
+          10800000,
+          10800000,
+          9720000,
+          5400000
+        ],
+        "batchSum": 58320000
+      }
+    },
+    {
+      "id": "s5.cr.batches-across-cap",
+      "kind": "normal",
+      "description": "batches across both window edges and the cap",
+      "input": {
+        "w": 360000000,
+        "normalBp": 6000,
+        "batches": [
+          1,
+          86400000,
+          86400001,
+          180000000,
+          259200000,
+          259200001,
+          360000000
+        ]
+      },
+      "derivation": "The sum telescopes to P(100 h) = P(72 h); batches past the cap credit zero.",
+      "expected": {
+        "rateE8": 30000000,
+        "creditedMs": 103680000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30000000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 360000000,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          0,
+          51840000,
+          0,
+          28080000,
+          23760000,
+          0,
+          0
+        ],
+        "batchSum": 103680000
+      }
+    },
+    {
+      "id": "s5.cr.random.00",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1292086694,
+        "normalBp": 415,
+        "second": {
+          "kind": "flat",
+          "bp": 7793
+        },
+        "batches": [
+          203913075,
+          346761496,
+          380916611,
+          413083660,
+          755094334,
+          971275834,
+          1292086694
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 77930000,
+        "creditedMs": 138248640,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 4150000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 77930000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1292086694,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          95163539,
+          43085101,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 138248640
+      }
+    },
+    {
+      "id": "s5.cr.random.01",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 198777561,
+        "normalBp": 3929,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 8458
+        },
+        "batches": [
+          21156802,
+          40279363,
+          42666775,
+          50130256,
+          132857516,
+          145966318,
+          198777561
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 33231482,
+        "creditedMs": 71291288,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 39290000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 198777561,
+            "rateE8": 33231482
+          }
+        ],
+        "batchCredits": [
+          8312507,
+          7513254,
+          938014,
+          2932402,
+          29688904,
+          4356249,
+          17549958
+        ],
+        "batchSum": 71291288
+      }
+    },
+    {
+      "id": "s5.cr.random.02",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 2205908087,
+        "normalBp": 5513,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 5574
+        },
+        "batches": [
+          1567244370,
+          1980263714,
+          2205908087
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 30729462,
+        "creditedMs": 100732830,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 55130000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30729462
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 2205908087,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          100732830,
+          0,
+          0
+        ],
+        "batchSum": 100732830
+      }
+    },
+    {
+      "id": "s5.cr.random.03",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1574338988,
+        "normalBp": 2879,
+        "second": {
+          "kind": "flat",
+          "bp": 8925
+        },
+        "batches": [
+          1311522214,
+          1574338988
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 89250000,
+        "creditedMs": 179098560,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 28790000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 89250000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1574338988,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          179098560,
+          0
+        ],
+        "batchSum": 179098560
+      }
+    },
+    {
+      "id": "s5.cr.random.04",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1821554592,
+        "normalBp": 134,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 5898
+        },
+        "batches": [
+          642862721,
+          697966137,
+          1277073708,
+          1633598627,
+          1656202818,
+          1821554592
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 790332,
+        "creditedMs": 2523453,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 1340000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 790332
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1821554592,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          2523453,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 2523453
+      }
+    },
+    {
+      "id": "s5.cr.random.05",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1518243525,
+        "normalBp": 6210,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 5331
+        },
+        "batches": [
+          450855969,
+          1518243525
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 33105510,
+        "creditedMs": 110860721,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 62100000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 33105510
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1518243525,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          110860721,
+          0
+        ],
+        "batchSum": 110860721
+      }
+    },
+    {
+      "id": "s5.cr.random.06",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 3304596216,
+        "normalBp": 1572,
+        "second": {
+          "kind": "flat",
+          "bp": 563
+        },
+        "batches": [
+          406363788,
+          1910629065,
+          2733179620,
+          2745666087,
+          3304596216
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 5630000,
+        "creditedMs": 23310720,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 15720000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 5630000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 3304596216,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          23310720,
+          0,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 23310720
+      }
+    },
+    {
+      "id": "s5.cr.random.07",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1928227205,
+        "normalBp": 5690,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 8810
+        },
+        "batches": [
+          505419138,
+          1928227205
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 50128900,
+        "creditedMs": 135784339,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 56900000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 50128900
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1928227205,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          135784339,
+          0
+        ],
+        "batchSum": 135784339
+      }
+    },
+    {
+      "id": "s5.cr.random.08",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 485176859,
+        "normalBp": 1845,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 5069
+        },
+        "batches": [
+          135789460,
+          187978429,
+          327852987,
+          350188944,
+          430396002,
+          485176859
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 9352305,
+        "creditedMs": 32101583,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 18450000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 9352305
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 485176859,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          20559852,
+          4880872,
+          6660859,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 32101583
+      }
+    },
+    {
+      "id": "s5.cr.random.09",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 4277539,
+        "normalBp": 357,
+        "second": {
+          "kind": "flat",
+          "bp": 4309
+        },
+        "batches": [
+          2429265,
+          2620389,
+          4277539
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 43090000,
+        "creditedMs": 152708,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 4277539,
+            "rateE8": 3570000
+          }
+        ],
+        "batchCredits": [
+          86724,
+          6823,
+          59161
+        ],
+        "batchSum": 152708
+      }
+    },
+    {
+      "id": "s5.cr.random.10",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 2737513699,
+        "normalBp": 2464,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 9476
+        },
+        "batches": [
+          661753386,
+          664075581,
+          1352336192,
+          2317025321,
+          2329185327,
+          2705662423,
+          2737513699
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 23348864,
+        "creditedMs": 61635796,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 24640000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 23348864
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 2737513699,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          61635796,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 61635796
+      }
+    },
+    {
+      "id": "s5.cr.random.11",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 705039917,
+        "normalBp": 5388,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 8652
+        },
+        "batches": [
+          131984469,
+          493156018,
+          541042502,
+          705039917
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 46616976,
+        "creditedMs": 127106454,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 53880000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 46616976
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 705039917,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          67802420,
+          59304034,
+          0,
+          0
+        ],
+        "batchSum": 127106454
+      }
+    },
+    {
+      "id": "s5.cr.random.12",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1586569996,
+        "normalBp": 9943,
+        "second": {
+          "kind": "flat",
+          "bp": 4772
+        },
+        "batches": [
+          238496536,
+          1228716814,
+          1274390579,
+          1430543567,
+          1537648019,
+          1586569996
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 47720000,
+        "creditedMs": 168367680,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 99430000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 47720000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1586569996,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          158487986,
+          9879694,
+          0,
+          0,
+          0,
+          0
+        ],
+        "batchSum": 168367680
+      }
+    },
+    {
+      "id": "s5.cr.random.13",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1659697082,
+        "normalBp": 9879,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 1947
+        },
+        "batches": [
+          885715965,
+          1659697082
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 19234413,
+        "creditedMs": 118591625,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 98790000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 19234413
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1659697082,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          118591625,
+          0
+        ],
+        "batchSum": 118591625
+      }
+    },
+    {
+      "id": "s5.cr.random.14",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 1910115797,
+        "normalBp": 3029,
+        "second": {
+          "kind": "ratio",
+          "ratioBp": 2398
+        },
+        "batches": [
+          404968196,
+          1207599522,
+          1910115797
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 7263542,
+        "creditedMs": 38721960,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 30290000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 7263542
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 1910115797,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          38721960,
+          0,
+          0
+        ],
+        "batchSum": 38721960
+      }
+    },
+    {
+      "id": "s5.cr.random.15",
+      "kind": "normal",
+      "description": "seeded random wall offset, rates and batches",
+      "input": {
+        "w": 3385537092,
+        "normalBp": 4260,
+        "second": {
+          "kind": "flat",
+          "bp": 6779
+        },
+        "batches": [
+          1823498850,
+          3385537092
+        ]
+      },
+      "derivation": "Exact rational floor of the rule; batch credits telescope to P(w).",
+      "expected": {
+        "rateE8": 67790000,
+        "creditedMs": 153947520,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 42600000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 67790000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 3385537092,
+            "rateE8": 0
+          }
+        ],
+        "batchCredits": [
+          153947520,
+          0
+        ],
+        "batchSum": 153947520
+      }
+    }
+  ]
+}

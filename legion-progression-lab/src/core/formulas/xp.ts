@@ -60,7 +60,11 @@ export function buildXpTable(curve: XpCurve, length: number): number[] {
   return table;
 }
 
+/** Frozen tables already validated (S5, exact: a frozen array cannot change after its check). */
+const VALID_TABLES = new WeakSet<readonly number[]>();
+
 export function assertXpTable(table: readonly number[]): readonly number[] {
+  if (VALID_TABLES.has(table)) return table;
   const list = assertDenseArray(table, 'INVALID_TABLE', 'EXP table', 1);
   let prev = 0;
   for (let i = 0; i < list.length; i += 1) {
@@ -69,6 +73,7 @@ export function assertXpTable(table: readonly number[]): readonly number[] {
     if (t < prev) fail('INVALID_TABLE', 'thresholds must be non-decreasing', { index: i });
     prev = t;
   }
+  if (Object.isFrozen(table)) VALID_TABLES.add(table);
   return table;
 }
 

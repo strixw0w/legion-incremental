@@ -62,6 +62,7 @@ export function buildIndustryObservation(sim: LegionSimulation): IndustryObserva
     professions,
     nodes,
     items,
+    nextItemId: `item:${ind.nextItem ?? ind.items.length + 1}`,
     loadouts: ind.loadout,
     recipes,
     jobs: ind.jobs.map((j) => ({ id: j.id, recipeId: j.recipeId, quantity: j.quantity, completed: j.completed, state: j.state, shortage: j.shortage, enqueueMs: j.enqueueMs })),

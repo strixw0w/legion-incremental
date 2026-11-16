@@ -1,0 +1,29 @@
+{
+  "experimentId": "S5-E08-connected-idle",
+  "manifest": "manifests/s5/S5-E08-connected-idle.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stoppedReason": null,
+  "registeredTasks": 200,
+  "completedTasks": 200,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 1200000,
+    "peakRssMb": 8192
+  },
+  "wallMs": 139795,
+  "peakRssMb": 3180,
+  "taskMs": {
+    "mean": 10217,
+    "max": 13711
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "793c9b6621d253bb02a186bd3bd1a5423648472ae83fc1f2b537b9acd7ac6920"
+}

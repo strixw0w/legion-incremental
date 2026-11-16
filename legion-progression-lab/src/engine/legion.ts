@@ -31,14 +31,14 @@ import type { CompiledEnemy } from '../model/content.ts';
 import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
 import type { CompiledItemDef, CompiledNode, CompiledRecipe, EquipSlot, IndustryContent, ProfessionId, QtyLine } from '../model/industryContent.ts';
 import type { IndustryCommand, IndustryState, ItemInstance, ProductionJob, QueueArm, Work } from '../model/industryTypes.ts';
-import { autoEquipPlan, computeMods, crafterBlocker, efficiencyBp, emptyIndustry, gatherBlocker, gatherYieldNum, isIndustryCommand, itemById, jobNumber, profLevel, shortInput, toolSlotFor, unitTimeMs, validateIndustryCommand, weaponCompatible, YIELD_DEN, ZERO_PROF } from './industry.ts';
+import { autoEquipPlan, computeMods, crafterBlocker, efficiencyBp, emptyIndustry, gatherBlocker, gatherYieldNum, isIndustryCommand, itemById, itemNumber, jobById, jobNumber, profLevel, shortInput, toolSlotFor, unitTimeMs, validateIndustryCommand, weaponCompatible, YIELD_DEN, ZERO_PROF } from './industry.ts';
 import type { Assignment, CharacterId, CharacterState, LegionCommand, LegionEncounter, LegionPolicy, LegionReasonCode, LegionSimState, LegionState, TimeCategory, WorkerFight } from '../model/legionTypes.ts';
 import { MAX_PASSES, PHASE, type EventKey, type EventKind, type HeroState, type LogEntry, type Phase, type SimEvent, type SlotState, type ZoneState } from '../model/types.ts';
 import { validateCommand } from './commands.ts';
 import { EMPTY_CREDITS } from './credit.ts';
 import { estimateZone, type ZoneEstimate } from './estimator.ts';
 import { EventQueue, sameStep } from './queue.ts';
-import { classifyLegionClaim, commitLegionClaim, EMPTY_LEGION_CREDITS, legionCreditId, registerLegionPending, type LegionClaim } from './legionCredit.ts';
+import { abandonEncounterL2, classifyLegionClaim, classifyLegionClaimL2, commitLegionClaim, commitLegionClaimL2, EMPTY_LEGION_CREDITS, EMPTY_LEGION_CREDITS_L2, legionCreditId, registerLegionPending, type LegionClaim } from './legionCredit.ts';
 import { encodeDropItems, killTxId, rollKillReward } from './rewards.ts';
 import { deathsInWindow, MAX_POLICY_DECISIONS_PER_TIMESTAMP, orderTriggers, type DiagnosticOptions, type SessionSpec } from './simulation.ts';
 import { buildLegionObservation } from './legionObservation.ts';
@@ -48,6 +48,7 @@ import { PROFESSION_IDS } from '../model/industryContent.ts';
 import type { CompiledPermanent, PermanentContent, PermCounter } from '../model/permanentContent.ts';
 import { permEqual, ZERO_PERM, type MonumentState, type PermanentCommand, type PermanentObservation, type PermanentReasonCode, type PermanentState, type PermMods } from '../model/permanentTypes.ts';
 import { validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
+import { absenceId, assignmentOf, creditedMs, emptyOffline, formatSpec, offlineIneligible, offlinePreview, offlineRules, offlineUnlocked, progressSnapshot, sameAssignment, secondRateE8, specOfAssignment, type Absence, type EffectiveOffline, type OfflineOptions, type OfflineRules, type OfflineSpec, type OfflineState } from './offline.ts';
 
 /** Event kinds added by S2 (the S1 kinds keep their meaning). */
 type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind | PermanentEventKind;
@@ -127,6 +128,31 @@ export interface LegionOptions {
    * Needs `legion`, `industry` and PermanentContent. Off reproduces S3.1 exactly.
    */
   readonly permanent?: boolean;
+  /**
+   * S5 bounded identity (planning/S5_SPECIFICATION.md §1). 'l1' (the default, every historical control): the committed
+   * kill-credit chain, the list-length item and job numbers, finished jobs and spent items kept. 'l2': exact settled
+   * range sets per credit stream with explicit abandonment, item and job counters, spent items and finished jobs
+   * retired; it needs the bounded ledger (`ledger: 'bounded'`).
+   */
+  readonly identity?: 'l1' | 'l2';
+  /**
+   * S5 offline progression (planning/S5_SPECIFICATION.md §3–§4). Needs the bounded identity and the legion switch. The
+   * sessions are then wall-time intervals (the player's connection schedule), and the engine runs on game time: during
+   * an unlocked absence game time advances by the credited duration P(w) only (S5-R01). Absent: every historical
+   * control, with everything stopping at a session's end.
+   */
+  readonly offline?: OfflineOptions;
+  /**
+   * S5 execution mode (planning/S5_SPECIFICATION.md §6), never a gameplay rule: 'efficient' (default) uses the exact
+   * caches; 'reference' bypasses them (the reference stepper also uses the 'bounded-reference' ledger and full logging).
+   * Both must give identical results.
+   */
+  readonly stepper?: 'efficient' | 'reference';
+  /**
+   * S5 acceptance correction C (offline mode only): the sessions list holds sessions `sessionOffset`,
+   * `sessionOffset + 1`, ... (a live account keeps only its current session onward; identities stay absolute).
+   */
+  readonly sessionOffset?: number;
 }
 
 export type LegionObserver = (entry: LogEntry, sim: LegionSimulation) => void;
@@ -143,6 +169,8 @@ export interface LegionCounters {
 }
 
 const DEFAULT_MAX_EVENTS = 20_000_000;
+/** The empty talent allocation of a class-less character (one frozen object, so stats can be cached by identity). */
+const NO_ALLOCATION: TalentAllocation = Object.freeze({});
 const ZERO_RECORD = (): Record<ClassId, number> => ({ warrior: 0, archer: 0, mage: 0 });
 const ZERO_TALENTS = (): Record<ClassId, TalentAllocation> => ({ warrior: {}, archer: {}, mage: {} });
 const TIME_ZERO = (): Record<TimeCategory, number> => ({ automation: 0, manualCombat: 0, resting: 0, travelling: 0, waiting: 0, idle: 0, offline: 0 });
@@ -180,12 +208,25 @@ export class LegionSimulation {
   readonly estimateCache: Map<string, ZoneEstimate>;
   /** S4: merged (S3 + permanent) modifiers, keyed by the S3 modifiers object, valid for one permanent aggregate. */
   private mergeCache: { applied: PermMods | null; map: WeakMap<StatMods, StatMods> };
+  private offRulesCache: OfflineRules | null | undefined;
+  /** S5: character stats by input identity (allocation, modifiers, class and level). Derived; fork and restore start empty. */
+  private statsCache: WeakMap<object, WeakMap<object, Map<string, CharacterStats>>> | undefined;
+
+  /** S5 offline rules (null: offline mode off). Derived from the options (fork and restore skip the constructor). */
+  get offRules(): OfflineRules | null {
+    if (this.offRulesCache === undefined) this.offRulesCache = this.options.offline === undefined ? null : offlineRules(this.options.offline);
+    return this.offRulesCache;
+  }
 
   constructor(options: LegionOptions) {
     this.content = options.content;
     this.options = options;
     if (options.industry === true && !('items' in options.content)) fail('INVALID_STATE', 'the industry switch needs the S3 industry content');
     if (options.permanent === true && (options.industry !== true || options.legion !== true || !('permanent' in options.content))) fail('INVALID_STATE', 'the permanent switch needs the legion and industry switches and the S4 permanent content');
+    if (options.identity === 'l2' && options.ledger !== 'bounded' && options.ledger !== 'bounded-reference') fail('INVALID_STATE', "the bounded identity (identity: 'l2') needs the bounded ledger (ledger: 'bounded' or 'bounded-reference')");
+    if (options.offline !== undefined && (options.identity !== 'l2' || options.legion !== true)) fail('INVALID_STATE', "offline mode needs the bounded identity (identity: 'l2') and the legion switch");
+    void this.offRules;
+    if ((options.sessionOffset ?? 0) !== 0 && (options.offline === undefined || !Number.isSafeInteger(options.sessionOffset) || (options.sessionOffset as number) < 0)) fail('INVALID_STATE', 'a session offset needs offline mode and a non-negative integer');
     this.mergeCache = { applied: null, map: new WeakMap() };
     this.policy = options.policy;
     this.queue = new EventQueue();
@@ -208,6 +249,27 @@ export class LegionSimulation {
     return this.options.legion === true;
   }
 
+  /** S5: the bounded identity is on. */
+  private get l2(): boolean {
+    return this.options.identity === 'l2';
+  }
+
+  /**
+   * Gameplay systems run: in a connected session, or (S5) during an unlocked absence. Policy decisions and commands
+   * stay session-only. Without offline mode this is exactly the session flag, so every historical control is unchanged.
+   */
+  private get active(): boolean {
+    return this.state.session.open || this.state.offline?.absence?.unlocked === true;
+  }
+
+  private get off(): OfflineState {
+    return this.state.offline as OfflineState;
+  }
+
+  private setOff(patch: Partial<OfflineState>): void {
+    this.state = { ...this.state, offline: { ...this.off, ...patch } };
+  }
+
   get industryEnabled(): boolean {
     return this.options.industry === true;
   }
@@ -220,8 +282,27 @@ export class LegionSimulation {
     return this.state.industry as IndustryState;
   }
 
+  /** Writes one item back: by its list position (L1), or by identity, with spent items retired (S5 bounded identity). */
+  private putItem(items: ItemInstance[], item: ItemInstance): void {
+    if (!this.l2) {
+      items[itemNumber(item.id) - 1] = item;
+      return;
+    }
+    const i = items.findIndex((x) => x.id === item.id);
+    if (i < 0) fail('INVALID_STATE', 'an item to update is not in the inventory', { itemId: item.id });
+    if (item.location.kind === 'consumed' || item.location.kind === 'salvaged') items.splice(i, 1);
+    else items[i] = item;
+  }
+
   private setInd(patch: Partial<IndustryState>): void {
-    this.state = { ...this.state, industry: { ...(this.state.industry as IndustryState), ...patch } };
+    let next = { ...(this.state.industry as IndustryState), ...patch };
+    if (this.l2 && patch.jobs !== undefined) {
+      // A finished job retires once no work in progress or pending settlement refers to it.
+      const used = new Set<string>([...Object.values(next.work), ...Object.values(next.pending)].map((w) => (w.kind === 'unit' ? w.jobId : '')));
+      const jobs = next.jobs.filter((jb) => (jb.state !== 'complete' && jb.state !== 'cancelled') || used.has(jb.id));
+      if (jobs.length !== next.jobs.length) next = { ...next, jobs };
+    }
+    this.state = { ...this.state, industry: next };
   }
 
   /** A character's stat modifiers: equipment and hero variants (S3), with the S4 permanent bonuses merged in (S4-R03). */
@@ -377,7 +458,28 @@ export class LegionSimulation {
   }
 
   statsOf(c: CharacterState, level: number = c.level): CharacterStats {
-    return this.content.characterStats(level, c.cls, c.cls === 'none' ? {} : c.talents[c.cls], this.modsOf(c.id));
+    const allocation = c.cls === 'none' ? NO_ALLOCATION : c.talents[c.cls];
+    const mods = this.modsOf(c.id);
+    if (this.options.stepper === 'reference') return this.content.characterStats(level, c.cls, allocation, mods);
+    // S5 (exact): indexed by input identity (state values are never mutated; the same objects give the same stats).
+    this.statsCache ??= new WeakMap();
+    let byMods = this.statsCache.get(allocation);
+    if (byMods === undefined) {
+      byMods = new WeakMap();
+      this.statsCache.set(allocation, byMods);
+    }
+    let byLevel = byMods.get(mods);
+    if (byLevel === undefined) {
+      byLevel = new Map();
+      byMods.set(mods, byLevel);
+    }
+    const key = `${c.cls}|${level}`;
+    let st = byLevel.get(key);
+    if (st === undefined) {
+      st = this.content.characterStats(level, c.cls, allocation, mods);
+      byLevel.set(key, st);
+    }
+    return st;
   }
 
   heroStats(): CharacterStats {
@@ -412,7 +514,20 @@ export class LegionSimulation {
   }
 
   // ------------------------------------------------------------ run loop (S1.1)
+  /** Processes every event before `untilMs`; the state time becomes `untilMs`. */
   run(untilMs: number): void {
+    this.runUntil(untilMs, false);
+  }
+
+  /**
+   * S5: processes every event at or before `t` (a session boundary at exactly `t` included); the state time becomes
+   * `t`, so no game time is credited beyond it. `run(t)` then `runThrough(t)` equals `runThrough(t)`.
+   */
+  runThrough(t: number): void {
+    this.runUntil(t, true);
+  }
+
+  private runUntil(untilMs: number, inclusive: boolean): void {
     if (this.refused) fail('INVALID_STATE', 'the simulation stopped at a refused step and cannot continue', { cause: this.refused.message });
     // S4 acceptance correction A: the permanent state must be inside the supported numerical domain before a run.
     if (this.permanentEnabled) {
@@ -423,7 +538,7 @@ export class LegionSimulation {
     let stopAt: number | null = null;
     for (;;) {
       const head = this.queue.peek();
-      if (!head || head.key.t >= untilMs) break;
+      if (!head || head.key.t > untilMs || (!inclusive && head.key.t === untilMs)) break;
       if (stopAt !== null && head.key.t > stopAt) break;
       if (stopAt === null && this.stopRequested) stopAt = this.state.tMs;
       if (stopAt !== null && head.key.t > stopAt) break;
@@ -593,7 +708,7 @@ export class LegionSimulation {
       quest: { kills: 0, done: recruits > 0 },
       records: ZERO_RECORD(),
       rare: [],
-      credits: EMPTY_LEGION_CREDITS,
+      credits: this.options.identity === 'l2' ? EMPTY_LEGION_CREDITS_L2 : EMPTY_LEGION_CREDITS,
       time: TIME_ZERO(),
       capabilityChangedMs: 0,
     };
@@ -619,6 +734,7 @@ export class LegionSimulation {
       legion,
       ...(industry ? { industry } : {}),
       ...(this.options.permanent === true ? { permanent: emptyPermanent(this.pc, root) } : {}),
+      ...(this.options.offline !== undefined ? { offline: emptyOffline() } : {}),
     };
   }
 
@@ -665,7 +781,8 @@ export class LegionSimulation {
       if (m !== NO_MODS) mods[ch.id] = m;
     }
     void zones;
-    return { ...ind, mods };
+    // S5 bounded identity: explicit counters (an item or job number is never taken from a list length).
+    return this.options.identity === 'l2' ? { ...ind, mods, nextItem: ind.items.length + 1, nextJob: 1 } : { ...ind, mods };
   }
 
   private startLedger(gold: number) {
@@ -682,9 +799,137 @@ export class LegionSimulation {
         fail('INVALID_STATE', 'sessions must be ordered, non-overlapping, half-open intervals of integer ms', { index });
       }
       prevEnd = s.endMs;
+      // S5 offline mode: sessions are wall intervals; each later start is placed in game time when the absence before it begins.
+      if (this.offRules !== null) return;
       this.schedule(s.startMs, PHASE.BOUNDARY, 'session', 'SessionStarted', { data: { index, endMs: s.endMs } });
       this.schedule(s.endMs, PHASE.BOUNDARY, 'session', 'SessionEnded', { data: { index } });
     });
+    const first = this.options.sessions[0];
+    // Before the first absence game time is wall time (anchor 0 ↔ 0).
+    if (this.offRules !== null && first !== undefined) this.schedule(first.startMs, PHASE.BOUNDARY, 'session', 'SessionStarted', { data: { index: this.sessionOffset, endMs: first.endMs } });
+  }
+
+  /** S5: the absolute index of the first listed session (a compact schedule starts at the current session). */
+  private get sessionOffset(): number {
+    return this.options.sessionOffset ?? 0;
+  }
+
+  /** S5: the session with absolute index `i`, if listed. */
+  private sessionAt(i: number): SessionSpec | undefined {
+    return i < this.sessionOffset ? undefined : this.options.sessions[i - this.sessionOffset];
+  }
+
+  // ------------------------------------------------------------ S5 offline clock
+  /** The normal-window offline rate now (bp): the base plus permanent upgrades (Monument of Eternity), at most 100%. */
+  offlineNormalBp(): number {
+    const r = this.offRules;
+    if (r === null) return 0;
+    return Math.min(10_000, r.baseNormalBp + this.eternityBp());
+  }
+
+  /** S5 Monument of Eternity bonus (bp): the `offline` Monument's bonus at its level; zero without it in the content. */
+  private eternityBp(): number {
+    if (!this.permanentEnabled) return 0;
+    const m = this.pc.monuments.find((x) => x.target === 'offline');
+    if (m === undefined) return 0;
+    return m.bonusAt[this.perm.monuments[m.id]?.level ?? 0] as number;
+  }
+
+  /**
+   * S5 efficiency breakdown (owner §12): the base normal rate, each permanent source, the cap, the second window and
+   * the window lengths. What the next absence would capture now (an absence keeps what it captured at its start).
+   */
+  offlineBreakdown(): { baseBp: number; sources: { sourceId: string; level: number; bp: number }[]; uncappedBp: number; normalBp: number; second: OfflineRules['second']; secondRateE8: number; firstMs: number; secondMs: number } | null {
+    const r = this.offRules;
+    if (r === null) return null;
+    const sources: { sourceId: string; level: number; bp: number }[] = [];
+    if (this.permanentEnabled) {
+      for (const m of this.pc.monuments) {
+        if (m.target !== 'offline') continue;
+        const level = this.perm.monuments[m.id]?.level ?? 0;
+        sources.push({ sourceId: `monument:${m.id}`, level, bp: m.bonusAt[level] as number });
+      }
+    }
+    const uncapped = r.baseNormalBp + sources.reduce((a, s) => a + s.bp, 0);
+    const n = this.offlineNormalBp();
+    return { baseBp: r.baseNormalBp, sources, uncappedBp: uncapped, normalBp: n, second: r.second, secondRateE8: secondRateE8(n, r.second), firstMs: r.firstMs, secondMs: r.secondMs };
+  }
+
+  /** Game time at wall time `wallMs` (S5-R01): the connected anchor, or the absence's credited duration. */
+  gameTimeAtWall(wallMs: number): number {
+    const off = this.state.offline;
+    if (off === undefined) return wallMs;
+    const a = off.absence;
+    if (a === null) return off.anchor.gameMs + (wallMs - off.anchor.wallMs);
+    const w = wallMs - a.wallStartMs;
+    if (w < 0) fail('INVALID_STATE', 'offline: a wall time before the absence began', { wallMs, absence: absenceId(a.index) });
+    return a.gameStartMs + (a.unlocked ? creditedMs(w, a.normalBp, a.rateE8, a.firstMs, a.secondMs) : w);
+  }
+
+  /**
+   * S5: advances to wall time `wallMs` through the schedule's sessions and absences in order (each absence's rate is
+   * captured when it begins, so a later interval's game time is only known once it is reached). Events at exactly the
+   * target are left for the next run, as with run().
+   */
+  runToWall(wallMs: number): void {
+    if (this.state.offline === undefined) return this.run(wallMs);
+    const sessions = this.options.sessions;
+    for (let guard = 0; guard <= 2 * sessions.length + 2; guard += 1) {
+      const s = this.state;
+      if (s.session.index === -1 && !s.session.open) {
+        const f = this.sessionAt(0);
+        if (f !== undefined && f.startMs < wallMs) {
+          this.runThrough(f.startMs);
+          continue;
+        }
+        return this.run(wallMs);
+      }
+      if (s.session.open) {
+        const end = (this.sessionAt(s.session.index) as { endMs: number }).endMs;
+        if (end < wallMs) {
+          this.runThrough(this.gameTimeAtWall(end));
+          continue;
+        }
+        return this.run(this.gameTimeAtWall(wallMs));
+      }
+      const next = this.sessionAt(s.session.index + 1);
+      if (next !== undefined && next.startMs < wallMs) {
+        this.runThrough(this.gameTimeAtWall(next.startMs));
+        continue;
+      }
+      return this.run(this.gameTimeAtWall(wallMs));
+    }
+    fail('INVALID_STATE', 'runToWall did not reach its target', { wallMs });
+  }
+
+  /** The current wall time of a connected session (S5): the anchor plus the game time since. */
+  private wallNow(t: number): number {
+    const off = this.off;
+    return off.anchor.wallMs + (t - off.anchor.gameMs);
+  }
+
+  /** S5 preview: every character's effective offline assignment, with the reason (exactly what logout applies). */
+  offlinePreview(): Record<CharacterId, EffectiveOffline> {
+    if (this.state.offline === undefined) fail('INVALID_STATE', 'offline mode is off');
+    return offlinePreview(this.state, this.industryEnabled ? this.ic : null, this.off);
+  }
+
+  /** Schedules the next session's start in game time when the absence before it begins (S5 offline mode). */
+  private scheduleNextStart(index: number): void {
+    const next = this.sessionAt(index + 1);
+    if (next === undefined) return;
+    this.schedule(this.gameTimeAtWall(next.startMs), PHASE.BOUNDARY, 'session', 'SessionStarted', { data: { index: index + 1, endMs: next.endMs } });
+  }
+
+  /** S5: schedules the next session if the schedule has grown since the absence began (a restored, extended schedule). */
+  extendSchedule(): void {
+    const off = this.state.offline;
+    if (off === undefined || off.absence === null) return;
+    const idx = off.absence.index;
+    if (this.sessionAt(idx + 1) === undefined) return;
+    const q = this.queue.clone();
+    for (let e = q.pop(); e !== undefined; e = q.pop()) if (e.kind === 'SessionStarted' && (e as unknown as LegionEvent).data?.['index'] === idx + 1) return;
+    this.scheduleNextStart(idx);
   }
 
   // ------------------------------------------------------------ scheduling and logging
@@ -865,12 +1110,15 @@ export class LegionSimulation {
       const slot = (this.state.zones[this.state.hero.zoneOrder - 1] as ZoneState).slots[target] as SlotState;
       this.setSlot(this.state.hero.zoneOrder, target, { ...slot, status: 'alive' });
     }
+    // S5 bounded identity: an encounter that ends without its kill is explicitly abandoned (settled, no reward).
+    if (enc && this.l2) this.setLegion({ credits: abandonEncounterL2(this.state.legion.credits, 'squad', enc.id) });
     this.state = { ...this.state, encounter: null };
     this.setHero({ targetSlot: null, engageOrigin: null, waitingForSpawn: false, manualEngagePending: false });
     if (enc) this.recoverPendingMembers();
   }
 
   private requestPolicy(trigger: string): void {
+    if (this.state.offline?.absence != null) return; // S5: no policy decisions offline
     this.schedule(this.now().t, PHASE.POLICY, 'hero', 'PolicyDecision', { data: { trigger } });
   }
 
@@ -1031,7 +1279,7 @@ export class LegionSimulation {
     if (enemyDied && !heroDied) {
       if (enc.kind === 'boss') this.setHero({ status: 'idle', needsEntryWalk: true });
       else this.setHero({ status: 'idle' });
-      if (this.state.session.open) {
+      if (this.active) {
         if (this.state.hero.autoFarm) this.startEngage();
         else this.startRegen();
       }
@@ -1068,8 +1316,8 @@ export class LegionSimulation {
     const c = this.char(id) as CharacterState;
     this.setChar(id, (x) => ({ knockedOut: false, recoverPending: false, hp: x.maxHp, worker: { ...x.worker, recovering: false } }));
     this.log('MemberRecovered', { member: id, at });
-    if (c.assignment.kind === 'worker' && this.state.session.open) this.scheduleWorkerEngage(id);
-    if (this.industryEnabled && this.state.session.open) {
+    if (c.assignment.kind === 'worker' && this.active) this.scheduleWorkerEngage(id);
+    if (this.industryEnabled && this.active) {
       if (c.assignment.kind === 'gathering') this.scheduleGatherStart(id);
       if (c.assignment.kind === 'smithing') this.queuePass();
     }
@@ -1082,7 +1330,7 @@ export class LegionSimulation {
   private onMemberRecovered(ev: LegionEvent): void {
     const id = String(ev.data?.['member']);
     const c = this.char(id) as CharacterState;
-    if (!this.state.session.open) return; // recovered at the next session start (S1-R14 analogue)
+    if (!this.active) return; // recovered at the next session start (S1-R14 analogue)
     if (this.state.encounter !== null && this.state.encounter.participants.includes(id)) {
       this.setChar(id, { recoverPending: true });
       return;
@@ -1131,7 +1379,7 @@ export class LegionSimulation {
   private onWorkerEngage(ev: LegionEvent): void {
     const id = String(ev.data?.['member']);
     const c = this.char(id) as CharacterState;
-    if (!this.state.session.open || c.assignment.kind !== 'worker' || c.knockedOut || c.worker.fight !== null) return;
+    if (!this.active || c.assignment.kind !== 'worker' || c.knockedOut || c.worker.fight !== null) return;
     const t = this.now().t;
     const zoneOrder = c.assignment.zoneOrder;
     if (!workerZoneAllowed(this.state.zones, zoneOrder)) fail('INVALID_STATE', 'a worker would fight in a zone that is not accessible and visited', { member: id, zoneOrder });
@@ -1195,6 +1443,7 @@ export class LegionSimulation {
       this.setChar(id, (x) => ({ worker: { ...x.worker, fight: null } }));
     }
     if (down) {
+      if (!killed && this.l2) this.setLegion({ credits: abandonEncounterL2(this.state.legion.credits, `worker:${id}`, fight.id) });
       this.setChar(id, (x) => ({ worker: { ...x.worker, fight: null } }));
       const window = this.content.legion.workerKoWindowMs;
       const koTimes = [...deathsInWindow((this.char(id) as CharacterState).worker.koTimes, t, window), t];
@@ -1225,6 +1474,7 @@ export class LegionSimulation {
   private stopWorkerFight(id: CharacterId, reason: string): void {
     const c = this.char(id) as CharacterState;
     if (c.worker.fight !== null) this.log('WorkerFightCancelled', { member: id, fight: c.worker.fight.id, reason });
+    if (c.worker.fight !== null && this.l2) this.setLegion({ credits: abandonEncounterL2(this.state.legion.credits, `worker:${id}`, c.worker.fight.id) });
     this.setChar(id, (x) => ({ epoch: x.epoch + 1, worker: { ...x.worker, fight: null } }));
   }
 
@@ -1286,6 +1536,7 @@ export class LegionSimulation {
   }
 
   private onSessionStarted(ev: LegionEvent): void {
+    if (this.offRules !== null) return this.onSessionStartedOffline(ev);
     const t = this.now().t;
     this.accountTimeTo(t);
     const index = ev.data?.['index'] as number;
@@ -1313,6 +1564,7 @@ export class LegionSimulation {
     if (!this.state.session.open || this.state.session.index !== index) return;
     const t = this.now().t;
     this.accountTimeTo(t);
+    if (this.offRules !== null && offlineUnlocked(this.state)) return this.beginAbsence(index, t);
     if (this.state.encounter || this.state.hero.targetSlot !== null) this.releaseEngagement('SESSION_ENDED');
     const h = this.state.hero;
     this.setHero({
@@ -1335,6 +1587,188 @@ export class LegionSimulation {
     }
     this.state = { ...this.state, session: { ...this.state.session, open: false } };
     this.log('SessionEnded', { index });
+    // S5 offline mode, offline still locked (no recruit yet, R07.01): a locked absence credits nothing; game time runs at wall rate.
+    if (this.offRules !== null) {
+      const wall = this.wallNow(t);
+      const a: Absence = { index, wallStartMs: wall, gameStartMs: t, unlocked: false, normalBp: 0, rateE8: 0, firstMs: this.offRules.firstMs, secondMs: this.offRules.secondMs, snapshot: {}, online: {}, heroPending: false, baseline: progressSnapshot(this.state) };
+      this.setOff({ absence: a, absences: this.off.absences + 1 });
+      this.log('AbsenceStarted', { absence: absenceId(index), unlocked: false, wallMs: wall });
+      this.scheduleNextStart(index);
+    }
+  }
+
+  // ------------------------------------------------------------ S5 absences
+  /** S5 offline mode: a session opens (the first one, or a reconnect closing an absence). */
+  private onSessionStartedOffline(ev: LegionEvent): void {
+    const t = this.now().t;
+    this.accountTimeTo(t);
+    const index = ev.data?.['index'] as number;
+    const spec = this.sessionAt(index) as { startMs: number; endMs: number };
+    const endMs = t + (spec.endMs - spec.startMs);
+    const prev = this.off.absence;
+    this.state = { ...this.state, session: { index, open: true, startMs: t, endMs } };
+    this.schedule(endMs, PHASE.BOUNDARY, 'session', 'SessionEnded', { data: { index } });
+    if (prev !== null && prev.unlocked) {
+      // The reconnect closes the absence: its cursor moves past the whole elapsed absence (beyond the cap too).
+      this.setOff({ absence: null, anchor: { wallMs: spec.startMs, gameMs: t } });
+      this.log('AbsenceEnded', { absence: absenceId(prev.index), wallMs: spec.startMs - prev.wallStartMs, creditedMs: t - prev.gameStartMs });
+      this.log('SessionStarted', { index, endMs });
+      // Recruits whose assignment changed at logout return to their connected one (the same transition contract).
+      for (const c of this.state.legion.chars) {
+        const back = Object.hasOwn(prev.online, c.id) ? prev.online[c.id] : undefined;
+        if (back === undefined || c.id === 'hero' || sameAssignment(back, c.assignment)) continue;
+        this.reassign(c.id, back, 'RECONNECT');
+      }
+      // No advantageous reset: timers (respawn, knockout recovery) carried on offline and keep running.
+      if (this.permanentEnabled) this.schedulePermanentCheck();
+      this.requestPolicy('session-start');
+      return;
+    }
+    if (prev !== null) {
+      this.setOff({ absence: null, anchor: { wallMs: spec.startMs, gameMs: t } });
+      this.log('AbsenceEnded', { absence: absenceId(prev.index), wallMs: spec.startMs - prev.wallStartMs, creditedMs: 0 });
+    } else this.setOff({ anchor: { wallMs: spec.startMs, gameMs: t } });
+    // The first session, or after a locked absence: the historical session start (nothing ran while away).
+    if (this.state.hero.status === 'dead') {
+      this.setHero({ status: 'idle', hp: this.state.hero.maxHp, needsEntryWalk: true });
+      this.log('HeroRespawned', { at: 'session-start', zoneOrder: this.state.hero.zoneOrder });
+    }
+    this.log('SessionStarted', { index, endMs });
+    if (this.permanentEnabled) this.schedulePermanentCheck();
+    if (this.squadNeedsRegen()) this.startRegen();
+    for (const c of this.state.legion.chars) {
+      if (c.id === 'hero') continue;
+      if (c.knockedOut) this.recoverChar(c.id, 'session-start');
+      else if (c.assignment.kind === 'worker') this.scheduleWorkerEngage(c.id);
+      else if (c.assignment.kind === 'gathering' && this.industryEnabled) this.scheduleGatherStart(c.id);
+    }
+    if (this.industryEnabled && (this.state.legion.chars.some((c) => c.assignment.kind === 'smithing') || this.ind.jobs.some((j) => j.state !== 'complete' && j.state !== 'cancelled'))) this.queuePass();
+    this.requestPolicy('session-start');
+  }
+
+  /**
+   * S5 logout with offline unlocked (S5-R03, R04, R05): work in progress continues; the boss challenge and travel stop
+   * (no boss completion, no visitation offline); every character takes its effective offline assignment (the preview);
+   * the offline rate is captured; the next session's start is placed in game time.
+   */
+  private beginAbsence(index: number, t: number): void {
+    const rules = this.offRules as OfflineRules;
+    const wall = this.wallNow(t);
+    const snapshot = offlinePreview(this.state, this.industryEnabled ? this.ic : null, this.off);
+    const n = this.offlineNormalBp();
+    const h0 = this.state.hero;
+    if (this.state.encounter?.kind === 'boss') {
+      this.releaseEngagement('SESSION_ENDED');
+      this.setHero({ status: 'idle', epoch: this.state.hero.epoch + 1, needsEntryWalk: true });
+    }
+    if (h0.status === 'travelling') {
+      this.setHero({ status: 'idle', destinationOrder: null, epoch: this.state.hero.epoch + 1, needsEntryWalk: true });
+      this.log('TravelCancelled', { reason: 'OFFLINE', zoneOrder: h0.zoneOrder });
+    }
+    if (h0.manualEngagePending) this.setHero({ manualEngagePending: false });
+    this.state = { ...this.state, session: { ...this.state.session, open: false } };
+    this.log('SessionEnded', { index });
+    const online: Record<CharacterId, Assignment> = {};
+    for (const c of this.state.legion.chars) if (c.id !== 'hero') online[c.id] = c.assignment;
+    const a: Absence = { index, wallStartMs: wall, gameStartMs: t, unlocked: true, normalBp: n, rateE8: secondRateE8(n, rules.second), firstMs: rules.firstMs, secondMs: rules.secondMs, snapshot, online, heroPending: false, baseline: progressSnapshot(this.state) };
+    this.setOff({ absence: a, absences: this.off.absences + 1 });
+    this.log('AbsenceStarted', { absence: absenceId(index), unlocked: true, wallMs: wall, normalBp: n, rateE8: a.rateE8, assignments: Object.entries(snapshot).map(([id, e]) => `${id}=${formatSpec(e.spec)}`).join(',') });
+    for (const c of this.state.legion.chars) {
+      if (c.id === 'hero' || c.assignment.kind === 'reserve') continue;
+      const to = assignmentOf((snapshot[c.id] as EffectiveOffline).spec);
+      if (!sameAssignment(to, c.assignment)) this.reassign(c.id, to, 'OFFLINE');
+    }
+    this.startHeroOffline((snapshot['hero'] as EffectiveOffline).spec, false);
+    this.scheduleNextStart(index);
+  }
+
+  /** Starts the hero's offline assignment (at logout, or on arriving after an offline relocation). */
+  private startHeroOffline(spec: OfflineSpec, arrived: boolean): void {
+    const h = this.state.hero;
+    const stopFighting = () => {
+      this.setAutoFarm(false);
+      if (this.state.encounter || this.state.hero.targetSlot !== null) {
+        this.releaseEngagement('OFFLINE');
+        const hh = this.state.hero;
+        this.setHero({ epoch: hh.epoch + 1, status: hh.status === 'dead' ? 'dead' : 'idle', waitingForSpawn: false });
+      }
+    };
+    const relocate = (to: number) => {
+      stopFighting();
+      if (this.industryEnabled && this.ind.heroGather !== null) this.stopHeroGather('OFFLINE');
+      const hh = this.state.hero;
+      this.setHero({ epoch: hh.epoch + 1, status: 'travelling', destinationOrder: to, regenRem: 0, regenChain: hh.regenChain + 1, waitingForSpawn: false, manualEngagePending: false });
+      this.log('OfflineRelocation', { from: hh.zoneOrder, to });
+      this.schedule(this.now().t + this.content.travel.teleportMs, PHASE.COMPLETE, 'hero', 'TravelArrived', { epoch: this.state.hero.epoch, data: { toOrder: to, mode: 'Offline' } });
+    };
+    switch (spec.kind) {
+      case 'combat': {
+        if (spec.zoneOrder !== h.zoneOrder) {
+          if (h.status === 'dead') return this.setHeroPending(true); // starts at the respawn
+          return relocate(spec.zoneOrder);
+        }
+        if (this.industryEnabled && this.ind.heroGather !== null) this.stopHeroGather('OFFLINE');
+        this.setAutoFarm(true);
+        if (this.state.hero.status === 'resting') this.setHero({ status: 'idle', regenChain: this.state.hero.regenChain + 1, regenRem: 0 });
+        if (this.state.hero.status === 'idle') this.startEngage();
+        return;
+      }
+      case 'gathering': {
+        const node = this.ic.nodeById.get(spec.nodeId) as CompiledNode;
+        if (h.status === 'dead') return this.setHeroPending(true); // starts at the respawn
+        if (node.zoneOrder !== h.zoneOrder && !arrived) return relocate(node.zoneOrder);
+        stopFighting();
+        if (this.ind.heroGather !== spec.nodeId) {
+          if (this.ind.heroGather !== null) this.stopHeroGather('OFFLINE');
+          this.setInd({ heroGather: spec.nodeId });
+          this.log('HeroGatherStarted', { nodeId: spec.nodeId, offline: true });
+          this.scheduleGatherStart('hero');
+        }
+        return;
+      }
+      default:
+        stopFighting();
+        if (this.industryEnabled && this.ind.heroGather !== null) this.stopHeroGather('OFFLINE');
+    }
+  }
+
+  private setHeroPending(on: boolean): void {
+    const a = this.off.absence as Absence;
+    if (a.heroPending !== on) this.setOff({ absence: { ...a, heroPending: on } });
+  }
+
+  /** S5 `SetOfflineAssignment` (online only): configure one character's offline assignment, or clear it. */
+  private submitOffline(cmd: Extract<LegionCommand, { type: 'SetOfflineAssignment' }>): boolean {
+    const reject = (code: string): boolean => {
+      this.counters.commandsRejected[code] = (this.counters.commandsRejected[code] ?? 0) + 1;
+      this.log('CommandRejected', { command: cmd.type, code });
+      return false;
+    };
+    if (this.state.offline === undefined) return reject('OFFLINE_DISABLED');
+    if (!this.state.session.open) return reject('NOT_IN_SESSION');
+    const c = this.char(cmd.characterId);
+    if (!c) return reject('CHARACTER_UNKNOWN');
+    let spec: OfflineSpec | null = null;
+    const a = cmd.assignment;
+    if (a !== null) {
+      let want: OfflineSpec;
+      if (a.kind === 'combat' || a.kind === 'worker') {
+        const order = this.content.zoneOrderById.get(a.zoneId);
+        if (order === undefined) return reject('ZONE_UNKNOWN');
+        want = { kind: a.kind, zoneOrder: order };
+      } else want = a.kind === 'gathering' ? { kind: 'gathering', nodeId: a.nodeId } : { kind: a.kind };
+      spec = want;
+      if (c.assignment.kind === 'reserve') return reject('CHARACTER_IN_RESERVE');
+      const why = offlineIneligible(this.state, this.industryEnabled ? this.ic : null, c, want);
+      if (why !== null) return reject(why);
+    }
+    const config = { ...this.off.config };
+    if (spec === null) delete config[c.id];
+    else config[c.id] = spec;
+    this.setOff({ config });
+    this.counters.commandsAccepted += 1;
+    this.log('OfflineAssignmentSet', { member: c.id, assignment: spec === null ? 'default' : formatSpec(spec) });
+    return true;
   }
 
   private onBossTimer(): void {
@@ -1348,7 +1782,7 @@ export class LegionSimulation {
   private onEngageStart(): void {
     const s = this.state;
     const h = s.hero;
-    if (!s.session.open || h.status !== 'idle' || (!h.autoFarm && !h.manualEngagePending)) return;
+    if (!this.active || h.status !== 'idle' || (!h.autoFarm && !h.manualEngagePending)) return;
     const zoneOrder = h.zoneOrder;
     const zone = s.zones[zoneOrder - 1] as ZoneState;
     let best = -1;
@@ -1406,6 +1840,14 @@ export class LegionSimulation {
 
   private onTravelArrived(ev: LegionEvent): void {
     const to = ev.data?.['toOrder'] as number;
+    if (ev.data?.['mode'] === 'Offline') {
+      // S5-R05: an offline relocation (to an already visited zone) never visits or discovers anything.
+      this.setHero({ zoneOrder: to, destinationOrder: null, status: 'idle', needsEntryWalk: true });
+      this.log('Arrived', { zoneOrder: to, mode: 'Offline' });
+      const a = this.off.absence;
+      if (a !== null && a.unlocked) this.startHeroOffline((a.snapshot['hero'] as EffectiveOffline).spec, true);
+      return;
+    }
     this.setHero({ zoneOrder: to, destinationOrder: null, status: 'idle', needsEntryWalk: true });
     const z = this.state.zones[to - 1] as ZoneState;
     const id = (this.content.zones[to - 1] as LegionContent['zones'][number]).id;
@@ -1426,12 +1868,17 @@ export class LegionSimulation {
   private onHeroRespawned(): void {
     this.setHero({ hp: this.state.hero.maxHp, status: 'idle', needsEntryWalk: true, waitingForSpawn: false });
     this.log('HeroRespawned', { zoneOrder: this.state.hero.zoneOrder });
+    const pend = this.state.offline?.absence;
+    if (pend != null && pend.unlocked && pend.heroPending) {
+      this.setHeroPending(false);
+      this.startHeroOffline((pend.snapshot['hero'] as EffectiveOffline).spec, false);
+    }
     for (const c of this.state.legion.chars) {
       if (c.assignment.kind !== 'squad') continue;
       if (c.knockedOut) this.recoverChar(c.id, 'hero-respawn');
       else if (c.hp < c.maxHp) this.setChar(c.id, (x) => ({ hp: x.maxHp }));
     }
-    if (this.state.hero.autoFarm && this.state.session.open) this.startEngage();
+    if (this.state.hero.autoFarm && this.active) this.startEngage();
     this.requestPolicy('respawned');
   }
 
@@ -1444,7 +1891,7 @@ export class LegionSimulation {
     this.setZone(order, { spawnCounter: counter });
     this.setSlot(order, index, { status: 'alive', aliveSinceMs: this.now().t, instanceId: id });
     const h = this.state.hero;
-    if (h.waitingForSpawn && h.zoneOrder === order && h.status === 'idle' && this.state.session.open && (h.autoFarm || h.manualEngagePending)) {
+    if (h.waitingForSpawn && h.zoneOrder === order && h.status === 'idle' && this.active && (h.autoFarm || h.manualEngagePending)) {
       this.setHero({ waitingForSpawn: false });
       this.startEngage();
     }
@@ -1453,7 +1900,7 @@ export class LegionSimulation {
   private onRegenStart(): void {
     const s = this.state;
     const h = s.hero;
-    if (!s.session.open || (h.status !== 'idle' && h.status !== 'resting')) return;
+    if (!this.active || (h.status !== 'idle' && h.status !== 'resting')) return;
     if (!this.squadNeedsRegen()) {
       if (h.status === 'resting') this.finishRest();
       return;
@@ -1468,7 +1915,7 @@ export class LegionSimulation {
   private onRegenTick(ev: LegionEvent): void {
     const s = this.state;
     const h = s.hero;
-    if (!s.session.open || (h.status !== 'idle' && h.status !== 'resting') || !this.squadNeedsRegen()) return;
+    if (!this.active || (h.status !== 'idle' && h.status !== 'resting') || !this.squadNeedsRegen()) return;
     let hp = h.hp;
     if (h.hp < h.maxHp) {
       const r = accrue(h.regenRem, h.maxHp * this.content.hero.regenPerSecBpOfMaxHp, 1, 10_000);
@@ -1508,7 +1955,7 @@ export class LegionSimulation {
     const d = ev.data ?? {};
     const claim: LegionClaim = { encounterId: String(d['encounterId']), instanceId: String(d['instanceId']), zoneOrder: Number(d['zoneOrder']), boss: d['boss'] === true, stream: String(d['stream'] ?? 'squad') };
     const s0 = this.state;
-    const verdict = classifyLegionClaim(s0.legion.credits, claim);
+    const verdict = (this.l2 ? classifyLegionClaimL2 : classifyLegionClaim)(s0.legion.credits, claim);
     if (!verdict.ok) {
       this.counters.rejectedCredits[verdict.code] = (this.counters.rejectedCredits[verdict.code] ?? 0) + 1;
       if (verdict.code === 'CREDIT_REPLAYED') this.counters.duplicateCredits += 1;
@@ -1551,7 +1998,7 @@ export class LegionSimulation {
       rng: worker === null ? { ...s0.rng, loot } : s0.rng,
       hero,
       zones,
-      legion: { ...s0.legion, chars: withLoot, records, quest, credits: commitLegionClaim(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 ? this.now().t : s0.legion.capabilityChangedMs },
+      legion: { ...s0.legion, chars: withLoot, records, quest, credits: (this.l2 ? commitLegionClaimL2 : commitLegionClaim)(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 ? this.now().t : s0.legion.capabilityChangedMs },
       ...(permOut ? { permanent: permOut.state } : {}),
     };
     const heroAward = credit.eligible.includes('hero');
@@ -1683,6 +2130,7 @@ export class LegionSimulation {
   }
 
   submit(cmd: LegionCommand): boolean {
+    if (cmd.type === 'SetOfflineAssignment') return this.submitOffline(cmd);
     if (cmd.type === 'UpgradeMonument') return this.submitPermanent(cmd);
     const industryCmd = isIndustryCommand(cmd);
     const v = industryCmd ? validateIndustryCommand(this, cmd as IndustryCommand) : isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd as never);
@@ -1712,6 +2160,7 @@ export class LegionSimulation {
     switch (cmd.type) {
       case 'SetAutoFarm':
         if (cmd.on) {
+          if (this.state.offline !== undefined) this.setOff({ heroLast: { kind: 'combat', zoneOrder: this.content.zoneOrderById.get(cmd.zoneId) as number } });
           this.setAutoFarm(true);
           if (h.status === 'resting') this.setHero({ status: 'idle', regenChain: h.regenChain + 1, regenRem: 0 });
           if (this.state.hero.status === 'idle') this.startEngage();
@@ -1809,6 +2258,35 @@ export class LegionSimulation {
     this.setChar(id, { maxHp: s.maxHp, hp: Math.min(hp, s.maxHp) });
   }
 
+  /**
+   * Moves a recruit to another assignment (the S2/S3 transition contract): it leaves the encounter, a worker fight
+   * stops (abandoned), gathering or smithing work in progress is abandoned (no yield; reservation released). `reason`
+   * null is the `Assign` command (logged `Assigned`, unchanged); S5 logout and reconnect pass their reason.
+   */
+  private reassign(id: CharacterId, to: Assignment, reason: string | null): void {
+    const t = this.now().t;
+    const c = this.char(id) as CharacterState;
+    const old = c.assignment;
+    if (old.kind === 'squad' && this.state.encounter !== null && this.state.encounter.participants.includes(c.id)) {
+      const enc = this.state.encounter;
+      this.state = { ...this.state, encounter: { ...enc, participants: enc.participants.filter((x) => x !== c.id) } };
+      this.setChar(c.id, (x) => ({ epoch: x.epoch + 1 }));
+      this.log('MemberLeftSquad', { member: c.id, encounterId: enc.id });
+    }
+    if (old.kind === 'worker') this.stopWorkerFight(c.id, reason ?? 'REASSIGNED');
+    // S3: leaving a gathering or smithing role abandons its work in progress (no yield; the unit's reservation is released).
+    if (this.industryEnabled && this.ind.work[c.id] !== undefined) this.interruptWork(c.id, reason ?? 'REASSIGNED');
+    if (this.industryEnabled && this.ind.blocked[c.id] !== undefined) this.setBlocked(c.id, null);
+    this.setChar(c.id, (x) => ({ assignment: to, worker: { ...x.worker, stopReason: null } }));
+    if (to.kind === 'squad') this.setLegion({ capabilityChangedMs: t });
+    const fmt = (a: Assignment): string => (a.kind === 'worker' ? `worker:${a.zoneOrder}` : a.kind === 'gathering' ? `gathering:${a.nodeId}` : a.kind);
+    if (reason === null) this.log('Assigned', { member: c.id, from: fmt(old), to: fmt(to) });
+    else this.log('OfflineReassigned', { member: c.id, from: fmt(old), to: fmt(to), reason });
+    if (to.kind === 'worker' && this.active && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleWorkerEngage(c.id);
+    if (to.kind === 'gathering' && this.active && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleGatherStart(c.id);
+    if (to.kind === 'smithing' || old.kind === 'smithing') this.queuePass();
+  }
+
   private applyLegion(cmd: LegionOnlyCommand): void {
     const t = this.now().t;
     const L = this.state.legion;
@@ -1827,26 +2305,10 @@ export class LegionSimulation {
         return;
       }
       case 'Assign': {
-        const c = this.char(cmd.characterId) as CharacterState;
-        const old = c.assignment;
-        if (old.kind === 'squad' && this.state.encounter !== null && this.state.encounter.participants.includes(c.id)) {
-          const enc = this.state.encounter;
-          this.state = { ...this.state, encounter: { ...enc, participants: enc.participants.filter((x) => x !== c.id) } };
-          this.setChar(c.id, (x) => ({ epoch: x.epoch + 1 }));
-          this.log('MemberLeftSquad', { member: c.id, encounterId: enc.id });
-        }
-        if (old.kind === 'worker') this.stopWorkerFight(c.id, 'REASSIGNED');
-        // S3: leaving a gathering or smithing role abandons its work in progress (no yield; the unit's reservation is released).
-        if (this.industryEnabled && this.ind.work[c.id] !== undefined) this.interruptWork(c.id, 'REASSIGNED');
-        if (this.industryEnabled && this.ind.blocked[c.id] !== undefined) this.setBlocked(c.id, null);
         const to: Assignment = cmd.to === 'worker' ? { kind: 'worker', zoneOrder: this.content.zoneOrderById.get(cmd.zoneId as string) as number } : cmd.to === 'gathering' ? { kind: 'gathering', nodeId: cmd.nodeId as string } : { kind: cmd.to };
-        this.setChar(c.id, (x) => ({ assignment: to, worker: { ...x.worker, stopReason: null } }));
-        if (to.kind === 'squad') this.setLegion({ capabilityChangedMs: t });
-        const fmt = (a: Assignment): string => (a.kind === 'worker' ? `worker:${a.zoneOrder}` : a.kind === 'gathering' ? `gathering:${a.nodeId}` : a.kind);
-        this.log('Assigned', { member: c.id, from: fmt(old), to: fmt(to) });
-        if (to.kind === 'worker' && this.state.session.open && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleWorkerEngage(c.id);
-        if (to.kind === 'gathering' && this.state.session.open && !(this.char(c.id) as CharacterState).knockedOut) this.scheduleGatherStart(c.id);
-        if (to.kind === 'smithing' || old.kind === 'smithing') this.queuePass();
+        this.reassign(cmd.characterId, to, null);
+        const ind = specOfAssignment(to);
+        if (this.state.offline !== undefined && ind !== null) this.setOff({ lastIndependent: { ...this.off.lastIndependent, [cmd.characterId]: ind } });
         return;
       }
       case 'SetClass': {
@@ -1976,6 +2438,9 @@ export class LegionSimulation {
   /** Validation of a Monument purchase (S4-R11, R12); the number of levels it would buy, or the refusal. */
   private validatePermanent(cmd: PermanentCommand): { ok: true; k: number } | { ok: false; code: PermanentReasonCode } {
     if (!this.permanentEnabled) return { ok: false, code: 'PERMANENT_DISABLED' };
+    // S5-R14 (approved at S5 acceptance): no Monument purchase outside a connected session, in every mode. No historical
+    // control submits one between sessions, so their results are unchanged (representative controls verified).
+    if (!this.state.session.open) return { ok: false, code: 'NOT_IN_SESSION' as PermanentReasonCode };
     const m = this.pc.monumentById.get(cmd.monumentId);
     if (!m) return { ok: false, code: 'MONUMENT_UNKNOWN' };
     const st = this.perm.monuments[m.id] as MonumentState;
@@ -2058,7 +2523,7 @@ export class LegionSimulation {
   private onGatherStart(ev: LegionEvent): void {
     const id = String(ev.data?.['member']);
     const c = this.char(id);
-    if (!c || !this.state.session.open || this.ind.work[id] !== undefined) return;
+    if (!c || !this.active || this.ind.work[id] !== undefined) return;
     let nodeId: string | null;
     if (id === 'hero') {
       nodeId = this.ind.heroGather;
@@ -2130,8 +2595,7 @@ export class LegionSimulation {
       }
       return;
     }
-    const n = jobNumber(p.jobId);
-    const job = this.ind.jobs[n - 1] as ProductionJob;
+    const job = jobById(this.ind, p.jobId) as ProductionJob;
     const recipe = this.ic.recipes.get(job.recipeId) as TimedRecipe;
     this.industryTx(`unit:${pid}`, 'production.complete', [...recipe.inputs.map((l) => ({ resourceId: l.resourceId, bucket: 'reserved' as const, delta: -l.qty })), ...recipe.outputs.map((l) => ({ resourceId: l.resourceId, bucket: 'available' as const, delta: l.qty }))]);
     const completed = job.completed + 1;
@@ -2151,7 +2615,7 @@ export class LegionSimulation {
 
   private setJob(job: ProductionJob): void {
     const jobs = this.ind.jobs.slice();
-    jobs[jobNumber(job.id) - 1] = job;
+    jobs[this.l2 ? jobs.findIndex((j) => j.id === job.id) : jobNumber(job.id) - 1] = job;
     this.setInd({ jobs });
   }
 
@@ -2165,7 +2629,7 @@ export class LegionSimulation {
   /** The scheduling pass (§6; O10): idle smiths in acquisition order scan the jobs in FIFO order. */
   private onProductionPass(): void {
     this.setInd({ passQueuedAt: null });
-    if (!this.state.session.open) return;
+    if (!this.active) return;
     const arm: QueueArm = this.options.queueArm ?? 'fifo';
     const t = this.now().t;
     for (const sm of this.state.legion.chars) {
@@ -2219,7 +2683,7 @@ export class LegionSimulation {
       this.log('GatherInterrupted', { member: id, work: w.id, nodeId: w.nodeId, reason });
       return;
     }
-    const job = this.ind.jobs[jobNumber(w.jobId) - 1] as ProductionJob;
+    const job = jobById(this.ind, w.jobId) as ProductionJob;
     const recipe = this.ic.recipes.get(job.recipeId) as TimedRecipe;
     const arm: QueueArm = this.options.queueArm ?? 'fifo';
     let reservedUnits = job.reservedUnits;
@@ -2255,7 +2719,7 @@ export class LegionSimulation {
       const prof: ProfessionId = w.kind === 'unit' ? 'smithing' : (this.ic.nodeById.get(w.nodeId) as { profession: ProfessionId }).profession;
       if (slot !== null && toolSlotFor(prof) === slot) this.interruptWork(id, 'TOOL_CHANGED');
     }
-    if (this.state.session.open && this.ind.work[id] === undefined) {
+    if (this.active && this.ind.work[id] === undefined) {
       if (c.assignment.kind === 'gathering' || (id === 'hero' && this.ind.heroGather !== null)) this.scheduleGatherStart(id);
       if (c.assignment.kind === 'smithing') this.queuePass();
     }
@@ -2275,8 +2739,8 @@ export class LegionSimulation {
     const beforeGiver = giver === null ? null : this.statsNow(giver);
     const prev = this.ind.loadout[id]?.[slot];
     const items = this.ind.items.slice();
-    if (prev !== undefined) items[Number(prev.slice(5)) - 1] = { ...(itemById(this.ind, prev) as ItemInstance), location: { kind: 'inventory' } };
-    items[Number(itemId.slice(5)) - 1] = { ...item, location: { kind: 'equipped', characterId: id, slot } };
+    if (prev !== undefined) this.putItem(items, { ...(itemById(this.ind, prev) as ItemInstance), location: { kind: 'inventory' } });
+    this.putItem(items, { ...item, location: { kind: 'equipped', characterId: id, slot } });
     const loadout = { ...this.ind.loadout };
     if (giver !== null) {
       const g = { ...(loadout[giver] ?? {}) };
@@ -2294,7 +2758,7 @@ export class LegionSimulation {
     const itemId = this.ind.loadout[id]?.[slot] as string;
     const before = this.statsNow(id);
     const items = this.ind.items.slice();
-    items[Number(itemId.slice(5)) - 1] = { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } };
+    this.putItem(items, { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } });
     const lo = { ...(this.ind.loadout[id] ?? {}) };
     delete lo[slot];
     this.setInd({ items, loadout: { ...this.ind.loadout, [id]: lo } });
@@ -2310,7 +2774,7 @@ export class LegionSimulation {
     const def = this.ic.items.get((itemById(this.ind, itemId) as ItemInstance).defId) as CompiledItemDef;
     if (weaponCompatible(def, c.cls)) return;
     const items = this.ind.items.slice();
-    items[Number(itemId.slice(5)) - 1] = { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } };
+    this.putItem(items, { ...(itemById(this.ind, itemId) as ItemInstance), location: { kind: 'inventory' } });
     const lo = { ...(this.ind.loadout[id] ?? {}) };
     delete lo.weapon;
     const loadout = { ...this.ind.loadout, [id]: lo };
@@ -2329,6 +2793,7 @@ export class LegionSimulation {
     switch (cmd.type) {
       case 'Gather':
         if (this.ind.heroGather !== null) this.stopHeroGather('NODE_CHANGED');
+        if (this.state.offline !== undefined) this.setOff({ heroLast: { kind: 'gathering', nodeId: cmd.nodeId } });
         this.setInd({ heroGather: cmd.nodeId });
         this.log('HeroGatherStarted', { nodeId: cmd.nodeId });
         this.scheduleGatherStart('hero');
@@ -2356,7 +2821,7 @@ export class LegionSimulation {
       case 'SetProtected': {
         const item = itemById(this.ind, cmd.itemId) as ItemInstance;
         const items = this.ind.items.slice();
-        items[Number(item.id.slice(5)) - 1] = { ...item, protected: cmd.on };
+        this.putItem(items, { ...item, protected: cmd.on });
         this.setInd({ items });
         this.log('ItemProtection', { itemId: item.id, on: cmd.on });
         return;
@@ -2368,18 +2833,18 @@ export class LegionSimulation {
         const crafter = this.char(cmd.crafterId) as CharacterState;
         if (crafterBlocker(this, crafter) !== null) fail('INVALID_STATE', 'an ineligible character would craft', { crafter: cmd.crafterId, reason: String(crafterBlocker(this, crafter)) });
         const craftId = `craft:${this.ind.crafts + 1}`;
-        const newId = `item:${this.ind.items.length + 1}`;
+        const newId = `item:${this.ind.nextItem ?? this.ind.items.length + 1}`;
         // One atomic operation: materials debited, the lower-tier item consumed, the new item created.
         this.industryTx(craftId, 'craft', recipe.inputs.map((l) => ({ resourceId: l.resourceId, bucket: 'available' as const, delta: -l.qty })));
         const items = this.ind.items.slice();
         let enhancement = 0;
         if (cmd.consumeItemId !== undefined) {
           const old = itemById(this.ind, cmd.consumeItemId) as ItemInstance;
-          items[Number(old.id.slice(5)) - 1] = { ...old, location: { kind: 'consumed', by: newId } };
+          this.putItem(items, { ...old, location: { kind: 'consumed', by: newId } });
           if (ic.inheritance === 'half') enhancement = Math.min(Math.floor(old.enhancement / 2), target.maxEnhancement);
         }
         items.push({ id: newId, defId: target.id, enhancement, protected: false, location: { kind: 'inventory' }, createdBy: craftId });
-        this.setInd({ items, crafts: this.ind.crafts + 1 });
+        this.setInd({ items, crafts: this.ind.crafts + 1, ...(this.ind.nextItem !== undefined ? { nextItem: this.ind.nextItem + 1 } : {}) });
         const { level } = this.addProfExp(cmd.crafterId, 'smithing', recipe.exp);
         this.log('Crafted', { crafter: cmd.crafterId, recipeId: recipe.id, itemId: newId, defId: target.id, consumed: cmd.consumeItemId ?? '', enhancement, craft: craftId, exp: recipe.exp, level });
         if (this.permanentEnabled) this.bumpCounter('itemsCrafted', 1);
@@ -2395,7 +2860,7 @@ export class LegionSimulation {
         const owner = item.location.kind === 'equipped' ? item.location.characterId : null;
         const before = owner === null ? null : this.statsNow(owner);
         const items = this.ind.items.slice();
-        items[Number(item.id.slice(5)) - 1] = { ...item, enhancement: n };
+        this.putItem(items, { ...item, enhancement: n });
         this.setInd({ items });
         // An enhancement never abandons work in progress: the rates captured at its start stay (S3-R14).
         if (owner !== null) this.afterLoadoutChange(owner, null, before as CharacterStats);
@@ -2409,24 +2874,24 @@ export class LegionSimulation {
         const returns = recipe.recoverable.map((r) => ({ resourceId: r.resourceId, qty: Math.floor((r.qty * ic.salvageReturnBp) / 10_000) })).filter((r) => r.qty > 0);
         if (returns.length > 0) this.industryTx(`salvage:${item.id}`, 'salvage', returns.map((r) => ({ resourceId: r.resourceId, bucket: 'available' as const, delta: r.qty })));
         const items = this.ind.items.slice();
-        items[Number(item.id.slice(5)) - 1] = { ...item, location: { kind: 'salvaged' } };
+        this.putItem(items, { ...item, location: { kind: 'salvaged' } });
         this.setInd({ items });
         this.log('Salvaged', { itemId: item.id, returns: returns.map((r) => `${r.resourceId}:${r.qty}`).join(',') });
         return;
       }
       case 'Enqueue': {
-        const id = `job:${this.ind.jobs.length + 1}`;
+        const id = `job:${this.ind.nextJob ?? this.ind.jobs.length + 1}`;
         const job: ProductionJob = { id, recipeId: cmd.recipeId, quantity: cmd.quantity, completed: 0, enqueueMs: t, state: 'queued', unitsStarted: 0, reservedUnits: 0, served: 0, shortage: null };
-        this.setInd({ jobs: [...this.ind.jobs, job] });
+        this.setInd({ jobs: [...this.ind.jobs, job], ...(this.ind.nextJob !== undefined ? { nextJob: this.ind.nextJob + 1 } : {}) });
         this.log('JobEnqueued', { jobId: id, recipeId: cmd.recipeId, quantity: cmd.quantity });
         this.queuePass();
         return;
       }
       case 'CancelJob': {
-        const job = this.ind.jobs[jobNumber(cmd.jobId) - 1] as ProductionJob;
+        const job = jobById(this.ind, cmd.jobId) as ProductionJob;
         const smith = Object.entries(this.ind.work).find(([, w]) => w.kind === 'unit' && w.jobId === job.id);
         if (smith) this.interruptWork(smith[0], 'CANCELLED', false);
-        const cur = this.ind.jobs[jobNumber(cmd.jobId) - 1] as ProductionJob;
+        const cur = jobById(this.ind, cmd.jobId) as ProductionJob;
         if (cur.reservedUnits > 0) {
           const recipe = ic.recipes.get(cur.recipeId) as TimedRecipe;
           this.industryTx(`release:${cur.id}:cancel`, 'production.release', this.reserveLines(recipe.inputs, cur.reservedUnits, -1));

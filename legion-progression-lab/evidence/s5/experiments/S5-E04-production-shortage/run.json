@@ -1,0 +1,29 @@
+{
+  "experimentId": "S5-E04-production-shortage",
+  "manifest": "manifests/s5/S5-E04-production-shortage.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stoppedReason": null,
+  "registeredTasks": 200,
+  "completedTasks": 200,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 1200000,
+    "peakRssMb": 8192
+  },
+  "wallMs": 13200,
+  "peakRssMb": 3654,
+  "taskMs": {
+    "mean": 947,
+    "max": 1638
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "334d74b6deb74f7baa3d09835181970a61a9e1b8c7c9de4979873cc5beb467ad"
+}

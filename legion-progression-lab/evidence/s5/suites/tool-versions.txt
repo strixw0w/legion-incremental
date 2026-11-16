@@ -1,0 +1,6 @@
+node v24.22.3
+npm 11.19.1
+python Python 3.12.9
+typescript Version 7.0.2
+vitest vitest/4.1.12 win32-x64 node-v24.22.3
+os MINGW64_NT-10.0-26300 RTX-4070-SUPER 3.6.6-1cdd4371.x86_64 2026-01-15 22:20 UTC x86_64 Msys

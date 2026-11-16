@@ -9,6 +9,7 @@ import type { ClassId, HeldClass, TalentAllocation } from './legionContent.ts';
 import type { Command, DisplayedEstimate, Encounter, Observation, SimState } from './types.ts';
 import type { IndustryCommand, IndustryObservation, IndustryState } from './industryTypes.ts';
 import type { PermanentCommand, PermanentObservation, PermanentState } from './permanentTypes.ts';
+import type { OfflineState } from '../engine/offline.ts';
 
 export type CharacterId = string;
 export type CharacterKind = 'hero' | 'ordinary' | 'rare';
@@ -104,8 +105,18 @@ export interface LegionSimState extends Omit<SimState, 'encounter'> {
   readonly industry?: IndustryState;
   /** S4: present only when the engine's permanent switch is on. */
   readonly permanent?: PermanentState;
+  /** S5: present only when the engine's offline switch is on. */
+  readonly offline?: OfflineState;
 }
 
+/** S5: an offline assignment as a command gives it (zones by id). */
+export type OfflineAssignmentInput =
+  | { readonly kind: 'combat'; readonly zoneId: string }
+  | { readonly kind: 'squad' }
+  | { readonly kind: 'worker'; readonly zoneId: string }
+  | { readonly kind: 'gathering'; readonly nodeId: string }
+  | { readonly kind: 'smithing' }
+  | { readonly kind: 'idle' };
 export type AssignTarget = 'squad' | 'idle' | 'reserve' | 'worker' | 'gathering' | 'smithing';
 
 export type LegionCommand =
@@ -116,6 +127,8 @@ export type LegionCommand =
   | { readonly type: 'AllocateTalent'; readonly characterId: CharacterId; readonly talentId: string }
   | { readonly type: 'Respec'; readonly characterId: CharacterId }
   | { readonly type: 'UseAbility' }
+  /** S5 (offline switch on): configure one character's offline assignment (online only); null clears it. */
+  | { readonly type: 'SetOfflineAssignment'; readonly characterId: CharacterId; readonly assignment: OfflineAssignmentInput | null }
   | IndustryCommand
   | PermanentCommand;
 

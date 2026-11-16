@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E02-reference-vs-batch",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e02",
+ "tasks": 200,
+ "description": "200 seeded scenarios with absences of 1 minute to 2 hours (first session 20-90 minutes, POL5-BAL with one of four offline plans, 1-8 storage batches): the reference stepper (full log hashing, uncached stats, the reference bounded ledger, one straight run) against the efficient settlement through the service (each batch a validated save and restore), and a reference checkpoint restored into the efficient engine (reconstruction). Exact state agreement required; no sampled batching is used.",
+ "budgets": {
+  "wallMs": 1200000,
+  "peakRssMb": 8192
+ }
+}

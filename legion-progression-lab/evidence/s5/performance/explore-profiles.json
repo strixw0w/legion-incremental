@@ -1,0 +1,109 @@
+{
+  "note": "exploratory, one seed per profile",
+  "rows": [
+    {
+      "profile": "PR-FREQ",
+      "sessionsPerWeek": 42,
+      "observations": [
+        {
+          "day": 1,
+          "gameHours": 16.3,
+          "heroLevel": 111,
+          "gold": 212943,
+          "eternity": 3,
+          "recruits": 3,
+          "wallMsLab": 1700
+        },
+        {
+          "day": 3,
+          "gameHours": 49.4,
+          "heroLevel": 173,
+          "gold": 688863,
+          "eternity": 3,
+          "recruits": 3,
+          "wallMsLab": 4865
+        }
+      ],
+      "stopped": "before D7: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content",
+      "wallMsLab": 7058
+    },
+    {
+      "profile": "PR-CAS",
+      "sessionsPerWeek": 14,
+      "observations": [
+        {
+          "day": 1,
+          "gameHours": 14.6,
+          "heroLevel": 108,
+          "gold": 202151,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 1276
+        },
+        {
+          "day": 3,
+          "gameHours": 43.8,
+          "heroLevel": 166,
+          "gold": 622631,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 3800
+        }
+      ],
+      "stopped": "before D7: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content",
+      "wallMsLab": 6301
+    },
+    {
+      "profile": "PR-BAL",
+      "sessionsPerWeek": 7,
+      "observations": [
+        {
+          "day": 1,
+          "gameHours": 14.8,
+          "heroLevel": 109,
+          "gold": 208598,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 1312
+        },
+        {
+          "day": 3,
+          "gameHours": 44.4,
+          "heroLevel": 168,
+          "gold": 634838,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 4032
+        }
+      ],
+      "stopped": "before D7: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content",
+      "wallMsLab": 6538
+    },
+    {
+      "profile": "PR-ABS",
+      "sessionsPerWeek": 3,
+      "observations": [
+        {
+          "day": 1,
+          "gameHours": 14.8,
+          "heroLevel": 109,
+          "gold": 207227,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 1267
+        },
+        {
+          "day": 3,
+          "gameHours": 29.5,
+          "heroLevel": 143,
+          "gold": 418907,
+          "eternity": 0,
+          "recruits": 3,
+          "wallMsLab": 2399
+        }
+      ],
+      "stopped": "before D7: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content",
+      "wallMsLab": 6151
+    }
+  ]
+}

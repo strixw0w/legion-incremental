@@ -90,6 +90,9 @@ export interface IndustryState {
   /** A scheduling pass is already queued for this moment. */
   readonly passQueuedAt: number | null;
   readonly settled: number;
+  /** S5 bounded identity only: the next item and job numbers (spent items and finished jobs are retired). */
+  readonly nextItem?: number;
+  readonly nextJob?: number;
 }
 
 export type IndustryCommand =
@@ -221,6 +224,8 @@ export interface IndustryObservation {
   readonly professions: Readonly<Record<CharacterId, Readonly<Record<ProfessionId, { readonly level: number; readonly exp: number; readonly efficiencyBp: number }>>>>;
   readonly nodes: readonly ObservedNode[];
   readonly items: readonly ObservedItem[];
+  /** The number the next crafted item will take (S5: from the item counter under the bounded identity). */
+  readonly nextItemId: string;
   readonly loadouts: Readonly<Record<CharacterId, Readonly<Partial<Record<EquipSlot, string>>>>>;
   readonly recipes: readonly ObservedRecipe[];
   readonly jobs: readonly ObservedJob[];

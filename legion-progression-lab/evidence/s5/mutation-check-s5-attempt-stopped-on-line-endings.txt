@@ -1,0 +1,5 @@
+M1: DETECTED (20 failing) restored=True | the reduced window has no length (no 72-hour cap)
+M2: DETECTED (20 failing) restored=True | the credited duration rounds up instead of down
+M3: DETECTED (17 failing) restored=True | the ratio rule ignores the normal rate (the reduced window is not proportional)
+M4: DETECTED (19 failing) restored=True | the beyond-cap window is not reported
+M5: pattern found 0 times in src/engine/offline.ts

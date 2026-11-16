@@ -1,0 +1,157 @@
+{
+  "example": "absence-beyond-cap-80h",
+  "receipt": {
+    "receiptId": "example-absence-beyond-cap-80h/main#2",
+    "type": "reconnect",
+    "request": {
+      "stream": "settlement",
+      "seq": 2,
+      "payloadHash": "385650bd690c59df4114792e9a74b3152af62c9f9dff77c55e02545dee89f6c8"
+    },
+    "accountVersion": 2,
+    "checkpointDigest": "1cb37b4a3d7738e394d05d2320d75e81a9d57ee644adf05b5bf66810a727f8b6",
+    "absence": "absence:0",
+    "wall": {
+      "fromMs": 7200000,
+      "toMs": 295200000
+    },
+    "game": {
+      "fromMs": 7200000,
+      "toMs": 110880000
+    },
+    "rates": {
+      "normalBp": 6000,
+      "rateE8": 30000000
+    },
+    "assignments": {
+      "hero": "combat:3 (current-activity)",
+      "rec:1": "squad (farm-with-hero)",
+      "rec:2": "squad (farm-with-hero)",
+      "rec:3": "squad (farm-with-hero)"
+    },
+    "versions": {
+      "contentHash": "144d60a338637f4cfcb502e2da8be09253be083e1dd51cbc58e1abbec3ecab89",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc",
+      "legionContentHash": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0",
+      "industryContentHash": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b",
+      "permanentContentHash": "02f19cb80ae72c7d29cd174da575a928c2edffeb9488839f705b1ede1f82fa5b",
+      "offlineFormula": "legion.s5.offline-credit.v1",
+      "checkpoint": "legion.l2.sim-checkpoint.v3"
+    },
+    "summary": {
+      "schema": "legion.s5.welcome-back.v1",
+      "absence": "absence:0",
+      "unlocked": true,
+      "wall": {
+        "startMs": 7200000,
+        "toMs": 295200000,
+        "elapsedMs": 288000000
+      },
+      "credited": {
+        "ms": 103680000,
+        "normalBp": 6000,
+        "rateE8": 30000000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 86400000,
+            "rateE8": 60000000
+          },
+          {
+            "window": "reduced",
+            "fromMs": 86400000,
+            "toMs": 259200000,
+            "rateE8": 30000000
+          },
+          {
+            "window": "beyond-cap",
+            "fromMs": 259200000,
+            "toMs": 288000000,
+            "rateE8": 0
+          }
+        ],
+        "capReached": true,
+        "beyondCapMs": 28800000
+      },
+      "resources": {
+        "res.gold": 414720,
+        "res.mat.goblin_scrap": 13780,
+        "res.rare.test_token": 142
+      },
+      "combatExp": {
+        "hero": 1520640,
+        "rec:1": 1520640,
+        "rec:2": 1520640,
+        "rec:3": 1520640
+      },
+      "levels": {
+        "hero": {
+          "from": 49,
+          "to": 145
+        },
+        "rec:1": {
+          "from": 48,
+          "to": 145
+        },
+        "rec:2": {
+          "from": 48,
+          "to": 145
+        },
+        "rec:3": {
+          "from": 48,
+          "to": 145
+        }
+      },
+      "mastery": {
+        "hero": 1520640,
+        "rec:1": 1520640,
+        "rec:2": 1520640,
+        "rec:3": 1520640
+      },
+      "professionExp": {},
+      "bestiary": {
+        "discovered": 0,
+        "emblems": 141
+      },
+      "feats": {
+        "granted": 1
+      },
+      "kills": [
+        0,
+        0,
+        69120
+      ],
+      "production": {
+        "settlements": 0,
+        "itemsCreated": 0
+      },
+      "reservations": {
+        "jobs": []
+      },
+      "shortages": {
+        "blocked": [],
+        "pausedJobs": []
+      },
+      "stopped": {
+        "heroAutoFarm": null,
+        "workers": []
+      },
+      "survival": {
+        "heroDead": false,
+        "knockedOut": []
+      },
+      "gatesUnlocked": [],
+      "activeOnly": {
+        "unvisitedAccessibleZones": [],
+        "bossChallengeAvailable": true,
+        "recruitAvailable": false
+      }
+    },
+    "rngDigest": "95b53a2ee1c174e6f0b3e9011a05b8a0315ba59c1f3a964bcbb0ccf832ad5db7",
+    "cursor": {
+      "absence": null,
+      "wallMs": 295200000
+    }
+  }
+}

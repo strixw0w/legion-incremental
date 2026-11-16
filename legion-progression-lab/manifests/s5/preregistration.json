@@ -1,0 +1,49 @@
+{
+  "planRegisteredAt": "2026-11-15T20:13:30Z",
+  "document": {
+    "path": "manifests/s5/PREREGISTRATION.md",
+    "sha256": "dfe82e71418b279af154a2253314a485390521681bee4162136a875236b0095f"
+  },
+  "specification": {
+    "path": "planning/S5_SPECIFICATION.md",
+    "sha256": "fb98bd987bf1e4d7f4d9addd7ba836d2de25b1be462f25e0c4f1204a02da9846"
+  },
+  "rules": {
+    "path": "../spec/formulas/s5-offline.md",
+    "sha256": "4b5c5e2b18c7b7bbcce5c6871fcbcdf399297bff3f86084cd06e69ee2a6d7162"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s5/S5-E01-boundaries.json",
+      "sha256": "9b429c78e9338798e5f479a9887b383c6cdb2368c0b318609006cbfee9406dc7"
+    },
+    {
+      "path": "manifests/s5/S5-E02-reference-vs-batch.json",
+      "sha256": "589d7a85326faf4e21ce4d0dc8d3d05c3de69439618d7ea5baac9436176802f1"
+    },
+    {
+      "path": "manifests/s5/S5-E03-mid-absence.json",
+      "sha256": "eb399a57c9a119aa5b33044dea6b0fca21ec9f6b52ed365c14c32fc896ce3b0c"
+    },
+    {
+      "path": "manifests/s5/S5-E04-production-shortage.json",
+      "sha256": "d24991dc51dba01c6efbb134bf7a8c55a59dca7478a326ce464fdb47aac9dc63"
+    },
+    {
+      "path": "manifests/s5/S5-E05-reconnect-idempotency.json",
+      "sha256": "c1cdd356a1181029028a491488a89c598330a23917427217758df2ffc40fd09b"
+    },
+    {
+      "path": "manifests/s5/S5-E06-efficiency-alternatives.json",
+      "sha256": "9993112cccc389b7f8f3d66e627ae58b8bc275a9c240defdf607d15e2a745737"
+    },
+    {
+      "path": "manifests/s5/S5-E07-profile-equity.json",
+      "sha256": "2e6938ba19452a89aab4808e5c583765b89f3d63602adcb9e190df4d12c417dc"
+    },
+    {
+      "path": "manifests/s5/S5-E08-connected-idle.json",
+      "sha256": "fdffc26033b1f2d50abba7298a7c3831b180123329e94f4527c7c0d26cb83f33"
+    }
+  ]
+}

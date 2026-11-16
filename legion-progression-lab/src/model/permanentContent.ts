@@ -18,8 +18,11 @@ import { ADDITIVE_ATTACK_CATEGORY, CLASS_IDS, MONUMENT_ATTACK_CATEGORY, NO_MODS,
 /** Stats a permanent reward can target (S4 spec section 2). */
 export const PERM_TARGETS = ['attack', 'maxHp', 'critChance', 'abilityPower', 'gatherEfficiency', 'smithEfficiency'] as const;
 export type PermTarget = (typeof PERM_TARGETS)[number];
-/** A Monument targets one stat, or `efficiency` (gathering and smithing together, Monument of Industry). */
-export type MonumentTarget = 'attack' | 'maxHp' | 'efficiency';
+/**
+ * A Monument targets one stat, or `efficiency` (gathering and smithing together, Monument of Industry), or (S5)
+ * `offline`: the normal-window offline rate (Monument of Eternity), which is no stat and joins no stat pool.
+ */
+export type MonumentTarget = 'attack' | 'maxHp' | 'efficiency' | 'offline';
 /** Lifetime counters and high-water marks (S4-R06). */
 export const PERM_COUNTERS = ['accountKills', 'goldEarned', 'rosterLevelsHigh', 'professionLevelsHigh', 'gatheredUnits', 'unitsCompleted', 'itemsCrafted', 'enhancements', 'zonesVisited', 'gatesCompleted', 'bossCleared', 'recruitsAcquired'] as const;
 export type PermCounter = (typeof PERM_COUNTERS)[number];
@@ -35,7 +38,7 @@ const MonumentSchema = z
   .object({
     id: z.string().regex(/^monument\.[a-z0-9_]+$/),
     name: z.string().min(1),
-    target: z.enum(['attack', 'maxHp', 'efficiency']),
+    target: z.enum(['attack', 'maxHp', 'efficiency', 'offline']),
     discovery: z.discriminatedUnion('kind', [
       z.object({ kind: z.literal('quest'), questId: z.literal('Q1') }).strict(),
       z.object({ kind: z.literal('zoneVisited'), zoneOrder: Int(1) }).strict(),

@@ -315,7 +315,8 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
     contentVersion: pack.contentVersion,
     contentHash: fingerprint(packJson),
     tableHash,
-    table: table.thresholds,
+    // Frozen (S5): nothing changes a compiled table, and a frozen table is validated once (core/formulas/xp.ts).
+    table: Object.freeze(table.thresholds) as readonly number[],
     maxLevelUpsPerAward: pack.xp.maxLevelUpsPerAward.value,
     categories,
     hero: heroBase,

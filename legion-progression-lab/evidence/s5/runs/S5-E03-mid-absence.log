@@ -1,0 +1,37 @@
+S5-E03-mid-absence: 25/200 (34 s)
+S5-E03-mid-absence: 50/200 (63 s)
+S5-E03-mid-absence: 75/200 (82 s)
+S5-E03-mid-absence: 100/200 (110 s)
+S5-E03-mid-absence: 125/200 (138 s)
+S5-E03-mid-absence: 150/200 (161 s)
+S5-E03-mid-absence: 175/200 (188 s)
+S5-E03-mid-absence: 200/200 (210 s)
+{
+ "experimentId": "S5-E03-mid-absence",
+ "manifest": "manifests/s5/S5-E03-mid-absence.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stoppedReason": null,
+ "registeredTasks": 200,
+ "completedTasks": 200,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 1800000,
+  "peakRssMb": 8192
+ },
+ "wallMs": 210443,
+ "peakRssMb": 4157,
+ "taskMs": {
+  "mean": 15445,
+  "max": 18082
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "ec7f4a70ca5afc866f5a13e58fa521e9bc16c41b6ad80113be22454986befe26"
+}

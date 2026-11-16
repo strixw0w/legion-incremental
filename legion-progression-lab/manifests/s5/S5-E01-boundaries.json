@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E01-boundaries",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e01",
+ "tasks": 42,
+ "description": "Boundaries through the settlement service on the actual engine (S5 content, POL5-BAL, a 40-minute first session): absences of 0, 1 ms, 2 ms, 24 h - 1 ms, 24 h, 24 h + 1 ms, 72 h - 1 ms, 72 h, 72 h + 1 ms, 72 h + 1 day and 30 days; a negative absence, a trusted clock running backwards and a future reconnect. Three seeds per case.",
+ "budgets": {
+  "wallMs": 600000,
+  "peakRssMb": 4096
+ }
+}

@@ -81,12 +81,20 @@ describe.each(IMPLS.map((i) => [i.id, i] as const))('ledger contract: %s', (_id,
     expect(s2.committed.has('tx.c')).toBe(false);
   });
 
-  it('C1: full history: every committed transaction stays, in every later snapshot', () => {
+  it('C1: full history: every committed transaction stays, in every later snapshot (S5 bounded: the last 256 stay)', () => {
     let l = L.empty();
     for (let i = 0; i < 300; i += 1) l = apply(l, grant(`tx.${i}`, 1)).ledger;
+    expect(balance(l, 'res.gold')).toBe(300);
+    if (L.id === 'bounded' || L.id === 'bounded-reference') {
+      // Declared difference (planning/S5_SPECIFICATION.md §1): the window keeps the most recent transactions; an evicted
+      // identity is not recognised by the ledger itself (exactly-once belongs to the identity that produced it).
+      expect(l.committed.size).toBe(256);
+      for (let i = 44; i < 300; i += 7) expect(apply(l, grant(`tx.${i}`, 1)).result.replayed).toBe(true);
+      expect(apply(l, grant('tx.0', 1)).result.replayed).toBe(false);
+      return;
+    }
     expect(l.committed.size).toBe(300);
     for (let i = 0; i < 300; i += 7) expect(apply(l, grant(`tx.${i}`, 1)).result.replayed).toBe(true);
-    expect(balance(l, 'res.gold')).toBe(300);
   });
 
   it('C7: only genuine ledgers of this implementation are accepted', () => {

@@ -1,0 +1,29 @@
+{
+  "experimentId": "S5-E06-efficiency-alternatives",
+  "manifest": "manifests/s5/S5-E06-efficiency-alternatives.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stoppedReason": null,
+  "registeredTasks": 4800,
+  "completedTasks": 4800,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 5400000,
+    "peakRssMb": 12288
+  },
+  "wallMs": 2986133,
+  "peakRssMb": 4237,
+  "taskMs": {
+    "mean": 9318,
+    "max": 14629
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "386f317431234bca0506b68f079e62579ca0495f693e90ec1790059e73e28ed5"
+}

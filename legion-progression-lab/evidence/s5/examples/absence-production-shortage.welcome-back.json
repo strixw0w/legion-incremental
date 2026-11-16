@@ -1,0 +1,123 @@
+{
+  "example": "absence-production-shortage",
+  "receipt": {
+    "receiptId": "example-absence-production-shortage/main#2",
+    "type": "reconnect",
+    "request": {
+      "stream": "settlement",
+      "seq": 2,
+      "payloadHash": "1c1756a9da46fbaaa71a177e636379c76bcc9e170da24f105d7aeee501ed81ae"
+    },
+    "accountVersion": 2,
+    "checkpointDigest": "9e50308bbfc12428aa8cdb047750e2361cdbfd10d5c62f7365622bc9359f806c",
+    "absence": "absence:0",
+    "wall": {
+      "fromMs": 120000,
+      "toMs": 21720000
+    },
+    "game": {
+      "fromMs": 120000,
+      "toMs": 13080000
+    },
+    "rates": {
+      "normalBp": 6000,
+      "rateE8": 30000000
+    },
+    "assignments": {
+      "hero": "idle (no-eligible-activity)",
+      "rec:1": "smithing (own-job)",
+      "rec:2": "gathering:node.w1.01.oak (own-job)"
+    },
+    "versions": {
+      "contentHash": "144d60a338637f4cfcb502e2da8be09253be083e1dd51cbc58e1abbec3ecab89",
+      "tableHash": "990fe508ef0f83f196a4052a56354c989fc9e93f36070754ed222295a69fb0dc",
+      "legionContentHash": "a19224beb7dd671e9c797f90a9ac58ad156f1eb49d486d690826582fcb0e4bc0",
+      "industryContentHash": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b",
+      "permanentContentHash": "02f19cb80ae72c7d29cd174da575a928c2edffeb9488839f705b1ede1f82fa5b",
+      "offlineFormula": "legion.s5.offline-credit.v1",
+      "checkpoint": "legion.l2.sim-checkpoint.v3"
+    },
+    "summary": {
+      "schema": "legion.s5.welcome-back.v1",
+      "absence": "absence:0",
+      "unlocked": true,
+      "wall": {
+        "startMs": 120000,
+        "toMs": 21720000,
+        "elapsedMs": 21600000
+      },
+      "credited": {
+        "ms": 12960000,
+        "normalBp": 6000,
+        "rateE8": 30000000,
+        "windows": [
+          {
+            "window": "normal",
+            "fromMs": 0,
+            "toMs": 21600000,
+            "rateE8": 60000000
+          }
+        ],
+        "capReached": false,
+        "beyondCapMs": 0
+      },
+      "resources": {
+        "res.mat.log": 5650,
+        "res.mat.plank": 776
+      },
+      "combatExp": {},
+      "levels": {},
+      "mastery": {},
+      "professionExp": {
+        "rec:1": {
+          "smithing": 2328
+        },
+        "rec:2": {
+          "woodcutting": 12960
+        }
+      },
+      "bestiary": {
+        "discovered": 0,
+        "emblems": 0
+      },
+      "feats": {
+        "granted": 5
+      },
+      "kills": [
+        0,
+        0,
+        0
+      ],
+      "production": {
+        "settlements": 5096,
+        "itemsCreated": 0
+      },
+      "reservations": {
+        "jobs": []
+      },
+      "shortages": {
+        "blocked": [],
+        "pausedJobs": []
+      },
+      "stopped": {
+        "heroAutoFarm": null,
+        "workers": []
+      },
+      "survival": {
+        "heroDead": false,
+        "knockedOut": []
+      },
+      "gatesUnlocked": [],
+      "activeOnly": {
+        "unvisitedAccessibleZones": [],
+        "bossChallengeAvailable": false,
+        "recruitAvailable": false
+      }
+    },
+    "rngDigest": "3a39cfd04cd9ad261391649b3c52b82517e53a941f18d190aad55795afbc0698",
+    "cursor": {
+      "absence": null,
+      "wallMs": 21720000
+    }
+  }
+}

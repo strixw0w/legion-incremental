@@ -23,6 +23,7 @@ import { runEquipmentOpsCase, runIndustryRulesCase, runProductionQueueCase, runR
 import { runPermanentRulesCase } from './s4Fixtures.ts';
 import { runPermanentAcceptanceCase } from './s4AcceptanceFixtures.ts';
 import { runL2Case, SUPERSEDED_FAMILIES } from './l2Fixtures.ts';
+import { runS5Case } from './s5Fixtures.ts';
 export { SUPERSEDED_FAMILIES };
 
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
@@ -338,6 +339,12 @@ const handlers: Record<FixtureFile['fixtureSet'], (input: Input) => Json> = {
   },
   'l21-delivery'(input) {
     return runL2Case('l21-delivery', input) as unknown as Json;
+  },
+  's5-offline-credit'(input) {
+    return runS5Case('s5-offline-credit', input) as unknown as Json;
+  },
+  's5-settlement-timing'(input) {
+    return runS5Case('s5-settlement-timing', input) as unknown as Json;
   },
 };
 

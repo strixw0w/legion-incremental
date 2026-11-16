@@ -1,0 +1,29 @@
+{
+  "experimentId": "S5-E01-boundaries",
+  "manifest": "manifests/s5/S5-E01-boundaries.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stoppedReason": null,
+  "registeredTasks": 42,
+  "completedTasks": 42,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 600000,
+    "peakRssMb": 4096
+  },
+  "wallMs": 12254,
+  "peakRssMb": 3192,
+  "taskMs": {
+    "mean": 3643,
+    "max": 8409
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "6c27ec58dad1e126add4981606b15f98ff4d7976cebac757d67dec7bcb8f4e53"
+}

@@ -1,0 +1,61 @@
+S5-E07-profile-equity: 25/800 (35 s)
+S5-E07-profile-equity: 50/800 (66 s)
+S5-E07-profile-equity: 75/800 (84 s)
+S5-E07-profile-equity: 100/800 (114 s)
+S5-E07-profile-equity: 125/800 (145 s)
+S5-E07-profile-equity: 150/800 (163 s)
+S5-E07-profile-equity: 175/800 (192 s)
+S5-E07-profile-equity: 200/800 (223 s)
+S5-E07-profile-equity: 225/800 (241 s)
+S5-E07-profile-equity: 250/800 (268 s)
+S5-E07-profile-equity: 275/800 (296 s)
+S5-E07-profile-equity: 300/800 (316 s)
+S5-E07-profile-equity: 325/800 (342 s)
+S5-E07-profile-equity: 350/800 (369 s)
+S5-E07-profile-equity: 375/800 (390 s)
+S5-E07-profile-equity: 400/800 (415 s)
+S5-E07-profile-equity: 425/800 (442 s)
+S5-E07-profile-equity: 450/800 (465 s)
+S5-E07-profile-equity: 475/800 (491 s)
+S5-E07-profile-equity: 500/800 (518 s)
+S5-E07-profile-equity: 525/800 (539 s)
+S5-E07-profile-equity: 550/800 (566 s)
+S5-E07-profile-equity: 575/800 (593 s)
+S5-E07-profile-equity: 600/800 (614 s)
+S5-E07-profile-equity: 625/800 (639 s)
+S5-E07-profile-equity: 650/800 (665 s)
+S5-E07-profile-equity: 675/800 (686 s)
+S5-E07-profile-equity: 700/800 (710 s)
+S5-E07-profile-equity: 725/800 (736 s)
+S5-E07-profile-equity: 750/800 (758 s)
+S5-E07-profile-equity: 775/800 (781 s)
+S5-E07-profile-equity: 800/800 (801 s)
+{
+ "experimentId": "S5-E07-profile-equity",
+ "manifest": "manifests/s5/S5-E07-profile-equity.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stoppedReason": null,
+ "registeredTasks": 800,
+ "completedTasks": 800,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 2700000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 801144,
+ "peakRssMb": 3965,
+ "taskMs": {
+  "mean": 14936,
+  "max": 18075
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "40483eb4146419ca3b3f7bdd59c0ea98368dc93397c1677d629ddeb1b255fbd8"
+}

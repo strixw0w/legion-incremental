@@ -1,0 +1,32 @@
+{
+ "cutsPerRun": 30,
+ "configs": [
+  "s2-squad-mixed",
+  "s2-locked-first",
+  "s3-bal-mixed",
+  "s4-bal2-mixed",
+  "s4-configured",
+  "s2-diag-deaths-offline"
+ ],
+ "checkpoints": 219,
+ "falseRefusals": 0,
+ "removals": 455,
+ "removalsAccepted": 0,
+ "resumes": 45,
+ "resumeBreaks": 0,
+ "partitionRuns": 6,
+ "partitionBreaks": 0,
+ "firstFalse": [],
+ "coverage": {
+  "absence-locked": 7,
+  "absence-unlocked": 172,
+  "hero:dead": 3,
+  "hero:engaged": 3,
+  "hero:idle": 74,
+  "hero:walking": 139,
+  "in-session": 34,
+  "offline-hero-gather": 31,
+  "pre-session": 6
+ },
+ "wallMs": 608106
+}

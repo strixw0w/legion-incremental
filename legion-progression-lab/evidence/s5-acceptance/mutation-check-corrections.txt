@@ -1,0 +1,28 @@
+M15: DETECTED (2 failing) restored=True | a Monument purchase is accepted outside a connected session
+M21: DETECTED (6 failing) restored=True | a retry runs again instead of replaying
+M22: DETECTED (1 failing) restored=True | the commit is not compare-and-swap (a stale decision overwrites)
+M23: DETECTED (2 failing) restored=True | the failure before the commit happens after it
+M24: DETECTED (9 failing) restored=True | the reconnect leaves the cursor at the batch start (the absence can be claimed again)
+M25: DETECTED (1 failing) restored=True | a refused request commits no receipt (a retry is decided afresh)
+M34: NOT DETECTED (0 failing) restored=True | A: the cursor is not bound to the checkpoint's progress in an absence
+M35: DETECTED (1 failing) restored=True | A: retained receipts are not checked for shape
+M36: DETECTED (2 failing) restored=True | A: a detailed receipt is not bound to its stream receipt (detail digest)
+M37: NOT DETECTED (0 failing) restored=True | A: the latest receipt is not bound to the stored checkpoint and cursor
+M38: DETECTED (1 failing) restored=True | B: a replay returns no retained detail
+M39: DETECTED (2 failing) restored=True | B: the latest welcome-back is not kept apart from the receipt window
+M40: DETECTED (1 failing) restored=True | C: the persisted schedule is never compacted
+
+S5 mutation check: 13 planted bugs, 11 detected, 2 not detected; all files restored: True
+- M15 [src/engine/legion.ts] a Monument purchase is accepted outside a connected session: detected by 2 failing test(s); e.g. × no retroactive increase: a purchase after an absence began changes only the next absence; never purchasable offline 288ms
+- M21 [src/s5/settlement.ts] a retry runs again instead of replaying: detected by 6 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 2372ms
+- M22 [src/s5/settlement.ts] the commit is not compare-and-swap (a stale decision overwrites): detected by 1 failing test(s); e.g. × a stale load, a wrong branch and a failed calculation change nothing 1130ms
+- M23 [src/s5/settlement.ts] the failure before the commit happens after it: detected by 2 failing test(s); e.g. × failure immediately before the commit leaves nothing; immediately after, the retry replays and nothing is credited twice 3960ms
+- M24 [src/s5/settlement.ts] the reconnect leaves the cursor at the batch start (the absence can be claimed again): detected by 9 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 2558ms
+- M25 [src/s5/settlement.ts] a refused request commits no receipt (a retry is decided afresh): detected by 1 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 2100ms
+- M34 [src/s5/settlement.ts] A: the cursor is not bound to the checkpoint's progress in an absence: NOT detected by 0 failing test(s)
+- M35 [src/s5/settlement.ts] A: retained receipts are not checked for shape: detected by 1 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 701ms
+- M36 [src/s5/settlement.ts] A: a detailed receipt is not bound to its stream receipt (detail digest): detected by 2 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 906ms
+- M37 [src/s5/settlement.ts] A: the latest receipt is not bound to the stored checkpoint and cursor: NOT detected by 0 failing test(s)
+- M38 [src/s5/settlement.ts] B: a replay returns no retained detail: detected by 1 failing test(s); e.g. × a response lost after commit: the retry returns the original detailed summary, retained, never recomputed 3125ms
+- M39 [src/s5/settlement.ts] B: the latest welcome-back is not kept apart from the receipt window: detected by 2 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 875ms
+- M40 [src/s5/settlement.ts] C: the persisted schedule is never compacted: detected by 1 failing test(s); e.g. × 150 repeated reconnects: the persisted schedule stays at the current session, the record stops growing, and the state equals the uncompact

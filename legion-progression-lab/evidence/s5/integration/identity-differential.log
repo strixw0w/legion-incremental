@@ -1,0 +1,15 @@
+s2-squad identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6847001 B, L2 61537 B
+s2-squad identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6844069 B, L2 61474 B
+s2-workers identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6843419 B, L2 60851 B
+s2-workers identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6840174 B, L2 60373 B
+s3-bal identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 8489851 B, L2 60858 B
+s3-bal identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 8488987 B, L2 60562 B
+s3-equip identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 8404142 B, L2 61585 B
+s3-equip identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 8402223 B, L2 61716 B
+s4-bal2 identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6900048 B, L2 68742 B
+s4-bal2 identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6910821 B, L2 69159 B
+s4-mon2 identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6857290 B, L2 62993 B
+s4-mon2 identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6858448 B, L2 63268 B
+s4-best identity-0: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6880344 B, L2 62868 B
+s4-best identity-1: gameplay IDENTICAL, log digest IDENTICAL; checkpoint at 14 h: L1 6879309 B, L2 63520 B
+identity differential: 14 runs, 0 with a difference; wrote evidence/s5/integration/identity-differential.json

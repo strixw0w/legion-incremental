@@ -1,0 +1,26 @@
+[
+  {
+    "example": "absence-30h-pol5",
+    "keyEvents": 360,
+    "creditedHours": 16.2,
+    "settledEqualsTraced": true
+  },
+  {
+    "example": "absence-beyond-cap-80h",
+    "keyEvents": 400,
+    "creditedHours": 28.8,
+    "settledEqualsTraced": true
+  },
+  {
+    "example": "absence-configured-gathering",
+    "keyEvents": 162,
+    "creditedHours": 12,
+    "settledEqualsTraced": true
+  },
+  {
+    "example": "absence-production-shortage",
+    "keyEvents": 400,
+    "creditedHours": 3.6,
+    "settledEqualsTraced": true
+  }
+]

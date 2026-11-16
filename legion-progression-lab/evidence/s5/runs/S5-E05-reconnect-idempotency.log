@@ -1,0 +1,37 @@
+S5-E05-reconnect-idempotency: 25/200 (39 s)
+S5-E05-reconnect-idempotency: 50/200 (61 s)
+S5-E05-reconnect-idempotency: 75/200 (85 s)
+S5-E05-reconnect-idempotency: 100/200 (107 s)
+S5-E05-reconnect-idempotency: 125/200 (135 s)
+S5-E05-reconnect-idempotency: 150/200 (160 s)
+S5-E05-reconnect-idempotency: 175/200 (185 s)
+S5-E05-reconnect-idempotency: 200/200 (204 s)
+{
+ "experimentId": "S5-E05-reconnect-idempotency",
+ "manifest": "manifests/s5/S5-E05-reconnect-idempotency.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stoppedReason": null,
+ "registeredTasks": 200,
+ "completedTasks": 200,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 1800000,
+  "peakRssMb": 8192
+ },
+ "wallMs": 203656,
+ "peakRssMb": 3905,
+ "taskMs": {
+  "mean": 14931,
+  "max": 28166
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "4ace68b07f396be83347aa2d680838d39f4f26882e4ebdce882863ec82336900"
+}

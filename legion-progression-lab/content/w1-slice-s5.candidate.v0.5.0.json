@@ -1,0 +1,1238 @@
+{
+  "schemaVersion": 2,
+  "contentId": "w1-slice-s5",
+  "contentVersion": "0.5.0",
+  "status": "candidate",
+  "note": "S5 permanent pack for the W1 slice (planning/S5_SPECIFICATION.md section 7). Identical to the S4 pack v0.4.1 except that it adds the Monument of Eternity (target offline: the normal-window offline rate). Its discovery path is guaranteed (quest Q1, the step before the first recruit, after which offline progression unlocks). Every number is a candidate; nothing is approved or live-validated. The S4 packs are unchanged.",
+  "basePack": {
+    "path": "content/w1-slice-s3.candidate.v0.3.0.json",
+    "sha256": "8e9600733348d5df1f433b024e78ec7b77e911a321d1b82cfba1d9543ff07b8b"
+  },
+  "formulaVersion": "perm-v1",
+  "monuments": [
+    {
+      "id": "monument.power",
+      "name": "Monument of Power",
+      "target": "attack",
+      "discovery": {
+        "kind": "quest",
+        "questId": "Q1"
+      },
+      "maxLevel": {
+        "value": 30,
+        "label": "candidate"
+      },
+      "baseGold": {
+        "value": 40,
+        "label": "candidate"
+      },
+      "growthBp": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "tiers": [
+        {
+          "toLevel": 10,
+          "perLevelBp": {
+            "value": 200,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 20,
+          "perLevelBp": {
+            "value": 100,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 30,
+          "perLevelBp": {
+            "value": 50,
+            "label": "candidate"
+          }
+        }
+      ],
+      "milestones": [
+        {
+          "level": 5,
+          "materials": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 10,
+          "materials": [
+            {
+              "resourceId": "res.mat.wolf_fang",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 15,
+          "materials": [
+            {
+              "resourceId": "res.mat.goblin_scrap",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 20,
+          "materials": [
+            {
+              "resourceId": "res.mat.wolf_fang",
+              "qty": {
+                "value": 25,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 5,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 25,
+          "materials": [
+            {
+              "resourceId": "res.mat.goblin_scrap",
+              "qty": {
+                "value": 25,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 30,
+          "materials": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "qty": {
+                "value": 50,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monument.vitality",
+      "name": "Monument of Vitality",
+      "target": "maxHp",
+      "discovery": {
+        "kind": "zoneVisited",
+        "zoneOrder": 2
+      },
+      "maxLevel": {
+        "value": 30,
+        "label": "candidate"
+      },
+      "baseGold": {
+        "value": 30,
+        "label": "candidate"
+      },
+      "growthBp": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "tiers": [
+        {
+          "toLevel": 10,
+          "perLevelBp": {
+            "value": 300,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 20,
+          "perLevelBp": {
+            "value": 150,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 30,
+          "perLevelBp": {
+            "value": 75,
+            "label": "candidate"
+          }
+        }
+      ],
+      "milestones": [
+        {
+          "level": 5,
+          "materials": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "qty": {
+                "value": 15,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 10,
+          "materials": [
+            {
+              "resourceId": "res.mat.plank",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 15,
+          "materials": [
+            {
+              "resourceId": "res.mat.wolf_fang",
+              "qty": {
+                "value": 15,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 20,
+          "materials": [
+            {
+              "resourceId": "res.mat.goblin_scrap",
+              "qty": {
+                "value": 20,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.plank",
+              "qty": {
+                "value": 20,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 25,
+          "materials": [
+            {
+              "resourceId": "res.mat.slime_gel",
+              "qty": {
+                "value": 40,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 30,
+          "materials": [
+            {
+              "resourceId": "res.mat.wolf_fang",
+              "qty": {
+                "value": 40,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monument.industry",
+      "name": "Monument of Industry",
+      "target": "efficiency",
+      "discovery": {
+        "kind": "gateCompleted",
+        "zoneOrder": 2
+      },
+      "maxLevel": {
+        "value": 30,
+        "label": "candidate"
+      },
+      "baseGold": {
+        "value": 60,
+        "label": "candidate"
+      },
+      "growthBp": {
+        "value": 1500,
+        "label": "candidate"
+      },
+      "tiers": [
+        {
+          "toLevel": 10,
+          "perLevelBp": {
+            "value": 300,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 20,
+          "perLevelBp": {
+            "value": 150,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 30,
+          "perLevelBp": {
+            "value": 75,
+            "label": "candidate"
+          }
+        }
+      ],
+      "milestones": [
+        {
+          "level": 5,
+          "materials": [
+            {
+              "resourceId": "res.mat.plank",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 10,
+          "materials": [
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 10,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 15,
+          "materials": [
+            {
+              "resourceId": "res.mat.plank",
+              "qty": {
+                "value": 30,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.slime_gel",
+              "qty": {
+                "value": 20,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 20,
+          "materials": [
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 25,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 25,
+          "materials": [
+            {
+              "resourceId": "res.mat.plank",
+              "qty": {
+                "value": 50,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.wolf_fang",
+              "qty": {
+                "value": 30,
+                "label": "candidate"
+              }
+            }
+          ]
+        },
+        {
+          "level": 30,
+          "materials": [
+            {
+              "resourceId": "res.mat.copper_bar",
+              "qty": {
+                "value": 50,
+                "label": "candidate"
+              }
+            },
+            {
+              "resourceId": "res.mat.goblin_scrap",
+              "qty": {
+                "value": 30,
+                "label": "candidate"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monument.eternity",
+      "name": "Monument of Eternity",
+      "target": "offline",
+      "discovery": {
+        "kind": "quest",
+        "questId": "Q1"
+      },
+      "maxLevel": {
+        "value": 25,
+        "label": "candidate"
+      },
+      "baseGold": {
+        "value": 500,
+        "label": "candidate"
+      },
+      "growthBp": {
+        "value": 2000,
+        "label": "candidate"
+      },
+      "tiers": [
+        {
+          "toLevel": 10,
+          "perLevelBp": {
+            "value": 250,
+            "label": "candidate"
+          }
+        },
+        {
+          "toLevel": 25,
+          "perLevelBp": {
+            "value": 100,
+            "label": "candidate"
+          }
+        }
+      ],
+      "milestones": []
+    }
+  ],
+  "bestiary": {
+    "species": [
+      {
+        "enemyId": "enemy.w1.green_slime",
+        "ranks": [
+          {
+            "rank": "bronze",
+            "kills": {
+              "value": 25,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "attack",
+              "bp": {
+                "value": 100,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "silver",
+            "kills": {
+              "value": 150,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "maxHp",
+              "bp": {
+                "value": 200,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "gold",
+            "kills": {
+              "value": 600,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "attack",
+              "bp": {
+                "value": 200,
+                "label": "candidate"
+              }
+            }
+          }
+        ],
+        "emblem": {
+          "dropBp": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "gatherEfficiency",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        }
+      },
+      {
+        "enemyId": "enemy.w1.wolf",
+        "ranks": [
+          {
+            "rank": "bronze",
+            "kills": {
+              "value": 25,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "critChance",
+              "bp": {
+                "value": 50,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "silver",
+            "kills": {
+              "value": 150,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "attack",
+              "bp": {
+                "value": 150,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "gold",
+            "kills": {
+              "value": 600,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "maxHp",
+              "bp": {
+                "value": 300,
+                "label": "candidate"
+              }
+            }
+          }
+        ],
+        "emblem": {
+          "dropBp": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "critChance",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        }
+      },
+      {
+        "enemyId": "enemy.w1.goblin",
+        "ranks": [
+          {
+            "rank": "bronze",
+            "kills": {
+              "value": 25,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "maxHp",
+              "bp": {
+                "value": 200,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "silver",
+            "kills": {
+              "value": 150,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "attack",
+              "bp": {
+                "value": 200,
+                "label": "candidate"
+              }
+            }
+          },
+          {
+            "rank": "gold",
+            "kills": {
+              "value": 600,
+              "label": "candidate"
+            },
+            "reward": {
+              "target": "abilityPower",
+              "bp": {
+                "value": 500,
+                "label": "candidate"
+              }
+            }
+          }
+        ],
+        "emblem": {
+          "dropBp": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        }
+      }
+    ],
+    "regions": [
+      {
+        "id": "region.w1.slice",
+        "species": [
+          "enemy.w1.green_slime",
+          "enemy.w1.wolf",
+          "enemy.w1.goblin"
+        ],
+        "completion": {
+          "target": "attack",
+          "bp": {
+            "value": 200,
+            "label": "candidate"
+          }
+        },
+        "mastery": {
+          "target": "attack",
+          "bp": {
+            "value": 500,
+            "label": "candidate"
+          },
+          "requiredRank": "gold"
+        }
+      }
+    ]
+  },
+  "feats": [
+    {
+      "id": "feat.combat.kills",
+      "counter": "accountKills",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 100,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 50,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 500,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 2000,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 5000,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 150,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.combat.gold",
+      "counter": "goldEarned",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 1000,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 50,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 10000,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.roster.levels",
+      "counter": "rosterLevelsHigh",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 25,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 60,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 120,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 150,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.prof.levels",
+      "counter": "professionLevelsHigh",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "gatherEfficiency",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 40,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "smithEfficiency",
+            "bp": {
+              "value": 300,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.gather.units",
+      "counter": "gatheredUnits",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 200,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "gatherEfficiency",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 2000,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "gatherEfficiency",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.prod.units",
+      "counter": "unitsCompleted",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "smithEfficiency",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 100,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "smithEfficiency",
+            "bp": {
+              "value": 300,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.craft.items",
+      "counter": "itemsCrafted",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 1,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 50,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 10,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 30,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.equip.enhance",
+      "counter": "enhancements",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 1,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "critChance",
+            "bp": {
+              "value": 50,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 10,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.explore.zones",
+      "counter": "zonesVisited",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 2,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 3,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.conquest.gates",
+      "counter": "gatesCompleted",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 1,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 50,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 2,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 150,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "feat.conquest.boss",
+      "counter": "bossCleared",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 1,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "classRecords": [
+    {
+      "cls": "warrior",
+      "milestones": [
+        {
+          "record": {
+            "value": 5,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 300,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 10,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 500,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cls": "archer",
+      "milestones": [
+        {
+          "record": {
+            "value": 5,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "critChance",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 10,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "critChance",
+            "bp": {
+              "value": 150,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 300,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cls": "mage",
+      "milestones": [
+        {
+          "record": {
+            "value": 5,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "abilityPower",
+            "bp": {
+              "value": 500,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 10,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "gatherEfficiency",
+            "bp": {
+              "value": 300,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "record": {
+            "value": 20,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "smithEfficiency",
+            "bp": {
+              "value": 500,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "roster": [
+    {
+      "id": "roster.recruits",
+      "counter": "recruitsAcquired",
+      "tiers": [
+        {
+          "threshold": {
+            "value": 2,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "attack",
+            "bp": {
+              "value": 100,
+              "label": "candidate"
+            }
+          }
+        },
+        {
+          "threshold": {
+            "value": 3,
+            "label": "candidate"
+          },
+          "reward": {
+            "target": "maxHp",
+            "bp": {
+              "value": 200,
+              "label": "candidate"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "starterWeapon": {
+    "id": "item.starter.training_blade",
+    "name": "Training Blade",
+    "tier": "tier.starter",
+    "attackMilli": {
+      "value": 1000,
+      "label": "candidate"
+    },
+    "note": "Candidate variant only (owner S3.1 acceptance section 4B); applied by the s4.starterWeapon variant, never by the control."
+  },
+  "extensionPoints": {
+    "monument.eternity": "S5: offline efficiency; no content or mechanics in S4"
+  }
+}

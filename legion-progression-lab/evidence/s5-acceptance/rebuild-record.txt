@@ -1,0 +1,29 @@
+How the S5 checkpoint tree was assembled (2026-11-16)
+
+Why: S6 work in progress (not reviewed, not part of this checkpoint) was started in the canonical working tree at
+14:35Z, after corrections A-D (13:57Z-14:31Z) and before the checkpoint reruns. The checkpoint must hold S5 and the
+corrections only, so the S5 tree was rebuilt in a separate git worktree at l2-checkpoint, checked there, and committed
+from there. The canonical working tree (with the S6 work in progress) was not modified.
+
+Method:
+1. Copy the canonical working tree into the worktree (all files except .git and node_modules).
+2. Remove the 13 S6 new paths: content/s6/, planning/S6_SPECIFICATION.md, src/cli/s6-{content,run,worker}.ts,
+   src/engine/w1.ts, src/policy/w1Policies.ts, src/s6/, test/s6.w1.test.ts.
+3. The nine tracked files S6 changed and the corrections did not (src/engine/{commands,legionCommands,
+   legionObservation,simulation}.ts, src/experiments/legionMetrics.ts, src/model/{content,legionContent,legionTypes,
+   types}.ts): taken from the reviewed S5 package (legion-S5-review-2026-11-15.zip, SHA-256 45bdac40...0d16).
+4. The two files both changed (src/engine/legion.ts, src/l2/simState.ts): the reviewed S5 version with the exact
+   correction patch (C and D) replayed on it.
+
+Cross-checks (all OK):
+- the replayed correction patch reproduces the working tree's src/l2/simCheckpoint.ts byte-for-byte (the replay is
+  exact);
+- the rebuilt src/engine/legion.ts equals the backup taken immediately before the first S6 engine patch;
+- the reviewed src/model/content.ts equals the backup taken immediately before the first S6 patch;
+- the reviewed src/s5/settlement.ts equals the backup taken immediately before corrections A/B.
+
+Against the reviewed S5 package, the rebuilt tree differs in exactly the correction files and nothing else:
+- changed: repro/s5/mutation_check.py, src/engine/legion.ts, src/l2/simCheckpoint.ts, src/l2/simState.ts,
+  src/s5/settlement.ts;
+- new: evidence/s5-acceptance/ and test/s5.acceptance.test.ts.
+Its git status against l2-checkpoint is the canonical working tree's minus exactly the S6 paths (150 vs 173 entries).

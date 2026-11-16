@@ -1,0 +1,829 @@
+{
+  "hours": 14,
+  "seeds": 2,
+  "configs": [
+    "s2-squad",
+    "s2-workers",
+    "s3-bal",
+    "s3-equip",
+    "s4-bal2",
+    "s4-mon2",
+    "s4-best"
+  ],
+  "mismatches": 0,
+  "wallMs": 148788,
+  "rows": [
+    {
+      "config": "s2-squad",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1182385,
+          "l2Bytes": 61336,
+          "l1Committed": 4563,
+          "l2Settled": 4563
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2420605,
+          "l2Bytes": 61623,
+          "l1Committed": 9363,
+          "l2Settled": 9363
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3045302,
+          "l2Bytes": 59399,
+          "l1Committed": 11763,
+          "l2Settled": 11763
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3045304,
+          "l2Bytes": 59401,
+          "l1Committed": 11763,
+          "l2Settled": 11763
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4314292,
+          "l2Bytes": 61529,
+          "l1Committed": 16558,
+          "l2Settled": 16558
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5580411,
+          "l2Bytes": 61741,
+          "l1Committed": 21358,
+          "l2Settled": 21358
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6847001,
+          "l2Bytes": 61537,
+          "l1Committed": 26158,
+          "l2Settled": 26158
+        }
+      ]
+    },
+    {
+      "config": "s2-squad",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1180464,
+          "l2Bytes": 60639,
+          "l1Committed": 4566,
+          "l2Settled": 4566
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2416530,
+          "l2Bytes": 61400,
+          "l1Committed": 9366,
+          "l2Settled": 9366
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3044315,
+          "l2Bytes": 59676,
+          "l1Committed": 11766,
+          "l2Settled": 11766
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3044317,
+          "l2Bytes": 59678,
+          "l1Committed": 11766,
+          "l2Settled": 11766
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4310531,
+          "l2Bytes": 62491,
+          "l1Committed": 16561,
+          "l2Settled": 16561
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5576499,
+          "l2Bytes": 61049,
+          "l1Committed": 21361,
+          "l2Settled": 21361
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6844069,
+          "l2Bytes": 61474,
+          "l1Committed": 26161,
+          "l2Settled": 26161
+        }
+      ]
+    },
+    {
+      "config": "s2-workers",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1181123,
+          "l2Bytes": 61831,
+          "l1Committed": 4567,
+          "l2Settled": 4567
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2419357,
+          "l2Bytes": 61918,
+          "l1Committed": 9367,
+          "l2Settled": 9367
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3043354,
+          "l2Bytes": 59268,
+          "l1Committed": 11767,
+          "l2Settled": 11767
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3043356,
+          "l2Bytes": 59270,
+          "l1Committed": 11767,
+          "l2Settled": 11767
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4310306,
+          "l2Bytes": 61805,
+          "l1Committed": 16562,
+          "l2Settled": 16562
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5576597,
+          "l2Bytes": 61060,
+          "l1Committed": 21362,
+          "l2Settled": 21362
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6843419,
+          "l2Bytes": 60851,
+          "l1Committed": 26162,
+          "l2Settled": 26162
+        }
+      ]
+    },
+    {
+      "config": "s2-workers",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1179808,
+          "l2Bytes": 60362,
+          "l1Committed": 4566,
+          "l2Settled": 4566
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2416977,
+          "l2Bytes": 60582,
+          "l1Committed": 9366,
+          "l2Settled": 9366
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3043690,
+          "l2Bytes": 58924,
+          "l1Committed": 11766,
+          "l2Settled": 11766
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3043692,
+          "l2Bytes": 58926,
+          "l1Committed": 11766,
+          "l2Settled": 11766
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4309293,
+          "l2Bytes": 61397,
+          "l1Committed": 16561,
+          "l2Settled": 16561
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5574436,
+          "l2Bytes": 60223,
+          "l1Committed": 21361,
+          "l2Settled": 21361
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6840174,
+          "l2Bytes": 60373,
+          "l1Committed": 26161,
+          "l2Settled": 26161
+        }
+      ]
+    },
+    {
+      "config": "s3-bal",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1249218,
+          "l2Bytes": 61385,
+          "l1Committed": 3543,
+          "l2Settled": 3543
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2838394,
+          "l2Bytes": 61652,
+          "l1Committed": 8343,
+          "l2Settled": 8343
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3633578,
+          "l2Bytes": 59906,
+          "l1Committed": 10743,
+          "l2Settled": 10743
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3633580,
+          "l2Bytes": 59908,
+          "l1Committed": 10743,
+          "l2Settled": 10743
+        },
+        {
+          "h": 10,
+          "l1Bytes": 5252184,
+          "l2Bytes": 60697,
+          "l1Committed": 15538,
+          "l2Settled": 15538
+        },
+        {
+          "h": 12,
+          "l1Bytes": 6870425,
+          "l2Bytes": 61198,
+          "l1Committed": 20338,
+          "l2Settled": 20338
+        },
+        {
+          "h": 14,
+          "l1Bytes": 8489851,
+          "l2Bytes": 60858,
+          "l1Committed": 25138,
+          "l2Settled": 25138
+        }
+      ]
+    },
+    {
+      "config": "s3-bal",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1247621,
+          "l2Bytes": 60888,
+          "l1Committed": 3537,
+          "l2Settled": 3537
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2836056,
+          "l2Bytes": 61357,
+          "l1Committed": 8337,
+          "l2Settled": 8337
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3632184,
+          "l2Bytes": 59894,
+          "l1Committed": 10737,
+          "l2Settled": 10737
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3632186,
+          "l2Bytes": 59896,
+          "l1Committed": 10737,
+          "l2Settled": 10737
+        },
+        {
+          "h": 10,
+          "l1Bytes": 5250157,
+          "l2Bytes": 60680,
+          "l1Committed": 15532,
+          "l2Settled": 15532
+        },
+        {
+          "h": 12,
+          "l1Bytes": 6870029,
+          "l2Bytes": 61177,
+          "l1Committed": 20332,
+          "l2Settled": 20332
+        },
+        {
+          "h": 14,
+          "l1Bytes": 8488987,
+          "l2Bytes": 60562,
+          "l1Committed": 25132,
+          "l2Settled": 25132
+        }
+      ]
+    },
+    {
+      "config": "s3-equip",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1169032,
+          "l2Bytes": 62101,
+          "l1Committed": 3131,
+          "l2Settled": 3131
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2758092,
+          "l2Bytes": 62297,
+          "l1Committed": 7931,
+          "l2Settled": 7931
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3552524,
+          "l2Bytes": 60165,
+          "l1Committed": 10331,
+          "l2Settled": 10331
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3552526,
+          "l2Bytes": 60167,
+          "l1Committed": 10331,
+          "l2Settled": 10331
+        },
+        {
+          "h": 10,
+          "l1Bytes": 5168695,
+          "l2Bytes": 62931,
+          "l1Committed": 15126,
+          "l2Settled": 15126
+        },
+        {
+          "h": 12,
+          "l1Bytes": 6785885,
+          "l2Bytes": 62199,
+          "l1Committed": 19926,
+          "l2Settled": 19926
+        },
+        {
+          "h": 14,
+          "l1Bytes": 8404142,
+          "l2Bytes": 61585,
+          "l1Committed": 24726,
+          "l2Settled": 24726
+        }
+      ]
+    },
+    {
+      "config": "s3-equip",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1166856,
+          "l2Bytes": 62081,
+          "l1Committed": 3129,
+          "l2Settled": 3129
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2755130,
+          "l2Bytes": 61850,
+          "l1Committed": 7929,
+          "l2Settled": 7929
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3548930,
+          "l2Bytes": 60238,
+          "l1Committed": 10329,
+          "l2Settled": 10329
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3548932,
+          "l2Bytes": 60240,
+          "l1Committed": 10329,
+          "l2Settled": 10329
+        },
+        {
+          "h": 10,
+          "l1Bytes": 5166808,
+          "l2Bytes": 62513,
+          "l1Committed": 15124,
+          "l2Settled": 15124
+        },
+        {
+          "h": 12,
+          "l1Bytes": 6784313,
+          "l2Bytes": 62399,
+          "l1Committed": 19924,
+          "l2Settled": 19924
+        },
+        {
+          "h": 14,
+          "l1Bytes": 8402223,
+          "l2Bytes": 61716,
+          "l1Committed": 24724,
+          "l2Settled": 24724
+        }
+      ]
+    },
+    {
+      "config": "s4-bal2",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1238410,
+          "l2Bytes": 69500,
+          "l1Committed": 4403,
+          "l2Settled": 4403
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2475955,
+          "l2Bytes": 68436,
+          "l1Committed": 9203,
+          "l2Settled": 9203
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3103292,
+          "l2Bytes": 67845,
+          "l1Committed": 11603,
+          "l2Settled": 11603
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3103294,
+          "l2Bytes": 67847,
+          "l1Committed": 11603,
+          "l2Settled": 11603
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4370637,
+          "l2Bytes": 70174,
+          "l1Committed": 16398,
+          "l2Settled": 16398
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5636805,
+          "l2Bytes": 70115,
+          "l1Committed": 21198,
+          "l2Settled": 21198
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6900048,
+          "l2Bytes": 68742,
+          "l1Committed": 25998,
+          "l2Settled": 25998
+        }
+      ]
+    },
+    {
+      "config": "s4-bal2",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1244197,
+          "l2Bytes": 69262,
+          "l1Committed": 4426,
+          "l2Settled": 4426
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2485055,
+          "l2Bytes": 70339,
+          "l1Committed": 9226,
+          "l2Settled": 9226
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3111483,
+          "l2Bytes": 69007,
+          "l1Committed": 11626,
+          "l2Settled": 11626
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3111485,
+          "l2Bytes": 69009,
+          "l1Committed": 11626,
+          "l2Settled": 11626
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4378952,
+          "l2Bytes": 70445,
+          "l1Committed": 16421,
+          "l2Settled": 16421
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5645779,
+          "l2Bytes": 70181,
+          "l1Committed": 21221,
+          "l2Settled": 21221
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6910821,
+          "l2Bytes": 69159,
+          "l1Committed": 26021,
+          "l2Settled": 26021
+        }
+      ]
+    },
+    {
+      "config": "s4-mon2",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1193451,
+          "l2Bytes": 63467,
+          "l1Committed": 4591,
+          "l2Settled": 4591
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2428731,
+          "l2Bytes": 62128,
+          "l1Committed": 9391,
+          "l2Settled": 9391
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3055615,
+          "l2Bytes": 61680,
+          "l1Committed": 11791,
+          "l2Settled": 11791
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3055617,
+          "l2Bytes": 61682,
+          "l1Committed": 11791,
+          "l2Settled": 11791
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4323318,
+          "l2Bytes": 63320,
+          "l1Committed": 16586,
+          "l2Settled": 16586
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5590310,
+          "l2Bytes": 63199,
+          "l1Committed": 21386,
+          "l2Settled": 21386
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6857290,
+          "l2Bytes": 62993,
+          "l1Committed": 26186,
+          "l2Settled": 26186
+        }
+      ]
+    },
+    {
+      "config": "s4-mon2",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1197366,
+          "l2Bytes": 64116,
+          "l1Committed": 4598,
+          "l2Settled": 4598
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2431763,
+          "l2Bytes": 63820,
+          "l1Committed": 9398,
+          "l2Settled": 9398
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3059109,
+          "l2Bytes": 62232,
+          "l1Committed": 11798,
+          "l2Settled": 11798
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3059111,
+          "l2Bytes": 62234,
+          "l1Committed": 11798,
+          "l2Settled": 11798
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4324943,
+          "l2Bytes": 63393,
+          "l1Committed": 16593,
+          "l2Settled": 16593
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5592086,
+          "l2Bytes": 63196,
+          "l1Committed": 21393,
+          "l2Settled": 21393
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6858448,
+          "l2Bytes": 63268,
+          "l1Committed": 26193,
+          "l2Settled": 26193
+        }
+      ]
+    },
+    {
+      "config": "s4-best",
+      "seed": "identity-0",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1220800,
+          "l2Bytes": 63197,
+          "l1Committed": 4719,
+          "l2Settled": 4719
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2457966,
+          "l2Bytes": 62970,
+          "l1Committed": 9519,
+          "l2Settled": 9519
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3081984,
+          "l2Bytes": 61283,
+          "l1Committed": 11919,
+          "l2Settled": 11919
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3081986,
+          "l2Bytes": 61285,
+          "l1Committed": 11919,
+          "l2Settled": 11919
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4349365,
+          "l2Bytes": 64091,
+          "l1Committed": 16714,
+          "l2Settled": 16714
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5615623,
+          "l2Bytes": 64108,
+          "l1Committed": 21514,
+          "l2Settled": 21514
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6880344,
+          "l2Bytes": 62868,
+          "l1Committed": 26314,
+          "l2Settled": 26314
+        }
+      ]
+    },
+    {
+      "config": "s4-best",
+      "seed": "identity-1",
+      "gameplayIdentical": true,
+      "logDigestIdentical": true,
+      "restoreCycles": 7,
+      "sizes": [
+        {
+          "h": 2,
+          "l1Bytes": 1221276,
+          "l2Bytes": 63414,
+          "l1Committed": 4718,
+          "l2Settled": 4718
+        },
+        {
+          "h": 4,
+          "l1Bytes": 2457970,
+          "l2Bytes": 62834,
+          "l1Committed": 9518,
+          "l2Settled": 9518
+        },
+        {
+          "h": 6,
+          "l1Bytes": 3083506,
+          "l2Bytes": 62352,
+          "l1Committed": 11918,
+          "l2Settled": 11918
+        },
+        {
+          "h": 8,
+          "l1Bytes": 3083508,
+          "l2Bytes": 62354,
+          "l1Committed": 11918,
+          "l2Settled": 11918
+        },
+        {
+          "h": 10,
+          "l1Bytes": 4350218,
+          "l2Bytes": 63158,
+          "l1Committed": 16713,
+          "l2Settled": 16713
+        },
+        {
+          "h": 12,
+          "l1Bytes": 5615685,
+          "l2Bytes": 63723,
+          "l1Committed": 21513,
+          "l2Settled": 21513
+        },
+        {
+          "h": 14,
+          "l1Bytes": 6879309,
+          "l2Bytes": 63520,
+          "l1Committed": 26313,
+          "l2Settled": 26313
+        }
+      ]
+    }
+  ]
+}

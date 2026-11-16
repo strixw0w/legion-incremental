@@ -1,0 +1,2882 @@
+{
+ "example": "absence-30h-pol5",
+ "firstSessionMs": 7200000,
+ "awayMs": 108000000,
+ "keyEvents": [
+  {
+   "gameMs": 7200000,
+   "kind": "SessionEnded",
+   "detail": {
+    "index": 0
+   }
+  },
+  {
+   "gameMs": 7200000,
+   "kind": "AbsenceStarted",
+   "detail": {
+    "absence": "absence:0",
+    "unlocked": true,
+    "wallMs": 7200000,
+    "normalBp": 6000,
+    "rateE8": 30000000,
+    "assignments": "hero=combat:3,rec:1=squad,rec:2=squad,rec:3=squad"
+   }
+  },
+  {
+   "gameMs": 7243100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 48
+   }
+  },
+  {
+   "gameMs": 7285100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 48
+   }
+  },
+  {
+   "gameMs": 7309100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 48
+   }
+  },
+  {
+   "gameMs": 7418600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 49
+   }
+  },
+  {
+   "gameMs": 7577600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 49
+   }
+  },
+  {
+   "gameMs": 7618100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 49
+   }
+  },
+  {
+   "gameMs": 7643600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 49
+   }
+  },
+  {
+   "gameMs": 7763600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 50
+   }
+  },
+  {
+   "gameMs": 7922600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 50
+   }
+  },
+  {
+   "gameMs": 7963100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 50
+   }
+  },
+  {
+   "gameMs": 7988600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 50
+   }
+  },
+  {
+   "gameMs": 8120600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 51
+   }
+  },
+  {
+   "gameMs": 8279600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 51
+   }
+  },
+  {
+   "gameMs": 8320100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 51
+   }
+  },
+  {
+   "gameMs": 8338100,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2250,
+    "monumentAttackBp": 800,
+    "hpBp": 1800,
+    "monumentHpBp": 1200,
+    "critBp": 400,
+    "abilityBp": 1000,
+    "gatherBp": 1800,
+    "smithBp": 2200
+   }
+  },
+  {
+   "gameMs": 8344100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 51
+   }
+  },
+  {
+   "gameMs": 8488100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 52
+   }
+  },
+  {
+   "gameMs": 8647100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 52
+   }
+  },
+  {
+   "gameMs": 8680100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 10
+   }
+  },
+  {
+   "gameMs": 8687600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 52
+   }
+  },
+  {
+   "gameMs": 8713100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 52
+   }
+  },
+  {
+   "gameMs": 8867600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 53
+   }
+  },
+  {
+   "gameMs": 9026600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 53
+   }
+  },
+  {
+   "gameMs": 9067100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 53
+   }
+  },
+  {
+   "gameMs": 9092600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 53
+   }
+  },
+  {
+   "gameMs": 9259100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 54
+   }
+  },
+  {
+   "gameMs": 9418100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 54
+   }
+  },
+  {
+   "gameMs": 9458600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 54
+   }
+  },
+  {
+   "gameMs": 9484100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 54
+   }
+  },
+  {
+   "gameMs": 9662600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 55
+   }
+  },
+  {
+   "gameMs": 9821600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 55
+   }
+  },
+  {
+   "gameMs": 9862100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 55
+   }
+  },
+  {
+   "gameMs": 9886100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 55
+   }
+  },
+  {
+   "gameMs": 10078100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 56
+   }
+  },
+  {
+   "gameMs": 10235600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 56
+   }
+  },
+  {
+   "gameMs": 10277600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 56
+   }
+  },
+  {
+   "gameMs": 10301600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 56
+   }
+  },
+  {
+   "gameMs": 10504100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 57
+   }
+  },
+  {
+   "gameMs": 10663100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 57
+   }
+  },
+  {
+   "gameMs": 10705100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 57
+   }
+  },
+  {
+   "gameMs": 10729100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 57
+   }
+  },
+  {
+   "gameMs": 10945100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 58
+   }
+  },
+  {
+   "gameMs": 11102600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 58
+   }
+  },
+  {
+   "gameMs": 11144600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 58
+   }
+  },
+  {
+   "gameMs": 11168600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 58
+   }
+  },
+  {
+   "gameMs": 11366600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 11
+   }
+  },
+  {
+   "gameMs": 11396600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 59
+   }
+  },
+  {
+   "gameMs": 11555600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 59
+   }
+  },
+  {
+   "gameMs": 11596100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 59
+   }
+  },
+  {
+   "gameMs": 11620100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 59
+   }
+  },
+  {
+   "gameMs": 11702600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 12
+   }
+  },
+  {
+   "gameMs": 11791100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 13
+   }
+  },
+  {
+   "gameMs": 11861600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 60
+   }
+  },
+  {
+   "gameMs": 12019100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 60
+   }
+  },
+  {
+   "gameMs": 12061100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 60
+   }
+  },
+  {
+   "gameMs": 12085100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 60
+   }
+  },
+  {
+   "gameMs": 12128600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 14
+   }
+  },
+  {
+   "gameMs": 12338600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 61
+   }
+  },
+  {
+   "gameMs": 12496100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 61
+   }
+  },
+  {
+   "gameMs": 12538100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 61
+   }
+  },
+  {
+   "gameMs": 12562100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 61
+   }
+  },
+  {
+   "gameMs": 12758600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 15
+   }
+  },
+  {
+   "gameMs": 12827600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 62
+   }
+  },
+  {
+   "gameMs": 12968600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 16
+   }
+  },
+  {
+   "gameMs": 12986600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 62
+   }
+  },
+  {
+   "gameMs": 13028600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 62
+   }
+  },
+  {
+   "gameMs": 13052600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 62
+   }
+  },
+  {
+   "gameMs": 13097600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 17
+   }
+  },
+  {
+   "gameMs": 13274600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 18
+   }
+  },
+  {
+   "gameMs": 13331600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 63
+   }
+  },
+  {
+   "gameMs": 13489100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 63
+   }
+  },
+  {
+   "gameMs": 13531100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 63
+   }
+  },
+  {
+   "gameMs": 13555100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 63
+   }
+  },
+  {
+   "gameMs": 13847600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 64
+   }
+  },
+  {
+   "gameMs": 14005100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 64
+   }
+  },
+  {
+   "gameMs": 14047100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 64
+   }
+  },
+  {
+   "gameMs": 14071100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 64
+   }
+  },
+  {
+   "gameMs": 14149100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 19
+   }
+  },
+  {
+   "gameMs": 14375600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 65
+   }
+  },
+  {
+   "gameMs": 14534600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 65
+   }
+  },
+  {
+   "gameMs": 14576600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 65
+   }
+  },
+  {
+   "gameMs": 14600600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 65
+   }
+  },
+  {
+   "gameMs": 14630600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 20
+   }
+  },
+  {
+   "gameMs": 14729600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 21
+   }
+  },
+  {
+   "gameMs": 14800100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 22
+   }
+  },
+  {
+   "gameMs": 14918600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 66
+   }
+  },
+  {
+   "gameMs": 15077600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 66
+   }
+  },
+  {
+   "gameMs": 15118100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 66
+   }
+  },
+  {
+   "gameMs": 15143600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 66
+   }
+  },
+  {
+   "gameMs": 15475100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 67
+   }
+  },
+  {
+   "gameMs": 15632600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 67
+   }
+  },
+  {
+   "gameMs": 15674600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 67
+   }
+  },
+  {
+   "gameMs": 15698600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 67
+   }
+  },
+  {
+   "gameMs": 15913100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 23
+   }
+  },
+  {
+   "gameMs": 16043600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 68
+   }
+  },
+  {
+   "gameMs": 16202600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 68
+   }
+  },
+  {
+   "gameMs": 16243100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 68
+   }
+  },
+  {
+   "gameMs": 16268600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 68
+   }
+  },
+  {
+   "gameMs": 16627100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 69
+   }
+  },
+  {
+   "gameMs": 16786100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 69
+   }
+  },
+  {
+   "gameMs": 16826600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 69
+   }
+  },
+  {
+   "gameMs": 16850600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 69
+   }
+  },
+  {
+   "gameMs": 17035100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 24
+   }
+  },
+  {
+   "gameMs": 17224100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 70
+   }
+  },
+  {
+   "gameMs": 17297600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 25
+   }
+  },
+  {
+   "gameMs": 17381600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 70
+   }
+  },
+  {
+   "gameMs": 17423600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 70
+   }
+  },
+  {
+   "gameMs": 17447600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 70
+   }
+  },
+  {
+   "gameMs": 17662100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 26
+   }
+  },
+  {
+   "gameMs": 17834600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 71
+   }
+  },
+  {
+   "gameMs": 17993600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 71
+   }
+  },
+  {
+   "gameMs": 18034100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 71
+   }
+  },
+  {
+   "gameMs": 18058100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 71
+   }
+  },
+  {
+   "gameMs": 18458600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 72
+   }
+  },
+  {
+   "gameMs": 18475100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 27
+   }
+  },
+  {
+   "gameMs": 18617600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 72
+   }
+  },
+  {
+   "gameMs": 18658100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 72
+   }
+  },
+  {
+   "gameMs": 18683600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 72
+   }
+  },
+  {
+   "gameMs": 19097600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 73
+   }
+  },
+  {
+   "gameMs": 19256600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 73
+   }
+  },
+  {
+   "gameMs": 19297100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 73
+   }
+  },
+  {
+   "gameMs": 19322600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 73
+   }
+  },
+  {
+   "gameMs": 19414100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 28
+   }
+  },
+  {
+   "gameMs": 19751600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 74
+   }
+  },
+  {
+   "gameMs": 19909100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 74
+   }
+  },
+  {
+   "gameMs": 19951100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 74
+   }
+  },
+  {
+   "gameMs": 19967600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 29
+   }
+  },
+  {
+   "gameMs": 19975100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 74
+   }
+  },
+  {
+   "gameMs": 20179100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 30
+   }
+  },
+  {
+   "gameMs": 20419100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 75
+   }
+  },
+  {
+   "gameMs": 20576600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 75
+   }
+  },
+  {
+   "gameMs": 20618600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 75
+   }
+  },
+  {
+   "gameMs": 20642600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 75
+   }
+  },
+  {
+   "gameMs": 20999600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 31
+   }
+  },
+  {
+   "gameMs": 21100100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 76
+   }
+  },
+  {
+   "gameMs": 21239600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 32
+   }
+  },
+  {
+   "gameMs": 21259100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 76
+   }
+  },
+  {
+   "gameMs": 21299600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 76
+   }
+  },
+  {
+   "gameMs": 21325100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 76
+   }
+  },
+  {
+   "gameMs": 21797600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 77
+   }
+  },
+  {
+   "gameMs": 21850100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 33
+   }
+  },
+  {
+   "gameMs": 21955100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 77
+   }
+  },
+  {
+   "gameMs": 21997100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 77
+   }
+  },
+  {
+   "gameMs": 22021100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 77
+   }
+  },
+  {
+   "gameMs": 22409600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 34
+   }
+  },
+  {
+   "gameMs": 22508600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 78
+   }
+  },
+  {
+   "gameMs": 22666100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 78
+   }
+  },
+  {
+   "gameMs": 22708100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 78
+   }
+  },
+  {
+   "gameMs": 22732100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 78
+   }
+  },
+  {
+   "gameMs": 23233100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 35
+   }
+  },
+  {
+   "gameMs": 23234600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 79
+   }
+  },
+  {
+   "gameMs": 23393600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 79
+   }
+  },
+  {
+   "gameMs": 23422100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 36
+   }
+  },
+  {
+   "gameMs": 23434100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 79
+   }
+  },
+  {
+   "gameMs": 23458100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 79
+   }
+  },
+  {
+   "gameMs": 23975600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 80
+   }
+  },
+  {
+   "gameMs": 24134600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 80
+   }
+  },
+  {
+   "gameMs": 24175100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 80
+   }
+  },
+  {
+   "gameMs": 24199100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 80
+   }
+  },
+  {
+   "gameMs": 24731600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 81
+   }
+  },
+  {
+   "gameMs": 24890600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 81
+   }
+  },
+  {
+   "gameMs": 24931100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 81
+   }
+  },
+  {
+   "gameMs": 24956600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 81
+   }
+  },
+  {
+   "gameMs": 25502600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 82
+   }
+  },
+  {
+   "gameMs": 25661600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 82
+   }
+  },
+  {
+   "gameMs": 25702100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 82
+   }
+  },
+  {
+   "gameMs": 25727600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 82
+   }
+  },
+  {
+   "gameMs": 25769600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 37
+   }
+  },
+  {
+   "gameMs": 26290100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 83
+   }
+  },
+  {
+   "gameMs": 26447600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 83
+   }
+  },
+  {
+   "gameMs": 26489600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 83
+   }
+  },
+  {
+   "gameMs": 26513600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 83
+   }
+  },
+  {
+   "gameMs": 26707100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 38
+   }
+  },
+  {
+   "gameMs": 27091100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 84
+   }
+  },
+  {
+   "gameMs": 27098600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 39
+   }
+  },
+  {
+   "gameMs": 27101600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 40
+   }
+  },
+  {
+   "gameMs": 27250100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 84
+   }
+  },
+  {
+   "gameMs": 27290600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 84
+   }
+  },
+  {
+   "gameMs": 27316100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 84
+   }
+  },
+  {
+   "gameMs": 27526100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 41
+   }
+  },
+  {
+   "gameMs": 27908600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 85
+   }
+  },
+  {
+   "gameMs": 28051100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 42
+   }
+  },
+  {
+   "gameMs": 28067600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 85
+   }
+  },
+  {
+   "gameMs": 28109600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 85
+   }
+  },
+  {
+   "gameMs": 28133600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 85
+   }
+  },
+  {
+   "gameMs": 28742600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 86
+   }
+  },
+  {
+   "gameMs": 28901600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 86
+   }
+  },
+  {
+   "gameMs": 28942100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 86
+   }
+  },
+  {
+   "gameMs": 28966100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 86
+   }
+  },
+  {
+   "gameMs": 29591600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 87
+   }
+  },
+  {
+   "gameMs": 29749100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 87
+   }
+  },
+  {
+   "gameMs": 29791100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 87
+   }
+  },
+  {
+   "gameMs": 29792600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 43
+   }
+  },
+  {
+   "gameMs": 29815100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 87
+   }
+  },
+  {
+   "gameMs": 30455600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 88
+   }
+  },
+  {
+   "gameMs": 30614600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 88
+   }
+  },
+  {
+   "gameMs": 30655100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 88
+   }
+  },
+  {
+   "gameMs": 30680600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 88
+   }
+  },
+  {
+   "gameMs": 31316600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 44
+   }
+  },
+  {
+   "gameMs": 31336100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 89
+   }
+  },
+  {
+   "gameMs": 31495100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 89
+   }
+  },
+  {
+   "gameMs": 31537100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 89
+   }
+  },
+  {
+   "gameMs": 31561100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 89
+   }
+  },
+  {
+   "gameMs": 31958600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 45
+   }
+  },
+  {
+   "gameMs": 32233100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 46
+   }
+  },
+  {
+   "gameMs": 32233100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 90
+   }
+  },
+  {
+   "gameMs": 32392100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 90
+   }
+  },
+  {
+   "gameMs": 32432600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 90
+   }
+  },
+  {
+   "gameMs": 32458100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 90
+   }
+  },
+  {
+   "gameMs": 33146600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 91
+   }
+  },
+  {
+   "gameMs": 33305600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 91
+   }
+  },
+  {
+   "gameMs": 33346100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 91
+   }
+  },
+  {
+   "gameMs": 33370100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 91
+   }
+  },
+  {
+   "gameMs": 33389600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 47
+   }
+  },
+  {
+   "gameMs": 33553100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 48
+   }
+  },
+  {
+   "gameMs": 34075100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 92
+   }
+  },
+  {
+   "gameMs": 34234100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 92
+   }
+  },
+  {
+   "gameMs": 34276100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 92
+   }
+  },
+  {
+   "gameMs": 34300100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 92
+   }
+  },
+  {
+   "gameMs": 35021600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 93
+   }
+  },
+  {
+   "gameMs": 35180600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 93
+   }
+  },
+  {
+   "gameMs": 35221100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 93
+   }
+  },
+  {
+   "gameMs": 35245100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 93
+   }
+  },
+  {
+   "gameMs": 35983100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 94
+   }
+  },
+  {
+   "gameMs": 36142100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 94
+   }
+  },
+  {
+   "gameMs": 36182600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 94
+   }
+  },
+  {
+   "gameMs": 36208100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 94
+   }
+  },
+  {
+   "gameMs": 36788600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 49
+   }
+  },
+  {
+   "gameMs": 36962600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 95
+   }
+  },
+  {
+   "gameMs": 37120100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 95
+   }
+  },
+  {
+   "gameMs": 37162100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 95
+   }
+  },
+  {
+   "gameMs": 37186100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 95
+   }
+  },
+  {
+   "gameMs": 37463600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 50
+   }
+  },
+  {
+   "gameMs": 37517600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 51
+   }
+  },
+  {
+   "gameMs": 37957100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 96
+   }
+  },
+  {
+   "gameMs": 38116100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 96
+   }
+  },
+  {
+   "gameMs": 38158100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 96
+   }
+  },
+  {
+   "gameMs": 38182100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 96
+   }
+  },
+  {
+   "gameMs": 38969600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 97
+   }
+  },
+  {
+   "gameMs": 39128600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 97
+   }
+  },
+  {
+   "gameMs": 39169100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 97
+   }
+  },
+  {
+   "gameMs": 39175100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 52
+   }
+  },
+  {
+   "gameMs": 39194600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 97
+   }
+  },
+  {
+   "gameMs": 39217100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 53
+   }
+  },
+  {
+   "gameMs": 39998600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 98
+   }
+  },
+  {
+   "gameMs": 40157600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 98
+   }
+  },
+  {
+   "gameMs": 40199600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 98
+   }
+  },
+  {
+   "gameMs": 40210100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 54
+   }
+  },
+  {
+   "gameMs": 40223600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 98
+   }
+  },
+  {
+   "gameMs": 40564100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 55
+   }
+  },
+  {
+   "gameMs": 40624100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 56
+   }
+  },
+  {
+   "gameMs": 41045600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 99
+   }
+  },
+  {
+   "gameMs": 41204600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 99
+   }
+  },
+  {
+   "gameMs": 41245100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 99
+   }
+  },
+  {
+   "gameMs": 41269100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 99
+   }
+  },
+  {
+   "gameMs": 41836100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 57
+   }
+  },
+  {
+   "gameMs": 42109100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 100
+   }
+  },
+  {
+   "gameMs": 42266600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 100
+   }
+  },
+  {
+   "gameMs": 42308600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 100
+   }
+  },
+  {
+   "gameMs": 42332600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 100
+   }
+  },
+  {
+   "gameMs": 43189100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 101
+   }
+  },
+  {
+   "gameMs": 43348100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 101
+   }
+  },
+  {
+   "gameMs": 43388600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 101
+   }
+  },
+  {
+   "gameMs": 43414100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 101
+   }
+  },
+  {
+   "gameMs": 43742600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 58
+   }
+  },
+  {
+   "gameMs": 44287100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 102
+   }
+  },
+  {
+   "gameMs": 44446100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 102
+   }
+  },
+  {
+   "gameMs": 44486600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 102
+   }
+  },
+  {
+   "gameMs": 44512100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 102
+   }
+  },
+  {
+   "gameMs": 45403100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 103
+   }
+  },
+  {
+   "gameMs": 45560600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 103
+   }
+  },
+  {
+   "gameMs": 45602600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 103
+   }
+  },
+  {
+   "gameMs": 45626600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 103
+   }
+  },
+  {
+   "gameMs": 46381100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 59
+   }
+  },
+  {
+   "gameMs": 46535600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 104
+   }
+  },
+  {
+   "gameMs": 46543100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 60
+   }
+  },
+  {
+   "gameMs": 46694600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 104
+   }
+  },
+  {
+   "gameMs": 46735100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 104
+   }
+  },
+  {
+   "gameMs": 46760600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 104
+   }
+  },
+  {
+   "gameMs": 47012600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 61
+   }
+  },
+  {
+   "gameMs": 47686100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 105
+   }
+  },
+  {
+   "gameMs": 47845100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 105
+   }
+  },
+  {
+   "gameMs": 47885600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 105
+   }
+  },
+  {
+   "gameMs": 47911100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 105
+   }
+  },
+  {
+   "gameMs": 48539600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 62
+   }
+  },
+  {
+   "gameMs": 48854600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 106
+   }
+  },
+  {
+   "gameMs": 49013600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 106
+   }
+  },
+  {
+   "gameMs": 49054100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 106
+   }
+  },
+  {
+   "gameMs": 49079600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 106
+   }
+  },
+  {
+   "gameMs": 49990100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 63
+   }
+  },
+  {
+   "gameMs": 50041100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 107
+   }
+  },
+  {
+   "gameMs": 50200100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 107
+   }
+  },
+  {
+   "gameMs": 50240600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 107
+   }
+  },
+  {
+   "gameMs": 50264600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 107
+   }
+  },
+  {
+   "gameMs": 51245600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 108
+   }
+  },
+  {
+   "gameMs": 51293600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 64
+   }
+  },
+  {
+   "gameMs": 51403100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 108
+   }
+  },
+  {
+   "gameMs": 51445100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 108
+   }
+  },
+  {
+   "gameMs": 51469100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 108
+   }
+  },
+  {
+   "gameMs": 51577100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 65
+   }
+  },
+  {
+   "gameMs": 51848600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 66
+   }
+  },
+  {
+   "gameMs": 52466600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 109
+   }
+  },
+  {
+   "gameMs": 52625600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 109
+   }
+  },
+  {
+   "gameMs": 52667600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 109
+   }
+  },
+  {
+   "gameMs": 52691600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 109
+   }
+  },
+  {
+   "gameMs": 53632100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 67
+   }
+  },
+  {
+   "gameMs": 53707100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 110
+   }
+  },
+  {
+   "gameMs": 53866100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 110
+   }
+  },
+  {
+   "gameMs": 53906600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 110
+   }
+  },
+  {
+   "gameMs": 53932100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 110
+   }
+  },
+  {
+   "gameMs": 54515600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 68
+   }
+  },
+  {
+   "gameMs": 54518600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 69
+   }
+  },
+  {
+   "gameMs": 54886100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 70
+   }
+  },
+  {
+   "gameMs": 54965600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 111
+   }
+  },
+  {
+   "gameMs": 55124600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 111
+   }
+  },
+  {
+   "gameMs": 55166600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 111
+   }
+  },
+  {
+   "gameMs": 55190600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 111
+   }
+  },
+  {
+   "gameMs": 56243600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 112
+   }
+  },
+  {
+   "gameMs": 56342600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 71
+   }
+  },
+  {
+   "gameMs": 56401100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 112
+   }
+  },
+  {
+   "gameMs": 56443100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 112
+   }
+  },
+  {
+   "gameMs": 56467100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 112
+   }
+  },
+  {
+   "gameMs": 57475100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 72
+   }
+  },
+  {
+   "gameMs": 57538100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 113
+   }
+  },
+  {
+   "gameMs": 57628100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 73
+   }
+  },
+  {
+   "gameMs": 57697100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 113
+   }
+  },
+  {
+   "gameMs": 57739100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 113
+   }
+  },
+  {
+   "gameMs": 57763100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 113
+   }
+  },
+  {
+   "gameMs": 58852100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 114
+   }
+  },
+  {
+   "gameMs": 59011100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 114
+   }
+  },
+  {
+   "gameMs": 59053100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 114
+   }
+  },
+  {
+   "gameMs": 59077100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 114
+   }
+  },
+  {
+   "gameMs": 60185600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 115
+   }
+  },
+  {
+   "gameMs": 60344600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 115
+   }
+  },
+  {
+   "gameMs": 60385100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 115
+   }
+  },
+  {
+   "gameMs": 60409100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 115
+   }
+  },
+  {
+   "gameMs": 60590600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 74
+   }
+  },
+  {
+   "gameMs": 60715100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 75
+   }
+  },
+  {
+   "gameMs": 61537100,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 116
+   }
+  },
+  {
+   "gameMs": 61694600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 116
+   }
+  },
+  {
+   "gameMs": 61736600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 116
+   }
+  },
+  {
+   "gameMs": 61760600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 116
+   }
+  },
+  {
+   "gameMs": 62906600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 117
+   }
+  },
+  {
+   "gameMs": 63044600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 76
+   }
+  },
+  {
+   "gameMs": 63065600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 117
+   }
+  },
+  {
+   "gameMs": 63106100,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 117
+   }
+  },
+  {
+   "gameMs": 63131600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 117
+   }
+  },
+  {
+   "gameMs": 63559100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 77
+   }
+  },
+  {
+   "gameMs": 63652100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 78
+   }
+  },
+  {
+   "gameMs": 63895100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 79
+   }
+  },
+  {
+   "gameMs": 64154600,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 80
+   }
+  },
+  {
+   "gameMs": 64295600,
+   "kind": "LevelUp",
+   "detail": {
+    "level": 118
+   }
+  },
+  {
+   "gameMs": 64454600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "level": 118
+   }
+  },
+  {
+   "gameMs": 64496600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 118
+   }
+  },
+  {
+   "gameMs": 64520600,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "level": 118
+   }
+  },
+  {
+   "gameMs": 65128100,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.goblin",
+    "copy": 81
+   }
+  },
+  {
+   "gameMs": 65520000,
+   "kind": "AbsenceEnded",
+   "detail": {
+    "absence": "absence:0",
+    "wallMs": 108000000,
+    "creditedMs": 58320000
+   }
+  },
+  {
+   "gameMs": 65520000,
+   "kind": "SessionStarted",
+   "detail": {
+    "index": 1,
+    "endMs": 65580000
+   }
+  }
+ ],
+ "eventCounts": {
+  "SessionStarted": 2,
+  "CommandAccepted": 461,
+  "JobEnqueued": 51,
+  "EngageStarted": 43133,
+  "EncounterStarted": 43122,
+  "Swing": 196211,
+  "EnemyHit": 127,
+  "EnemyKilled": 43121,
+  "KillCredited": 43121,
+  "BestiaryDiscovered": 3,
+  "StaleDiscarded": 147867,
+  "LevelUp": 117,
+  "StatsRecomputed": 117,
+  "MilestoneGranted": 39,
+  "PermanentBonusesApplied": 50,
+  "QuestCompleted": 1,
+  "RecruitAcquired": 3,
+  "RosterMilestone": 3,
+  "MonumentDiscovered": 4,
+  "Assigned": 161,
+  "ClassChanged": 4,
+  "JobPaused": 51,
+  "TalentAllocated": 80,
+  "GateCompleted": 2,
+  "ZoneAccessUnlocked": 2,
+  "Arrived": 14,
+  "ZoneVisited": 2,
+  "CheckpointDiscovered": 2,
+  "Regen": 32,
+  "LegionSpend": 2,
+  "LedgerTx": 466,
+  "Gathered": 159,
+  "JobResumed": 51,
+  "UnitStarted": 123,
+  "UnitCompleted": 123,
+  "ProfessionLevelUp": 21,
+  "Crafted": 49,
+  "Equipped": 49,
+  "JobCompleted": 51,
+  "GatherInterrupted": 62,
+  "RestComplete": 3,
+  "MemberLevelUp": 351,
+  "MemberStatsRecomputed": 351,
+  "MemberLeftSquad": 1,
+  "MonumentUpgraded": 12,
+  "Unequipped": 24,
+  "EncounterClosed": 1,
+  "EmblemFound": 82,
+  "BossGateOpened": 1,
+  "SessionEnded": 1,
+  "AbsenceStarted": 1,
+  "AbsenceEnded": 1
+ }
+}

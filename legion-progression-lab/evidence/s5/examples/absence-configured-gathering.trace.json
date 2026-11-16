@@ -1,0 +1,1498 @@
+{
+ "example": "absence-configured-gathering",
+ "firstSessionMs": 5400000,
+ "awayMs": 72000000,
+ "keyEvents": [
+  {
+   "gameMs": 5400000,
+   "kind": "SessionEnded",
+   "detail": {
+    "index": 0
+   }
+  },
+  {
+   "gameMs": 5400000,
+   "kind": "AbsenceStarted",
+   "detail": {
+    "absence": "absence:0",
+    "unlocked": true,
+    "wallMs": 5400000,
+    "normalBp": 6000,
+    "rateE8": 30000000,
+    "assignments": "hero=gathering:node.w1.01.oak,rec:1=worker:1,rec:2=smithing,rec:3=gathering:node.w1.01.oak"
+   }
+  },
+  {
+   "gameMs": 5400000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:1",
+    "from": "squad",
+    "to": "worker:1",
+    "reason": "OFFLINE"
+   }
+  },
+  {
+   "gameMs": 5400000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:2",
+    "from": "squad",
+    "to": "smithing",
+    "reason": "OFFLINE"
+   }
+  },
+  {
+   "gameMs": 5400000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:3",
+    "from": "squad",
+    "to": "gathering:node.w1.01.oak",
+    "reason": "OFFLINE"
+   }
+  },
+  {
+   "gameMs": 5400000,
+   "kind": "OfflineRelocation",
+   "detail": {
+    "from": 3,
+    "to": 1
+   }
+  },
+  {
+   "gameMs": 5403000,
+   "kind": "HeroGatherStarted",
+   "detail": {
+    "nodeId": "node.w1.01.oak",
+    "offline": true
+   }
+  },
+  {
+   "gameMs": 5415000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 2
+   }
+  },
+  {
+   "gameMs": 5418000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 3
+   }
+  },
+  {
+   "gameMs": 5445000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 3
+   }
+  },
+  {
+   "gameMs": 5475000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 4
+   }
+  },
+  {
+   "gameMs": 5475000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2100,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 1800,
+    "smithBp": 2200
+   }
+  },
+  {
+   "gameMs": 5502000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 4
+   }
+  },
+  {
+   "gameMs": 5568000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 5
+   }
+  },
+  {
+   "gameMs": 5568000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2100,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 1800,
+    "smithBp": 2500
+   }
+  },
+  {
+   "gameMs": 5595000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 5
+   }
+  },
+  {
+   "gameMs": 5655000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 1
+   }
+  },
+  {
+   "gameMs": 5655000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2100,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 2000,
+    "smithBp": 2500
+   }
+  },
+  {
+   "gameMs": 5697000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 6
+   }
+  },
+  {
+   "gameMs": 5724000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 6
+   }
+  },
+  {
+   "gameMs": 5874000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 7
+   }
+  },
+  {
+   "gameMs": 5895000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 43
+   }
+  },
+  {
+   "gameMs": 5901000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 7
+   }
+  },
+  {
+   "gameMs": 6099000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 8
+   }
+  },
+  {
+   "gameMs": 6126000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 8
+   }
+  },
+  {
+   "gameMs": 6150000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2300,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 2000,
+    "smithBp": 2500
+   }
+  },
+  {
+   "gameMs": 6370500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 2
+   }
+  },
+  {
+   "gameMs": 6378000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 9
+   }
+  },
+  {
+   "gameMs": 6405000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 9
+   }
+  },
+  {
+   "gameMs": 6714000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 10
+   }
+  },
+  {
+   "gameMs": 6741000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 10
+   }
+  },
+  {
+   "gameMs": 7065000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2300,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 2200,
+    "smithBp": 2500
+   }
+  },
+  {
+   "gameMs": 7113000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 11
+   }
+  },
+  {
+   "gameMs": 7140000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 11
+   }
+  },
+  {
+   "gameMs": 7378500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 3
+   }
+  },
+  {
+   "gameMs": 7435500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 44
+   }
+  },
+  {
+   "gameMs": 7575000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 12
+   }
+  },
+  {
+   "gameMs": 7602000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 12
+   }
+  },
+  {
+   "gameMs": 8074500,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 2450,
+    "monumentAttackBp": 800,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 2200,
+    "smithBp": 2500
+   }
+  },
+  {
+   "gameMs": 8109000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 13
+   }
+  },
+  {
+   "gameMs": 8136000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 13
+   }
+  },
+  {
+   "gameMs": 8715000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 14
+   }
+  },
+  {
+   "gameMs": 8742000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 14
+   }
+  },
+  {
+   "gameMs": 9033000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 45
+   }
+  },
+  {
+   "gameMs": 9396000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 15
+   }
+  },
+  {
+   "gameMs": 9423000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 15
+   }
+  },
+  {
+   "gameMs": 10158000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 16
+   }
+  },
+  {
+   "gameMs": 10185000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 16
+   }
+  },
+  {
+   "gameMs": 10209000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 4
+   }
+  },
+  {
+   "gameMs": 10323000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 5
+   }
+  },
+  {
+   "gameMs": 10669500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 6
+   }
+  },
+  {
+   "gameMs": 10689000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 46
+   }
+  },
+  {
+   "gameMs": 11004000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 17
+   }
+  },
+  {
+   "gameMs": 11031000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 17
+   }
+  },
+  {
+   "gameMs": 11934000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 18
+   }
+  },
+  {
+   "gameMs": 11961000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 18
+   }
+  },
+  {
+   "gameMs": 12405000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 47
+   }
+  },
+  {
+   "gameMs": 12954000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 19
+   }
+  },
+  {
+   "gameMs": 12981000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 19
+   }
+  },
+  {
+   "gameMs": 14067000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 20
+   }
+  },
+  {
+   "gameMs": 14094000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 20
+   }
+  },
+  {
+   "gameMs": 14181000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 48
+   }
+  },
+  {
+   "gameMs": 14317500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 7
+   }
+  },
+  {
+   "gameMs": 14800500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 8
+   }
+  },
+  {
+   "gameMs": 15273000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 21
+   }
+  },
+  {
+   "gameMs": 15300000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 21
+   }
+  },
+  {
+   "gameMs": 15805500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 9
+   }
+  },
+  {
+   "gameMs": 16017000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 49
+   }
+  },
+  {
+   "gameMs": 16578000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 22
+   }
+  },
+  {
+   "gameMs": 16605000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 22
+   }
+  },
+  {
+   "gameMs": 17280000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 10
+   }
+  },
+  {
+   "gameMs": 17916000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 50
+   }
+  },
+  {
+   "gameMs": 17985000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 23
+   }
+  },
+  {
+   "gameMs": 18012000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 23
+   }
+  },
+  {
+   "gameMs": 18138000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 11
+   }
+  },
+  {
+   "gameMs": 19000500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 12
+   }
+  },
+  {
+   "gameMs": 19065000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 13
+   }
+  },
+  {
+   "gameMs": 19494000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 24
+   }
+  },
+  {
+   "gameMs": 19521000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 24
+   }
+  },
+  {
+   "gameMs": 19876500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 51
+   }
+  },
+  {
+   "gameMs": 20632500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 14
+   }
+  },
+  {
+   "gameMs": 20733000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 15
+   }
+  },
+  {
+   "gameMs": 21108000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 25
+   }
+  },
+  {
+   "gameMs": 21135000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 25
+   }
+  },
+  {
+   "gameMs": 21286500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 16
+   }
+  },
+  {
+   "gameMs": 21687000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 17
+   }
+  },
+  {
+   "gameMs": 21900000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 52
+   }
+  },
+  {
+   "gameMs": 22626000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 18
+   }
+  },
+  {
+   "gameMs": 22833000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 26
+   }
+  },
+  {
+   "gameMs": 22860000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 26
+   }
+  },
+  {
+   "gameMs": 23491500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 19
+   }
+  },
+  {
+   "gameMs": 23988000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 53
+   }
+  },
+  {
+   "gameMs": 24658500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 20
+   }
+  },
+  {
+   "gameMs": 24669000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 27
+   }
+  },
+  {
+   "gameMs": 24696000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 27
+   }
+  },
+  {
+   "gameMs": 24703500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 21
+   }
+  },
+  {
+   "gameMs": 24748500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 22
+   }
+  },
+  {
+   "gameMs": 25165500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 23
+   }
+  },
+  {
+   "gameMs": 25257000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 24
+   }
+  },
+  {
+   "gameMs": 26139000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 54
+   }
+  },
+  {
+   "gameMs": 26622000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 28
+   }
+  },
+  {
+   "gameMs": 26649000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 28
+   }
+  },
+  {
+   "gameMs": 26812500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 25
+   }
+  },
+  {
+   "gameMs": 27267000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 26
+   }
+  },
+  {
+   "gameMs": 28357500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 55
+   }
+  },
+  {
+   "gameMs": 28689000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 29
+   }
+  },
+  {
+   "gameMs": 28716000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 29
+   }
+  },
+  {
+   "gameMs": 29982000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 27
+   }
+  },
+  {
+   "gameMs": 30198000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 28
+   }
+  },
+  {
+   "gameMs": 30640500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 56
+   }
+  },
+  {
+   "gameMs": 30876000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 30
+   }
+  },
+  {
+   "gameMs": 30903000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 30
+   }
+  },
+  {
+   "gameMs": 30979500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 29
+   }
+  },
+  {
+   "gameMs": 31731000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 30
+   }
+  },
+  {
+   "gameMs": 32172000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 31
+   }
+  },
+  {
+   "gameMs": 32866500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 32
+   }
+  },
+  {
+   "gameMs": 32991000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 57
+   }
+  },
+  {
+   "gameMs": 33186000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 31
+   }
+  },
+  {
+   "gameMs": 33213000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 31
+   }
+  },
+  {
+   "gameMs": 33918000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 33
+   }
+  },
+  {
+   "gameMs": 34129500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 34
+   }
+  },
+  {
+   "gameMs": 34818000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 35
+   }
+  },
+  {
+   "gameMs": 35409000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 58
+   }
+  },
+  {
+   "gameMs": 35619000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 32
+   }
+  },
+  {
+   "gameMs": 35646000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 32
+   }
+  },
+  {
+   "gameMs": 36393000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 36
+   }
+  },
+  {
+   "gameMs": 36573000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 37
+   }
+  },
+  {
+   "gameMs": 37410000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 38
+   }
+  },
+  {
+   "gameMs": 37716000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 39
+   }
+  },
+  {
+   "gameMs": 37894500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 59
+   }
+  },
+  {
+   "gameMs": 38178000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 33
+   }
+  },
+  {
+   "gameMs": 38205000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 33
+   }
+  },
+  {
+   "gameMs": 38245500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 40
+   }
+  },
+  {
+   "gameMs": 38299500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 41
+   }
+  },
+  {
+   "gameMs": 38464500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 42
+   }
+  },
+  {
+   "gameMs": 38634000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 43
+   }
+  },
+  {
+   "gameMs": 40101000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 44
+   }
+  },
+  {
+   "gameMs": 40170000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 45
+   }
+  },
+  {
+   "gameMs": 40188000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 46
+   }
+  },
+  {
+   "gameMs": 40450500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 60
+   }
+  },
+  {
+   "gameMs": 40866000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 34
+   }
+  },
+  {
+   "gameMs": 40893000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 34
+   }
+  },
+  {
+   "gameMs": 41736000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 47
+   }
+  },
+  {
+   "gameMs": 43074000,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 61
+   }
+  },
+  {
+   "gameMs": 43689000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 35
+   }
+  },
+  {
+   "gameMs": 43716000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 35
+   }
+  },
+  {
+   "gameMs": 44611500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 48
+   }
+  },
+  {
+   "gameMs": 45769500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 62
+   }
+  },
+  {
+   "gameMs": 45900000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 49
+   }
+  },
+  {
+   "gameMs": 46644000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:3",
+    "profession": "woodcutting",
+    "level": 36
+   }
+  },
+  {
+   "gameMs": 46671000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "hero",
+    "profession": "woodcutting",
+    "level": 36
+   }
+  },
+  {
+   "gameMs": 47001000,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 50
+   }
+  },
+  {
+   "gameMs": 47017500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 51
+   }
+  },
+  {
+   "gameMs": 47392500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 52
+   }
+  },
+  {
+   "gameMs": 48535500,
+   "kind": "MemberLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "level": 63
+   }
+  },
+  {
+   "gameMs": 48565500,
+   "kind": "EmblemFound",
+   "detail": {
+    "enemyId": "enemy.w1.green_slime",
+    "copy": 53
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "AbsenceEnded",
+   "detail": {
+    "absence": "absence:0",
+    "wallMs": 72000000,
+    "creditedMs": 43200000
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "SessionStarted",
+   "detail": {
+    "index": 1,
+    "endMs": 48660000
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:1",
+    "from": "worker:1",
+    "to": "squad",
+    "reason": "RECONNECT"
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:2",
+    "from": "smithing",
+    "to": "squad",
+    "reason": "RECONNECT"
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "OfflineReassigned",
+   "detail": {
+    "member": "rec:3",
+    "from": "gathering:node.w1.01.oak",
+    "to": "squad",
+    "reason": "RECONNECT"
+   }
+  },
+  {
+   "gameMs": 48600000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "purchase",
+    "attackBp": 2450,
+    "monumentAttackBp": 1000,
+    "hpBp": 2000,
+    "monumentHpBp": 1200,
+    "critBp": 300,
+    "abilityBp": 1000,
+    "gatherBp": 2200,
+    "smithBp": 2500
+   }
+  }
+ ],
+ "eventCounts": {
+  "SessionStarted": 2,
+  "CommandAccepted": 441,
+  "JobEnqueued": 53,
+  "OfflineAssignmentSet": 84,
+  "EngageStarted": 3223,
+  "EncounterStarted": 3217,
+  "Swing": 14247,
+  "EnemyHit": 125,
+  "EnemyKilled": 3217,
+  "KillCredited": 32016,
+  "BestiaryDiscovered": 3,
+  "StaleDiscarded": 63374,
+  "LevelUp": 42,
+  "StatsRecomputed": 42,
+  "MilestoneGranted": 43,
+  "PermanentBonusesApplied": 54,
+  "QuestCompleted": 1,
+  "RecruitAcquired": 3,
+  "RosterMilestone": 3,
+  "MonumentDiscovered": 4,
+  "Assigned": 155,
+  "ClassChanged": 4,
+  "JobPaused": 53,
+  "TalentAllocated": 80,
+  "GateCompleted": 2,
+  "ZoneAccessUnlocked": 2,
+  "Arrived": 3,
+  "ZoneVisited": 2,
+  "CheckpointDiscovered": 2,
+  "Regen": 26,
+  "LegionSpend": 2,
+  "LedgerTx": 29266,
+  "Gathered": 28958,
+  "JobResumed": 53,
+  "UnitStarted": 123,
+  "UnitCompleted": 123,
+  "ProfessionLevelUp": 91,
+  "Crafted": 49,
+  "Equipped": 49,
+  "JobCompleted": 53,
+  "GatherInterrupted": 60,
+  "RestComplete": 3,
+  "MemberLevelUp": 144,
+  "MemberStatsRecomputed": 144,
+  "MemberLeftSquad": 2,
+  "MonumentUpgraded": 13,
+  "Unequipped": 24,
+  "BossGateOpened": 1,
+  "EmblemFound": 57,
+  "SessionEnded": 1,
+  "AbsenceStarted": 1,
+  "OfflineReassigned": 6,
+  "OfflineRelocation": 1,
+  "WorkerFightStarted": 28799,
+  "WorkerSwing": 33599,
+  "WorkerKill": 28799,
+  "HeroGatherStarted": 1,
+  "AbsenceEnded": 1,
+  "HeroGatherStopped": 1
+ }
+}

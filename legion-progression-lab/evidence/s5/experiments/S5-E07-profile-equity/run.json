@@ -1,0 +1,29 @@
+{
+  "experimentId": "S5-E07-profile-equity",
+  "manifest": "manifests/s5/S5-E07-profile-equity.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stoppedReason": null,
+  "registeredTasks": 800,
+  "completedTasks": 800,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 2700000,
+    "peakRssMb": 12288
+  },
+  "wallMs": 801144,
+  "peakRssMb": 3965,
+  "taskMs": {
+    "mean": 14936,
+    "max": 18075
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "40483eb4146419ca3b3f7bdd59c0ea98368dc93397c1677d629ddeb1b255fbd8"
+}

@@ -216,7 +216,7 @@ export function makePol3Demand(id: string, over: Partial<Pol2Config> = {}, versi
           const r = ind.recipes.find((x) => x.itemId === best.defId);
           const crafter = r ? ['hero', ...[...roles.entries()].filter(([, v]) => v.role === 'smith').map(([k]) => k), ...r.qualified].find((cid) => r.qualified.includes(cid)) : undefined;
           if (r && r.short === null && crafter !== undefined) {
-            const newId = `item:${ind.items.length + 1}`;
+            const newId = ind.nextItemId;
             if (!r.consumesLowerTierSameSlot) out.push({ type: 'Craft', crafterId: crafter, recipeId: r.id }, { type: 'Equip', characterId: best.wearer.id, itemId: newId });
             else if (r.consumeCandidates[0] !== undefined) out.push({ type: 'Craft', crafterId: crafter, recipeId: r.id, consumeItemId: r.consumeCandidates[0] }, { type: 'Equip', characterId: best.wearer.id, itemId: newId });
             else {

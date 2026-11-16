@@ -6,7 +6,7 @@
 import { balance, type Ledger } from '../core/ledger/ledger.ts';
 import { EQUIP_SLOTS, itemAttackBp, itemStats, TOOL_PROFESSION, type CompiledItemDef, type CompiledNode, type CompiledRecipe, type EquipSlot, type IndustryContent, type ProfessionId, type QtyLine } from '../model/industryContent.ts';
 import { NO_MODS, type ClassId, type HeldClass, type StatMods } from '../model/legionContent.ts';
-import type { IndustryCommand, IndustryReasonCode, IndustryState, ItemInstance } from '../model/industryTypes.ts';
+import type { IndustryCommand, IndustryReasonCode, IndustryState, ItemInstance, ProductionJob } from '../model/industryTypes.ts';
 import type { CharacterId, CharacterState, LegionReasonCode } from '../model/legionTypes.ts';
 import type { ReasonCode, ZoneState } from '../model/types.ts';
 import { levelForExp, type LegionSimulation } from './legion.ts';
@@ -31,8 +31,17 @@ export function jobNumber(id: string): number {
 }
 
 export function itemById(ind: IndustryState, id: string): ItemInstance | undefined {
+  // S5 bounded identity: spent items are retired, so an item is found by identity, not by list position.
+  if (ind.nextItem !== undefined) return ind.items.find((x) => x.id === id);
   const n = itemNumber(id);
   return n >= 1 ? ind.items[n - 1] : undefined;
+}
+
+/** A job by identity (L1: its list position; S5 bounded identity: finished jobs are retired, so by search). */
+export function jobById(ind: IndustryState, id: string): ProductionJob | undefined {
+  if (ind.nextJob !== undefined) return ind.jobs.find((j) => j.id === id);
+  const n = jobNumber(id);
+  return n >= 1 ? ind.jobs[n - 1] : undefined;
 }
 
 export function profLevel(content: IndustryContent, ind: IndustryState, id: CharacterId, p: ProfessionId): number {
@@ -311,8 +320,9 @@ export function validateIndustryCommand(sim: LegionSimulation, cmd: IndustryComm
     }
     case 'CancelJob': {
       const n = jobNumber(cmd.jobId);
-      const job = n >= 1 ? ind.jobs[n - 1] : undefined;
-      if (!job) return no('JOB_UNKNOWN');
+      const job = jobById(ind, cmd.jobId);
+      // S5 bounded identity: a retired job (numbered below the counter) is finished, as in L1.
+      if (!job) return ind.nextJob !== undefined && n >= 1 && n < ind.nextJob ? no('JOB_FINISHED') : no('JOB_UNKNOWN');
       if (job.state === 'complete' || job.state === 'cancelled') return no('JOB_FINISHED');
       return ok;
     }

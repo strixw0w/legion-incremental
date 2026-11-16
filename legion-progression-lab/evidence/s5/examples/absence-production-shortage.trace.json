@@ -1,0 +1,3261 @@
+{
+ "example": "absence-production-shortage",
+ "firstSessionMs": 120000,
+ "awayMs": 21600000,
+ "keyEvents": [
+  {
+   "gameMs": 120000,
+   "kind": "SessionEnded",
+   "detail": {
+    "index": 0
+   }
+  },
+  {
+   "gameMs": 120000,
+   "kind": "AbsenceStarted",
+   "detail": {
+    "absence": "absence:0",
+    "unlocked": true,
+    "wallMs": 120000,
+    "normalBp": 6000,
+    "rateE8": 30000000,
+    "assignments": "hero=idle,rec:1=smithing,rec:2=gathering:node.w1.01.oak"
+   }
+  },
+  {
+   "gameMs": 120000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 123637,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 126000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 133274,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 135000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 138637,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 141000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 144637,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 147000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 150637,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 153000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 160274,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 162000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 165637,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 4
+   }
+  },
+  {
+   "gameMs": 165637,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 168000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 171509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 174000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 181018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 183000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 186509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 189000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 192000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 5
+   }
+  },
+  {
+   "gameMs": 192509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 195000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 198509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 201000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 208018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 210000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 213509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 216000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 223018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 225000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 228509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 231000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 234509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 237000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 244018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 246000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 249509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 252000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 259018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 261000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 264509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 267000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 270509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 273000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 280018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 282000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 285509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 288000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 291509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 294000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 301018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 303000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 306509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 309000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 316018,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 318000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 321000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 6
+   }
+  },
+  {
+   "gameMs": 321509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 324000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 327509,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 5
+   }
+  },
+  {
+   "gameMs": 327509,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 330000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 336780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 339000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 342390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 345000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 351780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 354000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 357390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 360000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 366780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 369000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 372390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 375000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 381780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 384000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 387390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 390000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 396780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 399000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 402390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 405000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 411780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 414000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 417390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 420000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 426780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 429000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 432390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 435000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 441780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 444000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 447390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 450000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 456780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 459000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 462390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 465000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 471780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 474000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 477390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 480000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 486780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 489000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 492390,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 495000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 498000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 7
+   }
+  },
+  {
+   "gameMs": 501780,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 504000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 507390,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 0,
+    "monumentAttackBp": 0,
+    "hpBp": 0,
+    "monumentHpBp": 0,
+    "critBp": 0,
+    "abilityBp": 0,
+    "gatherBp": 0,
+    "smithBp": 500
+   }
+  },
+  {
+   "gameMs": 510696,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 513000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 516306,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 519000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 522000,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 0,
+    "monumentAttackBp": 0,
+    "hpBp": 0,
+    "monumentHpBp": 0,
+    "critBp": 0,
+    "abilityBp": 0,
+    "gatherBp": 100,
+    "smithBp": 500
+   }
+  },
+  {
+   "gameMs": 525612,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 528000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 531306,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 534000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 540612,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 6
+   }
+  },
+  {
+   "gameMs": 540612,
+   "kind": "PermanentBonusesApplied",
+   "detail": {
+    "cause": "milestone",
+    "attackBp": 0,
+    "monumentAttackBp": 0,
+    "hpBp": 0,
+    "monumentHpBp": 0,
+    "critBp": 0,
+    "abilityBp": 0,
+    "gatherBp": 300,
+    "smithBp": 500
+   }
+  },
+  {
+   "gameMs": 540612,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 543000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 549400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 552000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 558400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 561000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 564200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 567000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 573400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 576000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 582400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 585000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 591400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 594000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 597200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 600000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 606400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 609000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 615400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 618000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 624400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 627000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 630200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 633000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 639400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 642000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 648400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 651000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 654200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 657000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 663400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 666000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 672400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 675000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 681400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 684000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 687200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 690000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 696400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 699000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 705400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 708000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 714400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 717000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 720200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 723000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 8
+   }
+  },
+  {
+   "gameMs": 723000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 729400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 732000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 738400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 741000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 747400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 750000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 756400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 759000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 765400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 768000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 774400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 777000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 783400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 786000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 792400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 795000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 798200,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 801000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 807400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 810000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 816400,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 7
+   }
+  },
+  {
+   "gameMs": 816400,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 819000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 825202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 828000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 834202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 837000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 843202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 846000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 852202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 855000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 861202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 864000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 870202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 873000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 879202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 882000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 885101,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 888000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 894202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 897000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 903202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 906000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 912202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 915000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 921202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 924000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 930202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 933000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 939202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 942000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 948202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 951000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 957202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 960000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 963101,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 966000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 972202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 975000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 981202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 984000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 990202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 993000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 999202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1002000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 9
+   }
+  },
+  {
+   "gameMs": 1002000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1008202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1011000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1017202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1020000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1026202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1029000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1035202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1038000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1044202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1047000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1053202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1056000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1065303,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1068000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1074202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1077000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1083202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1086000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1092202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1095000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1101202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1104000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1110202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1113000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1119202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1122000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1128202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1131000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1137202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1140000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1146202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1149000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1155202,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 8
+   }
+  },
+  {
+   "gameMs": 1155202,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1158000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1164016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1167000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1173016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1176000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1185024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1188000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1194016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1197000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1203016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1206000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1212016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1215000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1221016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1224000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1230016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1233000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1239016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1242000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1248016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1251000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1257016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1260000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1266016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1269000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1275016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1278000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1284016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1287000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1293016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1296000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1305024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1308000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1314016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1317000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1323016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1326000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1332016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1335000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1338000,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:2",
+    "profession": "woodcutting",
+    "level": 10
+   }
+  },
+  {
+   "gameMs": 1341016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1344000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1350016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1353000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1359016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1362000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1371024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1374000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1380016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1383000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1389016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1392000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1401024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1404000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1410016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1413000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1419016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1422000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1428016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1431000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1440024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1443000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1449016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1452000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1458016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1461000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1467016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1470000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1479024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1482000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1488016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1491000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1497016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1500000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1509024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1512000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1518016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1521000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1527016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1530000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1536016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1539000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1548024,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1551000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1557016,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1560000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1563008,
+   "kind": "ProfessionLevelUp",
+   "detail": {
+    "member": "rec:1",
+    "profession": "smithing",
+    "level": 9
+   }
+  },
+  {
+   "gameMs": 1565928,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1569000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1571920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1572000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1574920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1575000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1577920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1581000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1583920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1584000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1586920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1590000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1592920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1593000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1595920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1599000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1601920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1602000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1604920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1608000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1610920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1611000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1613920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1614000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1616920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1620000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1622920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1623000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1625920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1629000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1631920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1632000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1634920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1638000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1640920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1641000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1643920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1644000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  },
+  {
+   "gameMs": 1646920,
+   "kind": "JobPaused",
+   "detail": {
+    "jobId": "job:1",
+    "reason": "SHORTAGE",
+    "resourceId": "res.mat.log"
+   }
+  },
+  {
+   "gameMs": 1650000,
+   "kind": "JobResumed",
+   "detail": {
+    "jobId": "job:1"
+   }
+  }
+ ],
+ "eventCounts": {
+  "SessionStarted": 2,
+  "MonumentDiscovered": 2,
+  "CommandAccepted": 2,
+  "JobEnqueued": 2,
+  "LedgerTx": 5961,
+  "UnitStarted": 801,
+  "Gathered": 4360,
+  "UnitCompleted": 800,
+  "ProfessionLevelUp": 33,
+  "JobPaused": 650,
+  "JobResumed": 650,
+  "MilestoneGranted": 6,
+  "PermanentBonusesApplied": 6,
+  "SessionEnded": 1,
+  "AbsenceStarted": 1,
+  "JobCompleted": 1,
+  "AbsenceEnded": 1
+ }
+}

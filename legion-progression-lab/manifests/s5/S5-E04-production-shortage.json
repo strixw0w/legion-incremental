@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E04-production-shortage",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e04",
+ "tasks": 200,
+ "description": "200 seeds: a smith and a gatherer (oak logs) with a 600-1,000 plank job queued online and 4-15 starting logs; a two-minute session, then a 12-hour absence. Production must pause when logs run out and resume when gathering deposits them, conserve logs exactly, keep balances non-negative, and give the same result in ten storage batches.",
+ "budgets": {
+  "wallMs": 1200000,
+  "peakRssMb": 8192
+ }
+}

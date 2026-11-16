@@ -1,0 +1,11 @@
+{
+ "experimentId": "S5-E05-reconnect-idempotency",
+ "formulaVersion": "legion.s5.offline-credit.v1",
+ "seed": "s5-e05",
+ "tasks": 200,
+ "description": "200 scripted accounts with 6-12 short logins (5-15 minutes, gaps of 20-240 minutes; half with one 80-hour gap beyond the cap) and 0-2 storage batches per absence, run clean and with noise: retries, changed payloads, overlapping and gapped intervals, future times, re-claims of closed absences, wrong branches, stale loads, failures before and after commit and failed calculations. The noisy account must end exactly as the clean one, every noise request answered by its expected code.",
+ "budgets": {
+  "wallMs": 1800000,
+  "peakRssMb": 8192
+ }
+}

@@ -1,0 +1,196 @@
+$ git log --oneline -3
+43a1a16 L2 checkpoint: bounded replay infrastructure (L2 + L2.1 + acceptance corrections)
+dc39492 S4 checkpoint: permanent progression + acceptance corrections
+f25f296 S3 checkpoint: S3 industry + S3.1 corrections and calibration + acceptance addendum
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/src/core/formulas/xp.ts
+ M legion-progression-lab/src/core/ledger/implementations.ts
+ M legion-progression-lab/src/engine/industry.ts
+ M legion-progression-lab/src/engine/industryObservation.ts
+ M legion-progression-lab/src/engine/legion.ts
+ M legion-progression-lab/src/engine/legionCredit.ts
+ M legion-progression-lab/src/engine/permanent.ts
+ M legion-progression-lab/src/l2/simCheckpoint.ts
+ M legion-progression-lab/src/l2/simState.ts
+ M legion-progression-lab/src/model/content.ts
+ M legion-progression-lab/src/model/industryTypes.ts
+ M legion-progression-lab/src/model/legionTypes.ts
+ M legion-progression-lab/src/model/permanentContent.ts
+ M legion-progression-lab/src/policy/industryDemand.ts
+ M legion-progression-lab/src/policy/industryRealistic.ts
+ M legion-progression-lab/src/spec/fixtureRunner.ts
+ M legion-progression-lab/src/spec/fixtureSchema.ts
+ M legion-progression-lab/test/fixtures.conformance.test.ts
+ M legion-progression-lab/test/ledger.contract.test.ts
+ M spec/oracle/check_all.py
+ M spec/schema/fixture.schema.json
+?? legion-progression-lab/content/w1-slice-s5.candidate.v0.5.0.json
+?? legion-progression-lab/evidence/l2-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/l2-checkpoint/clean-export-check.txt
+?? legion-progression-lab/evidence/l2-checkpoint/frozen-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/S5_ACCEPTANCE_ADDENDUM.md
+?? legion-progression-lab/evidence/s5-acceptance/checks-run.txt
+?? legion-progression-lab/evidence/s5-acceptance/git-status.txt
+?? legion-progression-lab/evidence/s5-acceptance/historical/historical-controls.txt
+?? legion-progression-lab/evidence/s5-acceptance/historical/history-cache.txt
+?? legion-progression-lab/evidence/s5-acceptance/mutation-check-corrections.txt
+?? legion-progression-lab/evidence/s5-acceptance/mutation-check-s5-full-final.txt
+?? legion-progression-lab/evidence/s5-acceptance/preservation-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/rebuild-record.txt
+?? legion-progression-lab/evidence/s5-acceptance/registration-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/reruns/s5-reruns.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/fixtures-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/oracle-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/schemas-check.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/test-output.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/test-stats-output.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/tool-versions.txt
+?? legion-progression-lab/evidence/s5-acceptance/suites/typecheck.txt
+?? legion-progression-lab/evidence/s5/S5_EVIDENCE.md
+?? legion-progression-lab/evidence/s5/examples/INDEX.json
+?? legion-progression-lab/evidence/s5/examples/absence-30h-pol5.trace.json
+?? legion-progression-lab/evidence/s5/examples/absence-30h-pol5.welcome-back.json
+?? legion-progression-lab/evidence/s5/examples/absence-beyond-cap-80h.trace.json
+?? legion-progression-lab/evidence/s5/examples/absence-beyond-cap-80h.welcome-back.json
+?? legion-progression-lab/evidence/s5/examples/absence-configured-gathering.trace.json
+?? legion-progression-lab/evidence/s5/examples/absence-configured-gathering.welcome-back.json
+?? legion-progression-lab/evidence/s5/examples/absence-production-shortage.trace.json
+?? legion-progression-lab/evidence/s5/examples/absence-production-shortage.welcome-back.json
+?? legion-progression-lab/evidence/s5/experiments/RESULTS.md
+?? legion-progression-lab/evidence/s5/experiments/S5-E01-boundaries/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E01-boundaries/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E02-reference-vs-batch/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E02-reference-vs-batch/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E03-mid-absence/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E03-mid-absence/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E04-production-shortage/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E04-production-shortage/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E05-reconnect-idempotency/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E05-reconnect-idempotency/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E06-efficiency-alternatives/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E06-efficiency-alternatives/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E07-profile-equity/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E07-profile-equity/run.json
+?? legion-progression-lab/evidence/s5/experiments/S5-E08-connected-idle/rows.jsonl
+?? legion-progression-lab/evidence/s5/experiments/S5-E08-connected-idle/run.json
+?? legion-progression-lab/evidence/s5/experiments/SUMMARY.json
+?? legion-progression-lab/evidence/s5/fingerprints.txt
+?? legion-progression-lab/evidence/s5/frozen-check.txt
+?? legion-progression-lab/evidence/s5/gates-run-attempt-1.txt
+?? legion-progression-lab/evidence/s5/gates-run.txt
+?? legion-progression-lab/evidence/s5/git-status.txt
+?? legion-progression-lab/evidence/s5/historical/historical-controls.txt
+?? legion-progression-lab/evidence/s5/historical/history-cache.txt
+?? legion-progression-lab/evidence/s5/integration/INTEGRATION_REPORT.md
+?? legion-progression-lab/evidence/s5/integration/checkpoint-corpus.json
+?? legion-progression-lab/evidence/s5/integration/checkpoint-corpus.log
+?? legion-progression-lab/evidence/s5/integration/growth.json
+?? legion-progression-lab/evidence/s5/integration/growth.log
+?? legion-progression-lab/evidence/s5/integration/identity-differential.json
+?? legion-progression-lab/evidence/s5/integration/identity-differential.log
+?? legion-progression-lab/evidence/s5/integration/offline-corpus.json
+?? legion-progression-lab/evidence/s5/integration/offline-corpus.log
+?? legion-progression-lab/evidence/s5/mutation-check-s5-attempt-stopped-on-line-endings.txt
+?? legion-progression-lab/evidence/s5/mutation-check-s5-first-run.txt
+?? legion-progression-lab/evidence/s5/mutation-check-s5-followup.txt
+?? legion-progression-lab/evidence/s5/performance/PERFORMANCE.md
+?? legion-progression-lab/evidence/s5/performance/ab-exactness.txt
+?? legion-progression-lab/evidence/s5/performance/explore-profiles.json
+?? legion-progression-lab/evidence/s5/performance/settlement-profile-exploratory.json
+?? legion-progression-lab/evidence/s5/performance/settlement-profile.json
+?? legion-progression-lab/evidence/s5/performance/settlement-profile.log
+?? legion-progression-lab/evidence/s5/preservation-check.txt
+?? legion-progression-lab/evidence/s5/registration-check.txt
+?? legion-progression-lab/evidence/s5/registration/S5_SPECIFICATION_v0.1_at_registration.md
+?? legion-progression-lab/evidence/s5/runs/S5-E01-boundaries.log
+?? legion-progression-lab/evidence/s5/runs/S5-E02-reference-vs-batch.log
+?? legion-progression-lab/evidence/s5/runs/S5-E03-mid-absence.log
+?? legion-progression-lab/evidence/s5/runs/S5-E04-production-shortage.log
+?? legion-progression-lab/evidence/s5/runs/S5-E05-reconnect-idempotency.log
+?? legion-progression-lab/evidence/s5/runs/S5-E06-efficiency-alternatives.log
+?? legion-progression-lab/evidence/s5/runs/S5-E07-profile-equity.log
+?? legion-progression-lab/evidence/s5/runs/S5-E08-connected-idle.log
+?? legion-progression-lab/evidence/s5/runs/chain.txt
+?? legion-progression-lab/evidence/s5/runs/full-suite.log
+?? legion-progression-lab/evidence/s5/s5-vs-l2-checkpoint.patch
+?? legion-progression-lab/evidence/s5/suites/fixtures-check.txt
+?? legion-progression-lab/evidence/s5/suites/oracle-check.txt
+?? legion-progression-lab/evidence/s5/suites/schemas-check.txt
+?? legion-progression-lab/evidence/s5/suites/test-output.txt
+?? legion-progression-lab/evidence/s5/suites/test-stats-output.txt
+?? legion-progression-lab/evidence/s5/suites/tool-versions.txt
+?? legion-progression-lab/evidence/s5/suites/typecheck.txt
+?? legion-progression-lab/manifests/s5/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s5/S5-E01-boundaries.json
+?? legion-progression-lab/manifests/s5/S5-E02-reference-vs-batch.json
+?? legion-progression-lab/manifests/s5/S5-E03-mid-absence.json
+?? legion-progression-lab/manifests/s5/S5-E04-production-shortage.json
+?? legion-progression-lab/manifests/s5/S5-E05-reconnect-idempotency.json
+?? legion-progression-lab/manifests/s5/S5-E06-efficiency-alternatives.json
+?? legion-progression-lab/manifests/s5/S5-E07-profile-equity.json
+?? legion-progression-lab/manifests/s5/S5-E08-connected-idle.json
+?? legion-progression-lab/manifests/s5/preregistration.json
+?? legion-progression-lab/planning/S5_SPECIFICATION.md
+?? legion-progression-lab/repro/s5/ab_compare.ts
+?? legion-progression-lab/repro/s5/analyze.py
+?? legion-progression-lab/repro/s5/assemble.py
+?? legion-progression-lab/repro/s5/checkpoint_corpus.ts
+?? legion-progression-lab/repro/s5/examples.ts
+?? legion-progression-lab/repro/s5/explore_profiles.ts
+?? legion-progression-lab/repro/s5/growth.ts
+?? legion-progression-lab/repro/s5/historical_controls.sh
+?? legion-progression-lab/repro/s5/identity_differential.ts
+?? legion-progression-lab/repro/s5/make_fixtures.py
+?? legion-progression-lab/repro/s5/mutation_check.py
+?? legion-progression-lab/repro/s5/offline_corpus.ts
+?? legion-progression-lab/repro/s5/preserve.py
+?? legion-progression-lab/repro/s5/regcheck.py
+?? legion-progression-lab/repro/s5/register.py
+?? legion-progression-lab/repro/s5/run_all.sh
+?? legion-progression-lab/repro/s5/settlement_perf.ts
+?? legion-progression-lab/src/cli/s5-content.ts
+?? legion-progression-lab/src/cli/s5-run.ts
+?? legion-progression-lab/src/cli/s5-worker.ts
+?? legion-progression-lab/src/core/ledger/boundedLedger.ts
+?? legion-progression-lab/src/core/ledger/boundedReferenceLedger.ts
+?? legion-progression-lab/src/engine/offline.ts
+?? legion-progression-lab/src/s5/experiments.ts
+?? legion-progression-lab/src/s5/profiles.ts
+?? legion-progression-lab/src/s5/settlement.ts
+?? legion-progression-lab/src/s5/summary.ts
+?? legion-progression-lab/src/spec/s5Fixtures.ts
+?? legion-progression-lab/test/s5.acceptance.test.ts
+?? legion-progression-lab/test/s5.eternity.test.ts
+?? legion-progression-lab/test/s5.identity.test.ts
+?? legion-progression-lab/test/s5.offline.test.ts
+?? legion-progression-lab/test/s5.settlement.test.ts
+?? legion-progression-lab/test/s5.validation.test.ts
+?? spec/fixtures/s5-offline-credit.v1.json
+?? spec/fixtures/s5-settlement-timing.v1.json
+?? spec/formulas/s5-offline.md
+?? spec/oracle/s5_oracle.py
+
+$ git diff --stat l2-checkpoint
+ legion-progression-lab/src/core/formulas/xp.ts     |   5 +
+ .../src/core/ledger/implementations.ts             |  10 +-
+ legion-progression-lab/src/engine/industry.ts      |  16 +-
+ .../src/engine/industryObservation.ts              |   1 +
+ legion-progression-lab/src/engine/legion.ts        | 583 ++++++++++++++++++---
+ legion-progression-lab/src/engine/legionCredit.ts  |  65 ++-
+ legion-progression-lab/src/engine/permanent.ts     |   3 +-
+ legion-progression-lab/src/l2/simCheckpoint.ts     |  59 ++-
+ legion-progression-lab/src/l2/simState.ts          | 209 +++++++-
+ legion-progression-lab/src/model/content.ts        |   3 +-
+ legion-progression-lab/src/model/industryTypes.ts  |   5 +
+ legion-progression-lab/src/model/legionTypes.ts    |  13 +
+ .../src/model/permanentContent.ts                  |   9 +-
+ .../src/policy/industryDemand.ts                   |   2 +-
+ .../src/policy/industryRealistic.ts                |   2 +-
+ legion-progression-lab/src/spec/fixtureRunner.ts   |   7 +
+ legion-progression-lab/src/spec/fixtureSchema.ts   |   2 +-
+ .../test/fixtures.conformance.test.ts              |   2 +-
+ .../test/ledger.contract.test.ts                   |  12 +-
+ spec/oracle/check_all.py                           |   1 +
+ spec/schema/fixture.schema.json                    |   4 +-
+ 21 files changed, 917 insertions(+), 96 deletions(-)

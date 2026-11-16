@@ -160,10 +160,11 @@ export function bonusSources(pc: CompiledPermanent, ps: PermanentState): BonusSo
     const add = (target: BonusSource['target']) => out.push({ sourceId: `monument:${m.id}:${target}`, system: 'monument', target, canonicalCategory: TARGET_POOL[target], appliedStat: TARGET_STAT[target], appliedCategory: appliedCategoryOf(pc.monumentPooling, target), semantics: 'additiveBp', scope: 'account', valueBp: bp, provenance: `${m.id}@${level}`, formulaVersion: PERM_FORMULA_VERSION });
     if (m.target === 'attack') add('monumentAttack');
     else if (m.target === 'maxHp') add('monumentHp');
-    else {
+    else if (m.target === 'efficiency') {
       add('gatherEfficiency');
       add('smithEfficiency');
     }
+    // S5: an `offline` Monument (Eternity) is no stat source: it raises the offline rate only (one layer, the clock).
   }
   return out;
 }

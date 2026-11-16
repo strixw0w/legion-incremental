@@ -1,0 +1,33 @@
+l2-checkpoint: 43a1a16c4c9a67841e3569cc11bcbabc63d8b902; HEAD: 43a1a16c4c9a67841e3569cc11bcbabc63d8b902
+1. Tracked files that must be unchanged since l2-checkpoint:
+   legion-progression-lab/evidence: 0 tracked files changed
+   legion-progression-lab/manifests: 0 tracked files changed
+   legion-progression-lab/content: 0 tracked files changed
+   spec/fixtures: 0 tracked files changed
+   spec/formulas: 0 tracked files changed
+   legion-progression-lab/repro: 0 tracked files changed
+2. Tracked files S5 changed elsewhere (code, tests, schemas, oracle runner, documents):
+   changed: legion-progression-lab/src/core/formulas/xp.ts
+   changed: legion-progression-lab/src/core/ledger/implementations.ts
+   changed: legion-progression-lab/src/engine/industry.ts
+   changed: legion-progression-lab/src/engine/industryObservation.ts
+   changed: legion-progression-lab/src/engine/legion.ts
+   changed: legion-progression-lab/src/engine/legionCredit.ts
+   changed: legion-progression-lab/src/engine/permanent.ts
+   changed: legion-progression-lab/src/l2/simCheckpoint.ts
+   changed: legion-progression-lab/src/l2/simState.ts
+   changed: legion-progression-lab/src/model/content.ts
+   changed: legion-progression-lab/src/model/industryTypes.ts
+   changed: legion-progression-lab/src/model/legionTypes.ts
+   changed: legion-progression-lab/src/model/permanentContent.ts
+   changed: legion-progression-lab/src/policy/industryDemand.ts
+   changed: legion-progression-lab/src/policy/industryRealistic.ts
+   changed: legion-progression-lab/src/spec/fixtureRunner.ts
+   changed: legion-progression-lab/src/spec/fixtureSchema.ts
+   changed: legion-progression-lab/test/fixtures.conformance.test.ts
+   changed: legion-progression-lab/test/ledger.contract.test.ts
+   changed: spec/oracle/check_all.py
+   changed: spec/schema/fixture.schema.json
+   21 tracked files changed outside the frozen groups
+3. New (untracked) files: 144
+preservation problems: 0

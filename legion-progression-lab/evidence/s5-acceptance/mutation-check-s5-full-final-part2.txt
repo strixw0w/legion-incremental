@@ -1,0 +1,48 @@
+M18: DETECTED (10 failing) restored=True | a grown schedule never places its next session
+M19: DETECTED (1 failing) restored=True | a deployed recruit keeps its connected assignment at the reconnect only if it never changed (no return)
+M20: DETECTED (1 failing) restored=True | the Monument of Eternity is also a stat source (a duplicate layer)
+M21: DETECTED (6 failing) restored=True | a retry runs again instead of replaying
+M22: DETECTED (1 failing) restored=True | the commit is not compare-and-swap (a stale decision overwrites)
+M23: DETECTED (1 failing) restored=True | the failure before the commit happens after it
+M24: DETECTED (9 failing) restored=True | the reconnect leaves the cursor at the batch start (the absence can be claimed again)
+M25: DETECTED (1 failing) restored=True | a refused request commits no receipt (a retry is decided afresh)
+M26: DETECTED (1 failing) restored=True | the summary is recomputed from the current account (no baseline)
+M27: DETECTED (1 failing) restored=True | the absence identity is not checked against the session
+M28: DETECTED (1 failing) restored=True | game time beyond the credited duration is accepted
+M29: DETECTED (1 failing) restored=True | a dead hero needs no respawn event while away (live events only while connected)
+M30: DETECTED (1 failing) restored=True | a grown schedule that starts before the checkpoint is accepted (backwards time)
+M31: DETECTED (2 failing) restored=True | a ledger value sees records appended after it (no length bound in lookups)
+M32: DETECTED (2 failing) restored=True | an older ledger value appends in place (a branch corrupts its sibling)
+M33: DETECTED (5 failing) restored=True | the stats cache ignores the level
+M34: DETECTED (1 failing) restored=True | A: the cursor is not bound to the checkpoint's progress in an absence
+M35: DETECTED (1 failing) restored=True | A: retained receipts are not checked for shape
+M36: DETECTED (2 failing) restored=True | A: a detailed receipt is not bound to its stream receipt (detail digest)
+M37: DETECTED (1 failing) restored=True | A: the latest receipt is not bound to the stored checkpoint and cursor
+M38: DETECTED (1 failing) restored=True | B: a replay returns no retained detail
+M39: DETECTED (2 failing) restored=True | B: the latest welcome-back is not kept apart from the receipt window
+M40: DETECTED (1 failing) restored=True | C: the persisted schedule is never compacted
+
+S5 mutation check: 23 planted bugs, 23 detected, 0 not detected; all files restored: True
+- M18 [src/engine/legion.ts] a grown schedule never places its next session: detected by 10 failing test(s); e.g. × a reconnect never recovers a knocked-out recruit early: its timer keeps running 23ms
+- M19 [src/engine/legion.ts] a deployed recruit keeps its connected assignment at the reconnect only if it never changed (no return): detected by 1 failing test(s); e.g. × at the reconnect a recruit returns to its connected assignment (no decision needed) 459ms
+- M20 [src/engine/permanent.ts] the Monument of Eternity is also a stat source (a duplicate layer): detected by 1 failing test(s); e.g. × is no stat source (one layer only): combat stats are identical with and without Eternity levels 198ms
+- M21 [src/s5/settlement.ts] a retry runs again instead of replaying: detected by 6 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 1307ms
+- M22 [src/s5/settlement.ts] the commit is not compare-and-swap (a stale decision overwrites): detected by 1 failing test(s); e.g. × a stale load, a wrong branch and a failed calculation change nothing 514ms
+- M23 [src/s5/settlement.ts] the failure before the commit happens after it: detected by 1 failing test(s); e.g. × failure immediately before the commit leaves nothing; immediately after, the retry replays and nothing is credited twice 1708ms
+- M24 [src/s5/settlement.ts] the reconnect leaves the cursor at the batch start (the absence can be claimed again): detected by 9 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 1878ms
+- M25 [src/s5/settlement.ts] a refused request commits no receipt (a retry is decided afresh): detected by 1 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 1778ms
+- M26 [src/s5/summary.ts] the summary is recomputed from the current account (no baseline): detected by 1 failing test(s); e.g. × the committed summary equals the actual balance and EXP changes; a refusal answers its retry the same way 1714ms
+- M27 [src/l2/simState.ts] the absence identity is not checked against the session: detected by 1 failing test(s); e.g. × refuses an absence identity that is not the session it follows 9ms
+- M28 [src/l2/simState.ts] game time beyond the credited duration is accepted: detected by 1 failing test(s); e.g. × refuses game time beyond the credited duration (rates zeroed) 9ms
+- M29 [src/l2/simState.ts] a dead hero needs no respawn event while away (live events only while connected): detected by 1 failing test(s); e.g. × while away, a dead hero needs its respawn and a knocked-out recruit its recovery 8530ms
+- M30 [src/l2/simCheckpoint.ts] a grown schedule that starts before the checkpoint is accepted (backwards time): detected by 1 failing test(s); e.g. × storage partitioning never changes the result: stepped, saved and restored mid-absence, and a schedule that grows at the reconnect 41323ms
+- M31 [src/core/ledger/boundedLedger.ts] a ledger value sees records appended after it (no length bound in lookups): detected by 2 failing test(s); e.g. × C9: branches from any snapshot are isolated; replay and conflict are judged per branch 4ms
+- M32 [src/core/ledger/boundedLedger.ts] an older ledger value appends in place (a branch corrupts its sibling): detected by 2 failing test(s); e.g. × C9: branches from any snapshot are isolated; replay and conflict are judged per branch 6ms
+- M33 [src/engine/legion.ts] the stats cache ignores the level: detected by 5 failing test(s); e.g. × existing gameplay is unchanged: Monument-buying runs give the S4 package event logs, in both pooling modes 254ms
+- M34 [src/s5/settlement.ts] A: the cursor is not bound to the checkpoint's progress in an absence: detected by 1 failing test(s); e.g. × M34: a cursor inconsistent with the checkpoint progress in an absence is refused even with no receipt to compare 352ms
+- M35 [src/s5/settlement.ts] A: retained receipts are not checked for shape: detected by 1 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 662ms
+- M36 [src/s5/settlement.ts] A: a detailed receipt is not bound to its stream receipt (detail digest): detected by 2 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 1018ms
+- M37 [src/s5/settlement.ts] A: the latest receipt is not bound to the stored checkpoint and cursor: detected by 1 failing test(s); e.g. × M37: a latest receipt that does not describe the stored checkpoint is refused 456ms
+- M38 [src/s5/settlement.ts] B: a replay returns no retained detail: detected by 1 failing test(s); e.g. × a response lost after commit: the retry returns the original detailed summary, retained, never recomputed 1980ms
+- M39 [src/s5/settlement.ts] B: the latest welcome-back is not kept apart from the receipt window: detected by 2 failing test(s); e.g. × a wrong absence identity in the cursor, receipts [null], and edited welcome-back totals are refused 1061ms
+- M40 [src/s5/settlement.ts] C: the persisted schedule is never compacted: detected by 1 failing test(s); e.g. × 150 repeated reconnects: the persisted schedule stays at the current session, the record stops growing, and the state equals the uncompact

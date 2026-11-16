@@ -1,0 +1,42 @@
+# S5 gates start 2026-11-15T22:09:30Z
+{"example":"absence-30h-pol5","keyEvents":360,"creditedHours":16.2,"settledEqualsTraced":true}
+{"example":"absence-beyond-cap-80h","keyEvents":400,"creditedHours":28.8,"settledEqualsTraced":true}
+{"example":"absence-configured-gathering","keyEvents":162,"creditedHours":12,"settledEqualsTraced":true}
+{"example":"absence-production-shortage","keyEvents":400,"creditedHours":3.6,"settledEqualsTraced":true}
+time examples: 24 s
+## mutation set 22:09:54Z
+S5 mutation check: 33 planted bugs, 30 detected, 3 not detected; all files restored: True
+time mutation-set: 2065 s
+## suites 22:44:19Z
+time typecheck: 1 s
+time tests: 68 s
+time test-stats: 4 s
+time fixtures: 2 s
+time schemas: 1 s
+time oracle: 3 s
+tests:       Tests  1655 passed (1655)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 669; problems: 0
+oracle: oracle summary: 22 groups, 0 failing
+typecheck: typecheck: exit code 0
+## historical controls (fresh) and the exact dependency cache 22:45:42Z
+time historical: 0 s
+controls:  lines with MATCH,  with MISMATCH
+cache: 
+## registration, preservation, git, frozen 22:45:42Z
+total changed: 0
+preservation problems: 0
+patch vs l2-checkpoint: 70 file diffs, 10320 lines
+path/size/mtime list vs M0 start: IDENTICAL
+content SHA-256 list vs M0 start: IDENTICAL
+combined fingerprint: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d (M0: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d)
+frozen HEAD: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; Original v1 working files: 12 (M0: 12)
+time all gates: 2176 s
+done 2026-11-15T22:45:46Z
+## follow-up after the gates 22:59:15Z
+historical controls (re-run after a script fix; the gate step had failed on a shell quoting error): 9 MATCH, 0 MISMATCH
+cache: cache: 0 HIT (reused, not executed), 45 MISS (must be executed)
+mutation follow-up (3 tests added for M5, M7, M19): S5 mutation check: 3 planted bugs, 3 detected, 0 not detected; all files restored: True
+tests after the follow-up:       Tests  1658 passed (1658)
+registration: total changed: 0; preservation: preservation problems: 0
+patch vs l2-checkpoint: 70 file diffs, 10378 lines

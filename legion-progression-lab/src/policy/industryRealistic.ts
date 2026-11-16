@@ -167,7 +167,7 @@ function craftCommands(obs: LegionObservation, p: Pending, roles: Map<string, In
   const order = [smith, 'hero', ...obs.legion.roster.map((c) => c.id)].filter((x): x is string => x !== undefined);
   const crafter = order.find((id) => r.qualified.includes(id) && !(obs.legion.roster.find((c) => c.id === id)?.inCombat ?? true));
   if (crafter === undefined) return [];
-  const newId = `item:${ind.items.length + 1}`;
+  const newId = ind.nextItemId;
   if (!r.consumesLowerTierSameSlot) return [{ type: 'Craft', crafterId: crafter, recipeId: r.id }, { type: 'Equip', characterId: p.target.id, itemId: newId }];
   // Consume: a free inventory candidate (lowest ID), else the wearer's own lower-tier item (unequipped first, if unprotected).
   const free = r.consumeCandidates[0];

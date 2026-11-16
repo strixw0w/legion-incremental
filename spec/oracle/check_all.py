@@ -30,6 +30,7 @@ steps = [
     ("S4 families", ["s4_oracle.py", "--check"] + [fixture(n) for n in ("permanent-rules", "permanent-acceptance")]),
     ("L2 families", ["l2_oracle.py", "--check"] + [fixture(n) for n in ("l2-ranges", "l2-requests", "l2-work", "l2-settlement")]),
     ("L2.1 families", ["l21_oracle.py", "--check"] + [fixture(n) for n in ("l21-requests", "l21-credits", "l21-lifecycle", "l21-delivery")]),
+    ("S5 families", ["s5_oracle.py", "--check"] + [fixture(n) for n in ("s5-offline-credit", "s5-settlement-timing")]),
 ]
 _sweep_index = os.path.join(LAB, "content", "tables", "xp-sweep.index.json")
 if os.path.exists(_sweep_index):

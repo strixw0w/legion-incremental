@@ -15,8 +15,13 @@
  *    and accepted, since the engine discards them when they come up.
  * The ledger (L1 validated reconstruction), the reservation balance and the S4 permanent domain are checked as well.
  */
+import { creditedMs, offlineRules, secondRateE8, type OfflineOptions } from '../engine/offline.ts';
 import { balance } from '../core/ledger/ledger.ts';
+import { reconstructBoundedLedger } from '../core/ledger/boundedLedger.ts';
+import { reconstructBoundedReferenceLedger } from '../core/ledger/boundedReferenceLedger.ts';
 import { reconstructPersistentLedger } from '../core/ledger/persistentLedger.ts';
+import { encounterNumber } from '../engine/legionCredit.ts';
+import { count, has, maxOf, rangeProblems, type RangeSet } from './ranges.ts';
 import { permanentStateProblems } from '../engine/permanent.ts';
 import type { LegionOptions } from '../engine/legion.ts';
 import { EQUIP_SLOTS, PROFESSION_IDS, type IndustryContent } from '../model/industryContent.ts';
@@ -66,8 +71,9 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
   const content = options.content as unknown as LegionContent & IndustryContent & PermanentContent & { table: readonly number[]; zones: readonly { spawnSlots: number }[] };
   const industryOn = options.industry === true;
   const permanentOn = options.permanent === true;
-  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : [])];
-  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'})`)) return P.list;
+  const offlineOn = options.offline !== undefined;
+  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : []), ...(offlineOn ? ['offline'] : [])];
+  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'}${offlineOn ? ', offline on' : ''})`)) return P.list;
   const st = x as O;
   if (!P.need(isInt(st['tMs']), 'state: time is not a non-negative safe integer')) return P.list;
   const tMs = st['tMs'] as number;
@@ -122,7 +128,11 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
   if (P.obj(boss, ['opened', 'completed', 'attempts'], 'boss gate')) P.need(typeof boss['opened'] === 'boolean' && typeof boss['completed'] === 'boolean' && isInt(boss['attempts']), 'boss gate: flags or attempts are malformed');
   const ses = st['session'];
   if (P.obj(ses, ['index', 'open', 'startMs', 'endMs'], 'session')) {
-    P.need(isInt(ses['index'], 0, Math.max(0, options.sessions.length - 1)) && typeof ses['open'] === 'boolean' && isInt(ses['startMs']) && isInt(ses['endMs']) && (ses['startMs'] as number) <= (ses['endMs'] as number), 'session: index, flag or times are malformed');
+    // Owner §7 B: before the first session opens the engine's state is the pre-session one (index −1, closed, 0, 0).
+    const pre = ses['index'] === -1 && ses['open'] === false && ses['startMs'] === 0 && ses['endMs'] === 0;
+    const off = options.sessionOffset ?? 0;
+    P.need(pre || (isInt(ses['index'], off, off + Math.max(0, options.sessions.length - 1)) && typeof ses['open'] === 'boolean' && isInt(ses['startMs']) && isInt(ses['endMs']) && (ses['startMs'] as number) <= (ses['endMs'] as number)), 'session: index, flag or times are malformed');
+    if (pre) P.need(off === 0 && (options.sessions.length === 0 || tMs <= (options.sessions[0] as { startMs: number }).startMs), 'session: the pre-session state after the first session should have opened');
   }
   const time = st['time'];
   if (P.obj(time, ['activeManualMs', 'connectedAutoFarmMs', 'offlineMs', 'accountedToMs'], 'time accounting')) P.need(isInt(time['activeManualMs']) && isInt(time['connectedAutoFarmMs']) && isInt(time['offlineMs']) && atOrBefore(time['accountedToMs']), 'time accounting: a duration is negative or accounted beyond the state time');
@@ -130,7 +140,7 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
   // Ledger (L1 validated reconstruction).
   let ledger: ReturnType<typeof reconstructPersistentLedger> | null = null;
   try {
-    ledger = reconstructPersistentLedger(st['ledger']);
+    ledger = options.ledger === 'bounded' ? reconstructBoundedLedger(st['ledger']) : options.ledger === 'bounded-reference' ? reconstructBoundedReferenceLedger(st['ledger']) : reconstructPersistentLedger(st['ledger']);
   } catch (e) {
     P.need(false, `ledger: does not reconstruct (${(e as Error).message})`);
   }
@@ -184,9 +194,9 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
         }
       });
     }
-    registryProblems(P, lg['credits'], 'legion credits', true, charIds);
+    registryProblems(P, lg['credits'], 'legion credits', true, charIds, options.identity === 'l2' ? { chars, encounterSeq: encSeq } : null);
   }
-  registryProblems(P, st['credits'], 'credits', false, charIds);
+  registryProblems(P, st['credits'], 'credits', false, charIds, null);
 
   // Encounter.
   const enc = st['encounter'];
@@ -216,11 +226,86 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
       if (P.list.length === 0) for (const q of permanentStateProblems(content.permanent, p as unknown as PermanentState)) P.need(false, `permanent: ${q}`);
     }
   }
+  // Offline (S5), required exactly when the switch is on (owner §7 C: the feature-dependent offline state).
+  if (offlineOn && P.list.length === 0) offlineProblems(P, st, chars, options);
   return P.list;
 }
 
+const SPEC_KINDS = ['combat', 'squad', 'worker', 'gathering', 'smithing', 'idle'];
+/** The absence's progress baseline (src/engine/offline.ts ProgressSnapshot): integers per resource, character and zone. */
+function baselineOk(b: unknown, chars: readonly O[], zones: number): boolean {
+  if (!isObj(b) || !exact(b, ['balances', 'chars', 'kills', 'accessible', 'bestiary', 'emblems', 'granted', 'settled', 'nextItem'])) return false;
+  if (!isObj(b['balances']) || !Object.values(b['balances']).every((v) => isInt(v))) return false;
+  if (!isObj(b['chars']) || !Object.keys(b['chars']).every((k) => chars.some((c) => c['id'] === k))) return false;
+  for (const v of Object.values(b['chars'])) if (!isObj(v) || !exact(v, ['level', 'totalExp', 'mastery', 'prof']) || !isInt(v['level'], 1) || !isInt(v['totalExp']) || !isInt(v['mastery']) || !isObj(v['prof']) || !Object.values(v['prof']).every((x) => isInt(x))) return false;
+  if (!Array.isArray(b['kills']) || b['kills'].length !== zones || !b['kills'].every((x) => isInt(x))) return false;
+  if (!Array.isArray(b['accessible']) || b['accessible'].length !== zones || !b['accessible'].every((x) => typeof x === 'boolean')) return false;
+  return ['bestiary', 'emblems', 'granted', 'settled', 'nextItem'].every((k) => isInt(b[k]));
+}
+/** An offline specification: its kind and exactly its fields (zone inside the content, known node). */
+function specOk(v: unknown, content: { zones: readonly unknown[]; nodeById?: ReadonlyMap<string, unknown> }): boolean {
+  if (!isObj(v) || !isStr(v['kind']) || !SPEC_KINDS.includes(v['kind'])) return false;
+  const k = v['kind'];
+  if (k === 'combat' || k === 'worker') return exact(v, ['kind', 'zoneOrder']) && isInt(v['zoneOrder'], 1, content.zones.length);
+  if (k === 'gathering') return exact(v, ['kind', 'nodeId']) && isStr(v['nodeId']) && content.nodeById !== undefined && content.nodeById.has(v['nodeId']);
+  return exact(v, ['kind']);
+}
+
+/**
+ * The S5 offline record (src/engine/offline.ts): the wall/game anchor, configured and remembered assignments, the
+ * absence in progress, and their consistency with the session state and the schedule (game time never beyond the
+ * credited duration the schedule allows).
+ */
+function offlineProblems(P: Problems, st: O, chars: readonly O[], options: LegionOptions): void {
+  const content = options.content as unknown as { zones: readonly unknown[]; nodeById?: ReadonlyMap<string, unknown> };
+  const rules = offlineRules(options.offline as OfflineOptions);
+  const o = st['offline'];
+  if (!P.obj(o, ['anchor', 'config', 'heroLast', 'lastIndependent', 'absence', 'absences'], 'offline')) return;
+  const tMs = st['tMs'] as number;
+  const ses = st['session'] as O;
+  const ids = new Set(chars.map((c) => c['id'] as string));
+  const recruits = new Set([...ids].filter((i) => i !== 'hero'));
+  const an = o['anchor'];
+  P.need(isObj(an) && exact(an, ['wallMs', 'gameMs']) && isInt(an['wallMs']) && isInt(an['gameMs'], 0, tMs), 'offline: the anchor is not a wall and game time at or before the state time');
+  P.need(isObj(o['config']) && Object.entries(o['config']).every(([k, v]) => ids.has(k) && specOk(v, content)), 'offline: a configured assignment is malformed or for an unknown character');
+  P.need(o['heroLast'] === null || (specOk(o['heroLast'], content) && ['combat', 'gathering'].includes((o['heroLast'] as O)['kind'] as string)), "offline: the hero's last activity is not combat or gathering");
+  P.need(isObj(o['lastIndependent']) && Object.entries(o['lastIndependent']).every(([k, v]) => recruits.has(k) && specOk(v, content) && ['worker', 'gathering', 'smithing'].includes((v as O)['kind'] as string)), "offline: a recruit's last independent job is malformed");
+  const pre = ses['index'] === -1;
+  const open = ses['open'] === true;
+  const idx = ses['index'] as number;
+  const begun = pre ? 0 : open ? idx : idx + 1;
+  P.need(o['absences'] === begun, `offline: ${String(o['absences'])} absences begun, but the session state implies ${begun}`);
+  const a = o['absence'];
+  const spec = (i: number) => options.sessions[i - (options.sessionOffset ?? 0)] as { startMs: number; endMs: number };
+  if (pre || open) {
+    P.need(a === null, 'offline: an absence is recorded while connected or before the first session');
+    if (open && isObj(an)) P.need(an['gameMs'] === ses['startMs'] && an['wallMs'] === spec(idx).startMs && ses['endMs'] === (ses['startMs'] as number) + spec(idx).endMs - spec(idx).startMs, 'offline: the connected anchor or session end does not match the schedule');
+    return;
+  }
+  if (!P.obj(a, ['index', 'wallStartMs', 'gameStartMs', 'unlocked', 'normalBp', 'rateE8', 'firstMs', 'secondMs', 'snapshot', 'online', 'heroPending', 'baseline'], 'offline absence')) return;
+  P.need(baselineOk(a['baseline'], chars, content.zones.length), 'offline absence: the progress baseline is malformed');
+  P.need(a['index'] === idx, 'offline absence: its identity is not the session it follows');
+  P.need(isInt(a['wallStartMs'], spec(idx).startMs, spec(idx).endMs) && isInt(a['gameStartMs'], 0, tMs), 'offline absence: its wall start is outside its session, or its game start is after the state time');
+  P.need(typeof a['unlocked'] === 'boolean' && typeof a['heroPending'] === 'boolean' && (a['unlocked'] === true || a['heroPending'] === false), 'offline absence: flags are malformed');
+  P.need(a['firstMs'] === rules.firstMs && a['secondMs'] === rules.secondMs, 'offline absence: window lengths differ from the rules');
+  if (a['unlocked'] === true) {
+    P.need(isInt(a['normalBp'], 0, 10_000) && a['rateE8'] === secondRateE8(a['normalBp'] as number, rules.second), 'offline absence: the captured rates are not a normal rate and its second-window rate');
+    P.need(isObj(a['snapshot']) && exact(a['snapshot'], [...ids]) && Object.values(a['snapshot']).every((e) => isObj(e) && exact(e, ['spec', 'reason']) && specOk(e['spec'], content) && isStr(e['reason'])), 'offline absence: the assignment snapshot is not one effective assignment per character');
+    P.need(isObj(a['online']) && exact(a['online'], [...recruits]) && Object.values(a['online']).every((v) => isObj(v) && isStr(v['kind'])), 'offline absence: the connected assignments are not one per recruit');
+  } else {
+    P.need(a['normalBp'] === 0 && a['rateE8'] === 0 && isObj(a['snapshot']) && Object.keys(a['snapshot']).length === 0 && isObj(a['online']) && Object.keys(a['online']).length === 0, 'offline absence: a locked absence carries rates or assignments');
+  }
+  if (P.list.length > 0) return;
+  // Game time within the absence never exceeds what the schedule allows (the credited duration up to the next start).
+  const next = options.sessions[idx + 1 - (options.sessionOffset ?? 0)] as { startMs: number } | undefined;
+  const w = next === undefined ? null : next.startMs - (a['wallStartMs'] as number);
+  const span = a['unlocked'] === true ? creditedMs(w ?? rules.firstMs + rules.secondMs, a['normalBp'] as number, a['rateE8'] as number, rules.firstMs, rules.secondMs) : w;
+  if (span !== null) P.need(tMs <= (a['gameStartMs'] as number) + span, 'offline absence: game time is beyond the credited duration the schedule allows');
+}
+
 /** A kill-credit registry: pending claims, the committed identities (flat list, oldest first), their count. */
-function registryProblems(P: Problems, r: unknown, what: string, legion: boolean, charIds: ReadonlySet<string>): void {
+function registryProblems(P: Problems, r: unknown, what: string, legion: boolean, charIds: ReadonlySet<string>, l2: { chars: readonly O[]; encounterSeq: number } | null): void {
+  if (l2) return registryProblemsL2(P, r, what, charIds, l2);
   if (!P.obj(r, ['pending', 'committed', 'committedCount'], what)) return;
   const committed = r['committed'];
   const ids = new Set<string>();
@@ -243,9 +328,59 @@ function registryProblems(P: Problems, r: unknown, what: string, legion: boolean
   }
 }
 
+/**
+ * S5 bounded identity: the committed chain is absent (an empty list), every stream's settled encounter numbers form a
+ * range set within the numbers the engine has allocated (squad: the encounter counter; a worker: its fight counter),
+ * and no pending claim is already settled (exactly-once).
+ */
+function registryProblemsL2(P: Problems, r: unknown, what: string, charIds: ReadonlySet<string>, l2: { chars: readonly O[]; encounterSeq: number }): void {
+  if (!P.obj(r, ['pending', 'committed', 'committedCount', 'settled'], what)) return;
+  P.need(Array.isArray(r['committed']) && (r['committed'] as unknown[]).length === 0, `${what}: the bounded identity keeps no committed chain`);
+  const settled = r['settled'];
+  if (!P.need(isObj(settled), `${what}: settled is not an object`)) return;
+  let total = 0;
+  for (const [stream, rs] of Object.entries(settled as O)) {
+    const worker = stream.startsWith('worker:') ? stream.slice(7) : null;
+    if (!P.need(stream === 'squad' || (worker !== null && charIds.has(worker) && worker !== 'hero'), `${what}: unknown credit stream ${stream}`)) continue;
+    const rp = rangeProblems(rs, `${what} ${stream}`);
+    rp.forEach((m) => P.need(false, m));
+    if (rp.length > 0) continue;
+    const limit = worker === null ? l2.encounterSeq : ((l2.chars.find((c) => c['id'] === worker)?.['worker'] as O | undefined)?.['seq'] as number | undefined) ?? 0;
+    P.need(maxOf(rs as RangeSet) <= limit, `${what} ${stream}: a settled encounter number above the allocated ${limit}`);
+    total += count(rs as RangeSet);
+  }
+  P.need(isInt(r['committedCount'], 0, total), `${what}: committed count ${String(r['committedCount'])} exceeds the ${total} settled encounters`);
+  const pending = r['pending'];
+  if (!P.need(Array.isArray(pending), `${what}: pending is not a list`)) return;
+  for (const c of pending as unknown[]) {
+    if (!P.obj(c, ['encounterId', 'instanceId', 'zoneOrder', 'boss', 'stream', 'eligible'], `${what} pending claim`)) return;
+    P.need(isStr(c['encounterId']) && isStr(c['instanceId']) && isInt(c['zoneOrder'], 1) && typeof c['boss'] === 'boolean' && isStr(c['stream']) && Array.isArray(c['eligible']) && (c['eligible'] as unknown[]).every((e) => isStr(e) && charIds.has(e)), `${what}: a pending claim is malformed`);
+    const n = isStr(c['stream']) && isStr(c['encounterId']) ? encounterNumber(c['stream'], c['encounterId']) : null;
+    const rs = isStr(c['stream']) && Object.hasOwn(settled as O, c['stream']) ? ((settled as O)[c['stream']] as RangeSet) : null;
+    P.need(n !== null && !(rs !== null && rangeProblems(rs, '').length === 0 && has(rs, n)), `${what}: a pending claim has no encounter number or is already settled`);
+  }
+}
+
 function industryProblems(P: Problems, x: unknown, content: IndustryContent, chars: readonly O[], charIds: ReadonlySet<string>, tMs: number, ledger: ReturnType<typeof reconstructPersistentLedger> | null, options: LegionOptions): void {
-  if (!P.obj(x, INDUSTRY_KEYS, 'industry')) return;
+  const l2 = options.identity === 'l2';
+  if (!P.obj(x, l2 ? [...INDUSTRY_KEYS, 'nextItem', 'nextJob'] : INDUSTRY_KEYS, 'industry')) return;
   const ind = x;
+  if (l2) {
+    // S5 bounded identity: counters above every live number; spent items and unreferenced finished jobs are retired.
+    P.need(isInt(ind['nextItem'], 1) && isInt(ind['nextJob'], 1), 'industry: item and job counters are not positive integers');
+    const num = (id: unknown, prefix: string) => (isStr(id) && new RegExp(`^${prefix}:([1-9][0-9]*)$`).test(id) ? Number(id.slice(prefix.length + 1)) : -1);
+    if (Array.isArray(ind['items'])) for (const it of ind['items'] as O[]) {
+      P.need(isObj(it) && num(it['id'], 'item') >= 1 && num(it['id'], 'item') < (ind['nextItem'] as number), `item ${String(isObj(it) ? it['id'] : '?')}: number not below the item counter`);
+      P.need(!isObj(it) || !isObj(it['location']) || (it['location']['kind'] !== 'consumed' && it['location']['kind'] !== 'salvaged'), `item ${String(isObj(it) ? it['id'] : '?')}: a spent item is not retired`);
+    }
+    if (Array.isArray(ind['jobs'])) {
+      const used = new Set<string>([...Object.values(isObj(ind['work']) ? ind['work'] : {}), ...Object.values(isObj(ind['pending']) ? ind['pending'] : {})].map((w) => (isObj(w) && w['kind'] === 'unit' && isStr(w['jobId']) ? w['jobId'] : '')));
+      for (const j of ind['jobs'] as O[]) {
+        P.need(isObj(j) && num(j['id'], 'job') >= 1 && num(j['id'], 'job') < (ind['nextJob'] as number), `job ${String(isObj(j) ? j['id'] : '?')}: number not below the job counter`);
+        P.need(!isObj(j) || (j['state'] !== 'complete' && j['state'] !== 'cancelled') || used.has(j['id'] as string), `job ${String(isObj(j) ? j['id'] : '?')}: a finished job nothing refers to is not retired`);
+      }
+    }
+  }
   const known = (id: unknown) => isStr(id) && charIds.has(id);
   const resources = new Set(content.resources.map((r) => r.id));
   P.need(isInt(ind['crafts']) && isInt(ind['gatheringMs']) && isInt(ind['settled']) && (ind['passQueuedAt'] === null || isInt(ind['passQueuedAt'])), 'industry: counters are malformed');
@@ -384,6 +519,60 @@ export const EVENT_RULES: Readonly<Record<string, KindRule>> = {
   PermanentRecompute: R(4, 'permanent', /^permanent$/, false, false, null),
 };
 
+/**
+ * Owner §7 A: every live engine state has the continuation event that will advance it, still queued and current (not
+ * stale). Stale events are legitimate and never required. Rules (each one an engine invariant between steps):
+ *  - sessions: before the first, its start; an open session, its end; between sessions, the next start;
+ *  - an encounter: its enemy attack, the hero's swing (current epoch), and for a boss its timer;
+ *  - the hero: dead in a session, the respawn; walking, the arrival; travelling, the travel arrival; resting, the
+ *    regeneration (start or tick of the current chain);
+ *  - a recruit knocked out in a session and not waiting for the encounter end: its recovery (current knockout count);
+ *  - a worker's fight: one of that fight's events;
+ *  - industry: each work in progress, its completion; each pending settlement, its settle event;
+ *  - each pending kill claim, its credit event.
+ */
+export function liveEventProblems(st: O, events: readonly O[], options: LegionOptions): string[] {
+  const out: string[] = [];
+  const has = (kind: string, f: (e: O) => boolean = () => true) => events.some((e) => e['kind'] === kind && f(e));
+  const data = (e: O) => (isObj(e['data']) ? e['data'] : {});
+  const ses = st['session'] as O;
+  const h = st['hero'] as O;
+  const enc = st['encounter'] as O | null;
+  const lg = st['legion'] as O;
+  const open = ses['open'] === true;
+  const idx = ses['index'] as number;
+  // S5: gameplay systems also run during an unlocked absence.
+  const off = st['offline'] as O | undefined;
+  const active = open || (off !== undefined && isObj(off['absence']) && off['absence']['unlocked'] === true);
+  if (!open && idx + 1 < (options.sessionOffset ?? 0) + options.sessions.length && !has('SessionStarted', (e) => data(e)['index'] === idx + 1)) out.push(`live events: session ${idx + 1} has no queued start`);
+  if (open && !has('SessionEnded', (e) => data(e)['index'] === idx)) out.push(`live events: open session ${idx} has no queued end`);
+  if (enc !== null) {
+    if (!has('EnemyAttack', (e) => e['encounterId'] === enc['id'])) out.push(`live events: encounter ${String(enc['id'])} has no queued enemy attack`);
+    if (!has('HeroSwing', (e) => e['encounterId'] === enc['id'] && e['epoch'] === h['epoch'])) out.push(`live events: encounter ${String(enc['id'])} has no current hero swing`);
+    if (enc['kind'] === 'boss' && !has('BossTimerExpired', (e) => e['encounterId'] === enc['id'])) out.push(`live events: boss encounter ${String(enc['id'])} has no queued timer`);
+  }
+  const status = h['status'];
+  if (active && status === 'dead' && !has('HeroRespawned', (e) => e['epoch'] === h['epoch'])) out.push('live events: the dead hero has no current respawn');
+  if (status === 'walking' && !has('EngageArrived', (e) => e['epoch'] === h['epoch'])) out.push('live events: the walking hero has no current arrival');
+  if (status === 'travelling' && !has('TravelArrived', (e) => e['epoch'] === h['epoch'])) out.push('live events: the travelling hero has no current travel arrival');
+  if (status === 'resting' && !has('RegenTick', (e) => data(e)['chain'] === h['regenChain']) && !has('RegenStart', (e) => e['epoch'] === h['epoch'])) out.push('live events: the resting hero has no current regeneration');
+  for (const c of (lg['chars'] as O[]).slice(1)) {
+    if (active && c['knockedOut'] === true && c['recoverPending'] !== true && !has('MemberRecovered', (e) => data(e)['member'] === c['id'] && data(e)['ko'] === c['koCount'])) out.push(`live events: knocked-out ${String(c['id'])} has no current recovery`);
+    const fight = (c['worker'] as O)['fight'] as O | null;
+    if (fight !== null && !events.some((e) => isStr(e['kind']) && e['kind'].startsWith('Worker') && data(e)['fight'] === fight['id'])) out.push(`live events: worker fight ${String(fight['id'])} has no queued event`);
+  }
+  const ind = st['industry'] as O | undefined;
+  if (ind && isObj(ind['work'])) {
+    for (const [who, w] of Object.entries(ind['work'] as O)) {
+      const kind = (w as O)['kind'] === 'gather' ? 'GatherAction' : 'UnitComplete';
+      if (!has(kind, (e) => data(e)['member'] === who && data(e)['work'] === (w as O)['id'])) out.push(`live events: work ${String((w as O)['id'])} of ${who} has no queued completion`);
+    }
+    for (const id of Object.keys(isObj(ind['pending']) ? (ind['pending'] as O) : {})) if (!has('IndustrySettle', (e) => data(e)['pending'] === id)) out.push(`live events: pending settlement ${id} has no queued settle`);
+  }
+  for (const c of ((lg['credits'] as O)['pending'] as O[])) if (!has('KillCredited', (e) => data(e)['encounterId'] === c['encounterId'] && data(e)['stream'] === c['stream'])) out.push(`live events: pending kill claim ${String(c['encounterId'])} has no queued credit`);
+  return out;
+}
+
 export function simRuntimeProblems(x: unknown, st: O, options: LegionOptions): string[] {
   const P = new Problems();
   if (!P.obj(x, ['seq', 'logCount', 'logDigest', 'counters', 'policyDecisionsAt', 'events'], 'runtime')) return P.list;
@@ -392,7 +581,8 @@ export function simRuntimeProblems(x: unknown, st: O, options: LegionOptions): s
   P.need(isInt(rt['seq']) && isInt(rt['logCount']), 'runtime: counters are not non-negative integers');
   P.need(rt['logDigest'] === null || (isStr(rt['logDigest']) && /^[0-9a-f]{64}$/.test(rt['logDigest'])), 'runtime: log digest is not null or a SHA-256 digest');
   const pd = rt['policyDecisionsAt'];
-  P.need(isObj(pd) && exact(pd, ['t', 'n']) && isInt(pd['t']) && isInt(pd['n']), 'runtime: policy decision counter is malformed');
+  // Before the first policy decision the counter's time is −1 (the engine's initial value).
+  P.need(isObj(pd) && exact(pd, ['t', 'n']) && (pd['t'] === -1 || isInt(pd['t'])) && isInt(pd['n']), 'runtime: policy decision counter is malformed');
   const c = rt['counters'];
   const counterOk = (v: unknown): boolean => isInt(v) || (isObj(v) && Object.values(v).every((n) => isInt(n)));
   P.need(isObj(c) && exact(c, ['eventsProcessed', 'staleDiscarded', 'commandsAccepted', 'commandsRejected', 'duplicateCredits', 'rejectedCredits', 'policyDecisions', 'policyReports']) && Object.values(c).every(counterOk), 'runtime: run counters are malformed');
@@ -437,5 +627,6 @@ export function simRuntimeProblems(x: unknown, st: O, options: LegionOptions): s
     }
     prev = ev;
   }
+  if (P.list.length === 0) for (const m of liveEventProblems(st, rt['events'] as O[], options)) P.need(false, m);
   return P.list;
 }

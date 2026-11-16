@@ -1,0 +1,9 @@
+POL4-BALANCED2 l1 7d: 26521276 B (ledger 16400879, credits 10091155, items 7777/49), heap 167.1 MB, 19149 ms
+POL4-BALANCED2 l2 7d: 67703 B (ledger 50654, credits 96, items 4295/25), heap 27 MB, 15356 ms
+POL4-MONUMENT2 l1 7d: 26480300 B (ledger 16359705, credits 10109950, items 2/0), heap 167.4 MB, 15896 ms
+POL4-MONUMENT2 l2 7d: 63688 B (ledger 52925, credits 96, items 2/0), heap 27.3 MB, 13238 ms
+POL4-BESTIARY l1 7d: 26500118 B (ledger 16371619, credits 10117657, items 2/0), heap 167.4 MB, 16254 ms
+POL4-BESTIARY l2 7d: 62528 B (ledger 51568, credits 96, items 2/0), heap 27.2 MB, 13545 ms
+POL4-BALANCED2 l2 28d: reached day 11 (stopped day 12: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content): 79773 B (ledger 52152, credits 96, items 4295/25), heap 28.6 MB, 24274 ms; max over days 83996 B
+POL4-MONUMENT2 l2 28d: reached day 11 (stopped day 12: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content): 73354 B (ledger 52028, credits 96, items 2/0), heap 28.5 MB, 20998 ms; max over days 77644 B
+POL4-BESTIARY l2 28d: reached day 11 (stopped day 12: XP_TABLE_EXHAUSTED: award runs past the end of the EXP table; extend the table through content): 73157 B (ledger 51617, credits 96, items 2/0), heap 28.2 MB, 21509 ms; max over days 78088 B

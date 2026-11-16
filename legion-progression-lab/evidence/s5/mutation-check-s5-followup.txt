@@ -1,0 +1,8 @@
+M5: DETECTED (1 failing) restored=True | reserve recruits produce offline
+M7: DETECTED (1 failing) restored=True | a combat worker zone needs no prior hero visitation
+M19: DETECTED (1 failing) restored=True | a deployed recruit keeps its connected assignment at the reconnect only if it never changed (no return)
+
+S5 mutation check: 3 planted bugs, 3 detected, 0 not detected; all files restored: True
+- M5 [src/engine/offline.ts] reserve recruits produce offline: detected by 1 failing test(s); e.g. × a reserve recruit produces nothing offline, whatever is configured (D-06) 5ms
+- M7 [src/engine/offline.ts] a combat worker zone needs no prior hero visitation: detected by 1 failing test(s); e.g. × a combat worker zone needs prior hero visitation, when configured and in the preview (D-01) 4ms
+- M19 [src/engine/legion.ts] a deployed recruit keeps its connected assignment at the reconnect only if it never changed (no return): detected by 1 failing test(s); e.g. × at the reconnect a recruit returns to its connected assignment (no decision needed) 320ms

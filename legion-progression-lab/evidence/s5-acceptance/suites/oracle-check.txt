@@ -1,0 +1,71 @@
+
+> legion-progression-lab@0.1.0 oracle:check
+> python -I ../spec/oracle/check_all.py
+
+rng_oracle: 46 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\rng.v1.json)
+xp_oracle fixtures: 30 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\xp.v2.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.candidate.v0.1.0.json)
+exact_oracle numeric: 40 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\numeric.v1.json)
+exact_oracle remainder: 33 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\remainder.v2.json)
+exact_oracle stats: 20 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\stats.v2.json)
+exact_oracle combat: 59 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\combat.v2.json)
+exact_oracle ledger: 15 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\ledger.v1.json)
+exact_oracle canonical-json: 7 cases checked, 0 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\canonical-json.v1.json)
+exact_oracle content: 2 cases checked, 8 hand-only, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\content.v1.json)
+s1_oracle combat-loop: 14 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\combat-loop.v1.json)
+s1_oracle gates: 29 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\gates.v1.json)
+s1_oracle rewards: 7 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\rewards.v1.json)
+s1_oracle credits: 6 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\credits.v1.json)
+s1_oracle estimator: 10 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\estimator.v1.json)
+s2_oracle squad-fight: 7 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\squad-fight.v1.json)
+s2_oracle legion-credit: 7 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\legion-credit.v1.json)
+s2_oracle worker-feasibility: 8 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\worker-feasibility.v1.json)
+s2_oracle ledger-reconstruction: 8 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\ledger-reconstruction.v1.json)
+s3_oracle industry-rules: 26 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\industry-rules.v1.json)
+s3_oracle equipment-ops: 15 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\equipment-ops.v1.json)
+s3_oracle production-queue: 12 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\production-queue.v1.json)
+s3_oracle recipe-validation: 13 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\recipe-validation.v1.json)
+s4_oracle permanent-rules: 28 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\permanent-rules.v1.json)
+s4_oracle permanent-acceptance: 31 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\permanent-acceptance.v1.json)
+l2_oracle l2-ranges: 20 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l2-ranges.v1.json)
+l2_oracle l2-requests: 19 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l2-requests.v1.json)
+l2_oracle l2-work: 14 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l2-work.v1.json)
+l2_oracle l2-settlement: 16 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l2-settlement.v1.json)
+l21_oracle l21-requests: 19 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l21-requests.v1.json)
+l21_oracle l21-credits: 10 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l21-credits.v1.json)
+l21_oracle l21-lifecycle: 12 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l21-lifecycle.v1.json)
+l21_oracle l21-delivery: 16 cases checked, 0 mismatches (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\spec\fixtures\l21-delivery.v1.json)
+s5 oracle: 62/62 cases agree
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a8-p1.6.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a8-p1.8.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a8-p2.0.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a10-p1.6.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a10-p1.8.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a10-p2.0.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a12-p1.6.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a12-p1.8.v0.1.0.json)
+xp_oracle artifact: 200 thresholds; mismatched levels: none; rounding-unstable levels: none (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\content\tables\xp.w1.sweep.a12-p2.0.v0.1.0.json)
+xp_oracle preview: main rows + 9 sweep variants checked, 0 problems (<HOME>\AppData\Local\Temp\claude\278b8a1dbacfe479\21149cb6-cbb9-4084-8aec-c79d4edcb607\scratchpad\s6ck\s5tree\legion-progression-lab\results\s0\S0-R01-curve-preview\semantic.json)
+== rng fixtures
+== xp fixtures
+== xp table artifact
+== exact families
+== S1 / S1.1 families
+== S2 families
+== S2.1 families
+== S3 families
+== S4 families
+== L2 families
+== L2.1 families
+== S5 families
+== xp sweep table a=8 p=1.6
+== xp sweep table a=8 p=1.8
+== xp sweep table a=8 p=2
+== xp sweep table a=10 p=1.6
+== xp sweep table a=10 p=1.8
+== xp sweep table a=10 p=2
+== xp sweep table a=12 p=1.6
+== xp sweep table a=12 p=1.8
+== xp sweep table a=12 p=2
+== S0-R01 preview
+oracle summary: 22 groups, 0 failing

@@ -1,0 +1,36 @@
+# S5 acceptance checks start 2026-11-16T18:03:43Z (rebuilt S5 checkpoint tree; see rebuild-record.txt)
+## full S5 mutation set 18:03:43Z
+time mutation-set: 1218 s
+## suites 18:24:01Z
+time typecheck: 1 s
+time tests: 80 s
+time test-stats: 4 s
+time fixtures: 2 s
+time schemas: 1 s
+time oracle: 4 s
+tests:       Tests  1668 passed (1668)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 669; problems: 0
+schemas: OK    spec/schema/xp-table.schema.json
+oracle: oracle summary: 22 groups, 0 failing
+typecheck: typecheck: exit code 0
+## historical controls (fresh) and the exact dependency cache 18:25:36Z
+time historical: 570 s
+controls: 9 lines with MATCH, 0 with MISMATCH
+cache:      45 MISS 
+## S5 registered reruns on the corrected code (8 workers) 18:35:06Z
+time rerun-S5-E01-boundaries: 14 s
+time rerun-S5-E04-production-shortage: 19 s
+time rerun-S5-E02-reference-vs-batch: 66 s
+S5-E01-boundaries: exit 0; 42 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 3f82d4b45b011e3c
+S5-E04-production-shortage: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 1cea03792a0de960
+S5-E02-reference-vs-batch: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one a3f1ad5417dc9503
+## registration, preservation, git 18:36:45Z
+total changed: 0
+preservation problems: 0
+git: 166 changed or new paths against l2-checkpoint
+time all checks: 1983 s
+done 2026-11-16T18:36:46Z
+note: part 1 (mutation-check-s5-full-final.txt) detected M1-M17 (17/17, all files restored) and then stopped at M18: its pattern was the line acceptance correction C rewrote, so it could not be planted (the script refuses a pattern not found exactly once; nothing was changed). M18 was re-pointed at the rewritten line (the same planted bug) and M18-M40 run as part 2 (mutation-check-s5-full-final-part2.txt). The suites, controls and reruns above ran after part 1 on the restored tree.
+time mutation-set part 2 (M18-M40): 1779 s
+S5 mutation check: 23 planted bugs, 23 detected, 0 not detected; all files restored: True

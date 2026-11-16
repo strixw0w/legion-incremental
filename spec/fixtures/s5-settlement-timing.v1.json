@@ -1,0 +1,598 @@
+{
+  "fixtureSet": "s5-settlement-timing",
+  "fixtureVersion": 1,
+  "specRef": "spec/formulas/s5-offline.md#v1",
+  "status": "candidate",
+  "independence": "S5 rules (spec/formulas/s5-offline.md v1) re-derived by spec/oracle/s5_oracle.py from the rule text with Python integers and exact fractions; the lab side calls the real S5 functions. Derivations are hand-written. Written by the same author as the code (not an independent party).",
+  "cases": [
+    {
+      "id": "s5.tm.play-ok",
+      "kind": "normal",
+      "description": "play within the session",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 1200000
+        },
+        "nowMs": 1200000
+      },
+      "derivation": "Connected, to <= now, to >= cursor, to <= the session end: no refusal.",
+      "expected": {
+        "code": null
+      }
+    },
+    {
+      "id": "s5.tm.play-end",
+      "kind": "boundary",
+      "description": "play exactly to the session end",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 2400000
+        },
+        "nowMs": 2400000
+      },
+      "derivation": "to = E is allowed (the logout itself).",
+      "expected": {
+        "code": null
+      }
+    },
+    {
+      "id": "s5.tm.play-beyond",
+      "kind": "boundary",
+      "description": "play beyond the session end",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 2400001
+        },
+        "nowMs": 2460000
+      },
+      "derivation": "to > E: BEYOND_SESSION.",
+      "expected": {
+        "code": "BEYOND_SESSION"
+      }
+    },
+    {
+      "id": "s5.tm.play-future",
+      "kind": "boundary",
+      "description": "play beyond the trusted clock",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 1200001
+        },
+        "nowMs": 1200000
+      },
+      "derivation": "to > now: FUTURE_TIME (checked before the cursor).",
+      "expected": {
+        "code": "FUTURE_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.play-back",
+      "kind": "boundary",
+      "description": "play before the cursor",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 599999
+        },
+        "nowMs": 1200000
+      },
+      "derivation": "to < cursor: BACKWARDS_TIME.",
+      "expected": {
+        "code": "BACKWARDS_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.play-away",
+      "kind": "normal",
+      "description": "play while away",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "play",
+          "toWallMs": 6600000
+        },
+        "nowMs": 6600000
+      },
+      "derivation": "No open session: NOT_CONNECTED.",
+      "expected": {
+        "code": "NOT_CONNECTED"
+      }
+    },
+    {
+      "id": "s5.tm.settle-ok",
+      "kind": "normal",
+      "description": "settle from the cursor",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "Current absence, from = cursor, to >= from, to <= now.",
+      "expected": {
+        "code": null
+      }
+    },
+    {
+      "id": "s5.tm.settle-zero",
+      "kind": "boundary",
+      "description": "a zero-length batch is allowed",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "toWallMs": 6000000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "to = from is not backwards; it credits nothing.",
+      "expected": {
+        "code": null
+      }
+    },
+    {
+      "id": "s5.tm.settle-overlap",
+      "kind": "normal",
+      "description": "a batch that starts before the cursor overlaps",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 5400000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "from < cursor: OVERLAP (also the partial overlap 90..160 across the cursor 100).",
+      "expected": {
+        "code": "OVERLAP"
+      }
+    },
+    {
+      "id": "s5.tm.settle-full-overlap",
+      "kind": "boundary",
+      "description": "a batch wholly inside the settled interval",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 3000000,
+          "toWallMs": 4800000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "from < cursor: OVERLAP.",
+      "expected": {
+        "code": "OVERLAP"
+      }
+    },
+    {
+      "id": "s5.tm.settle-gap",
+      "kind": "normal",
+      "description": "a batch that starts after the cursor leaves a gap",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 6060000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "from > cursor: GAP.",
+      "expected": {
+        "code": "GAP"
+      }
+    },
+    {
+      "id": "s5.tm.settle-back",
+      "kind": "boundary",
+      "description": "a batch that ends before it starts",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "toWallMs": 5940000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "to < from: BACKWARDS_TIME.",
+      "expected": {
+        "code": "BACKWARDS_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.settle-future",
+      "kind": "boundary",
+      "description": "a batch beyond the trusted clock",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "toWallMs": 12060000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "to > now: FUTURE_TIME.",
+      "expected": {
+        "code": "FUTURE_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.settle-closed",
+      "kind": "normal",
+      "description": "an earlier absence is closed",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:2",
+          "fromWallMs": 6000000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "Names absence 2 < current 3: ABSENCE_CLOSED (it was claimed at its reconnect).",
+      "expected": {
+        "code": "ABSENCE_CLOSED"
+      }
+    },
+    {
+      "id": "s5.tm.settle-unknown",
+      "kind": "normal",
+      "description": "a later absence is unknown",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:4",
+          "fromWallMs": 6000000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "Names absence 4 > 3: ABSENCE_UNKNOWN.",
+      "expected": {
+        "code": "ABSENCE_UNKNOWN"
+      }
+    },
+    {
+      "id": "s5.tm.settle-garbage",
+      "kind": "boundary",
+      "description": "a malformed absence name is unknown",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:x",
+          "fromWallMs": 6000000,
+          "toWallMs": 9600000
+        },
+        "nowMs": 12000000
+      },
+      "derivation": "Not absence:<digits>: ABSENCE_UNKNOWN.",
+      "expected": {
+        "code": "ABSENCE_UNKNOWN"
+      }
+    },
+    {
+      "id": "s5.tm.settle-connected",
+      "kind": "normal",
+      "description": "settling while connected",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:0",
+          "fromWallMs": 600000,
+          "toWallMs": 1200000
+        },
+        "nowMs": 1800000
+      },
+      "derivation": "No current absence and a session open: ABSENCE_CLOSED.",
+      "expected": {
+        "code": "ABSENCE_CLOSED"
+      }
+    },
+    {
+      "id": "s5.tm.settle-pre",
+      "kind": "boundary",
+      "description": "settling before the first session",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": null,
+          "cursorWallMs": 0,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "settle",
+          "absence": "absence:0",
+          "fromWallMs": 0,
+          "toWallMs": 10
+        },
+        "nowMs": 10
+      },
+      "derivation": "No absence and no session: NO_ABSENCE.",
+      "expected": {
+        "code": "NO_ABSENCE"
+      }
+    },
+    {
+      "id": "s5.tm.rec-ok",
+      "kind": "normal",
+      "description": "a reconnect from the cursor",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "atWallMs": 9000000,
+          "endWallMs": 10800000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "Current absence, from = cursor, at in [from, now], end > at.",
+      "expected": {
+        "code": null
+      }
+    },
+    {
+      "id": "s5.tm.rec-empty",
+      "kind": "boundary",
+      "description": "a reconnect whose session is empty",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "atWallMs": 9000000,
+          "endWallMs": 9000000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "end <= at: EMPTY_SESSION.",
+      "expected": {
+        "code": "EMPTY_SESSION"
+      }
+    },
+    {
+      "id": "s5.tm.rec-future",
+      "kind": "boundary",
+      "description": "a reconnect after the trusted clock",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "atWallMs": 9060000,
+          "endWallMs": 10800000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "at > now: FUTURE_TIME (before EMPTY_SESSION).",
+      "expected": {
+        "code": "FUTURE_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.rec-back",
+      "kind": "boundary",
+      "description": "a reconnect before the cursor's start",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "atWallMs": 5940000,
+          "endWallMs": 10800000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "at < from: BACKWARDS_TIME.",
+      "expected": {
+        "code": "BACKWARDS_TIME"
+      }
+    },
+    {
+      "id": "s5.tm.rec-twice",
+      "kind": "normal",
+      "description": "the same absence claimed twice",
+      "input": {
+        "state": {
+          "sessionOpen": true,
+          "absence": null,
+          "cursorWallMs": 600000,
+          "sessionWallEndMs": 2400000
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 6000000,
+          "atWallMs": 9000000,
+          "endWallMs": 10800000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "After the reconnect the session is open and no absence is current: ABSENCE_CLOSED.",
+      "expected": {
+        "code": "ABSENCE_CLOSED"
+      }
+    },
+    {
+      "id": "s5.tm.rec-overlap",
+      "kind": "normal",
+      "description": "a reconnect that overlaps settled time",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "reconnect",
+          "absence": "absence:3",
+          "fromWallMs": 5940000,
+          "atWallMs": 9000000,
+          "endWallMs": 10800000
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "from < cursor: OVERLAP.",
+      "expected": {
+        "code": "OVERLAP"
+      }
+    },
+    {
+      "id": "s5.tm.bad-type",
+      "kind": "failure",
+      "description": "an unknown request type is refused",
+      "input": {
+        "state": {
+          "sessionOpen": false,
+          "absence": 3,
+          "cursorWallMs": 6000000,
+          "sessionWallEndMs": null
+        },
+        "request": {
+          "type": "teleport"
+        },
+        "nowMs": 9000000
+      },
+      "derivation": "Spec §4: an unknown request type is refused (INVALID_STATE).",
+      "expectedError": "INVALID_STATE"
+    }
+  ]
+}
