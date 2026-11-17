@@ -1,0 +1,21 @@
+{
+  "experimentId": "S6-E06-rare-heroes",
+  "label": "REGISTERED: Rare heroes (sidegrade check): PR-BAL and PR-COL x {POL6-BAL, POL6-NORARE} x 10 seeds, D14",
+  "seed": "s6-e06",
+  "tasks": 40,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profiles": [
+      "PR-BAL",
+      "PR-COL"
+    ],
+    "seeds": 10,
+    "days": 14
+  },
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

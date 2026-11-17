@@ -1,0 +1,18 @@
+{
+  "experimentId": "S6-CAL-calibration",
+  "label": "CALIBRATION c01 (unregistered; method step 3): PR-BAL to D14 under gate-kill multipliers 1, 4, 8, 16 (EXP and boss HP as built), 3 seeds",
+  "seed": "s6-c01",
+  "tasks": 12,
+  "params": {
+    "profiles": ["PR-BAL"],
+    "seeds": 3,
+    "days": 14,
+    "arms": [
+      { "gateKills": 1, "enemyExp": 1, "bossHp": 1 },
+      { "gateKills": 4, "enemyExp": 1, "bossHp": 1 },
+      { "gateKills": 8, "enemyExp": 1, "bossHp": 1 },
+      { "gateKills": 16, "enemyExp": 1, "bossHp": 1 }
+    ]
+  },
+  "budgets": { "wallMs": 3600000, "taskMs": 1800000, "stallMs": 600000, "peakRssMb": 6144 }
+}

@@ -138,6 +138,7 @@ export class Simulation {
   readonly estimateCache: Map<string, ZoneEstimate>;
 
   constructor(options: SimOptions) {
+    if (options.content.w1) fail('INVALID_STATE', 'World 1 content needs the legion engine (several boss gates)');
     this.content = options.content;
     this.options = options;
     this.policy = options.policy;

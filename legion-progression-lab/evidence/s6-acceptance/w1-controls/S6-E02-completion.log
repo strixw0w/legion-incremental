@@ -1,0 +1,33 @@
+S6-E02-completion: 10/20 (676 s)
+S6-E02-completion: 20/20 (1044 s)
+{
+ "experimentId": "S6-E02-completion",
+ "manifest": "manifests/s6/S6-E02-completion.json",
+ "status": "EXPLORATORY_SUBSET",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 80,
+ "completedTasks": 20,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 10800000,
+  "taskMs": 3600000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 1044122,
+ "peakRssMb": 4437,
+ "taskMs": {
+  "mean": 599336,
+  "max": 720115
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "04d6f6fa69e73a1cb963bd1cad490d956c670487c880702539d1137bc51f67a3"
+}

@@ -123,6 +123,88 @@ export const ContentPackS1Schema = z
 
 export type ContentPackS1 = z.infer<typeof ContentPackS1Schema>;
 
+// ------------------------------------------------------------------------------------------- S6 World 1 (version 2)
+const RareHeroIdSchema = z.string().regex(/^rare\.[a-z0-9_]+$/);
+const RewardSchema = z
+  .object({
+    gold: labelled(Int(0)),
+    materials: z.array(z.object({ resourceId: ResourceIdSchema, qty: labelled(Int(1)) }).strict()),
+    /** A unique rare hero granted once per account (a duplicate becomes the duplicate material). */
+    rareHeroId: RareHeroIdSchema.optional(),
+  })
+  .strict();
+const ZoneSchemaW1 = z
+  .object({
+    id: StableIdSchema,
+    order: Int(1, 1000),
+    name: z.string().min(1),
+    enemyId: StableIdSchema,
+    checkpointId: StableIdSchema,
+    accuracyRequirement: labelled(Int(0)),
+    spawnSlots: labelled(Int(1, 1000)),
+    respawnMs: labelled(Int(0)),
+    /** Absent when a miniboss in this zone is the gate to the next zone. */
+    killGate: z.object({ gateId: StableIdSchema, toZoneId: StableIdSchema, kills: labelled(Int(1)) }).strict().optional(),
+    /** Rare elite variant: each respawned slot is elite with this chance (the dedicated W1 spawn RNG stream). */
+    elite: z
+      .object({
+        enemyId: StableIdSchema,
+        chanceBp: labelled(BpSchema),
+        /**
+         * An elite kill may also grant a rare hero (a gameplay rare drop, the dedicated W1 rare RNG stream). The drop is
+         * guaranteed on the pityKills-th elite kill in the zone without one, so bad luck is bounded.
+         */
+        rareHero: z.object({ rareHeroId: RareHeroIdSchema, chanceBp: labelled(BpSchema), pityKills: labelled(Int(1)) }).strict().optional(),
+      })
+      .strict()
+      .optional(),
+  })
+  .strict();
+const BossSchemaW1 = z
+  .object({
+    gateId: StableIdSchema,
+    zoneId: StableIdSchema,
+    kind: z.enum(['miniboss', 'final']),
+    enemyId: StableIdSchema,
+    eliteEnemyId: StableIdSchema,
+    unlockKills: labelled(Int(1)),
+    timerMs: labelled(Int(1)),
+    eliteTimerMs: labelled(Int(1)),
+    /** A miniboss unlocks the next zone; the final boss is the world clear. */
+    unlocksZoneId: StableIdSchema.optional(),
+    firstClear: RewardSchema,
+    eliteFirstClear: RewardSchema,
+    activeOnly: z.literal(true),
+    note: z.string().min(1).optional(),
+  })
+  .strict();
+export const ContentPackW1Schema = ContentPackS1Schema.omit({ schemaVersion: true, zones: true, boss: true }).extend({
+  schemaVersion: z.literal(2),
+  zones: z.array(ZoneSchemaW1).min(1),
+  bosses: z.array(BossSchemaW1).min(1),
+});
+export type ContentPackW1 = z.infer<typeof ContentPackW1Schema>;
+
+export interface CompiledReward {
+  readonly gold: number;
+  readonly materials: readonly { readonly resourceId: string; readonly qty: number }[];
+  readonly rareHeroId: string | null;
+}
+/** A boss gate. Version 1 packs have one `prototype` boss (no Elite version, no rewards, unlocks nothing). */
+export interface CompiledBoss {
+  readonly gateId: string;
+  readonly zoneOrder: number;
+  readonly kind: 'prototype' | 'miniboss' | 'final';
+  readonly enemy: CompiledEnemy;
+  readonly eliteEnemy: CompiledEnemy | null;
+  readonly unlockKills: number;
+  readonly timerMs: number;
+  readonly eliteTimerMs: number;
+  readonly unlocksZoneOrder: number | null;
+  readonly firstClear: CompiledReward | null;
+  readonly eliteFirstClear: CompiledReward | null;
+}
+
 export interface CompiledDrop {
   readonly resourceId: string;
   readonly chanceBp: number;
@@ -155,6 +237,8 @@ export interface CompiledZone {
   readonly spawnSlots: number;
   readonly respawnMs: number;
   readonly killGate: { readonly gateId: string; readonly toOrder: number; readonly kills: number } | null;
+  /** S6 World 1: the zone's rare elite variant (null in version 1 packs and in zones without one). */
+  readonly elite: { readonly enemy: CompiledEnemy; readonly chanceBp: number; readonly rareHero: { readonly rareHeroId: string; readonly chanceBp: number; readonly pityKills: number } | null } | null;
 }
 
 export interface HeroLevelStats {
@@ -192,7 +276,15 @@ export interface CompiledContent {
   readonly resources: readonly { readonly id: string; readonly kind: 'currency' | 'material' | 'rare'; readonly testOnly: boolean }[];
   /** Index i holds the zone with order i + 1. */
   readonly zones: readonly CompiledZone[];
-  readonly boss: { readonly gateId: string; readonly zoneOrder: number; readonly enemy: CompiledEnemy; readonly unlockKills: number; readonly timerMs: number };
+  /**
+   * The world boss gate kept for every single-boss code path: version 1 packs, the only (prototype) boss; World 1, the
+   * final boss (the engine's single boss-gate state mirrors it; the minibosses have their own W1 state).
+   */
+  readonly boss: CompiledBoss;
+  /** S6: every boss gate in path order (version 1 packs: the one prototype boss). */
+  readonly bosses: readonly CompiledBoss[];
+  /** S6: the World 1 gate model (version 2 pack): several bosses with Elite versions, rewards, zone elites. */
+  readonly w1: boolean;
   readonly travel: { readonly adjacentWalkMs: number; readonly teleportMs: number; readonly zoneEntryWalkMs: number; readonly engageOverheadMs: number };
   readonly autoFarm: { readonly stopAfterDeaths: number; readonly deathWindowMs: number };
   readonly checkpointZoneOrder: ReadonlyMap<string, number>;
@@ -204,9 +296,12 @@ export interface CompiledContent {
 
 /** Validates an S1 pack and its XP table artifact and compiles them. An invalid pack is refused as a whole. */
 export function compileContentS1(packJson: unknown, tableJson: unknown): CompiledContent {
-  const parsed = ContentPackS1Schema.safeParse(packJson);
-  if (!parsed.success) fail('INVALID_CONTENT', `S1 content pack: ${zodMessage(parsed.error)}`);
-  const pack = parsed.data;
+  const w1 = typeof packJson === 'object' && packJson !== null && (packJson as { schemaVersion?: unknown }).schemaVersion === 2;
+  const parsed = (w1 ? ContentPackW1Schema : ContentPackS1Schema).safeParse(packJson);
+  if (!parsed.success) fail('INVALID_CONTENT', `${w1 ? 'W1' : 'S1'} content pack: ${zodMessage(parsed.error)}`);
+  const pack = parsed.data as ContentPackS1 & Partial<Pick<ContentPackW1, 'bosses'>> & { zones: ContentPackW1['zones'] };
+  // Version 1: the one prototype boss as the boss list.
+  const bossDefs: ContentPackW1['bosses'] = w1 ? (pack.bosses as ContentPackW1['bosses']) : [{ gateId: pack.boss.gateId, zoneId: pack.boss.zoneId, kind: 'final', enemyId: pack.boss.enemyId, eliteEnemyId: pack.boss.enemyId, unlockKills: pack.boss.unlockKills, timerMs: pack.boss.timerMs, eliteTimerMs: pack.boss.timerMs, firstClear: { gold: { value: 0, label: 'candidate' }, materials: [] }, eliteFirstClear: { gold: { value: 0, label: 'candidate' }, materials: [] }, activeOnly: true }];
   const problems: string[] = [];
   checkRanges(pack, '$', problems);
 
@@ -222,7 +317,7 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
   unique(pack.zones.map((z) => z.id), 'zones');
   unique(pack.zones.map((z) => z.checkpointId), 'checkpoints');
   unique(pack.statCategories.map((c) => c.id), 'statCategories');
-  const gateIdList = [...pack.zones.flatMap((z) => (z.killGate ? [z.killGate.gateId] : [])), pack.boss.gateId];
+  const gateIdList = [...pack.zones.flatMap((z) => (z.killGate ? [z.killGate.gateId] : [])), ...bossDefs.map((b) => b.gateId)];
   unique(gateIdList, 'gates');
   const resourceIds = new Set(pack.resources.map((r) => r.id));
   if (!resourceIds.has('res.gold')) problems.push('resources: res.gold is required');
@@ -258,18 +353,55 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
     if (!enemies.has(z.enemyId)) problems.push(`zone ${z.id}: unknown enemy ${z.enemyId}`);
   });
   const zoneOrderById = new Map(sortedZones.map((z) => [z.id, z.order]));
+  // W1: a miniboss that unlocks the next zone replaces that zone's kill gate.
+  const bossUnlocks = new Map<number, string>();
+  if (w1) {
+    for (const b of bossDefs) {
+      const zo = zoneOrderById.get(b.zoneId);
+      if (zo === undefined) continue;
+      if (b.kind === 'miniboss') {
+        if (b.unlocksZoneId === undefined || zoneOrderById.get(b.unlocksZoneId) !== zo + 1) problems.push(`boss ${b.gateId}: a miniboss must unlock the next zone in order`);
+        else bossUnlocks.set(zo, b.gateId);
+      } else {
+        if (b.unlocksZoneId !== undefined) problems.push(`boss ${b.gateId}: the final boss unlocks no zone`);
+        if (zo !== sortedZones.length) problems.push(`boss ${b.gateId}: the final boss is in the last zone`);
+      }
+    }
+    if (bossDefs.filter((b) => b.kind === 'final').length !== 1) problems.push('bosses: exactly one final boss');
+    const perZone = new Set<string>();
+    let lastOrder = 0;
+    for (const b of bossDefs) {
+      if (perZone.has(b.zoneId)) problems.push(`boss ${b.gateId}: one boss per zone`);
+      perZone.add(b.zoneId);
+      const zo = zoneOrderById.get(b.zoneId) ?? 0;
+      if (zo <= lastOrder) problems.push(`boss ${b.gateId}: bosses are listed in path order`);
+      lastOrder = zo;
+      if (b.eliteEnemyId === b.enemyId) problems.push(`boss ${b.gateId}: the Elite version is a different enemy`);
+    }
+  }
   for (const z of sortedZones) {
     if (z.killGate) {
       const to = zoneOrderById.get(z.killGate.toZoneId);
       if (to !== z.order + 1) problems.push(`zone ${z.id}: kill gate must unlock the next zone in order`);
-    } else if (z.order < sortedZones.length) {
-      problems.push(`zone ${z.id}: every zone except the last needs a kill gate`);
+      if (bossUnlocks.has(z.order)) problems.push(`zone ${z.id}: a zone is gated by its kill gate or by its miniboss, not both`);
+    } else if (z.order < sortedZones.length && !bossUnlocks.has(z.order)) {
+      problems.push(`zone ${z.id}: every zone except the last needs a kill gate${w1 ? ' or a miniboss gate' : ''}`);
+    }
+    if (z.elite) {
+      if (!enemies.has(z.elite.enemyId)) problems.push(`zone ${z.id}: unknown elite enemy ${z.elite.enemyId}`);
+      if (z.elite.enemyId === z.enemyId) problems.push(`zone ${z.id}: the elite variant is a different enemy`);
+      if (z.elite.chanceBp.value <= 0) problems.push(`zone ${z.id}: an elite variant needs a positive spawn chance`);
+      if (pack.zones.some((o) => o.enemyId === z.elite?.enemyId)) problems.push(`zone ${z.id}: the elite enemy must not be an ordinary zone enemy`);
     }
   }
-  const bossZone = zoneOrderById.get(pack.boss.zoneId);
-  if (bossZone === undefined) problems.push(`boss: unknown zone ${pack.boss.zoneId}`);
-  if (!enemies.has(pack.boss.enemyId)) problems.push(`boss: unknown enemy ${pack.boss.enemyId}`);
-  if (pack.zones.some((z) => z.enemyId === pack.boss.enemyId)) problems.push('boss: the boss enemy must not be an ordinary zone enemy');
+  for (const b of bossDefs) {
+    if (zoneOrderById.get(b.zoneId) === undefined) problems.push(`boss ${b.gateId}: unknown zone ${b.zoneId}`);
+    for (const e of [b.enemyId, b.eliteEnemyId]) {
+      if (!enemies.has(e)) problems.push(`boss ${b.gateId}: unknown enemy ${e}`);
+      if (pack.zones.some((z) => z.enemyId === e)) problems.push(`boss ${b.gateId}: the boss enemy must not be an ordinary zone enemy`);
+    }
+    for (const r of [b.firstClear, b.eliteFirstClear]) for (const m of r.materials) if (!resourceIds.has(m.resourceId)) problems.push(`boss ${b.gateId}: unknown reward resource ${m.resourceId}`);
+  }
 
   const categories: StatCategory[] = pack.statCategories.map((c) => ({ id: c.id, kind: c.kind, active: c.active }));
   const heroBase = Object.fromEntries(Object.entries(pack.hero).map(([k, v]) => [k, v.value])) as unknown as CompiledContent['hero'];
@@ -291,6 +423,21 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
     spawnSlots: z.spawnSlots.value,
     respawnMs: z.respawnMs.value,
     killGate: z.killGate ? { gateId: z.killGate.gateId, toOrder: z.order + 1, kills: z.killGate.kills.value } : null,
+    elite: z.elite ? { enemy: enemies.get(z.elite.enemyId) as CompiledEnemy, chanceBp: z.elite.chanceBp.value, rareHero: z.elite.rareHero ? { rareHeroId: z.elite.rareHero.rareHeroId, chanceBp: z.elite.rareHero.chanceBp.value, pityKills: z.elite.rareHero.pityKills.value } : null } : null,
+  }));
+  const reward = (r: ContentPackW1['bosses'][number]['firstClear']): CompiledReward => ({ gold: r.gold.value, materials: r.materials.map((m) => ({ resourceId: m.resourceId, qty: m.qty.value })), rareHeroId: r.rareHeroId ?? null });
+  const bosses: CompiledBoss[] = bossDefs.map((b) => ({
+    gateId: b.gateId,
+    zoneOrder: zoneOrderById.get(b.zoneId) as number,
+    kind: w1 ? b.kind : 'prototype',
+    enemy: enemies.get(b.enemyId) as CompiledEnemy,
+    eliteEnemy: w1 ? (enemies.get(b.eliteEnemyId) as CompiledEnemy) : null,
+    unlockKills: b.unlockKills.value,
+    timerMs: b.timerMs.value,
+    eliteTimerMs: b.eliteTimerMs.value,
+    unlocksZoneOrder: w1 && b.unlocksZoneId !== undefined ? (zoneOrderById.get(b.unlocksZoneId) as number) : null,
+    firstClear: w1 ? reward(b.firstClear) : null,
+    eliteFirstClear: w1 ? reward(b.eliteFirstClear) : null,
   }));
 
   const cache = new Map<number, HeroLevelStats>();
@@ -323,7 +470,9 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
     combat: { mitigationK: pack.combat.mitigationK.value, minDamagePerHit: pack.combat.minDamagePerHit.value, hitCurve },
     resources: pack.resources.map((r) => ({ id: r.id, kind: r.kind, testOnly: r.testOnly })),
     zones,
-    boss: { gateId: pack.boss.gateId, zoneOrder: bossZone as number, enemy: enemies.get(pack.boss.enemyId) as CompiledEnemy, unlockKills: pack.boss.unlockKills.value, timerMs: pack.boss.timerMs.value },
+    boss: (w1 ? bosses.find((b) => b.kind === 'final') : bosses[0]) as CompiledBoss,
+    bosses,
+    w1,
     travel: {
       adjacentWalkMs: pack.travel.adjacentWalkMs.value,
       teleportMs: pack.travel.teleportMs.value,

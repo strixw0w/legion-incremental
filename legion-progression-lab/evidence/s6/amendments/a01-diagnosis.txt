@@ -1,0 +1,32 @@
+S6 amendment 01 diagnosis (2026-11-16, about 22:52-22:55Z; not evidence for any hypothesis)
+Probe: evidence/s6/amendments/probe_d30.ts.txt, first form (the engine's default event budget; the later form adds
+maxEvents 1_000_000_000 for the D30 checks). It reruns S6-E02 task 0 (seed s6-e02#PR-BAL#0, PR-BAL, POL6-BAL) one wall
+day at a time and prints the first error with its stack. Output (the home folder written as <HOME>):
+
+day 1 ok (3 s) hero level 127 zones 5 world false
+day 2 ok (6 s) hero level 158 zones 5 world false
+day 3 ok (12 s) hero level 183 zones 7 world false
+day 4 ok (16 s) hero level 204 zones 8 world false
+day 5 ok (24 s) hero level 221 zones 8 world false
+day 6 ok (32 s) hero level 239 zones 10 world false
+day 7 ok (40 s) hero level 249 zones 10 world true
+day 8 ok (48 s) hero level 257 zones 10 world true
+day 9 ok (56 s) hero level 264 zones 10 world true
+day 10 ok (65 s) hero level 270 zones 10 world true
+day 11 ok (74 s) hero level 275 zones 10 world true
+day 12 ok (83 s) hero level 279 zones 10 world true
+day 13 ok (92 s) hero level 283 zones 10 world true
+day 14 ok (101 s) hero level 287 zones 10 world true
+day 15 ok (110 s) hero level 290 zones 10 world true
+day 16 ok (119 s) hero level 293 zones 10 world true
+ERROR at wall day 17 (game 401.78 h, last event EngageStarted t=1446393400): SIM_EVENT_LIMIT: more than 20000000 events
+LabError: SIM_EVENT_LIMIT: more than 20000000 events
+    at fail (file:///<HOME>/Documents/GitHub/legion-incremental/legion-progression-lab/src/core/errors.ts:50:9)
+    at LegionSimulation.runUntil (file:///<HOME>/Documents/GitHub/legion-incremental/legion-progression-lab/src/engine/legion.ts:596:54)
+    at LegionSimulation.run (file:///<HOME>/Documents/GitHub/legion-incremental/legion-progression-lab/src/engine/legion.ts:566:10)
+    at LegionSimulation.runToWall (file:///<HOME>/Documents/GitHub/legion-incremental/legion-progression-lab/src/engine/legion.ts:948:19)
+    at file:///<HOME>/AppData/Local/Temp/claude/.../scratchpad/s6reg/probe_d30.ts:23:9
+hero level 296, max level 296, table top 601
+
+Outcome information this probe showed for that one seed (disclosed; nothing was changed after it): the world was
+cleared on wall day 7, and the per-day hero levels and accessible zones above.

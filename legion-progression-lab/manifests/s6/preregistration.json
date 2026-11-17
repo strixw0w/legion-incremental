@@ -1,0 +1,87 @@
+{
+  "planRegisteredAt": "2026-11-16T22:20:00Z",
+  "document": {
+    "path": "manifests/s6/PREREGISTRATION.md",
+    "sha256": "305e09f1439c73c104511320be035b0d331e98e1d2d8cc11fddacc995edace93"
+  },
+  "specification": {
+    "path": "planning/S6_SPECIFICATION.md",
+    "sha256": "7befcb0cabd88f44316fc54f56b54dbaee65e77840acb63b969e6174d6051f19"
+  },
+  "stage2Rule": {
+    "path": "repro/s6/e05_stage2.py",
+    "sha256": "c0b767c96d6432ee36467383ab7ce863aa728aa06c256a650683483102e984d5"
+  },
+  "analysis": {
+    "path": "repro/s6/analyze.py",
+    "sha256": "c6bb0e13e1aac8edabab01c9877565d5d970e851fe25868d346e32508603c0f6"
+  },
+  "chain": {
+    "path": "repro/s6/run_all.sh",
+    "sha256": "ae659fccbfbf55ab67292bddef931c5083570b3344307991588d2a16c50c4ac8"
+  },
+  "content": [
+    {
+      "path": "content/s6/w1-full-s2.candidate.v0.6.1.json",
+      "sha256": "5bcc7076d40d8638dfcd9bb669f984850ed190dfee5a830317302f86dda5d1bb"
+    },
+    {
+      "path": "content/s6/w1-full-s3.candidate.v0.6.1.json",
+      "sha256": "3c7f9406579da643d5c4fb7e8723d88530dfa239993717467d6e525e63c65018"
+    },
+    {
+      "path": "content/s6/w1-full-s5.candidate.v0.6.1.json",
+      "sha256": "16b7bec50311409f1c308451d6235893ddad45504d7b565e24ca2849036c281f"
+    },
+    {
+      "path": "content/s6/w1-full.candidate.v0.6.1.json",
+      "sha256": "200442b1ece5f6a687b0c241bf4575d5b800a63670631cf2adcf6d281e4cb9d1"
+    },
+    {
+      "path": "content/s6/xp.w1.full.candidate.v0.6.1.json",
+      "sha256": "d684c71d93f79ca3a90ead48e9834d56b79da1fa71ba68f5d0403d1e0c1120e2"
+    }
+  ],
+  "code": {
+    "files": 164,
+    "sha256": "8491c0702156ac43cb34c6547a23e43fa42913280868352894d9ebaa46a895fb"
+  },
+  "manifests": [
+    {
+      "path": "manifests/s6/S6-E01-profile-matrix.json",
+      "sha256": "3abc2c86bdf7a4ed96fe52346c0ba31bf18cdd075058ea0d4074036b92e93493"
+    },
+    {
+      "path": "manifests/s6/S6-E02-completion.json",
+      "sha256": "60fea7c63f3c912367ac24577074fa5545749feb1915de49600198037cd6f6c7"
+    },
+    {
+      "path": "manifests/s6/S6-E03-strategy-spread.json",
+      "sha256": "9b01187a2fd154b0ef8b79ad560d792d3602dc2fe8ae34168a72c5d5a331e645"
+    },
+    {
+      "path": "manifests/s6/S6-E04-earlier-zones.json",
+      "sha256": "410e3c0fb57220e9427f2adf4b25525ee263136d77a20c5f092a46140546564b"
+    },
+    {
+      "path": "manifests/s6/S6-E05-sensitivity-stage1.json",
+      "sha256": "8ef292f38761cbb0365def45682a8cca9da414635bdf66f9797fe68054d68e44"
+    },
+    {
+      "path": "manifests/s6/S6-E06-rare-heroes.json",
+      "sha256": "78bb7b43be62679eeb822f3049d6c3d76a605e362382713992b8ed9eebf11e0d"
+    },
+    {
+      "path": "manifests/s6/S6-E07-boss-rewards.json",
+      "sha256": "a9ca489a19d52ad225279cd626d8a6edef4f9cb726cb57e637fe02f4261365a2"
+    },
+    {
+      "path": "manifests/s6/S6-E10-connected-idle.json",
+      "sha256": "39e79bb66ea77fae3dbd85c8ea4d1532a13986a5a84fb0572a369037a8f0ba51"
+    },
+    {
+      "path": "manifests/s6/S6-E11-power-pricing.json",
+      "sha256": "e7071654757d51ccc628e16eff61273d1fc1ca405dd66eb031f456bd063bfc95"
+    }
+  ]
+}

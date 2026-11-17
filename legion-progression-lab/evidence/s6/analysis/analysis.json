@@ -1,0 +1,2778 @@
+{
+ "resultsDir": "results/s6/a01",
+ "runs": {
+  "S6-E01-profile-matrix": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 99,
+   "registeredTasks": 99,
+   "failedTasks": 0,
+   "wallMs": 2854444,
+   "peakRssMb": 4925,
+   "taskMs": {
+    "mean": 406802,
+    "max": 748296
+   },
+   "rowsFingerprint": "4fff7caa203d0b5f92feae49668f0dfb57cdc20a9eb91c22b3836e36c852e782",
+   "stopped": null
+  },
+  "S6-E02-completion": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 80,
+   "registeredTasks": 80,
+   "failedTasks": 0,
+   "wallMs": 3221340,
+   "peakRssMb": 5047,
+   "taskMs": {
+    "mean": 536141,
+    "max": 746118
+   },
+   "rowsFingerprint": "14a5206801ef72e0242277e012727c2c6253b320b7745b82c50cded2eb9dfcd9",
+   "stopped": null
+  },
+  "S6-E03-strategy-spread": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 30,
+   "registeredTasks": 30,
+   "failedTasks": 0,
+   "wallMs": 168447,
+   "peakRssMb": 4280,
+   "taskMs": {
+    "mean": 70076,
+    "max": 95788
+   },
+   "rowsFingerprint": "1ca1c859e5f715795b5a88bd49beb412cedc07d3ab7af195a74848fededa0b79",
+   "stopped": null
+  },
+  "S6-E04-earlier-zones": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 33,
+   "registeredTasks": 33,
+   "failedTasks": 0,
+   "wallMs": 191120,
+   "peakRssMb": 4062,
+   "taskMs": {
+    "mean": 65997,
+    "max": 71773
+   },
+   "rowsFingerprint": "a411be2c43c9728035c7a3e5771dd76044312cd17a76115cbf771891d7e4e0ee",
+   "stopped": null
+  },
+  "S6-E05-sensitivity-stage1": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 51,
+   "registeredTasks": 51,
+   "failedTasks": 0,
+   "wallMs": 683548,
+   "peakRssMb": 4939,
+   "taskMs": {
+    "mean": 181419,
+    "max": 360717
+   },
+   "rowsFingerprint": "74866d35728cb1a33bbe5ec7c01c27df0b8316677d5615bd4a77266f900a10b4",
+   "stopped": null
+  },
+  "S6-E05-sensitivity-stage2": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 105,
+   "registeredTasks": 105,
+   "failedTasks": 0,
+   "wallMs": 1332840,
+   "peakRssMb": 5096,
+   "taskMs": {
+    "mean": 181280,
+    "max": 343853
+   },
+   "rowsFingerprint": "e336ce0c0cdd819fe89b1ae0a437456de69d5c7ae349ee06bd692cd9c5e7c566",
+   "stopped": null
+  },
+  "S6-E06-rare-heroes": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 40,
+   "registeredTasks": 40,
+   "failedTasks": 0,
+   "wallMs": 593074,
+   "peakRssMb": 4873,
+   "taskMs": {
+    "mean": 191816,
+    "max": 215473
+   },
+   "rowsFingerprint": "fc3e6968eb01353b8d3a8ba323ec4bf4b12ab367d7d71da9d6e73da4e5945046",
+   "stopped": null
+  },
+  "S6-E07-boss-rewards": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 30,
+   "registeredTasks": 30,
+   "failedTasks": 0,
+   "wallMs": 36370,
+   "peakRssMb": 3838,
+   "taskMs": {
+    "mean": 14265,
+    "max": 22045
+   },
+   "rowsFingerprint": "42d343512ea779ad87e0b9f7d15896ad994e680c2b39f3ecb75641944be370e0",
+   "stopped": null
+  },
+  "S6-E10-connected-idle": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 40,
+   "registeredTasks": 40,
+   "failedTasks": 0,
+   "wallMs": 115523,
+   "peakRssMb": 4073,
+   "taskMs": {
+    "mean": 38949,
+    "max": 47062
+   },
+   "rowsFingerprint": "41a96182ff23b08c0b4b88f2eaac113e099f232521cc3aae7143cad22c5493a9",
+   "stopped": null
+  },
+  "S6-E11-power-pricing": {
+   "status": "COMPLETE",
+   "registered": true,
+   "completedTasks": 30,
+   "registeredTasks": 30,
+   "failedTasks": 0,
+   "wallMs": 428510,
+   "peakRssMb": 4752,
+   "taskMs": {
+    "mean": 207787,
+    "max": 246295
+   },
+   "rowsFingerprint": "7c0b99b7762be57199b521e872082efd898e2a62343a038c714c1040800cd46e",
+   "stopped": null
+  }
+ },
+ "stoppedRuns": [],
+ "H-S6-01": {
+  "target": "PR-BAL median active hours to the final Normal clear within [4, 8]",
+  "profiles": {
+   "PR-BAL": {
+    "runs": 20,
+    "notCleared": 0,
+    "medianActiveH": 6.636,
+    "p10ActiveH": 6.554,
+    "p90ActiveH": 6.908,
+    "minActiveH": 6.509,
+    "maxActiveH": 6.912,
+    "medianConnectedAutoH": 6.555,
+    "medianCreditedH": 132.825,
+    "medianCalendarH": 144.636
+   },
+   "PR-CAS": {
+    "runs": 20,
+    "notCleared": 0,
+    "medianActiveH": 1.756,
+    "p10ActiveH": 1.755,
+    "p90ActiveH": 1.756,
+    "minActiveH": 1.755,
+    "maxActiveH": 1.757,
+    "medianConnectedAutoH": 1.684,
+    "medianCreditedH": 77.315,
+    "medianCalendarH": 84.006
+   },
+   "PR-CMB": {
+    "runs": 20,
+    "notCleared": 0,
+    "medianActiveH": 6.643,
+    "p10ActiveH": 5.906,
+    "p90ActiveH": 6.835,
+    "minActiveH": 5.84,
+    "maxActiveH": 6.912,
+    "medianConnectedAutoH": 6.563,
+    "medianCreditedH": 63.845,
+    "medianCalendarH": 72.643
+   },
+   "PR-OPT": {
+    "runs": 20,
+    "notCleared": 0,
+    "medianActiveH": 5.412,
+    "p10ActiveH": 5.411,
+    "p90ActiveH": 5.413,
+    "minActiveH": 5.223,
+    "maxActiveH": 5.413,
+    "medianConnectedAutoH": 5.341,
+    "medianCreditedH": 28.31,
+    "medianCalendarH": 34.912
+   }
+  },
+  "pass": true
+ },
+ "H-S6-02": {
+  "target": "no run stalls more than 60 active minutes without a progress event (closed gaps and the open gap at the end)",
+  "runs": 179,
+  "maxStallMinByCell": {
+   "PR-5MIN POL6-BAL": 11.24,
+   "PR-5MIN POL6-MAGE": 9.36,
+   "PR-5MIN POL6-WARRIOR": 10.18,
+   "PR-ABS POL6-BAL": 26.49,
+   "PR-ABS POL6-MAGE": 26.25,
+   "PR-ABS POL6-WARRIOR": 24.98,
+   "PR-BAL POL6-BAL": 45.81,
+   "PR-BAL POL6-MAGE": 44.2,
+   "PR-BAL POL6-WARRIOR": 49.1,
+   "PR-CAS POL6-BAL": 36.39,
+   "PR-CAS POL6-MAGE": 25.06,
+   "PR-CAS POL6-WARRIOR": 29.31,
+   "PR-CMB POL6-BAL": 47.72,
+   "PR-CMB POL6-MAGE": 50.23,
+   "PR-CMB POL6-WARRIOR": 34.24,
+   "PR-COL POL6-BAL": 85.35,
+   "PR-COL POL6-MAGE": 30.87,
+   "PR-COL POL6-WARRIOR": 40.64,
+   "PR-ECO POL6-BAL": 39.0,
+   "PR-ECO POL6-MAGE": 33.76,
+   "PR-ECO POL6-WARRIOR": 29.16,
+   "PR-FREQ POL6-BAL": 31.73,
+   "PR-FREQ POL6-MAGE": 27.09,
+   "PR-FREQ POL6-WARRIOR": 45.49,
+   "PR-NEW POL6-BAL": 1.52,
+   "PR-NEW POL6-MAGE": 1.72,
+   "PR-NEW POL6-WARRIOR": 1.47,
+   "PR-OPT POL6-BAL-ATT": 76.65,
+   "PR-OPT POL6-MAGE": 73.96,
+   "PR-OPT POL6-WARRIOR": 40.15,
+   "PR-POOR POL6-MAGE": 40.9,
+   "PR-POOR POL6-POOR": 48.26,
+   "PR-POOR POL6-WARRIOR": 29.61
+  },
+  "violations": [
+   {
+    "profile": "PR-COL",
+    "policy": "POL6-BAL",
+    "seed": "s6-e01#PR-COL#POL6-BAL#0",
+    "stallMin": 85.35,
+    "open": false
+   },
+   {
+    "profile": "PR-OPT",
+    "policy": "POL6-MAGE",
+    "seed": "s6-e01#PR-OPT#POL6-MAGE#1",
+    "stallMin": 73.96,
+    "open": false
+   },
+   {
+    "profile": "PR-OPT",
+    "policy": "POL6-BAL-ATT",
+    "seed": "s6-e02#PR-OPT#3",
+    "stallMin": 76.65,
+    "open": false
+   }
+  ],
+  "pass": false
+ },
+ "H-S6-03": {
+  "target": "best / worst mean D7 legion EXP within [1.1, 2.0]",
+  "meanD7LegionExp": {
+   "POL6-BAL": 1505925258.4,
+   "POL6-BOSSFARM": 635265689.6,
+   "POL6-CONQ": 2506550947.6,
+   "POL6-MAGE": 1501391502.4,
+   "POL6-NOMON": 860875850.4,
+   "POL6-WARRIOR": 1574429922.4
+  },
+  "best": "POL6-CONQ",
+  "worst": "POL6-BOSSFARM",
+  "ratio": 3.945673422372723,
+  "pass": false
+ },
+ "H-S6-04": {
+  "target": "per boss, repeat gold/h and EXP/h each at most 1.5 x frontier farming",
+  "bosses": {
+   "0": {
+    "reached": 10,
+    "of": 10,
+    "tested": true,
+    "medianFirstClearWallH": 2.3333333333333335,
+    "goldRatio": 3.0609850904808455,
+    "expRatio": 2.8107959216193246,
+    "meanClearsPerH": 410.1,
+    "netMaterialsRatio": 2.062686815011624,
+    "pass": false
+   },
+   "1": {
+    "reached": 10,
+    "of": 10,
+    "tested": true,
+    "medianFirstClearWallH": 6,
+    "goldRatio": 1.5297692283165363,
+    "expRatio": 1.481954377178574,
+    "meanClearsPerH": 191.5,
+    "netMaterialsRatio": 1.1763089985848663,
+    "pass": false
+   },
+   "2": {
+    "reached": 10,
+    "of": 10,
+    "tested": true,
+    "medianFirstClearWallH": 8.416666666666668,
+    "goldRatio": 2.0232624881008414,
+    "expRatio": 2.0888570594801688,
+    "meanClearsPerH": 118.7,
+    "netMaterialsRatio": 1.2510238272524197,
+    "pass": false
+   }
+  },
+  "pass": false,
+  "untested": []
+ },
+ "H-S6-05": {
+  "target": "peak state integer below 1 % of 2^53 - 1 and no run exhausts the EXP table",
+  "peakValue": 4294920125,
+  "peakPath": "$.legion.chars[6].rng.loot[0]",
+  "peakShareOfSafe": 4.768319211700956e-07,
+  "peakRun": "PR-CAS POL6-BAL s6-e02#PR-CAS#1",
+  "maxLevelReached": 325,
+  "tableTop": 601,
+  "exhausted": [],
+  "pass": true
+ },
+ "sidegrade": {
+  "target": "with / without rare heroes, mean D14 legion EXP, within [0.90, 1.15] (candidate)",
+  "profiles": {
+   "PR-BAL": {
+    "withMeanD14LegionExp": 5232143227.0,
+    "withoutMeanD14LegionExp": 5330322919.6,
+    "ratio": 0.9815809109352481,
+    "pass": true,
+    "acquisition": {
+     "rare.guardian": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 2.002
+     },
+     "rare.huntress": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 3.045
+     },
+     "rare.stormcaller": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 5.008
+     }
+    }
+   },
+   "PR-COL": {
+    "withMeanD14LegionExp": 6244332683.2,
+    "withoutMeanD14LegionExp": 6509564565.2,
+    "ratio": 0.9592550501122726,
+    "pass": true,
+    "acquisition": {
+     "rare.guardian": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 1.502
+     },
+     "rare.huntress": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 2.708
+     },
+     "rare.stormcaller": {
+      "acquired": 10,
+      "of": 10,
+      "medianActiveH": 4.183
+     }
+    }
+   }
+  },
+  "pass": true
+ },
+ "respawnLimited": {
+  "rule": "flagged if the mean waiting share of connected time exceeds 0.5 in every profile-policy cell at D7",
+  "meanWaitingShareD7": {
+   "PR-5MIN": 0.0,
+   "PR-ABS": 0.0,
+   "PR-BAL": 0.045481021394064874,
+   "PR-CAS": 0.1873033126293996,
+   "PR-CMB": 0.19525205659075223,
+   "PR-COL": 0.18817548500881834,
+   "PR-ECO": 0.18814462081128747,
+   "PR-FREQ": 0.26893253968253966,
+   "PR-OPT": 0.2607886473429952,
+   "PR-POOR": 0.13935582010582012
+  },
+  "flagged": false
+ },
+ "heroContribution": {
+  "band": [
+   0.3,
+   0.6
+  ],
+  "meanHeroDamageShareD7": {
+   "PR-5MIN": 0.18757738903082322,
+   "PR-ABS": 0.17955569920956363,
+   "PR-BAL": 0.18182329492421828,
+   "PR-CAS": 0.1725238288374675,
+   "PR-CMB": 0.17405294477891378,
+   "PR-COL": 0.1769588459901634,
+   "PR-ECO": 0.18231800624461839,
+   "PR-FREQ": 0.1663539559511157,
+   "PR-NEW": 0.180004973250675,
+   "PR-OPT": 0.18370912893828106,
+   "PR-POOR": 0.17240306707090605
+  },
+  "inBand": {
+   "PR-5MIN": false,
+   "PR-ABS": false,
+   "PR-BAL": false,
+   "PR-CAS": false,
+   "PR-CMB": false,
+   "PR-COL": false,
+   "PR-ECO": false,
+   "PR-FREQ": false,
+   "PR-NEW": false,
+   "PR-OPT": false,
+   "PR-POOR": false
+  }
+ },
+ "activeGameplay": {
+  "rule": "control arm: mean active / connected-idle legion EXP per wall hour above 1",
+  "ratio": 2.849729311615034,
+  "pass": true,
+  "arms": {
+   "control-60": {
+    "active": {
+     "exp": 13070417.425,
+     "gold": 161599.4,
+     "kills": 2644.2875,
+     "gathered": 2547.325
+    },
+    "connectedIdle": {
+     "exp": 4586547.0,
+     "gold": 65522.1,
+     "kills": 2379.275,
+     "gathered": 2762.4375
+    },
+    "offline": {
+     "exp": 4287360.0,
+     "gold": 61248.0,
+     "kills": 2224.0,
+     "gathered": 2563.4
+    }
+   },
+   "equal-rates": {
+    "active": {
+     "exp": 13070417.425,
+     "gold": 161599.4,
+     "kills": 2644.2875,
+     "gathered": 2547.325
+    },
+    "connectedIdle": {
+     "exp": 4287360.0,
+     "gold": 61248.0,
+     "kills": 2224.0,
+     "gathered": 2563.4
+    },
+    "offline": {
+     "exp": 4287360.0,
+     "gold": 61248.0,
+     "kills": 2224.0,
+     "gathered": 2563.4
+    }
+   },
+   "full-normal": {
+    "active": {
+     "exp": 13070417.425,
+     "gold": 161599.4,
+     "kills": 2644.2875,
+     "gathered": 2547.325
+    },
+    "connectedIdle": {
+     "exp": 4586547.0,
+     "gold": 65522.1,
+     "kills": 2379.275,
+     "gathered": 2762.4375
+    },
+    "offline": {
+     "exp": 4586547.0,
+     "gold": 65522.1,
+     "kills": 2379.275,
+     "gathered": 2762.4375
+    }
+   },
+   "offline-80": {
+    "active": {
+     "exp": 13070417.425,
+     "gold": 161599.4,
+     "kills": 2644.2875,
+     "gathered": 2547.325
+    },
+    "connectedIdle": {
+     "exp": 4586547.0,
+     "gold": 65522.1,
+     "kills": 2379.275,
+     "gathered": 2762.4375
+    },
+    "offline": {
+     "exp": 4586547.0,
+     "gold": 65522.1,
+     "kills": 2379.275,
+     "gathered": 2762.4375
+    }
+   }
+  }
+ },
+ "milestones": {
+  "PR-5MIN": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.083
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.153
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.167
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.251
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.333
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.417
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.503
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.583
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.251
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.503
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.673
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.673
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.251
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.399
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.51
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.254
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.51
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.685
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.258
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.283
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.567
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.874
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.463
+   },
+   "craft:mithril": {
+    "reached": 1,
+    "of": 3,
+    "medianActiveH": null
+   }
+  },
+  "PR-ABS": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.135
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.233
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.0
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.0
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.822
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.822
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.1
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.007
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.004
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.007
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.829
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.01
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.033
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.277
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.901
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.703
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 7.079
+   }
+  },
+  "PR-BAL": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.134
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.233
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.0
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.0
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.632
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.632
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.085
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.008
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.005
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.008
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.642
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.008
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.034
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.282
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.895
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.023
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.947
+   }
+  },
+  "PR-CAS": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.135
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.233
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.25
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.502
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.75
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.253
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.5
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.502
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.253
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.755
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.755
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.502
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.881
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.26
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.505
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.26
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.767
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.511
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.535
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.75
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.487
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.11
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.207
+   }
+  },
+  "PR-CMB": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.135
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.233
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.0
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.0
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.003
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.576
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.576
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.072
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.008
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.006
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.008
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.585
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.01
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.035
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.25
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.006
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.358
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 7.012
+   }
+  },
+  "PR-COL": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.134
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.233
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.173
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.619
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.228
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.5
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.228
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.412
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.412
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.703
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.235
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.505
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.235
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.423
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.511
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.534
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.771
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.442
+   },
+   "craft:gold": {
+    "reached": 2,
+    "of": 3,
+    "medianActiveH": 6.023
+   },
+   "craft:mithril": {
+    "reached": 2,
+    "of": 3,
+    "medianActiveH": 6.367
+   }
+  },
+  "PR-ECO": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.06
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.134
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.232
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.75
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.25
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.753
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.5
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.753
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.141
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.141
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.358
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.759
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.505
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.759
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.151
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.509
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.535
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.777
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.364
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.042
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.517
+   }
+  },
+  "PR-FREQ": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.134
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.167
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.333
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.503
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.667
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.833
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.004
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.167
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.503
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.004
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.34
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.34
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.503
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.705
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.012
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.507
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.012
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.354
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.511
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.537
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.839
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.247
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.833
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.905
+   }
+  },
+  "PR-NEW": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.06
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.134
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.232
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.75
+   },
+   "zone6": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "zone7": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "zone8": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "zone9": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "zone10": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.fallen_king": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "worldCleared": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "rare.guardian": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "rare.huntress": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "rare.stormcaller": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:wood": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:copper": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:iron": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:steel": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:gold": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:mithril": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   }
+  },
+  "PR-OPT": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.061
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.13
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.219
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.153
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.623
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.188
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.5
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.188
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.412
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.412
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.502
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.653
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.194
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.506
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.194
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 5.423
+   },
+   "craft:wood": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.507
+   },
+   "craft:copper": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.531
+   },
+   "craft:iron": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.77
+   },
+   "craft:steel": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.432
+   },
+   "craft:gold": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.005
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 6.146
+   }
+  },
+  "PR-POOR": {
+   "zone2": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.06
+   },
+   "zone3": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.133
+   },
+   "zone4": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 0.23
+   },
+   "zone5": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 1.0
+   },
+   "zone6": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "zone7": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.723
+   },
+   "zone8": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.0
+   },
+   "zone9": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.611
+   },
+   "zone10": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.0
+   },
+   "gate.w1.bandit_chief": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "gate.w1.ruin_warden": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 3.611
+   },
+   "gate.w1.fallen_king": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.391
+   },
+   "worldCleared": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 4.391
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.002
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveH": 2.835
+   },
+   "rare.stormcaller": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.bandit_chief:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:wood": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:copper": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:iron": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:steel": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:gold": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   },
+   "craft:mithril": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveH": null
+   }
+  }
+ },
+ "E08-postClear": {
+  "PR-BAL": {
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -4.628
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.624
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.009
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -4.631
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -3.547
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.624
+   },
+   "monument.power:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.vitality:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.industry:40": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.eternity:25": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -5.617
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.314
+   }
+  },
+  "PR-CMB": {
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -4.569
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.566
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.011
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -4.574
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -3.503
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.566
+   },
+   "monument.power:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.vitality:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.industry:40": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.eternity:25": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -5.315
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.699
+   }
+  },
+  "PR-OPT": {
+   "gate.w1.bandit_chief:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -3.907
+   },
+   "gate.w1.ruin_warden:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.218
+   },
+   "gate.w1.fallen_king:elite": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.011
+   },
+   "rare.guardian": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -3.91
+   },
+   "rare.huntress": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -2.759
+   },
+   "rare.stormcaller": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -1.218
+   },
+   "monument.power:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.vitality:50": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.industry:40": {
+    "reached": 0,
+    "of": 3,
+    "medianActiveHAfterClear": null
+   },
+   "monument.eternity:25": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": -3.898
+   },
+   "craft:mithril": {
+    "reached": 3,
+    "of": 3,
+    "medianActiveHAfterClear": 0.733
+   }
+  }
+ },
+ "E04-earlierZones": {
+  "0": {
+   "accessible": 3,
+   "legionExpPerH": 20569500.0,
+   "goldEarnedPerH": 394755.0,
+   "killsPerH": 4915.0,
+   "waitingShare": 0.33310185185185187,
+   "netLedgerChangePerH": {
+    "res.gold": 394755.0,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 174.0
+   }
+  },
+  "1": {
+   "accessible": 3,
+   "legionExpPerH": 6528833.333333333,
+   "goldEarnedPerH": 261058.33333333334,
+   "killsPerH": 5590.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": -100860.66666666667,
+    "res.mat.bone_shard": -30.0,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333,
+    "res.mat.iron_bar": -6.666666666666667,
+    "res.mat.plank": -10.0,
+    "res.mat.slime_gel": 619.6666666666666,
+    "res.mat.swamp_hide": -25.0
+   }
+  },
+  "2": {
+   "accessible": 3,
+   "legionExpPerH": 6590320.0,
+   "goldEarnedPerH": 265895.6666666667,
+   "killsPerH": 5606.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 230999.0,
+    "res.mat.corrupted_steel": 159.33333333333334,
+    "res.mat.crown_fragment": 94.66666666666667,
+    "res.mat.steel_bar": -10.0,
+    "res.mat.wolf_fang": 535.6666666666666
+   }
+  },
+  "3": {
+   "accessible": 3,
+   "legionExpPerH": 6704746.666666667,
+   "goldEarnedPerH": 272968.3333333333,
+   "killsPerH": 5621.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 259206.0,
+    "res.mat.bandit_cloth": -8.333333333333334,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333,
+    "res.mat.goblin_scrap": 454.6666666666667,
+    "res.mat.plank": -6.666666666666667
+   }
+  },
+  "4": {
+   "accessible": 3,
+   "legionExpPerH": 7963366.666666667,
+   "goldEarnedPerH": 285050.0,
+   "killsPerH": 5630.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 285050.0,
+    "res.mat.bandit_cloth": 640.6666666666666,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333
+   }
+  },
+  "5": {
+   "accessible": 3,
+   "legionExpPerH": 8913553.333333334,
+   "goldEarnedPerH": 296031.3333333333,
+   "killsPerH": 5643.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 296031.3333333333,
+    "res.mat.bandit_insignia": 421.0,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333
+   }
+  },
+  "6": {
+   "accessible": 3,
+   "legionExpPerH": 10955633.333333334,
+   "goldEarnedPerH": 322543.3333333333,
+   "killsPerH": 5657.0,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 322543.3333333333,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333,
+    "res.mat.swamp_hide": 601.0
+   }
+  },
+  "7": {
+   "accessible": 3,
+   "legionExpPerH": 13667260.0,
+   "goldEarnedPerH": 354074.0,
+   "killsPerH": 5669.666666666667,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 354074.0,
+    "res.mat.bone_shard": 635.6666666666666,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333,
+    "res.rare.hero_shard": 16.333333333333332
+   }
+  },
+  "8": {
+   "accessible": 3,
+   "legionExpPerH": 16438033.333333334,
+   "goldEarnedPerH": 372447.3333333333,
+   "killsPerH": 5683.333333333333,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 372447.3333333333,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 94.33333333333333,
+    "res.mat.rune_fragment": 355.3333333333333
+   }
+  },
+  "9": {
+   "accessible": 3,
+   "legionExpPerH": 22596433.333333332,
+   "goldEarnedPerH": 433243.3333333333,
+   "killsPerH": 5676.0,
+   "waitingShare": 0.0,
+   "netLedgerChangePerH": {
+    "res.gold": 433243.3333333333,
+    "res.mat.corrupted_steel": 679.6666666666666,
+    "res.mat.crown_fragment": 94.33333333333333
+   }
+  },
+  "10": {
+   "accessible": 3,
+   "legionExpPerH": 20569500.0,
+   "goldEarnedPerH": 394755.0,
+   "killsPerH": 4915.0,
+   "waitingShare": 0.33310185185185187,
+   "netLedgerChangePerH": {
+    "res.gold": 394755.0,
+    "res.mat.corrupted_steel": 158.66666666666666,
+    "res.mat.crown_fragment": 174.0
+   }
+  }
+ },
+ "E05-stage1": {
+  "baseline": {
+   "meanD7LegionExp": 1513390085.3333333,
+   "medianClearActiveH": 6.674
+  },
+  "cells": [
+   {
+    "factor": "costs",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 0.9798482980062059,
+    "clearRatio": 1.0006035379812694,
+    "medianClearActiveH": 6.678,
+    "notCleared": 0,
+    "expElasticity": 0.029369689185440914,
+    "clearElasticity": -0.000870458601566638
+   },
+   {
+    "factor": "costs",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 0.9859865664914396,
+    "clearRatio": 0.9939313215400625,
+    "medianClearActiveH": 6.633,
+    "notCleared": 0,
+    "expElasticity": -0.03480582777194404,
+    "clearElasticity": -0.015012802850146825
+   },
+   {
+    "factor": "dropOdds",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 0.9426520078942169,
+    "clearRatio": 1.0001040582726328,
+    "medianClearActiveH": 6.674,
+    "notCleared": 0,
+    "expElasticity": 0.08520281512414572,
+    "clearElasticity": -0.00015011654359218553
+   },
+   {
+    "factor": "dropOdds",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 0.9992600603478339,
+    "clearRatio": 1.011550468262227,
+    "medianClearActiveH": 6.751,
+    "notCleared": 0,
+    "expElasticity": -0.0018255912230792763,
+    "clearElasticity": 0.028323696976824176
+   },
+   {
+    "factor": "enemyHp",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 1.1798575295542837,
+    "clearRatio": 0.8729448491155047,
+    "medianClearActiveH": 5.826,
+    "notCleared": 0,
+    "expElasticity": -0.23861266143897944,
+    "clearElasticity": 0.1960375846992167
+   },
+   {
+    "factor": "enemyHp",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 0.9411897530390765,
+    "clearRatio": 1.0054151925078043,
+    "medianClearActiveH": 6.71,
+    "notCleared": 0,
+    "expElasticity": -0.1494839089725795,
+    "clearElasticity": 0.013319476727020272
+   },
+   {
+    "factor": "feedback",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 0.9280310848325157,
+    "clearRatio": 1.0085744016649323,
+    "medianClearActiveH": 6.731,
+    "notCleared": 0,
+    "expElasticity": 0.10775496498425498,
+    "clearElasticity": -0.012317514247140919
+   },
+   {
+    "factor": "feedback",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 1.075403338354455,
+    "clearRatio": 0.974901144640999,
+    "medianClearActiveH": 6.506,
+    "notCleared": 0,
+    "expElasticity": 0.17928987778684335,
+    "clearElasticity": -0.06269146895280976
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 0.6973932560823332,
+    "clearRatio": 0.9944432882414151,
+    "medianClearActiveH": 6.637,
+    "notCleared": 0,
+    "expElasticity": 0.5199556818246758,
+    "clearElasticity": 0.008038996433476038
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 1.0368356375576415,
+    "clearRatio": 0.9759001040582728,
+    "medianClearActiveH": 6.513,
+    "notCleared": 0,
+    "expElasticity": 0.08921462771052477,
+    "clearElasticity": -0.06016559678967924
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 1.104994567410778,
+    "clearRatio": 0.9739438085327784,
+    "medianClearActiveH": 6.5,
+    "notCleared": 0,
+    "expElasticity": -0.14403927677616743,
+    "clearElasticity": 0.03808955614199473
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 0.8560011723930381,
+    "clearRatio": 1.0494484911550468,
+    "medianClearActiveH": 7.004,
+    "notCleared": 0,
+    "expElasticity": -0.3834695763311402,
+    "clearElasticity": 0.1190355931866751
+   },
+   {
+    "factor": "slots",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 0.8711937872314012,
+    "clearRatio": 1.03633714880333,
+    "medianClearActiveH": 6.916,
+    "notCleared": 0,
+    "expElasticity": 0.19893442912731657,
+    "clearElasticity": -0.05149342752055139
+   },
+   {
+    "factor": "slots",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 2.0609588461212986,
+    "clearRatio": 0.6000790842872009,
+    "medianClearActiveH": 4.005,
+    "notCleared": 0,
+    "expElasticity": 1.783559964420383,
+    "clearElasticity": -1.2595259495675728
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 0.5,
+    "runs": 3,
+    "expRatio": 1.1327922126275434,
+    "clearRatio": 0.9582934443288241,
+    "medianClearActiveH": 6.395,
+    "notCleared": 0,
+    "expElasticity": -0.17988325277026995,
+    "clearElasticity": 0.06146059565546874
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 1.5,
+    "runs": 3,
+    "expRatio": 0.9618218383394476,
+    "clearRatio": 0.9997086368366286,
+    "medianClearActiveH": 6.672,
+    "notCleared": 0,
+    "expElasticity": -0.09600343881842777,
+    "clearElasticity": -0.0007186946842952876
+   }
+  ]
+ },
+ "E05-stage2": {
+  "baseline": {
+   "meanD7LegionExp": 1506758015.6,
+   "medianClearActiveH": 6.676
+  },
+  "cells": [
+   {
+    "factor": "enemyHp",
+    "multiplier": 0.5,
+    "runs": 5,
+    "expRatio": 1.0876966319952723,
+    "clearRatio": 0.9682942559344249,
+    "medianClearActiveH": 6.464,
+    "notCleared": 0,
+    "expElasticity": -0.12127623255797615,
+    "clearElasticity": 0.04648255868226207
+   },
+   {
+    "factor": "enemyHp",
+    "multiplier": 0.75,
+    "runs": 5,
+    "expRatio": 1.0293940584629069,
+    "clearRatio": 0.9690640148126572,
+    "medianClearActiveH": 6.469,
+    "notCleared": 0,
+    "expElasticity": -0.10070261288131302,
+    "clearElasticity": 0.10923380191000837
+   },
+   {
+    "factor": "enemyHp",
+    "multiplier": 1.25,
+    "runs": 5,
+    "expRatio": 0.9798140605955971,
+    "clearRatio": 0.8831422805667088,
+    "medianClearActiveH": 5.896,
+    "notCleared": 0,
+    "expElasticity": -0.09138717782939174,
+    "clearElasticity": -0.5569014093493265
+   },
+   {
+    "factor": "enemyHp",
+    "multiplier": 1.5,
+    "runs": 5,
+    "expRatio": 0.9677918073787881,
+    "clearRatio": 0.9988224769592443,
+    "medianClearActiveH": 6.668,
+    "notCleared": 0,
+    "expElasticity": -0.08074255763257683,
+    "clearElasticity": -0.0029058403353757326
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 0.5,
+    "runs": 5,
+    "expRatio": 0.7189306598569126,
+    "clearRatio": 0.9691056234006697,
+    "medianClearActiveH": 6.47,
+    "notCleared": 0,
+    "expElasticity": 0.47607546400669815,
+    "clearElasticity": 0.045274180483410136
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 0.75,
+    "runs": 5,
+    "expRatio": 0.8368495268285601,
+    "clearRatio": 0.9941248673726256,
+    "medianClearActiveH": 6.637,
+    "notCleared": 0,
+    "expElasticity": 0.61912443804492,
+    "clearElasticity": 0.02048253846961309
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 1.25,
+    "runs": 5,
+    "expRatio": 1.0061038881524302,
+    "clearRatio": 0.9898724696777413,
+    "medianClearActiveH": 6.608,
+    "notCleared": 0,
+    "expElasticity": 0.0272709421852531,
+    "clearElasticity": -0.04561710432006441
+   },
+   {
+    "factor": "offlineRate",
+    "multiplier": 1.5,
+    "runs": 5,
+    "expRatio": 1.0005957983901235,
+    "clearRatio": 0.9972538331911707,
+    "medianClearActiveH": 6.658,
+    "notCleared": 0,
+    "expElasticity": 0.0014689820673058809,
+    "clearElasticity": -0.006782197499864406
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 0.5,
+    "runs": 5,
+    "expRatio": 1.1173019145543546,
+    "clearRatio": 0.9725799404997191,
+    "medianClearActiveH": 6.493,
+    "notCleared": 0,
+    "expElasticity": -0.16001907998025197,
+    "clearElasticity": 0.040111258646982
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 0.75,
+    "runs": 5,
+    "expRatio": 1.0655151172105701,
+    "clearRatio": 0.9818378513325149,
+    "medianClearActiveH": 6.555,
+    "notCleared": 0,
+    "expElasticity": -0.22058503617548908,
+    "clearElasticity": 0.0637130598652212
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 1.25,
+    "runs": 5,
+    "expRatio": 0.9620190664940903,
+    "clearRatio": 1.0167474566750576,
+    "medianClearActiveH": 6.788,
+    "notCleared": 0,
+    "expElasticity": -0.17352510813941135,
+    "clearElasticity": 0.07443085080520855
+   },
+   {
+    "factor": "respawn",
+    "multiplier": 1.5,
+    "runs": 5,
+    "expRatio": 0.8560163531543519,
+    "clearRatio": 1.0111927101753801,
+    "medianClearActiveH": 6.751,
+    "notCleared": 0,
+    "expElasticity": -0.38342583803567065,
+    "clearElasticity": 0.027451277752387128
+   },
+   {
+    "factor": "slots",
+    "multiplier": 0.5,
+    "runs": 5,
+    "expRatio": 0.8741101718815373,
+    "clearRatio": 1.0358333159964217,
+    "medianClearActiveH": 6.915,
+    "notCleared": 0,
+    "expElasticity": 0.19411296801031214,
+    "clearElasticity": -0.05079186640998142
+   },
+   {
+    "factor": "slots",
+    "multiplier": 0.75,
+    "runs": 5,
+    "expRatio": 0.9002044375784372,
+    "clearRatio": 1.034264672228348,
+    "medianClearActiveH": 6.905,
+    "notCleared": 0,
+    "expElasticity": 0.3654499138309134,
+    "clearElasticity": -0.1171109215031225
+   },
+   {
+    "factor": "slots",
+    "multiplier": 1.25,
+    "runs": 5,
+    "expRatio": 1.7051771587734967,
+    "clearRatio": 0.6518692658164644,
+    "medianClearActiveH": 4.352,
+    "notCleared": 0,
+    "expElasticity": 2.3915950411007953,
+    "clearElasticity": -1.917650083061123
+   },
+   {
+    "factor": "slots",
+    "multiplier": 1.5,
+    "runs": 5,
+    "expRatio": 2.0750566657878147,
+    "clearRatio": 0.5999126219651736,
+    "medianClearActiveH": 4.005,
+    "notCleared": 0,
+    "expElasticity": 1.8003730716292639,
+    "clearElasticity": -1.260210198636405
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 0.5,
+    "runs": 5,
+    "expRatio": 1.0763324671972632,
+    "clearRatio": 0.9545842261842843,
+    "medianClearActiveH": 6.373,
+    "notCleared": 0,
+    "expElasticity": -0.10612377927931367,
+    "clearElasticity": 0.0670555977950957
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 0.75,
+    "runs": 5,
+    "expRatio": 1.0210690348890288,
+    "clearRatio": 0.9872178417625397,
+    "medianClearActiveH": 6.591,
+    "notCleared": 0,
+    "expElasticity": -0.07247636842159098,
+    "clearElasticity": 0.044717951266462094
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 1.25,
+    "runs": 5,
+    "expRatio": 0.967565331463965,
+    "clearRatio": 1.022302203174735,
+    "medianClearActiveH": 6.825,
+    "notCleared": 0,
+    "expElasticity": -0.14776286432139724,
+    "clearElasticity": 0.09884733734969657
+   },
+   {
+    "factor": "xpGrowth",
+    "multiplier": 1.5,
+    "runs": 5,
+    "expRatio": 0.9526226793812187,
+    "clearRatio": 1.019119146191774,
+    "medianClearActiveH": 6.804,
+    "notCleared": 0,
+    "expElasticity": -0.11970544950408807,
+    "clearElasticity": 0.04670851239881276
+   }
+  ]
+ },
+ "E11-powerPricing": {
+  "PR-BAL p120-18": {
+   "runs": 5,
+   "meanD14LegionExp": 5251580316.8,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.003447798668198497,
+   "meanPowerGoldShare": 0.0008394815700911598,
+   "medianClearActiveH": 6.56
+  },
+  "PR-BAL p160-20": {
+   "runs": 5,
+   "meanD14LegionExp": 5089320366.0,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.004739103064050791,
+   "meanPowerGoldShare": 0.0017741924198629883,
+   "medianClearActiveH": 6.568
+  },
+  "PR-BAL p80-15": {
+   "runs": 5,
+   "meanD14LegionExp": 5249182496.4,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.0030322428114053996,
+   "meanPowerGoldShare": 0.00031642135355071474,
+   "medianClearActiveH": 6.622
+  },
+  "PR-CMB p120-18": {
+   "runs": 5,
+   "meanD14LegionExp": 6428449209.2,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.00281488213334487,
+   "meanPowerGoldShare": 0.0006461808694345342,
+   "medianClearActiveH": 6.648
+  },
+  "PR-CMB p160-20": {
+   "runs": 5,
+   "meanD14LegionExp": 6461743862.8,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.0032973355199050697,
+   "meanPowerGoldShare": 0.0012386639304546273,
+   "medianClearActiveH": 6.648
+  },
+  "PR-CMB p80-15": {
+   "runs": 5,
+   "meanD14LegionExp": 6505592649.2,
+   "meanPowerLevelD14": 29.0,
+   "meanMonumentGoldShare": 0.002258910779118643,
+   "meanPowerGoldShare": 0.0002393887329283769,
+   "medianClearActiveH": 6.677
+  }
+ },
+ "eternity": {
+  "PR-5MIN": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.099,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-ABS": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.504,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-BAL": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.496,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-CAS": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.265,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-CMB": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.437,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-COL": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.494,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-ECO": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.501,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-FREQ": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.183,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-NEW": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.493,
+   "meanLevelAtEnd": 5.0
+  },
+  "PR-OPT": {
+   "boughtIn": 3,
+   "of": 3,
+   "medianFirstActiveH": 0.48,
+   "meanLevelAtEnd": 25.0
+  },
+  "PR-POOR": {
+   "boughtIn": 0,
+   "of": 3,
+   "medianFirstActiveH": null,
+   "meanLevelAtEnd": 0.0
+  }
+ }
+}

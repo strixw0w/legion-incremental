@@ -1,0 +1,23 @@
+s5-checkpoint: 1b285dbd30176ff21cf002ad608bf4638521abbd; HEAD: 1b285dbd30176ff21cf002ad608bf4638521abbd
+1. Tracked files that must be unchanged since s5-checkpoint:
+   legion-progression-lab/evidence: 0 tracked files changed
+   legion-progression-lab/manifests: 0 tracked files changed
+   legion-progression-lab/content: 0 tracked files changed
+   spec/fixtures: 0 tracked files changed
+   spec/formulas: 0 tracked files changed
+   legion-progression-lab/repro: 0 tracked files changed
+2. Tracked files S6 changed elsewhere (code, tests, schemas, oracle runner, documents):
+   changed: legion-progression-lab/src/engine/commands.ts
+   changed: legion-progression-lab/src/engine/legion.ts
+   changed: legion-progression-lab/src/engine/legionCommands.ts
+   changed: legion-progression-lab/src/engine/legionObservation.ts
+   changed: legion-progression-lab/src/engine/simulation.ts
+   changed: legion-progression-lab/src/experiments/legionMetrics.ts
+   changed: legion-progression-lab/src/l2/simState.ts
+   changed: legion-progression-lab/src/model/content.ts
+   changed: legion-progression-lab/src/model/legionContent.ts
+   changed: legion-progression-lab/src/model/legionTypes.ts
+   changed: legion-progression-lab/src/model/types.ts
+   11 tracked files changed outside the frozen groups
+3. New (untracked) files: 197
+preservation problems: 0

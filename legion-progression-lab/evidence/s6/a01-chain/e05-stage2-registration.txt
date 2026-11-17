@@ -1,0 +1,1 @@
+stage 2 registered at 2026-11-17T01:27:09Z: 5 factors selected (xpGrowth, enemyHp, slots, offlineRate, respawn)

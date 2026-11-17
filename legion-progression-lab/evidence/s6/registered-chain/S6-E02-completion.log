@@ -1,0 +1,50 @@
+S6-E02-completion: 10/80 (236 s)
+S6-E02-completion: 20/80 (451 s)
+S6-E02-completion: 30/80 (470 s)
+S6-E02-completion: 40/80 (694 s)
+S6-E02-completion: 50/80 (964 s)
+S6-E02-completion: 60/80 (1054 s)
+S6-E02-completion: 70/80 (1306 s)
+S6-E02-completion: 80/80 (1565 s)
+{
+ "experimentId": "S6-E02-completion",
+ "manifest": "manifests/s6/S6-E02-completion.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 80,
+ "completedTasks": 80,
+ "failedTasks": 80,
+ "firstFailures": [
+  {
+   "task": 0,
+   "error": "INVALID_STATE: a checkpoint can only be taken between steps",
+   "pass": false
+  },
+  {
+   "task": 1,
+   "error": "INVALID_STATE: a checkpoint can only be taken between steps",
+   "pass": false
+  }
+ ],
+ "budgets": {
+  "wallMs": 10800000,
+  "taskMs": 3600000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 1565052,
+ "peakRssMb": 5150,
+ "taskMs": {
+  "mean": 263010,
+  "max": 337116
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "f62b7101552c0e3b6c0f5d415ace190b6ec3cb5a178a3f49ce5d6f05d5d5279a"
+}

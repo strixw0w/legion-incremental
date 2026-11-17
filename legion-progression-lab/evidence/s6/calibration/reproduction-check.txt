@@ -1,0 +1,4 @@
+Calibration reproduction check (2026-11-16T22:09:20Z): node evidence/s6/tools/calibration_xcheck.ts
+written candidate content version 0.6.1
+c02 x12 seed 0 world clear: 6.892222222222222 active h; from the written candidate: 6.892222222222222 active h
+run row fingerprint: IDENTICAL (2b5a1946dea608125212bd79fb28522b932b6aeea140c59e80a0908a04feea65)

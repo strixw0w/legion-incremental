@@ -1,0 +1,9 @@
+document: unchanged
+specification: unchanged
+stage2Rule: unchanged
+analysis: unchanged
+chain: unchanged
+code: unchanged
+content: 5 registered, 0 changed
+manifests: 9 registered, 0 changed
+amendment 01 registration check: all unchanged

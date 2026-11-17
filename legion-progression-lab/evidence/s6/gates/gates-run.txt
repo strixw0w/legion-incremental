@@ -1,0 +1,43 @@
+# S6 gates start 2026-11-17T01:49:50Z (after the registered chain and the F16 fix)
+## S6 mutation set 01:49:50Z
+dry run: 53 patterns, each found exactly once; nothing changed
+S6 mutation check: 53 planted bugs, 49 detected, 4 not detected; all files restored: True
+time mutation-set: 1495 s
+## suites 02:14:45Z
+time typecheck: 2 s
+time tests: 99 s
+time test-stats: 5 s
+time fixtures: 2 s
+time schemas: 0 s
+time oracle: 3 s
+tests:       Tests  1746 passed (1746)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 669; problems: 0
+schemas: OK    spec/schema/xp-table.schema.json
+oracle: oracle summary: 22 groups, 0 failing
+typecheck: typecheck: exit code 0
+## historical controls (fresh) and the exact dependency cache 02:16:40Z
+time historical: 446 s
+controls: 9 lines with MATCH, 0 with MISMATCH
+cache:      45 MISS 
+## S5 registered reruns on the S6 code (15 workers) 02:24:06Z
+time rerun-S5-E01-boundaries: 14 s
+time rerun-S5-E04-production-shortage: 14 s
+time rerun-S5-E02-reference-vs-batch: 44 s
+S5-E01-boundaries: exit 0; 42 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 3f82d4b45b011e3c
+S5-E04-production-shortage: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 1cea03792a0de960
+S5-E02-reference-vs-batch: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one a3f1ad5417dc9503
+## S6 reproduction and the registered code 02:25:18Z
+time calibration-xcheck: 83 s
+run row, every field c02 has: IDENTICAL (0 missing)
+fields added since c02 (measures only): $.openStallActiveMin, $.snapshots.<horizon>.legionTimeH, $.snapshots.<horizon>.monumentGold, $.milestones.<key>.connectedAutoMs, $.peak.source
+RESULT: the substituted files are the only differences from the registered code
+src/experiments/legionMetrics.ts: not in the closure
+## registration, preservation, git 02:26:41Z
+total changed: 1
+registration check: 2 CHANGED
+amendment 01 registration check: all unchanged
+preservation problems: 0
+git: 159 changed or new paths against s5-checkpoint; HEAD 1b285db
+time all checks: 2212 s
+done 2026-11-17T02:26:42Z

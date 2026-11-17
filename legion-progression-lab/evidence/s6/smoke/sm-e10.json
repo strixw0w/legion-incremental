@@ -1,0 +1,18 @@
+{
+  "experimentId": "S6-E10-connected-idle",
+  "label": "SMOKE (unregistered, not evidence): plumbing check of S6-E10-connected-idle before registration",
+  "seed": "s6-smoke-s6-e10",
+  "tasks": 4,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 1,
+    "firstHours": 3,
+    "spanHours": 8
+  },
+  "budgets": {
+    "wallMs": 1800000,
+    "taskMs": 1500000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

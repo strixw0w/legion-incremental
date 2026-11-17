@@ -1,0 +1,34 @@
+S6-E07-boss-rewards: 10/30 (13 s)
+S6-E07-boss-rewards: 20/30 (30 s)
+S6-E07-boss-rewards: 30/30 (47 s)
+{
+ "experimentId": "S6-E07-boss-rewards",
+ "manifest": "manifests/s6/S6-E07-boss-rewards.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 30,
+ "completedTasks": 30,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 3600000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 47297,
+ "peakRssMb": 3669,
+ "taskMs": {
+  "mean": 18467,
+  "max": 28543
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "42d343512ea779ad87e0b9f7d15896ad994e680c2b39f3ecb75641944be370e0"
+}

@@ -1,0 +1,179 @@
+$ git log --oneline -3
+1b285db S5 checkpoint: offline progression + acceptance corrections A-D
+43a1a16 L2 checkpoint: bounded replay infrastructure (L2 + L2.1 + acceptance corrections)
+dc39492 S4 checkpoint: permanent progression + acceptance corrections
+
+$ git status --porcelain=v1 --untracked-files=all
+ M legion-progression-lab/src/engine/commands.ts
+ M legion-progression-lab/src/engine/legion.ts
+ M legion-progression-lab/src/engine/legionCommands.ts
+ M legion-progression-lab/src/engine/legionObservation.ts
+ M legion-progression-lab/src/engine/simulation.ts
+ M legion-progression-lab/src/experiments/legionMetrics.ts
+ M legion-progression-lab/src/l2/simState.ts
+ M legion-progression-lab/src/model/content.ts
+ M legion-progression-lab/src/model/legionContent.ts
+ M legion-progression-lab/src/model/legionTypes.ts
+ M legion-progression-lab/src/model/types.ts
+?? legion-progression-lab/content/s6/w1-full-s2.candidate.v0.6.0.json
+?? legion-progression-lab/content/s6/w1-full-s2.candidate.v0.6.1.json
+?? legion-progression-lab/content/s6/w1-full-s3.candidate.v0.6.0.json
+?? legion-progression-lab/content/s6/w1-full-s3.candidate.v0.6.1.json
+?? legion-progression-lab/content/s6/w1-full-s5.candidate.v0.6.0.json
+?? legion-progression-lab/content/s6/w1-full-s5.candidate.v0.6.1.json
+?? legion-progression-lab/content/s6/w1-full.candidate.v0.6.0.json
+?? legion-progression-lab/content/s6/w1-full.candidate.v0.6.1.json
+?? legion-progression-lab/content/s6/xp.w1.full.candidate.v0.6.0.json
+?? legion-progression-lab/content/s6/xp.w1.full.candidate.v0.6.1.json
+?? legion-progression-lab/evidence/s5-checkpoint/CHECKPOINT.md
+?? legion-progression-lab/evidence/s5-checkpoint/clean-export-check.txt
+?? legion-progression-lab/evidence/s5-checkpoint/frozen-check.txt
+?? legion-progression-lab/evidence/s6/S6_EVIDENCE.md
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E01-profile-matrix.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E02-completion.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E03-strategy-spread.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E04-earlier-zones.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E05-sensitivity-stage1.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E05-sensitivity-stage2.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E06-rare-heroes.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E07-boss-rewards.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E10-connected-idle.log
+?? legion-progression-lab/evidence/s6/a01-chain/S6-E11-power-pricing.log
+?? legion-progression-lab/evidence/s6/a01-chain/chain.txt
+?? legion-progression-lab/evidence/s6/a01-chain/e05-stage2-registration.txt
+?? legion-progression-lab/evidence/s6/a01-chain/full-suite.log
+?? legion-progression-lab/evidence/s6/a01-chain/registration-check-after.txt
+?? legion-progression-lab/evidence/s6/a01-chain/registration-check-before.txt
+?? legion-progression-lab/evidence/s6/amendments/a01-d30-check.txt
+?? legion-progression-lab/evidence/s6/amendments/a01-diagnosis.txt
+?? legion-progression-lab/evidence/s6/amendments/probe_d30.ts.txt
+?? legion-progression-lab/evidence/s6/analysis/ANALYSIS.md
+?? legion-progression-lab/evidence/s6/analysis/analysis.json
+?? legion-progression-lab/evidence/s6/calibration/CALIBRATION_NOTES.md
+?? legion-progression-lab/evidence/s6/calibration/c01-gate-kills.json
+?? legion-progression-lab/evidence/s6/calibration/c02-gate-kills-from-zone4.json
+?? legion-progression-lab/evidence/s6/calibration/reproduction-check.txt
+?? legion-progression-lab/evidence/s6/experiments/S6-E01-profile-matrix/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E01-profile-matrix/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E02-completion/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E02-completion/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E03-strategy-spread/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E03-strategy-spread/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E04-earlier-zones/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E04-earlier-zones/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E05-sensitivity-stage1/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E05-sensitivity-stage1/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E05-sensitivity-stage2/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E05-sensitivity-stage2/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E06-rare-heroes/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E06-rare-heroes/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E07-boss-rewards/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E07-boss-rewards/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E10-connected-idle/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E10-connected-idle/run.json
+?? legion-progression-lab/evidence/s6/experiments/S6-E11-power-pricing/rows.jsonl
+?? legion-progression-lab/evidence/s6/experiments/S6-E11-power-pricing/run.json
+?? legion-progression-lab/evidence/s6/exploratory/FIXES.md
+?? legion-progression-lab/evidence/s6/exploratory/x01-bal-opt-d7.json
+?? legion-progression-lab/evidence/s6/exploratory/x02-after-fixes-d7.json
+?? legion-progression-lab/evidence/s6/fingerprints.txt
+?? legion-progression-lab/evidence/s6/frozen-check.txt
+?? legion-progression-lab/evidence/s6/gates/calibration-reproduction.txt
+?? legion-progression-lab/evidence/s6/gates/code-digest-check.txt
+?? legion-progression-lab/evidence/s6/gates/experiments.registered.ts.txt
+?? legion-progression-lab/evidence/s6/gates/gates-run.txt
+?? legion-progression-lab/evidence/s6/gates/git-status.txt
+?? legion-progression-lab/evidence/s6/gates/historical/historical-controls.txt
+?? legion-progression-lab/evidence/s6/gates/historical/history-cache.txt
+?? legion-progression-lab/evidence/s6/gates/import-closure.txt
+?? legion-progression-lab/evidence/s6/gates/legionMetrics.registered.ts.txt
+?? legion-progression-lab/evidence/s6/gates/mutation-check-s6.txt
+?? legion-progression-lab/evidence/s6/gates/preservation-check.txt
+?? legion-progression-lab/evidence/s6/gates/registration-check.txt
+?? legion-progression-lab/evidence/s6/gates/reruns/s5-reruns.txt
+?? legion-progression-lab/evidence/s6/gates/s6-amendment-01-registration-check.txt
+?? legion-progression-lab/evidence/s6/gates/s6-registration-check.txt
+?? legion-progression-lab/evidence/s6/gates/s6-run.registered.ts.txt
+?? legion-progression-lab/evidence/s6/gates/suites/fixtures-check.txt
+?? legion-progression-lab/evidence/s6/gates/suites/oracle-check.txt
+?? legion-progression-lab/evidence/s6/gates/suites/schemas-check.txt
+?? legion-progression-lab/evidence/s6/gates/suites/test-output.txt
+?? legion-progression-lab/evidence/s6/gates/suites/test-stats-output.txt
+?? legion-progression-lab/evidence/s6/gates/suites/tool-versions.txt
+?? legion-progression-lab/evidence/s6/gates/suites/typecheck.txt
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E01-profile-matrix.log
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E02-completion-attempt-1/rows.jsonl
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E02-completion-attempt-1/run.json
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E02-completion.log
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E03-strategy-spread.log
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E05-sensitivity-stage1.log
+?? legion-progression-lab/evidence/s6/registered-chain/S6-E06-rare-heroes.log
+?? legion-progression-lab/evidence/s6/registered-chain/chain.txt
+?? legion-progression-lab/evidence/s6/registered-chain/full-suite.log
+?? legion-progression-lab/evidence/s6/registered-chain/registration-check-before.txt
+?? legion-progression-lab/evidence/s6/registration/S6_SPECIFICATION_v0.1_before_any_result.md
+?? legion-progression-lab/evidence/s6/smoke/sm-e01.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e02.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e03.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e04.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e05.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e06.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e07.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e10.json
+?? legion-progression-lab/evidence/s6/smoke/sm-e11.json
+?? legion-progression-lab/evidence/s6/smoke/smoke-chain-2.txt
+?? legion-progression-lab/evidence/s6/smoke/smoke-chain.txt
+?? legion-progression-lab/evidence/s6/tools/calibration_xcheck.ts
+?? legion-progression-lab/manifests/s6/AMENDMENT_01.md
+?? legion-progression-lab/manifests/s6/PREREGISTRATION.md
+?? legion-progression-lab/manifests/s6/S6-E01-profile-matrix.json
+?? legion-progression-lab/manifests/s6/S6-E02-completion.json
+?? legion-progression-lab/manifests/s6/S6-E03-strategy-spread.json
+?? legion-progression-lab/manifests/s6/S6-E04-earlier-zones.json
+?? legion-progression-lab/manifests/s6/S6-E05-sensitivity-stage1.json
+?? legion-progression-lab/manifests/s6/S6-E05-sensitivity-stage2.json
+?? legion-progression-lab/manifests/s6/S6-E06-rare-heroes.json
+?? legion-progression-lab/manifests/s6/S6-E07-boss-rewards.json
+?? legion-progression-lab/manifests/s6/S6-E10-connected-idle.json
+?? legion-progression-lab/manifests/s6/S6-E11-power-pricing.json
+?? legion-progression-lab/manifests/s6/preregistration-amendment-01.json
+?? legion-progression-lab/manifests/s6/preregistration-stage2.json
+?? legion-progression-lab/manifests/s6/preregistration.json
+?? legion-progression-lab/planning/S6_SPECIFICATION.md
+?? legion-progression-lab/repro/s6/analyze.py
+?? legion-progression-lab/repro/s6/assemble.py
+?? legion-progression-lab/repro/s6/code_digest_check.py
+?? legion-progression-lab/repro/s6/e05_stage2.py
+?? legion-progression-lab/repro/s6/import_closure.py
+?? legion-progression-lab/repro/s6/mutation_check.py
+?? legion-progression-lab/repro/s6/preserve.py
+?? legion-progression-lab/repro/s6/regcheck.py
+?? legion-progression-lab/repro/s6/register.py
+?? legion-progression-lab/repro/s6/register_a01.py
+?? legion-progression-lab/repro/s6/run_all.sh
+?? legion-progression-lab/repro/s6/run_all_a01.sh
+?? legion-progression-lab/src/cli/s6-content.ts
+?? legion-progression-lab/src/cli/s6-run.ts
+?? legion-progression-lab/src/cli/s6-worker.ts
+?? legion-progression-lab/src/engine/w1.ts
+?? legion-progression-lab/src/policy/w1Policies.ts
+?? legion-progression-lab/src/s6/experiments.ts
+?? legion-progression-lab/src/s6/profiles.ts
+?? legion-progression-lab/src/s6/w1Content.ts
+?? legion-progression-lab/src/s6/watchdog.ts
+?? legion-progression-lab/test/s6.gates.test.ts
+?? legion-progression-lab/test/s6.w1.test.ts
+
+$ git diff --stat s5-checkpoint
+ legion-progression-lab/src/engine/commands.ts      |   1 +
+ legion-progression-lab/src/engine/legion.ts        | 243 +++++++++++++++++++--
+ .../src/engine/legionCommands.ts                   |   1 +
+ .../src/engine/legionObservation.ts                |  62 +++++-
+ legion-progression-lab/src/engine/simulation.ts    |   1 +
+ .../src/experiments/legionMetrics.ts               |  16 +-
+ legion-progression-lab/src/l2/simState.ts          |  54 ++++-
+ legion-progression-lab/src/model/content.ts        | 173 ++++++++++++++-
+ legion-progression-lab/src/model/legionContent.ts  | 102 ++++++++-
+ legion-progression-lab/src/model/legionTypes.ts    |  56 +++++
+ legion-progression-lab/src/model/types.ts          |   3 +-
+ 11 files changed, 675 insertions(+), 37 deletions(-)

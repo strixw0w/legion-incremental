@@ -23,6 +23,7 @@ import { reconstructPersistentLedger } from '../core/ledger/persistentLedger.ts'
 import { encounterNumber } from '../engine/legionCredit.ts';
 import { count, has, maxOf, rangeProblems, type RangeSet } from './ranges.ts';
 import { permanentStateProblems } from '../engine/permanent.ts';
+import { W1_BOSS_KEYS, W1_KEYS, W1_STATE_VERSION } from '../engine/w1.ts';
 import type { LegionOptions } from '../engine/legion.ts';
 import { EQUIP_SLOTS, PROFESSION_IDS, type IndustryContent } from '../model/industryContent.ts';
 import { CLASS_IDS, type LegionContent } from '../model/legionContent.ts';
@@ -72,8 +73,9 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
   const industryOn = options.industry === true;
   const permanentOn = options.permanent === true;
   const offlineOn = options.offline !== undefined;
-  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : []), ...(offlineOn ? ['offline'] : [])];
-  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'}${offlineOn ? ', offline on' : ''})`)) return P.list;
+  const w1On = (options.content as { w1?: boolean }).w1 === true;
+  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : []), ...(offlineOn ? ['offline'] : []), ...(w1On ? ['w1'] : [])];
+  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'}${offlineOn ? ', offline on' : ''}${w1On ? ', World 1' : ''})`)) return P.list;
   const st = x as O;
   if (!P.need(isInt(st['tMs']), 'state: time is not a non-negative safe integer')) return P.list;
   const tMs = st['tMs'] as number;
@@ -228,7 +230,63 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
   }
   // Offline (S5), required exactly when the switch is on (owner §7 C: the feature-dependent offline state).
   if (offlineOn && P.list.length === 0) offlineProblems(P, st, chars, options);
+  // World 1 (S6), required exactly with World 1 content.
+  if (w1On) w1Problems(P, st, chars, options);
   return P.list;
+}
+
+/**
+ * The S6 World 1 record (src/engine/w1.ts): one gate per content boss, the spawn and rare-drop streams, per-zone elite
+ * counters; consistency with the single boss-gate state (it mirrors the final boss), the rare-hero characters and the
+ * rare list.
+ */
+function w1Problems(P: Problems, st: O, chars: readonly O[], options: LegionOptions): void {
+  const content = options.content;
+  const w = st['w1'];
+  if (!P.obj(w, [...W1_KEYS], 'World 1 state (version 2: unique rare ownership with duplicate counters)')) return;
+  if (!P.need(w['version'] === W1_STATE_VERSION, `World 1: state version ${String(w['version'])} is not supported (version ${W1_STATE_VERSION} is required)`)) return;
+  const nz = content.zones.length;
+  const perZone = (v: unknown) => Array.isArray(v) && v.length === nz && v.every((x) => isInt(x));
+  P.need(rngOk(w['spawnRng']) && rngOk(w['rareRng']), 'World 1: the spawn and rare streams are not four 32-bit words not all zero');
+  P.need(perZone(w['eliteSpawns']) && perZone(w['eliteKills']) && perZone(w['rareDry']), 'World 1: elite counters are not one non-negative integer per zone');
+  if (perZone(w['rareDry'])) {
+    (w['rareDry'] as number[]).forEach((d, i) => {
+      const rh = content.zones[i]?.elite?.rareHero ?? null;
+      P.need(rh === null ? d === 0 : d < rh.pityKills, `World 1 zone ${i + 1}: the rare-drop pity counter is outside [0, pity)`);
+    });
+  }
+  const bs = w['bosses'];
+  if (!P.need(Array.isArray(bs) && bs.length === content.bosses.length, `World 1: not one gate per content boss (${content.bosses.length})`)) return;
+  (bs as unknown[]).forEach((b, i) => {
+    const def = content.bosses[i] as (typeof content.bosses)[number];
+    const what = `World 1 gate ${def.gateId}`;
+    if (!P.obj(b, [...W1_BOSS_KEYS], what)) return;
+    P.need(['opened', 'completed', 'eliteCompleted'].every((k) => typeof b[k] === 'boolean') && ['attempts', 'clears', 'eliteClears'].every((k) => isInt(b[k])), `${what}: flags or counters are malformed`);
+    P.need(b['lastFailMs'] === null || isInt(b['lastFailMs'], 0, st['tMs'] as number), `${what}: the last failure is not a time at or before the state`);
+    P.need((b['completed'] === true) === ((b['clears'] as number) > 0) && (b['eliteCompleted'] === true) === ((b['eliteClears'] as number) > 0), `${what}: completion does not match the clear counts`);
+    P.need((b['completed'] === true || b['eliteCompleted'] !== true) && (b['opened'] === true || (b['attempts'] as number) === 0) && (b['clears'] as number) + (b['eliteClears'] as number) <= (b['attempts'] as number), `${what}: an Elite clear before a Normal clear, an attempt before opening, or more clears than attempts`);
+    if (def.kind === 'final') {
+      const g = st['boss'] as O;
+      P.need(g['opened'] === b['opened'] && g['attempts'] === b['attempts'] && (g['completed'] !== true || b['completed'] === true), `${what}: the single boss-gate state does not mirror the final boss`);
+    }
+  });
+  // Rare heroes: every World 1 rare character is a rare hero of the content, with its class, and on the rare list.
+  const rare = (st['legion'] as O)['rare'] as unknown[];
+  const lc = content as unknown as LegionContent;
+  for (const c of chars) {
+    if (c['kind'] !== 'rare') continue;
+    const id = String(c['id']);
+    const def = id.startsWith('rare:') ? lc.rareHeroes.get(id.slice('rare:'.length)) : undefined;
+    P.need(def !== undefined && c['cls'] === def.cls && rare.includes(def.id), `World 1 character ${id}: not a rare hero of the content with its class, or missing from the rare list`);
+  }
+  for (const r of new Set(rare as string[])) P.need(chars.some((c) => c['id'] === `rare:${r}`), `World 1: the rare list names ${String(r)}, which no character is`);
+  // Version 2 (S6 acceptance correction A): each hero is named once; duplicates are counted per hero, only for owned heroes.
+  P.need(new Set(rare as string[]).size === rare.length, 'World 1: the rare list names a hero more than once (duplicates are counted, not listed)');
+  const ids = [...lc.rareHeroes.keys()];
+  const dups = w['rareDuplicates'];
+  if (P.need(Array.isArray(dups) && dups.length === ids.length && dups.every((d) => isInt(d)), `World 1: rare duplicates are not one non-negative safe integer per content rare hero (${ids.length})`)) {
+    (dups as number[]).forEach((d, k) => P.need(d === 0 || rare.includes(ids[k]), `World 1: rare hero ${String(ids[k])} has duplicates but is not owned`));
+  }
 }
 
 const SPEC_KINDS = ['combat', 'squad', 'worker', 'gathering', 'smithing', 'idle'];
@@ -471,7 +529,7 @@ function industryProblems(P: Problems, x: unknown, content: IndustryContent, cha
 }
 
 // ---------------------------------------------------------------- the runtime and the event queue
-type Feature = 'base' | 'legion' | 'industry' | 'permanent';
+type Feature = 'base' | 'legion' | 'industry' | 'permanent' | 'w1';
 interface KindRule {
   readonly phase: number;
   readonly feature: Feature;
@@ -503,6 +561,8 @@ export const EVENT_RULES: Readonly<Record<string, KindRule>> = {
   EngageStart: R(5, 'base', /^hero$/, true, false, null),
   RegenStart: R(5, 'base', /^hero$/, true, false, null),
   PolicyDecision: R(6, 'base', /^hero$/, false, false, { trigger: 'string' }),
+  // S6 acceptance correction B: a command queued at the external command boundary (World 1 only).
+  ExternalCommand: R(6, 'w1', /^external$/, false, false, { ticket: 'int', request: 'string' }),
   MemberSwing: R(1, 'legion', /^member:.+$/, false, true, { member: MEMBER, mepoch: 'int' }),
   MemberAbility: R(1, 'legion', /^(hero|member:.+)$/, false, true, { member: MEMBER, mepoch: 'int' }),
   MemberRecovered: R(1, 'legion', /^member:.+$/, false, false, { member: MEMBER, ko: 'int' }),
@@ -575,9 +635,15 @@ export function liveEventProblems(st: O, events: readonly O[], options: LegionOp
 
 export function simRuntimeProblems(x: unknown, st: O, options: LegionOptions): string[] {
   const P = new Problems();
-  if (!P.obj(x, ['seq', 'logCount', 'logDigest', 'counters', 'policyDecisionsAt', 'events'], 'runtime')) return P.list;
+  const w1On = (options.content as { w1?: boolean }).w1 === true;
+  if (!P.obj(x, ['seq', 'logCount', 'logDigest', 'counters', 'policyDecisionsAt', 'events', ...(w1On ? ['lastStep'] : [])], 'runtime')) return P.list;
   const rt = x;
   const tMs = st['tMs'] as number;
+  if (w1On) {
+    // S6 acceptance correction B: the last processed step (null before the first), at or before the state's time.
+    const ls = rt['lastStep'];
+    P.need(ls === null || (isObj(ls) && exact(ls, ['t', 'pass', 'phase']) && isInt(ls['t'], 0, tMs) && isInt(ls['pass'], 0, MAX_PASSES - 1) && isInt(ls['phase'], 0, 6)), 'runtime: the last step is not null or {t, pass, phase} at or before the state');
+  }
   P.need(isInt(rt['seq']) && isInt(rt['logCount']), 'runtime: counters are not non-negative integers');
   P.need(rt['logDigest'] === null || (isStr(rt['logDigest']) && /^[0-9a-f]{64}$/.test(rt['logDigest'])), 'runtime: log digest is not null or a SHA-256 digest');
   const pd = rt['policyDecisionsAt'];
@@ -587,7 +653,7 @@ export function simRuntimeProblems(x: unknown, st: O, options: LegionOptions): s
   const counterOk = (v: unknown): boolean => isInt(v) || (isObj(v) && Object.values(v).every((n) => isInt(n)));
   P.need(isObj(c) && exact(c, ['eventsProcessed', 'staleDiscarded', 'commandsAccepted', 'commandsRejected', 'duplicateCredits', 'rejectedCredits', 'policyDecisions', 'policyReports']) && Object.values(c).every(counterOk), 'runtime: run counters are malformed');
   if (!P.need(Array.isArray(rt['events']), 'runtime: events is not a list')) return P.list;
-  const enabled = new Set<Feature>(['base', 'legion', ...(options.industry === true ? ['industry' as const] : []), ...(options.permanent === true ? ['permanent' as const] : [])]);
+  const enabled = new Set<Feature>(['base', 'legion', ...(options.industry === true ? ['industry' as const] : []), ...(options.permanent === true ? ['permanent' as const] : []), ...(w1On ? ['w1' as const] : [])]);
   const chars = new Set<string>(((st['legion'] as O)['chars'] as O[]).map((ch) => ch['id'] as string));
   const encSeq = st['encounterSeq'] as number;
   const seqs = new Set<number>();

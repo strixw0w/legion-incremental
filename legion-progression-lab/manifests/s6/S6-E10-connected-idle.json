@@ -1,0 +1,18 @@
+{
+  "experimentId": "S6-E10-connected-idle",
+  "label": "REGISTERED: Connected-idle incentive: 4 arms (control 60 %, offline 80 %, equal rates, full normal window) x 10 seeds; a POL6-BAL account after 3 connected hours, then 8 wall hours active, connected idle and offline",
+  "seed": "s6-e10",
+  "tasks": 40,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 10,
+    "firstHours": 3,
+    "spanHours": 8
+  },
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

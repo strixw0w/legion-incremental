@@ -1,0 +1,32 @@
+{
+  "experimentId": "S6-E05-sensitivity",
+  "label": "REGISTERED (stage 2, written by the registered rule from the stage-1 rows): 5 factors x {0.5, 0.75, 1.25, 1.5} and the baseline x 5 seeds, PR-BAL to D14",
+  "seed": "s6-e05b",
+  "tasks": 105,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profile": "PR-BAL",
+    "factors": [
+      "xpGrowth",
+      "enemyHp",
+      "slots",
+      "offlineRate",
+      "respawn"
+    ],
+    "multipliers": [
+      0.5,
+      0.75,
+      1.25,
+      1.5
+    ],
+    "seeds": 5,
+    "days": 14,
+    "stage": 2
+  },
+  "budgets": {
+    "wallMs": 7200000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

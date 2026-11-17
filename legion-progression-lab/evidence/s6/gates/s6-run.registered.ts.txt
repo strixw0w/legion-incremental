@@ -1,0 +1,143 @@
+/**
+ * S6 experiment runner: runs a manifest's tasks on a pool of worker threads (deterministic: every task is a pure
+ * function of the manifest and its index; rows are ordered by task) under an INDEPENDENT WATCHDOG (src/s6/watchdog.ts)
+ * that checks the registered budgets on its own timer, whether or not tasks finish: the run's wall time, each task's
+ * wall time, each task's heartbeat gap (a stuck task) and process memory. On the first violation every worker is
+ * terminated and the run is written as STOPPED with the reason, the task concerned, its last progress, every task in
+ * flight and the rows completed so far. A manifest in manifests/s6 must be registered unchanged
+ * (manifests/s6/preregistration.json, or a later preregistration-*.json written by a registered rule); any other
+ * manifest is exploratory and labelled so. A manifest that names its `content` must match the candidate the tasks load.
+ *   node src/cli/s6-run.ts <manifest.json> <out-dir> [--workers N] [--tasks N (exploratory subset; never evidence)]
+ */
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpus, platform, release } from 'node:os';
+import { resolve } from 'node:path';
+import { Worker } from 'node:worker_threads';
+import { rowsFingerprint, s6Content, type Manifest, type Row } from '../s6/experiments.ts';
+import { Watchdog, type StopVerdict } from '../s6/watchdog.ts';
+
+const WATCHDOG_TICK_MS = 1000;
+
+const args = process.argv.slice(2);
+const manifestPath = args[0] as string;
+const outDir = args[1] as string;
+const flag = (n: string) => {
+  const i = args.indexOf(n);
+  return i >= 0 ? Number(args[i + 1]) : null;
+};
+const workers = flag('--workers') ?? Math.max(1, Math.min(15, cpus().length - 1));
+const manifest = JSON.parse(readFileSync(manifestPath, 'utf8')) as Manifest;
+const subset = flag('--tasks');
+const regPath = resolve('manifests/s6/preregistration.json');
+const rel = resolve(manifestPath).split('\\').join('/').split('/legion-progression-lab/')[1] ?? '';
+let registered = false;
+if (rel.startsWith('manifests/s6/')) {
+  if (!existsSync(regPath)) throw new Error('manifests/s6 has no preregistration.json: register before running');
+  // The plan's registration, and any later registration written by a registered rule (the S6-E05 stage 2).
+  const regFiles = readdirSync(resolve('manifests/s6')).filter((f) => /^preregistration.*\.json$/.test(f));
+  const entries = regFiles.flatMap((f) => (JSON.parse(readFileSync(resolve('manifests/s6', f), 'utf8')) as { manifests: { path: string; sha256: string }[] }).manifests);
+  const entry = entries.find((m) => m.path === rel);
+  const sha = createHash('sha256').update(readFileSync(manifestPath)).digest('hex');
+  if (entry === undefined || entry.sha256 !== sha) throw new Error(`${rel} is unregistered or changed since its registration`);
+  registered = true;
+}
+// A manifest that names its content must run on exactly that content (the candidate the experiments load).
+const named = (manifest as { content?: string }).content;
+if (named !== undefined) {
+  const c = s6Content();
+  if (!named.startsWith(`${c.contentId} ${c.contentVersion} `)) throw new Error(`the manifest names content "${named}" but the candidate is ${c.contentId} ${c.contentVersion}`);
+}
+const total = subset === null ? manifest.tasks : Math.min(subset, manifest.tasks);
+mkdirSync(outDir, { recursive: true });
+
+const dog = new Watchdog(manifest.budgets, () => performance.now());
+const rows: (Row | undefined)[] = new Array(total);
+const taskMs: number[] = [];
+let next = 0;
+let done = 0;
+let verdict: StopVerdict | null = null;
+let inFlightAtStop: ReturnType<Watchdog['inFlight']> = [];
+const t0 = performance.now();
+
+await new Promise<void>((resolveAll) => {
+  const pool: Worker[] = [];
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    clearInterval(timer);
+    for (const w of pool) void w.terminate();
+    resolveAll();
+  };
+  const stop = (v: StopVerdict) => {
+    if (verdict !== null) return;
+    verdict = v;
+    inFlightAtStop = dog.inFlight();
+    console.log(`STOPPED by the watchdog: ${v.code}: ${v.reason}${v.progress ? ` (last progress: ${v.progress})` : ''}`);
+    finish();
+  };
+  // The watchdog's own timer: independent of task completion.
+  const timer = setInterval(() => {
+    dog.memory(process.memoryUsage().rss);
+    const v = dog.check();
+    if (v) stop(v);
+  }, WATCHDOG_TICK_MS);
+  const feed = (w: Worker, slot: number) => {
+    if (verdict !== null || next >= total) return;
+    const task = next;
+    next += 1;
+    dog.start(slot, task);
+    w.postMessage({ manifest, task });
+  };
+  for (let k = 0; k < Math.min(workers, total); k += 1) {
+    const slot = k;
+    const w = new Worker(new URL('./s6-worker.ts', import.meta.url));
+    w.on('message', (msg: { type: 'beat'; task: number; progress: string; rss: number } | { type: 'done'; task: number; row: Row; ms: number; rss: number }) => {
+      dog.memory(msg.rss);
+      if (msg.type === 'beat') {
+        dog.beat(slot, msg.progress);
+        return;
+      }
+      dog.finish(slot);
+      rows[msg.task] = msg.row;
+      taskMs.push(msg.ms);
+      done += 1;
+      const v = dog.check();
+      if (v) return stop(v);
+      if (done % 10 === 0 || done === total) console.log(`${manifest.experimentId}: ${done}/${total} (${Math.round((performance.now() - t0) / 1000)} s)`);
+      if (done >= total) return finish();
+      feed(w, slot);
+    });
+    w.on('error', (e) => stop(dog.fail(null, `worker error: ${e.message}`)));
+    pool.push(w);
+    feed(w, slot);
+  }
+});
+
+const wallMs = Math.round(performance.now() - t0);
+const completed = rows.filter((r): r is Row => r !== undefined);
+const failures = completed.filter((r) => r['pass'] === false || r['error'] !== undefined);
+const v = verdict as StopVerdict | null;
+const result = {
+  experimentId: manifest.experimentId,
+  manifest: rel || manifestPath,
+  status: v !== null ? 'STOPPED' : subset !== null && subset < manifest.tasks ? 'EXPLORATORY_SUBSET' : registered ? 'COMPLETE' : 'COMPLETE_UNREGISTERED',
+  registered,
+  stopped: v === null ? null : { ...v, inFlight: inFlightAtStop },
+  registeredTasks: manifest.tasks,
+  completedTasks: completed.length,
+  failedTasks: failures.length,
+  firstFailures: failures.slice(0, 5),
+  budgets: manifest.budgets,
+  wallMs,
+  peakRssMb: dog.peakRssMb(),
+  taskMs: { mean: taskMs.length ? Math.round(taskMs.reduce((a, b) => a + b, 0) / taskMs.length) : 0, max: taskMs.length ? Math.max(...taskMs) : 0 },
+  workers,
+  machine: { cpus: cpus().length, platform: platform(), release: release(), node: process.version },
+  rowsFingerprint: rowsFingerprint(completed),
+};
+writeFileSync(resolve(outDir, 'rows.jsonl'), completed.map((r) => JSON.stringify(r)).join('\n') + '\n');
+writeFileSync(resolve(outDir, 'run.json'), JSON.stringify(result, null, 2) + '\n');
+console.log(JSON.stringify({ ...result, firstFailures: failures.slice(0, 2) }, null, 1));
+process.exit(0);

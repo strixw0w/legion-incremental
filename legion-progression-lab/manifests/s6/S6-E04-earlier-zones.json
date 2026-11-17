@@ -1,0 +1,17 @@
+{
+  "experimentId": "S6-E04-earlier-zones",
+  "label": "REGISTERED: Earlier zones: from a POL6-BAL account after one connected wall day, one connected hour per zone 1-10 (fixed zone) and one with the frontier policy (zone 0), 3 seeds",
+  "seed": "s6-e04",
+  "tasks": 33,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 3,
+    "atDay": 1
+  },
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

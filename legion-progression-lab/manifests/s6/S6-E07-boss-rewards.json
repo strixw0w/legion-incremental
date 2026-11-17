@@ -1,0 +1,17 @@
+{
+  "experimentId": "S6-E07-boss-rewards",
+  "label": "REGISTERED: Boss rewards against farming (H-S6-04): each boss x 10 seeds; one connected session (at most 72 wall h) to the boss's first Normal clear, then one hour of Normal repeats against one hour of frontier farming",
+  "seed": "s6-e07",
+  "tasks": 30,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 10,
+    "maxHours": 72
+  },
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 3600000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

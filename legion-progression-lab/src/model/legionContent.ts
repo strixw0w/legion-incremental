@@ -46,6 +46,40 @@ const TalentSchema = z
   })
   .strict();
 
+/**
+ * S6 World 1 rare hero (D-06; design bible section 4): a unique named character with a fixed class and a trait, a
+ * sidegrade rather than an upgrade. Trait values join the existing pools: attackBp the additive damage pool (with class
+ * and talent bonuses), hpBp the class and talent HP sum, critBp the crit sum, abilityBp the ability multiplier sum;
+ * abilityCooldownBp scales the class ability cooldown.
+ */
+const RareHeroSchema = z
+  .object({
+    id: z.string().regex(/^rare\.[a-z0-9_]+$/),
+    name: z.string().min(1),
+    cls: z.enum(CLASS_IDS),
+    joinLevel: labelled(Int(1)),
+    trait: z
+      .object({
+        name: z.string().min(1),
+        attackBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
+        hpBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
+        critBp: labelled(Int(0, 10_000)),
+        abilityBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
+        abilityCooldownBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
+      })
+      .strict(),
+    note: z.string().min(1).optional(),
+  })
+  .strict();
+
+/** S6 World 1 roster: slot and deploy milestones on zone access (they replace the zone 2 and 3 fields) and the rare heroes. */
+const W1RosterSchema = z
+  .object({
+    zoneMilestones: z.array(z.object({ zoneOrder: Int(2), slots: labelled(Int(1)), deployCap: labelled(Int(0, 3)) }).strict()).min(1),
+    rareHeroes: z.array(RareHeroSchema).min(1),
+  })
+  .strict();
+
 export const LegionPackSchema = z
   .object({
     schemaVersion: z.literal(1),
@@ -79,8 +113,23 @@ export const LegionPackSchema = z
       .strict(),
     classes: z.array(ClassSchema).length(3),
     talents: z.array(TalentSchema).min(1),
+    /** S6: present exactly when the base pack is a World 1 pack (schema version 2). */
+    w1: W1RosterSchema.optional(),
   })
   .strict();
+
+export interface CompiledRareHero {
+  readonly id: string;
+  readonly name: string;
+  readonly cls: ClassId;
+  readonly joinLevel: number;
+  readonly traitName: string;
+  readonly attackBp: number;
+  readonly hpBp: number;
+  readonly critBp: number;
+  readonly abilityBp: number;
+  readonly abilityCooldownBp: number;
+}
 
 export interface CompiledClass {
   readonly id: ClassId;
@@ -122,6 +171,11 @@ export interface LegionRules {
   readonly workerStopAfterKos: number;
   readonly workerKoWindowMs: number;
   readonly rareHeroDuplicateResource: string;
+  /**
+   * S6 World 1: slot and deploy-cap milestones by zone access, in zone order; null for S2–S5 packs (which use the zone 2
+   * and zone 3 fields above).
+   */
+  readonly zoneMilestones: readonly { readonly zoneOrder: number; readonly slots: number; readonly deployCap: number }[] | null;
 }
 
 export type TalentAllocation = Readonly<Record<string, number>>;
@@ -184,6 +238,8 @@ export interface LegionContent extends CompiledContent {
   readonly legion: LegionRules;
   readonly classes: ReadonlyMap<ClassId, CompiledClass>;
   readonly talents: ReadonlyMap<string, CompiledTalent>;
+  /** S6 World 1 rare heroes by id (empty for S2–S5 packs). */
+  readonly rareHeroes: ReadonlyMap<string, CompiledRareHero>;
   /** Combat stats of a character. Pure and cached by (level, class, allocation). */
   characterStats(level: number, cls: HeldClass, allocation: TalentAllocation, mods?: StatMods): CharacterStats;
 }
@@ -206,6 +262,34 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
   if (new Set(pack.talents.map((t) => t.id)).size !== pack.talents.length) problems.push('talents: duplicate id');
   for (const t of pack.talents) if (!t.id.startsWith(`tal.${t.classId.slice(0, 3)}.`)) problems.push(`talent ${t.id}: id must start with tal.${t.classId.slice(0, 3)}.`);
   if (!base.resources.some((r) => r.id === pack.roster.rareHeroDuplicateResource)) problems.push('roster.rareHeroDuplicateResource is not a resource');
+  // S6: the World 1 roster block goes with a World 1 base pack, and every rare hero has exactly one acquisition path.
+  if (base.w1 !== (pack.w1 !== undefined)) problems.push(base.w1 ? 'a World 1 base pack needs the w1 roster block' : 'the w1 roster block needs a World 1 base pack');
+  if (pack.w1) {
+    const ms = pack.w1.zoneMilestones;
+    ms.forEach((m, i) => {
+      if (m.zoneOrder > base.zones.length) problems.push(`w1.zoneMilestones: zone ${m.zoneOrder} does not exist`);
+      const prev = ms[i - 1];
+      if (prev && (m.zoneOrder <= prev.zoneOrder || m.slots.value < prev.slots.value || m.deployCap.value < prev.deployCap.value)) problems.push('w1.zoneMilestones: zones increase and slots and caps never decrease');
+    });
+    const at = (o: number) => ms.find((m) => m.zoneOrder === o);
+    const r0 = pack.roster;
+    if (at(2)?.slots.value !== r0.slotsAtZone2Access.value || at(2)?.deployCap.value !== r0.deployCapAtZone2Access.value || at(3)?.slots.value !== r0.slotsAtZone3Access.value || at(3)?.deployCap.value !== r0.deployCapAtZone3Access.value) {
+      problems.push('w1.zoneMilestones: the zone 2 and zone 3 entries must equal the roster zone 2 and zone 3 fields');
+    }
+    const rids = pack.w1.rareHeroes.map((h) => h.id);
+    if (new Set(rids).size !== rids.length) problems.push('w1.rareHeroes: duplicate id');
+    const sources = new Map<string, number>();
+    const add = (id: string | null | undefined) => {
+      if (id) sources.set(id, (sources.get(id) ?? 0) + 1);
+    };
+    for (const z of base.zones) add(z.elite?.rareHero?.rareHeroId);
+    for (const b of base.bosses) {
+      add(b.firstClear?.rareHeroId);
+      add(b.eliteFirstClear?.rareHeroId);
+    }
+    for (const [id] of sources) if (!rids.includes(id)) problems.push(`base pack names rare hero ${id}, which the w1 roster block does not define`);
+    for (const id of rids) if ((sources.get(id) ?? 0) !== 1) problems.push(`rare hero ${id}: needs exactly one acquisition path in the base pack (found ${sources.get(id) ?? 0})`);
+  }
   if (problems.length > 0) fail('INVALID_CONTENT', `S2 legion pack refused: ${problems.join('; ')}`);
 
   const r = pack.roster;
@@ -228,7 +312,15 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
     workerStopAfterKos: r.workerStopAfterKos.value,
     workerKoWindowMs: r.workerKoWindowMs.value,
     rareHeroDuplicateResource: r.rareHeroDuplicateResource,
+    zoneMilestones: pack.w1 ? pack.w1.zoneMilestones.map((m) => Object.freeze({ zoneOrder: m.zoneOrder, slots: m.slots.value, deployCap: m.deployCap.value })) : null,
   };
+  const rareHeroes = new Map<string, CompiledRareHero>(
+    (pack.w1?.rareHeroes ?? []).map((x) => [
+      x.id,
+      Object.freeze({ id: x.id, name: x.name, cls: x.cls, joinLevel: x.joinLevel.value, traitName: x.trait.name, attackBp: x.trait.attackBp.value, hpBp: x.trait.hpBp.value, critBp: x.trait.critBp.value, abilityBp: x.trait.abilityBp.value, abilityCooldownBp: x.trait.abilityCooldownBp.value }),
+    ]),
+  );
+  if ([...rareHeroes.values()].some((x) => x.joinLevel > base.table.length + 1)) fail('INVALID_CONTENT', 'S2 legion pack refused: a rare hero joins above the maximum level');
   const classes = new Map<ClassId, CompiledClass>(
     pack.classes.map((c) => [
       c.id,
@@ -260,14 +352,17 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
     for (const c of classes.values()) {
       const own = [...talents.values()].filter((t) => t.classId === c.id);
       const sumBp = (effect: CompiledTalent['effect']) => own.filter((t) => t.effect === effect).reduce((a, t) => a + t.perPointBp * cap, 0);
-      const hpBp = c.hpBp + sumBp('hpBp');
-      const atkBp = c.attackBp + sumBp('attackBp');
+      // S6: the strongest rare-hero trait of this class adds to the worst case.
+      const traits = [...rareHeroes.values()].filter((x) => x.cls === c.id);
+      const tmax = (f: (x: CompiledRareHero) => number) => traits.reduce((a, x) => Math.max(a, f(x)), 0);
+      const hpBp = c.hpBp + sumBp('hpBp') + tmax((x) => x.hpBp);
+      const atkBp = c.attackBp + sumBp('attackBp') + tmax((x) => x.attackBp);
       const atkRawMax = Math.ceil((baseAtk * (10_000 + atkBp)) / 10_000) + 1;
       const checks: [string, number][] = [
         ['max HP numerator 2 x baseHp x (10000 + hpBp) + 10000', 2 * baseHp * (10_000 + hpBp) + 10_000],
         ['defence per level product', h.defencePerLevel * steps * c.defencePerLevelBp],
         ['attack value baseAttack x (10000 + attackBp)', baseAtk * (10_000 + atkBp)],
-        ['ability numerator 2 x rawAttack x (multBp + abilityBp) + 10000', 2 * atkRawMax * (c.ability.multBp + sumBp('abilityBp')) + 10_000],
+        ['ability numerator 2 x rawAttack x (multBp + abilityBp) + 10000', 2 * atkRawMax * (c.ability.multBp + sumBp('abilityBp') + tmax((x) => x.abilityBp)) + 10_000],
       ];
       for (const [what, v] of checks) if (!Number.isFinite(v) || v > SAFE) domain.push(`class ${c.id}: ${what} exceeds 2^53 - 1 at level ${steps + 1}`);
     }
@@ -344,6 +439,7 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown, 
     legion,
     classes,
     talents,
+    rareHeroes,
     characterStats,
   };
 }

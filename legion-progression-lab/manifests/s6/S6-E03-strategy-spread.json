@@ -1,0 +1,26 @@
+{
+  "experimentId": "S6-E03-strategy-spread",
+  "label": "REGISTERED: Strategy spread (H-S6-03): PR-BAL x {BAL, CONQ, NOMON, WARRIOR, MAGE, BOSSFARM} x 5 seeds, D7 legion EXP",
+  "seed": "s6-e03",
+  "tasks": 30,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profile": "PR-BAL",
+    "strategies": [
+      "POL6-BAL",
+      "POL6-CONQ",
+      "POL6-NOMON",
+      "POL6-WARRIOR",
+      "POL6-MAGE",
+      "POL6-BOSSFARM"
+    ],
+    "seeds": 5,
+    "days": 7
+  },
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

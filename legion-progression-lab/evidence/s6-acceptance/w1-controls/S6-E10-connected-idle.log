@@ -1,0 +1,35 @@
+S6-E10-connected-idle: 10/40 (69 s)
+S6-E10-connected-idle: 20/40 (114 s)
+S6-E10-connected-idle: 30/40 (124 s)
+S6-E10-connected-idle: 40/40 (160 s)
+{
+ "experimentId": "S6-E10-connected-idle",
+ "manifest": "manifests/s6/S6-E10-connected-idle.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 40,
+ "completedTasks": 40,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 159783,
+ "peakRssMb": 4024,
+ "taskMs": {
+  "mean": 54302,
+  "max": 69864
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "41a96182ff23b08c0b4b88f2eaac113e099f232521cc3aae7143cad22c5493a9"
+}

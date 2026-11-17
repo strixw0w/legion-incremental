@@ -1,0 +1,34 @@
+S6-E03-strategy-spread: 10/30 (76 s)
+S6-E03-strategy-spread: 20/30 (125 s)
+S6-E03-strategy-spread: 30/30 (168 s)
+{
+ "experimentId": "S6-E03-strategy-spread",
+ "manifest": "manifests/s6/S6-E03-strategy-spread.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 30,
+ "completedTasks": 30,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 168447,
+ "peakRssMb": 4280,
+ "taskMs": {
+  "mean": 70076,
+  "max": 95788
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "1ca1c859e5f715795b5a88bd49beb412cedc07d3ab7af195a74848fededa0b79"
+}

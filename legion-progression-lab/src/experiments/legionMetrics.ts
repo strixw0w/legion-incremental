@@ -26,6 +26,7 @@ import type { RngState } from '../core/rng/xoshiro128ss.ts';
 import { levelForExp, type LegionSimulation } from '../engine/legion.ts';
 import { workerZoneAllowed } from '../engine/legionCommands.ts';
 import { encodeDropItems, rollKillReward } from '../engine/rewards.ts';
+import { encounterEnemy } from '../engine/w1.ts';
 import type { Simulation } from '../engine/simulation.ts';
 import { CLASS_IDS, type ClassId, type HeldClass } from '../model/legionContent.ts';
 import type { CharacterState, TimeCategory } from '../model/legionTypes.ts';
@@ -271,7 +272,14 @@ export class LegionMetricsRecorder {
     const stream = String(d['stream']);
     const boss = d['boss'] === true;
     const zoneOrder = d['zoneOrder'] as number;
-    const enemy = boss ? this.sim.content.boss.enemy : (this.sim.content.zones[zoneOrder - 1] as (typeof this.sim.content.zones)[number]).enemy;
+    // S6 World 1: the enemy (elite, boss or Elite boss) follows from the instance identity, which is the transaction ID
+    // after its "kill:<encounter id>:" prefix (an encounter id itself contains ':'; F16).
+    const instanceId = String(d['txId']).slice(`kill:${String(d['encounterId'])}:`.length);
+    const enemy = this.sim.content.w1
+      ? encounterEnemy(this.sim.content, boss ? 'boss' : 'ordinary', zoneOrder, instanceId)
+      : boss
+        ? this.sim.content.boss.enemy
+        : (this.sim.content.zones[zoneOrder - 1] as (typeof this.sim.content.zones)[number]).enemy;
     const enemyExp = enemy.exp;
     // Each award is "<characterId>:<exp>:<levelAfter>"; character ids may contain ':' (rec:1), so parse from the right.
     const awards = String(d['awards']).split(',').filter((x) => x !== '').map((a) => {
@@ -300,6 +308,12 @@ export class LegionMetricsRecorder {
       }
       this.legionExp += a.exp;
       if (a.id === 'hero') this.heroExp += a.exp;
+    }
+    // S6: a rare hero granted by this credit joins in the same commit, with no EXP from it.
+    for (const c of s.legion.chars) {
+      if (this.shadow.totalExp.has(c.id) || c.kind !== 'rare') continue;
+      this.check(t, c.totalExp === 0 && !awards.some((a) => a.id === c.id), `I3 ${c.id} joined with EXP or an award`);
+      this.addCharacter(c.id);
     }
     for (const c of s.legion.chars) this.check(t, this.shadow.totalExp.get(c.id) === c.totalExp, `I3 ${c.id} total EXP ${c.totalExp} differs from the shadow ${this.shadow.totalExp.get(c.id)}`);
     if (this.sim.options.diagnostic?.freezeLevel !== true) {

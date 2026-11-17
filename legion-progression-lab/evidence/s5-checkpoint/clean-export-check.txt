@@ -1,0 +1,12 @@
+exported s5-checkpoint (1b285dbd30176ff21cf002ad608bf4638521abbd): 1607 files
+node_modules copied from the working tree (offline)
+npm-ci: exit 0 (4 s) | added 51 packages in 3s 
+typecheck: exit 0 (2 s) | 
+test: exit 0 (84 s) |       Tests  1668 passed (1668) 
+test-stats: exit 0 (5 s) |       Tests  9 passed (9) 
+fixtures: exit 0 (2 s) | total cases: 669; problems: 0 
+oracle: exit 0 (4 s) | oracle summary: 22 groups, 0 failing 
+verify-s31-e03: exit 0 (31 s) | S3.1-E03-equipment-strength: MATCH (31100 ms, 15 workers) 
+verify-s4-e04: exit 0 (80 s) | S4-E04-soft-caps: MATCH (78565 ms, 15 workers) 
+S5-E01-boundaries from the export (8 workers): 42 rows, semantic rows fingerprint IDENTICAL to the packaged one
+export folder: <HOME>/AppData/Local/Temp/claude/278b8a1dbacfe479/21149cb6-cbb9-4084-8aec-c79d4edcb607/scratchpad/s5ck-export-190958

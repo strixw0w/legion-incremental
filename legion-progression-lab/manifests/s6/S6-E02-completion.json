@@ -1,0 +1,23 @@
+{
+  "experimentId": "S6-E02-completion",
+  "label": "REGISTERED: W1 completion (H-S6-01): PR-BAL, PR-CAS, PR-CMB, PR-OPT x 20 seeds to D30; active, credited and calendar time to the final Normal clear",
+  "seed": "s6-e02",
+  "tasks": 80,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profiles": [
+      "PR-BAL",
+      "PR-CAS",
+      "PR-CMB",
+      "PR-OPT"
+    ],
+    "seeds": 20,
+    "days": 30
+  },
+  "budgets": {
+    "wallMs": 10800000,
+    "taskMs": 3600000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

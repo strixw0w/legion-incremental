@@ -1,0 +1,1184 @@
+diff --git a/legion-progression-lab/src/engine/commands.ts b/legion-progression-lab/src/engine/commands.ts
+index 19fbaa7..220c380 100644
+--- a/legion-progression-lab/src/engine/commands.ts
++++ b/legion-progression-lab/src/engine/commands.ts
+@@ -59,6 +59,7 @@ export function validateCommand(state: SimState, content: CompiledContent, cmd:
+     case 'StartBoss': {
+       const c = common(state);
+       if (c) return c;
++      if (cmd.elite === true) return no('GATE_UNKNOWN');
+       if (!content.gateIds.has(cmd.gateId) || cmd.gateId !== content.boss.gateId) return no('GATE_UNKNOWN');
+       if (!state.boss.opened) return no('GATE_LOCKED');
+       if (state.boss.completed) return no('GATE_ALREADY_COMPLETED');
+diff --git a/legion-progression-lab/src/engine/legion.ts b/legion-progression-lab/src/engine/legion.ts
+index 5cef43f..43e402b 100644
+--- a/legion-progression-lab/src/engine/legion.ts
++++ b/legion-progression-lab/src/engine/legion.ts
+@@ -27,8 +27,8 @@ import { accrue } from '../core/numeric/remainder.ts';
+ import { bernoulli } from '../core/rng/sample.ts';
+ import { deriveRngState } from '../core/rng/streamId.ts';
+ import type { RngState } from '../core/rng/xoshiro128ss.ts';
+-import type { CompiledEnemy } from '../model/content.ts';
+-import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
++import type { CompiledBoss, CompiledEnemy, CompiledReward } from '../model/content.ts';
++import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type CompiledRareHero, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
+ import type { CompiledItemDef, CompiledNode, CompiledRecipe, EquipSlot, IndustryContent, ProfessionId, QtyLine } from '../model/industryContent.ts';
+ import type { IndustryCommand, IndustryState, ItemInstance, ProductionJob, QueueArm, Work } from '../model/industryTypes.ts';
+ import { autoEquipPlan, computeMods, crafterBlocker, efficiencyBp, emptyIndustry, gatherBlocker, gatherYieldNum, isIndustryCommand, itemById, itemNumber, jobById, jobNumber, profLevel, shortInput, toolSlotFor, unitTimeMs, validateIndustryCommand, weaponCompatible, YIELD_DEN, ZERO_PROF } from './industry.ts';
+@@ -47,7 +47,8 @@ import { addCounter, aggregate, bonusSources, buildPermanentObservation, buyMaxL
+ import { PROFESSION_IDS } from '../model/industryContent.ts';
+ import type { CompiledPermanent, PermanentContent, PermCounter } from '../model/permanentContent.ts';
+ import { permEqual, ZERO_PERM, type MonumentState, type PermanentCommand, type PermanentObservation, type PermanentReasonCode, type PermanentState, type PermMods } from '../model/permanentTypes.ts';
+-import { validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
++import { productiveRecruits, validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
++import { bossClear, bossIndexAt, bossIndexOf, eliteKill, emptyW1, encounterEnemy, finalBossIndex, isEliteBossInstance, isEliteSlotInstance, respawnInstance, validateW1StartBoss, type W1BossState, type W1State } from './w1.ts';
+ import { absenceId, assignmentOf, creditedMs, emptyOffline, formatSpec, offlineIneligible, offlinePreview, offlineRules, offlineUnlocked, progressSnapshot, sameAssignment, secondRateE8, specOfAssignment, type Absence, type EffectiveOffline, type OfflineOptions, type OfflineRules, type OfflineSpec, type OfflineState } from './offline.ts';
+ 
+ /** Event kinds added by S2 (the S1 kinds keep their meaning). */
+@@ -221,6 +222,7 @@ export class LegionSimulation {
+   constructor(options: LegionOptions) {
+     this.content = options.content;
+     this.options = options;
++    if (options.content.w1 && options.legion !== true) fail('INVALID_STATE', 'World 1 content needs the legion switch');
+     if (options.industry === true && !('items' in options.content)) fail('INVALID_STATE', 'the industry switch needs the S3 industry content');
+     if (options.permanent === true && (options.industry !== true || options.legion !== true || !('permanent' in options.content))) fail('INVALID_STATE', 'the permanent switch needs the legion and industry switches and the S4 permanent content');
+     if (options.identity === 'l2' && options.ledger !== 'bounded' && options.ledger !== 'bounded-reference') fail('INVALID_STATE', "the bounded identity (identity: 'l2') needs the bounded ledger (ledger: 'bounded' or 'bounded-reference')");
+@@ -307,7 +309,52 @@ export class LegionSimulation {
+ 
+   /** A character's stat modifiers: equipment and hero variants (S3), with the S4 permanent bonuses merged in (S4-R03). */
+   modsOf(id: CharacterId): StatMods {
+-    return this.mergePermanent(this.industryModsOf(id));
++    const m = this.mergePermanent(this.industryModsOf(id));
++    return this.content.rareHeroes.size > 0 && id.startsWith('rare:') ? this.withTrait(id, m) : m;
++  }
++
++  /**
++   * S6: a World 1 rare hero's trait added to its other modifiers (attack and HP join the additive pools, crit and ability
++   * power their sums, the cooldown scale its variant field). The identity for every other character. Cached by input
++   * identity, so the stats cache keeps working.
++   */
++  withTrait(id: CharacterId, base: StatMods): StatMods {
++    const def = this.content.rareHeroes.get(id.slice('rare:'.length));
++    if (def === undefined) return base;
++    this.traitCache ??= new Map();
++    let byBase = this.traitCache.get(id);
++    if (byBase === undefined) {
++      byBase = new WeakMap();
++      this.traitCache.set(id, byBase);
++    }
++    const hit = byBase.get(base);
++    if (hit) return hit;
++    const m: StatMods = Object.freeze({ ...base, permAttackBp: base.permAttackBp + def.attackBp, permHpBp: base.permHpBp + def.hpBp, critBp: base.critBp + def.critBp, abilityMultBp: base.abilityMultBp + def.abilityBp, abilityCooldownBp: base.abilityCooldownBp + def.abilityCooldownBp });
++    byBase.set(base, m);
++    return m;
++  }
++
++  private traitCache: Map<CharacterId, WeakMap<StatMods, StatMods>> | undefined;
++
++  /** S6: the World 1 gate state (present exactly with World 1 content). */
++  w1State(): W1State | null {
++    return this.state.w1 ?? null;
++  }
++
++  private get w1s(): W1State {
++    return this.state.w1 as W1State;
++  }
++
++  private setW1(w1: W1State): void {
++    this.state = { ...this.state, w1 };
++  }
++
++  /** One W1 boss gate changes; the single boss-gate state mirrors the final boss (its completion at the progress check). */
++  private setBossGate(i: number, patch: Partial<W1BossState>): void {
++    const w = this.w1s;
++    const nb = { ...(w.bosses[i] as W1BossState), ...patch };
++    this.state = { ...this.state, w1: { ...w, bosses: w.bosses.map((b, j) => (j === i ? nb : b)) } };
++    if (i === finalBossIndex(this.content)) this.state = { ...this.state, boss: { ...this.state.boss, opened: nb.opened, attempts: nb.attempts } };
+   }
+ 
+   /** The S3 part only: equipment and hero-variant modifiers; NO_MODS with the industry switch off. */
+@@ -583,10 +630,10 @@ export class LegionSimulation {
+   }
+ 
+   // ------------------------------------------------------------ setup
+-  private newCharacter(id: CharacterId, kind: CharacterState['kind'], order: number, level: number, cls: HeldClass, talents: Record<ClassId, TalentAllocation>, assignment: Assignment): CharacterState {
++  private newCharacter(id: CharacterId, kind: CharacterState['kind'], order: number, level: number, cls: HeldClass, talents: Record<ClassId, TalentAllocation>, assignment: Assignment, mods?: StatMods): CharacterState {
+     const root = this.options.seedRoot;
+     // S4: a new recruit gets the account bonuses at once (S4-R04); the identity before and without them.
+-    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls], this.mergePermanent(NO_MODS));
++    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls], mods ?? this.mergePermanent(NO_MODS));
+     return {
+       id,
+       kind,
+@@ -735,6 +782,7 @@ export class LegionSimulation {
+       ...(industry ? { industry } : {}),
+       ...(this.options.permanent === true ? { permanent: emptyPermanent(this.pc, root) } : {}),
+       ...(this.options.offline !== undefined ? { offline: emptyOffline() } : {}),
++      ...(this.content.w1 ? { w1: emptyW1(this.content, root) } : {}),
+     };
+   }
+ 
+@@ -1054,7 +1102,8 @@ export class LegionSimulation {
+     return this.current as EventKey;
+   }
+ 
+-  private enemyOf(enc: { kind: 'ordinary' | 'boss'; zoneOrder: number }): CompiledEnemy {
++  private enemyOf(enc: { kind: 'ordinary' | 'boss'; zoneOrder: number; instanceId: string }): CompiledEnemy {
++    if (this.content.w1) return encounterEnemy(this.content, enc.kind, enc.zoneOrder, enc.instanceId);
+     return enc.kind === 'boss' ? this.content.boss.enemy : (this.content.zones[enc.zoneOrder - 1] as LegionContent['zones'][number]).enemy;
+   }
+ 
+@@ -1103,6 +1152,8 @@ export class LegionSimulation {
+     if (enc && enc.kind === 'boss') {
+       this.log('BossFailed', { encounterId: enc.id, reason });
+       if (reason !== 'SESSION_ENDED') this.requestPolicy('boss-failed');
++      // S6: the W1 boss board remembers the last failed attempt (what the player saw).
++      if (this.content.w1) this.setBossGate(bossIndexAt(this.content, enc.zoneOrder), { lastFailMs: this.current ? this.current.t : this.state.tMs });
+     }
+     if (enc) this.log('EncounterClosed', { encounterId: enc.id, reason });
+     const target = this.state.hero.targetSlot;
+@@ -1813,7 +1864,7 @@ export class LegionSimulation {
+     if (slot.status !== 'reserved' || slot.instanceId === null) fail('INVALID_STATE', 'engagement target is not reserved');
+     const n = this.state.encounterSeq + 1;
+     const participants = this.state.legion.chars.filter((c) => c.assignment.kind === 'squad' && !c.knockedOut).map((c) => c.id);
+-    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'ordinary', zoneOrder: h.zoneOrder, slotIndex, instanceId: slot.instanceId as string, enemyHp: (this.content.zones[h.zoneOrder - 1] as LegionContent['zones'][number]).enemy.hp, startMs: t, origin: h.engageOrigin ?? 'auto', participants };
++    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'ordinary', zoneOrder: h.zoneOrder, slotIndex, instanceId: slot.instanceId as string, enemyHp: this.enemyOf({ kind: 'ordinary', zoneOrder: h.zoneOrder, instanceId: slot.instanceId as string }).hp, startMs: t, origin: h.engageOrigin ?? 'auto', participants };
+     this.state = { ...this.state, encounter: enc, encounterSeq: n };
+     this.setHero({ status: 'engaged', targetSlot: null, engageOrigin: null });
+     this.beginEncounter(enc);
+@@ -1887,7 +1938,14 @@ export class LegionSimulation {
+     const index = ev.data?.['slotIndex'] as number;
+     const zone = this.state.zones[order - 1] as ZoneState;
+     const counter = zone.spawnCounter + 1;
+-    const id = `${(this.content.zones[order - 1] as LegionContent['zones'][number]).id}#${counter}`;
++    let id = `${(this.content.zones[order - 1] as LegionContent['zones'][number]).id}#${counter}`;
++    if (this.content.w1) {
++      // S6: a respawn in a zone with an elite variant draws whether it is elite (the W1 spawn stream).
++      const r = respawnInstance(this.w1s, this.content.zones[order - 1] as LegionContent['zones'][number], counter);
++      id = r.instanceId;
++      if (r.w1 !== this.w1s) this.setW1(r.w1);
++      if (r.elite) this.log('EliteSpawned', { zoneOrder: order, instanceId: id });
++    }
+     this.setZone(order, { spawnCounter: counter });
+     this.setSlot(order, index, { status: 'alive', aliveSinceMs: this.now().t, instanceId: id });
+     const h = this.state.hero;
+@@ -1964,7 +2022,7 @@ export class LegionSimulation {
+     }
+     const credit = verdict.credit;
+     const worker = credit.stream.startsWith('worker:') ? credit.stream.slice('worker:'.length) : null;
+-    const enemy = this.enemyOf({ kind: credit.boss ? 'boss' : 'ordinary', zoneOrder: credit.zoneOrder });
++    const enemy = this.enemyOf({ kind: credit.boss ? 'boss' : 'ordinary', zoneOrder: credit.zoneOrder, instanceId: credit.instanceId });
+     const txId = killTxId(credit.encounterId, credit.instanceId);
+     const lootIn = worker === null ? s0.rng.loot : (s0.legion.chars.find((c) => c.id === worker) as CharacterState).rng.loot;
+     const { lines, drops, loot } = rollKillReward(lootIn, enemy);
+@@ -1991,6 +2049,9 @@ export class LegionSimulation {
+     if (s0.legion.enabled && !quest.done && !credit.boss && credit.zoneOrder === 1) quest = { ...quest, kills: quest.kills + 1 };
+     // S4: lifetime kills and gold, the Bestiary count and the emblem draw commit with this one credit (S4-R07, R14, R15).
+     const permOut = this.permanentEnabled ? this.creditPermanent(enemy.id, credit.boss, enemy.gold) : null;
++    // S6: boss clears, first-clear rewards, elite kills and rare-hero grants commit with this same credit.
++    const w1Out = this.content.w1 ? this.w1Credit(credit, s0, ledger, withLoot) : null;
++    if (w1Out) ledger = w1Out.ledger;
+     // Commit: one assignment.
+     this.state = {
+       ...s0,
+@@ -1998,8 +2059,9 @@ export class LegionSimulation {
+       rng: worker === null ? { ...s0.rng, loot } : s0.rng,
+       hero,
+       zones,
+-      legion: { ...s0.legion, chars: withLoot, records, quest, credits: (this.l2 ? commitLegionClaimL2 : commitLegionClaim)(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 ? this.now().t : s0.legion.capabilityChangedMs },
++      legion: { ...s0.legion, chars: w1Out ? w1Out.chars : withLoot, records, quest, rare: w1Out ? w1Out.rare : s0.legion.rare, credits: (this.l2 ? commitLegionClaimL2 : commitLegionClaim)(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 || (w1Out?.granted ?? false) ? this.now().t : s0.legion.capabilityChangedMs },
+       ...(permOut ? { permanent: permOut.state } : {}),
++      ...(w1Out ? { w1: w1Out.w1 } : {}),
+     };
+     const heroAward = credit.eligible.includes('hero');
+     this.log('KillCredited', {
+@@ -2020,6 +2082,13 @@ export class LegionSimulation {
+       if (permOut.emblem > 0) this.log('EmblemFound', { enemyId: enemy.id, copy: permOut.emblem });
+       this.schedulePermanentCheck();
+     }
++    if (w1Out) {
++      for (const [kind, data] of w1Out.logs) this.log(kind, data);
++      if (w1Out.granted) {
++        if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
++        this.requestPolicy('rare-hero-acquired');
++      }
++    }
+     const t = this.now().t;
+     this.schedule(t, PHASE.PROGRESS, 'account', 'ProgressCheck', { data: { zoneOrder: credit.zoneOrder, levelFrom: s0.hero.level, levelTo: hero.level, bossClear: credit.boss, members: leveled.filter((x) => x !== 'hero').join(',') } });
+     if (leveled.includes('hero')) this.schedule(t, PHASE.RECOMPUTE, 'hero', 'StatsRecomputed');
+@@ -2038,6 +2107,10 @@ export class LegionSimulation {
+       for (const id of members.split(',')) this.log('MemberLevelUp', { member: id, level: (this.char(id) as CharacterState).level });
+       this.requestPolicy('member-level-up');
+     }
++    if (d['bossClear'] === true && this.content.w1) {
++      this.w1BossProgress(d['zoneOrder'] as number);
++      return;
++    }
+     if (d['bossClear'] === true && !this.state.boss.completed) {
+       this.state = { ...this.state, boss: { ...this.state.boss, completed: true } };
+       this.log('GateCompleted', { gateId: this.content.boss.gateId, kind: 'boss' });
+@@ -2058,6 +2131,17 @@ export class LegionSimulation {
+       }
+       this.requestPolicy('gate-completed');
+     }
++    if (this.content.w1) {
++      const bi = bossIndexAt(this.content, order);
++      const def = this.content.bosses[bi];
++      if (def !== undefined && !(this.w1s.bosses[bi] as W1BossState).opened && zone.kills >= def.unlockKills) {
++        this.setBossGate(bi, { opened: true });
++        this.log('BossGateOpened', { gateId: def.gateId });
++        this.requestPolicy('boss-gate-opened');
++      }
++      this.checkQuest();
++      return;
++    }
+     const boss = this.content.boss;
+     if (order === boss.zoneOrder && !this.state.boss.opened && zone.kills >= boss.unlockKills) {
+       this.state = { ...this.state, boss: { ...this.state.boss, opened: true } };
+@@ -2067,13 +2151,124 @@ export class LegionSimulation {
+     this.checkQuest();
+   }
+ 
++  /**
++   * S6 progress after a W1 boss clear (D-07: after the credit). A miniboss's first Normal clear unlocks its next zone
++   * (a roster milestone where one is defined); the final boss's first Normal clear completes the world. Derived from
++   * the committed gate state, so it is idempotent.
++   */
++  private w1BossProgress(order: number): void {
++    const bi = bossIndexAt(this.content, order);
++    const def = this.content.bosses[bi] as CompiledBoss;
++    const b = this.w1s.bosses[bi] as W1BossState;
++    const u = def.unlocksZoneOrder;
++    if (u !== null && b.completed && !(this.state.zones[u - 1] as ZoneState).accessUnlocked) {
++      this.setZone(u, { accessUnlocked: true });
++      this.log('ZoneAccessUnlocked', { zoneOrder: u });
++      this.onZoneAccessMilestone(u);
++      this.requestPolicy('gate-completed');
++    }
++    if (def.kind === 'final' && b.completed && !this.state.boss.completed) {
++      this.state = { ...this.state, boss: { ...this.state.boss, completed: true } };
++      this.log('WorldCleared', { gateId: def.gateId });
++    }
++    this.requestPolicy('boss-cleared');
++  }
++
++  /**
++   * S6: the World 1 part of one kill credit, committed in the same assignment. A boss clear updates its gate and, on
++   * that version's first clear, credits the first-clear reward (its own ledger transaction, applied once: the
++   * transaction identity names the gate and version) and any rare hero it grants. An elite kill counts and may drop the
++   * zone's rare hero. A rare hero already owned converts to the duplicate material (S2-R20) instead.
++   */
++  private w1Credit(credit: LegionClaim, s0: LegionSimState, ledger0: LegionSimState['ledger'], chars0: readonly CharacterState[]): { ledger: LegionSimState['ledger']; w1: W1State; chars: readonly CharacterState[]; rare: readonly string[]; logs: [string, Record<string, string | number | boolean | null>][]; granted: boolean } {
++    const impl = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER];
++    let ledger = ledger0;
++    let w1 = s0.w1 as W1State;
++    let chars = chars0;
++    let rare = s0.legion.rare;
++    let granted = false;
++    const logs: [string, Record<string, string | number | boolean | null>][] = [];
++    const grant = (rareHeroId: string, via: string): void => {
++      const owned = rare.filter((r) => r === rareHeroId).length;
++      if (owned > 0) {
++        const txId = `rare:${rareHeroId}:duplicate:${owned}`;
++        const out = impl.applyTx(ledger, { txId, purpose: 'rare.duplicate', lines: [{ resourceId: this.content.legion.rareHeroDuplicateResource, bucket: 'available', delta: 1 }] });
++        if (out.result.replayed) fail('INVALID_STATE', 'a rare-hero duplicate conversion was already applied', { rareHeroId });
++        ledger = out.ledger;
++        rare = [...rare, rareHeroId];
++        logs.push(['RareHeroDuplicate', { rareHeroId, resourceId: this.content.legion.rareHeroDuplicateResource, amount: 1, via }]);
++        logs.push(['LedgerTx', { txId, purpose: 'rare.duplicate', nets: out.result.nets.map((n) => `${n.resourceId}/${n.bucket}:${n.delta}`).join(',') }]);
++        return;
++      }
++      const def = this.content.rareHeroes.get(rareHeroId) as CompiledRareHero;
++      const id = `rare:${rareHeroId}`;
++      const assignment: Assignment = productiveRecruits(chars) < s0.legion.slots ? { kind: 'idle' } : { kind: 'reserve' };
++      const order = (chars[chars.length - 1] as CharacterState).order + 1;
++      const c = this.newCharacter(id, 'rare', order, def.joinLevel, def.cls, ZERO_TALENTS(), assignment, this.withTrait(id, this.mergePermanent(NO_MODS)));
++      chars = [...chars, c];
++      rare = [...rare, rareHeroId];
++      granted = true;
++      logs.push(['RareHeroAcquired', { member: id, rareHeroId, cls: def.cls, level: def.joinLevel, assignment: assignment.kind, via }]);
++    };
++    if (credit.boss) {
++      const bi = bossIndexAt(this.content, credit.zoneOrder);
++      const def = this.content.bosses[bi] as CompiledBoss;
++      const elite = isEliteBossInstance(def, credit.instanceId);
++      const { state, first } = bossClear(w1.bosses[bi] as W1BossState, elite);
++      w1 = { ...w1, bosses: w1.bosses.map((b, j) => (j === bi ? state : b)) };
++      logs.push(['BossCleared', { gateId: def.gateId, elite, first, clears: elite ? state.eliteClears : state.clears }]);
++      if (first) {
++        const reward = (elite ? def.eliteFirstClear : def.firstClear) as CompiledReward;
++        const lines: TxLine[] = [...(reward.gold > 0 ? [{ resourceId: 'res.gold', bucket: 'available' as const, delta: reward.gold }] : []), ...reward.materials.map((m) => ({ resourceId: m.resourceId, bucket: 'available' as const, delta: m.qty }))];
++        logs.push(['BossFirstClearReward', { gateId: def.gateId, elite, gold: reward.gold, materials: reward.materials.map((m) => `${m.resourceId}:${m.qty}`).join(',') }]);
++        if (lines.length > 0) {
++          const txId = `w1:${elite ? 'elite-first' : 'first'}:${def.gateId}`;
++          const out = impl.applyTx(ledger, { txId, purpose: 'boss.first-clear', lines });
++          if (out.result.replayed) fail('INVALID_STATE', 'a first-clear reward was already applied', { gateId: def.gateId, elite });
++          ledger = out.ledger;
++          logs.push(['LedgerTx', { txId, purpose: 'boss.first-clear', nets: out.result.nets.map((n) => `${n.resourceId}/${n.bucket}:${n.delta}`).join(',') }]);
++        }
++        if (!elite) logs.push(['GateCompleted', { gateId: def.gateId, kind: 'boss' }]);
++        if (reward.rareHeroId !== null) grant(reward.rareHeroId, `boss:${def.gateId}${elite ? ':elite' : ''}`);
++      }
++    } else {
++      const zone = this.content.zones[credit.zoneOrder - 1] as LegionContent['zones'][number];
++      if (isEliteSlotInstance(zone, credit.instanceId)) {
++        const r = eliteKill(w1, zone);
++        w1 = r.w1;
++        logs.push(['EliteKilled', { zoneOrder: credit.zoneOrder, instanceId: credit.instanceId }]);
++        if (r.rareHeroId !== null) grant(r.rareHeroId, `elite:${zone.id}`);
++      }
++    }
++    return { ledger, w1, chars, rare, logs, granted };
++  }
++
++  /** S6: starts a W1 boss attempt, Normal or Elite (validated by validateW1StartBoss); the hero leads, deployed members join. */
++  private startBossW1(gateId: string, elite: boolean): void {
++    const t = this.now().t;
++    const h = this.state.hero;
++    const bi = bossIndexOf(this.content, gateId);
++    const def = this.content.bosses[bi] as CompiledBoss;
++    const enemy = (elite ? def.eliteEnemy : def.enemy) as CompiledEnemy;
++    const n = this.state.encounterSeq + 1;
++    const attempts = (this.w1s.bosses[bi] as W1BossState).attempts + 1;
++    const participants = this.state.legion.chars.filter((c) => c.assignment.kind === 'squad' && !c.knockedOut).map((c) => c.id);
++    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'boss', zoneOrder: def.zoneOrder, slotIndex: null, instanceId: `${enemy.id}#${attempts}`, enemyHp: enemy.hp, startMs: t, origin: 'manual', participants };
++    this.state = { ...this.state, encounter: enc, encounterSeq: n };
++    this.setBossGate(bi, { attempts });
++    this.setHero({ status: 'boss', regenRem: 0, regenChain: h.regenChain + 1, waitingForSpawn: false, manualEngagePending: false });
++    this.log('BossStarted', { encounterId: enc.id, attempt: attempts, gateId: def.gateId, elite });
++    this.beginEncounter(enc);
++    this.schedule(t + (elite ? def.eliteTimerMs : def.timerMs), PHASE.BOUNDARY, 'hero', 'BossTimerExpired', { encounterId: enc.id });
++  }
++
+   private checkQuest(): void {
+     const L = this.state.legion;
+     const target = this.options.diagnostic?.questKills ?? this.content.legion.firstRecruitQuestKills;
+     if (!L.enabled || L.quest.done || L.quest.kills < target) return;
+     const rules = this.content.legion;
+     const id = `rec:${L.nextRecruit}`;
+-    const c = this.newCharacter(id, 'ordinary', L.nextRecruit, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
++    const c = this.newCharacter(id, 'ordinary', this.content.w1 ? (L.chars[L.chars.length - 1] as CharacterState).order + 1 : L.nextRecruit, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
+     this.setLegion({ quest: { ...L.quest, done: true }, chars: [...L.chars, c], nextRecruit: L.nextRecruit + 1, slots: Math.max(L.slots, rules.slotsAtQuest), deployCap: Math.max(L.deployCap, rules.deployCapAtQuest), capabilityChangedMs: this.now().t });
+     this.log('QuestCompleted', { quest: 'Q1', kills: L.quest.kills });
+     this.log('RecruitAcquired', { member: id, cost: 0, via: 'quest' });
+@@ -2086,8 +2281,10 @@ export class LegionSimulation {
+     const L = this.state.legion;
+     if (!L.enabled) return;
+     const rules = this.content.legion;
+-    const slots = order === 2 ? rules.slotsAtZone2Access : order === 3 ? rules.slotsAtZone3Access : L.slots;
+-    const cap = order === 2 ? rules.deployCapAtZone2Access : order === 3 ? rules.deployCapAtZone3Access : L.deployCap;
++    // S6 World 1: the milestone list (its zone 2 and 3 entries equal the S2 fields, validated).
++    const m = rules.zoneMilestones?.find((x) => x.zoneOrder === order);
++    const slots = rules.zoneMilestones ? (m?.slots ?? L.slots) : order === 2 ? rules.slotsAtZone2Access : order === 3 ? rules.slotsAtZone3Access : L.slots;
++    const cap = rules.zoneMilestones ? (m?.deployCap ?? L.deployCap) : order === 2 ? rules.deployCapAtZone2Access : order === 3 ? rules.deployCapAtZone3Access : L.deployCap;
+     if (slots > L.slots || cap > L.deployCap) {
+       this.setLegion({ slots: Math.max(L.slots, slots), deployCap: Math.max(L.deployCap, cap) });
+       this.log('RosterMilestone', { slots: this.state.legion.slots, deployCap: this.state.legion.deployCap, zoneOrder: order });
+@@ -2133,7 +2330,13 @@ export class LegionSimulation {
+     if (cmd.type === 'SetOfflineAssignment') return this.submitOffline(cmd);
+     if (cmd.type === 'UpgradeMonument') return this.submitPermanent(cmd);
+     const industryCmd = isIndustryCommand(cmd);
+-    const v = industryCmd ? validateIndustryCommand(this, cmd as IndustryCommand) : isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd as never);
++    const v = industryCmd
++      ? validateIndustryCommand(this, cmd as IndustryCommand)
++      : isLegionCommand(cmd)
++        ? validateLegionCommand(this, cmd)
++        : this.content.w1 && cmd.type === 'StartBoss'
++          ? validateW1StartBoss(this.state as never, this.content, this.w1s, cmd.gateId, cmd.elite === true)
++          : validateCommand(this.state as never, this.content, cmd as never);
+     if (!v.ok) {
+       this.counters.commandsRejected[v.code] = (this.counters.commandsRejected[v.code] ?? 0) + 1;
+       this.log('CommandRejected', { command: cmd.type, code: v.code });
+@@ -2193,6 +2396,10 @@ export class LegionSimulation {
+         return;
+       }
+       case 'StartBoss': {
++        if (this.content.w1) {
++          this.startBossW1(cmd.gateId, cmd.elite === true);
++          return;
++        }
+         const boss = this.content.boss;
+         const n = this.state.encounterSeq + 1;
+         const attempts = this.state.boss.attempts + 1;
+@@ -2297,7 +2504,7 @@ export class LegionSimulation {
+         const cost = rules.recruitCostGold[n - 2] as number;
+         this.debitGold(`recruit:${n}`, cost);
+         const id = `rec:${n}`;
+-        const c = this.newCharacter(id, 'ordinary', n, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
++        const c = this.newCharacter(id, 'ordinary', this.content.w1 ? (L.chars[L.chars.length - 1] as CharacterState).order + 1 : n, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
+         this.setLegion({ chars: [...this.state.legion.chars, c], nextRecruit: n + 1, capabilityChangedMs: t });
+         this.log('RecruitAcquired', { member: id, cost, via: 'purchase' });
+         if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
+@@ -2390,7 +2597,8 @@ export class LegionSimulation {
+     const counters = {
+       ...c0,
+       zonesVisited: Math.max(c0.zonesVisited, s.zones.filter((z) => z.visited).length),
+-      gatesCompleted: Math.max(c0.gatesCompleted, s.zones.filter((z) => z.gateCompleted).length),
++      // S6 World 1: a miniboss's first Normal clear is the gate to its next zone, so it counts as a completed gate.
++      gatesCompleted: Math.max(c0.gatesCompleted, s.zones.filter((z) => z.gateCompleted).length + (s.w1 ? s.w1.bosses.filter((b, i) => b.completed && this.content.bosses[i]?.kind === 'miniboss').length : 0)),
+       bossCleared: Math.max(c0.bossCleared, s.boss.completed ? 1 : 0),
+       rosterLevelsHigh: Math.max(c0.rosterLevelsHigh, rosterLevels),
+       professionLevelsHigh: Math.max(c0.professionLevelsHigh, profLevels),
+@@ -2911,6 +3119,7 @@ export class LegionSimulation {
+ 
+   /** DIAGNOSTIC ONLY (tests of S2-R20): grants a rare hero, or its duplicate material when already owned. */
+   grantRareHero(key: string): void {
++    if (this.content.w1) fail('INVALID_STATE', 'World 1 rare heroes are granted only by gameplay (bosses and elites)');
+     const L = this.state.legion;
+     const t = this.state.tMs;
+     if (L.rare.includes(key)) {
+diff --git a/legion-progression-lab/src/engine/legionCommands.ts b/legion-progression-lab/src/engine/legionCommands.ts
+index 10b7f99..ea6bd57 100644
+--- a/legion-progression-lab/src/engine/legionCommands.ts
++++ b/legion-progression-lab/src/engine/legionCommands.ts
+@@ -93,6 +93,7 @@ export function validateLegionCommand(sim: LegionSimulation, cmd: LegionOnlyComm
+       const c = sim.char(cmd.characterId);
+       if (!c) return no('CHARACTER_UNKNOWN');
+       if (!(CLASS_IDS as readonly string[]).includes(cmd.cls)) return no('CLASS_LOCKED');
++      if (c.kind === 'rare' && sim.content.rareHeroes.has(c.id.slice('rare:'.length))) return no('RARE_CLASS_FIXED');
+       if (c.id === 'hero' && s.hero.level < rules.heroClassMinLevel) return no('CLASS_LOCKED');
+       if (c.cls === cmd.cls) return no('ALREADY_CLASS');
+       if (sim.inCombat(c)) return no('CHARACTER_BUSY');
+diff --git a/legion-progression-lab/src/engine/legionObservation.ts b/legion-progression-lab/src/engine/legionObservation.ts
+index 3db0e77..b9ba94d 100644
+--- a/legion-progression-lab/src/engine/legionObservation.ts
++++ b/legion-progression-lab/src/engine/legionObservation.ts
+@@ -6,7 +6,9 @@
+  * for the squad as deployed now), each with its reliability and assumptions. Never RNG state or the event queue.
+  */
+ import type { DisplayedEstimate } from '../model/types.ts';
+-import type { RosterEntry, LegionObservation, SquadEstimate } from '../model/legionTypes.ts';
++import type { BossEnemyView, RosterEntry, LegionObservation, SquadEstimate, W1Observation } from '../model/legionTypes.ts';
++import type { CompiledEnemy } from '../model/content.ts';
++import type { W1State } from './w1.ts';
+ import { CLASS_IDS, type ClassId } from '../model/legionContent.ts';
+ import { buildObservation } from './observation.ts';
+ import type { Simulation } from './simulation.ts';
+@@ -42,8 +44,64 @@ export function squadEstimateFor(sim: LegionSimulation, zoneOrder: number, atten
+   return e;
+ }
+ 
++const enemyView = (e: CompiledEnemy): BossEnemyView => ({ id: e.id, hp: e.hp, attackMilli: e.attackMilli, attackIntervalMs: e.attackIntervalMs, firstAttackDelayMs: e.firstAttackDelayMs, defence: e.defence, exp: e.exp, gold: e.gold });
++
++/** S6: the World 1 boss board, the rare-hero collection and the elite slots alive (World 1 content only). */
++export function buildW1Observation(sim: LegionSimulation): W1Observation | null {
++  const w = sim.w1State();
++  if (w === null) return null;
++  const c = sim.content;
++  const s = sim.state;
++  const sources = new Map<string, string>();
++  for (const z of c.zones) if (z.elite?.rareHero) sources.set(z.elite.rareHero.rareHeroId, `elite:${z.id}`);
++  for (const b of c.bosses) {
++    if (b.firstClear?.rareHeroId) sources.set(b.firstClear.rareHeroId, `boss:${b.gateId}`);
++    if (b.eliteFirstClear?.rareHeroId) sources.set(b.eliteFirstClear.rareHeroId, `boss:${b.gateId}:elite`);
++  }
++  const eliteAlive: Record<string, number> = {};
++  for (const z of c.zones) {
++    if (z.elite === null) continue;
++    const prefix = `${z.elite.enemy.id}#`;
++    eliteAlive[String(z.order)] = (s.zones[z.order - 1] as (typeof s.zones)[number]).slots.filter((x) => x.status === 'alive' && x.instanceId !== null && x.instanceId.startsWith(prefix)).length;
++  }
++  return {
++    bosses: c.bosses.map((b, i) => {
++      const g = w.bosses[i] as W1State['bosses'][number];
++      return {
++        gateId: b.gateId,
++        zoneId: (c.zones[b.zoneOrder - 1] as (typeof c.zones)[number]).id,
++        zoneOrder: b.zoneOrder,
++        kind: b.kind === 'final' ? 'final' : 'miniboss',
++        opened: g.opened,
++        completed: g.completed,
++        eliteCompleted: g.eliteCompleted,
++        eliteAvailable: g.completed,
++        clears: g.clears,
++        eliteClears: g.eliteClears,
++        attempts: g.attempts,
++        lastFailMs: g.lastFailMs,
++        unlockKills: b.unlockKills,
++        timerMs: b.timerMs,
++        eliteTimerMs: b.eliteTimerMs,
++        enemy: enemyView(b.enemy),
++        eliteEnemy: enemyView(b.eliteEnemy as CompiledEnemy),
++        firstClearGold: g.completed ? null : (b.firstClear?.gold ?? 0),
++        eliteFirstClearGold: g.eliteCompleted ? null : (b.eliteFirstClear?.gold ?? 0),
++      };
++    }),
++    worldCleared: s.boss.completed,
++    rareHeroes: [...c.rareHeroes.values()].map((h) => ({ id: h.id, name: h.name, cls: h.cls, owned: s.legion.rare.includes(h.id), memberId: `rare:${h.id}`, source: sources.get(h.id) ?? 'none' })),
++    eliteAlive,
++    zoneEnemies: Object.fromEntries(c.zones.map((z) => [String(z.order), enemyView(z.enemy)])),
++    zoneDrops: Object.fromEntries(c.zones.map((z) => [String(z.order), [...new Set([...z.enemy.drops, ...(z.elite?.enemy.drops ?? [])].map((d) => d.resourceId))]])),
++    recipeUnitMs: Object.fromEntries([...((c as unknown as { recipes?: ReadonlyMap<string, { kind: string; unitMs?: number }> }).recipes ?? new Map()).entries()].filter(([, r]) => r.kind === 'timed').map(([id, r]) => [id, r.unitMs as number])),
++  };
++}
++
+ export function buildLegionObservation(sim: LegionSimulation, triggers: string | readonly string[]): LegionObservation {
+   const base = buildObservation(sim as unknown as Simulation, triggers);
++  const w1o = buildW1Observation(sim);
++  const w1 = w1o === null ? {} : { w1: w1o };
+   const s = sim.state;
+   const L = s.legion;
+   const rules = sim.content.legion;
+@@ -52,6 +110,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
+     return {
+       ...base,
+       ...industry,
++      ...w1,
+       legion: { enabled: false, roster: [], slots: 0, productiveRecruits: 0, deployCap: 0, deployed: 0, gold: sim.goldBalance(), nextRecruitCost: null, quest: { kills: L.quest.kills, target: rules.firstRecruitQuestKills, done: L.quest.done }, records: L.records, heroClassMinLevel: rules.heroClassMinLevel, classChangeCost: rules.classChangeCostGold, squadEstimates: {}, capabilityChangedMs: L.capabilityChangedMs, heroAbilityReady: false, heroInCombat: false, workerZoneAvailability: {} },
+     };
+   }
+@@ -90,6 +149,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
+   return {
+     ...base,
+     ...industry,
++    ...w1,
+     legion: {
+       enabled: true,
+       roster,
+diff --git a/legion-progression-lab/src/engine/simulation.ts b/legion-progression-lab/src/engine/simulation.ts
+index de417b9..fecb49d 100644
+--- a/legion-progression-lab/src/engine/simulation.ts
++++ b/legion-progression-lab/src/engine/simulation.ts
+@@ -138,6 +138,7 @@ export class Simulation {
+   readonly estimateCache: Map<string, ZoneEstimate>;
+ 
+   constructor(options: SimOptions) {
++    if (options.content.w1) fail('INVALID_STATE', 'World 1 content needs the legion engine (several boss gates)');
+     this.content = options.content;
+     this.options = options;
+     this.policy = options.policy;
+diff --git a/legion-progression-lab/src/experiments/legionMetrics.ts b/legion-progression-lab/src/experiments/legionMetrics.ts
+index f43a6e0..dca30dd 100644
+--- a/legion-progression-lab/src/experiments/legionMetrics.ts
++++ b/legion-progression-lab/src/experiments/legionMetrics.ts
+@@ -26,6 +26,7 @@ import type { RngState } from '../core/rng/xoshiro128ss.ts';
+ import { levelForExp, type LegionSimulation } from '../engine/legion.ts';
+ import { workerZoneAllowed } from '../engine/legionCommands.ts';
+ import { encodeDropItems, rollKillReward } from '../engine/rewards.ts';
++import { encounterEnemy } from '../engine/w1.ts';
+ import type { Simulation } from '../engine/simulation.ts';
+ import { CLASS_IDS, type ClassId, type HeldClass } from '../model/legionContent.ts';
+ import type { CharacterState, TimeCategory } from '../model/legionTypes.ts';
+@@ -271,7 +272,14 @@ export class LegionMetricsRecorder {
+     const stream = String(d['stream']);
+     const boss = d['boss'] === true;
+     const zoneOrder = d['zoneOrder'] as number;
+-    const enemy = boss ? this.sim.content.boss.enemy : (this.sim.content.zones[zoneOrder - 1] as (typeof this.sim.content.zones)[number]).enemy;
++    // S6 World 1: the enemy (elite, boss or Elite boss) follows from the instance identity, which is the transaction ID
++    // after its "kill:<encounter id>:" prefix (an encounter id itself contains ':'; F16).
++    const instanceId = String(d['txId']).slice(`kill:${String(d['encounterId'])}:`.length);
++    const enemy = this.sim.content.w1
++      ? encounterEnemy(this.sim.content, boss ? 'boss' : 'ordinary', zoneOrder, instanceId)
++      : boss
++        ? this.sim.content.boss.enemy
++        : (this.sim.content.zones[zoneOrder - 1] as (typeof this.sim.content.zones)[number]).enemy;
+     const enemyExp = enemy.exp;
+     // Each award is "<characterId>:<exp>:<levelAfter>"; character ids may contain ':' (rec:1), so parse from the right.
+     const awards = String(d['awards']).split(',').filter((x) => x !== '').map((a) => {
+@@ -301,6 +309,12 @@ export class LegionMetricsRecorder {
+       this.legionExp += a.exp;
+       if (a.id === 'hero') this.heroExp += a.exp;
+     }
++    // S6: a rare hero granted by this credit joins in the same commit, with no EXP from it.
++    for (const c of s.legion.chars) {
++      if (this.shadow.totalExp.has(c.id) || c.kind !== 'rare') continue;
++      this.check(t, c.totalExp === 0 && !awards.some((a) => a.id === c.id), `I3 ${c.id} joined with EXP or an award`);
++      this.addCharacter(c.id);
++    }
+     for (const c of s.legion.chars) this.check(t, this.shadow.totalExp.get(c.id) === c.totalExp, `I3 ${c.id} total EXP ${c.totalExp} differs from the shadow ${this.shadow.totalExp.get(c.id)}`);
+     if (this.sim.options.diagnostic?.freezeLevel !== true) {
+       const cap = this.sim.content.table.length + 1;
+diff --git a/legion-progression-lab/src/l2/simState.ts b/legion-progression-lab/src/l2/simState.ts
+index 69f52f2..c77f633 100644
+--- a/legion-progression-lab/src/l2/simState.ts
++++ b/legion-progression-lab/src/l2/simState.ts
+@@ -23,6 +23,7 @@ import { reconstructPersistentLedger } from '../core/ledger/persistentLedger.ts'
+ import { encounterNumber } from '../engine/legionCredit.ts';
+ import { count, has, maxOf, rangeProblems, type RangeSet } from './ranges.ts';
+ import { permanentStateProblems } from '../engine/permanent.ts';
++import { W1_BOSS_KEYS, W1_KEYS } from '../engine/w1.ts';
+ import type { LegionOptions } from '../engine/legion.ts';
+ import { EQUIP_SLOTS, PROFESSION_IDS, type IndustryContent } from '../model/industryContent.ts';
+ import { CLASS_IDS, type LegionContent } from '../model/legionContent.ts';
+@@ -72,8 +73,9 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
+   const industryOn = options.industry === true;
+   const permanentOn = options.permanent === true;
+   const offlineOn = options.offline !== undefined;
+-  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : []), ...(offlineOn ? ['offline'] : [])];
+-  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'}${offlineOn ? ', offline on' : ''})`)) return P.list;
++  const w1On = (options.content as { w1?: boolean }).w1 === true;
++  const keys = ['tMs', 'hero', 'zones', 'encounter', 'boss', 'session', 'ledger', 'credits', 'rng', 'encounterSeq', 'time', 'legion', ...(industryOn ? ['industry'] : []), ...(permanentOn ? ['permanent'] : []), ...(offlineOn ? ['offline'] : []), ...(w1On ? ['w1'] : [])];
++  if (!P.obj(x, keys, `state (industry ${industryOn ? 'on' : 'off'}, permanent ${permanentOn ? 'on' : 'off'}${offlineOn ? ', offline on' : ''}${w1On ? ', World 1' : ''})`)) return P.list;
+   const st = x as O;
+   if (!P.need(isInt(st['tMs']), 'state: time is not a non-negative safe integer')) return P.list;
+   const tMs = st['tMs'] as number;
+@@ -228,9 +230,57 @@ export function simStateProblems(x: unknown, options: LegionOptions): string[] {
+   }
+   // Offline (S5), required exactly when the switch is on (owner §7 C: the feature-dependent offline state).
+   if (offlineOn && P.list.length === 0) offlineProblems(P, st, chars, options);
++  // World 1 (S6), required exactly with World 1 content.
++  if (w1On) w1Problems(P, st, chars, options);
+   return P.list;
+ }
+ 
++/**
++ * The S6 World 1 record (src/engine/w1.ts): one gate per content boss, the spawn and rare-drop streams, per-zone elite
++ * counters; consistency with the single boss-gate state (it mirrors the final boss), the rare-hero characters and the
++ * rare list.
++ */
++function w1Problems(P: Problems, st: O, chars: readonly O[], options: LegionOptions): void {
++  const content = options.content;
++  const w = st['w1'];
++  if (!P.obj(w, [...W1_KEYS], 'World 1 state')) return;
++  const nz = content.zones.length;
++  const perZone = (v: unknown) => Array.isArray(v) && v.length === nz && v.every((x) => isInt(x));
++  P.need(rngOk(w['spawnRng']) && rngOk(w['rareRng']), 'World 1: the spawn and rare streams are not four 32-bit words not all zero');
++  P.need(perZone(w['eliteSpawns']) && perZone(w['eliteKills']) && perZone(w['rareDry']), 'World 1: elite counters are not one non-negative integer per zone');
++  if (perZone(w['rareDry'])) {
++    (w['rareDry'] as number[]).forEach((d, i) => {
++      const rh = content.zones[i]?.elite?.rareHero ?? null;
++      P.need(rh === null ? d === 0 : d < rh.pityKills, `World 1 zone ${i + 1}: the rare-drop pity counter is outside [0, pity)`);
++    });
++  }
++  const bs = w['bosses'];
++  if (!P.need(Array.isArray(bs) && bs.length === content.bosses.length, `World 1: not one gate per content boss (${content.bosses.length})`)) return;
++  (bs as unknown[]).forEach((b, i) => {
++    const def = content.bosses[i] as (typeof content.bosses)[number];
++    const what = `World 1 gate ${def.gateId}`;
++    if (!P.obj(b, [...W1_BOSS_KEYS], what)) return;
++    P.need(['opened', 'completed', 'eliteCompleted'].every((k) => typeof b[k] === 'boolean') && ['attempts', 'clears', 'eliteClears'].every((k) => isInt(b[k])), `${what}: flags or counters are malformed`);
++    P.need(b['lastFailMs'] === null || isInt(b['lastFailMs'], 0, st['tMs'] as number), `${what}: the last failure is not a time at or before the state`);
++    P.need((b['completed'] === true) === ((b['clears'] as number) > 0) && (b['eliteCompleted'] === true) === ((b['eliteClears'] as number) > 0), `${what}: completion does not match the clear counts`);
++    P.need((b['completed'] === true || b['eliteCompleted'] !== true) && (b['opened'] === true || (b['attempts'] as number) === 0) && (b['clears'] as number) + (b['eliteClears'] as number) <= (b['attempts'] as number), `${what}: an Elite clear before a Normal clear, an attempt before opening, or more clears than attempts`);
++    if (def.kind === 'final') {
++      const g = st['boss'] as O;
++      P.need(g['opened'] === b['opened'] && g['attempts'] === b['attempts'] && (g['completed'] !== true || b['completed'] === true), `${what}: the single boss-gate state does not mirror the final boss`);
++    }
++  });
++  // Rare heroes: every World 1 rare character is a rare hero of the content, with its class, and on the rare list.
++  const rare = (st['legion'] as O)['rare'] as unknown[];
++  const lc = content as unknown as LegionContent;
++  for (const c of chars) {
++    if (c['kind'] !== 'rare') continue;
++    const id = String(c['id']);
++    const def = id.startsWith('rare:') ? lc.rareHeroes.get(id.slice('rare:'.length)) : undefined;
++    P.need(def !== undefined && c['cls'] === def.cls && rare.includes(def.id), `World 1 character ${id}: not a rare hero of the content with its class, or missing from the rare list`);
++  }
++  for (const r of new Set(rare as string[])) P.need(chars.some((c) => c['id'] === `rare:${r}`), `World 1: the rare list names ${String(r)}, which no character is`);
++}
++
+ const SPEC_KINDS = ['combat', 'squad', 'worker', 'gathering', 'smithing', 'idle'];
+ /** The absence's progress baseline (src/engine/offline.ts ProgressSnapshot): integers per resource, character and zone. */
+ function baselineOk(b: unknown, chars: readonly O[], zones: number): boolean {
+diff --git a/legion-progression-lab/src/model/content.ts b/legion-progression-lab/src/model/content.ts
+index 15a4c66..d8b1f57 100644
+--- a/legion-progression-lab/src/model/content.ts
++++ b/legion-progression-lab/src/model/content.ts
+@@ -123,6 +123,88 @@ export const ContentPackS1Schema = z
+ 
+ export type ContentPackS1 = z.infer<typeof ContentPackS1Schema>;
+ 
++// ------------------------------------------------------------------------------------------- S6 World 1 (version 2)
++const RareHeroIdSchema = z.string().regex(/^rare\.[a-z0-9_]+$/);
++const RewardSchema = z
++  .object({
++    gold: labelled(Int(0)),
++    materials: z.array(z.object({ resourceId: ResourceIdSchema, qty: labelled(Int(1)) }).strict()),
++    /** A unique rare hero granted once per account (a duplicate becomes the duplicate material). */
++    rareHeroId: RareHeroIdSchema.optional(),
++  })
++  .strict();
++const ZoneSchemaW1 = z
++  .object({
++    id: StableIdSchema,
++    order: Int(1, 1000),
++    name: z.string().min(1),
++    enemyId: StableIdSchema,
++    checkpointId: StableIdSchema,
++    accuracyRequirement: labelled(Int(0)),
++    spawnSlots: labelled(Int(1, 1000)),
++    respawnMs: labelled(Int(0)),
++    /** Absent when a miniboss in this zone is the gate to the next zone. */
++    killGate: z.object({ gateId: StableIdSchema, toZoneId: StableIdSchema, kills: labelled(Int(1)) }).strict().optional(),
++    /** Rare elite variant: each respawned slot is elite with this chance (the dedicated W1 spawn RNG stream). */
++    elite: z
++      .object({
++        enemyId: StableIdSchema,
++        chanceBp: labelled(BpSchema),
++        /**
++         * An elite kill may also grant a rare hero (a gameplay rare drop, the dedicated W1 rare RNG stream). The drop is
++         * guaranteed on the pityKills-th elite kill in the zone without one, so bad luck is bounded.
++         */
++        rareHero: z.object({ rareHeroId: RareHeroIdSchema, chanceBp: labelled(BpSchema), pityKills: labelled(Int(1)) }).strict().optional(),
++      })
++      .strict()
++      .optional(),
++  })
++  .strict();
++const BossSchemaW1 = z
++  .object({
++    gateId: StableIdSchema,
++    zoneId: StableIdSchema,
++    kind: z.enum(['miniboss', 'final']),
++    enemyId: StableIdSchema,
++    eliteEnemyId: StableIdSchema,
++    unlockKills: labelled(Int(1)),
++    timerMs: labelled(Int(1)),
++    eliteTimerMs: labelled(Int(1)),
++    /** A miniboss unlocks the next zone; the final boss is the world clear. */
++    unlocksZoneId: StableIdSchema.optional(),
++    firstClear: RewardSchema,
++    eliteFirstClear: RewardSchema,
++    activeOnly: z.literal(true),
++    note: z.string().min(1).optional(),
++  })
++  .strict();
++export const ContentPackW1Schema = ContentPackS1Schema.omit({ schemaVersion: true, zones: true, boss: true }).extend({
++  schemaVersion: z.literal(2),
++  zones: z.array(ZoneSchemaW1).min(1),
++  bosses: z.array(BossSchemaW1).min(1),
++});
++export type ContentPackW1 = z.infer<typeof ContentPackW1Schema>;
++
++export interface CompiledReward {
++  readonly gold: number;
++  readonly materials: readonly { readonly resourceId: string; readonly qty: number }[];
++  readonly rareHeroId: string | null;
++}
++/** A boss gate. Version 1 packs have one `prototype` boss (no Elite version, no rewards, unlocks nothing). */
++export interface CompiledBoss {
++  readonly gateId: string;
++  readonly zoneOrder: number;
++  readonly kind: 'prototype' | 'miniboss' | 'final';
++  readonly enemy: CompiledEnemy;
++  readonly eliteEnemy: CompiledEnemy | null;
++  readonly unlockKills: number;
++  readonly timerMs: number;
++  readonly eliteTimerMs: number;
++  readonly unlocksZoneOrder: number | null;
++  readonly firstClear: CompiledReward | null;
++  readonly eliteFirstClear: CompiledReward | null;
++}
++
+ export interface CompiledDrop {
+   readonly resourceId: string;
+   readonly chanceBp: number;
+@@ -155,6 +237,8 @@ export interface CompiledZone {
+   readonly spawnSlots: number;
+   readonly respawnMs: number;
+   readonly killGate: { readonly gateId: string; readonly toOrder: number; readonly kills: number } | null;
++  /** S6 World 1: the zone's rare elite variant (null in version 1 packs and in zones without one). */
++  readonly elite: { readonly enemy: CompiledEnemy; readonly chanceBp: number; readonly rareHero: { readonly rareHeroId: string; readonly chanceBp: number; readonly pityKills: number } | null } | null;
+ }
+ 
+ export interface HeroLevelStats {
+@@ -192,7 +276,15 @@ export interface CompiledContent {
+   readonly resources: readonly { readonly id: string; readonly kind: 'currency' | 'material' | 'rare'; readonly testOnly: boolean }[];
+   /** Index i holds the zone with order i + 1. */
+   readonly zones: readonly CompiledZone[];
+-  readonly boss: { readonly gateId: string; readonly zoneOrder: number; readonly enemy: CompiledEnemy; readonly unlockKills: number; readonly timerMs: number };
++  /**
++   * The world boss gate kept for every single-boss code path: version 1 packs, the only (prototype) boss; World 1, the
++   * final boss (the engine's single boss-gate state mirrors it; the minibosses have their own W1 state).
++   */
++  readonly boss: CompiledBoss;
++  /** S6: every boss gate in path order (version 1 packs: the one prototype boss). */
++  readonly bosses: readonly CompiledBoss[];
++  /** S6: the World 1 gate model (version 2 pack): several bosses with Elite versions, rewards, zone elites. */
++  readonly w1: boolean;
+   readonly travel: { readonly adjacentWalkMs: number; readonly teleportMs: number; readonly zoneEntryWalkMs: number; readonly engageOverheadMs: number };
+   readonly autoFarm: { readonly stopAfterDeaths: number; readonly deathWindowMs: number };
+   readonly checkpointZoneOrder: ReadonlyMap<string, number>;
+@@ -204,9 +296,12 @@ export interface CompiledContent {
+ 
+ /** Validates an S1 pack and its XP table artifact and compiles them. An invalid pack is refused as a whole. */
+ export function compileContentS1(packJson: unknown, tableJson: unknown): CompiledContent {
+-  const parsed = ContentPackS1Schema.safeParse(packJson);
+-  if (!parsed.success) fail('INVALID_CONTENT', `S1 content pack: ${zodMessage(parsed.error)}`);
+-  const pack = parsed.data;
++  const w1 = typeof packJson === 'object' && packJson !== null && (packJson as { schemaVersion?: unknown }).schemaVersion === 2;
++  const parsed = (w1 ? ContentPackW1Schema : ContentPackS1Schema).safeParse(packJson);
++  if (!parsed.success) fail('INVALID_CONTENT', `${w1 ? 'W1' : 'S1'} content pack: ${zodMessage(parsed.error)}`);
++  const pack = parsed.data as ContentPackS1 & Partial<Pick<ContentPackW1, 'bosses'>> & { zones: ContentPackW1['zones'] };
++  // Version 1: the one prototype boss as the boss list.
++  const bossDefs: ContentPackW1['bosses'] = w1 ? (pack.bosses as ContentPackW1['bosses']) : [{ gateId: pack.boss.gateId, zoneId: pack.boss.zoneId, kind: 'final', enemyId: pack.boss.enemyId, eliteEnemyId: pack.boss.enemyId, unlockKills: pack.boss.unlockKills, timerMs: pack.boss.timerMs, eliteTimerMs: pack.boss.timerMs, firstClear: { gold: { value: 0, label: 'candidate' }, materials: [] }, eliteFirstClear: { gold: { value: 0, label: 'candidate' }, materials: [] }, activeOnly: true }];
+   const problems: string[] = [];
+   checkRanges(pack, '$', problems);
+ 
+@@ -222,7 +317,7 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
+   unique(pack.zones.map((z) => z.id), 'zones');
+   unique(pack.zones.map((z) => z.checkpointId), 'checkpoints');
+   unique(pack.statCategories.map((c) => c.id), 'statCategories');
+-  const gateIdList = [...pack.zones.flatMap((z) => (z.killGate ? [z.killGate.gateId] : [])), pack.boss.gateId];
++  const gateIdList = [...pack.zones.flatMap((z) => (z.killGate ? [z.killGate.gateId] : [])), ...bossDefs.map((b) => b.gateId)];
+   unique(gateIdList, 'gates');
+   const resourceIds = new Set(pack.resources.map((r) => r.id));
+   if (!resourceIds.has('res.gold')) problems.push('resources: res.gold is required');
+@@ -258,18 +353,55 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
+     if (!enemies.has(z.enemyId)) problems.push(`zone ${z.id}: unknown enemy ${z.enemyId}`);
+   });
+   const zoneOrderById = new Map(sortedZones.map((z) => [z.id, z.order]));
++  // W1: a miniboss that unlocks the next zone replaces that zone's kill gate.
++  const bossUnlocks = new Map<number, string>();
++  if (w1) {
++    for (const b of bossDefs) {
++      const zo = zoneOrderById.get(b.zoneId);
++      if (zo === undefined) continue;
++      if (b.kind === 'miniboss') {
++        if (b.unlocksZoneId === undefined || zoneOrderById.get(b.unlocksZoneId) !== zo + 1) problems.push(`boss ${b.gateId}: a miniboss must unlock the next zone in order`);
++        else bossUnlocks.set(zo, b.gateId);
++      } else {
++        if (b.unlocksZoneId !== undefined) problems.push(`boss ${b.gateId}: the final boss unlocks no zone`);
++        if (zo !== sortedZones.length) problems.push(`boss ${b.gateId}: the final boss is in the last zone`);
++      }
++    }
++    if (bossDefs.filter((b) => b.kind === 'final').length !== 1) problems.push('bosses: exactly one final boss');
++    const perZone = new Set<string>();
++    let lastOrder = 0;
++    for (const b of bossDefs) {
++      if (perZone.has(b.zoneId)) problems.push(`boss ${b.gateId}: one boss per zone`);
++      perZone.add(b.zoneId);
++      const zo = zoneOrderById.get(b.zoneId) ?? 0;
++      if (zo <= lastOrder) problems.push(`boss ${b.gateId}: bosses are listed in path order`);
++      lastOrder = zo;
++      if (b.eliteEnemyId === b.enemyId) problems.push(`boss ${b.gateId}: the Elite version is a different enemy`);
++    }
++  }
+   for (const z of sortedZones) {
+     if (z.killGate) {
+       const to = zoneOrderById.get(z.killGate.toZoneId);
+       if (to !== z.order + 1) problems.push(`zone ${z.id}: kill gate must unlock the next zone in order`);
+-    } else if (z.order < sortedZones.length) {
+-      problems.push(`zone ${z.id}: every zone except the last needs a kill gate`);
++      if (bossUnlocks.has(z.order)) problems.push(`zone ${z.id}: a zone is gated by its kill gate or by its miniboss, not both`);
++    } else if (z.order < sortedZones.length && !bossUnlocks.has(z.order)) {
++      problems.push(`zone ${z.id}: every zone except the last needs a kill gate${w1 ? ' or a miniboss gate' : ''}`);
+     }
++    if (z.elite) {
++      if (!enemies.has(z.elite.enemyId)) problems.push(`zone ${z.id}: unknown elite enemy ${z.elite.enemyId}`);
++      if (z.elite.enemyId === z.enemyId) problems.push(`zone ${z.id}: the elite variant is a different enemy`);
++      if (z.elite.chanceBp.value <= 0) problems.push(`zone ${z.id}: an elite variant needs a positive spawn chance`);
++      if (pack.zones.some((o) => o.enemyId === z.elite?.enemyId)) problems.push(`zone ${z.id}: the elite enemy must not be an ordinary zone enemy`);
++    }
++  }
++  for (const b of bossDefs) {
++    if (zoneOrderById.get(b.zoneId) === undefined) problems.push(`boss ${b.gateId}: unknown zone ${b.zoneId}`);
++    for (const e of [b.enemyId, b.eliteEnemyId]) {
++      if (!enemies.has(e)) problems.push(`boss ${b.gateId}: unknown enemy ${e}`);
++      if (pack.zones.some((z) => z.enemyId === e)) problems.push(`boss ${b.gateId}: the boss enemy must not be an ordinary zone enemy`);
++    }
++    for (const r of [b.firstClear, b.eliteFirstClear]) for (const m of r.materials) if (!resourceIds.has(m.resourceId)) problems.push(`boss ${b.gateId}: unknown reward resource ${m.resourceId}`);
+   }
+-  const bossZone = zoneOrderById.get(pack.boss.zoneId);
+-  if (bossZone === undefined) problems.push(`boss: unknown zone ${pack.boss.zoneId}`);
+-  if (!enemies.has(pack.boss.enemyId)) problems.push(`boss: unknown enemy ${pack.boss.enemyId}`);
+-  if (pack.zones.some((z) => z.enemyId === pack.boss.enemyId)) problems.push('boss: the boss enemy must not be an ordinary zone enemy');
+ 
+   const categories: StatCategory[] = pack.statCategories.map((c) => ({ id: c.id, kind: c.kind, active: c.active }));
+   const heroBase = Object.fromEntries(Object.entries(pack.hero).map(([k, v]) => [k, v.value])) as unknown as CompiledContent['hero'];
+@@ -291,6 +423,21 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
+     spawnSlots: z.spawnSlots.value,
+     respawnMs: z.respawnMs.value,
+     killGate: z.killGate ? { gateId: z.killGate.gateId, toOrder: z.order + 1, kills: z.killGate.kills.value } : null,
++    elite: z.elite ? { enemy: enemies.get(z.elite.enemyId) as CompiledEnemy, chanceBp: z.elite.chanceBp.value, rareHero: z.elite.rareHero ? { rareHeroId: z.elite.rareHero.rareHeroId, chanceBp: z.elite.rareHero.chanceBp.value, pityKills: z.elite.rareHero.pityKills.value } : null } : null,
++  }));
++  const reward = (r: ContentPackW1['bosses'][number]['firstClear']): CompiledReward => ({ gold: r.gold.value, materials: r.materials.map((m) => ({ resourceId: m.resourceId, qty: m.qty.value })), rareHeroId: r.rareHeroId ?? null });
++  const bosses: CompiledBoss[] = bossDefs.map((b) => ({
++    gateId: b.gateId,
++    zoneOrder: zoneOrderById.get(b.zoneId) as number,
++    kind: w1 ? b.kind : 'prototype',
++    enemy: enemies.get(b.enemyId) as CompiledEnemy,
++    eliteEnemy: w1 ? (enemies.get(b.eliteEnemyId) as CompiledEnemy) : null,
++    unlockKills: b.unlockKills.value,
++    timerMs: b.timerMs.value,
++    eliteTimerMs: b.eliteTimerMs.value,
++    unlocksZoneOrder: w1 && b.unlocksZoneId !== undefined ? (zoneOrderById.get(b.unlocksZoneId) as number) : null,
++    firstClear: w1 ? reward(b.firstClear) : null,
++    eliteFirstClear: w1 ? reward(b.eliteFirstClear) : null,
+   }));
+ 
+   const cache = new Map<number, HeroLevelStats>();
+@@ -323,7 +470,9 @@ export function compileContentS1(packJson: unknown, tableJson: unknown): Compile
+     combat: { mitigationK: pack.combat.mitigationK.value, minDamagePerHit: pack.combat.minDamagePerHit.value, hitCurve },
+     resources: pack.resources.map((r) => ({ id: r.id, kind: r.kind, testOnly: r.testOnly })),
+     zones,
+-    boss: { gateId: pack.boss.gateId, zoneOrder: bossZone as number, enemy: enemies.get(pack.boss.enemyId) as CompiledEnemy, unlockKills: pack.boss.unlockKills.value, timerMs: pack.boss.timerMs.value },
++    boss: (w1 ? bosses.find((b) => b.kind === 'final') : bosses[0]) as CompiledBoss,
++    bosses,
++    w1,
+     travel: {
+       adjacentWalkMs: pack.travel.adjacentWalkMs.value,
+       teleportMs: pack.travel.teleportMs.value,
+diff --git a/legion-progression-lab/src/model/legionContent.ts b/legion-progression-lab/src/model/legionContent.ts
+index e637db6..6d7b4d0 100644
+--- a/legion-progression-lab/src/model/legionContent.ts
++++ b/legion-progression-lab/src/model/legionContent.ts
+@@ -46,6 +46,40 @@ const TalentSchema = z
+   })
+   .strict();
+ 
++/**
++ * S6 World 1 rare hero (D-06; design bible section 4): a unique named character with a fixed class and a trait, a
++ * sidegrade rather than an upgrade. Trait values join the existing pools: attackBp the additive damage pool (with class
++ * and talent bonuses), hpBp the class and talent HP sum, critBp the crit sum, abilityBp the ability multiplier sum;
++ * abilityCooldownBp scales the class ability cooldown.
++ */
++const RareHeroSchema = z
++  .object({
++    id: z.string().regex(/^rare\.[a-z0-9_]+$/),
++    name: z.string().min(1),
++    cls: z.enum(CLASS_IDS),
++    joinLevel: labelled(Int(1)),
++    trait: z
++      .object({
++        name: z.string().min(1),
++        attackBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
++        hpBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
++        critBp: labelled(Int(0, 10_000)),
++        abilityBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
++        abilityCooldownBp: labelled(SInt.refine((v) => v > -10_000, 'must be > -10000')),
++      })
++      .strict(),
++    note: z.string().min(1).optional(),
++  })
++  .strict();
++
++/** S6 World 1 roster: slot and deploy milestones on zone access (they replace the zone 2 and 3 fields) and the rare heroes. */
++const W1RosterSchema = z
++  .object({
++    zoneMilestones: z.array(z.object({ zoneOrder: Int(2), slots: labelled(Int(1)), deployCap: labelled(Int(0, 3)) }).strict()).min(1),
++    rareHeroes: z.array(RareHeroSchema).min(1),
++  })
++  .strict();
++
+ export const LegionPackSchema = z
+   .object({
+     schemaVersion: z.literal(1),
+@@ -79,9 +113,24 @@ export const LegionPackSchema = z
+       .strict(),
+     classes: z.array(ClassSchema).length(3),
+     talents: z.array(TalentSchema).min(1),
++    /** S6: present exactly when the base pack is a World 1 pack (schema version 2). */
++    w1: W1RosterSchema.optional(),
+   })
+   .strict();
+ 
++export interface CompiledRareHero {
++  readonly id: string;
++  readonly name: string;
++  readonly cls: ClassId;
++  readonly joinLevel: number;
++  readonly traitName: string;
++  readonly attackBp: number;
++  readonly hpBp: number;
++  readonly critBp: number;
++  readonly abilityBp: number;
++  readonly abilityCooldownBp: number;
++}
++
+ export interface CompiledClass {
+   readonly id: ClassId;
+   readonly name: string;
+@@ -122,6 +171,11 @@ export interface LegionRules {
+   readonly workerStopAfterKos: number;
+   readonly workerKoWindowMs: number;
+   readonly rareHeroDuplicateResource: string;
++  /**
++   * S6 World 1: slot and deploy-cap milestones by zone access, in zone order; null for S2–S5 packs (which use the zone 2
++   * and zone 3 fields above).
++   */
++  readonly zoneMilestones: readonly { readonly zoneOrder: number; readonly slots: number; readonly deployCap: number }[] | null;
+ }
+ 
+ export type TalentAllocation = Readonly<Record<string, number>>;
+@@ -184,6 +238,8 @@ export interface LegionContent extends CompiledContent {
+   readonly legion: LegionRules;
+   readonly classes: ReadonlyMap<ClassId, CompiledClass>;
+   readonly talents: ReadonlyMap<string, CompiledTalent>;
++  /** S6 World 1 rare heroes by id (empty for S2–S5 packs). */
++  readonly rareHeroes: ReadonlyMap<string, CompiledRareHero>;
+   /** Combat stats of a character. Pure and cached by (level, class, allocation). */
+   characterStats(level: number, cls: HeldClass, allocation: TalentAllocation, mods?: StatMods): CharacterStats;
+ }
+@@ -206,6 +262,34 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown,
+   if (new Set(pack.talents.map((t) => t.id)).size !== pack.talents.length) problems.push('talents: duplicate id');
+   for (const t of pack.talents) if (!t.id.startsWith(`tal.${t.classId.slice(0, 3)}.`)) problems.push(`talent ${t.id}: id must start with tal.${t.classId.slice(0, 3)}.`);
+   if (!base.resources.some((r) => r.id === pack.roster.rareHeroDuplicateResource)) problems.push('roster.rareHeroDuplicateResource is not a resource');
++  // S6: the World 1 roster block goes with a World 1 base pack, and every rare hero has exactly one acquisition path.
++  if (base.w1 !== (pack.w1 !== undefined)) problems.push(base.w1 ? 'a World 1 base pack needs the w1 roster block' : 'the w1 roster block needs a World 1 base pack');
++  if (pack.w1) {
++    const ms = pack.w1.zoneMilestones;
++    ms.forEach((m, i) => {
++      if (m.zoneOrder > base.zones.length) problems.push(`w1.zoneMilestones: zone ${m.zoneOrder} does not exist`);
++      const prev = ms[i - 1];
++      if (prev && (m.zoneOrder <= prev.zoneOrder || m.slots.value < prev.slots.value || m.deployCap.value < prev.deployCap.value)) problems.push('w1.zoneMilestones: zones increase and slots and caps never decrease');
++    });
++    const at = (o: number) => ms.find((m) => m.zoneOrder === o);
++    const r0 = pack.roster;
++    if (at(2)?.slots.value !== r0.slotsAtZone2Access.value || at(2)?.deployCap.value !== r0.deployCapAtZone2Access.value || at(3)?.slots.value !== r0.slotsAtZone3Access.value || at(3)?.deployCap.value !== r0.deployCapAtZone3Access.value) {
++      problems.push('w1.zoneMilestones: the zone 2 and zone 3 entries must equal the roster zone 2 and zone 3 fields');
++    }
++    const rids = pack.w1.rareHeroes.map((h) => h.id);
++    if (new Set(rids).size !== rids.length) problems.push('w1.rareHeroes: duplicate id');
++    const sources = new Map<string, number>();
++    const add = (id: string | null | undefined) => {
++      if (id) sources.set(id, (sources.get(id) ?? 0) + 1);
++    };
++    for (const z of base.zones) add(z.elite?.rareHero?.rareHeroId);
++    for (const b of base.bosses) {
++      add(b.firstClear?.rareHeroId);
++      add(b.eliteFirstClear?.rareHeroId);
++    }
++    for (const [id] of sources) if (!rids.includes(id)) problems.push(`base pack names rare hero ${id}, which the w1 roster block does not define`);
++    for (const id of rids) if ((sources.get(id) ?? 0) !== 1) problems.push(`rare hero ${id}: needs exactly one acquisition path in the base pack (found ${sources.get(id) ?? 0})`);
++  }
+   if (problems.length > 0) fail('INVALID_CONTENT', `S2 legion pack refused: ${problems.join('; ')}`);
+ 
+   const r = pack.roster;
+@@ -228,7 +312,15 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown,
+     workerStopAfterKos: r.workerStopAfterKos.value,
+     workerKoWindowMs: r.workerKoWindowMs.value,
+     rareHeroDuplicateResource: r.rareHeroDuplicateResource,
++    zoneMilestones: pack.w1 ? pack.w1.zoneMilestones.map((m) => Object.freeze({ zoneOrder: m.zoneOrder, slots: m.slots.value, deployCap: m.deployCap.value })) : null,
+   };
++  const rareHeroes = new Map<string, CompiledRareHero>(
++    (pack.w1?.rareHeroes ?? []).map((x) => [
++      x.id,
++      Object.freeze({ id: x.id, name: x.name, cls: x.cls, joinLevel: x.joinLevel.value, traitName: x.trait.name, attackBp: x.trait.attackBp.value, hpBp: x.trait.hpBp.value, critBp: x.trait.critBp.value, abilityBp: x.trait.abilityBp.value, abilityCooldownBp: x.trait.abilityCooldownBp.value }),
++    ]),
++  );
++  if ([...rareHeroes.values()].some((x) => x.joinLevel > base.table.length + 1)) fail('INVALID_CONTENT', 'S2 legion pack refused: a rare hero joins above the maximum level');
+   const classes = new Map<ClassId, CompiledClass>(
+     pack.classes.map((c) => [
+       c.id,
+@@ -260,14 +352,17 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown,
+     for (const c of classes.values()) {
+       const own = [...talents.values()].filter((t) => t.classId === c.id);
+       const sumBp = (effect: CompiledTalent['effect']) => own.filter((t) => t.effect === effect).reduce((a, t) => a + t.perPointBp * cap, 0);
+-      const hpBp = c.hpBp + sumBp('hpBp');
+-      const atkBp = c.attackBp + sumBp('attackBp');
++      // S6: the strongest rare-hero trait of this class adds to the worst case.
++      const traits = [...rareHeroes.values()].filter((x) => x.cls === c.id);
++      const tmax = (f: (x: CompiledRareHero) => number) => traits.reduce((a, x) => Math.max(a, f(x)), 0);
++      const hpBp = c.hpBp + sumBp('hpBp') + tmax((x) => x.hpBp);
++      const atkBp = c.attackBp + sumBp('attackBp') + tmax((x) => x.attackBp);
+       const atkRawMax = Math.ceil((baseAtk * (10_000 + atkBp)) / 10_000) + 1;
+       const checks: [string, number][] = [
+         ['max HP numerator 2 x baseHp x (10000 + hpBp) + 10000', 2 * baseHp * (10_000 + hpBp) + 10_000],
+         ['defence per level product', h.defencePerLevel * steps * c.defencePerLevelBp],
+         ['attack value baseAttack x (10000 + attackBp)', baseAtk * (10_000 + atkBp)],
+-        ['ability numerator 2 x rawAttack x (multBp + abilityBp) + 10000', 2 * atkRawMax * (c.ability.multBp + sumBp('abilityBp')) + 10_000],
++        ['ability numerator 2 x rawAttack x (multBp + abilityBp) + 10000', 2 * atkRawMax * (c.ability.multBp + sumBp('abilityBp') + tmax((x) => x.abilityBp)) + 10_000],
+       ];
+       for (const [what, v] of checks) if (!Number.isFinite(v) || v > SAFE) domain.push(`class ${c.id}: ${what} exceeds 2^53 - 1 at level ${steps + 1}`);
+     }
+@@ -344,6 +439,7 @@ export function compileLegionContent(basePackJson: unknown, tableJson: unknown,
+     legion,
+     classes,
+     talents,
++    rareHeroes,
+     characterStats,
+   };
+ }
+diff --git a/legion-progression-lab/src/model/legionTypes.ts b/legion-progression-lab/src/model/legionTypes.ts
+index 6ee8e73..ec99566 100644
+--- a/legion-progression-lab/src/model/legionTypes.ts
++++ b/legion-progression-lab/src/model/legionTypes.ts
+@@ -10,6 +10,7 @@ import type { Command, DisplayedEstimate, Encounter, Observation, SimState } fro
+ import type { IndustryCommand, IndustryObservation, IndustryState } from './industryTypes.ts';
+ import type { PermanentCommand, PermanentObservation, PermanentState } from './permanentTypes.ts';
+ import type { OfflineState } from '../engine/offline.ts';
++import type { W1State } from '../engine/w1.ts';
+ 
+ export type CharacterId = string;
+ export type CharacterKind = 'hero' | 'ordinary' | 'rare';
+@@ -107,6 +108,8 @@ export interface LegionSimState extends Omit<SimState, 'encounter'> {
+   readonly permanent?: PermanentState;
+   /** S5: present only when the engine's offline switch is on. */
+   readonly offline?: OfflineState;
++  /** S6: present exactly with World 1 content (boss gates, elites, rare-hero drop streams). */
++  readonly w1?: W1State;
+ }
+ 
+ /** S5: an offline assignment as a command gives it (zones by id). */
+@@ -151,6 +154,8 @@ export const LEGION_REASON_CODES = [
+   'NOT_ENGAGED',
+   /** S2.1 (D-01): a worker may only be assigned to a zone the hero has visited. */
+   'ZONE_NOT_VISITED',
++  /** S6: a World 1 rare hero keeps its class. */
++  'RARE_CLASS_FIXED',
+ ] as const;
+ export type LegionReasonCode = (typeof LEGION_REASON_CODES)[number];
+ 
+@@ -222,6 +227,57 @@ export interface LegionObservation extends Observation {
+   readonly industry?: IndustryObservation;
+   /** S4: present only when the engine's permanent switch is on. */
+   readonly permanent?: PermanentObservation;
++  /** S6: present exactly with World 1 content. */
++  readonly w1?: W1Observation;
++}
++
++/** What the World 1 boss board and collection screens show (S6). Enemy figures are the displayed boss stats. */
++export interface W1BossView {
++  readonly gateId: string;
++  readonly zoneId: string;
++  readonly zoneOrder: number;
++  readonly kind: 'miniboss' | 'final';
++  readonly opened: boolean;
++  readonly completed: boolean;
++  readonly eliteCompleted: boolean;
++  /** The Elite version may be started (a Normal clear exists). */
++  readonly eliteAvailable: boolean;
++  readonly clears: number;
++  readonly eliteClears: number;
++  readonly attempts: number;
++  /** When the last attempt failed (the player saw it), or null. */
++  readonly lastFailMs: number | null;
++  readonly unlockKills: number;
++  readonly timerMs: number;
++  readonly eliteTimerMs: number;
++  readonly enemy: BossEnemyView;
++  readonly eliteEnemy: BossEnemyView;
++  /** The first-clear rewards still to earn (null once earned). */
++  readonly firstClearGold: number | null;
++  readonly eliteFirstClearGold: number | null;
++}
++export interface BossEnemyView {
++  readonly id: string;
++  readonly hp: number;
++  readonly attackMilli: number;
++  readonly attackIntervalMs: number;
++  readonly firstAttackDelayMs: number;
++  readonly defence: number;
++  readonly exp: number;
++  readonly gold: number;
++}
++export interface W1Observation {
++  readonly bosses: readonly W1BossView[];
++  readonly worldCleared: boolean;
++  /** Every rare hero of the content: owned or not, and where it comes from (the collection screen). */
++  readonly rareHeroes: readonly { readonly id: string; readonly name: string; readonly cls: ClassId; readonly owned: boolean; readonly memberId: string; readonly source: string }[];
++  /** Alive elite slots per zone order (zones with an elite variant). */
++  readonly eliteAlive: Readonly<Record<string, number>>;
++  /** The zone information screen: each zone's enemy (and elite) and the materials they drop, by zone order. */
++  readonly zoneEnemies: Readonly<Record<string, BossEnemyView>>;
++  readonly zoneDrops: Readonly<Record<string, readonly string[]>>;
++  /** The blacksmith menu: each timed recipe's base unit time. */
++  readonly recipeUnitMs: Readonly<Record<string, number>>;
+ }
+ 
+ export interface LegionPolicy {
+diff --git a/legion-progression-lab/src/model/types.ts b/legion-progression-lab/src/model/types.ts
+index 63acdba..312eb63 100644
+--- a/legion-progression-lab/src/model/types.ts
++++ b/legion-progression-lab/src/model/types.ts
+@@ -188,7 +188,8 @@ export type Command =
+   | { readonly type: 'Travel'; readonly zoneId: string }
+   | { readonly type: 'Teleport'; readonly checkpointId: string }
+   | { readonly type: 'Rest' }
+-  | { readonly type: 'StartBoss'; readonly gateId: string }
++  /** S6: `elite` starts a World 1 boss's Elite version (refused for other content). */
++  | { readonly type: 'StartBoss'; readonly gateId: string; readonly elite?: boolean }
+   | { readonly type: 'EndSession' }
+   /** A policy's stated reason for stopping (v1.1). Changes no game state; it is logged and shown in results. */
+   | { readonly type: 'Report'; readonly code: PolicyReportCode };

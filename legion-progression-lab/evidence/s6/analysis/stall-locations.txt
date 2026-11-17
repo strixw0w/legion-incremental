@@ -1,0 +1,18 @@
+Where the three H-S6-02 stalls over 60 minutes happened (post-results explanation; nothing was tuned). Each registered run
+was replayed with evidence/s6/tools/stall_locate.ts on the registered code; each replay reproduces its registered stall.
+
+s6-e02#PR-OPT#3 PR-OPT POL6-BAL-ATT to D30
+longest stall 76.7 active min: from active 38.47 h, calendar day 12.46 (EmblemFound) to active 39.74 h, calendar day 13.03 (EmblemFound)
+the account when it ended: hero level 291 in zone 10 (status walking), max level 291, zones open 10, world cleared true, roster 7
+world cleared at active 5.22 h, calendar day 1.45 (worldCleared)
+
+s6-e01#PR-COL#POL6-BAL#0 PR-COL POL6-BAL to D30
+longest stall 85.3 active min: from active 32.71 h, calendar day 21.05 (EmblemFound) to active 34.13 h, calendar day 22.05 (EmblemFound)
+the account when it ended: hero level 311 in zone 10 (status idle), max level 311, zones open 10, world cleared true, roster 7
+world cleared at active 5.41 h, calendar day 3.04 (worldCleared)
+
+s6-e01#PR-OPT#POL6-MAGE#1 PR-OPT POL6-MAGE to D30
+longest stall 74.0 active min: from active 46.16 h, calendar day 15.05 (EmblemFound) to active 47.39 h, calendar day 15.45 (EmblemFound)
+the account when it ended: hero level 298 in zone 10 (status idle), max level 298, zones open 10, world cleared true, roster 7
+world cleared at active 5.42 h, calendar day 1.45 (worldCleared)
+

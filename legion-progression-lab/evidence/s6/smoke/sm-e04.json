@@ -1,0 +1,17 @@
+{
+  "experimentId": "S6-E04-earlier-zones",
+  "label": "SMOKE (unregistered, not evidence): plumbing check of S6-E04-earlier-zones before registration",
+  "seed": "s6-smoke-s6-e04",
+  "tasks": 11,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 1,
+    "atDay": 1
+  },
+  "budgets": {
+    "wallMs": 1800000,
+    "taskMs": 1500000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

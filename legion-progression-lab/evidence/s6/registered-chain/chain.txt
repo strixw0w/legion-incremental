@@ -1,0 +1,15 @@
+start 2026-11-16T22:20:05Z
+registration check before exit 0 2026-11-16T22:20:05Z
+full suite exit 0 2026-11-16T22:21:45Z
+S6-E02-completion exit 0 2026-11-16T22:47:51Z | COMPLETE 80 / 80 failed 80 wall s 1565 task max s 337 rss MB 5150 
+S6-E01-profile-matrix exit 1 2026-11-16T22:49:03Z | Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'results/s6/S6-E01-profile-matrix/run.json'
+operator stop 2026-11-16T22:49:15Z: the chain was stopped by the operator during S6-E01 (started 22:47:51Z) after S6-E02 returned 80/80 task errors; S6-E01 wrote no rows
+S6-E03-strategy-spread exit 1 2026-11-16T22:49:31Z | Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'results/s6/S6-E03-strategy-spread/run.json'
+S6-E05-sensitivity-stage1 exit 1 2026-11-16T22:50:14Z | Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'results/s6/S6-E05-sensitivity-stage1/run.json'
+operator stop, completed 2026-11-16T22:51:04Z: stopping the chain's outer shell at 22:48Z left run_all.sh running, so its runners were stopped one at a time (taskkill): S6-E01 (started 22:47:51Z), S6-E03 (22:49:03Z), S6-E05 stage 1 (22:49:31Z) and S6-E06 (22:50:14Z) were each killed within about 45 s of starting, wrote no rows and no run.json (the "exit 1" lines above are the status read failing on the missing run.json); then run_all.sh itself was stopped. S6-E07, E04, E10, E11 and the E05 stage 2 never started. S6-E02's 80 rows are all task errors (see results/s6/S6-E02-completion/run.json).

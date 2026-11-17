@@ -59,6 +59,7 @@ export function validateCommand(state: SimState, content: CompiledContent, cmd: 
     case 'StartBoss': {
       const c = common(state);
       if (c) return c;
+      if (cmd.elite === true) return no('GATE_UNKNOWN');
       if (!content.gateIds.has(cmd.gateId) || cmd.gateId !== content.boss.gateId) return no('GATE_UNKNOWN');
       if (!state.boss.opened) return no('GATE_LOCKED');
       if (state.boss.completed) return no('GATE_ALREADY_COMPLETED');

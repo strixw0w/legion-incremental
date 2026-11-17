@@ -1,0 +1,35 @@
+S6-E04-earlier-zones: 10/33 (98 s)
+S6-E04-earlier-zones: 20/33 (175 s)
+S6-E04-earlier-zones: 30/33 (205 s)
+S6-E04-earlier-zones: 33/33 (231 s)
+{
+ "experimentId": "S6-E04-earlier-zones",
+ "manifest": "manifests/s6/S6-E04-earlier-zones.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 33,
+ "completedTasks": 33,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 231198,
+ "peakRssMb": 4018,
+ "taskMs": {
+  "mean": 89866,
+  "max": 105520
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "a411be2c43c9728035c7a3e5771dd76044312cd17a76115cbf771891d7e4e0ee"
+}

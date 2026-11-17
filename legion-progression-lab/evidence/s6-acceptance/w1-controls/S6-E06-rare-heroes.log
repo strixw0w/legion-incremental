@@ -1,0 +1,35 @@
+S6-E06-rare-heroes: 10/40 (251 s)
+S6-E06-rare-heroes: 20/40 (471 s)
+S6-E06-rare-heroes: 30/40 (565 s)
+S6-E06-rare-heroes: 40/40 (755 s)
+{
+ "experimentId": "S6-E06-rare-heroes",
+ "manifest": "manifests/s6/S6-E06-rare-heroes.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 40,
+ "completedTasks": 40,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 755258,
+ "peakRssMb": 4637,
+ "taskMs": {
+  "mean": 250260,
+  "max": 301650
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "fc3e6968eb01353b8d3a8ba323ec4bf4b12ab367d7d71da9d6e73da4e5945046"
+}

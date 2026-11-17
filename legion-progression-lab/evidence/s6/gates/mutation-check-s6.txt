@@ -1,0 +1,108 @@
+M1: DETECTED (2 failing) restored=True | no respawn is ever elite
+M2: DETECTED (1 failing) restored=True | elite spawns are not counted
+M3: DETECTED (1 failing) restored=True | the pity guarantee comes one kill late
+M4: DETECTED (2 failing) restored=True | the pity counter does not restart after a drop
+M5: DETECTED (2 failing) restored=True | every Normal clear counts as a first clear
+M6: DETECTED (2 failing) restored=True | an Elite clear also counts as a Normal clear
+M7: DETECTED (1 failing) restored=True | StartBoss is accepted outside a connected session
+M8: DETECTED (1 failing) restored=True | the Elite version can start before the Normal clear
+M9: DETECTED (1 failing) restored=True | a boss can start with auto-farm on (not active-only)
+M10: DETECTED (1 failing) restored=True | a boss can start from another zone
+M11: DETECTED (1 failing) restored=True | a boss can start before it opens
+M12: DETECTED (1 failing) restored=True | an Elite boss instance is fought as the Normal boss
+M13: DETECTED (1 failing) restored=True | an elite slot is fought as the ordinary zone enemy
+M14: DETECTED (1 failing) restored=True | World 1 content runs without the legion switch
+M15: DETECTED (1 failing) restored=True | the first-clear reward is paid on every clear
+M16: DETECTED (2 failing) restored=True | a miniboss's first clear does not unlock the next zone
+M17: DETECTED (1 failing) restored=True | the final boss's first clear does not complete the world
+M18: DETECTED (1 failing) restored=True | a boss opens without its registered kills
+M19: DETECTED (1 failing) restored=True | a duplicate rare hero becomes a second character instead of a shard
+M20: DETECTED (1 failing) restored=True | elite kills are not counted and never drop a rare hero
+M21: DETECTED (1 failing) restored=True | World 1 respawns never draw an elite
+M22: DETECTED (1 failing) restored=True | a rare hero's trait adds no HP
+M23: DETECTED (1 failing) restored=True | World 1 roster milestones ignore the milestone list's slots
+M24: DETECTED (1 failing) restored=True | the Feat gate counter ignores the minibosses
+M25: DETECTED (1 failing) restored=True | a failed attempt is not recorded on the boss board
+M26: NOT DETECTED (0 failing) restored=True | a rare hero can change class
+M27: DETECTED (1 failing) restored=True | a miniboss need not unlock the next zone
+M28: DETECTED (1 failing) restored=True | a zone may be gated by both its kill gate and its miniboss
+M29: DETECTED (1 failing) restored=True | a rare hero may have no or several acquisition paths
+M30: DETECTED (1 failing) restored=True | the W1 milestones need not equal the S2 zone 2 and 3 fields
+M31: DETECTED (1 failing) restored=True | the W1 roster block is accepted on a slice base pack
+M32: DETECTED (1 failing) restored=True | a completion that does not match the clear counts is accepted
+M33: DETECTED (3 failing) restored=True | an Elite clear before a Normal clear, an attempt before opening, or more clears than attempts is accepted
+M34: DETECTED (1 failing) restored=True | the single boss-gate state need not mirror the final boss
+M35: DETECTED (2 failing) restored=True | a pity counter outside [0, pity) is accepted
+M36: DETECTED (1 failing) restored=True | a rare-list name without its character is accepted
+M37: DETECTED (1 failing) restored=True | a rare character that is not a rare hero of the content is accepted
+M38: DETECTED (1 failing) restored=True | the reward monitor reads the instance identity at the wrong position (the F16 defect)
+M39: NOT DETECTED (0 failing) restored=True | the reward monitor lets a joining rare hero bring EXP
+M40: DETECTED (2 failing) restored=True | a stuck task is never stopped
+M41: DETECTED (1 failing) restored=True | heartbeats do not reset the stall clock
+M42: DETECTED (1 failing) restored=True | the first verdict does not latch
+M43: DETECTED (1 failing) restored=True | the memory budget is not enforced
+M44: DETECTED (1 failing) restored=True | the per-task budget is not enforced
+M45: DETECTED (4 failing) restored=True | F3 undone: the boss step waits for a decision that never comes
+M46: DETECTED (1 failing) restored=True | F4 undone: a roster swap is returned alone
+M47: DETECTED (1 failing) restored=True | F5 undone: with a member knocked out the hero rests
+M48: NOT DETECTED (0 failing) restored=True | the policy imports from the engine
+M49: DETECTED (1 failing) restored=True | the calibration also scales the zone 1-3 gates
+M50: DETECTED (1 failing) restored=True | the calibration does not scale the boss unlocks
+M51: NOT DETECTED (0 failing) restored=True | F15 undone: each horizon's day chunks restart from wall day 1
+M52: DETECTED (1 failing) restored=True | F17 undone: S6 accounts run with the engine's default event budget
+M53: DETECTED (1 failing) restored=True | F18 undone: a run stopped by a guard loses its row (the peak checkpoints inside a step)
+
+S6 mutation check: 53 planted bugs, 49 detected, 4 not detected; all files restored: True
+- M1 [src/engine/w1.ts] no respawn is ever elite: detected by 2 failing test(s); e.g. × respawns draw elites only in zones with an elite variant, at about the registered chance 3ms
+- M2 [src/engine/w1.ts] elite spawns are not counted: detected by 1 failing test(s); e.g. × respawns draw elites only in zones with an elite variant, at about the registered chance 14ms
+- M3 [src/engine/w1.ts] the pity guarantee comes one kill late: detected by 1 failing test(s); e.g. × the rare drop is guaranteed on the pity kill and the pity counter restarts after a drop 5ms
+- M4 [src/engine/w1.ts] the pity counter does not restart after a drop: detected by 2 failing test(s); e.g. × the rare drop is guaranteed on the pity kill and the pity counter restarts after a drop 5ms
+- M5 [src/engine/w1.ts] every Normal clear counts as a first clear: detected by 2 failing test(s); e.g. × a clear marks only its own version as first 4ms
+- M6 [src/engine/w1.ts] an Elite clear also counts as a Normal clear: detected by 2 failing test(s); e.g. × a clear marks only its own version as first 5ms
+- M7 [src/engine/w1.ts] StartBoss is accepted outside a connected session: detected by 1 failing test(s); e.g. × refuses outside a connected session, while dead and while busy 4ms
+- M8 [src/engine/w1.ts] the Elite version can start before the Normal clear: detected by 1 failing test(s); e.g. × StartBoss rules: unknown, locked, Elite before Normal, wrong zone, auto-farm, then accepted 5ms
+- M9 [src/engine/w1.ts] a boss can start with auto-farm on (not active-only): detected by 1 failing test(s); e.g. × StartBoss rules: unknown, locked, Elite before Normal, wrong zone, auto-farm, then accepted 4ms
+- M10 [src/engine/w1.ts] a boss can start from another zone: detected by 1 failing test(s); e.g. × StartBoss rules: unknown, locked, Elite before Normal, wrong zone, auto-farm, then accepted 4ms
+- M11 [src/engine/w1.ts] a boss can start before it opens: detected by 1 failing test(s); e.g. × StartBoss rules: unknown, locked, Elite before Normal, wrong zone, auto-farm, then accepted 4ms
+- M12 [src/engine/w1.ts] an Elite boss instance is fought as the Normal boss: detected by 1 failing test(s); e.g. × the enemy follows from the instance identity: zone or elite, boss or Elite boss 3ms
+- M13 [src/engine/w1.ts] an elite slot is fought as the ordinary zone enemy: detected by 1 failing test(s); e.g. × the enemy follows from the instance identity: zone or elite, boss or Elite boss 3ms
+- M14 [src/engine/legion.ts] World 1 content runs without the legion switch: detected by 1 failing test(s); e.g. × the single-boss engine refuses World 1 content; World 1 needs the legion switch; legacy content refuses an Elite start 5ms
+- M15 [src/engine/legion.ts] the first-clear reward is paid on every clear: detected by 1 failing test(s); e.g. × the first Normal clear pays its reward once, grants the Guardian, unlocks zone 6; a repeat pays nothing more 682ms
+- M16 [src/engine/legion.ts] a miniboss's first clear does not unlock the next zone: detected by 2 failing test(s); e.g. × the first Normal clear pays its reward once, grants the Guardian, unlocks zone 6; a repeat pays nothing more 1118ms
+- M17 [src/engine/legion.ts] the final boss's first clear does not complete the world: detected by 1 failing test(s); e.g. × the final boss: its first Normal clear completes the world once, mirrored in the single boss-gate state, and the checkpoint validates 2077
+- M18 [src/engine/legion.ts] a boss opens without its registered kills: detected by 1 failing test(s); e.g. × a boss opens exactly when its zone reaches the registered kills; roster milestones and the Feat gate counter follow the World 1 rules 3003
+- M19 [src/engine/legion.ts] a duplicate rare hero becomes a second character instead of a shard: detected by 1 failing test(s); e.g. × elite rare drops: the Huntress joins once (an archer); every later drop converts to one hero shard; the counters and checkpoint agree 1410
+- M20 [src/engine/legion.ts] elite kills are not counted and never drop a rare hero: detected by 1 failing test(s); e.g. × elite rare drops: the Huntress joins once (an archer); every later drop converts to one hero shard; the counters and checkpoint agree 1888
+- M21 [src/engine/legion.ts] World 1 respawns never draw an elite: detected by 1 failing test(s); e.g. × elite rare drops: the Huntress joins once (an archer); every later drop converts to one hero shard; the counters and checkpoint agree 1960
+- M22 [src/engine/legion.ts] a rare hero's trait adds no HP: detected by 1 failing test(s); e.g. × a rare hero's trait adds to the modifier pools exactly as registered (the Guardian: HP +30 %, attack −10 %); other characters are unchange
+- M23 [src/engine/legion.ts] World 1 roster milestones ignore the milestone list's slots: detected by 1 failing test(s); e.g. × a boss opens exactly when its zone reaches the registered kills; roster milestones and the Feat gate counter follow the World 1 rules 1816
+- M24 [src/engine/legion.ts] the Feat gate counter ignores the minibosses: detected by 1 failing test(s); e.g. × a boss opens exactly when its zone reaches the registered kills; roster milestones and the Feat gate counter follow the World 1 rules 2502
+- M25 [src/engine/legion.ts] a failed attempt is not recorded on the boss board: detected by 1 failing test(s); e.g. × a failed boss attempt is recorded on the boss board (S6-R09) and is not a clear 626ms
+- M26 [src/engine/legionCommands.ts] a rare hero can change class: NOT detected by 0 failing test(s)
+- M27 [src/model/content.ts] a miniboss need not unlock the next zone: detected by 1 failing test(s); e.g. × refuses a miniboss that does not unlock the next zone 9ms
+- M28 [src/model/content.ts] a zone may be gated by both its kill gate and its miniboss: detected by 1 failing test(s); e.g. × refuses a zone gated by both its kill gate and its miniboss 12ms
+- M29 [src/model/legionContent.ts] a rare hero may have no or several acquisition paths: detected by 1 failing test(s); e.g. × refuses a rare hero without exactly one acquisition path 11ms
+- M30 [src/model/legionContent.ts] the W1 milestones need not equal the S2 zone 2 and 3 fields: detected by 1 failing test(s); e.g. × refuses zone milestones that disagree with the zone 2 and 3 roster fields 8ms
+- M31 [src/model/legionContent.ts] the W1 roster block is accepted on a slice base pack: detected by 1 failing test(s); e.g. × refuses the W1 roster block on a slice base pack 8ms
+- M32 [src/l2/simState.ts] a completion that does not match the clear counts is accepted: detected by 1 failing test(s); e.g. × refuses W1 records that contradict themselves (a completion without a clear; a rare name without its character) 148ms
+- M33 [src/l2/simState.ts] an Elite clear before a Normal clear, an attempt before opening, or more clears than attempts is accepted: detected by 3 failing test(s); e.g. × refuses an Elite clear before a Normal clear 4ms
+- M34 [src/l2/simState.ts] the single boss-gate state need not mirror the final boss: detected by 1 failing test(s); e.g. × refuses a single boss-gate state that does not mirror the final boss 4ms
+- M35 [src/l2/simState.ts] a pity counter outside [0, pity) is accepted: detected by 2 failing test(s); e.g. × refuses a rare-drop pity counter at its limit 5ms
+- M36 [src/l2/simState.ts] a rare-list name without its character is accepted: detected by 1 failing test(s); e.g. × refuses W1 records that contradict themselves (a completion without a clear; a rare name without its character) 132ms
+- M37 [src/l2/simState.ts] a rare character that is not a rare hero of the content is accepted: detected by 1 failing test(s); e.g. × refuses a rare character that is not a rare hero of the content 4ms
+- M38 [src/experiments/legionMetrics.ts] the reward monitor reads the instance identity at the wrong position (the F16 defect): detected by 1 failing test(s); e.g. × elite rare drops: the Huntress joins once (an archer); every later drop converts to one hero shard; the counters and checkpoint agree 1885
+- M39 [src/experiments/legionMetrics.ts] the reward monitor lets a joining rare hero bring EXP: NOT detected by 0 failing test(s)
+- M40 [src/s6/watchdog.ts] a stuck task is never stopped: detected by 2 failing test(s); e.g. × stops a task that sends no progress for longer than the stall limit, naming it and its last progress 3ms
+- M41 [src/s6/watchdog.ts] heartbeats do not reset the stall clock: detected by 1 failing test(s); e.g. × heartbeats keep a long task alive until its own budget; the run budget and memory stop everything 3ms
+- M42 [src/s6/watchdog.ts] the first verdict does not latch: detected by 1 failing test(s); e.g. × the first verdict latches; finished tasks are no longer watched 7ms
+- M43 [src/s6/watchdog.ts] the memory budget is not enforced: detected by 1 failing test(s); e.g. × heartbeats keep a long task alive until its own budget; the run budget and memory stop everything 3ms
+- M44 [src/s6/watchdog.ts] the per-task budget is not enforced: detected by 1 failing test(s); e.g. × heartbeats keep a long task alive until its own budget; the run budget and memory stop everything 5ms
+- M45 [src/policy/w1Policies.ts] F3 undone: the boss step waits for a decision that never comes: detected by 4 failing test(s); e.g. × the first Normal clear pays its reward once, grants the Guardian, unlocks zone 6; a repeat pays nothing more 679ms
+- M46 [src/policy/w1Policies.ts] F4 undone: a roster swap is returned alone: detected by 1 failing test(s); e.g. × the first Normal clear pays its reward once, grants the Guardian, unlocks zone 6; a repeat pays nothing more 687ms
+- M47 [src/policy/w1Policies.ts] F5 undone: with a member knocked out the hero rests: detected by 1 failing test(s); e.g. × the first Normal clear pays its reward once, grants the Guardian, unlocks zone 6; a repeat pays nothing more 787ms
+- M48 [src/policy/w1Policies.ts] the policy imports from the engine: NOT detected by 0 failing test(s)
+- M49 [src/s6/w1Content.ts] the calibration also scales the zone 1-3 gates: detected by 1 failing test(s); e.g. × the build is deterministic and the written files are exactly the build (no drift) 17ms
+- M50 [src/s6/w1Content.ts] the calibration does not scale the boss unlocks: detected by 1 failing test(s); e.g. × the build is deterministic and the written files are exactly the build (no drift) 18ms
+- M51 [src/s6/experiments.ts] F15 undone: each horizon's day chunks restart from wall day 1: NOT detected by 0 failing test(s)
+- M52 [src/s6/experiments.ts] F17 undone: S6 accounts run with the engine's default event budget: detected by 1 failing test(s); e.g. × S6 accounts run with the S6 event budget (amendment 01), far above the engine default 4ms
+- M53 [src/s6/experiments.ts] F18 undone: a run stopped by a guard loses its row (the peak checkpoints inside a step): detected by 1 failing test(s); e.g. × a profile run stopped by an engine guard is recorded as stopped, with its snapshots so far and its peak (amendment 01) 1425ms

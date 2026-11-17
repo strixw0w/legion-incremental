@@ -1,0 +1,52 @@
+S6 deterministic fingerprints (SHA-256)
+
+## Content, registrations, manifests, rules, analysis, chains
+7246d13fd6d39574d76962a3ea66a41ffae341a9c3e1bdb3228aeddf0d7bdd4d  content/s6/w1-full-s2.candidate.v0.6.0.json
+5bcc7076d40d8638dfcd9bb669f984850ed190dfee5a830317302f86dda5d1bb  content/s6/w1-full-s2.candidate.v0.6.1.json
+f4783402a89ef4037e996eee49679290933a0c31a0b30fafe83cca53e275b662  content/s6/w1-full-s3.candidate.v0.6.0.json
+3c7f9406579da643d5c4fb7e8723d88530dfa239993717467d6e525e63c65018  content/s6/w1-full-s3.candidate.v0.6.1.json
+5171641f8ef30a5590bfc74f38573da111ffbd3db8a8003605618e6d97673e5a  content/s6/w1-full-s5.candidate.v0.6.0.json
+16b7bec50311409f1c308451d6235893ddad45504d7b565e24ca2849036c281f  content/s6/w1-full-s5.candidate.v0.6.1.json
+f008d8c8935610358ca27c45d17c706c6337801c5aa845c35244de2ca6bab8a8  content/s6/w1-full.candidate.v0.6.0.json
+200442b1ece5f6a687b0c241bf4575d5b800a63670631cf2adcf6d281e4cb9d1  content/s6/w1-full.candidate.v0.6.1.json
+d684c71d93f79ca3a90ead48e9834d56b79da1fa71ba68f5d0403d1e0c1120e2  content/s6/xp.w1.full.candidate.v0.6.0.json
+d684c71d93f79ca3a90ead48e9834d56b79da1fa71ba68f5d0403d1e0c1120e2  content/s6/xp.w1.full.candidate.v0.6.1.json
+7befcb0cabd88f44316fc54f56b54dbaee65e77840acb63b969e6174d6051f19  planning/S6_SPECIFICATION.md
+db142ba8b8f1a5ffc118cfed2fc4931fb572ed2583c1fa7769074c86b38b164b  evidence/s6/registration/S6_SPECIFICATION_v0.1_before_any_result.md
+305e09f1439c73c104511320be035b0d331e98e1d2d8cc11fddacc995edace93  manifests/s6/PREREGISTRATION.md
+982d8efbfa555662c8830f557521028df7d018c5e5fae072fb8045d1d31e4b54  manifests/s6/AMENDMENT_01.md
+3abc2c86bdf7a4ed96fe52346c0ba31bf18cdd075058ea0d4074036b92e93493  manifests/s6/S6-E01-profile-matrix.json
+60fea7c63f3c912367ac24577074fa5545749feb1915de49600198037cd6f6c7  manifests/s6/S6-E02-completion.json
+9b01187a2fd154b0ef8b79ad560d792d3602dc2fe8ae34168a72c5d5a331e645  manifests/s6/S6-E03-strategy-spread.json
+410e3c0fb57220e9427f2adf4b25525ee263136d77a20c5f092a46140546564b  manifests/s6/S6-E04-earlier-zones.json
+8ef292f38761cbb0365def45682a8cca9da414635bdf66f9797fe68054d68e44  manifests/s6/S6-E05-sensitivity-stage1.json
+d792ff1f8cf7791c4525128ffe1c8d8e202a4ffecf533fb79ac818dfa31448f4  manifests/s6/S6-E05-sensitivity-stage2.json
+78bb7b43be62679eeb822f3049d6c3d76a605e362382713992b8ed9eebf11e0d  manifests/s6/S6-E06-rare-heroes.json
+a9ca489a19d52ad225279cd626d8a6edef4f9cb726cb57e637fe02f4261365a2  manifests/s6/S6-E07-boss-rewards.json
+39e79bb66ea77fae3dbd85c8ea4d1532a13986a5a84fb0572a369037a8f0ba51  manifests/s6/S6-E10-connected-idle.json
+e7071654757d51ccc628e16eff61273d1fc1ca405dd66eb031f456bd063bfc95  manifests/s6/S6-E11-power-pricing.json
+5ed3204cc8c88b30f24e6229d04b83255d9c480fc7b662e98d6a5b5963a6231e  manifests/s6/preregistration-amendment-01.json
+66885ca9e59da41507ee72f8b9b2208c1afab19314ad34c33795ebf28d2f6ec3  manifests/s6/preregistration-stage2.json
+809144e299151c057324ab376dd838d9a31813ca3c93384e409a97e868973243  manifests/s6/preregistration.json
+0da74047da54f1782d77ee5e5ba20728d3b3d793091983db46463fc9562e603a  repro/s6/e05_stage2.py
+c6bb0e13e1aac8edabab01c9877565d5d970e851fe25868d346e32508603c0f6  repro/s6/analyze.py
+ae659fccbfbf55ab67292bddef931c5083570b3344307991588d2a16c50c4ac8  repro/s6/run_all.sh
+7f48809d9ca539dcef68157e93ff85eacb007cbe1ecbfaa8277f1fb0f1622e63  repro/s6/run_all_a01.sh
+15103c3b95d37d082928563fa7941b34bbb329657ef6705e989f420f396d9739  repro/s6/register.py
+f5a5908cd1f11f5548feae82e7d27df293a287f282c6396dc44cde557640180f  repro/s6/register_a01.py
+8d32b7214bd61a721200542d22a32a74a927fbd120828dc2e1ec7ae7d2af4887  repro/s6/mutation_check.py
+
+## Registered experiments under amendment 01 (rows fingerprint: canonical JSON of the rows; S6 rows carry no timing fields)
+S6-E01-profile-matrix: status COMPLETE, 99/99 tasks, 0 task errors, rows 4fff7caa203d0b5f92feae49668f0dfb57cdc20a9eb91c22b3836e36c852e782
+S6-E02-completion: status COMPLETE, 80/80 tasks, 0 task errors, rows 14a5206801ef72e0242277e012727c2c6253b320b7745b82c50cded2eb9dfcd9
+S6-E03-strategy-spread: status COMPLETE, 30/30 tasks, 0 task errors, rows 1ca1c859e5f715795b5a88bd49beb412cedc07d3ab7af195a74848fededa0b79
+S6-E04-earlier-zones: status COMPLETE, 33/33 tasks, 0 task errors, rows a411be2c43c9728035c7a3e5771dd76044312cd17a76115cbf771891d7e4e0ee
+S6-E05-sensitivity-stage1: status COMPLETE, 51/51 tasks, 0 task errors, rows 74866d35728cb1a33bbe5ec7c01c27df0b8316677d5615bd4a77266f900a10b4
+S6-E05-sensitivity-stage2: status COMPLETE, 105/105 tasks, 0 task errors, rows e336ce0c0cdd819fe89b1ae0a437456de69d5c7ae349ee06bd692cd9c5e7c566
+S6-E06-rare-heroes: status COMPLETE, 40/40 tasks, 0 task errors, rows fc3e6968eb01353b8d3a8ba323ec4bf4b12ab367d7d71da9d6e73da4e5945046
+S6-E07-boss-rewards: status COMPLETE, 30/30 tasks, 0 task errors, rows 42d343512ea779ad87e0b9f7d15896ad994e680c2b39f3ecb75641944be370e0
+S6-E10-connected-idle: status COMPLETE, 40/40 tasks, 0 task errors, rows 41a96182ff23b08c0b4b88f2eaac113e099f232521cc3aae7143cad22c5493a9
+S6-E11-power-pricing: status COMPLETE, 30/30 tasks, 0 task errors, rows 7c0b99b7762be57199b521e872082efd898e2a62343a038c714c1040800cd46e
+
+## The first registered attempt (kept; evidence/s6/registered-chain/)
+S6-E02-completion (attempt 1): status COMPLETE, 80/80 tasks, 80 task errors, rows f62b7101552c0e3b6c0f5d415ace190b6ec3cb5a178a3f49ce5d6f05d5d5279a

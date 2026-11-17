@@ -1,0 +1,31 @@
+{
+  "experimentId": "S6-E05-sensitivity",
+  "manifest": "manifests/s6/S6-E05-sensitivity-stage2.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stopped": null,
+  "registeredTasks": 105,
+  "completedTasks": 105,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 7200000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  },
+  "wallMs": 1332840,
+  "peakRssMb": 5096,
+  "taskMs": {
+    "mean": 181280,
+    "max": 343853
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "e336ce0c0cdd819fe89b1ae0a437456de69d5c7ae349ee06bd692cd9c5e7c566"
+}

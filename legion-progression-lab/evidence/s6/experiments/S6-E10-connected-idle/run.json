@@ -1,0 +1,31 @@
+{
+  "experimentId": "S6-E10-connected-idle",
+  "manifest": "manifests/s6/S6-E10-connected-idle.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stopped": null,
+  "registeredTasks": 40,
+  "completedTasks": 40,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 5400000,
+    "taskMs": 2700000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  },
+  "wallMs": 115523,
+  "peakRssMb": 4073,
+  "taskMs": {
+    "mean": 38949,
+    "max": 47062
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "41a96182ff23b08c0b4b88f2eaac113e099f232521cc3aae7143cad22c5493a9"
+}

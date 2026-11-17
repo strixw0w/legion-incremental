@@ -93,6 +93,7 @@ export function validateLegionCommand(sim: LegionSimulation, cmd: LegionOnlyComm
       const c = sim.char(cmd.characterId);
       if (!c) return no('CHARACTER_UNKNOWN');
       if (!(CLASS_IDS as readonly string[]).includes(cmd.cls)) return no('CLASS_LOCKED');
+      if (c.kind === 'rare' && sim.content.rareHeroes.has(c.id.slice('rare:'.length))) return no('RARE_CLASS_FIXED');
       if (c.id === 'hero' && s.hero.level < rules.heroClassMinLevel) return no('CLASS_LOCKED');
       if (c.cls === cmd.cls) return no('ALREADY_CLASS');
       if (sim.inCombat(c)) return no('CHARACTER_BUSY');

@@ -1,0 +1,23 @@
+{
+  "experimentId": "S6-E02-completion",
+  "label": "SMOKE (unregistered, not evidence): plumbing check of S6-E02-completion before registration",
+  "seed": "s6-smoke-s6-e02",
+  "tasks": 4,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profiles": [
+      "PR-BAL",
+      "PR-CAS",
+      "PR-CMB",
+      "PR-OPT"
+    ],
+    "seeds": 1,
+    "days": 2
+  },
+  "budgets": {
+    "wallMs": 1800000,
+    "taskMs": 1500000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

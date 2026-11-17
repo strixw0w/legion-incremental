@@ -1,0 +1,68 @@
+S6 amendment 01 exploratory D30 check (2026-11-16 22:56-23:05Z; not evidence): evidence/s6/amendments/probe_d30.ts.txt with maxEvents 1_000_000_000,
+the seeds of S6-E02 task 0 (PR-BAL) and task 60 (PR-OPT), one wall day at a time, single process each (both at once).
+
+== s6-e02#PR-BAL#0 PR-BAL POL6-BAL 30
+day 1 ok (3 s) hero level 127 zones 5 world false events 689233
+day 2 ok (7 s) hero level 158 zones 5 world false events 1497915
+day 3 ok (14 s) hero level 183 zones 7 world false events 2452478
+day 4 ok (20 s) hero level 204 zones 8 world false events 3269423
+day 5 ok (30 s) hero level 221 zones 8 world false events 4482571
+day 6 ok (39 s) hero level 239 zones 10 world false events 5687371
+day 7 ok (49 s) hero level 249 zones 10 world true events 6934511
+day 8 ok (59 s) hero level 257 zones 10 world true events 8192942
+day 9 ok (70 s) hero level 264 zones 10 world true events 9470801
+day 10 ok (81 s) hero level 270 zones 10 world true events 10775613
+day 11 ok (92 s) hero level 275 zones 10 world true events 12096549
+day 12 ok (103 s) hero level 279 zones 10 world true events 13420633
+day 13 ok (115 s) hero level 283 zones 10 world true events 14750502
+day 14 ok (126 s) hero level 287 zones 10 world true events 16093191
+day 15 ok (138 s) hero level 290 zones 10 world true events 17448085
+day 16 ok (149 s) hero level 293 zones 10 world true events 18797941
+day 17 ok (162 s) hero level 296 zones 10 world true events 20156539
+day 18 ok (174 s) hero level 299 zones 10 world true events 21513865
+day 19 ok (186 s) hero level 301 zones 10 world true events 22869752
+day 20 ok (198 s) hero level 303 zones 10 world true events 24226105
+day 21 ok (210 s) hero level 306 zones 10 world true events 25587008
+day 22 ok (222 s) hero level 308 zones 10 world true events 26940616
+day 23 ok (233 s) hero level 310 zones 10 world true events 28295796
+day 24 ok (244 s) hero level 311 zones 10 world true events 29652604
+day 25 ok (256 s) hero level 313 zones 10 world true events 31008927
+day 26 ok (267 s) hero level 315 zones 10 world true events 32364016
+day 27 ok (278 s) hero level 317 zones 10 world true events 33720981
+day 28 ok (289 s) hero level 318 zones 10 world true events 35078111
+day 29 ok (301 s) hero level 320 zones 10 world true events 36429363
+day 30 ok (312 s) hero level 321 zones 10 world true events 37799728
+no error
+
+== s6-e02#PR-OPT#0 PR-OPT POL6-BAL-ATT 30
+day 1 ok (7 s) hero level 167 zones 8 world false events 894261
+day 2 ok (20 s) hero level 212 zones 10 world true events 1945690
+day 3 ok (36 s) hero level 231 zones 10 world true events 3271731
+day 4 ok (53 s) hero level 243 zones 10 world true events 4639884
+day 5 ok (69 s) hero level 253 zones 10 world true events 6031616
+day 6 ok (88 s) hero level 260 zones 10 world true events 7431152
+day 7 ok (105 s) hero level 266 zones 10 world true events 8835178
+day 8 ok (123 s) hero level 272 zones 10 world true events 10242714
+day 9 ok (141 s) hero level 277 zones 10 world true events 11660252
+day 10 ok (160 s) hero level 281 zones 10 world true events 13109887
+day 11 ok (179 s) hero level 285 zones 10 world true events 14572865
+day 12 ok (198 s) hero level 288 zones 10 world true events 16035173
+day 13 ok (217 s) hero level 291 zones 10 world true events 17492002
+day 14 ok (235 s) hero level 294 zones 10 world true events 18943726
+day 15 ok (253 s) hero level 297 zones 10 world true events 20407568
+day 16 ok (271 s) hero level 300 zones 10 world true events 21882724
+day 17 ok (288 s) hero level 302 zones 10 world true events 23353201
+day 18 ok (307 s) hero level 304 zones 10 world true events 24830132
+day 19 ok (321 s) hero level 306 zones 10 world true events 26312322
+day 20 ok (336 s) hero level 308 zones 10 world true events 27788977
+day 21 ok (351 s) hero level 310 zones 10 world true events 29274468
+day 22 ok (368 s) hero level 312 zones 10 world true events 30900109
+day 23 ok (384 s) hero level 314 zones 10 world true events 32510928
+day 24 ok (401 s) hero level 316 zones 10 world true events 34125513
+day 25 ok (418 s) hero level 317 zones 10 world true events 35733894
+day 26 ok (437 s) hero level 319 zones 10 world true events 37336098
+day 27 ok (457 s) hero level 320 zones 10 world true events 38938622
+day 28 ok (476 s) hero level 322 zones 10 world true events 40546870
+day 29 ok (495 s) hero level 323 zones 10 world true events 42162878
+day 30 ok (514 s) hero level 325 zones 10 world true events 43782405
+no error

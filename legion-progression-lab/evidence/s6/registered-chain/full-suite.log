@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 <HOME>/Documents/GitHub/legion-incremental/legion-progression-lab
+
+
+ Test Files  50 passed (50)
+      Tests  1725 passed (1725)
+   Start at  22:20:06
+   Duration  98.83s (transform 5.13s, setup 0ms, import 19.09s, tests 355.39s, environment 5ms)
+

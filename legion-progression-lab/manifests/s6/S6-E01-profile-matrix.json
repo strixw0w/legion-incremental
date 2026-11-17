@@ -1,0 +1,35 @@
+{
+  "experimentId": "S6-E01-profile-matrix",
+  "label": "REGISTERED: Profile matrix: every profile x {its policy, POL6-WARRIOR, POL6-MAGE} x 3 seeds, horizons 5 min to D30 (PR-NEW to D1); feeds E08 and E09",
+  "seed": "s6-e01",
+  "tasks": 99,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "profiles": [
+      "PR-NEW",
+      "PR-5MIN",
+      "PR-CAS",
+      "PR-FREQ",
+      "PR-BAL",
+      "PR-POOR",
+      "PR-COL",
+      "PR-ECO",
+      "PR-CMB",
+      "PR-OPT",
+      "PR-ABS"
+    ],
+    "policies": [
+      "profile",
+      "POL6-WARRIOR",
+      "POL6-MAGE"
+    ],
+    "seeds": 3,
+    "days": 30
+  },
+  "budgets": {
+    "wallMs": 10800000,
+    "taskMs": 3600000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

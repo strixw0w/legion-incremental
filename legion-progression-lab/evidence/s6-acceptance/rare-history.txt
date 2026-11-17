@@ -1,0 +1,3 @@
+after 1 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 21; shards 21; duplicate events 21; rare record 25 bytes; W1 state version 2
+after 2 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 34; shards 34; duplicate events 34; rare record 25 bytes; W1 state version 2
+after 4 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 68; shards 68; duplicate events 68; rare record 25 bytes; W1 state version 2

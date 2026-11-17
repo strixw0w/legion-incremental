@@ -10,6 +10,7 @@ import type { Command, DisplayedEstimate, Encounter, Observation, SimState } fro
 import type { IndustryCommand, IndustryObservation, IndustryState } from './industryTypes.ts';
 import type { PermanentCommand, PermanentObservation, PermanentState } from './permanentTypes.ts';
 import type { OfflineState } from '../engine/offline.ts';
+import type { W1State } from '../engine/w1.ts';
 
 export type CharacterId = string;
 export type CharacterKind = 'hero' | 'ordinary' | 'rare';
@@ -107,6 +108,8 @@ export interface LegionSimState extends Omit<SimState, 'encounter'> {
   readonly permanent?: PermanentState;
   /** S5: present only when the engine's offline switch is on. */
   readonly offline?: OfflineState;
+  /** S6: present exactly with World 1 content (boss gates, elites, rare-hero drop streams). */
+  readonly w1?: W1State;
 }
 
 /** S5: an offline assignment as a command gives it (zones by id). */
@@ -151,6 +154,8 @@ export const LEGION_REASON_CODES = [
   'NOT_ENGAGED',
   /** S2.1 (D-01): a worker may only be assigned to a zone the hero has visited. */
   'ZONE_NOT_VISITED',
+  /** S6: a World 1 rare hero keeps its class. */
+  'RARE_CLASS_FIXED',
 ] as const;
 export type LegionReasonCode = (typeof LEGION_REASON_CODES)[number];
 
@@ -222,6 +227,58 @@ export interface LegionObservation extends Observation {
   readonly industry?: IndustryObservation;
   /** S4: present only when the engine's permanent switch is on. */
   readonly permanent?: PermanentObservation;
+  /** S6: present exactly with World 1 content. */
+  readonly w1?: W1Observation;
+}
+
+/** What the World 1 boss board and collection screens show (S6). Enemy figures are the displayed boss stats. */
+export interface W1BossView {
+  readonly gateId: string;
+  readonly zoneId: string;
+  readonly zoneOrder: number;
+  readonly kind: 'miniboss' | 'final';
+  readonly opened: boolean;
+  readonly completed: boolean;
+  readonly eliteCompleted: boolean;
+  /** The Elite version may be started (a Normal clear exists). */
+  readonly eliteAvailable: boolean;
+  readonly clears: number;
+  readonly eliteClears: number;
+  readonly attempts: number;
+  /** When the last attempt failed (the player saw it), or null. */
+  readonly lastFailMs: number | null;
+  readonly unlockKills: number;
+  readonly timerMs: number;
+  readonly eliteTimerMs: number;
+  readonly enemy: BossEnemyView;
+  readonly eliteEnemy: BossEnemyView;
+  /** The first-clear rewards still to earn (null once earned). */
+  readonly firstClearGold: number | null;
+  readonly eliteFirstClearGold: number | null;
+}
+export interface BossEnemyView {
+  readonly id: string;
+  readonly hp: number;
+  readonly attackMilli: number;
+  readonly attackIntervalMs: number;
+  readonly firstAttackDelayMs: number;
+  readonly defence: number;
+  readonly exp: number;
+  readonly gold: number;
+}
+export interface W1Observation {
+  readonly bosses: readonly W1BossView[];
+  readonly worldCleared: boolean;
+  /** Every rare hero of the content: owned or not, and where it comes from (the collection screen). */
+  /** The rare-hero collection: each hero owned at most once, with its duplicate grants (S6 acceptance correction A). */
+  readonly rareHeroes: readonly { readonly id: string; readonly name: string; readonly cls: ClassId; readonly owned: boolean; readonly duplicates: number; readonly memberId: string; readonly source: string }[];
+  /** Alive elite slots per zone order (zones with an elite variant). */
+  readonly eliteAlive: Readonly<Record<string, number>>;
+  /** The zone information screen: each zone's enemy (and elite) and the materials they drop, by zone order. */
+  readonly zoneEnemies: Readonly<Record<string, BossEnemyView>>;
+  readonly zoneDrops: Readonly<Record<string, readonly string[]>>;
+  /** The blacksmith menu: each timed recipe's base unit time. */
+  readonly recipeUnitMs: Readonly<Record<string, number>>;
 }
 
 export interface LegionPolicy {

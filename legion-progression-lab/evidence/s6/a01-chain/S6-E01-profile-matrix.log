@@ -1,0 +1,41 @@
+S6-E01-profile-matrix: 10/99 (258 s)
+S6-E01-profile-matrix: 20/99 (417 s)
+S6-E01-profile-matrix: 30/99 (759 s)
+S6-E01-profile-matrix: 40/99 (1006 s)
+S6-E01-profile-matrix: 50/99 (1329 s)
+S6-E01-profile-matrix: 60/99 (1665 s)
+S6-E01-profile-matrix: 70/99 (1919 s)
+S6-E01-profile-matrix: 80/99 (2458 s)
+S6-E01-profile-matrix: 90/99 (2660 s)
+S6-E01-profile-matrix: 99/99 (2854 s)
+{
+ "experimentId": "S6-E01-profile-matrix",
+ "manifest": "manifests/s6/S6-E01-profile-matrix.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 99,
+ "completedTasks": 99,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 10800000,
+  "taskMs": 3600000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 2854444,
+ "peakRssMb": 4925,
+ "taskMs": {
+  "mean": 406802,
+  "max": 748296
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "4fff7caa203d0b5f92feae49668f0dfb57cdc20a9eb91c22b3836e36c852e782"
+}

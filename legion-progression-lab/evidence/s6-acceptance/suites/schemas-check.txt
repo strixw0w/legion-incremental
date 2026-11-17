@@ -1,0 +1,7 @@
+
+> legion-progression-lab@0.1.0 schemas:check
+> node src/cli/export-schemas.ts --check
+
+OK    spec/schema/fixture.schema.json
+OK    spec/schema/content-pack-s0.schema.json
+OK    spec/schema/xp-table.schema.json

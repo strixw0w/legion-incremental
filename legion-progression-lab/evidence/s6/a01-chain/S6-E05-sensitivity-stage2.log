@@ -1,0 +1,42 @@
+S6-E05-sensitivity: 10/105 (194 s)
+S6-E05-sensitivity: 20/105 (345 s)
+S6-E05-sensitivity: 30/105 (473 s)
+S6-E05-sensitivity: 40/105 (548 s)
+S6-E05-sensitivity: 50/105 (638 s)
+S6-E05-sensitivity: 60/105 (820 s)
+S6-E05-sensitivity: 70/105 (953 s)
+S6-E05-sensitivity: 80/105 (1040 s)
+S6-E05-sensitivity: 90/105 (1189 s)
+S6-E05-sensitivity: 100/105 (1285 s)
+S6-E05-sensitivity: 105/105 (1333 s)
+{
+ "experimentId": "S6-E05-sensitivity",
+ "manifest": "manifests/s6/S6-E05-sensitivity-stage2.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 105,
+ "completedTasks": 105,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 7200000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 1332840,
+ "peakRssMb": 5096,
+ "taskMs": {
+  "mean": 181280,
+  "max": 343853
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "e336ce0c0cdd819fe89b1ae0a437456de69d5c7ae349ee06bd692cd9c5e7c566"
+}

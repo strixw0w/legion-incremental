@@ -1,0 +1,4 @@
+registered code digest (manifests/s6/preregistration-amendment-01.json): faac6f659d10bee4da4a60469e0129786499b5fcc345bb579880f73f34dc078b (164 files)
+current code digest:    4b50b96f5120ed29e691b77b7bca1fac5840aa113f772f0a16ad8d849a488fe8 (164 files)
+with src/engine/legion.ts as evidence/s6-acceptance/registered-copies/legion.ts.a01.txt, src/engine/w1.ts as evidence/s6-acceptance/registered-copies/w1.ts.a01.txt, src/engine/legionObservation.ts as evidence/s6-acceptance/registered-copies/legionObservation.ts.a01.txt, src/model/legionTypes.ts as evidence/s6-acceptance/registered-copies/legionTypes.ts.a01.txt, src/l2/simState.ts as evidence/s6-acceptance/registered-copies/simState.ts.a01.txt: faac6f659d10bee4da4a60469e0129786499b5fcc345bb579880f73f34dc078b
+RESULT: the substituted files are the only differences from the registered code

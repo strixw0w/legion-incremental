@@ -188,7 +188,8 @@ export type Command =
   | { readonly type: 'Travel'; readonly zoneId: string }
   | { readonly type: 'Teleport'; readonly checkpointId: string }
   | { readonly type: 'Rest' }
-  | { readonly type: 'StartBoss'; readonly gateId: string }
+  /** S6: `elite` starts a World 1 boss's Elite version (refused for other content). */
+  | { readonly type: 'StartBoss'; readonly gateId: string; readonly elite?: boolean }
   | { readonly type: 'EndSession' }
   /** A policy's stated reason for stopping (v1.1). Changes no game state; it is logged and shown in results. */
   | { readonly type: 'Report'; readonly code: PolicyReportCode };

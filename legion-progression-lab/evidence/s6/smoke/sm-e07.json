@@ -1,0 +1,17 @@
+{
+  "experimentId": "S6-E07-boss-rewards",
+  "label": "SMOKE (unregistered, not evidence): plumbing check of S6-E07-boss-rewards before registration",
+  "seed": "s6-smoke-s6-e07",
+  "tasks": 3,
+  "content": "w1-full 0.6.1 (calibrated candidate)",
+  "params": {
+    "seeds": 1,
+    "maxHours": 72
+  },
+  "budgets": {
+    "wallMs": 1800000,
+    "taskMs": 1500000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  }
+}

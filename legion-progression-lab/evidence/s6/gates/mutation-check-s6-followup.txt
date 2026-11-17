@@ -1,0 +1,10 @@
+M26: DETECTED (1 failing) restored=True | a rare hero can change class
+M39: NOT DETECTED (0 failing) restored=True | the reward monitor lets a joining rare hero bring EXP
+M48: DETECTED (1 failing) restored=True | the policy imports from the engine
+M51: DETECTED (1 failing) restored=True | F15 undone: each horizon's day chunks restart from wall day 1
+
+S6 mutation check: 4 planted bugs, 3 detected, 1 not detected; all files restored: True
+- M26 [src/engine/legionCommands.ts] a rare hero can change class: detected by 1 failing test(s); e.g. × a rare hero keeps its class 3287ms
+- M39 [src/experiments/legionMetrics.ts] the reward monitor lets a joining rare hero bring EXP: NOT detected by 0 failing test(s)
+- M48 [src/policy/w1Policies.ts] the policy imports from the engine: detected by 1 failing test(s); e.g. × POL6 imports nothing from the engine (it sees only the observation) 5ms
+- M51 [src/s6/experiments.ts] F15 undone: each horizon's day chunks restart from wall day 1: detected by 1 failing test(s); e.g. × the experiment harness runs a profile through every horizon to D7 in day chunks from where it stands (F15) 15839ms

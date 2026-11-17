@@ -6,7 +6,9 @@
  * for the squad as deployed now), each with its reliability and assumptions. Never RNG state or the event queue.
  */
 import type { DisplayedEstimate } from '../model/types.ts';
-import type { RosterEntry, LegionObservation, SquadEstimate } from '../model/legionTypes.ts';
+import type { BossEnemyView, RosterEntry, LegionObservation, SquadEstimate, W1Observation } from '../model/legionTypes.ts';
+import type { CompiledEnemy } from '../model/content.ts';
+import type { W1State } from './w1.ts';
 import { CLASS_IDS, type ClassId } from '../model/legionContent.ts';
 import { buildObservation } from './observation.ts';
 import type { Simulation } from './simulation.ts';
@@ -42,8 +44,64 @@ export function squadEstimateFor(sim: LegionSimulation, zoneOrder: number, atten
   return e;
 }
 
+const enemyView = (e: CompiledEnemy): BossEnemyView => ({ id: e.id, hp: e.hp, attackMilli: e.attackMilli, attackIntervalMs: e.attackIntervalMs, firstAttackDelayMs: e.firstAttackDelayMs, defence: e.defence, exp: e.exp, gold: e.gold });
+
+/** S6: the World 1 boss board, the rare-hero collection and the elite slots alive (World 1 content only). */
+export function buildW1Observation(sim: LegionSimulation): W1Observation | null {
+  const w = sim.w1State();
+  if (w === null) return null;
+  const c = sim.content;
+  const s = sim.state;
+  const sources = new Map<string, string>();
+  for (const z of c.zones) if (z.elite?.rareHero) sources.set(z.elite.rareHero.rareHeroId, `elite:${z.id}`);
+  for (const b of c.bosses) {
+    if (b.firstClear?.rareHeroId) sources.set(b.firstClear.rareHeroId, `boss:${b.gateId}`);
+    if (b.eliteFirstClear?.rareHeroId) sources.set(b.eliteFirstClear.rareHeroId, `boss:${b.gateId}:elite`);
+  }
+  const eliteAlive: Record<string, number> = {};
+  for (const z of c.zones) {
+    if (z.elite === null) continue;
+    const prefix = `${z.elite.enemy.id}#`;
+    eliteAlive[String(z.order)] = (s.zones[z.order - 1] as (typeof s.zones)[number]).slots.filter((x) => x.status === 'alive' && x.instanceId !== null && x.instanceId.startsWith(prefix)).length;
+  }
+  return {
+    bosses: c.bosses.map((b, i) => {
+      const g = w.bosses[i] as W1State['bosses'][number];
+      return {
+        gateId: b.gateId,
+        zoneId: (c.zones[b.zoneOrder - 1] as (typeof c.zones)[number]).id,
+        zoneOrder: b.zoneOrder,
+        kind: b.kind === 'final' ? 'final' : 'miniboss',
+        opened: g.opened,
+        completed: g.completed,
+        eliteCompleted: g.eliteCompleted,
+        eliteAvailable: g.completed,
+        clears: g.clears,
+        eliteClears: g.eliteClears,
+        attempts: g.attempts,
+        lastFailMs: g.lastFailMs,
+        unlockKills: b.unlockKills,
+        timerMs: b.timerMs,
+        eliteTimerMs: b.eliteTimerMs,
+        enemy: enemyView(b.enemy),
+        eliteEnemy: enemyView(b.eliteEnemy as CompiledEnemy),
+        firstClearGold: g.completed ? null : (b.firstClear?.gold ?? 0),
+        eliteFirstClearGold: g.eliteCompleted ? null : (b.eliteFirstClear?.gold ?? 0),
+      };
+    }),
+    worldCleared: s.boss.completed,
+    rareHeroes: [...c.rareHeroes.values()].map((h, k) => ({ id: h.id, name: h.name, cls: h.cls, owned: s.legion.rare.includes(h.id), duplicates: s.w1?.rareDuplicates[k] ?? 0, memberId: `rare:${h.id}`, source: sources.get(h.id) ?? 'none' })),
+    eliteAlive,
+    zoneEnemies: Object.fromEntries(c.zones.map((z) => [String(z.order), enemyView(z.enemy)])),
+    zoneDrops: Object.fromEntries(c.zones.map((z) => [String(z.order), [...new Set([...z.enemy.drops, ...(z.elite?.enemy.drops ?? [])].map((d) => d.resourceId))]])),
+    recipeUnitMs: Object.fromEntries([...((c as unknown as { recipes?: ReadonlyMap<string, { kind: string; unitMs?: number }> }).recipes ?? new Map()).entries()].filter(([, r]) => r.kind === 'timed').map(([id, r]) => [id, r.unitMs as number])),
+  };
+}
+
 export function buildLegionObservation(sim: LegionSimulation, triggers: string | readonly string[]): LegionObservation {
   const base = buildObservation(sim as unknown as Simulation, triggers);
+  const w1o = buildW1Observation(sim);
+  const w1 = w1o === null ? {} : { w1: w1o };
   const s = sim.state;
   const L = s.legion;
   const rules = sim.content.legion;
@@ -52,6 +110,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
     return {
       ...base,
       ...industry,
+      ...w1,
       legion: { enabled: false, roster: [], slots: 0, productiveRecruits: 0, deployCap: 0, deployed: 0, gold: sim.goldBalance(), nextRecruitCost: null, quest: { kills: L.quest.kills, target: rules.firstRecruitQuestKills, done: L.quest.done }, records: L.records, heroClassMinLevel: rules.heroClassMinLevel, classChangeCost: rules.classChangeCostGold, squadEstimates: {}, capabilityChangedMs: L.capabilityChangedMs, heroAbilityReady: false, heroInCombat: false, workerZoneAvailability: {} },
     };
   }
@@ -90,6 +149,7 @@ export function buildLegionObservation(sim: LegionSimulation, triggers: string |
   return {
     ...base,
     ...industry,
+    ...w1,
     legion: {
       enabled: true,
       roster,

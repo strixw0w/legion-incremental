@@ -1,0 +1,58 @@
+# S6 acceptance checks start 2026-11-17T10:36:48Z (corrections A and B, the M39 negative test)
+## S6 mutation set on the corrected code 10:36:48Z
+dry run: 64 patterns, each found exactly once; nothing changed
+S6 mutation check: 64 planted bugs, 64 detected, 0 not detected; all files restored: True
+time mutation-set: 3420 s
+## suites 11:33:48Z
+time typecheck: 1 s
+time tests: 112 s
+time test-stats: 5 s
+time fixtures: 2 s
+time schemas: 1 s
+time oracle: 4 s
+tests:       Tests  1768 passed (1768)
+stats:       Tests  9 passed (9)
+fixtures: total cases: 669; problems: 0
+schemas: OK    spec/schema/xp-table.schema.json
+oracle: oracle summary: 22 groups, 0 failing
+typecheck: typecheck: exit code 0
+## targeted W1 gameplay controls (registered manifests on the corrected code, 15 workers) 11:35:53Z
+time w1-control-S6-E06-rare-heroes: 756 s
+time w1-control-S6-E07-boss-rewards: 48 s
+time w1-control-S6-E03-strategy-spread: 216 s
+time w1-control-S6-E04-earlier-zones: 232 s
+time w1-control-S6-E10-connected-idle: 160 s
+time w1-control-S6-E02-completion: 1045 s
+S6-E06-rare-heroes: COMPLETE, 40 rows (0 task errors); identical to the registered rows: 40 / 40
+S6-E07-boss-rewards: COMPLETE, 30 rows (0 task errors); identical to the registered rows: 30 / 30
+S6-E03-strategy-spread: COMPLETE, 30 rows (0 task errors); identical to the registered rows: 30 / 30
+S6-E04-earlier-zones: COMPLETE, 33 rows (0 task errors); identical to the registered rows: 33 / 33
+S6-E10-connected-idle: COMPLETE, 40 rows (0 task errors); identical to the registered rows: 40 / 40
+S6-E02-completion: EXPLORATORY_SUBSET, 20 rows (0 task errors); identical to the registered rows: 20 / 20
+## historical controls (fresh) and the exact dependency cache 12:16:50Z
+time historical: 676 s
+controls: 9 lines with MATCH, 0 with MISMATCH
+cache:      45 MISS 
+## S5 registered reruns on the corrected code (15 workers) 12:28:06Z
+time rerun-S5-E01-boundaries: 21 s
+time rerun-S5-E04-production-shortage: 23 s
+time rerun-S5-E02-reference-vs-batch: 69 s
+S5-E01-boundaries: exit 0; 42 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 3f82d4b45b011e3c
+S5-E04-production-shortage: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 1cea03792a0de960
+S5-E02-reference-vs-batch: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one a3f1ad5417dc9503
+## reproduction, the registered code 12:30:00Z
+time calibration-xcheck: 104 s
+run row, every field c02 has: IDENTICAL (0 missing)
+fields added since c02 (measures only): $.openStallActiveMin, $.snapshots.<horizon>.legionTimeH, $.snapshots.<horizon>.monumentGold, $.milestones.<key>.connectedAutoMs, $.peak.source
+time rare-history: 4 s
+after 1 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 21; shards 21; duplicate events 21; rare record 25 bytes; W1 state version 2
+after 2 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 34; shards 34; duplicate events 34; rare record 25 bytes; W1 state version 2
+after 4 h: rare list ["rare.huntress"] (1 entries); Huntress duplicates 68; shards 68; duplicate events 68; rare record 25 bytes; W1 state version 2
+RESULT: the substituted files are the only differences from the registered code
+## registration, preservation, git 12:31:48Z
+total changed: 1
+amendment 01 registration check: 1 CHANGED
+preservation problems: 0
+git: 209 changed or new paths against s5-checkpoint; HEAD 1b285db
+time all checks: 6901 s
+done 2026-11-17T12:31:49Z

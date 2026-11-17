@@ -1,0 +1,10 @@
+Frozen simulator, Original v1 archive and old workspace check during S6 (before the S6 review package) (2026-11-17T01:51:58Z)
+Frozen workspace files: 3012 (M0: 3012)
+path/size/mtime list vs M0 start: IDENTICAL
+content SHA-256 list vs M0 start: IDENTICAL
+combined fingerprint: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d (M0: 1275f21973fc85c6a3bf5b0bffed5654619f7869a405a775fe13a2e24f9ce64d)
+frozen HEAD: 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; Original v1 working files: 12 (M0: 12)
+archive master 74499ef2a7ec154bdcbc10b1152f2aec89c3c913; archive/increment6-original-v1 8d80a440d9818c961713b767f696764b3f18db66; remotes 0
+old Legion workspace vs the S3 checkpoint check: IDENTICAL
+canonical repository: HEAD 1b285db; s5-checkpoint on remote-tracking branches: 0; local main ahead of origin/main: 4 commits (nothing pushed)
+All git reads used GIT_OPTIONAL_LOCKS=0; nothing was written to these locations.

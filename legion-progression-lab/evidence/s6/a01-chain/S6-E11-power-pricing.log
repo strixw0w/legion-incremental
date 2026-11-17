@@ -1,0 +1,34 @@
+S6-E11-power-pricing: 10/30 (183 s)
+S6-E11-power-pricing: 20/30 (412 s)
+S6-E11-power-pricing: 30/30 (429 s)
+{
+ "experimentId": "S6-E11-power-pricing",
+ "manifest": "manifests/s6/S6-E11-power-pricing.json",
+ "status": "COMPLETE",
+ "registered": true,
+ "stopped": null,
+ "registeredTasks": 30,
+ "completedTasks": 30,
+ "failedTasks": 0,
+ "firstFailures": [],
+ "budgets": {
+  "wallMs": 5400000,
+  "taskMs": 2700000,
+  "stallMs": 600000,
+  "peakRssMb": 12288
+ },
+ "wallMs": 428510,
+ "peakRssMb": 4752,
+ "taskMs": {
+  "mean": 207787,
+  "max": 246295
+ },
+ "workers": 15,
+ "machine": {
+  "cpus": 16,
+  "platform": "win32",
+  "release": "10.0.26300",
+  "node": "v24.22.3"
+ },
+ "rowsFingerprint": "7c0b99b7762be57199b521e872082efd898e2a62343a038c714c1040800cd46e"
+}

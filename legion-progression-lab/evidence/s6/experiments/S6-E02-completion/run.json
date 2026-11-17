@@ -1,0 +1,31 @@
+{
+  "experimentId": "S6-E02-completion",
+  "manifest": "manifests/s6/S6-E02-completion.json",
+  "status": "COMPLETE",
+  "registered": true,
+  "stopped": null,
+  "registeredTasks": 80,
+  "completedTasks": 80,
+  "failedTasks": 0,
+  "firstFailures": [],
+  "budgets": {
+    "wallMs": 10800000,
+    "taskMs": 3600000,
+    "stallMs": 600000,
+    "peakRssMb": 12288
+  },
+  "wallMs": 3221340,
+  "peakRssMb": 5047,
+  "taskMs": {
+    "mean": 536141,
+    "max": 746118
+  },
+  "workers": 15,
+  "machine": {
+    "cpus": 16,
+    "platform": "win32",
+    "release": "10.0.26300",
+    "node": "v24.22.3"
+  },
+  "rowsFingerprint": "14a5206801ef72e0242277e012727c2c6253b320b7745b82c50cded2eb9dfcd9"
+}

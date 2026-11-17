@@ -1,0 +1,211 @@
+{
+  "registeredAt": "2026-11-17T01:27:09Z",
+  "rule": {
+    "path": "repro/s6/e05_stage2.py",
+    "sha256": "0da74047da54f1782d77ee5e5ba20728d3b3d793091983db46463fc9562e603a",
+    "threshold": 0.1
+  },
+  "stage1": {
+    "rows": "results/s6/a01/S6-E05-sensitivity-stage1/rows.jsonl",
+    "rowsSha256": "2c317c799da7933d2818af5a94c3dc6049e9f5951d38b0969c567a61af521add",
+    "rowsFingerprint": "74866d35728cb1a33bbe5ec7c01c27df0b8316677d5615bd4a77266f900a10b4",
+    "status": "COMPLETE"
+  },
+  "baseline": {
+    "runs": 3,
+    "meanD7LegionExp": 1513390085.3333333,
+    "medianClearActiveH": 6.673611111111111,
+    "missingD7": false
+  },
+  "selection": [
+    {
+      "factor": "xpGrowth",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1714356503.3333333,
+          "medianClearActiveH": 6.395277777777777,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP +13.3%"
+          ]
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1455611634.0,
+          "medianClearActiveH": 6.671666666666667,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": true
+    },
+    {
+      "factor": "costs",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1482892699.3333333,
+          "medianClearActiveH": 6.677638888888889,
+          "missingD7": false,
+          "differs": []
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1492182294.0,
+          "medianClearActiveH": 6.633111111111111,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": false
+    },
+    {
+      "factor": "enemyHp",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1785584687.3333333,
+          "medianClearActiveH": 5.825694444444444,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP +18.0%",
+            "median clear active hours -12.7%"
+          ]
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1424387240.6666667,
+          "medianClearActiveH": 6.70975,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": true
+    },
+    {
+      "factor": "slots",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1318456040.0,
+          "medianClearActiveH": 6.916111111111111,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP -12.9%"
+          ]
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 3119034684.0,
+          "medianClearActiveH": 4.004694444444445,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP +106.1%",
+            "median clear active hours -40.0%"
+          ]
+        }
+      },
+      "selected": true
+    },
+    {
+      "factor": "offlineRate",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1055428039.3333334,
+          "medianClearActiveH": 6.636527777777777,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP -30.3%"
+          ]
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1569136774.0,
+          "medianClearActiveH": 6.512777777777778,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": true
+    },
+    {
+      "factor": "dropOdds",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1426600202.6666667,
+          "medianClearActiveH": 6.674305555555556,
+          "missingD7": false,
+          "differs": []
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1512270268.0,
+          "medianClearActiveH": 6.750694444444444,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": false
+    },
+    {
+      "factor": "feedback",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1404473042.6666667,
+          "medianClearActiveH": 6.730833333333333,
+          "missingD7": false,
+          "differs": []
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1627504750.0,
+          "medianClearActiveH": 6.506111111111111,
+          "missingD7": false,
+          "differs": []
+        }
+      },
+      "selected": false
+    },
+    {
+      "factor": "respawn",
+      "cells": {
+        "0.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1672287822.6666667,
+          "medianClearActiveH": 6.499722222222222,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP +10.5%"
+          ]
+        },
+        "1.5": {
+          "runs": 3,
+          "meanD7LegionExp": 1295463687.3333333,
+          "medianClearActiveH": 7.003611111111111,
+          "missingD7": false,
+          "differs": [
+            "D7 legion EXP -14.4%"
+          ]
+        }
+      },
+      "selected": true
+    }
+  ],
+  "selected": [
+    "xpGrowth",
+    "enemyHp",
+    "slots",
+    "offlineRate",
+    "respawn"
+  ],
+  "manifests": [
+    {
+      "path": "manifests/s6/S6-E05-sensitivity-stage2.json",
+      "sha256": "d792ff1f8cf7791c4525128ffe1c8d8e202a4ffecf533fb79ac818dfa31448f4"
+    }
+  ]
+}

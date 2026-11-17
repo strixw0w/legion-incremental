@@ -1,0 +1,4 @@
+written candidate content version 0.6.1
+c02 x12 seed 0 world clear: 6.892222222222222 active h; from the written candidate: 6.892222222222222 active h
+run row, every field c02 has: IDENTICAL (0 missing)
+fields added since c02 (measures only): $.openStallActiveMin, $.snapshots.<horizon>.legionTimeH, $.snapshots.<horizon>.monumentGold, $.milestones.<key>.connectedAutoMs, $.peak.source

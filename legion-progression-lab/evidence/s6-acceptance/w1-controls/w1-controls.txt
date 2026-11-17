@@ -1,0 +1,6 @@
+S6-E06-rare-heroes: COMPLETE, 40 rows (0 task errors); identical to the registered rows: 40 / 40
+S6-E07-boss-rewards: COMPLETE, 30 rows (0 task errors); identical to the registered rows: 30 / 30
+S6-E03-strategy-spread: COMPLETE, 30 rows (0 task errors); identical to the registered rows: 30 / 30
+S6-E04-earlier-zones: COMPLETE, 33 rows (0 task errors); identical to the registered rows: 33 / 33
+S6-E10-connected-idle: COMPLETE, 40 rows (0 task errors); identical to the registered rows: 40 / 40
+S6-E02-completion: EXPLORATORY_SUBSET, 20 rows (0 task errors); identical to the registered rows: 20 / 20

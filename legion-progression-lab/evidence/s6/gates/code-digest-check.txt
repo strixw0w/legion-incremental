@@ -1,0 +1,4 @@
+registered code digest: 8491c0702156ac43cb34c6547a23e43fa42913280868352894d9ebaa46a895fb (164 files)
+current code digest:    faac6f659d10bee4da4a60469e0129786499b5fcc345bb579880f73f34dc078b (164 files)
+with src/experiments/legionMetrics.ts as evidence/s6/gates/legionMetrics.registered.ts.txt, src/s6/experiments.ts as evidence/s6/gates/experiments.registered.ts.txt, src/cli/s6-run.ts as evidence/s6/gates/s6-run.registered.ts.txt: 8491c0702156ac43cb34c6547a23e43fa42913280868352894d9ebaa46a895fb
+RESULT: the substituted files are the only differences from the registered code

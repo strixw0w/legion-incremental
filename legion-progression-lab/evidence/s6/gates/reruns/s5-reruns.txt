@@ -1,0 +1,3 @@
+S5-E01-boundaries: exit 0; 42 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 3f82d4b45b011e3c
+S5-E04-production-shortage: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one 1cea03792a0de960
+S5-E02-reference-vs-batch: exit 0; 200 rows; semantic rows fingerprint (timing fields excluded) IDENTICAL to the packaged one a3f1ad5417dc9503

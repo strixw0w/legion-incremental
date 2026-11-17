@@ -1,0 +1,16 @@
+start 2026-11-16T23:07:10Z (amendment 01)
+amendment registration check before exit 0 2026-11-16T23:07:10Z
+full suite exit 0 2026-11-16T23:08:51Z
+S6-E02-completion exit 0 2026-11-17T00:02:33Z | COMPLETE 80 / 80 failed 0 wall s 3221 task max s 746 rss MB 5047 
+S6-E01-profile-matrix exit 0 2026-11-17T00:50:08Z | COMPLETE 99 / 99 failed 0 wall s 2854 task max s 748 rss MB 4925 
+S6-E03-strategy-spread exit 0 2026-11-17T00:52:57Z | COMPLETE 30 / 30 failed 0 wall s 168 task max s 95 rss MB 4280 
+S6-E05-sensitivity-stage1 exit 0 2026-11-17T01:04:21Z | COMPLETE 51 / 51 failed 0 wall s 683 task max s 360 rss MB 4939 
+S6-E06-rare-heroes exit 0 2026-11-17T01:14:15Z | COMPLETE 40 / 40 failed 0 wall s 593 task max s 215 rss MB 4873 
+S6-E07-boss-rewards exit 0 2026-11-17T01:14:52Z | COMPLETE 30 / 30 failed 0 wall s 36 task max s 22 rss MB 3838 
+S6-E04-earlier-zones exit 0 2026-11-17T01:18:04Z | COMPLETE 33 / 33 failed 0 wall s 191 task max s 71 rss MB 4062 
+S6-E10-connected-idle exit 0 2026-11-17T01:20:00Z | COMPLETE 40 / 40 failed 0 wall s 115 task max s 47 rss MB 4073 
+S6-E11-power-pricing exit 0 2026-11-17T01:27:09Z | COMPLETE 30 / 30 failed 0 wall s 428 task max s 246 rss MB 4752 
+E05 stage 2 registration exit 0 2026-11-17T01:27:09Z | stage 2 registered at 2026-11-17T01:27:09Z: 5 factors selected (xpGrowth, enemyHp, slots, offlineRate, respawn)
+S6-E05-sensitivity-stage2 exit 0 2026-11-17T01:49:23Z | COMPLETE 105 / 105 failed 0 wall s 1332 task max s 343 rss MB 5096 
+amendment registration check after exit 0 2026-11-17T01:49:23Z
+done 2026-11-17T01:49:23Z

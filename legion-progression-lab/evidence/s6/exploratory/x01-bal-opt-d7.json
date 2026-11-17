@@ -1,0 +1,8 @@
+{
+  "experimentId": "S6-E01-profile-matrix",
+  "label": "EXPLORATORY x01 (unregistered): PR-BAL and PR-OPT to D7 with the candidate, one seed each",
+  "seed": "s6-x01",
+  "tasks": 2,
+  "params": { "profiles": ["PR-BAL", "PR-OPT"], "policies": ["profile"], "seeds": 1, "days": 7 },
+  "budgets": { "wallMs": 2700000, "taskMs": 2700000, "stallMs": 600000, "peakRssMb": 4096 }
+}

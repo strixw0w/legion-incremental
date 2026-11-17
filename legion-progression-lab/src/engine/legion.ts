@@ -27,8 +27,8 @@ import { accrue } from '../core/numeric/remainder.ts';
 import { bernoulli } from '../core/rng/sample.ts';
 import { deriveRngState } from '../core/rng/streamId.ts';
 import type { RngState } from '../core/rng/xoshiro128ss.ts';
-import type { CompiledEnemy } from '../model/content.ts';
-import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
+import type { CompiledBoss, CompiledEnemy, CompiledReward } from '../model/content.ts';
+import { CLASS_IDS, modsKey, NO_MODS, type CharacterStats, type ClassId, type CompiledRareHero, type HeldClass, type LegionContent, type StatMods, type TalentAllocation } from '../model/legionContent.ts';
 import type { CompiledItemDef, CompiledNode, CompiledRecipe, EquipSlot, IndustryContent, ProfessionId, QtyLine } from '../model/industryContent.ts';
 import type { IndustryCommand, IndustryState, ItemInstance, ProductionJob, QueueArm, Work } from '../model/industryTypes.ts';
 import { autoEquipPlan, computeMods, crafterBlocker, efficiencyBp, emptyIndustry, gatherBlocker, gatherYieldNum, isIndustryCommand, itemById, itemNumber, jobById, jobNumber, profLevel, shortInput, toolSlotFor, unitTimeMs, validateIndustryCommand, weaponCompatible, YIELD_DEN, ZERO_PROF } from './industry.ts';
@@ -47,11 +47,12 @@ import { addCounter, aggregate, bonusSources, buildPermanentObservation, buyMaxL
 import { PROFESSION_IDS } from '../model/industryContent.ts';
 import type { CompiledPermanent, PermanentContent, PermCounter } from '../model/permanentContent.ts';
 import { permEqual, ZERO_PERM, type MonumentState, type PermanentCommand, type PermanentObservation, type PermanentReasonCode, type PermanentState, type PermMods } from '../model/permanentTypes.ts';
-import { validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
+import { productiveRecruits, validateLegionCommand, workerZoneAllowed } from './legionCommands.ts';
+import { bossClear, bossIndexAt, bossIndexOf, eliteKill, emptyW1, encounterEnemy, finalBossIndex, isEliteBossInstance, isEliteSlotInstance, rareHeroIds, respawnInstance, validateW1StartBoss, type W1BossState, type W1State } from './w1.ts';
 import { absenceId, assignmentOf, creditedMs, emptyOffline, formatSpec, offlineIneligible, offlinePreview, offlineRules, offlineUnlocked, progressSnapshot, sameAssignment, secondRateE8, specOfAssignment, type Absence, type EffectiveOffline, type OfflineOptions, type OfflineRules, type OfflineSpec, type OfflineState } from './offline.ts';
 
 /** Event kinds added by S2 (the S1 kinds keep their meaning). */
-type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind | PermanentEventKind;
+type LegionEventKind = EventKind | 'MemberSwing' | 'MemberAbility' | 'MemberRecovered' | 'WorkerEngage' | 'WorkerSwing' | 'WorkerAbility' | 'WorkerEnemyAttack' | IndustryEventKind | PermanentEventKind | 'ExternalCommand';
 /** Event kinds added by S4 (permanent switch on only): one milestone evaluation per moment, and the stat recompute. */
 type PermanentEventKind = 'PermanentCheck' | 'PermanentRecompute';
 /** Event kinds added by S3 (industry switch on only). */
@@ -105,6 +106,52 @@ export interface SimRuntime {
   readonly policyDecisionsAt: { readonly t: number; readonly n: number };
   /** Every pending event, in processing (key) order. */
   readonly events: readonly SimEvent[];
+  /** World 1 only (S6 acceptance correction B): the last processed step, or null before the first. */
+  readonly lastStep?: { readonly t: number; readonly pass: number; readonly phase: number } | null;
+}
+
+const isStrField = (o: Record<string, unknown>, k: string): boolean => typeof o[k] === 'string' && (o[k] as string).length > 0 && (o[k] as string).length <= 200;
+const onlyKeys = (o: Record<string, unknown>, keys: readonly string[]): boolean => Object.keys(o).every((k) => keys.includes(k));
+/** The commands accepted at the external command boundary (S6 acceptance correction B): the hero's activity. */
+export const EXTERNAL_COMMAND_TYPES = ['StartBoss', 'SetAutoFarm', 'Rest', 'Travel', 'Teleport', 'SetClass'] as const;
+/** An external request: the command, and optionally the boss attempts the requester saw (a stale request is refused). */
+export interface ExternalRequest {
+  readonly command: LegionCommand;
+  readonly expectBossAttempts?: number;
+}
+export type ExternalSubmit = { readonly ok: true; readonly ticket: number; readonly atMs: number } | { readonly ok: false; readonly code: 'INVALID_REQUEST' | 'NOT_WORLD_1' | 'IN_STEP' | 'STOPPED' };
+export interface ExternalCommandResult {
+  readonly ticket: number;
+  readonly command: string;
+  readonly ok: boolean;
+  readonly code: string | null;
+  readonly atMs: number;
+}
+/** The shape of an external request: a supported command with exactly its fields (S6 acceptance correction B). */
+export function externalRequestOk(r: unknown): boolean {
+  if (r === null || typeof r !== 'object' || Array.isArray(r)) return false;
+  const req = r as Record<string, unknown>;
+  if (!onlyKeys(req, ['command', 'expectBossAttempts'])) return false;
+  if (req['expectBossAttempts'] !== undefined && !(Number.isSafeInteger(req['expectBossAttempts']) && (req['expectBossAttempts'] as number) >= 0)) return false;
+  const c = req['command'];
+  if (c === null || typeof c !== 'object' || Array.isArray(c)) return false;
+  const cmd = c as Record<string, unknown>;
+  switch (cmd['type']) {
+    case 'StartBoss':
+      return onlyKeys(cmd, ['type', 'gateId', 'elite']) && isStrField(cmd, 'gateId') && (cmd['elite'] === undefined || typeof cmd['elite'] === 'boolean');
+    case 'SetAutoFarm':
+      return cmd['on'] === false ? onlyKeys(cmd, ['type', 'on']) : cmd['on'] === true && onlyKeys(cmd, ['type', 'on', 'zoneId']) && isStrField(cmd, 'zoneId');
+    case 'Rest':
+      return onlyKeys(cmd, ['type']);
+    case 'Travel':
+      return onlyKeys(cmd, ['type', 'zoneId']) && isStrField(cmd, 'zoneId');
+    case 'Teleport':
+      return onlyKeys(cmd, ['type', 'checkpointId']) && isStrField(cmd, 'checkpointId');
+    case 'SetClass':
+      return onlyKeys(cmd, ['type', 'characterId', 'cls']) && isStrField(cmd, 'characterId') && isStrField(cmd, 'cls');
+    default:
+      return false;
+  }
 }
 
 export interface LegionOptions {
@@ -204,6 +251,18 @@ export class LegionSimulation {
   private stopRequested: boolean;
   /** Set when a step was refused (a LabError): the state is the one before that step and the run cannot continue. */
   private refused: Error | null = null;
+  /**
+   * The key of the last processed step (t, pass, phase; t = -1 before the first). S6 acceptance correction B: an
+   * external command queued at the current instant takes the next free decision slot after it. Saved in World 1
+   * checkpoints (runtime `lastStep`), so a restored simulation queues exactly as the uninterrupted one.
+   */
+  private lastT = -1;
+  private lastPass = 0;
+  private lastPhase = 0;
+  /** The reason code of the last refused command (read by the external command boundary). */
+  private lastRejectCode: string | null = null;
+  /** External command results by ticket (also logged as ExternalCommandResult). */
+  private externalResults: Map<number, ExternalCommandResult> | undefined;
   private readonly damageCache: Map<string, number>;
   readonly estimateCache: Map<string, ZoneEstimate>;
   /** S4: merged (S3 + permanent) modifiers, keyed by the S3 modifiers object, valid for one permanent aggregate. */
@@ -221,6 +280,7 @@ export class LegionSimulation {
   constructor(options: LegionOptions) {
     this.content = options.content;
     this.options = options;
+    if (options.content.w1 && options.legion !== true) fail('INVALID_STATE', 'World 1 content needs the legion switch');
     if (options.industry === true && !('items' in options.content)) fail('INVALID_STATE', 'the industry switch needs the S3 industry content');
     if (options.permanent === true && (options.industry !== true || options.legion !== true || !('permanent' in options.content))) fail('INVALID_STATE', 'the permanent switch needs the legion and industry switches and the S4 permanent content');
     if (options.identity === 'l2' && options.ledger !== 'bounded' && options.ledger !== 'bounded-reference') fail('INVALID_STATE', "the bounded identity (identity: 'l2') needs the bounded ledger (ledger: 'bounded' or 'bounded-reference')");
@@ -307,7 +367,52 @@ export class LegionSimulation {
 
   /** A character's stat modifiers: equipment and hero variants (S3), with the S4 permanent bonuses merged in (S4-R03). */
   modsOf(id: CharacterId): StatMods {
-    return this.mergePermanent(this.industryModsOf(id));
+    const m = this.mergePermanent(this.industryModsOf(id));
+    return this.content.rareHeroes.size > 0 && id.startsWith('rare:') ? this.withTrait(id, m) : m;
+  }
+
+  /**
+   * S6: a World 1 rare hero's trait added to its other modifiers (attack and HP join the additive pools, crit and ability
+   * power their sums, the cooldown scale its variant field). The identity for every other character. Cached by input
+   * identity, so the stats cache keeps working.
+   */
+  withTrait(id: CharacterId, base: StatMods): StatMods {
+    const def = this.content.rareHeroes.get(id.slice('rare:'.length));
+    if (def === undefined) return base;
+    this.traitCache ??= new Map();
+    let byBase = this.traitCache.get(id);
+    if (byBase === undefined) {
+      byBase = new WeakMap();
+      this.traitCache.set(id, byBase);
+    }
+    const hit = byBase.get(base);
+    if (hit) return hit;
+    const m: StatMods = Object.freeze({ ...base, permAttackBp: base.permAttackBp + def.attackBp, permHpBp: base.permHpBp + def.hpBp, critBp: base.critBp + def.critBp, abilityMultBp: base.abilityMultBp + def.abilityBp, abilityCooldownBp: base.abilityCooldownBp + def.abilityCooldownBp });
+    byBase.set(base, m);
+    return m;
+  }
+
+  private traitCache: Map<CharacterId, WeakMap<StatMods, StatMods>> | undefined;
+
+  /** S6: the World 1 gate state (present exactly with World 1 content). */
+  w1State(): W1State | null {
+    return this.state.w1 ?? null;
+  }
+
+  private get w1s(): W1State {
+    return this.state.w1 as W1State;
+  }
+
+  private setW1(w1: W1State): void {
+    this.state = { ...this.state, w1 };
+  }
+
+  /** One W1 boss gate changes; the single boss-gate state mirrors the final boss (its completion at the progress check). */
+  private setBossGate(i: number, patch: Partial<W1BossState>): void {
+    const w = this.w1s;
+    const nb = { ...(w.bosses[i] as W1BossState), ...patch };
+    this.state = { ...this.state, w1: { ...w, bosses: w.bosses.map((b, j) => (j === i ? nb : b)) } };
+    if (i === finalBossIndex(this.content)) this.state = { ...this.state, boss: { ...this.state.boss, opened: nb.opened, attempts: nb.attempts } };
   }
 
   /** The S3 part only: equipment and hero-variant modifiers; NO_MODS with the industry switch off. */
@@ -378,6 +483,11 @@ export class LegionSimulation {
       policyDecisionsAt: { t: -1, n: 0 },
       stopRequested: false,
       refused: this.refused ?? null,
+      lastT: this.lastT,
+      lastPass: this.lastPass,
+      lastPhase: this.lastPhase,
+      lastRejectCode: null,
+      externalResults: undefined,
       damageCache: this.damageCache,
       estimateCache: this.estimateCache,
       mergeCache: this.mergeCache,
@@ -395,7 +505,7 @@ export class LegionSimulation {
     const q = this.queue.clone();
     const events: SimEvent[] = [];
     for (let e = q.pop(); e !== undefined; e = q.pop()) events.push(e);
-    return { seq: this.seq, logCount: this.logCount, logDigest: this.logDigest(), counters: JSON.parse(JSON.stringify(this.counters)) as LegionCounters, policyDecisionsAt: { ...this.policyDecisionsAt }, events };
+    return { seq: this.seq, logCount: this.logCount, logDigest: this.logDigest(), counters: JSON.parse(JSON.stringify(this.counters)) as LegionCounters, policyDecisionsAt: { ...this.policyDecisionsAt }, events, ...(this.content.w1 ? { lastStep: this.lastT < 0 ? null : { t: this.lastT, pass: this.lastPass, phase: this.lastPhase } } : {}) };
   }
 
   /**
@@ -420,6 +530,11 @@ export class LegionSimulation {
       policyDecisionsAt: { ...rt.policyDecisionsAt },
       stopRequested: false,
       refused: null,
+      lastT: rt.lastStep?.t ?? -1,
+      lastPass: rt.lastStep?.pass ?? 0,
+      lastPhase: rt.lastStep?.phase ?? 0,
+      lastRejectCode: null,
+      externalResults: undefined,
       damageCache: new Map(),
       estimateCache: new Map(),
       mergeCache: { applied: null, map: new WeakMap() },
@@ -551,6 +666,9 @@ export class LegionSimulation {
       // changes inside batches). The S1 time counters are additive, so their totals are unchanged by this.
       if (first.key.t > this.state.time.accountedToMs) this.accountTimeTo(first.key.t);
       this.current = first.key;
+      this.lastT = first.key.t;
+      this.lastPass = first.key.pass;
+      this.lastPhase = first.key.phase;
       if (this.state.tMs !== first.key.t) this.state = { ...this.state, tMs: first.key.t };
       // One step commits as a whole: if any part of it is refused (a numeric limit, an invalid state), the account state
       // returns to what it was before the step, so no kill reward, RNG draw, resource, EXP, entitlement or counter is
@@ -583,10 +701,10 @@ export class LegionSimulation {
   }
 
   // ------------------------------------------------------------ setup
-  private newCharacter(id: CharacterId, kind: CharacterState['kind'], order: number, level: number, cls: HeldClass, talents: Record<ClassId, TalentAllocation>, assignment: Assignment): CharacterState {
+  private newCharacter(id: CharacterId, kind: CharacterState['kind'], order: number, level: number, cls: HeldClass, talents: Record<ClassId, TalentAllocation>, assignment: Assignment, mods?: StatMods): CharacterState {
     const root = this.options.seedRoot;
     // S4: a new recruit gets the account bonuses at once (S4-R04); the identity before and without them.
-    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls], this.mergePermanent(NO_MODS));
+    const stats = this.content.characterStats(level, cls, cls === 'none' ? {} : talents[cls], mods ?? this.mergePermanent(NO_MODS));
     return {
       id,
       kind,
@@ -735,6 +853,7 @@ export class LegionSimulation {
       ...(industry ? { industry } : {}),
       ...(this.options.permanent === true ? { permanent: emptyPermanent(this.pc, root) } : {}),
       ...(this.options.offline !== undefined ? { offline: emptyOffline() } : {}),
+      ...(this.content.w1 ? { w1: emptyW1(this.content, root) } : {}),
     };
   }
 
@@ -1054,7 +1173,8 @@ export class LegionSimulation {
     return this.current as EventKey;
   }
 
-  private enemyOf(enc: { kind: 'ordinary' | 'boss'; zoneOrder: number }): CompiledEnemy {
+  private enemyOf(enc: { kind: 'ordinary' | 'boss'; zoneOrder: number; instanceId: string }): CompiledEnemy {
+    if (this.content.w1) return encounterEnemy(this.content, enc.kind, enc.zoneOrder, enc.instanceId);
     return enc.kind === 'boss' ? this.content.boss.enemy : (this.content.zones[enc.zoneOrder - 1] as LegionContent['zones'][number]).enemy;
   }
 
@@ -1103,6 +1223,8 @@ export class LegionSimulation {
     if (enc && enc.kind === 'boss') {
       this.log('BossFailed', { encounterId: enc.id, reason });
       if (reason !== 'SESSION_ENDED') this.requestPolicy('boss-failed');
+      // S6: the W1 boss board remembers the last failed attempt (what the player saw).
+      if (this.content.w1) this.setBossGate(bossIndexAt(this.content, enc.zoneOrder), { lastFailMs: this.current ? this.current.t : this.state.tMs });
     }
     if (enc) this.log('EncounterClosed', { encounterId: enc.id, reason });
     const target = this.state.hero.targetSlot;
@@ -1813,7 +1935,7 @@ export class LegionSimulation {
     if (slot.status !== 'reserved' || slot.instanceId === null) fail('INVALID_STATE', 'engagement target is not reserved');
     const n = this.state.encounterSeq + 1;
     const participants = this.state.legion.chars.filter((c) => c.assignment.kind === 'squad' && !c.knockedOut).map((c) => c.id);
-    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'ordinary', zoneOrder: h.zoneOrder, slotIndex, instanceId: slot.instanceId as string, enemyHp: (this.content.zones[h.zoneOrder - 1] as LegionContent['zones'][number]).enemy.hp, startMs: t, origin: h.engageOrigin ?? 'auto', participants };
+    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'ordinary', zoneOrder: h.zoneOrder, slotIndex, instanceId: slot.instanceId as string, enemyHp: this.enemyOf({ kind: 'ordinary', zoneOrder: h.zoneOrder, instanceId: slot.instanceId as string }).hp, startMs: t, origin: h.engageOrigin ?? 'auto', participants };
     this.state = { ...this.state, encounter: enc, encounterSeq: n };
     this.setHero({ status: 'engaged', targetSlot: null, engageOrigin: null });
     this.beginEncounter(enc);
@@ -1887,7 +2009,14 @@ export class LegionSimulation {
     const index = ev.data?.['slotIndex'] as number;
     const zone = this.state.zones[order - 1] as ZoneState;
     const counter = zone.spawnCounter + 1;
-    const id = `${(this.content.zones[order - 1] as LegionContent['zones'][number]).id}#${counter}`;
+    let id = `${(this.content.zones[order - 1] as LegionContent['zones'][number]).id}#${counter}`;
+    if (this.content.w1) {
+      // S6: a respawn in a zone with an elite variant draws whether it is elite (the W1 spawn stream).
+      const r = respawnInstance(this.w1s, this.content.zones[order - 1] as LegionContent['zones'][number], counter);
+      id = r.instanceId;
+      if (r.w1 !== this.w1s) this.setW1(r.w1);
+      if (r.elite) this.log('EliteSpawned', { zoneOrder: order, instanceId: id });
+    }
     this.setZone(order, { spawnCounter: counter });
     this.setSlot(order, index, { status: 'alive', aliveSinceMs: this.now().t, instanceId: id });
     const h = this.state.hero;
@@ -1964,7 +2093,7 @@ export class LegionSimulation {
     }
     const credit = verdict.credit;
     const worker = credit.stream.startsWith('worker:') ? credit.stream.slice('worker:'.length) : null;
-    const enemy = this.enemyOf({ kind: credit.boss ? 'boss' : 'ordinary', zoneOrder: credit.zoneOrder });
+    const enemy = this.enemyOf({ kind: credit.boss ? 'boss' : 'ordinary', zoneOrder: credit.zoneOrder, instanceId: credit.instanceId });
     const txId = killTxId(credit.encounterId, credit.instanceId);
     const lootIn = worker === null ? s0.rng.loot : (s0.legion.chars.find((c) => c.id === worker) as CharacterState).rng.loot;
     const { lines, drops, loot } = rollKillReward(lootIn, enemy);
@@ -1991,6 +2120,9 @@ export class LegionSimulation {
     if (s0.legion.enabled && !quest.done && !credit.boss && credit.zoneOrder === 1) quest = { ...quest, kills: quest.kills + 1 };
     // S4: lifetime kills and gold, the Bestiary count and the emblem draw commit with this one credit (S4-R07, R14, R15).
     const permOut = this.permanentEnabled ? this.creditPermanent(enemy.id, credit.boss, enemy.gold) : null;
+    // S6: boss clears, first-clear rewards, elite kills and rare-hero grants commit with this same credit.
+    const w1Out = this.content.w1 ? this.w1Credit(credit, s0, ledger, withLoot) : null;
+    if (w1Out) ledger = w1Out.ledger;
     // Commit: one assignment.
     this.state = {
       ...s0,
@@ -1998,8 +2130,9 @@ export class LegionSimulation {
       rng: worker === null ? { ...s0.rng, loot } : s0.rng,
       hero,
       zones,
-      legion: { ...s0.legion, chars: withLoot, records, quest, credits: (this.l2 ? commitLegionClaimL2 : commitLegionClaim)(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 ? this.now().t : s0.legion.capabilityChangedMs },
+      legion: { ...s0.legion, chars: w1Out ? w1Out.chars : withLoot, records, quest, rare: w1Out ? w1Out.rare : s0.legion.rare, credits: (this.l2 ? commitLegionClaimL2 : commitLegionClaim)(s0.legion.credits, verdict.index), capabilityChangedMs: leveled.length > 0 || (w1Out?.granted ?? false) ? this.now().t : s0.legion.capabilityChangedMs },
       ...(permOut ? { permanent: permOut.state } : {}),
+      ...(w1Out ? { w1: w1Out.w1 } : {}),
     };
     const heroAward = credit.eligible.includes('hero');
     this.log('KillCredited', {
@@ -2020,6 +2153,13 @@ export class LegionSimulation {
       if (permOut.emblem > 0) this.log('EmblemFound', { enemyId: enemy.id, copy: permOut.emblem });
       this.schedulePermanentCheck();
     }
+    if (w1Out) {
+      for (const [kind, data] of w1Out.logs) this.log(kind, data);
+      if (w1Out.granted) {
+        if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
+        this.requestPolicy('rare-hero-acquired');
+      }
+    }
     const t = this.now().t;
     this.schedule(t, PHASE.PROGRESS, 'account', 'ProgressCheck', { data: { zoneOrder: credit.zoneOrder, levelFrom: s0.hero.level, levelTo: hero.level, bossClear: credit.boss, members: leveled.filter((x) => x !== 'hero').join(',') } });
     if (leveled.includes('hero')) this.schedule(t, PHASE.RECOMPUTE, 'hero', 'StatsRecomputed');
@@ -2037,6 +2177,10 @@ export class LegionSimulation {
     if (members) {
       for (const id of members.split(',')) this.log('MemberLevelUp', { member: id, level: (this.char(id) as CharacterState).level });
       this.requestPolicy('member-level-up');
+    }
+    if (d['bossClear'] === true && this.content.w1) {
+      this.w1BossProgress(d['zoneOrder'] as number);
+      return;
     }
     if (d['bossClear'] === true && !this.state.boss.completed) {
       this.state = { ...this.state, boss: { ...this.state.boss, completed: true } };
@@ -2058,6 +2202,17 @@ export class LegionSimulation {
       }
       this.requestPolicy('gate-completed');
     }
+    if (this.content.w1) {
+      const bi = bossIndexAt(this.content, order);
+      const def = this.content.bosses[bi];
+      if (def !== undefined && !(this.w1s.bosses[bi] as W1BossState).opened && zone.kills >= def.unlockKills) {
+        this.setBossGate(bi, { opened: true });
+        this.log('BossGateOpened', { gateId: def.gateId });
+        this.requestPolicy('boss-gate-opened');
+      }
+      this.checkQuest();
+      return;
+    }
     const boss = this.content.boss;
     if (order === boss.zoneOrder && !this.state.boss.opened && zone.kills >= boss.unlockKills) {
       this.state = { ...this.state, boss: { ...this.state.boss, opened: true } };
@@ -2067,13 +2222,130 @@ export class LegionSimulation {
     this.checkQuest();
   }
 
+  /**
+   * S6 progress after a W1 boss clear (D-07: after the credit). A miniboss's first Normal clear unlocks its next zone
+   * (a roster milestone where one is defined); the final boss's first Normal clear completes the world. Derived from
+   * the committed gate state, so it is idempotent.
+   */
+  private w1BossProgress(order: number): void {
+    const bi = bossIndexAt(this.content, order);
+    const def = this.content.bosses[bi] as CompiledBoss;
+    const b = this.w1s.bosses[bi] as W1BossState;
+    const u = def.unlocksZoneOrder;
+    if (u !== null && b.completed && !(this.state.zones[u - 1] as ZoneState).accessUnlocked) {
+      this.setZone(u, { accessUnlocked: true });
+      this.log('ZoneAccessUnlocked', { zoneOrder: u });
+      this.onZoneAccessMilestone(u);
+      this.requestPolicy('gate-completed');
+    }
+    if (def.kind === 'final' && b.completed && !this.state.boss.completed) {
+      this.state = { ...this.state, boss: { ...this.state.boss, completed: true } };
+      this.log('WorldCleared', { gateId: def.gateId });
+    }
+    this.requestPolicy('boss-cleared');
+  }
+
+  /**
+   * S6: the World 1 part of one kill credit, committed in the same assignment. A boss clear updates its gate and, on
+   * that version's first clear, credits the first-clear reward (its own ledger transaction, applied once: the
+   * transaction identity names the gate and version) and any rare hero it grants. An elite kill counts and may drop the
+   * zone's rare hero. A rare hero already owned converts to the duplicate material (S2-R20) instead.
+   */
+  private w1Credit(credit: LegionClaim, s0: LegionSimState, ledger0: LegionSimState['ledger'], chars0: readonly CharacterState[]): { ledger: LegionSimState['ledger']; w1: W1State; chars: readonly CharacterState[]; rare: readonly string[]; logs: [string, Record<string, string | number | boolean | null>][]; granted: boolean } {
+    const impl = LEDGER_IMPLEMENTATIONS[this.options.ledger ?? DEFAULT_LEDGER];
+    let ledger = ledger0;
+    let w1 = s0.w1 as W1State;
+    let chars = chars0;
+    let rare = s0.legion.rare;
+    let granted = false;
+    const logs: [string, Record<string, string | number | boolean | null>][] = [];
+    const grant = (rareHeroId: string, via: string): void => {
+      // S6 acceptance correction A: ownership is unique (the rare list names each hero once) and each repeat grant
+      // increments that hero's checked duplicate counter, so the history does not grow with duplicate drops. The
+      // conversion's transaction identity is the duplicate's number (the same identities as before: the n-th
+      // duplicate of a hero is `rare:<id>:duplicate:<n>`). It draws nothing from any random stream.
+      if (rare.includes(rareHeroId)) {
+        const k = rareHeroIds(this.content).indexOf(rareHeroId);
+        if (k < 0) fail('INVALID_STATE', 'a duplicate grant names no content rare hero', { rareHeroId });
+        const n = addCounter(w1.rareDuplicates[k] as number, 1, `rare hero ${rareHeroId} duplicates`);
+        const txId = `rare:${rareHeroId}:duplicate:${n}`;
+        const out = impl.applyTx(ledger, { txId, purpose: 'rare.duplicate', lines: [{ resourceId: this.content.legion.rareHeroDuplicateResource, bucket: 'available', delta: 1 }] });
+        if (out.result.replayed) fail('INVALID_STATE', 'a rare-hero duplicate conversion was already applied', { rareHeroId });
+        ledger = out.ledger;
+        w1 = { ...w1, rareDuplicates: w1.rareDuplicates.map((d, j) => (j === k ? n : d)) };
+        logs.push(['RareHeroDuplicate', { rareHeroId, resourceId: this.content.legion.rareHeroDuplicateResource, amount: 1, duplicates: n, via }]);
+        logs.push(['LedgerTx', { txId, purpose: 'rare.duplicate', nets: out.result.nets.map((n) => `${n.resourceId}/${n.bucket}:${n.delta}`).join(',') }]);
+        return;
+      }
+      const def = this.content.rareHeroes.get(rareHeroId) as CompiledRareHero;
+      const id = `rare:${rareHeroId}`;
+      const assignment: Assignment = productiveRecruits(chars) < s0.legion.slots ? { kind: 'idle' } : { kind: 'reserve' };
+      const order = (chars[chars.length - 1] as CharacterState).order + 1;
+      const c = this.newCharacter(id, 'rare', order, def.joinLevel, def.cls, ZERO_TALENTS(), assignment, this.withTrait(id, this.mergePermanent(NO_MODS)));
+      chars = [...chars, c];
+      rare = [...rare, rareHeroId];
+      granted = true;
+      logs.push(['RareHeroAcquired', { member: id, rareHeroId, cls: def.cls, level: def.joinLevel, assignment: assignment.kind, via }]);
+    };
+    if (credit.boss) {
+      const bi = bossIndexAt(this.content, credit.zoneOrder);
+      const def = this.content.bosses[bi] as CompiledBoss;
+      const elite = isEliteBossInstance(def, credit.instanceId);
+      const { state, first } = bossClear(w1.bosses[bi] as W1BossState, elite);
+      w1 = { ...w1, bosses: w1.bosses.map((b, j) => (j === bi ? state : b)) };
+      logs.push(['BossCleared', { gateId: def.gateId, elite, first, clears: elite ? state.eliteClears : state.clears }]);
+      if (first) {
+        const reward = (elite ? def.eliteFirstClear : def.firstClear) as CompiledReward;
+        const lines: TxLine[] = [...(reward.gold > 0 ? [{ resourceId: 'res.gold', bucket: 'available' as const, delta: reward.gold }] : []), ...reward.materials.map((m) => ({ resourceId: m.resourceId, bucket: 'available' as const, delta: m.qty }))];
+        logs.push(['BossFirstClearReward', { gateId: def.gateId, elite, gold: reward.gold, materials: reward.materials.map((m) => `${m.resourceId}:${m.qty}`).join(',') }]);
+        if (lines.length > 0) {
+          const txId = `w1:${elite ? 'elite-first' : 'first'}:${def.gateId}`;
+          const out = impl.applyTx(ledger, { txId, purpose: 'boss.first-clear', lines });
+          if (out.result.replayed) fail('INVALID_STATE', 'a first-clear reward was already applied', { gateId: def.gateId, elite });
+          ledger = out.ledger;
+          logs.push(['LedgerTx', { txId, purpose: 'boss.first-clear', nets: out.result.nets.map((n) => `${n.resourceId}/${n.bucket}:${n.delta}`).join(',') }]);
+        }
+        if (!elite) logs.push(['GateCompleted', { gateId: def.gateId, kind: 'boss' }]);
+        if (reward.rareHeroId !== null) grant(reward.rareHeroId, `boss:${def.gateId}${elite ? ':elite' : ''}`);
+      }
+    } else {
+      const zone = this.content.zones[credit.zoneOrder - 1] as LegionContent['zones'][number];
+      if (isEliteSlotInstance(zone, credit.instanceId)) {
+        const r = eliteKill(w1, zone);
+        w1 = r.w1;
+        logs.push(['EliteKilled', { zoneOrder: credit.zoneOrder, instanceId: credit.instanceId }]);
+        if (r.rareHeroId !== null) grant(r.rareHeroId, `elite:${zone.id}`);
+      }
+    }
+    return { ledger, w1, chars, rare, logs, granted };
+  }
+
+  /** S6: starts a W1 boss attempt, Normal or Elite (validated by validateW1StartBoss); the hero leads, deployed members join. */
+  private startBossW1(gateId: string, elite: boolean): void {
+    const t = this.now().t;
+    const h = this.state.hero;
+    const bi = bossIndexOf(this.content, gateId);
+    const def = this.content.bosses[bi] as CompiledBoss;
+    const enemy = (elite ? def.eliteEnemy : def.enemy) as CompiledEnemy;
+    const n = this.state.encounterSeq + 1;
+    const attempts = (this.w1s.bosses[bi] as W1BossState).attempts + 1;
+    const participants = this.state.legion.chars.filter((c) => c.assignment.kind === 'squad' && !c.knockedOut).map((c) => c.id);
+    const enc: LegionEncounter = { id: `enc:${n}`, kind: 'boss', zoneOrder: def.zoneOrder, slotIndex: null, instanceId: `${enemy.id}#${attempts}`, enemyHp: enemy.hp, startMs: t, origin: 'manual', participants };
+    this.state = { ...this.state, encounter: enc, encounterSeq: n };
+    this.setBossGate(bi, { attempts });
+    this.setHero({ status: 'boss', regenRem: 0, regenChain: h.regenChain + 1, waitingForSpawn: false, manualEngagePending: false });
+    this.log('BossStarted', { encounterId: enc.id, attempt: attempts, gateId: def.gateId, elite });
+    this.beginEncounter(enc);
+    this.schedule(t + (elite ? def.eliteTimerMs : def.timerMs), PHASE.BOUNDARY, 'hero', 'BossTimerExpired', { encounterId: enc.id });
+  }
+
   private checkQuest(): void {
     const L = this.state.legion;
     const target = this.options.diagnostic?.questKills ?? this.content.legion.firstRecruitQuestKills;
     if (!L.enabled || L.quest.done || L.quest.kills < target) return;
     const rules = this.content.legion;
     const id = `rec:${L.nextRecruit}`;
-    const c = this.newCharacter(id, 'ordinary', L.nextRecruit, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
+    const c = this.newCharacter(id, 'ordinary', this.content.w1 ? (L.chars[L.chars.length - 1] as CharacterState).order + 1 : L.nextRecruit, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
     this.setLegion({ quest: { ...L.quest, done: true }, chars: [...L.chars, c], nextRecruit: L.nextRecruit + 1, slots: Math.max(L.slots, rules.slotsAtQuest), deployCap: Math.max(L.deployCap, rules.deployCapAtQuest), capabilityChangedMs: this.now().t });
     this.log('QuestCompleted', { quest: 'Q1', kills: L.quest.kills });
     this.log('RecruitAcquired', { member: id, cost: 0, via: 'quest' });
@@ -2086,8 +2358,10 @@ export class LegionSimulation {
     const L = this.state.legion;
     if (!L.enabled) return;
     const rules = this.content.legion;
-    const slots = order === 2 ? rules.slotsAtZone2Access : order === 3 ? rules.slotsAtZone3Access : L.slots;
-    const cap = order === 2 ? rules.deployCapAtZone2Access : order === 3 ? rules.deployCapAtZone3Access : L.deployCap;
+    // S6 World 1: the milestone list (its zone 2 and 3 entries equal the S2 fields, validated).
+    const m = rules.zoneMilestones?.find((x) => x.zoneOrder === order);
+    const slots = rules.zoneMilestones ? (m?.slots ?? L.slots) : order === 2 ? rules.slotsAtZone2Access : order === 3 ? rules.slotsAtZone3Access : L.slots;
+    const cap = rules.zoneMilestones ? (m?.deployCap ?? L.deployCap) : order === 2 ? rules.deployCapAtZone2Access : order === 3 ? rules.deployCapAtZone3Access : L.deployCap;
     if (slots > L.slots || cap > L.deployCap) {
       this.setLegion({ slots: Math.max(L.slots, slots), deployCap: Math.max(L.deployCap, cap) });
       this.log('RosterMilestone', { slots: this.state.legion.slots, deployCap: this.state.legion.deployCap, zoneOrder: order });
@@ -2113,8 +2387,70 @@ export class LegionSimulation {
     this.log('StatsRecomputed', { level: h.level, maxHp: s.maxHp, defence: s.defence, attackRawMilli: s.attackRawMilli });
   }
 
+  // ------------------------------------------------------------ the external command boundary (S6 acceptance B)
+  /**
+   * The supported entry point for a command from outside the simulation (a player's input, a server request), World 1
+   * only. Between steps it queues the command into the decision phase at the instant the simulation stands at:
+   * after every step already processed at that instant (the saved last step), before the instant's later decisions.
+   * Advancing the simulation processes it; its outcome is logged (ExternalCommandResult) and kept by ticket. Nothing
+   * is invented: the instant is the simulation's own time, and the command is validated when its slot is processed
+   * (in session, not stale, then the command's own rules), with every refusal named.
+   */
+  submitExternal(request: ExternalRequest): ExternalSubmit {
+    if (!this.content.w1) return { ok: false, code: 'NOT_WORLD_1' };
+    if (this.current !== null) return { ok: false, code: 'IN_STEP' };
+    if (this.refused) return { ok: false, code: 'STOPPED' };
+    if (!externalRequestOk(request)) return { ok: false, code: 'INVALID_REQUEST' };
+    const t = this.state.tMs;
+    const pass = this.lastT === t ? (this.lastPhase < PHASE.POLICY ? this.lastPass : this.lastPass + 1) : 0;
+    if (pass >= MAX_PASSES) fail('EVENT_CASCADE_LIMIT', `more than ${MAX_PASSES} passes at one timestamp`, { t, kind: 'ExternalCommand' });
+    this.seq += 1;
+    const req: ExternalRequest = request.expectBossAttempts === undefined ? { command: request.command } : { command: request.command, expectBossAttempts: request.expectBossAttempts };
+    const ev = { key: { t, pass, phase: PHASE.POLICY, entityOrder: 'external', seq: this.seq }, kind: 'ExternalCommand', data: { ticket: this.seq, request: canonicalJson(req as never) } } as unknown as SimEvent;
+    this.queue.push(ev);
+    return { ok: true, ticket: this.seq, atMs: t };
+  }
+
+  /** The outcome of an external command processed by this simulation object (null while pending or unknown). */
+  externalResult(ticket: number): ExternalCommandResult | null {
+    return this.externalResults?.get(ticket) ?? null;
+  }
+
+  private applyExternal(ev: LegionEvent): void {
+    this.current = ev.key;
+    const ticket = Number(ev.data?.['ticket']);
+    const req = JSON.parse(String(ev.data?.['request'])) as ExternalRequest;
+    const cmd = req.command;
+    let code: string | null = null;
+    if (!this.state.session.open) code = 'NOT_IN_SESSION';
+    else if (cmd.type === 'StartBoss' && req.expectBossAttempts !== undefined) {
+      const i = bossIndexOf(this.content, cmd.gateId);
+      if (i >= 0 && (this.w1s.bosses[i] as W1BossState).attempts !== req.expectBossAttempts) code = 'STALE_REQUEST';
+    }
+    if (code !== null) {
+      this.counters.commandsRejected[code] = (this.counters.commandsRejected[code] ?? 0) + 1;
+      this.log('CommandRejected', { command: cmd.type, code });
+    } else {
+      this.lastRejectCode = null;
+      code = this.submit(cmd) ? null : (this.lastRejectCode ?? 'REJECTED');
+    }
+    const result: ExternalCommandResult = { ticket, command: cmd.type, ok: code === null, code, atMs: ev.key.t };
+    (this.externalResults ??= new Map()).set(ticket, result);
+    this.log('ExternalCommandResult', { ticket, command: cmd.type, ok: code === null, code: code ?? '' });
+  }
+
   // ------------------------------------------------------------ policy and commands
-  private policyBatch(batch: readonly LegionEvent[]): void {
+  private policyBatch(batchIn: readonly LegionEvent[]): void {
+    // S6 acceptance correction B: external commands at this decision slot, in queue order (their owner 'external'
+    // sorts before 'hero'), then the policy's decision if one was requested. Without external commands the batch is
+    // the policy's alone, exactly as before.
+    let batch = batchIn;
+    if (batchIn.some((ev) => ev.kind === 'ExternalCommand')) {
+      for (const ev of batchIn) if (ev.kind === 'ExternalCommand') this.applyExternal(ev);
+      batch = batchIn.filter((ev) => ev.kind !== 'ExternalCommand');
+      if (batch.length === 0) return;
+      this.current = batch[0]?.key ?? this.current;
+    }
     if (!this.state.session.open) return;
     const key = this.now();
     if (this.policyDecisionsAt.t !== key.t) this.policyDecisionsAt = { t: key.t, n: 0 };
@@ -2129,13 +2465,30 @@ export class LegionSimulation {
     for (const cmd of commands) this.submit(cmd);
   }
 
+  /**
+   * Applies a command inside the current step (policies and the external command boundary). World 1 (S6 acceptance
+   * correction B): outside a step it is refused (OUTSIDE_STEP), because a command's effects need the step's event key;
+   * an external caller uses `submitExternal`, which queues the command into the decision phase.
+   */
   submit(cmd: LegionCommand): boolean {
+    if (this.current === null && this.content.w1) {
+      this.counters.commandsRejected['OUTSIDE_STEP'] = (this.counters.commandsRejected['OUTSIDE_STEP'] ?? 0) + 1;
+      this.lastRejectCode = 'OUTSIDE_STEP';
+      return false;
+    }
     if (cmd.type === 'SetOfflineAssignment') return this.submitOffline(cmd);
     if (cmd.type === 'UpgradeMonument') return this.submitPermanent(cmd);
     const industryCmd = isIndustryCommand(cmd);
-    const v = industryCmd ? validateIndustryCommand(this, cmd as IndustryCommand) : isLegionCommand(cmd) ? validateLegionCommand(this, cmd) : validateCommand(this.state as never, this.content, cmd as never);
+    const v = industryCmd
+      ? validateIndustryCommand(this, cmd as IndustryCommand)
+      : isLegionCommand(cmd)
+        ? validateLegionCommand(this, cmd)
+        : this.content.w1 && cmd.type === 'StartBoss'
+          ? validateW1StartBoss(this.state as never, this.content, this.w1s, cmd.gateId, cmd.elite === true)
+          : validateCommand(this.state as never, this.content, cmd as never);
     if (!v.ok) {
       this.counters.commandsRejected[v.code] = (this.counters.commandsRejected[v.code] ?? 0) + 1;
+      this.lastRejectCode = v.code;
       this.log('CommandRejected', { command: cmd.type, code: v.code });
       return false;
     }
@@ -2193,6 +2546,10 @@ export class LegionSimulation {
         return;
       }
       case 'StartBoss': {
+        if (this.content.w1) {
+          this.startBossW1(cmd.gateId, cmd.elite === true);
+          return;
+        }
         const boss = this.content.boss;
         const n = this.state.encounterSeq + 1;
         const attempts = this.state.boss.attempts + 1;
@@ -2297,7 +2654,7 @@ export class LegionSimulation {
         const cost = rules.recruitCostGold[n - 2] as number;
         this.debitGold(`recruit:${n}`, cost);
         const id = `rec:${n}`;
-        const c = this.newCharacter(id, 'ordinary', n, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
+        const c = this.newCharacter(id, 'ordinary', this.content.w1 ? (L.chars[L.chars.length - 1] as CharacterState).order + 1 : n, 1, 'none', ZERO_TALENTS(), { kind: 'idle' });
         this.setLegion({ chars: [...this.state.legion.chars, c], nextRecruit: n + 1, capabilityChangedMs: t });
         this.log('RecruitAcquired', { member: id, cost, via: 'purchase' });
         if (this.permanentEnabled) this.bumpCounter('recruitsAcquired', 1);
@@ -2390,7 +2747,8 @@ export class LegionSimulation {
     const counters = {
       ...c0,
       zonesVisited: Math.max(c0.zonesVisited, s.zones.filter((z) => z.visited).length),
-      gatesCompleted: Math.max(c0.gatesCompleted, s.zones.filter((z) => z.gateCompleted).length),
+      // S6 World 1: a miniboss's first Normal clear is the gate to its next zone, so it counts as a completed gate.
+      gatesCompleted: Math.max(c0.gatesCompleted, s.zones.filter((z) => z.gateCompleted).length + (s.w1 ? s.w1.bosses.filter((b, i) => b.completed && this.content.bosses[i]?.kind === 'miniboss').length : 0)),
       bossCleared: Math.max(c0.bossCleared, s.boss.completed ? 1 : 0),
       rosterLevelsHigh: Math.max(c0.rosterLevelsHigh, rosterLevels),
       professionLevelsHigh: Math.max(c0.professionLevelsHigh, profLevels),
@@ -2911,6 +3269,7 @@ export class LegionSimulation {
 
   /** DIAGNOSTIC ONLY (tests of S2-R20): grants a rare hero, or its duplicate material when already owned. */
   grantRareHero(key: string): void {
+    if (this.content.w1) fail('INVALID_STATE', 'World 1 rare heroes are granted only by gameplay (bosses and elites)');
     const L = this.state.legion;
     const t = this.state.tMs;
     if (L.rare.includes(key)) {
